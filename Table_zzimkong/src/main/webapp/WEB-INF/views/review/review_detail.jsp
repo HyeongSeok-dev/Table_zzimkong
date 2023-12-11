@@ -46,7 +46,7 @@
 </svg>
 		</h2>
 		<div class="review_write_button">
-		    <jsp:include page="../review/review_write.jsp"><i class="fas fa-pencil-alt"></i> 리뷰쓰기</a>
+		    <a href="${pageContext.request.contextPath}/review/review_write.jsp"><i class="fas fa-pencil-alt"></i> 리뷰쓰기</a>
 		</div>
 	</div>
 	<div class="review_select">
