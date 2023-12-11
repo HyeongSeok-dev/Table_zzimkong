@@ -3,48 +3,50 @@
 <!DOCTYPE html>
 <html>
 
-<!-- 평행 맞추기 -->
 <style>
-#logo {
-  display: inline-block;
-  vertical-align: middle;
-  float: left;
+/* 로고랑 링크 평행 맞추기 */
+.container {
+  display: flex;
+  justify-content: center; 
+  align-items: center;
 }
 
+/* 로고사진 크기 조정 */
+#logo > img {
+  height: 120px;
+  width: 120px;
+}
+
+/*로고랑 링크사이 여백주기 */
 #link {
-  display: inline-block;
-  vertical-align: middle;
-  float: right;
+  margin-left: 20px; 
 }
 </style>
 
-
-<head>
-<meta charset="UTF-8">
-
-</head>
 <body>
 <hr>
-<br>
-<!-- 로고 는 왼쪽 -->
-<div id="logo">
-	<img src="${pageContext.request.contextPath}/resources/img/logo_top.png">
-</div>	
-<!-- 링크는 오른쪽 -->
-<div id="link">
-	<a href="">서비스 이용약관</a>
-	 |
-	 <a href="">개인정보 처리방침</a>
-	 | 
-	 <a href="">위치정보 이용약관</a>
-	 | 
-	 <a href="">광고/제휴문의</a>
-	 | 
-	 <a href="">고객센터</a>
-	 &nbsp;&nbsp;&nbsp;
-	 <br><br><br>
- </div>
 
+<div class="container">
+  <!-- 로고-->
+  <div id="logo">
+    <img src="${pageContext.request.contextPath }/resources/img/logo_top.png">
+  </div>  
+  
+  <!-- 링크 -->
+  <div id="link">
+    <a href="">서비스 이용약관</a>
+     |
+     <a href="">개인정보 처리방침</a>
+     | 
+     <a href="">위치정보 이용약관</a>
+     | 
+     <a href="">광고/제휴문의</a>
+     | 
+     <a href="">고객센터</a>
+  
+     
+  </div>
+</div>
 </body>
 
 </html>

@@ -13,6 +13,7 @@ function popupFindPasswd(){
 		    window.open("login_findPasswd.jsp", "address_window", "width=450,height=570");
 		}
 		
+		
 		document.getElementById('find_passwd').addEventListener('click', function(event) {
 		    event.preventDefault();
 		    popupFindPasswd();

@@ -1,11 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- 
+    
+    <!-- 이미지 크기조정 -->
+    <style>
+#logo > img {
+  width: 200px; 
+  height: auto; 
+}
+</style>
+
 <hr>
 
 <div align="center">
 <br>
-대표 : 아무나
+대표 : 송지태
 <br>
 주소: 부산광역시 부산진구 동천로 109 삼한골든게이트빌딩 7층
 <br>
@@ -20,8 +28,13 @@
  <a href="">위치정보 이용약관</a>
  | 
  <a href="">광고/제휴문의</a>
- | 
-<a href="">관리자페이지</a>
-<br><br><br>
+ 
+ <br>
+ 
+ <div id="logo">
+    <img src="${pageContext.request.contextPath }/resources/img/logo_top.png">
+  </div>  
+ 
+<br><br>
 
 </div>

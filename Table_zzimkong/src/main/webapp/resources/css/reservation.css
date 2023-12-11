@@ -1,0 +1,240 @@
+@charset "UTF-8";
+.block { 
+	width: 100%; 
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    height: 20px;
+    margin-bottom: 10px;
+    margin-top: 30px;
+} 
+
+.platform-site-t1cgvl { 
+    display: block; 
+    font-size: 12px; 
+    color: #919191; 
+    padding: 5px 0;
+} 
+
+.size{
+	display: block; 
+    font-size: 12px; 
+    color: #919191; 
+    padding: 5px 0;
+}
+
+h2 {
+	font-size: 25px;
+	border-bottom: 1px solid #eaeaea;
+    padding: 10px 10px 10px 10px;
+    margin-bottom: 10px;
+}
+
+.section_box{ /* section태그 밖에 div태그 class */
+	width: 600px; 
+    margin: 20px;
+    padding: 40px; 
+    padding-top: 10px;
+}
+
+form {
+	display: flex;
+	justify-content: center;
+}
+
+.out_block {
+	width: 600px;
+}
+
+.inner_block {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.payment{
+	width: 100%;
+	height: 40px;
+	margin: 0;
+	margin-top: 15px;
+}
+
+h1 {
+	padding: 10px;
+	margin: 10px;
+}
+
+ol, li{
+    margin: 0;
+    padding: 0;
+    -webkit-text-size-adjust: none;
+}
+
+ol {
+    display: block;
+    list-style: none;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+
+.status--2Vl8oROKh3 li.now--3JOiYDgRis {
+    font-weight: bold;
+    color: #000;
+}
+
+.status--2Vl8oROKh3 li {
+    display: inline-block;
+    font-size: 15px;
+    line-height: 18px;
+    color: #9a9a9a;
+    vertical-align: top;
+}
+
+.status--2Vl8oROKh3 li.now--3JOiYDgRis {
+    font-weight: bold;
+    color: #000;
+}
+
+.blind {
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    position: absolute;
+    width: 1px;
+}
+
+.status--2Vl8oROKh3 li:not(:first-child) {
+    margin-left: 5px;
+}
+
+.status--2Vl8oROKh3 li .ico_status--2cyINN3I2q {
+    display: inline-block;
+    margin-right: 4px;
+    vertical-align: top;
+}
+
+svg {
+    display: block;
+}
+
+svg[Attributes] {
+    width: 18;
+    height: 18;
+    fill: none;
+}
+
+svg:not(:root) {
+    overflow-clip-margin: content-box;
+    overflow: hidden;
+}
+
+textarea {
+	width: 100%;
+	height: 100px;
+}
+
+.info_tag {
+	width: 100%;
+}
+
+.info {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 5px;
+	padding:5px;
+}
+
+.info_title {
+	font-size: 15px;
+}
+
+.info_content {
+	font-size: 20px;
+}
+
+.info_price{
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 5px;
+}
+
+.name, .number {
+	width: 97%;
+	height: 40px;
+}
+
+.name_number .input_box h3{
+	margin-left: 15px;
+}
+
+.menu_name, .count {
+	font-size: 14px;
+	color: gray;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.menu_name {
+	width: 100px;
+}
+
+.price {
+	font-size: 18px;
+	width: 350px;
+	text-align: right;
+}
+
+#menu_price {
+	margin-bottom: 0;
+}
+
+.sec03_header {
+	display: flex;
+	justify-content: space-between;
+}
+
+#checkbox_same_info, #checkbox_agree {
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-top: 5px;
+}
+
+.sec03_info {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+}
+
+.sec03_info_2 {
+	font-size: 13px;
+	color: #bb5b67;
+	padding-left: 20px;
+}
+
+.sec05>span, .sec03_info_1 {
+	font-size: 16px;
+	margin-bottom: 5px;
+}
+
+.agree_top {
+	margin-top: 20px;
+}
+
+.agree_main, .agree_top {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 10px;
+}
+
+.all_agree, .agree_font{
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.agree_content {
+	font-size: 16px;
+}

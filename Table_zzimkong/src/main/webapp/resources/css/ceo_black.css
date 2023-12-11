@@ -1,0 +1,80 @@
+@charset "UTF-8";
+
+
+/* 본문 CSS */
+
+h3 {
+	color: #515151;
+    margin-bottom: 30px;
+    font-size: 30px;
+    /* 하이라이트 CSS 추가 */
+    display: inline; /* 글자 길이에 맞게 */
+}
+
+.article {
+	display: block;
+	border: none;
+	background-color: #fff;
+	margin-top: 40px;
+}
+
+.text {
+	display: block;
+	width: 1200px;
+	padding: 0 30px;
+    margin: 0 auto;
+}
+
+
+textarea {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 0px;
+    box-sizing: border-box;
+    border: none;
+    background-color: #f8f8f8;
+    font-size: 12px;
+}
+
+/* 상세 정보 창 CSS */
+.info_window {
+	padding: 10%;
+	line-height: 1.6;
+}
+
+.info_window section {
+	justify-content: center;
+	text-align: center;
+	margin: auto;
+}
+
+.info_window table {
+	/* ## 테이블 간격 조정 */
+	width: auto;
+	border-collapse: collapse;
+	margin: auto;
+	table-layout: auto;
+}
+	
+.info_window td {
+	/* 	width: 90%; */
+	text-align: left;
+}
+	
+/* 버튼 가운데 정렬 */
+.info_window_table input[type="button"] {
+	display: flex;
+	justify-content: center;
+}
+
+/* ---com_company_join------------------- */
+.header {
+	display: flex;
+	justify-content: space-between;
+}
+
+
+#comNumText {
+	width: 65%;
+	margin-right: 10px;
+}
