@@ -1,15 +1,8 @@
 @charset "UTF-8";
-
-@font-face {
-    font-family: 'Orbit-Regular';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/Orbit-Regular.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-}
-
   body {  
     margin: 0; 
     padding: 0; 
+    font-family: '맑은 고딕', 'Malgun Gothic', '돋움', Dotum, Arial, 'Apple Gothic', sans-serif; 
     letter-spacing: -1px; 
     word-wrap: break-word;
     margin: 0; 
@@ -19,38 +12,20 @@
     line-height: 24px; 
     letter-spacing: -1px; 
     -webkit-text-size-adjust: none;
+    font-family:'맑은 고딕', 'Malgun Gothic', '돋움', Dotum, Arial, 'Apple Gothic', sans-serif;
     letter-spacing:-1px;
     font-size:16px;
     line-height:1.4;
     color:#282828;
-    
-    padding-left: 150px;  /* 왼쪽 여백 설정 */
-    padding-right: 150px;  /* 오른쪽 여백 설정 */
   }  
-  
-  footer {
-    padding-left: 0;  /* footer의 왼쪽 여백 제거 */
-    padding-right: 0;  /* footer의 오른쪽 여백 제거 */
-}
-  
-
   
 div { 
     margin: 0; 
     padding: 0; 
+    font-family: '맑은 고딕', 'Malgun Gothic', '돋움', Dotum, Arial, 'Apple Gothic', sans-serif; 
     letter-spacing: -1px; 
     word-wrap: break-word;
-    
 } 
-
-
-/* 체크박스랑 로그인 버튼 사이에 간격띄우기 */
-.check {
-    margin-bottom: 50px;  /* 원하는 간격으로 조절 */
-    vertical-align: middle;
-    font-size: 17px;  
-    
-}
 
 .nmContainer { 
     width: 100%;
@@ -70,8 +45,6 @@ div {
     font-size: 0;
 } 
 
-
-
 .nmCont { 
     padding: 40px; 
     border: 1px solid #fff;
@@ -81,11 +54,9 @@ h2 {
     margin: 0; 
     padding: 0; 
     font-weight: normal;
-} 
-
-h2 { 
     font: inherit;
 } 
+
 
 .nmTit h2  { 
     font-size: 30px; 
@@ -105,13 +76,12 @@ h2 {
 ul { 
     margin: 0; 
     padding: 0; 
+    font-family: '맑은 고딕', 'Malgun Gothic', '돋움', Dotum, Arial, 'Apple Gothic', sans-serif; 
     letter-spacing: -1px; 
     word-wrap: break-word;
-} 
-
-ul { 
     list-style: none;
 } 
+
 
 .siteList { 
     padding: 40px 0; 
@@ -130,13 +100,12 @@ ul {
 li { 
     margin: 0; 
     padding: 0; 
+    font-family: '맑은 고딕', 'Malgun Gothic', '돋움', Dotum, Arial, 'Apple Gothic', sans-serif; 
     letter-spacing: -1px; 
     word-wrap: break-word;
-} 
-
-li { 
     list-style: none;
 } 
+
 
 .siteList li  { 
     display: inline-block; 
@@ -151,26 +120,11 @@ li {
 form { 
     margin: 0; 
     padding: 0; 
-    letter-spacing: -1px; 
-    word-wrap: break-word;
-    
-} 
-
-#loginForm{
-	text-align: center;
-}
-
-a { 
-    margin: 0; 
-    padding: 0; 
+    font-family: '맑은 고딕', 'Malgun Gothic', '돋움', Dotum, Arial, 'Apple Gothic', sans-serif; 
     letter-spacing: -1px; 
     word-wrap: break-word;
 } 
 
-a { 
-    color: #707070; 
-    text-decoration: none;
-} 
 
 .siteList li a  { 
     font-size: 18px; 
@@ -195,34 +149,21 @@ a {
     background-color: initial;
 } 
 
-a:hover { 
-    color: #0e77d9; 
-    text-decoration: underline;
-} 
-
-a:active,a:hover { 
-    outline: 0;
-} 
 
 input { 
     margin: 0; 
     padding: 0; 
+    font-family: '맑은 고딕', 'Malgun Gothic', '돋움', Dotum, Arial, 'Apple Gothic', sans-serif; 
     letter-spacing: -1px; 
     word-wrap: break-word;
-} 
-
-input { 
     outline: none;
-} 
-
-input { 
     vertical-align: middle;
 } 
 
 input.inputTxt { 
-    height: 40px;  /* ID/비밀번호 텍스트박스 높이*/
+    height: 31px; 
     padding: 0 15px 2px; 
-    border: 1px solid #d8d8d8; 
+/*     border: 1px solid #d8d8d8;  */
     font-size: 14px; 
     line-height: 18px;
 } 
@@ -230,7 +171,7 @@ input.inputTxt {
 .inputTxt  { 
     height: 35px; 
     padding: 0 10px 2px; 
-    border: 1px solid #bfbfbf; 
+/*     border: 1px solid #bfbfbf;  */
     font-size: 14px; 
     line-height: 18px; 
     letter-spacing: 0; 
@@ -240,9 +181,6 @@ input.inputTxt {
     -webkit-appearance: none;
 } 
 
-.inpBig  { 
-    height: 50px;
-} 
 
 :root input.inputTxt  { 
     height: 31px \0/IE9; 
@@ -251,8 +189,8 @@ input.inputTxt {
 
 .loginBox .inputTxt  { 
     width: 100%; 
-    margin-bottom: 10px; 
-    border-color: #d8d8d8;
+    margin-bottom: 20px; 
+/*     border-color: #d8d8d8; */
 } 
 
 input.inputTxt  { 
@@ -260,9 +198,6 @@ input.inputTxt  {
     padding: 0 10px 2px \9;
 } 
 
-input.inpBig  { 
-    height: 50px \9;
-} 
 
 button { 
     background: none; 
@@ -271,30 +206,9 @@ button {
     cursor: pointer;
 } 
 
-/* #loginBtn  {  */
-/*     display: inline-block;  */
-/*     height: auto;  */
-/*    	width:250px; */
-/*     margin: 0;  */
-/*     padding: 0 25px;  */
-/*     border: 1px solid  #e5e6d1;  */
-/*     background:   #e5e6d1; 로그인버튼 배경색 */
-/*     font-size: 20px;  */
-/*     line-height: 1.2;  */
-/*     color: #282828;  */
-/*     vertical-align: middle;  */
-/*     justify-content: center; */
-/*     align-items: center; */
-    
-/*     text-align: center;  */
-/*     box-sizing: border-box;  */
-/*     cursor: pointer; */
-/* }  */
-
-#loginkakaoBtn  { 
-    display: inline-block ;
-    height: auto; 
-    width:250px;
+#joinkakaoBtn  { 
+    display: inline-block; 
+    height: 45px; 
     margin: 0; 
     padding: 0 25px; 
     border: 1px solid #fbe122; 
@@ -303,22 +217,22 @@ button {
     line-height: 1.2; 
     color: #282828; 
     vertical-align: middle; 
-
     
     text-align: center; 
     box-sizing: border-box; 
     cursor: pointer;
 } 
 
-.loginBox .btnLogin ,
-.btnkakaoLogin { 
-    width: 100%; 
-/*     height: 50px !important */
+.loginBox .btnJoin ,
+.btnJoinKakao { 
+    width: 97%; 
+    height: 50px !important
 } 
 
 span { 
     margin: 0; 
     padding: 0; 
+    font-family: '맑은 고딕', 'Malgun Gothic', '돋움', Dotum, Arial, 'Apple Gothic', sans-serif; 
     letter-spacing: -1px; 
     word-wrap: break-word;
 } 
@@ -331,5 +245,50 @@ button span  {
     display: inline-block; 
     margin: 11px 0 13px;
 } 
+
+/* 이메일 텍스트박스, 셀렉트박스 정렬 */
+.u_emil{
+   display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+/* 텍스트박스안에 생년월일 글씨 넣기 */
+#com_birth {margin-left:0;
+text-indent:200px;}
+
+.bday {position: relative;
+top:27px; left:14px; 
+font-size: 14px;
+color:#777; }
+
+/* 인증하기 버튼 텍스트 박스안에 넣기 */
+#phoneBox {
+	position: relative;
+	margin-bottom: 10px;
+}
+
+#phoneBox>button {position: absolute;
+right:-5px; bottom: 4px;
+width:80px; height:22px;
+padding:3px;
+}
+
+#u_email2 {
+	margin-bottom: 10px;
+	margin-left: 0;
+}
+
+#u_email {
+	margin-bottom: 0px;
+	margin-left: 0;
+}
+
+#u_name {
+	margin-bottom: 0;
+}
+
+
 
 
