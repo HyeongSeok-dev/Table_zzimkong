@@ -16,7 +16,7 @@
 <script src="${pageContext.request.contextPath }/resources/js/detail.js"></script>
 </head>
 <body>
-	<%-- 	<jsp:include page="../inc/top_ns.jsp"></jsp:include> --%>
+<%-- 		<jsp:include page="../inc/top_ns.jsp"></jsp:include> --%>
 	<jsp:include page="../inc/search_bar_main.jsp"></jsp:include>
 	<p class="gap20"></p>
 	<div class="s-list pic-grade">
