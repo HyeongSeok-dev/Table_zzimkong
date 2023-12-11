@@ -126,7 +126,7 @@ public class HomeController {
 	
 	@GetMapping("join")
 	public String join() {
-		return "member/join";
+		return "join/join";
 	}
 	
 	@GetMapping("join/ceo")
