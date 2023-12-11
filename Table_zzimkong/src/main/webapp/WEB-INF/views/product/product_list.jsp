@@ -11,7 +11,7 @@
 	<div class="top">
 <%-- 		<jsp:include page="../inc/top_ns.jsp"></jsp:include> --%>
 	</div>
-	<jsp:include page="../inc/search_bar.jsp"></jsp:include>
+	<jsp:include page="../inc/search_bar_main.jsp"></jsp:include>
 	<p class="gap10"></p>
 	<div class="project">
 		<div class="list_main">
