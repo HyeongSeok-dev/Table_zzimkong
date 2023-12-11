@@ -1,0 +1,657 @@
+  body {  
+    font-family:'Pretendard-Regular',sans-serif;
+    font-style:normal;
+    letter-spacing:-.05em;
+    font-size:100%;
+    line-height:1;
+    color:#000;
+    font-weight:400;
+    background:#fff;
+  }  
+  
+* { 
+    font-family: 'Pretendard-Regular',sans-serif; 
+    font-style: normal;
+} 
+
+* { 
+    outline: none; 
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+} 
+
+* { 
+    -webkit-font-smoothing: antialiased; 
+    -moz-osx-font-smoothing: grayscale; 
+    letter-spacing: -.05em;
+} 
+
+div { 
+    margin: 0; 
+    padding: 0; 
+    border: 0; 
+    font-size: 100%; 
+    vertical-align: baseline;
+} 
+
+body { 
+    margin: 0; 
+    padding: 0; 
+    border: 0; 
+    font-size: 100%; 
+    vertical-align: baseline;
+} 
+
+body { 
+    line-height: 1;
+} 
+
+body { 
+    height: 100%; 
+    width: 100%;
+} 
+
+html { 
+    margin: 0; 
+    padding: 0; 
+    border: 0; 
+    font-size: 100%; 
+    vertical-align: baseline;
+} 
+
+html { 
+    font-size: 14px; 
+    color: #000; 
+    word-break: keep-all;
+} 
+
+html { 
+    font-size: 14px; 
+    font-weight: 400; 
+    color: #000; 
+    word-break: keep-all; 
+    -webkit-text-size-adjust: none;
+} 
+
+html { 
+    background: #fff;
+} 
+
+html { 
+    height: 100%; 
+    width: 100%;
+} 
+
+.wrapper { 
+    max-width: 480px; 
+    margin: 0 auto; 
+    background-color: #fff; 
+    width: auto; 
+    position: relative; 
+    min-height: 100%; 
+    box-shadow: 0 0 20px #0000000d;
+} 
+
+header { 
+    margin: 0; 
+    padding: 0; 
+    border: 0; 
+    font-size: 100%; 
+    vertical-align: baseline;
+} 
+
+header { 
+    display: block;
+} 
+
+#header { 
+    position: sticky; 
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    z-index: 99; 
+    opacity: 1; 
+    visibility: visible;
+} 
+
+main { 
+    display: block;
+} 
+
+#main { 
+    padding-bottom: 74px;
+} 
+
+.sticky_bottom_btns { 
+    position: fixed; 
+    bottom: 0; 
+    z-index: 99; 
+    width: 100vw; 
+    max-width: 480px; 
+    left: 50%; 
+    transform: translate(-50%); 
+    padding: 20px; 
+    box-sizing: border-box; 
+    background: rgba(255,255,255,.7); 
+    -webkit-backdrop-filter: blur(2px); 
+    backdrop-filter: blur(2px); 
+    display: flex;
+} 
+
+.container { 
+    padding: 0 30px;
+} 
+
+#header .container  { 
+    margin: 0 auto; 
+    max-width: 480px; 
+    box-sizing: border-box; 
+    position: relative; 
+    display: flex; 
+    align-items: center; 
+    padding: 0 20px; 
+    height: 48px; 
+    width: 100%; 
+    background: #fff; 
+    border-bottom: 1px solid #fff;
+} 
+
+section { 
+    margin: 0; 
+    padding: 0; 
+    border: 0; 
+    font-size: 100%; 
+    vertical-align: baseline;
+} 
+
+section { 
+    display: block;
+} 
+
+.pt-20 { 
+    padding-top: 20px!important;
+} 
+
+.section { 
+    box-sizing: border-box;
+} 
+
+hr { 
+    border: 0; 
+    margin: 0; 
+    padding: 0; 
+    background: #e8e8e8;
+} 
+
+.space { 
+    background: transparent; 
+    display: block; 
+    height: 40px!important;
+} 
+
+button { 
+    margin: 0; 
+    padding: 0; 
+    border: 0; 
+    -webkit-appearance: none; 
+    appearance: none; 
+    border-radius: 0; 
+    box-shadow: none; 
+    cursor: pointer; 
+    background: transparent; 
+    color: #000; 
+    font-size: 14px;
+} 
+
+.btn { 
+    padding: 0; 
+    margin: 0; 
+    border-radius: 0; 
+    display: inline-flex; 
+    align-items: center; 
+    justify-content: center; 
+    border: 0; 
+    -webkit-appearance: none; 
+    appearance: none; 
+    text-decoration: none; 
+    box-sizing: border-box; 
+    color: #000;
+} 
+
+.btn-lg { 
+    line-height: 46px; 
+    text-align: center; 
+    font-size: 14px; 
+    font-weight: 500; 
+    padding: 0 20px; 
+    position: relative; 
+    border: 1px solid #666; 
+    border-radius: 6px; 
+    background: #fff;
+} 
+
+.btn-lg.btn_outline { 
+    border-color: #d5d5d5;
+} 
+
+.sticky_bottom_btns .btn  { 
+    display: block; 
+    width: 100%; 
+    flex: 1; 
+    margin-right: 10px; 
+    font-weight: 700;
+} 
+
+.btn-lg.btn-red { 
+    background: #3FAFFC; 
+    border-color: #3FAFFC; 
+    color: #fff;
+} 
+
+.btn-lg[disabled] { 
+    color: #c8c8c8; 
+    background: #f1f1f1; 
+    border-color: #f1f1f1;
+} 
+
+.sticky_bottom_btns .btn:last-child  { 
+    margin-right: 0;
+} 
+
+#header .header-left  { 
+    display: flex; 
+    align-items: center; 
+    height: 100%;
+} 
+
+#header .header-right  { 
+    display: flex; 
+    align-items: center; 
+    margin-left: auto; 
+    flex: none;
+} 
+
+.container.reason { 
+    padding: 0 20px;
+} 
+
+a { 
+    margin: 0; 
+    padding: 0; 
+    border: 0; 
+    font-size: 100%; 
+    vertical-align: baseline;
+} 
+
+a { 
+    color: #000; 
+    text-decoration: none;
+} 
+
+a { 
+    color: #000;
+} 
+
+#header .header-left .btn-back  { 
+    background: url(./images/back.svg) 50% 50% no-repeat; 
+    width: 32px; 
+    height: 32px; 
+    display: block; 
+    text-indent: -999em; 
+    overflow: hidden; 
+    margin-right: 6px; 
+    flex: none; 
+    background-image: url("../img/back.svg"); 
+    background-position-x: 50%; 
+    background-position-y: 50%; 
+    background-size: initial; 
+    background-repeat-x: no-repeat; 
+    background-repeat-y: no-repeat; 
+    background-attachment: initial; 
+    background-origin: initial; 
+    background-clip: initial; 
+    background-color: initial;
+} 
+
+h1 { 
+    margin: 0; 
+    padding: 0; 
+    border: 0; 
+    font-size: 100%; 
+    vertical-align: baseline;
+} 
+
+h1 { 
+    word-break: break-word; 
+    line-height: normal;
+} 
+
+#header .header-left .page-title  { 
+    font-size: 20px; 
+    font-weight: 700; 
+    margin-right: 2px; 
+    display: flex; 
+    align-items: center; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    display: -webkit-box; 
+    -webkit-line-clamp: 1; 
+    -webkit-box-orient: vertical; 
+    word-break: break-word;
+} 
+
+#header .btn-icon  { 
+    display: block; 
+    width: 32px; 
+    height: 32px; 
+    margin-left: 8px; 
+    background: 50% 50% no-repeat; 
+    position: relative; 
+    text-indent: -999em; 
+    overflow: hidden; 
+    background-image: initial; 
+    background-position-x: 50%; 
+    background-position-y: 50%; 
+    background-size: initial; 
+    background-repeat-x: no-repeat; 
+    background-repeat-y: no-repeat; 
+    background-attachment: initial; 
+    background-origin: initial; 
+    background-clip: initial; 
+    background-color: initial;
+} 
+
+#header .btn-icon.info  { 
+    background-image: url("../img/info-o-sm.svg"); 
+    background-size: 14px auto; 
+    width: 14px; 
+    height: 14px;
+} 
+
+.mt-30 { 
+    margin-top: 30px!important;
+} 
+
+hr.weak { 
+    background: #f1f1f1;
+} 
+
+hr.line {
+    height: 1px;
+} 
+
+.container hr.line  { 
+    margin-right: -30px;
+} 
+
+.container hr.line.compact  { 
+    margin-right: 0;
+} 
+
+.container.reason hr.line  { 
+    margin-right: -20px;
+} 
+
+.container.reason hr.line.compact  { 
+    margin-right: 0;
+} 
+
+p { 
+    margin: 0; 
+    padding: 0; 
+    border: 0; 
+    font-size: 100%; 
+    vertical-align: baseline;
+} 
+
+p { 
+    word-break: break-word; 
+    line-height: normal;
+} 
+
+.mb-20 { 
+    margin-bottom: 20px!important;
+} 
+
+.law_info { 
+    font-size: 12px!important;
+} 
+
+.info-content { 
+    color: #666!important;
+} 
+
+.plain-txt { 
+    line-height: 1.5714285714em!important;
+} 
+
+.agree_checkbox_block { 
+    display: flex; 
+    align-items: center;
+    margin-bottom: 15px!important;
+    
+} 
+
+h3 { 
+    margin: 0; 
+    padding: 0; 
+    border: 0; 
+    font-size: 100%; 
+    vertical-align: baseline;
+} 
+
+h3 { 
+    word-break: break-word; 
+    line-height: normal;
+} 
+
+.mb-10 { 
+    margin-bottom: 10px!important;
+} 
+
+.bold { 
+    font-weight: 500!important;
+} 
+
+.font { 
+    font-size: 16px!important;
+} 
+
+.form_block .form_block_header  { 
+    padding: 10px 0; 
+    display: flex; 
+    align-items: center;
+} 
+
+.mb-5 { 
+    margin-bottom: 5px!important;
+} 
+
+.form_block_title { 
+    font-size: 17px!important;
+} 
+
+label { 
+    margin: 0; 
+    padding: 0; 
+    border: 0; 
+    font-size: 100%; 
+    vertical-align: baseline;
+} 
+
+.label_checkbox { 
+    display: flex; 
+    position: relative;
+} 
+
+.agree_checkbox_block .label_checkbox  { 
+    margin-right: 20px;
+} 
+
+.font-13 { 
+    font-size: 13px!important;
+} 
+
+.underline { 
+    text-decoration: underline!important;
+} 
+
+.agree_checkbox_block a  { 
+    margin-left: auto; 
+    display: block; 
+    font-size: 13px; 
+    color: #666;
+} 
+
+.form_block .form_block_header .form_block_title  { 
+    font-size: 16px; 
+    line-height: normal; 
+    font-weight: 500;
+} 
+
+textarea { 
+    font-size: inherit; 
+    color: #000; 
+    margin: 0; 
+    outline: none; 
+    -webkit-appearance: none; 
+    appearance: none; 
+    box-shadow: none; 
+    box-sizing: border-box; 
+    border: 0; 
+    border-radius: 0; 
+    font-weight: 500; 
+    letter-spacing: -.05em;
+} 
+
+.form-input { 
+    background: #f9f9f9; 
+    font-size: 14px; 
+    border-radius: 8px; 
+    display: block; 
+    width: 100%; 
+    padding: 16px; 
+    line-height: 21px;
+} 
+
+textarea.form-input { 
+    resize: none;
+} 
+
+.section .form-input  { 
+    padding: 12px;
+} 
+
+input { 
+    font-size: inherit; 
+    color: #000; 
+    margin: 0; 
+    outline: none; 
+    -webkit-appearance: none; 
+    appearance: none; 
+    box-shadow: none; 
+    box-sizing: border-box; 
+    border: 0; 
+    border-radius: 0; 
+    font-weight: 500; 
+    letter-spacing: -.05em;
+} 
+
+.form_checkbox { 
+    padding: 0; 
+    margin: 0; 
+    border: 0; 
+    display: inline-block; 
+    -webkit-appearance: none; 
+    appearance: none; 
+    background: url(./images/checkbox.svg) 50% 50% no-repeat; 
+    width: 20px; 
+    min-width: 20px; 
+    height: 20px; 
+    box-sizing: border-box; 
+    background-image: url("../img/checkbox.svg"); 
+    background-position-x: 50%; 
+    background-position-y: 50%; 
+    background-size: initial; 
+    background-repeat-x: no-repeat; 
+    background-repeat-y: no-repeat; 
+    background-attachment: initial; 
+    background-origin: initial; 
+    background-clip: initial; 
+    background-color: initial;
+} 
+
+.form_checkbox:checked { 
+    background-image: url("../img/checkbox-checked.svg");
+} 
+
+span { 
+    margin: 0; 
+    padding: 0; 
+    border: 0; 
+    font-size: 100%; 
+    vertical-align: baseline;
+} 
+
+.label_checkbox .label  { 
+    display: block; 
+    margin-left: 8px; 
+    font-size: 14px; 
+    line-height: 20px;
+} 
+
+.label_checkbox .label.strong  { 
+    word-break: break-all; 
+    color: #000;
+} 
+
+.label_checkbox .label::after { 
+    position: absolute; 
+    content: ""; 
+    background: rgba(0,0,0,0); 
+    inset: -8px -6px;
+} 
+
+.checkbox-group .label_checkbox  { 
+    padding: 12px 0;
+} 
+
+.ml-30 { 
+    margin-left: 30px!important;
+} 
+
+.form_checkbox[type="radio"] { 
+    border-radius: 50%; 
+    border: 1px solid #c4c4c4; 
+    background: #fff url(../img/checked-o-grey.svg) 50% 50% no-repeat; 
+    background-size: 12px auto; 
+    background-image: url("../img/checked-o-grey.svg"); 
+    background-position-x: 50%; 
+    background-position-y: 50%; 
+    background-repeat-x: no-repeat; 
+    background-repeat-y: no-repeat; 
+    background-attachment: initial; 
+    background-origin: initial; 
+    background-clip: initial; 
+    background-color: rgb(255, 255, 255);
+} 
+
+.form_checkbox[type="radio"]:checked { 
+    border-color: #3FAFFC; 
+    background: url(../img/checked-o.svg) 50% 50% no-repeat; 
+    background-size: 12px auto; 
+    background-image: url("../img/checked-o.svg"); 
+    background-position-x: 50%; 
+    background-position-y: 50%; 
+    background-repeat-x: no-repeat; 
+    background-repeat-y: no-repeat; 
+    background-attachment: initial; 
+    background-origin: initial; 
+    background-clip: initial; 
+    background-color: initial;
+} 
+
+
+/* These were inline style tags. Uses id+class to override almost everything */
+#__notice.style-BDCKI {  
+   display: block;  
+}  

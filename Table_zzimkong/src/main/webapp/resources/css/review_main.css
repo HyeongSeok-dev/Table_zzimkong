@@ -1,0 +1,512 @@
+@charset "UTF-8";
+
+
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+
+  body {  
+    background:#ffffff;
+    font-family: 'Pretendard-Regular', sans-serif;
+    line-height:1.15;
+    color:#1a1a1a;
+    font-size:62.5%;
+  }  
+* { 
+    box-sizing: inherit;
+} 
+
+div { 
+    margin: 0; 
+    padding: 0;
+} 
+
+body { 
+    margin: 0;
+} 
+
+body { 
+    height: 100%; 
+    width: 100%; 
+    padding: 0;
+} 
+
+body { 
+    font-family: 'Pretendard-Regular';
+    background: #f2f2f2;
+} 
+
+body { 
+    display: flex; 
+    flex-direction: column; 
+    overflow-x: hidden;
+} 
+
+html { 
+    line-height: 1.15; 
+    -webkit-text-size-adjust: 100%;
+} 
+
+html { 
+    color: #1a1a1a; 
+    font-size: 62.5%; 
+    box-sizing: border-box; 
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+} 
+
+html { 
+    height: 100%; 
+    width: 100%; 
+    padding: 0;
+} 
+
+*,:after,:before { 
+    box-sizing: inherit;
+} 
+
+.review_main_list_1 { 
+    display: -webkit-box; 
+    display: -webkit-flex; 
+    display: -ms-flexbox; 
+    display: flex; 
+    -webkit-flex-direction: column; 
+    -ms-flex-direction: column; 
+    flex-direction: column; 
+    padding: 2rem 0;
+} 
+
+.review_subject { 
+    display: -webkit-box; 
+    display: -webkit-flex; 
+    display: -ms-flexbox; 
+    display: flex; 
+    -webkit-align-items: center; 
+    -webkit-box-align: center; 
+    -ms-flex-align: center; 
+    align-items: center; 
+    -webkit-box-pack: justify; 
+    -webkit-justify-content: space-between; 
+    justify-content: space-between; 
+    width: 100%; 
+    min-height: 4.8rem; 
+    padding: 0 2rem; 
+    background: #ffffff;
+} 
+
+.css-1eb9u5s { 
+    display: -webkit-box; 
+    display: -webkit-flex; 
+    display: -ms-flexbox; 
+    display: flex; 
+    font-size: 2rem; 
+    font-weight: bold; 
+    line-height: 2.4rem; 
+    color: #1a1a1a; 
+    padding: 0 2rem 1.2rem;
+} 
+
+.css-12r2su2 { 
+    width: 100%; 
+    position: relative; 
+    display: -webkit-box; 
+    display: -webkit-flex; 
+    display: -ms-flexbox; 
+    display: flex; 
+    -webkit-flex-direction: row; 
+    -ms-flex-direction: row; 
+    flex-direction: row; 
+    overflow: hidden;
+} 
+
+a { 
+    background-color: transparent;
+} 
+
+a { 
+    -webkit-touch-callout: none; 
+    -webkit-user-select: none; 
+    -moz-user-select: none; 
+    user-select: none; 
+    -webkit-tap-highlight-color: rgba(255,255,255,0); 
+    cursor: pointer;
+} 
+
+a { 
+    color: #000;
+} 
+
+.css-18vehs7 { 
+    display: -webkit-box; 
+    display: -webkit-flex; 
+    display: -ms-flexbox; 
+    display: flex; 
+    -webkit-flex-direction: column; 
+    -ms-flex-direction: column; 
+    flex-direction: column; 
+    padding: 0 2rem; 
+    -webkit-text-decoration: none; 
+    text-decoration: none;
+} 
+
+.review_menu { 
+    font-size: 2.5rem; 
+    font-weight: bold; 
+    color: #1a1a1a; 
+    min-height: 1.8rem; 
+    display: -webkit-box; 
+    display: -webkit-flex; 
+    display: -ms-flexbox; 
+    display: flex; 
+    -webkit-box-flex-flow: column; 
+    -webkit-flex-flow: column; 
+    -ms-flex-flow: column; 
+    flex-flow: column; 
+    -webkit-box-pack: center; 
+    -ms-flex-pack: center; 
+    -webkit-justify-content: center; 
+    justify-content: center; 
+    -webkit-align-items: flex-start; 
+    -webkit-box-align: flex-start; 
+    -ms-flex-align: flex-start; 
+    align-items: flex-start; 
+    width: 100%;
+} 
+
+
+.css-1aqifkx { 
+    width: 2rem; 
+    height: 2rem; 
+    margin-right: 0.4rem;
+} 
+
+.css-1eb9u5s > span  { 
+    font-size: 2rem; 
+    font-weight: normal; 
+    color: #1a1a1a; 
+    line-height: 2.4rem;
+} 
+
+ul { 
+    margin: 0; 
+    padding: 0;
+} 
+
+.css-17yp1q4 { 
+    display: -webkit-box; 
+    display: -webkit-flex; 
+    display: -ms-flexbox; 
+    display: flex; 
+    overflow: scroll; 
+    -ms-overflow-style: none; 
+    scrollbar-width: none;
+} 
+
+.css-12r2su2 > ul  { 
+    display: -webkit-box; 
+    display: -webkit-flex; 
+    display: -ms-flexbox; 
+    display: flex; 
+    -webkit-flex-direction: row; 
+    -ms-flex-direction: row; 
+    flex-direction: row; 
+    -webkit-box-flex-wrap: nowrap; 
+    -webkit-flex-wrap: nowrap; 
+    -ms-flex-wrap: nowrap; 
+    flex-wrap: nowrap; 
+    padding: 0 2rem 1.2rem;
+} 
+
+.css-17yp1q4:-webkit-scrollbar { 
+    display: none;
+} 
+
+button { 
+    font-family: inherit; 
+    font-size: 100%; 
+    line-height: 1.15; 
+    margin: 0;
+} 
+
+button { 
+    overflow: visible;
+} 
+
+button { 
+    text-transform: none;
+} 
+
+button { 
+    -webkit-appearance: button;
+} 
+
+button { 
+    margin: 0; 
+    padding: 0;
+} 
+
+button { 
+    outline: none; 
+    cursor: pointer;
+} 
+
+button { 
+    color: #000;
+} 
+
+.css-kav67y { 
+    background: #ffffff; 
+    font-size: 1.4rem; 
+    font-weight: bold; 
+    border: 1px solid; 
+    border-radius: 0.4rem; 
+    border-color: #cccccc; 
+    color: #1a1a1a; 
+    width: 100%; 
+    height: 4rem;
+} 
+
+@media (hover: hover) and (pointer: fine){ 
+  .css-kav67y:not(:disabled):hover { 
+    background: #f2f2f2;
+  } 
+}     
+
+.review_menu1 { 
+    font-size: 1.2rem; 
+    font-weight: normal; 
+    color: #616161; 
+    text-align: left; 
+    width: 100%;
+} 
+
+.css-12r2su2 > ul > :nth-of-type(n + 2)  { 
+    margin-left: -1.2rem; 
+    padding-left: 2rem;
+} 
+
+@media screen and (min-width: 768px){ 
+  .css-12r2su2 > ul > :nth-of-type(n + 2)  { 
+    margin-left: unset; 
+    padding-left: 0.8rem;
+  } 
+}     
+
+.css-mf0wzw { 
+    display: -webkit-box; 
+    display: -webkit-flex; 
+    display: -ms-flexbox; 
+    display: flex; 
+    -webkit-flex-direction: column; 
+    -ms-flex-direction: column; 
+    flex-direction: column; 
+    border-radius: 0.8rem; 
+    padding: 1.6rem; 
+    border: 0.1rem solid #e6e6e6; 
+    -webkit-flex-shrink: 0; 
+    -ms-flex-negative: 0; 
+    flex-shrink: 0; 
+    -webkit-box-flex: 0; 
+    -webkit-flex-grow: 0; 
+    -ms-flex-positive: 0; 
+    flex-grow: 0; 
+    -webkit-text-decoration: none; 
+    text-decoration: none; 
+    cursor: pointer; 
+    width: calc(100vw - 4rem);
+} 
+
+@media screen and (min-width: 768px){ 
+  .css-mf0wzw { 
+    width: 32rem;
+  } 
+}     
+
+.css-i1b0so { 
+    display: -webkit-box; 
+    display: -webkit-flex; 
+    display: -ms-flexbox; 
+    display: flex; 
+    -webkit-align-content: center; 
+    -ms-flex-line-pack: center; 
+    align-content: center; 
+    -webkit-column-gap: 0.6rem; 
+    column-gap: 0.6rem;
+} 
+
+.css-16g9f9r { 
+    display: -webkit-box; 
+    display: -webkit-flex; 
+    display: -ms-flexbox; 
+    display: flex; 
+    -webkit-align-content: center; 
+    -ms-flex-line-pack: center; 
+    align-content: center; 
+    -webkit-box-pack: justify; 
+    -webkit-justify-content: space-between; 
+    justify-content: space-between; 
+    color: #919191; 
+    row-gap: 0.4rem; 
+    margin-top: 0.9rem;
+} 
+
+.css-ohbhbz { 
+    display: -webkit-box; 
+    display: -webkit-flex; 
+    display: -ms-flexbox; 
+    display: flex; 
+    -webkit-align-content: flex-start; 
+    -ms-flex-line-pack: flex-start; 
+    align-content: flex-start; 
+    -webkit-box-flex-wrap: wrap; 
+    -webkit-flex-wrap: wrap; 
+    -ms-flex-wrap: wrap; 
+    flex-wrap: wrap; 
+    margin-top: 0.3rem; 
+    font-size: 1.4rem; 
+    font-weight: normal; 
+    text-overflow: ellipsis; 
+    word-break: break-word; 
+    display: -webkit-box; 
+    -webkit-line-clamp: 1; 
+    -webkit-box-orient: vertical; 
+    overflow: hidden; 
+    line-height: 2.1rem; 
+    min-height: 2.1rem; 
+    max-height: 4.2rem; 
+    color: #1a1a1a;
+} 
+
+.css-ivfwwh { 
+    display: -webkit-box; 
+    display: -webkit-flex; 
+    display: -ms-flexbox; 
+    display: flex; 
+    -webkit-flex-direction: row; 
+    -ms-flex-direction: row; 
+    flex-direction: row; 
+    margin-top: 1rem; 
+    height: 8.4rem; 
+    -webkit-column-gap: 0.8rem; 
+    column-gap: 0.8rem;
+} 
+
+img { 
+    border-style: none;
+} 
+
+.css-w6umyy { 
+    width: 3.2rem; 
+    height: 1.4rem;
+} 
+
+.css-16g9f9r .author  { 
+    text-overflow: ellipsis; 
+    word-break: break-word; 
+    display: -webkit-box; 
+    -webkit-line-clamp: 1; 
+    -webkit-box-orient: vertical; 
+    overflow: hidden; 
+    font-size: 1.2rem; 
+    font-weight: normal;
+} 
+
+.css-16g9f9r .date  { 
+    font-size: 1.4rem; 
+    font-weight: normal;
+} 
+
+.css-ohbhbz span  { 
+    font-size: 1.4rem; 
+    font-weight: bold;
+} 
+
+.css-1yckrum { 
+    display: -webkit-box; 
+    display: -webkit-flex; 
+    display: -ms-flexbox; 
+    display: flex; 
+    -webkit-box-flex-wrap: wrap; 
+    -webkit-flex-wrap: wrap; 
+    -ms-flex-wrap: wrap; 
+    flex-wrap: wrap; 
+    color: #1a1a1a; 
+    -webkit-flex: 1; 
+    -ms-flex: 1; 
+    flex: 1;
+} 
+
+.css-1o9qbwy { 
+    display: -webkit-box; 
+    display: -webkit-flex; 
+    display: -ms-flexbox; 
+    display: flex; 
+    position: relative; 
+    border-radius: 0.4rem; 
+    overflow: hidden; 
+    width: 8rem; 
+    height: 8rem; 
+    -webkit-flex-shrink: 0; 
+    -ms-flex-negative: 0; 
+    flex-shrink: 0; 
+    -webkit-box-flex: 0; 
+    -webkit-flex-grow: 0; 
+    -ms-flex-positive: 0; 
+    flex-grow: 0; 
+    background-color: #f2f2f2;
+} 
+
+.css-1yckrum div  { 
+    text-overflow: ellipsis; 
+    word-break: break-word; 
+    display: -webkit-box; 
+    -webkit-line-clamp: 4; 
+    -webkit-box-orient: vertical; 
+    overflow: hidden; 
+    font-size: 1.4rem; 
+    font-weight: normal; 
+    line-height: 2.1rem; 
+    max-height: 8.4rem;
+} 
+
+.css-1o9qbwy > img  { 
+    width: 8rem; 
+    height: 8rem; 
+    object-fit: cover;
+} 
+
+.css-1o9qbwy > span  { 
+    display: -webkit-box; 
+    display: -webkit-flex; 
+    display: -ms-flexbox; 
+    display: flex; 
+    position: absolute; 
+    bottom: 0; 
+    right: 0; 
+    width: 1.6rem; 
+    height: 1.6rem; 
+    background-color: rgba(0, 0, 0, 0.6); 
+    -webkit-align-items: center; 
+    -webkit-box-align: center; 
+    -ms-flex-align: center; 
+    align-items: center; 
+    -webkit-box-pack: center; 
+    -ms-flex-pack: center; 
+    -webkit-justify-content: center; 
+    justify-content: center; 
+    font-size: 1rem; 
+    font-weight: bold; 
+    line-height: 1.2rem; 
+    color: #ffffff; 
+    border-top-left-radius: 0.4rem; 
+    border-bottom-right-radius: 0.4rem;
+} 
+
+
+/* These were inline style tags. Uses id+class to override almost everything */
+#style-NRYDl.style-NRYDl {  
+   display: none;  
+}  

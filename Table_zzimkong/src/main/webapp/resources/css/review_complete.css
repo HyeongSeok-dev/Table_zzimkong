@@ -1,0 +1,56 @@
+@charset "UTF-8";
+   
+.review_complete_ment {
+	text-align: center;
+}    
+
+.review_complete_ment,
+.review_complete_ment .review_complete,
+.review_complete_ment .review_complete_content {
+    color: #fff;
+}
+
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	display: flex;
+  	flex-direction: column;
+  	}
+
+body {
+	background: linear-gradient(#3FAFFC, #fff);
+	font-family:'Pretendard-Regular',Apple SD Gothic Neo,sans-serifs;
+	display: flex;
+	align-items: center;
+}
+
+
+.review_complete_ment {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.review_complete_ment img {
+  display: block;
+  margin: 0 auto;
+}
+
+.review_complete,
+.review_complete_content {
+  margin: 10px 0;
+}
+
+#check {
+	width: 50px;
+	height: 50px;
+}
+
+#closeImage {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50px;
+  height: 50px;
+}
+
