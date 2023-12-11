@@ -136,174 +136,59 @@
 		</div><!-- .container close -->
 	</section><!-- slider close -->
 
-
-	<section id="slider">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="block wow fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
-						<div class="title">
-							<h3>Featured2 <span>Works</span></h3>
-						</div>
-						<div id="owl-example2" class="owl-carousel">
-							<div>
-								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_img_1.jpg" alt="">
-							</div>
-							<div>
-								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_img_2.jpg" alt="">
-							</div>
-							<div>
-								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_img_3.jpg" alt="">
-							</div>
-							<div>
-								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_img_4.jpg" alt="">
-							</div>
-							<div>
-								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_img_1.jpg" alt="">
-							</div>
-							<div>
-								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_img_2.jpg" alt="">
-							</div>
-							<div>
-								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_img_3.jpg" alt="">
-							</div>
-							<div>
-								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_img_4.jpg" alt="">
-							</div>
-
-						</div>
-					</div>
-				</div><!-- .col-md-12 close -->
-			</div><!-- .row close -->
-		</div><!-- .container close -->
-	</section><!-- slider close -->
-
-
-	<section id="slider">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="block wow fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
-						<div class="title">
-							<h3>Featured3 <span>Works</span></h3>
-						</div>
-						<div id="owl-example3" class="owl-carousel">
-							<div>
-								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_img_1.jpg" alt="">
-							</div>
-							<div>
-								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_img_2.jpg" alt="">
-							</div>
-							<div>
-								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_img_3.jpg" alt="">
-							</div>
-							<div>
-								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_img_4.jpg" alt="">
-							</div>
-							<div>
-								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_img_1.jpg" alt="">
-							</div>
-							<div>
-								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_img_2.jpg" alt="">
-							</div>
-							<div>
-								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_img_3.jpg" alt="">
-							</div>
-							<div>
-								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_img_4.jpg" alt="">
-							</div>
-
-						</div>
-					</div>
-				</div><!-- .col-md-12 close -->
-			</div><!-- .row close -->
-		</div><!-- .container close -->
-	</section><!-- slider close -->
-
-
-	<section id="slider">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="block wow fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
-						<div class="title">
-							<h3>Featured4 <span>Works</span></h3>
-						</div>
-						<div id="owl-example4" class="owl-carousel">
-							<div>
-								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_img_1.jpg" alt="">
-							</div>
-							<div>
-								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_img_2.jpg" alt="">
-							</div>
-							<div>
-								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_img_3.jpg" alt="">
-							</div>
-							<div>
-								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_img_4.jpg" alt="">
-							</div>
-							<div>
-								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_img_1.jpg" alt="">
-							</div>
-							<div>
-								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_img_2.jpg" alt="">
-							</div>
-							<div>
-								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_img_3.jpg" alt="">
-							</div>
-							<div>
-								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_img_4.jpg" alt="">
-							</div>
-
-						</div>
-					</div>
-				</div><!-- .col-md-12 close -->
-			</div><!-- .row close -->
-		</div><!-- .container close -->
-	</section><!-- slider close -->
-
-
-	<section id="slider">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="block wow fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
-						<div class="title">
-							<h3>Featured5 <span>Works</span></h3>
-						</div>
-						<div id="owl-example5" class="owl-carousel">
-							<div>
-								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_img_1.jpg" alt="">
-							</div>
-							<div>
-								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_img_2.jpg" alt="">
-							</div>
-							<div>
-								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_img_3.jpg" alt="">
-							</div>
-							<div>
-								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_img_4.jpg" alt="">
-							</div>
-							<div>
-								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_img_1.jpg" alt="">
-							</div>
-							<div>
-								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_img_2.jpg" alt="">
-							</div>
-							<div>
-								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_img_3.jpg" alt="">
-							</div>
-							<div>
-								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_img_4.jpg" alt="">
-							</div>
-
-						</div>
-					</div>
-				</div><!-- .col-md-12 close -->
-			</div><!-- .row close -->
-		</div><!-- .container close -->
-	</section>
 	
+ <button><a href="ceo/sale">ceo/sale</a></button>
+ <button><a href="ceo/black">ceo/black</a></button>
+ <button><a href="ceo/black/register">ceo/black/register</a></button>
+ <button><a href="ceo/company/list">ceo/company/list</a></button>
+ <button><a href="ceo/company/register">ceo/company/register</a></button>
+ <button><a href="ceo/company/modify">ceo/company/modify</a></button>
+ <button><a href="ceo/company/ad">ceo/company/ad</a></button>
+ <button><a href="ceo/menu/list">ceo/menu/list</a></button>
+ <button><a href="ceo/menu/modify">ceo/menu/modify</a></button>
+ <button><a href="ceo/menu/register">ceo/menu/register</a></button>
+ <button><a href="ceo/reservation">ceo/reservation</a></button>
+ <button><a href="ceo/reservation/detail">ceo/reservation/detail</a></button>
+ <button><a href="ceo/cs">ceo/cs</a></button>
+ <hr>
+ 
+ <button><a href="payment/info">payment/info</a></button>
+ <button><a href="payment">payment</a></button>
+  <hr>
+ <button><a href="product/detail">product/detail</a></button>
+ <button><a href="product/list">product/list</a></button>
+  <hr>
+ <button><a href="admin/main">admin/main</a></button>
+ <button><a href="admin/user">admin/user</a></button>
+ <button><a href="admin/company">admin/company</a></button>
+ <button><a href="admin/company/info">admin/company/info</a></button>
+ <button><a href="admin/review">admin/review</a></button>
+ <button><a href="admin/review/detail">admin/review/detail</a></button>
+ <hr>
+ <button><a href="join">join</a></button>
+ <button><a href="join/ceo">join/ceo</a></button>
+ <button><a href="join/choice">join/choice</a></button>
+ <button><a href="login">login</a></button>
+ <hr>
+ <button><a href="login/find/id">login/find/id</a></button>
+ <button><a href="login/find/passwd">login/find/passwd</a></button>
+ <hr>
+ <button><a href="my/list">my/list</a></button>
+ <button><a href="my/review">my/review</a></button>
+ <button><a href="my/report/shop">my/report/shop</a></button>
+ <button><a href="my/report/reason">my/report/reason</a></button>
+ <button><a href="my/modify/profile">my/modify/profile</a></button>
+ <button><a href="my/unregister">my/unregister</a></button>
+ <hr>
+ <button><a href="review/detail">review/detail</a></button>
+ <button><a href="review/write">review/write</a></button>
+ <button><a href="review/complete">review/complete</a></button>
+ <button><a href="review/report">review/report</a></button>
+ <hr>
+ <button><a href="reservation">reservation</a></button>
+
+   
+
 	<br>
 	<br>
 	<br>
