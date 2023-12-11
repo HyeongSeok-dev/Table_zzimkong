@@ -1,0 +1,114 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+* {
+	font-family: 'Pretendard-Regular';
+	color:#282828;
+}
+
+.wrapper {
+	margin-left: 320px;
+	margin-right: 300px;
+	margin-top: 50px;
+}
+
+.title{
+	display: flex;  /* 나란히 놓는다 */
+	justify-content: space-between; /* 그 사이에 공간을 준다 */
+	width: 1000px;
+}
+
+.mypg>h1 {
+    color: #515151;
+    margin-bottom: 30px;
+    font-size: 25px;
+    display: inline; /* 글자 길이에 맞게 */
+    font-weight: bold;
+}
+
+h3 {
+    color: #515151;
+    margin-bottom: 30px;
+    font-size: 20px;
+    display: inline; /* 글자 길이에 맞게 */
+}
+
+table {
+	/* 테이블 간격 조정 */
+    width: 90%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+    /* ※테이블 가운데 정렬 하고싶은 경우 : margin: auto; */
+}
+
+th {
+    background-color: #fafaf4;
+    color: #333;
+    padding: 15px;
+    font-size: 15px;
+}
+
+td {
+    padding: 15px;
+    font-size: 14px;
+    text-align: center;
+}
+
+td, th {
+    border: 1px solid #e7e7e7;
+    line-height: 3;
+}
+
+p {
+	line-height: 1;
+	color:  #797979;
+	font-size:13px;
+}
+
+.input_text {
+    width: 70%;
+    height: 40px;
+    border: solid #d5d5d5 1px;
+    font-size: 13px;
+    line-height: 1.5;
+    padding-left: 10px;
+}
+
+.btn_out {
+	 border: 1px;
+	 color: #5d5d5d;
+	 font-size:17px;
+}
+
+textarea {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 0px;
+    box-sizing: border-box;
+    border: none;
+    background-color: #f8f8f8;
+    font-size: 12px;
+}
+
+.click_button {
+	justify-content: center;
+	text-align: center;
+	margin: auto;
+	layout: fixed;
+}
+
+/* .report_reason { */
+/* 	border: 1px solid #d9d9d9;  */
+/*     background: #ffffff;  */
+/*     box-sizing: border-box; */
+/* } */
+
+/* .unregister { */
+/* 	width: 30%; */
+/* } */
