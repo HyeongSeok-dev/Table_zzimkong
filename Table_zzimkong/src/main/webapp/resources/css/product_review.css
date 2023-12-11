@@ -1,0 +1,91 @@
+@charset "UTF-8";
+.review-section {
+    background-color: white;
+    padding: 24px;
+}
+
+.review-rating {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.review-score {
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+.review-count {
+    color: gray;
+    font-size: 1.2rem;
+}
+
+.review-slider {
+    display: flex;
+    gap: 16px;
+    overflow: hidden;
+}
+
+.slider-button {
+    background-color: transparent;
+    color: gray;
+}
+
+.review-card {
+    width: 300px;
+}
+
+.review-image {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.review-stars {
+    display: flex;
+    gap: 4px;
+}
+
+.review-service {
+    margin-top: 8px;
+    font-size: 1.2rem;
+    font-weight: medium;
+}
+
+.review-description {
+    margin-top: 4px;
+    color: gray;
+    font-size: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.review-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.review-date {
+    color: gray;
+    font-size: 0.8rem;
+}
+
+.view-count {
+    color: gray;
+    font-size: 0.8rem;
+}
+
+.review-all {
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+}
+
+.all-button {
+    border: 1px solid black;
+    color: black;
+    background-color: transparent;
+}

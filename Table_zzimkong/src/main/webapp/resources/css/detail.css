@@ -1,0 +1,1053 @@
+@charset "UTF-8";
+
+body {
+	font-family: Apple SD Gothic Neo, Noto Sans KR, sans-serif;
+	letter-spacing: -.93px;
+	background: 0 0;
+	font-size: 100%;
+	color: #222228;
+	line-height: 150%;
+	font-size: 14px;
+	color: #222228;
+	line-height: 150%;
+	overflow: auto;
+	overflow-y: visible;
+	overflow-x: hidden;
+	width: 70%;
+	margin: 0 auto
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	font-family: Apple SD Gothic Neo, Noto Sans KR, sans-serif;
+	letter-spacing: -.93px;
+	outline: 0
+}
+
+div {
+	border: 0;
+	outline: 0;
+	background: 0 0;
+	font-size: 100%
+}
+
+html {
+	border: 0;
+	outline: 0;
+	background: 0 0;
+	font-size: 100%
+}
+
+:not(.Search__Modal__ScrollWrap):-webkit-scrollbar {
+	display: none
+}
+
+.s-list.pic-grade {
+	padding: 20px;
+	box-shadow: 1px 1px 3px #d8d8d8;
+	background: #fff;
+	border-bottom: 1px solid #f0f0f0;
+	border-bottom: 1px solid #f0f0f0;
+}
+
+.s-list.basic-info {
+	padding: 20px;
+	box-shadow: 1px 1px 3px #d8d8d8;
+	background: #fff;
+}
+
+p {
+	border: 0;
+	outline: 0;
+	background: 0 0;
+	font-size: 100%
+}
+
+.gap20 {
+	padding-bottom: 20px
+}
+
+.s-list.detail-info {
+	padding: 20px;
+    box-shadow: 1px 1px 3px #d8d8d8;
+    background: #fff;
+}
+
+.busi-hours-today {
+	border-bottom: 1px solid;
+	border-color: #d8d8d8
+}
+
+section {
+	border: 0;
+	outline: 0;
+	background: 0 0;
+	font-size: 100%;
+	display: block
+}
+
+
+
+.list-more-btn.type03 {
+	padding: 0 20px 30px;
+	background: #fff;
+	overflow: hidden;
+	box-shadow: 0 .5px 1px 0 #00000029;
+	text-align: center;
+	cursor: pointer
+}
+
+ul {
+	list-style: none;
+	border: 0;
+	outline: 0;
+	background: 0 0;
+	font-size: 100%
+}
+
+.button {
+	cursor: pointer
+}
+
+.s-list.pic-grade .store-pic {
+	overflow: hidden;
+	margin-bottom: 28px
+}
+
+.s-list.pic-grade .tit-point {
+	overflow: hidden;
+	margin-bottom: 15px
+}
+
+.btxt {
+	color: #222228;
+	font-size: 13px
+}
+
+.s-list.pic-grade .btxt {
+	font-size: 16px;
+	color: #66666e;
+	line-height: 100%;
+	margin-bottom: 20px;
+	margin-top: 10px
+}
+
+.s-list.pic-grade .sns-grade {
+	overflow: hidden;
+	margin-bottom: 20px
+}
+
+.s-list.pic-grade .favor-pic-appra {
+	overflow: hidden;
+	padding-top: 20px;
+	border-top: 1px solid #e6e6eb;
+	font-size: 0;
+}
+
+.appra Profile__Evaluation {
+	display: inline
+}
+
+.s-list.detail-info .menu-info {
+	border-bottom: 1px solid #e6e6eb;
+	padding-bottom: 20px
+}
+
+button {
+	font-family: 'Open Sans', 'Noto Sans KR', 'Malgun Gothic';
+	cursor: pointer;
+	border: transparent;
+	background-color: transparent
+}
+
+
+li {
+	border: 0;
+	outline: 0;
+	background: 0 0;
+	font-size: 100%
+}
+
+li:first-child {
+	margin-left: 0
+}
+
+.s-list.pic-grade .tit-point .tit {
+	font-size: 35px;
+	color: #222228;
+	line-height: 44px;
+	font-weight: 600;
+	float: left;
+	letter-spacing: -.095px
+}
+
+*, a {
+	margin: 0;
+	padding: 0
+}
+
+a {
+	border: 0;
+	text-decoration: none
+}
+
+*, a {
+	padding: 0
+}
+
+a {
+	color: inherit
+}
+
+.confirm-button {
+	color: #fff;
+	font-size: 20px;
+	padding: 10px 20px;
+	border-radius: 5px;
+	border: none;
+	cursor: pointer
+}
+
+.confirm-button:hover {
+	color: #fbe122
+}
+
+.button_wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center
+}
+
+.s-list.pic-grade .favor-pic-appra .favor {
+	display: inline-block;
+	line-height: 32px;
+	padding: 2px 18px 0;
+	border: 1px solid #222228;
+	border-radius: 20px;
+	margin-right: 10px;
+	float: left
+}
+
+.s-list.pic-grade .favor-pic-appra .favor:hover {
+	border: 1px solid #ee4949
+}
+
+.s-list.pic-grade .favor-pic-appra .share {
+	display: inline-block;
+	line-height: 32px;
+	padding: 2px 18px 0;
+	border: 1px solid #222228;
+	border-radius: 20px;
+	float: left
+}
+
+.s-list.pic-grade .favor-pic-appra .appra {
+	display: inline-block;
+	line-height: 32px;
+	padding: 2px 18px 0;
+	border: 1px solid #222228;
+	border-radius: 20px;
+	margin-right: 10px;
+	float: right;
+	cursor: pointer;
+	height: 40px
+}
+
+
+.s-list.basic-info .list li {
+	margin-bottom: 15px;
+	font-size: 15px;
+	color: #222228;
+	padding-left: 25px
+}
+
+.s-list.basic-info .list li.locat {
+	position: relative;
+	background:
+		url(https://s3-ap-northeast-1.amazonaws.com/dcicons/new/images/web/profile/profile-location@2x.png)
+		top left/20px no-repeat;
+	background-image:
+		url(https://s3-ap-northeast-1.amazonaws.com/dcicons/new/images/web/profile/profile-location@2x.png);
+	background-position-x: left;
+	background-position-y: top;
+	background-size: 20px;
+	background-attachment: initial;
+	background-origin: initial;
+	background-clip: initial;
+	background-color: initial
+}
+
+.s-list.basic-info .list li.tel {
+	background:
+		url(https://s3-ap-northeast-1.amazonaws.com/dcicons/new/images/web/profile/profile-pnum@2x.png)
+		left/20px no-repeat;
+	background-image:
+		url(https://s3-ap-northeast-1.amazonaws.com/dcicons/new/images/web/profile/profile-pnum@2x.png);
+	background-position-x: left;
+	background-position-y: center;
+	background-size: 20px;
+	background-attachment: initial;
+	background-origin: initial;
+	background-clip: initial;
+	background-color: initial
+}
+
+.s-list.basic-info .list li.tag {
+	background:
+		url(https://s3-ap-northeast-1.amazonaws.com/dcicons/new/images/web/profile/profile-tag@2x.png)
+		left/20px no-repeat;
+	background-image:
+		url(https://s3-ap-northeast-1.amazonaws.com/dcicons/new/images/web/profile/profile-tag@2x.png);
+	background-position-x: left;
+	background-position-y: center;
+	background-size: 20px;
+	background-attachment: initial;
+	background-origin: initial;
+	background-clip: initial;
+	background-color: initial
+}
+
+.s-list.basic-info .list li.char {
+	background:
+		url(https://s3-ap-northeast-1.amazonaws.com/dcicons/new/images/web/profile/profile-benefit@2x.png)
+		left/20px no-repeat;
+	background-image:
+		url(https://s3-ap-northeast-1.amazonaws.com/dcicons/new/images/web/profile/profile-benefit@2x.png);
+	background-position-x: left;
+	background-position-y: center;
+	background-size: 20px;
+	background-attachment: initial;
+	background-origin: initial;
+	background-clip: initial;
+	background-color: initial
+}
+
+.s-list.basic-info .list li:last-child {
+	margin-bottom: 0
+}
+
+iframe {
+	border: 0;
+	outline: 0;
+	background: 0 0;
+	font-size: 100%
+}
+
+.s-list.detail-info .busi-hours-today .tit {
+	font-size: 24px;
+	color: #222228;
+	line-height: 120%;
+	font-weight: 600;
+	margin-bottom: 20px
+}
+
+.s-list.detail-info .busi-hours-today .list {
+	height: auto;
+	overflow: hidden;
+	right: 2px
+}
+
+.s-list.detail-info .busi-hours .list {
+	height: auto;
+	overflow: hidden
+}
+
+.s-list.detail-info .busi-hours.short .list {
+	max-height: 0
+}
+
+.s-list.detail-info .menu-info .tit {
+	font-size: 24px;
+	color: #222228;
+	line-height: 120%;
+	font-weight: 600;
+	margin-bottom: 20px
+}
+
+.s-list.detail-info .menu-info .list {
+	height: auto;
+	overflow: hidden
+}
+
+.s-list.detail-info .menu-info.short .list {
+	height: 92px
+}
+
+.s-list.detail-info .taste-tag .tit {
+	font-weight: 600;
+	line-height: 120%;
+	font-size: 24px;
+	color: #222228;
+	margin-bottom: 30px
+}
+
+.title-container {
+	margin-bottom: 10px
+}
+
+.sort-option-set {
+	margin: 0
+}
+
+
+.menu_card {
+	display: flex;
+	justify-content: space-between
+}
+
+.menu_info {
+	width: 35%;
+	order: 2
+}
+
+.menu_contents {
+	width: 65%;
+	order: 1
+}
+
+.menu_box {
+	margin: 0 auto;
+	text-align: left;
+	display: inline-block
+}
+
+.menu_img {
+	width: 100%;
+	height: auto
+}
+
+.menu_section {
+	width: 35%;
+	display: flex;
+	justify-content: center
+}
+
+.menu_name, .menu_discribe, .menu_price {
+	font-size: 16px;
+	color: #222;
+	font-weight: 700;
+	background: #f2f8ff;
+	padding: 5px 10px;
+	border-radius: 16px;
+	margin-top: 8px;
+	width: 65px
+}
+
+.menu_name_sub, .menu_discribe_sub, .menu_price_sub {
+	font-size: 16px;
+	color: #222;
+	font-weight: 400;
+	padding: 5px 10px;
+	margin-top: 8px
+}
+
+.menu_name_sub {
+	height: 25px
+}
+
+.menu_discribe_sub {
+	height: 100px
+}
+
+.menu_price_sub {
+	order: 1
+}
+
+.menu_button_wrapper {
+	display: flex;
+	justify-content: space-between;
+	align-items: center
+}
+
+.menu_button {
+	display: inline-block;
+	padding: 10px 20px;
+	background-color: #f8f9fa;
+	border: 1px solid #ced4da;
+	border-radius: 4px;
+	cursor: pointer;
+	order: 2
+}
+
+input[type="checkbox"] {
+	display: none
+}
+
+input[type="checkbox"]:checked+.menu_button {
+	background-color: #3FAFFC;
+	color: #fff
+}
+
+span {
+	border: 0;
+	outline: 0;
+	background: 0 0;
+	font-size: 100%
+}
+.menu_check{
+	display: none !important;
+}
+img {
+	border: 0;
+	outline: 0;
+	background: 0 0;
+	font-size: 100%;
+	vertical-align: middle
+}
+
+strong {
+	border: 0;
+	outline: 0;
+	background: 0 0;
+	font-size: 100%
+}
+
+
+.s-list.pic-grade .sns-grade .grade .point {
+	display: inline-block;
+	vertical-align: middle;
+	font-size: 13px;
+	color: #66666e;
+	margin-right: 5px
+}
+
+.s-list.pic-grade .sns-grade .grade .star {
+	position: relative;
+	display: inline-block;
+	width: 125px;
+	height: 25px;
+	background:
+		url(https://s3-ap-northeast-1.amazonaws.com/dcicons/new/images/web/common/rating-off@2x.png)
+		left/25px repeat-x;
+	vertical-align: middle;
+	background-image:
+		url(https://s3-ap-northeast-1.amazonaws.com/dcicons/new/images/web/common/rating-off@2x.png);
+	background-position-x: left;
+	background-position-y: center;
+	background-size: 25px;
+	background-attachment: initial;
+	background-origin: initial;
+	background-clip: initial;
+	background-color: initial
+}
+
+.s-list.pic-grade .favor-pic-appra .favor span {
+	font-size: 13px;
+	padding: 2px 0 3px 25px;
+	background:
+		url(https://s3-ap-northeast-1.amazonaws.com/dcicons/new/images/web/common/like-off@2x.png)
+		left/20px no-repeat;
+	background-image:
+		url(https://s3-ap-northeast-1.amazonaws.com/dcicons/new/images/web/common/like-off@2x.png);
+	background-position-x: left;
+	background-position-y: center;
+	background-size: 20px;
+	background-attachment: initial;
+	background-origin: initial;
+	background-clip: initial;
+	background-color: initial
+}
+
+.s-list.pic-grade .favor-pic-appra .appra span {
+	font-size: 13px;
+	padding: 2px 0 3px 25px;
+	background:
+		url(https://s3-ap-northeast-1.amazonaws.com/dcicons/new/images/web/profile/review@2x.png)
+		left/20px no-repeat;
+	background-image:
+		url(https://s3-ap-northeast-1.amazonaws.com/dcicons/new/images/web/profile/review@2x.png);
+	background-position-x: left;
+	background-position-y: center;
+	background-size: 20px;
+	background-attachment: initial;
+	background-origin: initial;
+	background-clip: initial;
+	background-color: initial
+}
+
+.s-list.basic-info .Profile__Detail__Distance {
+	font-size: 15px;
+	font-weight: 400;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: 21px;
+	letter-spacing: -.75px;
+	text-align: left;
+	color: #202020
+}
+
+.Move__Map__Button {
+	position: absolute;
+	top: -6px;
+	right: 0;
+	padding: 6px 12px;
+	border-radius: 6px;
+	font-size: 14px;
+	line-height: 20px;
+	letter-spacing: -.7px;
+	color: #fff
+}
+
+.s-list.detail-info .busi-hours-today .list li {
+	overflow: hidden;
+	margin-bottom: 10px
+}
+
+
+.sort-option-div {
+	font-weight: 500;
+	display: inline-block;
+	padding: 3px 14px;
+	font-size: 15px;
+	border: 1px solid #eaeaea;
+	background: #fafafa;
+	cursor: pointer;
+	margin: 6px;
+	border-radius: 14px;
+	transition: background-color .3s
+}
+
+.sort-option-selected {
+	background-color: #3FAFFC;
+	border: 1px solid transparent;
+	transition: .52s
+}
+
+
+.s-list.appraisal {
+padding: 20px;
+    box-shadow: 1px 1px 3px #d8d8d8;
+}
+.s-list.appraisal .tit {
+	font-size: 24px;
+	color: #222228;
+	line-height: 120%;
+	font-weight: 600
+}
+
+.s-list.appraisal .grade-info {
+	position: relative;
+	border-top: 1px solid #e6e6eb;
+	border-bottom: 1px solid #e6e6eb;
+	padding: 20px 240px 20px 0
+}
+.s-list.appraisal .grade-info .star-point {
+	margin-bottom: 5px;
+	top: 80px
+}
+
+.s-list.appraisal .grade-info .app-graph {
+	top: 30px;
+	right: 0;
+	width: 200px;
+	font-size: 0
+}
+
+.s-list.appraisal .grade-info .star-point .point {
+	font-size: 15px;
+	color: #222228;
+	display: inline-block;
+	vertical-align: top;
+	font-weight: 600;
+	padding-right: 10px
+}
+
+.s-list.appraisal .grade-info .star-point .star {
+	background:
+		url(https://s3-ap-northeast-1.amazonaws.com/dcicons/new/images/web/common/rating-off@2x.png)
+		left/20px repeat-x;
+	background-image:
+		url(https://s3-ap-northeast-1.amazonaws.com/dcicons/new/images/web/common/rating-off@2x.png);
+	background-position-x: left;
+	background-position-y: center;
+	background-size: 20px;
+	background-attachment: initial;
+	background-origin: initial;
+	background-clip: initial;
+	background-color: initial;
+	position: relative;
+	display: inline-block;
+	width: 100px;
+	height: 20px;
+	vertical-align: top
+}
+
+.s-list.appraisal .grade-info .app-graph li {
+	margin-bottom: 5px
+}
+
+.s-list.pic-grade .sns-grade .grade .point strong {
+	color: #222228;
+	font-weight: 600
+}
+
+i {
+	border: 0;
+	outline: 0;
+	background: 0 0;
+	font-size: 100%;
+	font-style: normal
+}
+
+.s-list.pic-grade .sns-grade .grade .star i {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 50%;
+	height: 25px;
+	background: url(../img/detail_star.png) left/25px repeat-x;
+	background-image: url(../img/detail_star.png);
+	background-position-x: left;
+	background-position-y: center;
+	background-size: 25px;
+	background-attachment: initial;
+	background-origin: initial;
+	background-clip: initial;
+	background-color: initial
+}
+
+.grade-info.style-51Qop {
+    position: relative;
+    border-top: 1px solid #e6e6eb;
+    border-bottom: 1px solid #e6e6eb;
+    padding: 20px 0;
+    flex-grow: 1;
+}
+
+.s-list.detail-info .busi-hours-today .list li .r-txt {
+	float: right;
+	font-size: 15px;
+	padding-left: 7px;
+	right: 5px;
+	color: #222228
+}
+
+
+.s-list.appraisal .grade-info .star-point .star i {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 50%;
+	height: 20px;
+	background: url(../img/detail_star.png) left/20px repeat-x;
+	background-image: url(../img/detail_star.png);
+	background-position-x: left;
+	background-position-y: center;
+	background-size: 20px;
+	background-attachment: initial;
+	background-origin: initial;
+	background-clip: initial;
+	background-color: initial
+}
+
+.s-list.appraisal .grade-info .app-graph li .btxt {
+	width: 100px;
+	display: inline-block;
+	font-size: 13px;
+	color: #222228;
+	vertical-align: middle
+}
+
+.s-list.appraisal .grade-info .app-graph li .graph {
+	width: 100px;
+	height: 10px;
+	display: inline-block;
+	vertical-align: middle;
+	background: #e6e6eb;
+	border-radius: 5px;
+}
+
+.s-list.appraisal .grade-info .app-graph li .graph span {
+	height: 10px;
+	display: block;
+	background: #fbe122;
+	transition: .3s ease-out;
+	border-radius: 5px;
+}
+.title-and-score {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.review-and-graph {
+    display: flex;
+    justify-content: space-between;
+}
+
+.review_wrapper {
+    width: 70%;
+    overflow: auto;
+}
+
+.app-graph {
+    width: 30%;
+    height: 50%
+}
+
+
+#style-51Qop.style-51Qop {
+	min-height: 140px
+}
+
+#style-8cLvx.style-8cLvx {
+	width: 84%
+}
+
+#similar-contents.style-oS3aX {
+	padding: 20px 0
+}
+
+
+.more_similar_img { 
+    position: relative; 
+    top: -.5px; 
+    padding: 0 0 2px 3px; 
+    width: 12px; 
+    height: 7.2px;
+} 
+
+span.similar_recom_title {
+	display: flex;
+	align-items: center
+}
+.more_similar_text { 
+    font-size: 15px; 
+    font-weight: 500; 
+    line-height: 21px; 
+    letter-spacing: -.75px; 
+    color: #505050;
+} 
+.similar_rest_box { 
+    position: relative; 
+    overflow: hidden; 
+    box-sizing: border-box; 
+    padding: 6px; 
+    border-radius: 18px; 
+    width: 100%; 
+    height: 152px;
+} 
+
+.similar_rest_title { 
+    max-width: 152px; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    white-space: nowrap; 
+    padding-left: .125rem; 
+    font-size: 18px; 
+    font-weight: 700; 
+    letter-spacing: -1px; 
+    text-align: left; 
+    color: #202020; 
+    height: 68px; 
+    line-height: 26px; 
+    margin-top: 10px;
+} 
+
+.similar_rest_card {
+    display: flex;
+    flex-direction: column; /* 이 부분 추가 */
+    align-items: stretch; /* 이 부분을 수정 */
+    width: 100%;
+    height: 100%;
+}
+
+.more_similar_button {
+	display: grid;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	padding: 19px 0 20px;
+	border-radius: 8px;
+}
+
+.similar_recom_title .rn {
+	font-weight: 700;
+	line-height: 29px;
+	text-align: left;
+}
+
+.similar_rest_head {
+	padding: 4px 0;
+	display: flex;
+	align-items: flex-start;
+	font-size: 24px;
+	font-weight: 700;
+	line-height: 32px;
+	letter-spacing: -1.1px;
+	color: #202020
+}
+
+.similar_content {
+	grid-template-columns: 152px 152px 152px 152px;
+	padding: 20px 0;
+	box-sizing: border-box;
+	display: grid;
+	grid-template-rows: 228px
+}
+
+.similar_section {
+	position: relative;
+	padding: 20px;
+	box-shadow: 1px 1px 3px #d8d8d8
+}
+
+.similar_rest_distance .similar_rest_distance_img  { 
+    width: 10px; 
+    height: 13.3px;
+} 
+
+.similar_rest_box .similar_rest_distance  { 
+    position: absolute; 
+    z-index: 10; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    gap: 3px; 
+    padding: 4px 7px; 
+    border-radius: 14px; 
+    background-color: rgba(0,0,0,.48);
+} 
+
+
+.similar_rest_box .similar_rest_average  { 
+    position: absolute; 
+    bottom: 0; 
+    right: 0; 
+    z-index: 10; 
+    display: flex; 
+    align-items: center; 
+    gap: 1.6px; 
+    background-color: rgba(0,0,0,.44); 
+    border-radius: 22px 0 18px; 
+    padding: 3px 11px 4px; 
+    font-size: 15px; 
+    font-weight: 400; 
+    font-stretch: normal; 
+    font-style: normal; 
+    line-height: 21px; 
+    letter-spacing: -.75px; 
+    text-align: left; 
+    color: #fff;
+} 
+
+
+
+.similar_rest_distance .similar_rest_distance_number  { 
+    font-size: 14px; 
+    font-weight: 500; 
+    font-stretch: normal; 
+    font-style: normal; 
+    line-height: 20px; 
+    letter-spacing: -.7px; 
+    text-align: left; 
+    color: #fff;
+} 
+
+.similar_rest_average .similar_rest_average_img  { 
+    position: relative; 
+    top: 1px; 
+    width: 13.9px; 
+    height: 13px;
+} 
+
+.similar_rest_box .similar_rest_img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    width: 152px;
+    height: 152px;
+    object-fit: cover;
+    border-radius: 18px;
+    background-color: #eee;
+}
+
+.similar_rest_average .similar_rest_average_number  { 
+    position: relative; 
+    top: 1px;
+    color: #fff;
+} 
+
+
+
+.com_pic {
+	width: 600px;
+	max-width: 100%;
+	height: auto;
+	margin-top: -55px;
+	max-height: 100%;
+	object-fit: cover;
+}
+
+.com_pic_wrapper {
+	text-align: center;
+	max-height: 100%;
+	overflow: hidden;
+}
+
+#style-3I3B9.style-3I3B9 {
+	font-size: 18px;
+	vertical-align: middle;
+	padding-right: 8px
+}
+
+#style-UoJ8Z.style-UoJ8Z {
+	background:
+		url(https://s3-ap-northeast-1.amazonaws.com/dcicons/new/images/web/profile/profile-feedback@2x.png)
+		no-repeat left;
+	background-size: 20px
+}
+
+#style-8Cawr.style-8Cawr {
+	margin-bottom: 0
+}
+
+#aswift_1.style-lpplw {
+	height: 1px !important;
+	max-height: 1px !important;
+	max-width: 1px !important;
+	width: 1px !important
+}
+
+#google_ads_iframe_1.style-bkiWR {
+	height: 1px !important;
+	max-height: 1px !important;
+	max-width: 1px !important;
+	width: 1px !important
+}
+
+#style-DPgUI.style-DPgUI {
+	display: inline-block;
+	vertical-align: middle
+}
+
+#style-2KZWl.style-2KZWl {
+	display: inline-block;
+	vertical-align: middle;
+	float: right
+}
+
+#style-gRfXa.style-gRfXa {
+	display: inline-block;
+	vertical-align: top;
+	color: #2775FF;
+	font-size: 18px;
+	line-height: 120%;
+	font-weight: 500;
+	margin-bottom: 20px;
+	margin-left: 10px;
+	margin-top: -2px
+}
+
+#style-3S1oF.style-3S1oF {
+	display: inline-block;
+	vertical-align: middle;
+	font-size: 18px;
+	line-height: 120%;
+	font-weight: 500;
+	margin-bottom: 20px;
+	margin-left: 3px;
+	margin-top: 0
+}

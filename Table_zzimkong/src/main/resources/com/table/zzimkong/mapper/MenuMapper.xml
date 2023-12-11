@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.table.zzimkong.mapper.MenuMapper">
+
+	<insert id="insertMenu">
+		insert into menu (menu_idx, com_id, menu_name, menu_price, menu_describe, menu_img)
+		values 
+		<foreach collection="menuList.menuList" item="menu" separator=",">
+			(null,#{com_id} ,#{menu.menu_name}, #{menu.menu_price}, #{menu.menu_describe},'default')
+		</foreach>
+	</insert>
+
+
+
+</mapper>
