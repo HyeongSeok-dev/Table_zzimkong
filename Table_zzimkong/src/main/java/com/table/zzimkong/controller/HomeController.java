@@ -1,4 +1,4 @@
-package com.table.zzimkong;
+package com.table.zzimkong.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
