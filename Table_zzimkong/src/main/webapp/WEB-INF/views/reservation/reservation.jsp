@@ -15,7 +15,7 @@
 <!--  <header> -->
 <%--  	<jsp:include page="../inc/top_ns.jsp"></jsp:include> --%>
 <!--  </header> -->
- <form action="${pageContext.request.contextPath }/payment" name="reservation" onsubmit="return btnPay();">
+ <form action="${pageContext.request.contextPath }/payment" name="reservation" onsubmit="return submit()">
 <!-- 	<action="" name="reservation" onsubmit="return validateForm()"> -->
 	<div class="out_block">
 		<!-- 찜버튼 박스 -->
@@ -37,12 +37,6 @@
 						</svg>
 						주문/결제
 					</li>
-					<li>
-						<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" class="ico_status--2cyINN3I2q">
-							<path d="M5.834 14.572a.5.5 0 1 0 .707.707l-.707-.707zM11.813 9.3l.353.354a.5.5 0 0 0 0-.708l-.354.354zM6.54 3.321a.5.5 0 1 0-.707.708l.707-.708zm0 11.958l5.625-5.625-.707-.708-5.625 5.626.707.707zm5.625-6.333L6.541 3.321l-.707.708 5.625 5.625.707-.708z" fill="#000" fill-opacity="0.1"></path>
-						</svg>
-						완료
-					</li>
 				<ol>
 			</span>
 		</div>
@@ -53,7 +47,7 @@
 					<h2>예약 정보</h2>
 					<div class="info_tag">
 						<div class="info">
-							<span class="info_title">식당이름</span>
+							<span class="info_title">업체명</span>
 							<span class="info_content">프륔</span>
 						</div>
 						<div class="info">
@@ -111,11 +105,11 @@
 					<div class="name_number">
 						<div class="input_box">
 							<h3>성명</h3>
-		             		<input type="text" placeholder="성명을 입력해주세요." name="resName" class="name">
+		             		<input type="text" placeholder="성명을 입력해주세요." name="name" class="name">
 		            	</div>
 			            <div class="input_box">
 							<h3>연락처</h3>
-			            	<input type="text" placeholder="휴대폰 번호를 입력해주세요." name="resNumber" class="number">
+			            	<input type="text" placeholder="휴대폰 번호를 입력해주세요." name="number" class="number">
 			            </div>
 					</div>
 				</section>
@@ -228,7 +222,7 @@
 					</div>
 				</section>
 			</div>
-			<button type="button" class="payment" onclick="btnPay();">결제하기</button>
+			<button type="submit" class="payment">결제하기</button>
 		</div>
 		<!-- 	</action> -->
 	</div>
@@ -237,4 +231,53 @@
 <%--  	<jsp:include page="../inc/bottom.jsp"></jsp:include> --%>
 <!--  </footer> -->
 </body>
+<script type="text/javascript">
+
+	
+// 	function submit() {
+// 		if(document.reservation.name.value == ""){
+// 			alert("예약자 성함 입력 필수!")
+// 			document.reservation.name.focus();
+// 			return false;
+			
+// 		}else if(document.reservation.number.value == ""){
+// 			alert("예약자 연락처 입력 필수!")
+// 			document.reservation.number.focus();
+// 			return false;
+
+// 		}else if(document.reservation.agree.value == ""){
+// 			alert("예약약관에 동의해주세요.")
+// 			document.reservation.agree.focus();
+// 			return false;
+// 		}
+		
+		
+// 		return true;
+// 	}
+
+//  function validateForm() {
+//       const nameInput = document.forms["reservation"]["name"];
+//       const numberInput = document.forms["reservation"]["number"];
+
+//       if (!nameInput.value) {
+//         alert("성명을 입력해주세요.");
+//         nameInput.focus();
+//         return false;
+//       }
+
+//       if (!numberInput.value) {
+//         alert("연락처를 입력해주세요.");
+//         numberInput.focus();
+//         return false;
+//       }
+      
+//       if(agreeInput.value){
+//         alert("약관에 동의해 주세요.");
+//     	agreeInput.focus();
+//     	return false;
+//       }
+
+//       return true;
+//     }
+</script>
 </html>

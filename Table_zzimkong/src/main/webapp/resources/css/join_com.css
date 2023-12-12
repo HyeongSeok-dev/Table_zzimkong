@@ -2,6 +2,7 @@
   body {  
     margin: 0; 
     padding: 0; 
+    font-family: '맑은 고딕', 'Malgun Gothic', '돋움', Dotum, Arial, 'Apple Gothic', sans-serif; 
     letter-spacing: -1px; 
     word-wrap: break-word;
     margin: 0; 
@@ -11,6 +12,7 @@
     line-height: 24px; 
     letter-spacing: -1px; 
     -webkit-text-size-adjust: none;
+    font-family:'맑은 고딕', 'Malgun Gothic', '돋움', Dotum, Arial, 'Apple Gothic', sans-serif;
     letter-spacing:-1px;
     font-size:16px;
     line-height:1.4;
@@ -20,18 +22,18 @@
 div { 
     margin: 0; 
     padding: 0; 
+    font-family: '맑은 고딕', 'Malgun Gothic', '돋움', Dotum, Arial, 'Apple Gothic', sans-serif; 
     letter-spacing: -1px; 
     word-wrap: break-word;
 } 
 
 .nmContainer { 
     width: 100%;
-    height: 800px;
 } 
 
 .nmTit { 
     position: relative; 
-    margin: 55px 15px 60px;
+    margin: 55px 15px 25px;
 } 
 
 .nmTit:after { 
@@ -43,6 +45,10 @@ div {
     font-size: 0;
 } 
 
+.nmCont { 
+    padding: 40px; 
+    border: 1px solid #fff;
+} 
 
 h2 { 
     margin: 0; 
@@ -70,6 +76,7 @@ h2 {
 ul { 
     margin: 0; 
     padding: 0; 
+    font-family: '맑은 고딕', 'Malgun Gothic', '돋움', Dotum, Arial, 'Apple Gothic', sans-serif; 
     letter-spacing: -1px; 
     word-wrap: break-word;
     list-style: none;
@@ -93,6 +100,7 @@ ul {
 li { 
     margin: 0; 
     padding: 0; 
+    font-family: '맑은 고딕', 'Malgun Gothic', '돋움', Dotum, Arial, 'Apple Gothic', sans-serif; 
     letter-spacing: -1px; 
     word-wrap: break-word;
     list-style: none;
@@ -112,6 +120,7 @@ li {
 form { 
     margin: 0; 
     padding: 0; 
+    font-family: '맑은 고딕', 'Malgun Gothic', '돋움', Dotum, Arial, 'Apple Gothic', sans-serif; 
     letter-spacing: -1px; 
     word-wrap: break-word;
 } 
@@ -144,6 +153,7 @@ form {
 input { 
     margin: 0; 
     padding: 0; 
+    font-family: '맑은 고딕', 'Malgun Gothic', '돋움', Dotum, Arial, 'Apple Gothic', sans-serif; 
     letter-spacing: -1px; 
     word-wrap: break-word;
     outline: none;
@@ -151,19 +161,29 @@ input {
 } 
 
 input.inputTxt { 
-    height: 40px; 
+    height: 31px; 
     padding: 0 15px 2px; 
-/*     border: 1px solid #d8d8d8;  */
+    border: 1px solid #d8d8d8; 
     font-size: 14px; 
     line-height: 18px;
 } 
 
 .inputTxt  { 
+    height: 35px; 
+    padding: 0 10px 2px; 
+    border: 1px solid #bfbfbf; 
+    font-size: 14px; 
+    line-height: 18px; 
     letter-spacing: 0; 
+    border-radius: 0; 
     box-sizing: border-box; 
+    appearance: none; 
     -webkit-appearance: none;
 } 
 
+/* .inpBig  {  */
+/*     height: 30px; */
+/* }  */
 
 :root input.inputTxt  { 
     height: 31px \0/IE9; 
@@ -172,7 +192,8 @@ input.inputTxt {
 
 .loginBox .inputTxt  { 
     width: 100%; 
-    margin-bottom: 20px; 
+    margin-bottom: 10px; 
+    border-color: #d8d8d8;
 } 
 
 input.inputTxt  { 
@@ -180,6 +201,9 @@ input.inputTxt  {
     padding: 0 10px 2px \9;
 } 
 
+/* input.inpBig  {  */
+/*     height: 50px \9; */
+/* }  */
 
 button { 
     background: none; 
@@ -188,9 +212,26 @@ button {
     cursor: pointer;
 } 
 
+#joinBtn  { 
+    display: inline-block; 
+    height: 45px; 
+    margin: 0; 
+    padding: 0 25px; 
+    border: 1px solid  #e5e6d1; 
+    background:  #e5e6d1; 
+    font-size: 20px; 
+    line-height: 1.2; 
+    color: #282828; 
+    vertical-align: middle; 
+    
+    text-align: center; 
+    box-sizing: border-box; 
+    cursor: pointer;
+} 
+
 #joinkakaoBtn  { 
     display: inline-block; 
-    height: 40px; 
+    height: 45px; 
     margin: 0; 
     padding: 0 25px; 
     border: 1px solid #fbe122; 
@@ -208,14 +249,13 @@ button {
 .loginBox .btnJoin ,
 .btnJoinKakao { 
     width: 100%; 
-    height: 40px !important;
-    padding: 0;
-    margin-right: 5px;
+    height: 50px !important
 } 
 
 span { 
     margin: 0; 
     padding: 0; 
+    font-family: '맑은 고딕', 'Malgun Gothic', '돋움', Dotum, Arial, 'Apple Gothic', sans-serif; 
     letter-spacing: -1px; 
     word-wrap: break-word;
 } 
@@ -229,62 +269,12 @@ button span  {
     margin: 11px 0 13px;
 } 
 
-/* 이메일 텍스트박스, 셀렉트박스 정렬 */
 .u_emil{
-   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 20px;
-  height: 35px;
+	    display: flex; 
+	     flex-grow: 1;
 }
 
-/* 텍스트박스안에 생년월일 글씨 넣기 */
-#com_birth {
-	margin-left:0;
-	text-indent:200px;
-	border: 1px solid #d9d9d9;
-	border-radius: 10px;
-}
 
-.bday {
-	position: relative;
-	top:30px;
-	left:14px; 
-	font-size: 14px;
-	color:#777; 
-}
 
-/* 인증하기 버튼 텍스트 박스안에 넣기 */
-#phoneBox {
-	position: relative;
-	height: 35px;
-	margin-bottom: 15px;
-	width: 100%;
-}
-
-#phoneBox>button {position: absolute;
-right: 3px; top: 4px;
-width:80px; height:22px;
-padding:3px;
-}
-
-#u_email2 {
-	margin-bottom: 10px;
-	margin-left: 0;
-}
-
-#u_email {
-	margin-bottom: 0px;
-	margin-left: 0;
-}
-
-#u_name {
-	margin-bottom: 0;
-}
-
-#at {
-	margin-left: 10px;
-	margin-right: 10px;
-}
 
 

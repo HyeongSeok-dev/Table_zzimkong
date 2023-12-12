@@ -1,0 +1,160 @@
+@charset "UTF-8";
+body {
+    min-height: 170vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+}
+
+.coment {
+    text-align: center;
+    margin-bottom: 50px;
+    color: gray;
+}
+
+.check_payment {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.reservation, .payment {
+    margin-bottom: 20px;
+    width: 600px;
+    padding: 40px; 
+    border: 1px solid #d9d9d9; 
+    background: #fbfcfd; 
+    box-sizing: border-box;
+}
+.res_info_detail, .pay_info_detail {
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.res_info img, .pay_info img {
+    vertical-align: middle;
+    margin-right: 10px;
+    color: #acb350;
+}
+.res_info, .pay_info {
+	color: gray;
+	font-size: 15px;
+	margin-left: 20px;
+}
+
+hr {
+    border-top: 1px solid #eaeaea;
+}
+
+.res_num1 {
+	text-align: left;
+}
+
+.res_num2, .res_address, .res_date,
+.other_name, .other_phone, .request,
+.pay_money, .pay_point, .res_per, .pay_date,
+.pay_method {
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.res_name {
+	font-weight: bold;
+	font-size: 25px;
+	margin-left: 10px;
+}
+
+.checked {
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+    text-align: center;
+    float: center;
+    width: 600px;
+    font-size: 20px;
+    font-weight: 600;
+    height: 40px;
+}
+
+.reservation_div, .payment>div {
+	margin-bottom: 10px;
+	display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    align-items: baseline;
+}
+
+.res_num {
+	display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.reservation>div>div {
+	margin-top: 20px;
+	display: flex;
+    justify-content: space-between;
+}
+
+.total_money {
+	color: red;
+	font-size: 20px;
+	font-weight: bold;
+    margin-left: 10px;
+}
+
+.info_price{
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 10px;
+}
+
+.menu_name, .count {
+	font-size: 12px;
+	color: gray;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.menu_name {
+	width: 100px;
+}
+
+.price {
+	font-size: 14px;
+	width: 330px;
+	text-align: right;
+}
+
+.detail_price {
+	margin-bottom: 3px;
+	margin-top: 3px;
+}
+
+#payPriceInfo, #payPointInfo {
+	margin-top: 10px;
+}
+
+#pointsEarned {
+	margin-top: 20px;
+	font-size: 15px;
+}
+
+.pay_point_earn {
+	font-weight: bold;
+    margin-left: 10px;
+    font-size: 13px;
+}
+
+.pay_info_point {
+	color: gray;
+	font-size: 13px;
+	margin-left: 20px;
+}

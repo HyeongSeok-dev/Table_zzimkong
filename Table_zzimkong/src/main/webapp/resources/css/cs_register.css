@@ -1,0 +1,39 @@
+@charset "UTF-8";
+
+
+.category_select {
+	width: 90%;
+}
+
+.td_file {
+	text-align: right;
+}
+
+#cs_agree_checkbox {
+	margin-right: 10px;
+}
+
+.cs_agree {
+	position: relative;
+	left: 180px;
+	bottom: 20px;	
+}
+
+.must {
+	font-weight: 600;
+}
+
+form>div {
+	display: flex;
+	align-items: center
+}
+
+input[type="file"] {
+	width: 100%;
+}
+
+.file_5 {
+	font-size: 12px;
+	color: #bb5b67;
+	text-align: left;
+}

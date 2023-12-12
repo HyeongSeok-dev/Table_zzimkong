@@ -22,9 +22,9 @@ public class HomeController {
 	public String main(Model model) {
 		if(model.getAttribute("persons")==null) {
 			model.addAttribute("persons", 2);
-			model.addAttribute("display_date", "³»ÀÏ");
+			model.addAttribute("display_date", "ï¿½ï¿½ï¿½ï¿½");
 			model.addAttribute("date", LocalDate.now().plusDays(1));
-			model.addAttribute("time", "¿ÀÈÄ 7½Ã");
+			model.addAttribute("time", "ï¿½ï¿½ï¿½ï¿½ 7ï¿½ï¿½");
 		}
 		return "main";
 	}
@@ -89,9 +89,9 @@ public class HomeController {
 		return "ceo/ceo_reservation_detail";
 	}
 	
-	@GetMapping("ceo/cs")
+	@GetMapping("ceo/cs/faq")
 	public String ceo_cs() {
-		return "ceo/ceo_cs";
+		return "ceo/ceo_cs_faq";
 	}
 	
 	@GetMapping("payment/info")

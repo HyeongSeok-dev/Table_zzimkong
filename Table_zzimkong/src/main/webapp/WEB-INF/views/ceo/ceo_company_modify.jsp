@@ -41,7 +41,9 @@
 			<table>
 				<tr>
 					<th>업체번호</th>
-					<td colspan="7">1</td>
+					<td colspan="3">1</td>
+					<th>사업자등록번호</th>
+					<td colspan="3">3333-333-1</td>
 				</tr>
 				<tr>
 					<th>업체명</th>
@@ -52,7 +54,7 @@
 				<tr>
 					<th>대표자명</th>
 					<td colspan="3"><input type="text" value="최종권" readonly="readonly"></td>
-					<th>사업자등록번호</th>
+					<th>전화번호</th>
 					<td colspan="3">051-720-8200</td>
 				</tr>
 				<tr>

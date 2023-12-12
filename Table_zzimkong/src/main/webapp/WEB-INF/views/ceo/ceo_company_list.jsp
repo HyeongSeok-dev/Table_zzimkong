@@ -51,7 +51,7 @@
 			<table border="1">
 				<tr>
 					<th>업체번호</th>
-					<th>업체명</th>
+					<th>상호명</th>
 					<th>영업시간</th>
 					<th>등록일자</th>
 					<th>업체상태</th>

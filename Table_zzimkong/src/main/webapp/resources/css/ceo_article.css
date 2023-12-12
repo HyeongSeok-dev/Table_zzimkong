@@ -19,7 +19,7 @@ h3 {
 	display: block;
 	border: none;
 	background-color: #fff;
-	margin-top: 40px;
+	margin-top: 100px;
 }
 
 .text {
@@ -122,6 +122,7 @@ input[type="text"] {
 .header {
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
 }
 
 .hour, .minute {

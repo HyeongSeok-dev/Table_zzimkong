@@ -28,14 +28,14 @@
 					</td>
 				</tr>
 				<tr>
-					<th>업체명</th>
-					<td colspan="2"><input type="text" value=""></td>
+					<th>상호명</th>
+					<td colspan="2"><input type="text" value="" readonly="readonly"></td>
 					<th>대표자명</th>
-					<td colspan="2"><input type="text" value=""></td>
+					<td colspan="2"><input type="text" value="" readonly="readonly"></td>
 				</tr>
 				<tr>
 					<th>업태</th>
-					<td colspan="2"><input type="text" value=""></td>
+					<td colspan="2"><input type="text" value="" readonly="readonly"></td>
 					<th>전화번호</th>
 					<td colspan="2"><input type="text" value=""></td>
 				</tr>
@@ -43,7 +43,7 @@
 				</tr>	
 				<tr>
 					<th>주소</th>
-					<td colspan="5"><input type="text" maxlength="5" size="50" value=""></td>
+					<td colspan="5"><input type="text" maxlength="5" size="50" value="" readonly="readonly"></td>
 				</tr>
 				<tr>
 					<th>영업시작시간</th>

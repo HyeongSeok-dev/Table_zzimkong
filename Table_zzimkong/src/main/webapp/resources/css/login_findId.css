@@ -1,0 +1,82 @@
+@charset "UTF-8";
+
+body {  
+    letter-spacing:-1px;
+    font-size:16px;
+    line-height:1.4;
+    color:#282828;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}  
+
+.nm_container { 
+    width: 100%;
+    height: 700px;
+} 
+
+.nm_login_wrap { 
+    width: 606px; 
+    margin: 0 auto; 
+    padding: 40px; 
+    border: 1px solid #d9d9d9; 
+    background: #fbfcfd; 
+    box-sizing: border-box;
+} 
+
+#box{
+	text-align: center;
+	
+	width: 400px; 
+	height: 195px;
+    margin: 0 auto; 
+    padding: 40px; 
+    border: 1px solid #d9d9d9; 
+    background: #fbfcfd; 
+    box-sizing: border-box;
+}
+
+/* 로고 크기조절 */
+.logo_img_1{
+	width: 80px;
+	margin-top: 30px;
+}
+.logo_img_2{
+	width: 200px;
+	margin-top: 30px;
+}
+
+/* 이메일 텍스트, 셀렉트 박스 정렬 */
+.u_email{
+	display: flex;
+ 	align-items: center;
+ 	justify-content: center;
+ 	margin-bottom: 20px;
+}
+
+.div_img {
+	margin-bottom: 30px;
+}
+
+#findBtn {
+	width: 95%;
+	height: 40px;
+}
+
+#at {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+#uEmail {
+	width: 100%;
+	height: 40px;
+}
+
+#uEmail2 {
+	width: 100%;
+	margin: 0;
+}

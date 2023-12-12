@@ -36,7 +36,7 @@
 	<%-- <jsp:include page="../company/com_sidebar.jsp"/> --%>
 	<%-- top 삽입 --%>
 	<header>
-		<jsp:include page=../inc/ceo_top.jsp"/>
+		<jsp:include page="../inc/ceo_top.jsp"/>
 	</header>
 	<section class="article">
 		<div class="text">

@@ -26,34 +26,34 @@
 	      </a>
 	    </li>
 	    <li>
-	      <a id="menu" href="admin_main.jsp">
+	      <a id="menu" href="${pageContext.request.contextPath }/admin/main">
 	        Dashboard
 	      </a>
 	    </li>
 	    <li>
-	      <a id="franchise" href="admin_user.jsp">
+	      <a id="franchise" href="${pageContext.request.contextPath }/admin/user">
 	        회원관리
 	      </a>
 	    </li>
 	    <li>
-	      <a id="store" href="admin_company.jsp">
+	      <a id="store" href="${pageContext.request.contextPath }/admin/company">
 	        업체관리
 	      </a>
 	    </li>
 	    <li>
-	      <a id="news" href="admin_review.jsp">
+	      <a id="news" href="${pageContext.request.contextPath }/admin/review">
 	        리뷰관리
 	      </a>
 	    </li>
 	    <li>
-	      <a id="news" href="#">
+	      <a id="news" href="${pageContext.request.contextPath }/admin/cs/main">
 	        고객센터
 	      </a>
 	    </li>
 	    <li>
 	     <div class="com_top_logout">
 				<span class="headerRi">
-				    <a href="/bbs/content.php?co_id=franchise#con13">
+				    <a href="">
 				      <span>
 				        로그아웃
 				      </span>

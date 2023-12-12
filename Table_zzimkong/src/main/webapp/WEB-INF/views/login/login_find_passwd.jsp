@@ -16,24 +16,22 @@
 		        <form id="findForm" method="POST" target="_self">
 		        
 		        <!-- 로고 이미지 -->
-		        <div align="center">
-		        	<img class="logo_img" src="${pageContext.request.contextPath }/resources/img/logo_top.png" alt="메인로고" >
+		        <div align="center" class="div_img">
+		        	<img class="logo_img_1" src="${pageContext.request.contextPath }/resources/img/logo1_2.png" alt="메인로고1" >
+		        	<img class="logo_img_2" src="${pageContext.request.contextPath }/resources/img/logo2_1.PNG" alt="메인로고2" >
 		       </div><br>
 		       
 		       <!-- 테두리를 위한 div테그 -->
 		       <div id="box">
 		       
 		       		<!-- 아이디 입력 -->
-		       		<input type="text" placeholder="아이디를 입력해주세요" class="input_txt inp_big">
-		       		<br><br>
+		       		<input type="text" placeholder="아이디를 입력해주세요" class="input_txt">
 		       		
 			        <!-- 이메일 입력-->
 			        <div class="u_email" align="center">
-		                <input type="text" id="uEmail" name="uEmail" class="input_txt inp_big" placeholder="이메일" onkeydown="eventObj.loginByEnterKey(event)" maxlength="16" autocomplete="false">
-		                &nbsp;
-		                <span>@</span>
-		                 &nbsp;
-						<select id="uEmail2" name="uEmail" class="input_txt inp_big" >
+		                <input type="text" id="uEmail" name="uEmail" placeholder="이메일" onkeydown="eventObj.loginByEnterKey(event)" maxlength="16" autocomplete="false">
+		                <span id="at">@</span>
+						<select id="uEmail2" name="uEmail">
 			                <option value="">선택하세요</option>
 			                <option value="gmail.com">gmail.com</option>
 			                <option value="naver.com">naver.com</option>
@@ -42,7 +40,6 @@
 			                <option value="yahoo.com">직접입력</option>
 			             </select>	              
 		           </div>
-		           <br>
 		           
 			        <!-- 아이디 찾기 버튼 -->
 			          <div class="button_find"  align="center">
@@ -51,7 +48,7 @@
 				          </button>
 			          </div>
 		          </div>
-		          
+		       </form>
 		          <br><br>
 		          <!-- 고객센터 연결 -->
 		          <div align="center">

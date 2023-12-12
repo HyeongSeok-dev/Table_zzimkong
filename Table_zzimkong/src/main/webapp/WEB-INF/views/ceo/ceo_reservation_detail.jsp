@@ -8,7 +8,7 @@
 <%-- 글로벌 css --%>
 <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
 <%-- 본문 css --%>
-<link href="${pageContext.request.contextPath }/resources/css/ceo_detaile.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath }/resources/css/ceo_res_detaile.css" rel="stylesheet">
 <%-- 사이드바 css --%>
 <!-- <link href="side_bar.css" rel="stylesheet"> -->
 </head>

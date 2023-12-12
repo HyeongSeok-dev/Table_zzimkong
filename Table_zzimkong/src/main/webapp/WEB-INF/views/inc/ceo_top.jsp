@@ -27,32 +27,32 @@
 	<!--       </a> -->
 	<!--     </li> -->
 	    <li>
-	      <a id="menu" href="${pageContext.request.contextPath }/views/company/com_dashboard.jsp">
+	      <a id="menu" href="${pageContext.request.contextPath }/ceo/sale">
 	        판매관리
 	      </a>
 	    </li>
 	    <li>
-	      <a id="franchise" href="${pageContext.request.contextPath }/views/company/com_list.jsp">
+	      <a id="franchise" href="${pageContext.request.contextPath }/ceo/company/list">
 	        내업체관리
 	      </a>
 	    </li>
 	    <li>
-	      <a id="store" href="${pageContext.request.contextPath }/views/company/com_menu_list.jsp">
+	      <a id="store" href="${pageContext.request.contextPath }/ceo/menu/list">
 	        메뉴관리
 	      </a>
 	    </li>
 	    <li>
-	      <a id="news" href="${pageContext.request.contextPath }/views/company/com_reservation.jsp">
+	      <a id="news" href="${pageContext.request.contextPath }/ceo/reservation">
 	        예약관리
 	      </a>
 	    </li>
 	    <li>
-	      <a id="sns" href="${pageContext.request.contextPath }/views/company/com_black.jsp">
+	      <a id="sns" href="${pageContext.request.contextPath }/ceo/black">
 	        블랙회원관리
 	      </a>
 	    </li>
 	    <li>
-	      <a id="sns" href="${pageContext.request.contextPath }/views/company/com_CS.jsp">
+	      <a id="sns" href="${pageContext.request.contextPath }/ceo/cs/faq">
 	        고객센터
 	      </a>
 	    </li>
@@ -60,7 +60,7 @@
 		    <div class="com_top_logout">
 		    	<span class="top_name">이형석님</span>
 				<span class="headerRi">
-				    <a href="/bbs/content.php?co_id=franchise#con13">
+				    <a href="">
 				      <span>
 				        로그아웃
 				      </span>

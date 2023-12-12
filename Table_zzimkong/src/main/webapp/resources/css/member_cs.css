@@ -12,20 +12,30 @@ table {
 	  display: block;
 	  border: none;
 	  background-color: #fff;
-	  margin-top: 100px;
+	  margin-top: 30px;
 	}
 	
 	.page-title {
 		display: flex;
 		justify-content: space-between;
+		align-items: center;
 	}
 	
-	h3 {
+	.text>h3 {
     color: #515151;
-    margin-bottom: 30px;
+    margin-bottom: 100px;
+    text-align: center;
+    font-size: 40px;
+    /* 하이라이트 CSS 추가 */
+	margin-bottom: 70px;
+}
+
+	.container>h3 {
+    color: #515151;
+    margin-bottom: 100px;
     font-size: 30px;
     /* 하이라이트 CSS 추가 */
-    display: inline; /* 글자 길이에 맞게 */
+	margin-bottom: 10px;
 }
 	
 	#board-search .search-window {
@@ -186,7 +196,7 @@ table {
 	  width: 1px;
 	  height: 1px;
 	}
-	#button {
+	#buttonNotice, #buttonQna, #buttonRegister {
 	 width: 100px;
     }
     #buttonArea {

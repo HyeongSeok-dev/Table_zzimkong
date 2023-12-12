@@ -1,52 +1,14 @@
 @charset "UTF-8";
-
-@font-face {
-    font-family: 'Orbit-Regular';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/Orbit-Regular.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-}
-
-  body {  
-    margin: 0; 
-    padding: 0; 
-    letter-spacing: -1px; 
-    word-wrap: break-word;
-    margin: 0; 
-    background-color: #fff; 
-    color: #707070; 
-    font-size: 14px; 
-    line-height: 24px; 
-    letter-spacing: -1px; 
-    -webkit-text-size-adjust: none;
-    letter-spacing:-1px;
-    font-size:16px;
-    line-height:1.4;
-    color:#282828;
-    
-    padding-left: 150px;  /* 왼쪽 여백 설정 */
-    padding-right: 150px;  /* 오른쪽 여백 설정 */
-  }  
   
   footer {
     padding-left: 0;  /* footer의 왼쪽 여백 제거 */
     padding-right: 0;  /* footer의 오른쪽 여백 제거 */
 }
-  
-
-  
-div { 
-    margin: 0; 
-    padding: 0; 
-    letter-spacing: -1px; 
-    word-wrap: break-word;
-    
-} 
 
 
 /* 체크박스랑 로그인 버튼 사이에 간격띄우기 */
 .check {
-    margin-bottom: 50px;  /* 원하는 간격으로 조절 */
+    margin-bottom: 40px;  /* 원하는 간격으로 조절 */
     vertical-align: middle;
     font-size: 17px;  
     
@@ -54,11 +16,15 @@ div {
 
 .nmContainer { 
     width: 100%;
+    /* display: flex; */
+    line-height:1.4;
 } 
 
 .nmTit { 
     position: relative; 
     margin: 55px 15px 25px;
+    display: block;
+    text-align: center;
 } 
 
 .nmTit:after { 
@@ -212,25 +178,13 @@ input {
 } 
 
 input { 
+    vertical-align: middle;
     outline: none;
 } 
 
-input { 
-    vertical-align: middle;
-} 
-
-input.inputTxt { 
-    height: 40px;  /* ID/비밀번호 텍스트박스 높이*/
-    padding: 0 15px 2px; 
-    border: 1px solid #d8d8d8; 
-    font-size: 14px; 
-    line-height: 18px;
-} 
-
 .inputTxt  { 
-    height: 35px; 
+    height: 40px; 
     padding: 0 10px 2px; 
-    border: 1px solid #bfbfbf; 
     font-size: 14px; 
     line-height: 18px; 
     letter-spacing: 0; 
@@ -241,18 +195,12 @@ input.inputTxt {
 } 
 
 .inpBig  { 
-    height: 50px;
-} 
-
-:root input.inputTxt  { 
-    height: 31px \0/IE9; 
-    padding: 0 15px 2px \0/IE9;
+    height: 40px;
 } 
 
 .loginBox .inputTxt  { 
     width: 100%; 
-    margin-bottom: 10px; 
-    border-color: #d8d8d8;
+    margin-bottom: 20px; 
 } 
 
 input.inputTxt  { 
@@ -271,49 +219,18 @@ button {
     cursor: pointer;
 } 
 
-/* #loginBtn  {  */
-/*     display: inline-block;  */
-/*     height: auto;  */
-/*    	width:250px; */
-/*     margin: 0;  */
-/*     padding: 0 25px;  */
-/*     border: 1px solid  #e5e6d1;  */
-/*     background:   #e5e6d1; 로그인버튼 배경색 */
-/*     font-size: 20px;  */
-/*     line-height: 1.2;  */
-/*     color: #282828;  */
-/*     vertical-align: middle;  */
-/*     justify-content: center; */
-/*     align-items: center; */
-    
-/*     text-align: center;  */
-/*     box-sizing: border-box;  */
-/*     cursor: pointer; */
-/* }  */
-
 #loginkakaoBtn  { 
     display: inline-block ;
-    height: auto; 
-    width:250px;
-    margin: 0; 
-    padding: 0 25px; 
-    border: 1px solid #fbe122; 
     background:  #fbe122; 
-    font-size: 20px; 
     line-height: 1.2; 
-    color: #282828; 
-    vertical-align: middle; 
-
-    
-    text-align: center; 
-    box-sizing: border-box; 
-    cursor: pointer;
+    color: #fff;
 } 
 
 .loginBox .btnLogin ,
 .btnkakaoLogin { 
     width: 100%; 
-/*     height: 50px !important */
+	height: 40px !important;
+	font-size: 18px; 
 } 
 
 span { 
@@ -321,15 +238,6 @@ span {
     padding: 0; 
     letter-spacing: -1px; 
     word-wrap: break-word;
-} 
-
-button span  { 
-    position: relative;
-} 
-
-.btnB span  { 
-    display: inline-block; 
-    margin: 11px 0 13px;
 } 
 
 

@@ -47,15 +47,6 @@
 /*    --toggle-color: #DDD;*/
 /*    --text-color: #707070;*/
 
-	/* 연두색 테마 */
-    --body-color: #fff;
-/*    --body-color: #ffffef;*/
-    --sidebar-color: #e6e8cb;
-    --primary-color: #acb350;
-    --primary-color-light: #f3f4e6;
-    --toggle-color: #acb350;
-    --text-color: #707070;	/* 적용 안됨 */
-    
     /* 노란색 테마 */
 /*    --body-color: #FFF;*/
 /*    --sidebar-color: #fef6bc;*/
@@ -63,6 +54,22 @@
 /*    --primary-color-light: #fffadf;*/
 /*    --toggle-color: #fbe122;*/
 /*    --text-color: #707070;*/
+
+	/* 연두색 테마 */
+/*    --body-color: #fff;*/
+/*    --sidebar-color: #e6e8cb;*/
+/*    --primary-color: #acb350;*/
+/*    --primary-color-light: #f3f4e6;*/
+/*    --toggle-color: #acb350;*/
+/*    --text-color: #707070;	 적용 안됨 */
+    
+	/* 파란색 테마 */
+    --body-color: #fff;
+    --sidebar-color: #7EC9FD;
+    --primary-color: #0095FB;
+    --primary-color-light: #B6E0FD;
+    --toggle-color: #0095FB;
+    --text-color: #001523;	/* 적용 안됨 */
 
 
     /* ====== Transition ====== */

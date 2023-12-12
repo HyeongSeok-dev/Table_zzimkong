@@ -19,7 +19,6 @@
 		     로그인
 		    </h2>
 		  </div>
-		  <div class="nmCont">
 		    <div class="nmLoginWrap">
 		      <div class="loginBox">
 		        <form id="loginForm" method="POST" target="_self" >
@@ -41,7 +40,6 @@
 		              로그인
 		            </span>
 		          </button>
-		          <br><br>
 		          <button type="button" class="btnkakaoLogin btnB" id="loginkakaoBtn">
 			          <span>
 			          카카오로 간편 로그인
@@ -71,16 +69,13 @@
 		      </li>
 		    </ul>
 		  </div>
-		</div>
-	
-	
 	</body>
 	
 	<script src="./js/login.js"></script>
 	
 	
 	<footer>
-		      	<jsp:include page="../inc/bottom.jsp"></jsp:include>
+	      	<jsp:include page="../inc/bottom.jsp"></jsp:include>
     </footer>
 	
 	

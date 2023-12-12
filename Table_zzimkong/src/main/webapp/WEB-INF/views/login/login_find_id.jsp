@@ -15,8 +15,9 @@
 		      <div class="find_box">
 		        <form id="findForm" method="POST" target="_self">
 		        <!-- 로고 이미지 -->
-		        <div align="center">
-		        	<img class="logo_img" src="${pageContext.request.contextPath }/resources/img/logo_top.png" alt="메인로고" >
+		        <div align="center" class="div_img">
+		        	<img class="logo_img_1" src="${pageContext.request.contextPath }/resources/img/logo1_2.png" alt="메인로고1" >
+		        	<img class="logo_img_2" src="${pageContext.request.contextPath }/resources/img/logo2_1.PNG" alt="메인로고2" >
 		       </div>
 		   			<br>
 		       
@@ -24,11 +25,9 @@
 		       <div id="box">
 			        <!-- 이메일 -->
 			        <div class="u_email" align="center" >
-		                <input type="text" id="uEmail" name="uEmail" class="input_txt inp_big" placeholder="이메일" onkeydown="eventObj.loginByEnterKey(event)" maxlength="16" autocomplete="false">
-		                &nbsp;
-		                <span>@</span>
-		                 &nbsp;
-						<select id="uEmail2" name="uEmail" class="input_txt inp_big" >
+		                <input type="text" id="uEmail" name="uEmail" placeholder="이메일" onkeydown="eventObj.loginByEnterKey(event)" maxlength="16" autocomplete="false">
+		                <span id="at">@</span>
+						<select id="uEmail2" name="uEmail">
 			                <option value="">선택하세요</option>
 			                <option value="gmail.com">gmail.com</option>
 			                <option value="naver.com">naver.com</option>

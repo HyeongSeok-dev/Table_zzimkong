@@ -149,11 +149,13 @@ textarea {
 }
 
 .info_title {
+	color: gray;
 	font-size: 15px;
 }
 
 .info_content {
 	font-size: 20px;
+	font-weight: bold;
 }
 
 .info_price{

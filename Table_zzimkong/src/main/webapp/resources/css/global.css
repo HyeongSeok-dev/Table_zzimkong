@@ -98,7 +98,13 @@ input[type="password"]{
     outline: none;
     background-color: #eff7fe;
     padding-left: 15px;
-	text-align: center;
+}
+
+ input[type="search"] {
+    font-size: 15px;
+    border: 0;
+    border-radius: 10px;
+    padding-left: 15px;
 }
 
 button[type="button"]:hover, button[type="submit"]:hover,

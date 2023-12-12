@@ -20,7 +20,6 @@
           일반회원 가입
         </h2>
       </div>
-      <div class="nmCont">
         <div class="nmLoginWrap">
           <div class="loginBox">
             <form id="loginForm" method="POST" target="_self">
@@ -75,7 +74,6 @@
           </div>
         </div>
       </div>
-    </div>
     
     <footer>
 		      	<jsp:include page="../inc/bottom.jsp"></jsp:include>
