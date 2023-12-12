@@ -1,0 +1,243 @@
+@charset "UTF-8";
+
+.search-bar-wrapper {
+	display: flex;
+	width: 100%;
+	background-color: #f8f8f8;
+}
+
+.search_bar {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	align-items: center;
+	margin: 0 auto; /* 화면 중앙에 배치 */
+	background-color: #fff;
+	box-shadow: 0 3px 4px -3px #0000001a, 3px 0 4px -3px #0000001a, -3px 0
+		4px -3px #0000001a;
+	border: 1px solid #d2d2d2;
+}
+
+.search_wrapper {
+	display: flex;
+	flex-direction: column; /* 위아래로 쌓기 */
+	align-items: flex-start;
+	justify-content: center;
+	width: 100%; /* 부모 요소를 꽉 채우기 */
+	position: relative;
+}
+
+.search_content {
+	display: flex; /* 검색창, 인원수, 필터를 한 줄에 배치 */
+	align-items: center;
+	border-bottom: 1px solid #d2d2d2;
+	width: 100%;
+	height: 60px;
+}
+
+.search_input_wrapper, .search_info, .filter_wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+}
+
+.search_input_wrapper {
+	flex-grow: 8; /* 검색창이 부모 요소의 60%를 차지하도록 */
+	border-right: 1px solid #d2d2d2;
+	justify-content: flex-start; /* 아이콘과 텍스트 필드를 왼쪽으로 정렬 */
+	height: 100%;
+}
+
+.search_info {
+	flex-grow: 2; /* 인원수가 부모 요소의 30%를 차지하도록 */
+	border-right: 1px solid #d2d2d2;
+}
+
+.filter_wrapper {
+	flex-grow: 1; /* 필터가 부모 요소의 10%를 차지하도록 */
+}
+
+.search_input {
+	width: 100%; /* 부모 요소를 꽉 채우기 */
+	display: flex; /* 아이콘과 텍스트 필드를 한 줄에 배치 */
+	height: 95%;
+}
+
+.search_input_text {
+	width: 100%; /* 아이콘을 침범하지 않는 범위 내에서 부모의 너비를 모두 차지 */
+/*	margin-left: 40px;  아이콘과의 간격을 조정 (아이콘 크기에 따라 조정 필요) */
+	margin-left: 80px; /* 아이콘과의 간격을 조정 (아이콘 크기에 따라 조정 필요) */
+	font-size: 16px;
+	font-weight: bold;
+	border: 1px solid #FFF;
+	padding-left: 20px;
+	
+	color: #3FAFFC;
+	
+}
+
+.search_icon {
+	position: absolute;
+/*	left: 10px;  왼쪽에 더 가깝게 */
+	left: 30px;
+	top: 50%;
+	transform: translateY(-50%); /* 아이콘을 입력창의 중앙에 배치 */
+}
+
+.search_filter {
+	display: flex;
+	justify-content: space-between; /* 필터 옵션들을 동일한 간격으로 배치 */
+}
+
+.filter_option {
+	flex-basis: 33.33%; /* 각각 1/3의 공간을 차지하도록 */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0 10px; /* 각 단추 사이에 간격을 띄움 */
+	width: 90px; /* 단추의 너비를 늘림 */
+	height: 40px;
+}
+
+.menu_option {
+	flex-basis: 33.33%; /* 각각 1/3의 공간을 차지하도록 */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0 10px; /* 각 단추 사이에 간격을 띄움 */
+	width: 30%; /* 단추의 너비를 늘림 */
+	height: 30%;	
+}
+
+a {
+	color: #000;
+}
+
+.location_button, .distance_button, .cuisine_button, .user_button, .login_button, .bell_button, .support_button {
+	border: none; /* 버튼 기본 테두리 제거 */
+	background-color: transparent; /* 배경색 제거 */
+}
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%;
+    height: 25%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.close {
+    color: #aaaaaa;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+h2 {
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    margin: 10px 0;
+}
+
+.date-group, .persons-group {
+    display: flex;
+    align-items: center;
+}
+
+.persons-group {
+    align-items: center;
+}
+
+.input-group label {
+    margin: 0 10px;
+}
+
+.arrow {
+    cursor: pointer;
+    margin: 0 10px;
+}
+/* 브라우저의 기본 라디오 버튼 스타일을 숨김 */
+/* 브라우저의 기본 라디오 버튼 스타일을 숨김 */
+.input-group input[type="radio"],
+.persons-group input[type="radio"] {
+    display: none !important;
+}
+
+/* 라디오 버튼의 라벨을 동그란 버튼 모양으로 스타일링 */
+.input-group label,
+.persons-group label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    margin: 5px;
+    border: 2px solid #888;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.time-group label {
+    width: 50px;
+    height: 50px;
+        display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    margin: 5px;
+    border: 2px solid #888;
+    border-radius: 50%;
+    background-color: #fff;
+    cursor: pointer;
+    /* 기타 스타일 */
+}
+
+/* 라디오 버튼이 선택되었을 때의 스타일 */
+.input-group input[type="radio"]:checked + label,
+.persons-group input[type="radio"]:checked + label {
+    background-color: #888;
+    color: #fff;
+}
+.date-label {
+    font-weight: 700; /* 원하는 사이즈로 조정하세요 */
+    margin-right: 20px;
+    margin-left : 20px;
+    /* 기타 스타일 */
+}

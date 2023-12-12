@@ -136,68 +136,64 @@
 		</div><!-- .container close -->
 	</section><!-- slider close -->
 
+		
+	 <button><a href="ceo/sale">ceo/sale</a></button>
+	 <button><a href="ceo/black">ceo/black</a></button>
+	 <button><a href="ceo/black/register">ceo/black/register</a></button>
+	 <button><a href="ceo/company/list">ceo/company/list</a></button>
+	 <button><a href="ceo/company/register">ceo/company/register</a></button>
+	 <button><a href="ceo/company/modify">ceo/company/modify</a></button>
+	 <button><a href="ceo/company/ad">ceo/company/ad</a></button>
+	 <button><a href="ceo/menu/list">ceo/menu/list</a></button>
+	 <button><a href="ceo/menu/modify">ceo/menu/modify</a></button>
+	 <button><a href="ceo/menu/register">ceo/menu/register</a></button>
+	 <button><a href="ceo/reservation">ceo/reservation</a></button>
+	 <button><a href="ceo/reservation/detail">ceo/reservation/detail</a></button>
+	 <button><a href="ceo/cs">ceo/cs</a></button>
+	 <hr>
+	 
+	 <button><a href="payment/info">payment/info</a></button>
+	 <button><a href="payment">payment</a></button>
+	  <hr>
+	 <button><a href="product/detail">product/detail</a></button>
+	 <button><a href="product/list">product/list</a></button>
+	  <hr>
+	 <button><a href="admin/main">admin/main</a></button>
+	 <button><a href="admin/user">admin/user</a></button>
+	 <button><a href="admin/company">admin/company</a></button>
+	 <button><a href="admin/company/info">admin/company/info</a></button>
+	 <button><a href="admin/review">admin/review</a></button>
+	 <button><a href="admin/review/detail">admin/review/detail</a></button>
+	 <hr>
+	 <button><a href="join">join</a></button>
+	 <button><a href="join/ceo">join/ceo</a></button>
+	 <button><a href="join/choice">join/choice</a></button>
+	 <button><a href="login">login</a></button>
+	 <hr>
+	 <button><a href="login/find/id">login/find/id</a></button>
+	 <button><a href="login/find/passwd">login/find/passwd</a></button>
+	 <hr>
+	 <button><a href="my/list">my/list</a></button>
+	 <button><a href="my/review">my/review</a></button>
+	 <button><a href="my/report/shop">my/report/shop</a></button>
+	 <button><a href="my/report/reason">my/report/reason</a></button>
+	 <button><a href="my/modify/profile">my/modify/profile</a></button>
+	 <button><a href="my/unregister">my/unregister</a></button>
+	 <hr>
+	 <button><a href="review/detail">review/detail</a></button>
+	 <button><a href="review/write">review/write</a></button>
+	 <button><a href="review/complete">review/complete</a></button>
+	 <button><a href="review/report">review/report</a></button>
+	 <hr>
+	 <button><a href="reservation">reservation</a></button>
 	
- <button><a href="ceo/sale">ceo/sale</a></button>
- <button><a href="ceo/black">ceo/black</a></button>
- <button><a href="ceo/black/register">ceo/black/register</a></button>
- <button><a href="ceo/company/list">ceo/company/list</a></button>
- <button><a href="ceo/company/register">ceo/company/register</a></button>
- <button><a href="ceo/company/modify">ceo/company/modify</a></button>
- <button><a href="ceo/company/ad">ceo/company/ad</a></button>
- <button><a href="ceo/menu/list">ceo/menu/list</a></button>
- <button><a href="ceo/menu/modify">ceo/menu/modify</a></button>
- <button><a href="ceo/menu/register">ceo/menu/register</a></button>
- <button><a href="ceo/reservation">ceo/reservation</a></button>
- <button><a href="ceo/reservation/detail">ceo/reservation/detail</a></button>
- <button><a href="ceo/cs">ceo/cs</a></button>
- <hr>
- 
- <button><a href="payment/info">payment/info</a></button>
- <button><a href="payment">payment</a></button>
-  <hr>
- <button><a href="product/detail">product/detail</a></button>
- <button><a href="product/list">product/list</a></button>
-  <hr>
- <button><a href="admin/main">admin/main</a></button>
- <button><a href="admin/user">admin/user</a></button>
- <button><a href="admin/company">admin/company</a></button>
- <button><a href="admin/company/info">admin/company/info</a></button>
- <button><a href="admin/review">admin/review</a></button>
- <button><a href="admin/review/detail">admin/review/detail</a></button>
- <hr>
- <button><a href="join">join</a></button>
- <button><a href="join/ceo">join/ceo</a></button>
- <button><a href="join/choice">join/choice</a></button>
- <button><a href="login">login</a></button>
- <hr>
- <button><a href="login/find/id">login/find/id</a></button>
- <button><a href="login/find/passwd">login/find/passwd</a></button>
- <hr>
- <button><a href="my/list">my/list</a></button>
- <button><a href="my/review">my/review</a></button>
- <button><a href="my/report/shop">my/report/shop</a></button>
- <button><a href="my/report/reason">my/report/reason</a></button>
- <button><a href="my/modify/profile">my/modify/profile</a></button>
- <button><a href="my/unregister">my/unregister</a></button>
- <hr>
- <button><a href="review/detail">review/detail</a></button>
- <button><a href="review/write">review/write</a></button>
- <button><a href="review/complete">review/complete</a></button>
- <button><a href="review/report">review/report</a></button>
- <hr>
- <button><a href="reservation">reservation</a></button>
-
-   
-
-	<br>
-	<br>
-	<br>
+	   
 	
 	<!--
     footer-bottom  start
     ============================= -->
 	<footer>
-<%-- 		<jsp:include page="../inc/bottom_main.jsp"/> --%>
+		<jsp:include page="inc/bottom_main.jsp"/>
 	</footer>
 	
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
