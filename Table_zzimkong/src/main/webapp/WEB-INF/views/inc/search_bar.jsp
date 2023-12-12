@@ -21,7 +21,7 @@
 					</div>
 				</div>
 				<div class="search_info">
-					<p class="info_text">테이블 인원수 ${persons}명, ${display_date}
+					<p class="info_text">테이블 인원수 : ${persons}명, ${display_date}
 						${time}</p>
 					<div id="myModal" class="modal">
 						<div class="modal-content">
@@ -42,36 +42,37 @@
 									<input type="radio" id="three" name="persons" value="3"
 										${persons == 3 ? 'checked' : ''}><label for="three">3명</label>
 									<input type="radio" id="four" name="persons" value="4"
-										${persons == 2 ? 'checked' : ''}> <label for="four">4명</label>
+										${persons == 4 ? 'checked' : ''}> <label for="four">4명</label>
 								</div>
 							</div>
 							<div class="input-group time-group">
 								<span class="arrow left">&lt;</span> <input type="radio"
-									id="time11" name="time" value="11"
-									${time == 11 ? 'checked' : ''}> <label for="time11">오전
-									11시</label> <input type="radio" id="time12" name="time" value="12"
-									${time == 12 ? 'checked' : ''}> <label for="time12">오전
-									12시</label> <input type="radio" id="time13" name="time" value="13"
-									${time == 13 ? 'checked' : ''}> <label for="time13">오후
-									1시</label> <input type="radio" id="time14" name="time" value="14"
-									${time == 14 ? 'checked' : ''}> <label for="time14">오후
-									2시</label> <input type="radio" id="time15" name="time" value="15"
-									${time == 15 ? 'checked' : ''}> <label for="time15">오후
-									3시</label> <input type="radio" id="time16" name="time" value="16"
-									${time == 16 ? 'checked' : ''}> <label for="time16">오후
-									4시</label> <input type="radio" id="time17" name="time" value="17"
-									${time == 17 ? 'checked' : ''}> <label for="time17">오후
-									5시</label> <input type="radio" id="time18" name="time" value="18"
-									${time == 18 ? 'checked' : ''}> <label for="time18">오후
-									6시</label> <input type="radio" id="time19" name="time" value="19"
-									${time == 19 ? 'checked' : ''}> <label for="time19">오후
-									7시</label> <input type="radio" id="time20" name="time" value="20"
-									${time == 20 ? 'checked' : ''}> <label for="time20">오후
-									8시</label> <input type="radio" id="time21" name="time" value="21"
-									${time == 21 ? 'checked' : ''}> <label for="time21">오후
-									9시</label> <input type="radio" id="time22" name="time" value="22"
-									${time == 22 ? 'checked' : ''}> <label for="time22">오후
-									10시</label> <span class="arrow right">&gt;</span>
+									id="time11" name="time" value="오전11시"
+									${time eq "오전11시" ? 'checked' : ''}> <label
+									for="time11">오전 11시</label> <input type="radio" id="time12"
+									name="time" value="오전12시" ${time eq "오전12시" ? 'checked' : ''}>
+								<label for="time12">오전 12시</label> <input type="radio"
+									id="time13" name="time" value="오후1시"
+									${time eq "오후 1시" ? 'checked' : ''}> <label for="time13">오후
+									1시</label> <input type="radio" id="time14" name="time" value="오후2시"
+									${time eq "오후 2시" ? 'checked' : ''}> <label for="time14">오후
+									2시</label> <input type="radio" id="time15" name="time" value="오후3시"
+									${time eq "오후 3시" ? 'checked' : ''}> <label for="time15">오후
+									3시</label> <input type="radio" id="time16" name="time" value="오후4시"
+									${time eq "오후 4시" ? 'checked' : ''}> <label for="time16">오후
+									4시</label> <input type="radio" id="time17" name="time" value="오후5시"
+									${time eq "오후 5시" ? 'checked' : ''}> <label for="time17">오후
+									5시</label> <input type="radio" id="time18" name="time" value="오후6시"
+									${time eq "오후 6시" ? 'checked' : ''}> <label for="time18">오후
+									6시</label> <input type="radio" id="time19" name="time" value="오후7시"
+									${time eq "오후 7시" ? 'checked' : ''}> <label for="time19">오후
+									7시</label> <input type="radio" id="time20" name="time" value="오후8시"
+									${time eq "오후 8시" ? 'checked' : ''}> <label for="time20">오후
+									8시</label> <input type="radio" id="time21" name="time" value="오후9시"
+									${time eq "오후 9시" ? 'checked' : ''}> <label for="time21">오후
+									9시</label> <input type="radio" id="time22" name="time" value="오후10시"
+									${time eq "오후 10시" ? 'checked' : ''}> <label
+									for="time22">오후 10시</label> <span class="arrow right">&gt;</span>
 								<button id="confirm" type="button">확인</button>
 							</div>
 						</div>
