@@ -105,7 +105,8 @@ a:active {
   padding: 30px 0px;
 }
 .title span {
-  color: #FF5333;
+/*   color: #FF5333; */
+  color: #3FAFFC;
 }
 .before-border {
   content: "";
@@ -153,15 +154,14 @@ nav {
 }
 nav .block {
   margin-top: -85px;
-  background: #fff;
+  background: rgb(244, 250, 255);
 /*  padding: 10px 30px;*/
   padding: 25px 40px;
-  background: rgba(255, 255, 255, 0.89);
 }
 nav .block .navbar-default {
   border: none;
   border-radius: 0px;
-  margin-bottom: 0;
+  margin-bottom: 0;	/* search_bar 아래 공간 간격 */
   background: none;
 }
 nav .block .navbar-default .navbar-brand {
@@ -191,7 +191,8 @@ nav .block .navbar-default .navbar-nav > li > a:before {
   width: 0;
 }
 nav .block .navbar-default .navbar-nav > li > a:hover:before {
-  background-color: #e94c3d;
+/*   background-color: #e94c3d; */
+  background-color: #3FAFFC;
   content: "";
   width: 100%;
 }
@@ -229,6 +230,11 @@ nav .block .navbar-default .navbar-nav > .active > a:hover:before {
   height: 2px;
   background: #FF5333;
 }
+
+/* 상단바 사이즈 조절 */
+/* .container, .col-md-12 { */
+/*     width: 100%; */
+/* } */
 /*--
     slider Start
 --*/
@@ -252,7 +258,8 @@ nav .block .navbar-default .navbar-nav > .active > a:hover:before {
   padding-bottom: 50px;
 }
 #slider .block .owl-carousel .owl-pagination .active {
-  background: #FF5333;
+/*   background: #FF5333; */
+  background: #3FAFFC;
 }
 #slider .block .owl-carousel .owl-pagination div {
   background: #DADADA;
@@ -719,7 +726,7 @@ nav .block .navbar-default .navbar-nav > .active > a:hover:before {
 /*  letter-spacing: 2px;*/
 }
 #footer-bottom p a {
-  color: #FF4F02;
+  color: #3FAFFC;
   font-size: 12px;
 }
 
@@ -750,8 +757,26 @@ nav .block .navbar-default .navbar-nav > .active > a:hover:before {
 	border: 1px solid #7EC3BB;
 }
 
-
-
+/* 로고 사이즈 */
+.header_img {
+    display: flex; 
+    width: 100%; 
+    justify-content: center; 
+    align-items: center; 
+    flex-direction: row;
+}
+img[alt="logo1"] {
+	margin-top: -5px;
+	margin-bottom: 5px;
+	width: 90px;
+	height: auto;
+}
+img[alt="logo2"] {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	width: 200px;
+	height: auto;
+}
 
 
 

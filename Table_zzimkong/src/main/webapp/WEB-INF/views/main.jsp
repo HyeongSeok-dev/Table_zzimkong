@@ -66,9 +66,10 @@
 									</button>
 									
 									<%-- 상단 로고 --%>
-									<a class="navbar-brand" href="login.jsp">
-										<img src="${pageContext.request.contextPath}/resources/img/logo_top.png" alt="Logo">
-									</a>
+									<div class="header_img">
+										<img alt="logo1" src="${pageContext.request.contextPath}/resources/img/logo1_2.png" width="100px">
+										<img alt="logo2" src="${pageContext.request.contextPath}/resources/img/logo2_1.png" width="260px">
+									</div>
 								</div>
 								
 								<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
