@@ -2,18 +2,6 @@
     pageEncoding="UTF-8"%>
 <!-- CSS
        ================================================ -->
-<!-- Owl Carousel -->
-<link rel="stylesheet" href="css/owl.carousel.css">
-<!-- bootstrap.min css -->
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<!-- Font-awesome.min css -->
-<link rel="stylesheet" href="css/font-awesome.min.css">
-<!-- Main Stylesheet -->
-<link rel="stylesheet" href="css/animate.min.css">
-
-<link rel="stylesheet" href="css/main.css">
-<!-- Responsive Stylesheet -->
-<link rel="stylesheet" href="css/responsive.css">
 
 <footer id="footer-bottom">
 	<div class="container">

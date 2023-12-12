@@ -32,7 +32,7 @@
 </script>
 <script src="${pageContext.request.contextPath}/resources/js/jquery.nav.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/jquery.sticky.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+<%-- <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script> --%>
 <script src="${pageContext.request.contextPath}/resources/js/plugins.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/wow.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
@@ -197,6 +197,6 @@
 	</footer>
 	
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-<script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+<!-- <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script> -->
 </body>
 </html>

@@ -8,18 +8,27 @@ $(document).ready(function() {
 	});
 
 	$('.search_info').first().click(function() {
-		$('#myModal').show();
+		$('#table_modal').show();
 	});
 	// 닫기 버튼을 클릭했을 때, 해당 버튼이 속한 모달창만을 닫습니다.
 	$(document).on('click', '.close', function() {
 		$(this).closest('.modal').hide();
 	});
+	$(document).on('click', '#confirm', function() {
+		$(this).closest('.modal').hide();
+	});
 
 	// 모달창 바깥 부분을 클릭했을 때, 해당 부분이 속한 모달창만을 닫습니다.
 	$(window).click(function(event) {
-		if ($(event.target).hasClass('modal')) {
-			$(event.target).hide();
+		if (!$(event.target).closest('.modal').length && !$(event.target).hasClass('modal-opener')) {
+			$('.modal').hide();
+			console.log("모달창 밖 클릭됨")
 		}
+	});
+
+	//검색아이콘 폼제출
+	$(".search_icon").click(function() {
+		$("form").submit();
 	});
 
 	// Get today's date
@@ -109,68 +118,42 @@ $(document).ready(function() {
 		// Update the info text
 		$(".info_text").text("테이블 인원수: " + persons + "명, " + displayDate + " " + time);
 
-		// Close the modal
-		modal.css("display", "none");
 	});
 
 
 	//필터부분
 
-	var selections = {};
+
 
 	$('.sub-list, .detail-list').css('display', 'none');
 
+	// 리스트 항목 클릭 시 라디오 버튼 변경 (이벤트 위임 사용)
+	$(document).on('click', '.sub-list li, .detail-list li', function(e) {
+		var radio = $(this).find('input[type="radio"]');
+		var wasChecked = radio.prop('checked');
+
+		if (!wasChecked) { // 이미 선택된 라디오 버튼을 다시 클릭한 경우는 제외
+			radio.prop('checked', true); // 상태를 변경
+
+			// 클래스 변경을 강제로 적용
+			$('.filter-list li, .sub-list li, .detail-list li').removeClass('selected');
+			$(this).addClass('selected');
+
+		}
+	});
+
+	$('.sub-list').on('input', '#price', function() {
+		$('#priceValue').text($(this).val());
+		console.log("슬라이더 값 변경: ", $(this).val());
+	});
+
 	$('.filter-item > span').click(function() {
-		var filterItem = $(this).parent();
-		var filterId = filterItem.attr('id');
 		var subList = $(this).siblings('.sub-list').clone(true);
 		$('.sub-list-wrap').empty().append(subList);
 
 		// 디테일 리스트를 비웁니다.
 		$('.detail-list-wrap').empty();
-
 		subList.css('display', 'flex');
-
-		// 선택 정보를 복원합니다.
-		if (selections[filterId]) {
-			// 라디오 버튼 선택 정보를 복원합니다.
-			if (selections[filterId].radio) {
-				subList.find('input[type="radio"]').each(function() {
-					var radioId = $(this).attr('id');
-					if (selections[filterId].radio === radioId) {
-						$(this).prop('checked', true);
-					}
-				});
-			}
-
-			// range 선택 정보를 복원합니다.
-			if (selections[filterId].range) {
-				subList.find('input[type="range"]').val(selections[filterId].range);
-			}
-		}
-	});
-
-	// 선택 정보를 저장합니다.
-	$(document).on('change', '.sub-list input, .detail-list input', function() {
-		var filterId = $(this).closest('.filter-item').attr('id');
-		var inputType = $(this).attr('type');
-
-		if (!selections[filterId]) {
-			selections[filterId] = {};
-		}
-
-		if (inputType === 'radio') {
-			var radioId = $(this).attr('id');
-			selections[filterId].radio = radioId;
-		} else if (inputType === 'range') {
-			var rangeValue = $(this).val();
-			selections[filterId].range = rangeValue;
-		}
-	});
-
-	// subList가 DOM에 추가된 후에 이벤트 핸들러를 바인딩합니다.
-	$(document).on('input', '.sub-list-wrap #price', function() {
-		$('#priceValue').text($(this).val());
 	});
 
 	$('.sub-list > li').click(function() {
@@ -179,23 +162,5 @@ $(document).ready(function() {
 		detailList.css('display', 'flex');
 	});
 
-	$("#applyBtn").click(function() {
-		for (var filterId in selections) {
-			if (selections.hasOwnProperty(filterId)) {
-				var selection = selections[filterId];
-
-				// 숨겨진 폼 필드를 생성합니다.
-				var hiddenFieldForRadio = $("<input>", {
-					type: "hidden",
-					name: filterId + "-radio",
-					value: selection.radio
-				});
-
-				// 폼에 숨겨진 필드를 추가합니다.
-				$("form").append(hiddenFieldForRadio);
-			}
-		}
-	});
-
-
 });
+
