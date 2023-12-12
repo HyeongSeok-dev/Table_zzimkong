@@ -15,7 +15,7 @@
 <!--  <header> -->
 <%--  	<jsp:include page="../inc/top_ns.jsp"></jsp:include> --%>
 <!--  </header> -->
- <form action="${pageContext.request.contextPath }/payment" name="reservation" onsubmit="return submit()">
+ <form action="${pageContext.request.contextPath }/payment" name="reservation" onsubmit="return btnPay();">
 <!-- 	<action="" name="reservation" onsubmit="return validateForm()"> -->
 	<div class="out_block">
 		<!-- 찜버튼 박스 -->
@@ -111,11 +111,11 @@
 					<div class="name_number">
 						<div class="input_box">
 							<h3>성명</h3>
-		             		<input type="text" placeholder="성명을 입력해주세요." name="name" class="name">
+		             		<input type="text" placeholder="성명을 입력해주세요." name="resName" class="name">
 		            	</div>
 			            <div class="input_box">
 							<h3>연락처</h3>
-			            	<input type="text" placeholder="휴대폰 번호를 입력해주세요." name="number" class="number">
+			            	<input type="text" placeholder="휴대폰 번호를 입력해주세요." name="resNumber" class="number">
 			            </div>
 					</div>
 				</section>
@@ -228,7 +228,7 @@
 					</div>
 				</section>
 			</div>
-			<button type="submit" class="payment">결제하기</button>
+			<button type="button" class="payment" onclick="btnPay();">결제하기</button>
 		</div>
 		<!-- 	</action> -->
 	</div>
@@ -237,53 +237,4 @@
 <%--  	<jsp:include page="../inc/bottom.jsp"></jsp:include> --%>
 <!--  </footer> -->
 </body>
-<script type="text/javascript">
-
-	
-// 	function submit() {
-// 		if(document.reservation.name.value == ""){
-// 			alert("예약자 성함 입력 필수!")
-// 			document.reservation.name.focus();
-// 			return false;
-			
-// 		}else if(document.reservation.number.value == ""){
-// 			alert("예약자 연락처 입력 필수!")
-// 			document.reservation.number.focus();
-// 			return false;
-
-// 		}else if(document.reservation.agree.value == ""){
-// 			alert("예약약관에 동의해주세요.")
-// 			document.reservation.agree.focus();
-// 			return false;
-// 		}
-		
-		
-// 		return true;
-// 	}
-
-//  function validateForm() {
-//       const nameInput = document.forms["reservation"]["name"];
-//       const numberInput = document.forms["reservation"]["number"];
-
-//       if (!nameInput.value) {
-//         alert("성명을 입력해주세요.");
-//         nameInput.focus();
-//         return false;
-//       }
-
-//       if (!numberInput.value) {
-//         alert("연락처를 입력해주세요.");
-//         numberInput.focus();
-//         return false;
-//       }
-      
-//       if(agreeInput.value){
-//         alert("약관에 동의해 주세요.");
-//     	agreeInput.focus();
-//     	return false;
-//       }
-
-//       return true;
-//     }
-</script>
 </html>

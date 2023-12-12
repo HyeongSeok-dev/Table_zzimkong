@@ -5,11 +5,16 @@
 <head>
 <meta charset="UTF-8">
 <!-- CSS -->
-<link href="${pageContext.request.contextPath}/resources/css/review_write.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/resources/css/global.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+<link
+	href="${pageContext.request.contextPath}/resources/css/review_write.css"
+	rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/css/global.css"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
 <!-- Js -->
-<script src="${pageContext.request.contextPath}/resources/js/review_write.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/review_write.js"></script>
 
 <title>리뷰 작성 페이지</title>
 
@@ -24,9 +29,18 @@
 		<div class="separator"></div>
 		<div class="like_section" style="text-align: center;">
 			<p>
-				이곳이 마음에 든다면,<br> '좋아요'를 누르고<br> 취향이 비슷한 사람을 추천받으세요.
+				이곳이 마음에 든다면,<br> '좋아요'를 눌러주세요<br> 
+				<!-- 취향이 비슷한 사람을 추천받으세요. -->
 			</p>
-			<button class="like_btn">♡ 이런 곳 좋아요!</button>
+			<!-- 			<button class="like_btn">♡ 이런 곳 좋아요!</button> -->
+			<button id="likeButton" class="like_button">
+				<svg id="heart" xmlns="http://www.w3.org/2000/svg" fill="none"
+					viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round"
+						d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+    </svg>
+				이런 곳 좋아요
+			</button>
 		</div>
 		<br>
 		<div class="separator"></div>

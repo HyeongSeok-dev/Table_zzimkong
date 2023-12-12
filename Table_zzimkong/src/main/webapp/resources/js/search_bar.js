@@ -3,7 +3,7 @@ $(document).ready(function() {
 	$('.modal').hide();
 
 	// 모달창을 열고 닫는 코드
-	$('.filter_wrap').click(function() {
+	$('.filter_wrapper').click(function() {
 		$('#filterModal').show();
 	});
 
@@ -107,7 +107,7 @@ $(document).ready(function() {
 		}
 
 		// Update the info text
-		$(".info_text").text("테이블 인원수: " + persons + ", " + displayDate + " " + time + "시");
+		$(".info_text").text("테이블 인원수: " + persons + "명, " + displayDate + " " + time);
 
 		// Close the modal
 		modal.css("display", "none");
