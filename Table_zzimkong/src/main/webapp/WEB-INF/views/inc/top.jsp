@@ -22,7 +22,7 @@
 			</div>
 
 			<div class="search-bar-wrapper">
-				<jsp:include page="search_bar_main.jsp"></jsp:include>
+				<jsp:include page="search_bar.jsp"></jsp:include>
 			</div>
 			
 			<div class="auth-icons">
