@@ -107,7 +107,7 @@ $(document).ready(function() {
 		}
 
 		// Update the info text
-		$(".info_text").text("테이블 인원수: " + persons + ", " + displayDate + " " + time + "시");
+		$(".info_text").text("테이블 인원수: " + persons + "명, " + displayDate + " " + time);
 
 		// Close the modal
 		modal.css("display", "none");

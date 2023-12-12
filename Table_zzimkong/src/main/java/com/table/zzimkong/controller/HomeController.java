@@ -1,5 +1,9 @@
 package com.table.zzimkong.controller;
 
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +19,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class HomeController {
 
 	@GetMapping("/")
-	public String main() {
+	public String main(Model model) {
+		if(model.getAttribute("persons")==null) {
+			model.addAttribute("persons", 2);
+			model.addAttribute("display_date", "내일");
+			model.addAttribute("date", LocalDate.now().plusDays(1));
+			model.addAttribute("time", "오후 7시");
+		}
 		return "main";
 	}
 
