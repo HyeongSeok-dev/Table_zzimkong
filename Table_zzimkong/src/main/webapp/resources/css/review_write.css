@@ -7,7 +7,6 @@
   border-radius: 10px; /* 모서리 둥글게 */
 }
 
-
 .container {
   max-width: 800px;
   margin: 0 auto;
@@ -42,20 +41,47 @@
   
 }
 
-.like_btn {
+/* .like_btn {
   background-color: white;
   border: 1px solid lightgray;
   color: black;
   padding: 10px;
   cursor: pointer;
   transition-duration: 0.4s;
-  text-align: center; /* 중앙 정렬 */
-  
+  text-align: center; 중앙 정렬  
+} */
+
+/* 좋아요 버튼 수정(23/12/12) */
+
+.like_button {
+    font-size: 20px;
+    color: lightgrey; /* 글씨색을 연한 회색으로 변경 */
+    border: 1px solid lightgrey; /* 버튼 테두리를 연한 회색으로 변경 */
+    padding: 10px 15px;
+    background-color: white; /* 버튼의 배경색을 흰색으로 설정 */
+    cursor: pointer;
+    transition: color 0.3s ease, background-color 0.3s ease, fill 0.3s ease; /* 색상 및 배경색 변경을 부드럽게 하기 위해 transition퍋가 */
+    border-radius: 10px;
 }
 
-.like_btn:hover {
-  background-color: lightgray;
+#heart {
+    height: 20px;
+    width: 20px;
+    fill: lightgrey; /* 하트의 색상을 연한 회색으로 변경 */
+    stroke: lightgrey; /* 하트 테두리의 색상을 연한 회색으로 변경 */
 }
+
+.like_button.active {
+    color: black; /* 버튼이 눌렸을 때 글씨색을 검정색으로 변경 */
+    background-color: lightblue; /* 버튼이 눌렸을 때 배경색을 연한 하늘색으로 변경 */
+}
+
+.like_button.active #heart {
+    fill: #3FAFFC; /* 버튼이 눌렸을 때 하트 색상을 빨간색으로 변경 */
+    stroke: #3FAFFC; /* 버튼이 눌렸을 때 하트 테두리 색상을 빨간색으로 변경 */
+}
+
+
 .keyword_section {
   display: flex;
   justify-content: space-between;
