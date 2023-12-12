@@ -3,7 +3,7 @@ $(document).ready(function() {
 	$('.modal').hide();
 
 	// 모달창을 열고 닫는 코드
-	$('.filter_wrap').click(function() {
+	$('.filter_wrapper').click(function() {
 		$('#filterModal').show();
 	});
 

@@ -70,12 +70,6 @@
 										<img src="${pageContext.request.contextPath}/resources/img/logo_top.png" alt="Logo">
 									</a>
 								</div>
-
-								<%-- 검색바 삽입 --%>
-								<div>
-									<br><br><br>
-									<jsp:include page="inc/search_bar.jsp"/>
-								</div>
 								
 								<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 									<ul class="nav navbar-nav navbar-right">
@@ -85,6 +79,11 @@
 										<li><a href="login.jsp">CS</a></li>
 									</ul>
 								</div><!-- /.navbar-collapse -->
+
+								<%-- 검색바 삽입 --%>
+								<div>
+									<jsp:include page="inc/search_bar.jsp"/>
+								</div>
 							</div><!-- /.container-fluid -->
 						</nav>
 					</div>

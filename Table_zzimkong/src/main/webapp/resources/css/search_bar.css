@@ -62,27 +62,26 @@
 	width: 100%; /* 부모 요소를 꽉 채우기 */
 	display: flex; /* 아이콘과 텍스트 필드를 한 줄에 배치 */
 	height: 95%;
+	position: relative;
 }
 
 .search_input_text {
 	width: 100%; /* 아이콘을 침범하지 않는 범위 내에서 부모의 너비를 모두 차지 */
-/*	margin-left: 40px;  아이콘과의 간격을 조정 (아이콘 크기에 따라 조정 필요) */
-	margin-left: 80px; /* 아이콘과의 간격을 조정 (아이콘 크기에 따라 조정 필요) */
+	margin-left: 5px; 
 	font-size: 16px;
 	font-weight: bold;
 	border: 1px solid #FFF;
 	padding-left: 20px;
-	
 	color: #3FAFFC;
 	
 }
 
 .search_icon {
-	position: absolute;
-/*	left: 10px;  왼쪽에 더 가깝게 */
-	left: 30px;
-	top: 50%;
-	transform: translateY(-50%); /* 아이콘을 입력창의 중앙에 배치 */
+	position: absolute; /* 아이콘의 위치를 절대적으로 설정 */
+	right: 10px; /* 오른쪽 끝에서 아이콘의 위치 설정 */
+	top: 50%; /* 아이콘을 입력 필드의 중앙에 위치시키기 위해 추가 */
+	transform: translateY(-50%); /* 아이콘을 입력 필드의 중앙에 위치시키기 위해 추가 */
+	cursor: pointer;
 }
 
 .search_filter {
@@ -128,9 +127,10 @@ a {
     height: 100%;
     overflow: auto;
     background-color: rgba(0,0,0,0.4);
+    box-sizing: content-box !important;
 }
 
-.modal-content {
+.table-modal-content {
     background-color: #fefefe;
     margin: auto;
     padding: 20px;
@@ -142,6 +142,7 @@ a {
     flex-direction: column;
     align-items: center;
     position: relative;
+    box-sizing: content-box !important;
 }
 
 .close {
@@ -172,26 +173,30 @@ h2 {
     justify-content: space-between;
     width: 100%;
     margin: 10px 0;
+    box-sizing: content-box !important;
 }
 
 .date-group, .persons-group {
     display: flex;
     align-items: center;
+    box-sizing: content-box !important;
 }
 
 .persons-group {
     align-items: center;
+    box-sizing: content-box !important;
 }
 
 .input-group label {
     margin: 0 10px;
+    box-sizing: content-box !important;
 }
 
 .arrow {
     cursor: pointer;
     margin: 0 10px;
+    
 }
-/* 브라우저의 기본 라디오 버튼 스타일을 숨김 */
 /* 브라우저의 기본 라디오 버튼 스타일을 숨김 */
 .input-group input[type="radio"],
 .persons-group input[type="radio"] {
@@ -212,6 +217,7 @@ h2 {
     height: 25px;
     background-color: #fff;
     cursor: pointer;
+    box-sizing: content-box !important;
 }
 
 .time-group label {
@@ -226,6 +232,7 @@ h2 {
     border-radius: 50%;
     background-color: #fff;
     cursor: pointer;
+    box-sizing: content-box !important;
     /* 기타 스타일 */
 }
 
@@ -239,5 +246,103 @@ h2 {
     font-weight: 700; /* 원하는 사이즈로 조정하세요 */
     margin-right: 20px;
     margin-left : 20px;
+    box-sizing: content-box !important;
     /* 기타 스타일 */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+.filter-modal-content {
+    width: 40%;               /* 모달창의 너비를 전체의 40%로 설정 */
+    height: 80vh;
+    margin: auto;             /* 모달창을 화면 가운데에 위치시킴 */
+    position: relative;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;            /* 내용을 가운데 정렬하기 위해 flex를 사용 */
+    flex-direction: column;   /* 내용을 세로 방향으로 정렬 */
+    align-items: center;      /* 내용을 가로 방향으로 가운데 정렬 */
+    background-color: #fefefe;
+    
+}
+
+.modal-footer {
+    bottom: 0;          /* 바닥에 고정 */
+    position: sticky;   /* 스크롤해도 화면에 고정되도록 설정 */
+    bottom: 0;          /* 부모 요소의 전체 너비를 차지하도록 설정 */
+    align-items: center; 
+    justify-content: center;
+    
+}
+
+.filter-content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    overflow: auto;
+    
+}
+
+.sub-list, .detail-list {
+    display: none;
+}
+
+.filter-list,
+.sub-list,
+.detail-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    box-sizing: border-box;
+    padding: 0;
+    list-style-type: none;
+}
+
+.filter-item,
+.sub-list > li,
+.detail-list > li {
+    box-sizing: border-box;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.filter-item > span:hover {
+    cursor: pointer;
+}
+
+
+.filter-item,
+.sub-list > li,
+.detail-list > li {
+    box-sizing: border-box;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.filter-item > span:hover {
+    cursor: pointer;
+}
+
+input[type="radio"]:checked + label {
+    background-color: lightblue; /* 원하는 색상으로 변경 */
+}
+
+input[type="range"] {
+    width: 100%;
 }
