@@ -75,10 +75,10 @@
 									
 									<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 										<ul class="nav navbar-nav navbar-right">
-											<li><a href="${pageContext.request.contextPath}/login.jsp">LOGIN</a></li>
-											<li><a href="CEO_MVC_YM.jsp">NOTIFICATIONS</a></li>
-											<li><a href="member_mypage.jsp">MYPAGE</a></li>
-											<li><a href="login.jsp">CS</a></li>
+											<li><a href="${pageContext.request.contextPath}/login">LOGIN</a></li>
+											<li><a href="${pageContext.request.contextPath}/#">NOTIFICATIONS</a></li>
+											<li><a href="${pageContext.request.contextPath}/my/list">MYPAGE</a></li>
+											<li><a href="${pageContext.request.contextPath}/#">CS</a></li>
 										</ul>
 									</div><!-- /.navbar-collapse -->
 								</div>
