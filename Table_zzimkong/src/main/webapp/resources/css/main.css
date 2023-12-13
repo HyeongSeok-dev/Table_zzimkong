@@ -11,6 +11,16 @@
     font-style: normal;
     unicode-range: U+1100-11FF,U+3130-318F,U+A960-A97F,U+AC00-D7A3,U+D7B0-D7FF /* 이 부분은 그대로 */
 }
+
+/* 메인 가게 전경이미지 */
+/* .img-responsive { */
+/*   width: 300x; 이미지의 너비 */
+/*   height: 300px; 이미지의 높이를 자동으로 조정하여 비율 유지 */
+/*   border-radius: 20% !important; 모서리를 둥글게 */
+/* } */
+
+
+
 /*--
     Common Css
 --*/
