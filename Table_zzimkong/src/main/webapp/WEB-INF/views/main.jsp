@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%-- 수정!!!!! --%>
+<%-- 수정!!!! --%>
 <!DOCTYPE html>
 <html class="no-js">
 <head>
@@ -49,38 +49,39 @@
     Header start 
 	============================== -->
 	<nav id="navigation">
-		<div class="container">
+		<div class="container_header_width">
 			<div class="row">
 				<div class="col-md-12">
 					<div class="block">
 						<nav class="navbar navbar-default">
 							<div class="container-fluid">
 								<!-- Brand and toggle get grouped for better mobile display -->
-								<div class="navbar-header">
-									<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-										data-target="#bs-example-navbar-collapse-1">
-										<span class="sr-only">Toggle navigation</span>
-										<span class="icon-bar"></span>
-										<span class="icon-bar"></span>
-										<span class="icon-bar"></span>
-									</button>
-									
-									<%-- 상단 로고 --%>
-									<div class="header_img">
-										<img alt="logo1" src="${pageContext.request.contextPath}/resources/img/logo1_2.png" width="100px">
-										<img alt="logo2" src="${pageContext.request.contextPath}/resources/img/logo2_1.png" width="260px">
+								<div class="container-fluid-display">
+									<div class="navbar-header">
+										<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+											data-target="#bs-example-navbar-collapse-1">
+											<span class="sr-only">Toggle navigation</span>
+											<span class="icon-bar"></span>
+											<span class="icon-bar"></span>
+											<span class="icon-bar"></span>
+										</button>
+										
+										<%-- 상단 로고 --%>
+										<div class="header_img">
+											<img alt="logo1" src="${pageContext.request.contextPath}/resources/img/logo1_2.png" width="100px">
+											<img alt="logo2" src="${pageContext.request.contextPath}/resources/img/logo2_1.png" width="260px">
+										</div>
 									</div>
+									
+									<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+										<ul class="nav navbar-nav navbar-right">
+											<li><a href="${pageContext.request.contextPath}/login">LOGIN</a></li>
+											<li><a href="${pageContext.request.contextPath}/#">NOTIFICATIONS</a></li>
+											<li><a href="${pageContext.request.contextPath}/my/list">MYPAGE</a></li>
+											<li><a href="${pageContext.request.contextPath}/#">CS</a></li>
+										</ul>
+									</div><!-- /.navbar-collapse -->
 								</div>
-								
-								<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-									<ul class="nav navbar-nav navbar-right">
-										<li><a href="${pageContext.request.contextPath}/login.jsp">LOGIN</a></li>
-										<li><a href="CEO_MVC_YM.jsp">NOTIFICATIONS</a></li>
-										<li><a href="member_mypage.jsp">MYPAGE</a></li>
-										<li><a href="login.jsp">CS</a></li>
-									</ul>
-								</div><!-- /.navbar-collapse -->
-
 								<%-- 검색바 삽입 --%>
 								<div>
 									<jsp:include page="inc/search_bar.jsp"/>

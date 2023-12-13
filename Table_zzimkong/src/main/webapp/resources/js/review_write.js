@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', function() {
 
     // 팝업 열기
@@ -35,6 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
     likeButton.addEventListener('click', function() {
         this.classList.toggle('active');
     });
+    
+
 
 });
-

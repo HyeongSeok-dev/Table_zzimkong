@@ -1,6 +1,11 @@
+//회원가입 누르면 join_choice.jsp로 이동
+function joinChoice() {
+    window.location.href = "join/choice";
+}
+
 //아이디찾기 누르면 팝업창(login_findId.jsp)이동
 function popupFindId(){
-		    window.open("login_findId.jsp", "address_window", "width=450,height=550");
+		    window.open("login/find/id", "address_window", "width=450,height=550");
 		}
 		
 		document.getElementById('find_id').addEventListener('click', function(event) {
@@ -10,7 +15,7 @@ function popupFindId(){
 		  
 //비밀번호 누르면 팝업창(login_findPasswd.jsp)이동
 function popupFindPasswd(){
-		    window.open("login_findPasswd.jsp", "address_window", "width=450,height=570");
+		    window.open("login/find/passwd", "address_window", "width=450,height=570");
 		}
 		
 		

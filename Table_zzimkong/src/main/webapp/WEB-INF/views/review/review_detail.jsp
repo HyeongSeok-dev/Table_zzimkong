@@ -46,7 +46,7 @@
 </svg>
 		</h2>
 		<div class="review_write_button">
-		    <a href="${pageContext.request.contextPath}/review/review_write.jsp"><i class="fas fa-pencil-alt"></i> 리뷰쓰기</a>
+		    <a href="${pageContext.request.contextPath}/review/write"><i class="fas fa-pencil-alt"></i> 리뷰쓰기</a>
 		</div>
 	</div>
 	<div class="review_select">
@@ -343,13 +343,20 @@
 			<div class="review-actions">
 				<button class="review_delete">삭제</button>
 				<button class="review_modify">수정</button>
-				<a href="./review_report.jsp">
+				
+				<a href="${pageContext.request.contextPath}/review/report">
 					<button class="review_report_btn">리뷰 신고하기</button>
 				</a> <span class="comment-icon" onclick="showCommentForm()"> <br>
 					<br>
 			</div>
 		</div>
 	</div>
+		<!-- 삭제 확인 팝업창 -->
+<!-- 	<div id="deleteConfirmationPopup" class="popup"> -->
+<!-- 	    <p>리뷰를 삭제하시겠습니까?</p> -->
+<!-- 	    <button id="confirmDelete">네</button> -->
+<!-- 	    <button id="cancelDelete">아니오</button> -->
+<!-- 	</div> -->
 	<br>
 	<br>
 	<br>

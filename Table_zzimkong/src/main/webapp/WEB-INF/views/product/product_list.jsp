@@ -30,7 +30,7 @@
 				</div>
 				<div class="rowgroup">
 					<div class="restaurant-list">
-						<div class="restaurant-card">
+						<div class="restaurant-card" onclick="location.href='detail'"><!-- 임시 링크 -->
 							<div class="restaurant-img">
 								<img src="${pageContext.request.contextPath}/resources/img/list_com.jpg" class="com_pic">
 							</div>

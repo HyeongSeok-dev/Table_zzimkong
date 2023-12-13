@@ -21,7 +21,7 @@
 			</div>
 		
 		<div class="center">
-			<form action="${pageContext.request.contextPath }main" class="check_payment" name="checkInfo">
+			<form action="/" class="check_payment" name="checkInfo">
 				<section class="reservation">
 					<div class="res_num">
 						<span class="res_info_detail">
@@ -129,7 +129,7 @@
 						<span class="total_money">122,000<%--${} --%>원</span>
 					</div>
 				</section>
-				<button type="submit" class="checked" onclick="location.href=''">확인</button>
+				<button type="submit" class="checked" onclick="location.href='/'">확인</button>
 			</form>
 		</div>
 	</div>

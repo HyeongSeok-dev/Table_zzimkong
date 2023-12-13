@@ -82,7 +82,7 @@
     </div>
     
     <footer>
-		      	<jsp:include page="${pageContext.request.contextPath }/inc/bottom.jsp"></jsp:include>
+    		      	<jsp:include page="../inc/bottom.jsp"></jsp:include>
     </footer>
     
   </body>

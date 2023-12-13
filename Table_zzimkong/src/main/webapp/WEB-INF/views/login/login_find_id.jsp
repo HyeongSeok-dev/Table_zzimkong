@@ -17,7 +17,7 @@
 		        <!-- 로고 이미지 -->
 		        <div align="center" class="div_img">
 		        	<img class="logo_img_1" src="${pageContext.request.contextPath }/resources/img/logo1_2.png" alt="메인로고1" >
-		        	<img class="logo_img_2" src="${pageContext.request.contextPath }/resources/img/logo2_1.PNG" alt="메인로고2" >
+		        	<img class="logo_img_2" src="${pageContext.request.contextPath }/resources/img/logo3_2.png" alt="메인로고2" >
 		       </div>
 		   			<br>
 		       

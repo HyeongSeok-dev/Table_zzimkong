@@ -7,6 +7,9 @@
 		<title>로그인</title>
 		<link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
 		<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/login.css">
+		<script src="${pageContext.request.contextPath }/resources/js/login.js"></script>
+	
+	
 	</head>
 	
 	<body>
@@ -50,9 +53,9 @@
 		    </div>
 		    <ul class="siteList">
 		      <li>
-		        <a href="join_choice.jsp">
+		        <div onclick="joinChoice()">
 		          회원가입
-		        </a>
+		        </div>
 		      </li>
 		      <!-- 아이디 찾기 -->
 		      <li>
