@@ -31,7 +31,7 @@ public class MenuController {
 		System.out.println(menuList);
 		
 		if(updateCount == 0) {
-			model.addAttribute("msg","¸Þ´º ÀÔ·Â ½ÇÆÐ!");
+			model.addAttribute("msg","ë©”ë‰´ìž…ë ¥ ì‹¤íŒ¨!");
 			return "fail_back";
 		}
 		return "redirect:/main";

@@ -129,7 +129,7 @@
 						<span class="total_money">122,000<%--${} --%>원</span>
 					</div>
 				</section>
-				<button type="submit" class="checked" onclick="location.href=''">확인</button>
+				<button type="submit" class="checked" onclick="location.href='/'">확인</button>
 			</form>
 		</div>
 	</div>

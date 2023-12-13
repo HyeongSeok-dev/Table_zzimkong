@@ -68,7 +68,7 @@
 		</ul>
 	</div>
 	<p class="gap20"></p>
-	<form id="order-form" action="../reservation" method="post">
+	<form id="order-form" action="${pageContext.request.contextPath}/reservation" method="post">
 		<div id="div_detail" class="s-list detail-info">
 			<div class="busi-hours-today">
 				<p class="tit style-DPgUI" id="style-DPgUI">영업시간</p>
