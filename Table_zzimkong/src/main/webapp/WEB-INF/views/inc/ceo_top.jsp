@@ -16,7 +16,7 @@
 <!-- </div> -->
 	<div class="headerMenu imgP snipcss-X9RSH">
 		<img alt="logo1" src="${pageContext.request.contextPath }/resources/img/logo1_2.png" width="100px">
-		<img alt="logo2" src="${pageContext.request.contextPath }/resources/img/logo2_1.png" width="260px">
+		<img alt="logo2" src="${pageContext.request.contextPath }/resources/img/logo3_2.png" width="260px">
 	</div>
 	<div class="headerMenu imgP snipcss-X9RSH">
 	  <ul class="">
