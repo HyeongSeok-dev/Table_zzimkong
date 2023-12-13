@@ -59,6 +59,7 @@
 			</table>
 			<br>
 			<button type="submit" class="button_olive">수정</button>
+			<button type="button" id="button_delete">삭제</button>
 		</form>
 	</section>
 </body>
