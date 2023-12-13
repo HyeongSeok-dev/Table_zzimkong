@@ -234,4 +234,6 @@ public class HomeController {
 		return "reservation/reservation";
 	}
 	
+	//test
+	
 }
