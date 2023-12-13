@@ -19,7 +19,7 @@
 			결제가 완료 되었습니다!<br>
 			결제정보를 확인해주세요.
 			</div>
-		
+		<!-- dd -->
 		<div class="center">
 			<form action="../" class="check_payment" name="checkInfo">
 				<section class="reservation">
