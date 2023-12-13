@@ -96,9 +96,11 @@
 				placeholder="리뷰 작성하기
 업주와 다른 사용자들이 상처받지 않도록 좋은 표현을 사용해주세요. 유용한 Tip도 남겨주세요."></textarea>
 			<a class="caution_link" href="#" onclick="openPopup()">리뷰 작성 유의사항</a>
-			<a href="./review_complete.jsp">
-				<button class="register_button">등록하기</button>
-			</a>
+<%-- 			<a href="${pageContext.request.contextPath}/WEB-INF/views/review_complete.jsp">
+			    <button class="register_button">등록하기</button>
+			</a> --%>
+			<button class="register_button" onclick="location.href='${pageContext.request.contextPath}/review/complete'">등록하기</button>
+			
 		</div>
 
 	</div>

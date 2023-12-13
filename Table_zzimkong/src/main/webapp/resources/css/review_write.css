@@ -72,8 +72,12 @@
 }
 
 .like_button.active {
-    color: black; /* 버튼이 눌렸을 때 글씨색을 검정색으로 변경 */
-    background-color: lightblue; /* 버튼이 눌렸을 때 배경색을 연한 하늘색으로 변경 */
+    color: black;  /* 버튼이 눌렸을 때 글씨색을 검정색으로 변경 */
+/*     background-color:#rgb(206, 234, 242)* 버튼이 눌렸을 때 배경색을 연한 하늘색으로 변경  */
+} 
+
+.like_button {
+  font-weight: bold;
 }
 
 .like_button.active #heart {
@@ -98,14 +102,28 @@
 	text-align: center;
 }
 
+/* .keyword_btn { */
+/*   margin-bottom: 10px; 버튼 사이의 간격 */
+/*   background-color: white; */
+/*   border: 1px solid lightgray; */
+/*   color: black; */
+/*   padding: 12px; */
+/*   cursor: pointer; */
+/*   transition-duration: 0.4s; */
+/* } */
+
 .keyword_btn {
-  margin-bottom: 10px; /* 버튼 사이의 간격 */
+  width: 160px; /* 버튼의 너비 */
+  height: 40px; /* 버튼의 높이 */
+  margin-bottom: 7px; /* 버튼 사이의 간격 */
   background-color: white;
   border: 1px solid lightgray;
   color: black;
   padding: 12px;
   cursor: pointer;
   transition-duration: 0.4s;
+  text-align: center; /* 텍스트 중앙 정렬 */
+  font-size: 13px;
 }
 
 .keyword-btn:hover {
