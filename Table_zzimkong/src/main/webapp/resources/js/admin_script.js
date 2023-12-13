@@ -11,7 +11,7 @@ function review_declaration() {
 	var popupH = 650;
 	var left = Math.ceil((window.screen.width - popupW)/2);
 	var top = Math.ceil((window.screen.height - popupH)/2);
-	window.open('admin_review_detail.jsp','','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
+	window.open('review/detail','','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
 //	window.open("admin_review_declaration.jsp", "_blank", "width=400px, height=300px");
 };
 
@@ -32,7 +32,7 @@ function company_info_open() {
 	var popupH = 650;
 	var left = Math.ceil((window.screen.width - popupW)/2);
 	var top = Math.ceil((window.screen.height - popupH)/2);
-	window.open('admin_company_info.jsp','','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
+	window.open('company/info','','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
 }
 
 function company_approve() {
