@@ -14,7 +14,7 @@
 					<p>대표번호 : 051-803-0909</p>
 					<p>이메일 : class@itwillbs.co.kr</p>
 					<br>
-					<p>서비스 이용약관 | 개인정보 처리방침 | 위치정보 이용약관 | 인재 채용 | 광고/제휴문의 | <a href="admin_main.jsp">관리자페이지</p>
+					<p>서비스 이용약관 | 개인정보 처리방침 | 위치정보 이용약관 | 인재 채용 | 광고/제휴문의 | <a href="${pageContext.request.contextPath}/admin/main">관리자페이지</p>
 				</div>
 			</div>
 		</div>

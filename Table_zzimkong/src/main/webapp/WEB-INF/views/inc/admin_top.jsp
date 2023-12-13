@@ -9,20 +9,17 @@
  <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/ceo_top.css">  
 </head>
 <body>
-<!-- <div> -->
-<!-- 	<div> -->
-<!-- 		<a  href="/"></a>  -->
-<!-- 	</div> -->
-<!-- </div> -->
 	<div class="headerMenu imgP snipcss-X9RSH">
-		<img alt="logo1" src="${pageContext.request.contextPath }/resources/img/logo1_2.png" width="100px">
-		<img alt="logo2" src="${pageContext.request.contextPath }/resources/img/logo2_1.png" width="260px">
+		<a href="${pageContext.request.contextPath}">
+			<img alt="logo1" src="${pageContext.request.contextPath }/resources/img/logo1_2.png" width="100px">
+			<img alt="logo2" src="${pageContext.request.contextPath }/resources/img/logo2_1.png" width="260px">
+		</a>
 	</div>
 	<div class="headerMenu imgP snipcss-X9RSH">
 	  <ul class="">
 	    <li>
-	      <a id="about" href="/" class="on">
-	      <div class="page_name">관리자 페이지</div>
+	      <a id="about" class="on">
+	      	<div class="page_name">관리자 페이지</div>
 	      </a>
 	    </li>
 	    <li>
@@ -46,7 +43,7 @@
 	      </a>
 	    </li>
 	    <li>
-	      <a id="news" href="${pageContext.request.contextPath }/admin/cs/main">
+	      <a id="news" href="${pageContext.request.contextPath }/ceo/cs">
 	        고객센터
 	      </a>
 	    </li>
