@@ -4,49 +4,37 @@
 <html>
 
 <style>
-/* 로고랑 링크 평행 맞추기 */
-.container {
-  display: flex;
-  justify-content: center; 
-  align-items: center;
+body {
+  background-color: #f4f4f4; /* 배경색 설정 */
+  color: #333; /* 글자색 설정 */
 }
 
-/* 로고사진 크기 조정 */
-#logo > img {
-  height: 120px;
-  width: 120px;
-}
-
-/*로고랑 링크사이 여백주기 */
 #link {
-  margin-left: 20px; 
+  text-align: center; /* 중앙 정렬 */
+  padding: 20px; /* 패딩 설정 */
+}
+
+#link p {
+  line-height: 1.6; /* 줄 간격 설정 */
+}
+
+#link a {
+  color: #333; /* 링크 색상 설정 */
+  text-decoration: none; /* 밑줄 제거 */
 }
 </style>
 
 <body>
 <hr>
 
-<div class="container">
-  <!-- 로고-->
-  <div id="logo">
-    <img src="${pageContext.request.contextPath }/resources/img/logo_top.png">
-  </div>  
-  
-  <!-- 링크 -->
+
   <div id="link">
-    <a href="">서비스 이용약관</a>
-     |
-     <a href="">개인정보 처리방침</a>
-     | 
-     <a href="">위치정보 이용약관</a>
-     | 
-     <a href="">광고/제휴문의</a>
-     | 
-     <a href="">고객센터</a>
   
-     
+    <p>서비스 이용약관 | 개인정보 처리방침 | 위치정보 이용약관 | 광고/제휴문의 |  
+    <a href="">고객센터</a></p>
+         
   </div>
-</div>
+
 </body>
 
 </html>

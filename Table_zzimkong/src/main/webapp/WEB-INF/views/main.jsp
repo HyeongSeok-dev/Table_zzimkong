@@ -102,32 +102,35 @@
 				<div class="col-md-12">
 					<div class="block wow fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
 						<div class="title">
-							<h3>Featured1 <span>Works</span></h3>
+							<h3>인기많은 <span>별점순</span></h3>
 						</div>
 						<div id="owl-example1" class="owl-carousel">
+						
 							<div>
-								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_img_1.jpg" alt="">
+								<a href="${pageContext.request.contextPath}/product/detail">
+									<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/list_com.jpg" >
+								</a>
 							</div>
 							<div>
-								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_img_2.jpg" alt="">
+									<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_restaurant2.jpg" >
 							</div>
 							<div>
-								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_img_3.jpg" alt="">
+								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_restaurant3.jpg" >
 							</div>
 							<div>
-								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_img_4.jpg" alt="">
+								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_restaurant4.jpg" >
 							</div>
 							<div>
-								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_img_1.jpg" alt="">
+								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_restaurant5.jpg" >
 							</div>
 							<div>
-								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_img_2.jpg" alt="">
+								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_restaurant6.jpg" >
 							</div>
 							<div>
-								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_img_3.jpg" alt="">
+								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_restaurant7.jpg">
 							</div>
 							<div>
-								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_img_4.jpg" alt="">
+								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_restaurant8.jpg">
 							</div>
 
 						</div>
