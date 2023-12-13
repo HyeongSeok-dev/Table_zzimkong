@@ -233,7 +233,6 @@ public class HomeController {
 	public String reservation() {
 		return "reservation/reservation";
 	}
-	
-	//test
+
 	
 }
