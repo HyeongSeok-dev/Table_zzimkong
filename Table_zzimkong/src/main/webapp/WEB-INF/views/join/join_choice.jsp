@@ -8,11 +8,12 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/join_choice.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/global.css">
 	<link href="${pageContext.request.contextPath }/resources/css/all_css.css" rel="stylesheet" type="text/css">
+
+	<script src="${pageContext.request.contextPath }/resources/js/join_choice.js"></script>
+	
 </head>
 	<body>
-	<!-- div태그 3개를 폼태그 밖에 감싼이유? -->
-	<!-- form태그 id값 name으로 바꿈! -->
-	<!-- fid속성 중복으로 사용못함 class로 바꿈! -->
+
 		
 	<!-- 	<header> -->
 	<%--   	<jsp:include page="top.jsp"></jsp:include> --%>
@@ -55,7 +56,7 @@
 						<h2>업체 회원</h2>
 						<div class="innerBox2">
 							<!-- 업체 회원가입 버튼 -->
-							<button type="button" class="joinFormBtn">
+							<button type="button" class="joinFormBtn" onclick="join_c()">
 								<span>업체 회원가입</span>
 							</button>
 						</div>

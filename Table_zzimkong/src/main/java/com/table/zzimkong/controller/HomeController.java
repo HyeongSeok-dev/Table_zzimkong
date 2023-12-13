@@ -134,7 +134,7 @@ public class HomeController {
 		return "admin/admin_review_detail";
 	}
 	
-	@GetMapping("join")
+	@GetMapping("join/join")
 	public String join() {
 		return "join/join";
 	}
