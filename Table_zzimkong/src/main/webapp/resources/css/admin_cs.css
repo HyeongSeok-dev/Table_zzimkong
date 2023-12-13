@@ -1,0 +1,291 @@
+@charset "UTF-8";
+
+body {
+    padding: 0 20%;
+    line-height: 1.6;
+}
+table {
+	  border-collapse: collapse;
+	  border-spacing: 0;
+	}
+	section.notice {
+	  display: block;
+	  border: none;
+	  background-color: #fff;
+	  margin-top: 100px;
+	}
+	
+	.page-title {
+		display: flex;
+		justify-content: space-between;
+	}
+	
+	h3 {
+    color: #515151;
+    margin-bottom: 30px;
+    font-size: 30px;
+    /* 하이라이트 CSS 추가 */
+    display: inline; /* 글자 길이에 맞게 */
+}
+	
+	#board-search .search-window {
+	  padding: 15px 0;
+	  background-color: #f9f7f9;
+	}
+	#board-search .search-window .search-wrap {
+	  position: relative;
+	/*   padding-right: 124px; */
+	  margin: 0 auto;
+	  width: 80%;
+	  max-width: 564px;
+	}
+	#board-search .search-window .search-wrap input {
+	  height: 40px;
+	  width: 100%;
+	  font-size: 14px;
+	  padding: 7px 14px;
+	  border: 1px solid #ccc;
+	}
+	#board-search .search-window .search-wrap input:focus {
+	  border-color: #333;
+	  outline: 0;
+	  border-width: 1px;
+	}
+	#board-search .search-window .search-wrap .btn {
+	  position: absolute;
+	  right: 0;
+	  top: 0;
+	  bottom: 0;
+	  width: 108px;
+	  padding: 0;
+	  font-size: 16px;
+	}
+	
+	.board-table {
+	  font-size: 13px;
+	  width: 100%;
+	  border-top: 1px solid #ccc;
+	  border-bottom: 1px solid #ccc;
+	}
+	
+	.board-table a {
+	  color: #333;
+	  display: inline-block;
+	  line-height: 1.4;
+	  word-break: break-all;
+	  vertical-align: middle;
+	}
+	.board-table a:hover {
+	  text-decoration: underline;
+	}
+	
+	.board-table .th-num {
+	  width: 100px;
+	  text-align: center;
+	}
+	
+	.board-table .th-category {
+	  width: 120px;
+	  text-align: center;
+	}
+	
+	.board-table .th-date {
+	  width: 200px;
+	}
+	
+	.board-table th, .board-table td {
+	  padding: 14px 0;
+	}
+	
+	.board-table tbody td {
+	  border-top: 1px solid #e7e7e7;
+	  text-align: center;
+	  width: 100px;
+	}
+	
+	.board-table tbody th {
+	  padding-left: 28px;
+	  padding-right: 14px;
+	  border-top: 1px solid #e7e7e7;
+	  text-align: left;
+	}
+	
+	.cs_re_tr, .cs_re_th, .cs_re_td {
+		background-color: #f9f9f9;
+	}
+	
+	.board-table tbody th p{
+	  display: none;
+	}
+	
+	.btn {
+	  display: inline-block;
+	  padding: 0 30px;
+	  font-size: 15px;
+	  font-weight: 400;
+	  background: transparent;
+	  text-align: center;
+	  white-space: nowrap;
+	  vertical-align: middle;
+	  -ms-touch-action: manipulation;
+	  touch-action: manipulation;
+	  cursor: pointer;
+	  -webkit-user-select: none;
+	  -moz-user-select: none;
+	  -ms-user-select: none;
+	  user-select: none;
+	  border: 1px solid transparent;
+	  text-transform: uppercase;
+	  -webkit-border-radius: 0;
+	  -moz-border-radius: 0;
+	  border-radius: 0;
+	  -webkit-transition: all 0.3s;
+	  -moz-transition: all 0.3s;
+	  -ms-transition: all 0.3s;
+	  -o-transition: all 0.3s;
+	  transition: all 0.3s;
+	}
+	
+	.btn-dark {
+	  background: #555;
+	  color: #fff;
+	}
+	
+	.btn-dark:hover, .btn-dark:focus {
+	  background: #373737;
+	  border-color: #373737;
+	  color: #fff;
+	}
+	
+	.btn-dark {
+	  background: #555;
+	  color: #fff;
+	}
+	
+	.btn-dark:hover, .btn-dark:focus {
+	  background: #373737;
+	  border-color: #373737;
+	  color: #fff;
+	}
+	
+	/* reset */
+	
+	* {
+	  list-style: none;
+	  text-decoration: none;
+	  padding: 0;
+	  margin: 0;
+	  box-sizing: border-box;
+	}
+	.clearfix:after {
+	  content: '';
+	  display: block;
+	  clear: both;
+	}
+	.blind {
+	  position: absolute;
+	  overflow: hidden;
+	  clip: rect(0 0 0 0);
+	  margin: -1px;
+	  width: 1px;
+	  height: 1px;
+	}
+	#button {
+	 width: 100px;
+    }
+    #buttonArea {
+    width:1100px;
+    text-align: right;
+    }
+	#buttonArea input {padding:15px 30px; 
+	text-align: center;
+	display:inline-block;
+	font-size: 16px; 
+	margin: 2px 2px;
+	cursor:pointer;
+	}
+	
+	.cs_th {
+		background-color: #fff;
+	}
+	
+	.text {
+    display: block;
+    width: 1200px;
+    padding: 0 30px;
+    margin: 0 auto;
+	}
+	
+	.search_and_date {
+		display: flex;
+		align-items: center;
+	}
+	
+	.date_input_wrap {
+    float: left;
+    margin-left: 100px;
+    width: 300px;
+	}
+	
+	.date_input_wrap .datepicker {
+    display: block;
+    float: left;
+	}
+	
+	.datepicker {
+    height: 30px;
+    line-height: 28px;
+    background-color: #f9f7f9;
+    position: relative;
+    width: 122px;
+	}
+	
+	.datepicker input {
+    display: block;
+    width: 100%;
+    border: none;
+    padding-left: 15px;
+    line-height: 28px;
+    height: 28px;
+    vertical-align: middle;
+	}
+	
+	.datepicker:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    background: url(//static.wconcept.co.kr/web/images/common/spr-input.png) -90px 0 no-repeat;
+    width: 16px;
+    height: 17px;
+	}
+	
+	.date_input_wrap span {
+    display: block;
+    float: left;
+    height: 30px;
+    width: 17px;
+    line-height: 30px;
+    text-align: center;
+	}
+	
+	#sdate, #edate {
+		border: 1px solid #ccc;
+	    background-color: #fff;
+	}
+	
+.hasDatepicker::-webkit-calendar-picker-indicator {
+    opacity: 0;
+}
+
+.hasDatepicker::before {
+    content: "";
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background: transparent;
+    position: relative;
+    top: -3px;
+    right: -6px;
+}

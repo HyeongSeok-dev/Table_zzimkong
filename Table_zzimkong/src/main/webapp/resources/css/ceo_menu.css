@@ -51,7 +51,7 @@ section>form>.button_cancel {
 	color: #3FAFFC;
 	background-color: #fff;
 	border: 1px solid #d5d5d5; 
-	padding: 3px;
+	padding: 5px;
 }
 
 /* 버튼 : 올리브색 - 승인 */
@@ -64,7 +64,19 @@ section>form>.button_cancel {
     color: #3FAFFC;
 	background-color: #fff;
 	border: 1px solid #d5d5d5; 
-	padding: 3px;
+	padding: 5px;
+}
+
+#button_delete {
+    color: #3FAFFC;
+	background-color: #fff;
+	border: 1px solid #d5d5d5; 
+	padding: 5px;
+}
+
+#button_delete:hover {
+	background-color:  #ddd;
+    color: #3FAFFC;
 }
 
 /* 상세 정보 창 CSS */
