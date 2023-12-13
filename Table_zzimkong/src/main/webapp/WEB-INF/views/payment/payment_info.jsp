@@ -21,7 +21,7 @@
 			</div>
 		
 		<div class="center">
-			<form action="${pageContext.request.contextPath }main" class="check_payment" name="checkInfo">
+			<form action="/" class="check_payment" name="checkInfo">
 				<section class="reservation">
 					<div class="res_num">
 						<span class="res_info_detail">
