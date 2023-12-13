@@ -22,9 +22,9 @@ public class HomeController {
 	public String main(Model model) {
 		if(model.getAttribute("persons")==null) {
 			model.addAttribute("persons", 2);
-			model.addAttribute("display_date", "����");
+			model.addAttribute("display_date", "내일");
 			model.addAttribute("date", LocalDate.now().plusDays(1));
-			model.addAttribute("time", "���� 7��");
+			model.addAttribute("time", "오후 7시");
 		}
 		return "main";
 	}
