@@ -166,7 +166,7 @@
 	 <button><a href="admin/review">admin/review</a></button>
 	 <button><a href="admin/review/detail">admin/review/detail</a></button>
 	 <hr>
-	 <button><a href="join">join</a></button>
+	 <button><a href="join/join">join</a></button>
 	 <button><a href="join/ceo">join/ceo</a></button>
 	 <button><a href="join/choice">join/choice</a></button>
 	 <button><a href="login">login</a></button>
