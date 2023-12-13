@@ -9,7 +9,7 @@
 <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
 </head>
 <body>
-	<jsp:include page="../inc/sidebar.jsp"/>
+	<jsp:include page="../inc/my_sidebar.jsp"/>
 	<div class="wrapper">
 		<div>
 			<div class ="title">
@@ -17,9 +17,9 @@
 				<h1>1:1 문의</h1>
 			</span>
 			<span>
-				<input type="date" id="datePicker">
+				<input type="date">
 				-
-				<input type="date" id="datePicker">
+				<input type="date">
 				<button type="button" onclick="showDate()">조회</button>
 				<p id="selectedDate"></p>
 			</span>
@@ -37,6 +37,9 @@
 					<td>답변 완료</td>
 				</tr>
 			</table>
+			<div class="click_button">
+			<button type="button" onclick="">1:1 문의하기</button>
+			</div>
 		</div>
 	</div>
 </body>

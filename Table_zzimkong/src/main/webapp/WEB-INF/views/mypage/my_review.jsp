@@ -9,15 +9,12 @@
 <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
 </head>
 <body>
-	<jsp:include page="../inc/sidebar.jsp" />
+	<jsp:include page="../inc/my_sidebar.jsp" />
 	<div class="wrapper">
 		<div>
 			<div class ="title">
 			<span class= "mypg">
 				<h1>나의 리뷰</h1>
-			</span>
-			<span>
-				<button type= "button">더보기</button>
 			</span>
 			</div>
 			<br>
@@ -31,29 +28,35 @@
 				<tr>
 					<td align="center">23/09/15 14:00</td>
 					<td>현풍닭칼국수</td>
-					<td>맛있어서 울면서 먹었어요</td>
+					<td>★★★★★<br>맛있어서 울면서 먹었어요</td>
 					<td align="center">
 					<button type="button">수정</button>
-					<button type="reset">삭제</button>
+					<button type="reset" id="my_delete" >삭제</button>
 					</td>
 				</tr>
 				<tr>
 					<td align="center">23/09/24 19:30</td>
 					<td>맛나주꾸미</td>
-					<td>음식은 맛있는데 청결하지 못한 매장</td>
+					<td>★★<br>음식은 맛있는데 청결하지 못한 매장</td>
 					<td align="center">
 					<button type="button">수정</button>
-					<button type="reset">삭제</button>
+					<button type="reset" id="my_delete" >삭제</button>
 					</td>
 				</tr>
 				<tr>
 					<td align="center">23/12/05 12:30</td>
 					<td>파전닭갈비</td>
-					<td>존맛 대존맛</td>
+					<td>★★★★★<br>존맛 대존맛</td>
 					<td align="center">
 					<button type="button">수정</button>
-					<button type="reset">삭제</button>
+					<button type="reset" id="my_delete" >삭제</button>
 					</td>
 				</tr>
+			</table>
+			<div align="center">
+			1 | 2 | 3 
+			</div>
 		</div>
 	</div>
+</body>
+</html>

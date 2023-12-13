@@ -7,9 +7,14 @@
 <title>Insert title here</title>
 <link href="${pageContext.request.contextPath }/resources/css/mypage.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
+<script type="text/javascript">
+	function cancleReservation(){
+		confirm("예약을 취소하시겠습니까?");
+	}
+</script>
 </head>
 <body>
-	<jsp:include page="../inc/sidebar.jsp" />
+	<jsp:include page="../inc/my_sidebar.jsp" />
 	<div class="wrapper">
 		<div>
 			<div class ="title">
@@ -40,8 +45,8 @@
 					<td>예약 완료</td>
 					<td>
 						<div class="div_button">
-							<button type="button" class="mypg_button"">변경</button>
-							<button type="reset" class="mypg_button">취소</button>
+							<button type="button">변경</button>
+							<button type="reset" id="my_delete" >취소</button>
 						</div>
 					</td>
 				</tr>
@@ -54,8 +59,8 @@
 					<td>예약 취소</td>
 					<td>
 						<div class="div_button">
-							<button type="button" class="mypg_button"">변경</button>
-							<button type="reset" class="mypg_button">취소</button>
+							<button type="button">변경</button>
+							<button type="reset" id="my_delete" >취소</button>
 						</div>
 					</td>
 				</tr>
@@ -68,8 +73,8 @@
 					<td>예약 완료</td>
 					<td>
 						<div class="div_button">
-							<button type="button" class="mypg_button"">변경</button>
-							<button type="reset" class="mypg_button">취소</button>
+							<button type="button">변경</button>
+							<button type="reset" id="my_delete" onclick="cancleReservation()">취소</button>
 						</div>
 					</td>
 				</tr>
@@ -77,7 +82,7 @@
 			</table>
 			<br>
 			<div class ="title">
-			<span>
+			<span class= "mypg">
 				<h1>나의 북마크</h1>
 			</span>			
 			<span>
@@ -92,20 +97,17 @@
 					<td>사진</td>
 				</tr>
 				<tr >
-					<td style="height: 30px;">또갈래 떡볶이</td>
-					<td>맛있다 파스타</td>
-					<td>나도갈래 치킨</td>
+					<td style="height: 30px;">(♥) 또갈래 떡볶이</td>
+					<td>(♥) 맛있다 파스타</td>
+					<td>(♥) 나도갈래 치킨</td>
 				</tr>
 			</table>
 			<br>
 			<div class ="title">
-			<span>
+			<span class= "mypg">
 				<h1>최근 본 매장</h1>
 			</span>
 			<br>
-			<span>
-				<button type= "button">더보기</button>
-			</span>
 			</div>			
 			<br>
 			<table style="width: 1000px; table-layout: fixed;">

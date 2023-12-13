@@ -9,7 +9,7 @@
 <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
 </head>
 <body>
-		<jsp:include page="../inc/sidebar.jsp"  />
+		<jsp:include page="../inc/my_sidebar.jsp"  />
 	<div class="wrapper">
 		<div class ="title">
 			<span class= "mypg">

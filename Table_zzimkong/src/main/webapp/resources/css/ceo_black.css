@@ -78,3 +78,14 @@ textarea {
 	width: 65%;
 	margin-right: 10px;
 }
+
+#my_delete {
+	border: 1px solid #ddd;
+	background-color: #fff;
+	color:#3FAFFC;
+}
+
+#my_delete:hover {
+	background-color:  #ddd;
+    color: #3FAFFC;
+}

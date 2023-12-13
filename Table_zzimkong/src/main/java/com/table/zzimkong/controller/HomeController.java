@@ -194,6 +194,21 @@ public class HomeController {
 		return "mypage/my_unregister";
 	}
 	
+	@GetMapping("my/check/passwd")
+	public String my_check_passwd() {
+		return "mypage/my_check_passwd";
+	}
+	
+	@GetMapping("my/qna")
+	public String my_qna() {
+		return "mypage/my_qna";
+	}
+	
+	@GetMapping("my/point")
+	public String my_point() {
+		return "mypage/my_point";
+	}
+	
 	@GetMapping("review/detail")
 	public String review_detail() {
 		return "review/review_detail";

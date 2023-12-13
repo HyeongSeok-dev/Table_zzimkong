@@ -29,7 +29,7 @@
 	<br>
 	<div class = "click_button">
 		<button type="submit" onclick="reportRegister()">신고</button>
-		<button type="reset">취소</button>
+		<button type="reset" id="my_delete" >취소</button>
 	</div>
 </body>
 </html>

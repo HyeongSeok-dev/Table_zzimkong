@@ -13,7 +13,7 @@
 <%-- 		<jsp:include page="../inc/top.jsp"/> --%>
 	</header>
 	<main>
-		<jsp:include page="../inc/sidebar.jsp" />
+		<jsp:include page="../inc/my_sidebar.jsp" />
 	<div class="wrapper">
 		<div>
 			<div class="title">
@@ -28,7 +28,8 @@
 						<td style="width: 700px;">
 							<img src="${pageContext.request.contextPath}/resources/img/profile.png" width="100" height="100">
 							<p>프로필 사진으로 사용될 이미지를 등록해 주세요.</p>
-	                          <input type="file" name="fImage" class="hide">
+	                          <input type="file" name="fImage" class="hide"><br>
+	                          <button type="reset" id="my_delete">프로필 초기화</button>
 						</td>
 					</tr>
 					<tr>
@@ -70,7 +71,7 @@
 					</tr>
 				</table>
 				
-            <a id="btnDeactivate" href="${pageContext.request.contextPath }/mypage/unregister.jsp" class="btn_out">회원탈퇴하기</a> 
+            <a id="btnDeactivate" href="${pageContext.request.contextPath }/my/unregister" class="btn_out">회원탈퇴하기</a> 
             <div class = "click_button">
             		<button type="button" >수정하기</button>
 			</div>

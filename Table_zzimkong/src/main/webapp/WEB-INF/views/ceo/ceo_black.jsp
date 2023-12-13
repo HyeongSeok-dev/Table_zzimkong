@@ -15,7 +15,7 @@
 		var popupH = 700;
 		var left = Math.ceil((window.screen.width - popupW)/2);
 		var top = Math.ceil((window.screen.height - popupH)/2);
-		window.open('com_black_register.jsp','','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
+		window.open('black/register','','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
 	}
 	function blackDelete() {
 		confirm("블랙회원 목록에서 삭제하시겠습니까?");
@@ -36,7 +36,7 @@
 			<span><h3>블랙회원 관리</h3></span>
 			<span>
 				<button type="button" onclick="blackRegister()">등록</button> 
-				<button type="reset" onclick="blackDelete()">선택 삭제</button>
+				<button type="reset" id="my_delete" onclick="blackDelete()">선택 삭제</button>
 			</span>
 			</div>
 			<table border="1">
@@ -60,7 +60,7 @@
 					<td>010-1234-5678</td>
 					<td>악의적인 리뷰를 잦게 씀 </td>
 					<td>22/11/06 16:25</td>
-					<td><button type="reset" onclick="blackDelete()">삭제</button></td>
+					<td><button type="reset" id="my_delete" onclick="blackDelete()">삭제</button></td>
 				</tr>
 				<tr>
 					<td>
@@ -72,7 +72,7 @@
 					<td>010-1234-5678</td>
 					<td>술 마시고 가게 안에서 고성방가</td>
 					<td>22/12/26 16:25</td>
-					<td><button type="reset" onclick="blackDelete()">삭제</button></td>
+					<td><button type="reset" id="my_delete" onclick="blackDelete()">삭제</button></td>
 				</tr>
 				<tr>
 					<td>
@@ -84,7 +84,7 @@
 					<td>010-1234-5678</td>
 					<td>예약 후 잦은 취소</td>
 					<td>23/01/08 18:34</td>
-					<td><button type="reset" onclick="blackDelete()">삭제</button></td>
+					<td><button type="reset" id="my_delete" onclick="blackDelete()">삭제</button></td>
 				</tr>
 				
 			</table>

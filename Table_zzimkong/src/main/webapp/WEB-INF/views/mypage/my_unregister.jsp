@@ -13,7 +13,7 @@
 		var popupH = 200;
 		var left = Math.ceil((window.screen.width - popupW)/2);
 		var top = Math.ceil((window.screen.height - popupH)/2);
-		window.open('check_passwd.jsp','','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
+		window.open('check/passwd','','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
 	};
 </script>
 </head>
@@ -35,7 +35,7 @@
 		</table>
 	<h5>그래도 탈퇴하시겠습니까?</h5>
 	<button type="submit" onclick="unRegister()">탈퇴</button>
-	<button type="reset">취소</button>
+	<button type="button" id="my_delete" >취소</button>
 	</div>
 </body>
 </html>
