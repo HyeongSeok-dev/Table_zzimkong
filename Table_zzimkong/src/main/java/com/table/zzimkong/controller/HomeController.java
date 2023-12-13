@@ -214,7 +214,7 @@ public class HomeController {
 		return "review/review_report";
 	}
 	
-	@GetMapping("reservation")
+	@PostMapping("reservation")
 	public String reservation() {
 		return "reservation/reservation";
 	}
