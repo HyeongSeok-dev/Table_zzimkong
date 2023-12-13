@@ -43,7 +43,7 @@
 	header-img start 
 	============================== -->
 	<section id="hero-area">
-		<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_header.jpg" alt="">
+		<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/omakase.jpg" alt="">
 	</section>
 	<!--
     Header start 
@@ -68,8 +68,8 @@
 										
 										<%-- 상단 로고 --%>
 										<div class="header_img">
-											<img alt="logo1" src="${pageContext.request.contextPath}/resources/img/logo1_2.png" width="100px">
-											<img alt="logo2" src="${pageContext.request.contextPath}/resources/img/logo2_1.png" width="260px">
+											<img alt="logo1" src="${pageContext.request.contextPath}/resources/img/logo1_2.png">
+											<img alt="logo2" src="${pageContext.request.contextPath}/resources/img/logo3_2.png">
 										</div>
 									</div>
 									

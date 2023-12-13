@@ -151,13 +151,18 @@ a:active {
 nav {
   z-index: 99999;
   width: 100%;
+  height: 130px;
+}
+.container_header_width {
+	height: 130px;
 }
 nav .block {
   margin-top: -85px;
-  background: rgb(244, 250, 255);
+  background: #b3deff; /* 상단바색상 진하게 바꿈 */
 /*  padding: 10px 30px; */
 /*  padding: 25px 40px; */ /* (수정전) 메인 상단바 사이즈 조절 */
-  padding: 35px 170px;
+  padding: 20px 170px;
+  padding-bottom: 40px;
   margin-bottom: 50px;
 }
 nav .block .navbar-default {
@@ -770,13 +775,13 @@ nav .block .navbar-default .navbar-nav > .active > a:hover:before {
 img[alt="logo1"] {
 	margin-top: -5px;
 	margin-bottom: 5px;
-	width: 90px;
+	width: 50px;
 	height: auto;
 }
 img[alt="logo2"] {
 	margin-top: 10px;
 	margin-bottom: 10px;
-	width: 200px;
+	width: 150px;
 	height: auto;
 }
 
