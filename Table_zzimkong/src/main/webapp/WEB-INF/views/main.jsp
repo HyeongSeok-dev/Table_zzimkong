@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%-- 수정!!!!! --%>
+<%-- 수정!!!! --%>
 <!DOCTYPE html>
 <html class="no-js">
 <head>
