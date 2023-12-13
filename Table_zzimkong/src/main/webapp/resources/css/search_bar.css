@@ -23,7 +23,7 @@
 	flex-direction: column; /* 부모 요소를 꽉 채우기 */
 	align-items: flex-start;
 	justify-content: center;
-	width: 100%; /* 遺�紐� �슂�냼瑜� 苑� 梨꾩슦湲� */
+	width: 100%; /*커밋 테스트*/
 	position: relative;
 }
 
