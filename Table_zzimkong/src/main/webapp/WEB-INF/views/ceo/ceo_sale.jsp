@@ -362,15 +362,25 @@
 			
 			</table>
 			
-			
+			<div class="text_div">
+				<span><h3>매출 통계</h3></span>
+			</div>
+				<table border="1">
+					<tr>
+						<th>예약건수</th>
+					</tr>
+					<tr>
+						<td>월별 예약 건수 현황 (선 차트)</td>
+					</tr>
+					<tr>
+						<th>매출액</th>
+					</tr>
+					<tr>
+						<td>월별 매출액 현황 (선 차트)</td>
+					</tr>
+				</table>
 		</div>
 	</section>
-	
-	
-	
-	
-	
-	
 	
 	<br><br><br>
 	<footer>
