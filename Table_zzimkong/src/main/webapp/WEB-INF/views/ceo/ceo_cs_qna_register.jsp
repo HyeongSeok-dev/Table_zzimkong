@@ -17,7 +17,7 @@
 	<section>
 		<h3>1 : 1 문의하기</h3>
 		<br><br>
-		<form action="" method="post" name="memberQnaForm">
+		<form action="" method="post" name="memberQnaPro">
 			<table>
 				<tr>
 					<th>회원정보</th>
@@ -25,31 +25,31 @@
 					<th>유형</th>
 					<td>
 						<select class="category_select">
-		            		<option>유형선택</option>
-		            		<option>예약관리</option>
-		            		<option>메뉴관리</option>
-		            		<option>광고</option>
-		            		<option>블랙회원관리</option>
-		            		<option>업체관리</option>
+		            		<option value="">유형선택</option>
+		            		<option value="예약관리">예약관리</option>
+		            		<option value="메뉴관리">메뉴관리</option>
+		            		<option value="광고">광고</option>
+		            		<option value="블랙회원관리">블랙회원관리</option>
+		            		<option value="업체관리">업체관리</option>
 		            	</select>
 					</td>
 				</tr>
 				<tr>
 					<th colspan="1">제목</th>
 					<td colspan="3">
-						<input type="text" placeholder="제목" id="">
+						<input type="text" placeholder="제목" name="title">
 					</td>
 				</tr>
 				<tr>
 					<th colspan="1">문의내용</th>
 					<td colspan="3">
-						<textarea rows="20" cols="80"></textarea>
+						<textarea rows="20" cols="80" name="content"></textarea>
 					</td>
 				</tr>
 				<tr>
 					<th colspan="1">파일첨부</th>
 					<td colspan="3" class="td_file">
-						<input type="file" multiple="multiple">
+						<input type="file" multiple="multiple" name="uploadFile">
 						<div class="file_5">* 파일 5개까지 첨부 가능</div>
 					</td>
 				</tr>

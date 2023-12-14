@@ -19,7 +19,7 @@
 </script>
 </head>
 <body class="info_window">
-	<section>
+	<sectionc class="ceo_sec">
 		<h3>광고 등록</h3>
 		<br><br>
 		<form action="payAdPro" method="post" name="comAdJoin">

@@ -29,10 +29,10 @@
 			<input type="button" value="Q  &  A" onclick="location.href='BoardWriteForm.bo'" id="button" />	
 		</section>
 	            <div class="search-window">
-	                <form action="">
+	                <form action="" name="ceoCsSearch">
 	                    <div class="search-wrap">
 	                        <label for="search" class="blind">공지사항 내용 검색</label>
-	                        <input id="search" type="search" name="" placeholder="검색어를 입력해주세요." value="">
+	                        <input id="search" type="search" name="searchNotice" placeholder="검색어를 입력해주세요." value="">
 	                        <button type="submit" class="btn btn-dark">검색</button>
 	                        
 	                    </div>

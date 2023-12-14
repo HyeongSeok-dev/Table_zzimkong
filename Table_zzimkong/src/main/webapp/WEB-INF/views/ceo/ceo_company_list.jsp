@@ -42,7 +42,7 @@
 	<header>
 		<jsp:include page="../inc/ceo_top.jsp"/>
 	</header>
-	<section class="article">
+	<section class="ceo_sec">
 		<div class="text">
 			<div class="header">
 			<span><h3>업체 관리 리스트</h3></span>

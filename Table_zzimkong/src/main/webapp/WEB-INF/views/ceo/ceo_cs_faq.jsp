@@ -30,10 +30,10 @@
 		    <div id="board-search">
 		        <div class="container">
 		            <div class="search-window">
-		                <form action="">
+		                <form action="" name="ceoCsSearch">
 		                    <div class="search-wrap">
 		                        <label for="search" class="blind">자주묻는 질문 검색</label>
-		                        <input id="search" type="search" name="" placeholder="검색어를 입력해주세요." value="">
+		                        <input id="search" type="search" name="searchFAQ" placeholder="검색어를 입력해주세요.">
 		                        <button type="submit" class="btn btn-dark">검색</button>
 		                        
 		                    </div>
@@ -49,13 +49,13 @@
 				        <tr>
 				            <th scope="col" class="th-num">번호</th>
 				            <th scope="col" class="th-num">
-				            	<select>
-				            		<option>유형선택</option>
-				            		<option>예약관리</option>
-				            		<option>메뉴관리</option>
-				            		<option>광고</option>
-				            		<option>블랙회원관리</option>
-				            		<option>업체관리</option>
+				            	<select name="ceoCategory">
+				            		<option value="">유형선택</option>
+				            		<option value="예약관리">예약관리</option>
+				            		<option value="메뉴관리">메뉴관리</option>
+				            		<option value="광고">광고</option>
+				            		<option value="블랙회원관리">블랙회원관리</option>
+				            		<option value="업체관리">업체관리</option>
 				            	</select>
 				            </th>
 				            <th scope="col" class="th-title">제목</th>

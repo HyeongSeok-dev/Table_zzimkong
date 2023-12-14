@@ -14,6 +14,7 @@
 <!-- 		<a  href="/"></a>  -->
 <!-- 	</div> -->
 <!-- </div> -->
+	<div class="header_all">
 	<div class="headerMenu imgP snipcss-X9RSH">
 		<img alt="logo1" src="${pageContext.request.contextPath }/resources/img/logo1_2.png" width="100px">
 		<img alt="logo2" src="${pageContext.request.contextPath }/resources/img/logo3_2.png" width="260px">
@@ -69,6 +70,7 @@
 			</div>	
 	    </li>
 	  </ul>
+	</div>
 	</div>
 </body>
 </html>

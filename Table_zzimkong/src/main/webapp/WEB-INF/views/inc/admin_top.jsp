@@ -9,6 +9,7 @@
  <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/ceo_top.css">  
 </head>
 <body>
+	<div class="header_all">
 	<div class="headerMenu imgP snipcss-X9RSH">
 		<a href="${pageContext.request.contextPath}">
 			<img alt="logo1" src="${pageContext.request.contextPath }/resources/img/logo1_2.png" width="100px">
@@ -60,6 +61,7 @@
 	    </li>
 	  </ul>
 	  </div>
+	</div>
 	</div>
 
 </body>
