@@ -29,7 +29,7 @@
 		<div class="separator"></div>
 		<div class="like_section" style="text-align: center;">
 			<p>
-				이곳이 마음에 든다면,<br> '좋아요'를 눌러주세요<br> 
+				이곳이 마음에 든다면,<br> '좋아요'를 눌러주세요<br>
 				<!-- 취향이 비슷한 사람을 추천받으세요. -->
 			</p>
 			<!-- 			<button class="like_btn">♡ 이런 곳 좋아요!</button> -->
@@ -41,6 +41,8 @@
     </svg>
 				이런 곳 좋아요
 			</button>
+			<!-- 토스트 메시지 -->
+			<div id="toastMessage" class="toast-message">좋아요가 반영되었습니다</div>
 		</div>
 		<br>
 		<div class="separator"></div>
@@ -96,11 +98,12 @@
 				placeholder="리뷰 작성하기
 업주와 다른 사용자들이 상처받지 않도록 좋은 표현을 사용해주세요. 유용한 Tip도 남겨주세요."></textarea>
 			<a class="caution_link" href="#" onclick="openPopup()">리뷰 작성 유의사항</a>
-<%-- 			<a href="${pageContext.request.contextPath}/WEB-INF/views/review_complete.jsp">
+			<%-- 			<a href="${pageContext.request.contextPath}/WEB-INF/views/review_complete.jsp">
 			    <button class="register_button">등록하기</button>
 			</a> --%>
-			<button class="register_button" onclick="location.href='${pageContext.request.contextPath}/review/complete'">등록하기</button>
-			
+			<button class="register_button"
+				onclick="location.href='${pageContext.request.contextPath}/review/complete'">등록하기</button>
+
 		</div>
 
 	</div>

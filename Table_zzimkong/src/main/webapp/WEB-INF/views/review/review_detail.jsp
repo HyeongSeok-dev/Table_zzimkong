@@ -341,9 +341,9 @@
 			</div>
 			<br>
 			<div class="review-actions">
-				<button class="review_delete">삭제</button>
+<!-- 				<button class="review_delete">삭제</button> -->
+				<input type="submit" class ="review_delete"value="삭제" onclick="if(!confirm('리뷰를 삭제하시겠습니까?')){return false;}" />
 				<button class="review_modify">수정</button>
-				
 				<a href="${pageContext.request.contextPath}/review/report">
 					<button class="review_report_btn">리뷰 신고하기</button>
 				</a> <span class="comment-icon" onclick="showCommentForm()"> <br>
@@ -351,12 +351,15 @@
 			</div>
 		</div>
 	</div>
+<<<<<<< HEAD
 		<!-- 삭제 확인 팝업창 -->
 	<div id="deleteConfirmationPopup" class="popup">
 	    <p>리뷰를 삭제하시겠습니까?</p>
 	    <button id="confirmDelete">네</button>
 	    <button id="cancelDelete">아니오</button>
 	</div>
+=======
+>>>>>>> stash
 	<br>
 	<br>
 	<br>
