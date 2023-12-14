@@ -21,7 +21,7 @@
 		<form action="" method="post" name="blackRegister">
 			<table>
 				<tr>
-					<th style="width:15%;">회원 번호</th>
+					<th style="width:15%;" name="memberNum">회원 번호</th>
 					<td colspan="2">
 						<div>
 							<input type="text" id="comNumText" readonly>
@@ -29,13 +29,13 @@
 						</div>	
 					</td>
 					<th style="width:15%;">아이디</th>
-					<td colspan="2"><input type="text" value=""></td>
+					<td colspan="2"><input type="text" value="" name="id"></td>
 				</tr>
 				<tr>
 					<th>이름</th>
-					<td colspan="2"><input type="text" value=""></td>
+					<td colspan="2"><input type="text" value="" name="name"></td>
 					<th>연락처</th>
-					<td colspan="2"><input type="text" value=""></td>
+					<td colspan="2"><input type="text" value="" name="phoneNum"></td>
 				</tr>
 				<tr>
 					<th>사유</th>

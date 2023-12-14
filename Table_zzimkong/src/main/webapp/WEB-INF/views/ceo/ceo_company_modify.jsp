@@ -47,19 +47,19 @@
 				</tr>
 				<tr>
 					<th colspan="2">업체명</th>
-					<td colspan="1"><input type="text" value="아오모리" readonly="readonly"></td>
+					<td colspan="1"><input type="text" value="아오모리" readonly="readonly" name="comName"></td>
 					<th colspan="1">업태</th>
-					<td colspan="1"><input type="text" value="일식" readonly="readonly"></td>
+					<td colspan="1"><input type="text" value="일식" readonly="readonly" name="comState"></td>
 				</tr>
 				<tr>
 					<th colspan="2">대표자명</th>
-					<td colspan="1"><input type="text" value="최종권" readonly="readonly"></td>
+					<td colspan="1"><input type="text" value="최종권" readonly="readonly" name="ceoName"></td>
 					<th colspan="1">전화번호</th>
-					<td colspan="1"><input type="text" name="telNum" value="051-234-3242"></td>
+					<td colspan="1"><input type="text" value="051-234-3242" name="comPhoneNum"></td>
 				</tr>
 				<tr>
 					<th colspan="2">주소</th>
-					<td colspan="3"><input type="text" maxlength="5" size="50" value="부산광역시 해운대구 센텀3로 20 (우동, 센텀호텔316,317호)" readonly="readonly"></td>
+					<td colspan="3"><input type="text" name="comAdress" maxlength="5" size="50" value="부산광역시 해운대구 센텀3로 20 (우동, 센텀호텔316,317호)" readonly="readonly"></td>
 				</tr>
 				
 				<tr>	
@@ -88,11 +88,11 @@
 				<tr>		    
 					<th colspan="2">업체상태</th>
 					<td colspan="1">
-						<input type="text" id="company_state1" name="company_state1" readonly="readonly" value="영업정지" size="4">
+						<input type="text" id="company_state1" name="comStatus" readonly="readonly" value="영업정지" size="4">
 					<th colspan="1">업체상태변경</th>
 					</td>
 					<td colspan="1">
-						<select id="company_state2" onchange="comStateSelected(this.value)">
+						<select id="company_state2" name="comStatusChange" onchange="comStateSelected(this.value)">
 							<option value="영엽정지">영업정지</option>
 							<option value="정상">정상</option>
 						</select>
@@ -100,7 +100,7 @@
 				</tr>	
 				<tr>
 					<th colspan="2">시간당 최대 테이블</th>
-					<td colspan="1"><input type="text" value="10명"></td>
+					<td colspan="1"><input type="text" value="10명" name=""></td>
 					<th colspan="1">광고등급</th>
 					<td colspan="2">
 						2단계
