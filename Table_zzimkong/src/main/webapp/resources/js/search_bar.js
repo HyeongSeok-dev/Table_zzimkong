@@ -170,7 +170,7 @@ $(document).ready(function() {
 		$('.detail-list-wrap').empty();
 		subList.css('display', 'flex'); // 서브 리스트를 표시합니다.
 	});
-
+/**/
 	$(document).on('click', '.sub-list > li', function(event) {
 		if ($(this).find('input[type="radio"]').length > 0) {
 			event.stopPropagation();
