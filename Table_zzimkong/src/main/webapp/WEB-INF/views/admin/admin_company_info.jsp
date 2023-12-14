@@ -7,14 +7,13 @@
 <title>Insert title here</title>
 <link href="${pageContext.request.contextPath}/resources/css/global.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resources/css/admin_article.css" rel="stylesheet">
-<%-- <link href="${pageContext.request.contextPath}/resources/css/admin_sidebar.css" rel="stylesheet"> --%>
 <script src="${pageContext.request.contextPath}/resources/js/admin_script.js"></script>
 </head>
 <body class="info_window">
 	<section>
 		<h3>업체 상세 정보</h3>
 		<br><br>
-		<form action="" method="get">
+		<form action="" method="GET">
 			<table>
 				<tr>
 					<th>업체번호</th>
@@ -72,8 +71,6 @@
 			<br>
 			<button type="submit" class="button_olive">수정</button>
 			<button type="reset" class="button_grey2">초기화</button>
-<!-- 			<button type="submit" value="수정">수정</button> -->
-<!-- 			<button type="reset" value="초기화">초기화</button> -->
 		</form>
 	</section>
 </body>

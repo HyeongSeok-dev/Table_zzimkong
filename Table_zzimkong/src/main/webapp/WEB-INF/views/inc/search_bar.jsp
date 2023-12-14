@@ -308,9 +308,9 @@
 										</ul></li>
 									<li class="filter-item" id="menu_price"><span>메뉴 가격</span>
 										<ul class="sub-list">
-											<li><label for="price">가격: <span id="priceValue">50000</span>원
-											</label><br> <input type="range" id="price" name="price" min="5000"
-												max="100000" value="50000" step="5000"></li>
+											<li><label for="price">가격대: <span id="priceValue">50000</span>원
+											</label><br> <input type="range" id="price" name="price" min="10000"
+												max="100000" value="50000" step="10000"></li>
 										</ul></li>
 									<li class="filter-item" id="mood"><span>분위기</span>
 										<ul class="sub-list">

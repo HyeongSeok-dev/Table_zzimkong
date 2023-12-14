@@ -45,11 +45,50 @@ input[type="button"]:hover, input[type="submit"]:hover {
 	justify-content: space-between;
 }
 
+
 /* 드롭다운 CSS */
-select {
-    width: 100%;
+/* select { */
+/*     width: 100%; */
+/*     height: 35px; */
+/*     background: #f8f8f8; */
+/*     color: #333; */
+/*     padding: 5px; */
+/* } */
+
+.storeList_div {
+	width: 50%;
+	display: block;
+	margin-bottom: 10px;
+	/* justify-content: flex-end; */
+    float: right;
+    text-align: right;
+}
+
+#storeList {
+/*     width: 100%; */
+    width: 30%;
     height: 35px;
-    background: #f8f8f8;
+    background: #eff7fe;
     color: #333;
     padding: 5px;
+    border-radius: 10px;
+    border-color: #eff7fe;
+	border: 1px solid #E7E7E7;
+}
+
+#date {
+    height: 35px;
+    background: #eff7fe;
+    color: #333;
+    padding: 5px;
+    border-radius: 10px;
+    border-color: #eff7fe;
+    border: 1px solid #E7E7E7;
+ 	padding: 10px;
+  	margin: 10px;
+}
+
+/* float 이후 다음 요소가 다음 줄에 오려면 이후의 요소에 clear: both; 필수! */
+.storeList_div_after {
+	clear: both;
 }

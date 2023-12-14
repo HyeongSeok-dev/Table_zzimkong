@@ -88,7 +88,7 @@ input[type="text"] {
 
 .info_window table {
 	/* ## 테이블 간격 조정 */
-	width: auto;
+	width: 700px;
 	border-collapse: collapse;
 	margin: auto;
 	table-layout: auto;

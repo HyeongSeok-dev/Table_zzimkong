@@ -17,14 +17,19 @@
 	<header>
 		<jsp:include page="../inc/ceo_top.jsp"/>
 	</header>
+	
 	<section class="article">
 		<div class="text">
-		<select id="storeList">
-			<option value="레스토랑">레스토랑</option>
-			<option value="고깃집">고깃집</option>
-			<option value="횟집">횟집</option>
-			<option value="이자카야">이자카야</option>
-		</select>
+			<div class="storeList_div">
+				<select id="storeList">
+					<option value="레스토랑">레스토랑</option>
+					<option value="고깃집">고깃집</option>
+					<option value="횟집">횟집</option>
+					<option value="이자카야">이자카야</option>
+				</select>
+			</div>
+		
+		<div class="storeList_div_after"></div>
 			<h3>예약자</h3>
 
 				<table border="1">
@@ -101,7 +106,6 @@
 			</table>
 			
 			<br>
-			
 			
 		</div>
 	</section>
