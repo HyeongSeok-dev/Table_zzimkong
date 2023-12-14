@@ -27,7 +27,7 @@
     line-height:1;
     color:#000;
     font-weight:400;
-    background:#fff;
+    background:#fff !important;
   }  
 
 * { 
