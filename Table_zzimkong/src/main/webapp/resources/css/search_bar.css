@@ -11,16 +11,16 @@
 	flex-direction: column;
 	width: 100%;
 	align-items: center;
-	margin: 0 auto; /* 화면 중앙에 배치 */
+	margin: 0 auto; 
 	background-color: #fff;
-/* 	border: 0.5px solid #d2d2d2; */
+
 	border: 0.5px solid #dfdfdf;
 	border-radius: 10px;
 }
 
 .search_wrapper {
-    position: relative; /* 위아래로 쌓기 */
-	flex-direction: column; /* 부모 요소를 꽉 채우기 */
+    position: relative; 
+	flex-direction: column; 
 	align-items: flex-start;
 	justify-content: center;
 	width: 100%; 
@@ -28,9 +28,9 @@
 }
 
 .search_content {
-	display: flex; /* 寃��깋李�, �씤�썝�닔, �븘�꽣瑜� �븳 以꾩뿉 諛곗튂 */
+	display: flex; 
 	align-items: center;
-/* 	border-bottom: 1px solid #d2d2d2; */
+
 	width: 100%;
 	height: 60px;
 }
@@ -43,32 +43,33 @@
 }
 
 .search_input_wrapper {
-	flex-grow: 8; /* 寃��깋李쎌씠 遺�紐� �슂�냼�쓽 60%瑜� 李⑥��븯�룄濡� */
-/* 	border-right: 1px solid #d2d2d2; */
+	flex-grow: 8; 
+
 	border-right: 0.5px solid #dfdfdf;
-	justify-content: flex-start; /* �븘�씠肄섍낵 �뀓�뒪�듃 �븘�뱶瑜� �쇊履쎌쑝濡� �젙�젹 */
+	justify-content: flex-start; 
 	height: 100%;
 }
 
 .search_info {
-	flex-grow: 2; /* �씤�썝�닔媛� 遺�紐� �슂�냼�쓽 30%瑜� 李⑥��븯�룄濡� */
-/* 	border-right: 1px solid #d2d2d2; */
+	flex-grow: 2; 
+
 	border-right: 1px solid #dfdfdf;
 }
 
 .filter_wrapper {
-	flex-grow: 1; /* �븘�꽣媛� 遺�紐� �슂�냼�쓽 10%瑜� 李⑥��븯�룄濡� */
+	flex-grow: 1; 
+	position: relative;
 }
 
 .search_input {
-	width: 100%; /* 遺�紐� �슂�냼瑜� 苑� 梨꾩슦湲� */
-	display: flex; /* �븘�씠肄섍낵 �뀓�뒪�듃 �븘�뱶瑜� �븳 以꾩뿉 諛곗튂 */
+	width: 100%; 
+	display: flex; 
 	height: 95%;
 	position: relative;
 }
 
 .search_input_text {
-	width: 100%; /* �븘�씠肄섏쓣 移⑤쾾�븯吏� �븡�뒗 踰붿쐞 �궡�뿉�꽌 遺�紐⑥쓽 �꼫鍮꾨�� 紐⑤몢 李⑥� */
+	width: 100%; 
 	margin-left: 5px; 
 	font-size: 16px;
 	font-weight: bold;
@@ -79,36 +80,36 @@
 }
 
 .search_icon {
-	position: absolute; /* �븘�씠肄섏쓽 �쐞移섎�� �젅���쟻�쑝濡� �꽕�젙 */
-/* 	right: 10px; �삤瑜몄そ �걹�뿉�꽌 �븘�씠肄섏쓽 �쐞移� �꽕�젙 */
-	right: 20px; /* �삤瑜몄そ �걹�뿉�꽌 �븘�씠肄섏쓽 �쐞移� �꽕�젙 */
-	top: 50%; /* �븘�씠肄섏쓣 �엯�젰 �븘�뱶�쓽 以묒븰�뿉 �쐞移섏떆�궎湲� �쐞�빐 異붽� */
-	transform: translateY(-50%); /* �븘�씠肄섏쓣 �엯�젰 �븘�뱶�쓽 以묒븰�뿉 �쐞移섏떆�궎湲� �쐞�빐 異붽� */
+	position: absolute; 
+
+	right: 20px; 
+	top: 50%; 
+	transform: translateY(-50%); 
 	cursor: pointer;
 }
 
 .search_filter {
 	display: flex;
-	justify-content: space-between; /* �븘�꽣 �샃�뀡�뱾�쓣 �룞�씪�븳 媛꾧꺽�쑝濡� 諛곗튂 */
+	justify-content: space-between; 
 }
 
 .filter_option {
-	flex-basis: 33.33%; /* 媛곴컖 1/3�쓽 怨듦컙�쓣 李⑥��븯�룄濡� */
+	flex-basis: 33.33%; 
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	margin: 0 10px; /* 媛� �떒異� �궗�씠�뿉 媛꾧꺽�쓣 �쓣�� */
-	width: 90px; /* �떒異붿쓽 �꼫鍮꾨�� �뒛由� */
+	margin: 0 10px; 
+	width: 90px; 
 	height: 40px;
 }
 
 .menu_option {
-	flex-basis: 33.33%; /* 媛곴컖 1/3�쓽 怨듦컙�쓣 李⑥��븯�룄濡� */
+	flex-basis: 33.33%; 
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	margin: 0 10px; /* 媛� �떒異� �궗�씠�뿉 媛꾧꺽�쓣 �쓣�� */
-	width: 30%; /* �떒異붿쓽 �꼫鍮꾨�� �뒛由� */
+	margin: 0 10px; 
+	width: 30%; 
 	height: 30%;	
 }
 
@@ -117,31 +118,31 @@ a {
 }
 
 .location_button, .distance_button, .cuisine_button, .user_button, .login_button, .bell_button, .support_button {
-	border: none; /* 踰꾪듉 湲곕낯 �뀒�몢由� �젣嫄� */
-	background-color: transparent; /* 諛곌꼍�깋 �젣嫄� */
+	border: none; 
+	background-color: transparent; 
 }
 .modal {
     display: none;
     position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
+    z-index: 1000; /* 높은 z-index 값을 사용하여 깊이감 추가 */
+    top: 10%; /* 상단 위치 조정 */
+    width: 80%; /* 너비 조정 */
+    height: 80%; /* 높이 조정 */
     overflow: auto;
     background-color: rgba(0,0,0,0.4);
     box-sizing: content-box !important;
 }
+
 #table_modal {
    position: absolute;
     left: 0;
-    top: 100%; /* 寃��깋 諛� 諛붾줈 �븘�옒 */
-    width: 100%; /* 遺�紐� 而⑦뀒�씠�꼫 �꼫鍮꾩뿉 留욊쾶 */
+    top: 300%; 
+    width: 100%; 
     height : 250px;
-    max-width: none; /* �꼫鍮� �젣�븳 �젣嫄� */
-    min-width: 500px; /* 理쒖냼 �꼫鍮� �꽕�젙 */
-    max-height: 600px; /* �쟻�떦�븳 理쒕� �넂�씠 �꽕�젙 */
-    overflow-y: auto; /* �궡�슜�씠 �꽆移� 寃쎌슦 �뒪�겕濡� �몴�떆 */
+    max-width: none; 
+    min-width: 500px; 
+    max-height: 600px; 
+    overflow-y: auto; 
     background-color: #fefefe;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     border-radius: 5px;
@@ -149,10 +150,10 @@ a {
 }
 
 #confirm {
-	 position: absolute; /* 紐⑤떖 �궡遺��뿉�꽌�쓽 �젅�� �쐞移� */
-    bottom: -25px; /* 紐⑤떖 �븯�떒�뿉�꽌�쓽 �쐞移� */
-    left: 50%; /* 紐⑤떖�쓽 以묒븰�뿉 �쐞移� */
-    transform: translateX(-50%); /* X異뺤쑝濡� -50% �씠�룞�븯�뿬 以묒븰 �젙�젹 */
+	 position: absolute; 
+    bottom: -25px; 
+    left: 50%; 
+    transform: translateX(-50%); 
 }
 
 .close {
@@ -207,13 +208,13 @@ h2 {
     margin: 0 10px;
     
 }
-/* 釉뚮씪�슦���쓽 湲곕낯 �씪�뵒�삤 踰꾪듉 �뒪���씪�쓣 �닲源� */
+
 .input-group input[type="radio"],
 .persons-group input[type="radio"] {
     display: none !important;
 }
 
-/* �씪�뵒�삤 踰꾪듉�쓽 �씪踰⑥쓣 �룞洹몃� 踰꾪듉 紐⑥뼇�쑝濡� �뒪���씪留� */
+
 .input-group label,
 .persons-group label {
     display: flex;
@@ -244,21 +245,21 @@ h2 {
     cursor: pointer;
     box-sizing: content-box !important;
     text-align: center;
-    /* 湲고� �뒪���씪 */
+    
 }
 
-/* �씪�뵒�삤 踰꾪듉�씠 �꽑�깮�릺�뿀�쓣 �븣�쓽 �뒪���씪 */
+
 .input-group input[type="radio"]:checked + label,
 .persons-group input[type="radio"]:checked + label {
     background-color: #888;
     color: #fff;
 }
 .date-label {
-    font-weight: 700; /* �썝�븯�뒗 �궗�씠利덈줈 議곗젙�븯�꽭�슂 */
+    font-weight: 700; 
     margin-right: 20px;
     margin-left : 20px;
     box-sizing: content-box !important;
-    /* 湲고� �뒪���씪 */
+    
 }
 
 .close {
@@ -276,36 +277,40 @@ h2 {
 }
 
 #filterModal {
-    position: absolute; /* �젅�� �쐞移� �궗�슜 */
-    top: 100%; /* �븘�꽣 �븘�씠肄섏쓽 �넂�씠留뚰겮 �븘�옒�뿉 �쐞移� */
-    left: 0; /* �쇊履� �젙�젹 */
-    width: 450px; /* �쟻�젅�븳 �꼫鍮� �꽕�젙 */
-    height: 550px;
-    /* 湲고� �뒪���씪 �꽕�젙 */
+    position: absolute; /* 절대 위치 설정 */
+    left: -350%; /* 오른쪽 정렬 */
+    top: 200%; /* 상단에서의 위치 조정 */
+    width: 450px; /* 너비 설정 */
+    height: 550px; /* 높이 설정 */
+    background-color: #fff; /* 배경색 설정 */
+    border-radius: 10px; /* 테두리 둥글게 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+    padding: 20px; /* 패딩 설정 */
+    box-sizing: border-box; /* 박스 사이징 */
+    z-index: 1001; /* z-index 값 */
 }
-
 .filter-modal-content {
- 	width: 100%; /* 紐⑤떖李쎌쓽 �꼫鍮꾨�� �쟾泥대줈 �꽕�젙 */
+ 	width: 100%; 
     height: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center; /* 紐⑤떖李쎌쓽 �궡�슜�쓣 媛��슫�뜲 �젙�젹 */
-    justify-content: center; /* �꽭濡� 諛⑺뼢�뿉�꽌�룄 媛��슫�뜲 �젙�젹 */
-    background-color: #fefefe;
-    padding: 20px; /* �뙣�뵫 異붽� */
-    box-sizing: border-box; /* �뙣�뵫怨� 蹂대뜑瑜� �룷�븿�븳 �꼫鍮� 怨꾩궛 */
-    
+    align-items: center; 
+    justify-content: center; 
+    padding: 20px; 
+    box-sizing: border-box; 
+    background-color: #f4f4f4; /* 배경색 변경 */
+    border-radius: 8px; /* 테두리 둥글게 */
 }
 
 .filter-modal-content h2 {
-    text-align: center; /* �뿤�뜑 �뀓�뒪�듃 媛��슫�뜲 �젙�젹 */
-    margin-bottom: 20px; /* �뿤�뜑�� �궡�슜 �궗�씠 媛꾧꺽 異붽� */
+    text-align: center; 
+    margin-bottom: 20px; 
 }
 
 .modal-footer {
-    bottom: 0;          /* 諛붾떏�뿉 怨좎젙 */
-    position: sticky;   /* �뒪�겕濡ㅽ빐�룄 �솕硫댁뿉 怨좎젙�릺�룄濡� �꽕�젙 */
-    bottom: 0;          /* 遺�紐� �슂�냼�쓽 �쟾泥� �꼫鍮꾨�� 李⑥��븯�룄濡� �꽕�젙 */
+    bottom: 0;          
+    position: sticky;   
+    bottom: 0;          
     align-items: center; 
     justify-content: center;
     
@@ -313,38 +318,39 @@ h2 {
 
 .filter-content {
     display: flex;
-    justify-content: space-between; /* 媛� �빆紐� 媛� 媛꾧꺽 議곗젙 */
+    justify-content: space-between; 
     width: 100%;
     overflow: auto;
     
 }
 
 .filter-list {
-    list-style-type: none; /* 由ъ뒪�듃 �뒪���씪 �젣嫄� */
-    padding: 0; /* 湲곕낯 �뙣�뵫 �젣嫄� */
-    text-align: center; /* �뀓�뒪�듃 媛��슫�뜲 �젙�젹 */
+    list-style-type: none; 
+    padding: 0; 
+    text-align: center; 
 }
 
 
 .sub-list, .detail-list {
       display: flex;
     flex-direction: column;
-    align-items: center; /* �빆紐⑹쓣 媛��슫�뜲 �젙�젹 */
-    text-align: center; /* �뀓�뒪�듃 媛��슫�뜲 �젙�젹 */
+    align-items: center; 
+    text-align: center; 
 }
 .filter-list, .sub-list, .detail-list {
     display: flex;
     flex-direction: column;
-    align-items: stretch; /* 紐⑤뱺 �빆紐⑹쓽 湲몄씠瑜� 留욎땄 */
+    align-items: stretch; 
     list-style-type: none;
     padding: 0;
-    margin: 0; /* 媛꾧꺽 �젣嫄� */
+    margin: 0; 
 }
 
 .filter-item, .sub-list > li, .detail-list > li {
     padding: 10px;
-    border: 1px solid #ddd;
-    margin-bottom: 5px; /* �빆紐� 媛� 媛꾧꺽 異붽� */
+    background-color: #fff; /* 배경색 변경 */
+    border: 1px solid #ccc; /* 테두리 색상 변경 */
+    margin-bottom: 8px; /* 마진 변경 */
 }
 
 .filter-item > span:hover {
@@ -358,7 +364,10 @@ h2 {
     box-sizing: border-box;
     padding: 10px;
     border: 1px solid #ddd;
+    cursor: pointer;
 }
+
+
 
 .filter-item > span:hover {
     cursor: pointer;
@@ -370,8 +379,8 @@ h2 {
 }
 
 li.selected {
-    background-color: lightblue; /* �썝�븯�뒗 諛곌꼍 �깋�긽�쑝濡� �꽕�젙 */
-    /* 異붽��쟻�씤 �뒪���씪留� */
+    background-color: lightblue; 
+    
 }
 
 input[type="range"] {
