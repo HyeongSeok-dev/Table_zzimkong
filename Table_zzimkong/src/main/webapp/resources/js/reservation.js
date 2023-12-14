@@ -42,6 +42,8 @@ function btnPay() {
     }
 				
 	return true;
+	//결제페이지로 넘어가기
+	window.location.href = "payment";
 }
 
 // 예약자정보 방문자정보에 복사 입력
