@@ -191,6 +191,13 @@
 	 <button><a href="review/report">review/report</a></button>
 	 <hr>
 	 <button><a href="reservation">reservation</a></button>
+	<hr>
+	<button><a href="member/cs/faq">member/cs/faq</a></button>
+	<button><a href="member/cs/notice">member/cs/notice</a></button>
+	<button><a href="member/cs/qna/register">member/cs/qna/register</a></button>
+	<button><a href="member/cs/qna">member/cs/qna</a></button>
+	<button><a href="member/cs/register">member/cs/register</a></button>
+	<br>
 	
 	   
 	
