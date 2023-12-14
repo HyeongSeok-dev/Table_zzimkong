@@ -22,7 +22,8 @@
 		        </span>
 		        <span>
 					<button type="button" id="buttonNotice" onclick="location.href='ceo_cs_notice.jsp'">공지사항</button>	
-					<button type="button" id="buttonRegister" onclick="location.href='ceo_cs_register.jsp'">문의하기</button>	
+					<button type="button" id="buttonFnq" onclick="location.href='ceo_cs_fnq.jsp'">자주묻는 질문</button>	
+					<button type="button" id="buttonRegister" onclick="location.href='ceo_cs_qna_register.jsp'">문의하기</button>	
 		    	</span>
 		    </div>
 		
@@ -61,7 +62,6 @@
 				            <th scope="col" class="th-category">유형</th>
 				            <th scope="col" class="th-title">제목</th>
 				            <th scope="col" class="th-date">등록일</th>
-				            <th scope="col" class="th-date">수정</th>
 				        </tr>
 				        </thead>
 				        <tbody>
@@ -73,9 +73,6 @@
 				              <p>테스트</p>
 				            </th>
 				            <td>2017.07.13</td>
-				            <td class="td_button">
-								<button type="button">수정</button>
-							</td>
 				        </tr>
 				
 				        <tr>
@@ -83,9 +80,6 @@
 				            <th class="cs_th">블랙리스트</th>
 				            <th class="cs_th"><a href="#!">문의문의</a></th>
 				            <td>2017.06.15</td>
-				            <td class="td_button">
-								<button type="button">수정</button>
-							</td>
 				        </tr>
 				
 				        <tr>
@@ -93,9 +87,6 @@
 				            <th class="cs_th">블랙리스트</th>
 				            <th class="cs_th"><a href="#!">문의문의</a></th>
 				            <td>2017.06.15</td>
-				            <td class="td_button">
-								<button type="button">수정</button>
-							</td>
 				        </tr>
 				        </tbody>
 				    </table>
