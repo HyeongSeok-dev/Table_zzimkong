@@ -14,7 +14,7 @@
 
 /* 메인 가게 전경이미지 */
 .img-responsive {
-  width: 200x; /*이미지의 너비*/
+  width: 200px !important; /*이미지의 너비*/
   height: 200px; /*이미지의 높이를 자동으로 조정하여 비율 유지*/
   border-radius: 10% !important; /*모서리를 둥글게*/
 }
