@@ -228,7 +228,7 @@ public class HomeController {
 	public String review_report() {
 		return "review/review_report";
 	}
-	
+
 	@PostMapping("reservation")
 	public String reservation() {
 		return "reservation/reservation";

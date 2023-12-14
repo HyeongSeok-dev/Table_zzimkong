@@ -16,14 +16,14 @@
 	<section>
 		<h3>업체 입점 신청</h3>
 		<br><br>
-		<form action="" method="post" name="comJoinForm">
+		<form action="" method="post" name="ceoComForm">
 			<table>
 				<tr>
 					<th>사업자등록번호</th>
 					<td colspan="5">
 						<div>
 							<input type="text" placeholder="사업자등록번호를 입력해 주세요." id="comNumText">
-							<button type="button" class="button_olive" >번호찾기</button>
+							<button type="button" class="button_olive"  onclick="">번호찾기</button>
 						</div>	
 					</td>
 				</tr>
