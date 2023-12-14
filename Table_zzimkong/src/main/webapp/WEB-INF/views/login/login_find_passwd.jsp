@@ -53,7 +53,7 @@
 		          <!-- 고객센터 연결 -->
 		          <div align="center">
 			          비밀번호 찾기에 어려움이 있으신가요? 
-			          <a href="">고객센터</a>
+			          <a href="${pageContext.request.contextPath }/member/cs/faq">고객센터</a>
 		          </div><br>
 		          		          
 				 <!-- 바텀 -->

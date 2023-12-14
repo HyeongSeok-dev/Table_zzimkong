@@ -31,7 +31,7 @@ body {
   <div id="link">
   
     <p>서비스 이용약관 | 개인정보 처리방침 | 위치정보 이용약관 | 광고/제휴문의 |  
-    <a href="">고객센터</a></p>
+    <a href="${pageContext.request.contextPath }/member/cs/faq">고객센터</a></p>
          
   </div>
 

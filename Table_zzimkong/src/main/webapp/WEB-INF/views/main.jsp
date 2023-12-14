@@ -39,15 +39,8 @@
 </head>
 
 <body>
-	<!--
-	header-img start 
-	============================== -->
-	<section id="hero-area">
-		<img class="img-responsive_main" src="${pageContext.request.contextPath}/resources/img/omakase.jpg" alt="">
-	</section>
-	<!--
-    Header start 
-	============================== -->
+	
+	<!-- Header start ============================== -->
 	<nav id="navigation">
 		<div class="container_header_width">
 			<div class="row">
@@ -69,16 +62,28 @@
 										<%-- 상단 로고 --%>
 										<div class="header_img">
 											<img alt="logo1" src="${pageContext.request.contextPath}/resources/img/logo1_2.png">
-											<img alt="logo2" src="${pageContext.request.contextPath}/resources/img/logo3_2.png">
+											<img alt="logo2" src="${pageContext.request.contextPath}/resources/img/logo5_b.png">
 										</div>
 									</div>
 									
 									<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 										<ul class="nav navbar-nav navbar-right">
-											<li><a href="${pageContext.request.contextPath}/login">LOGIN</a></li>
-											<li><a href="${pageContext.request.contextPath}/#">NOTIFICATIONS</a></li>
-											<li><a href="${pageContext.request.contextPath}/my/list">MYPAGE</a></li>
-											<li><a href="${pageContext.request.contextPath}/#">CS</a></li>
+											<%--로그인 --%>
+											<li><a href="${pageContext.request.contextPath}/login">
+											<img src="${pageContext.request.contextPath}/resources/img/user.png"
+											style="width: 30px; height: 30px;"></a></li>
+											<%--알림 --%>
+											<li><a href="${pageContext.request.contextPath}/#">
+											<img src="${pageContext.request.contextPath}/resources/img/bell.png"
+											style="width: 30px; height: 30px;"></a></li>
+											<%--마이페이지 --%>
+											<li><a href="${pageContext.request.contextPath}/my/list">
+											<img src="${pageContext.request.contextPath}/resources/img/user.png"
+												style="width: 30px; height: 30px;"></a></li>
+											<%--고객센터 --%>
+											<li><a href="${pageContext.request.contextPath}/member/cs/faq">
+											<img  src="${pageContext.request.contextPath}/resources/img/headset.png"
+											style="width: 30px; height: 30px;"></a></li>
 										</ul>
 									</div><!-- /.navbar-collapse -->
 								</div>
@@ -93,9 +98,13 @@
 			</div><!-- .row close -->
 		</div><!-- .container close -->
 	</nav><!-- header close -->
-	<!--
-    Slider start
-    ============================== -->
+	
+	<!--header-img start (광고)============================== -->
+	<section id="hero-area">
+		<img class="img-responsive_main" src="${pageContext.request.contextPath}/resources/img/omakase.jpg" >
+	</section>
+	
+	<!--Slider start============================== -->
 	<section id="slider">
 		<div class="container">
 			<div class="row">
