@@ -85,7 +85,7 @@ public class HomeController {
 	}
 	
 	@GetMapping("ceo/cs/faq")
-	public String ceo_cs() {
+	public String ceo_cs_faq() {
 		return "ceo/ceo_cs_faq";
 		
 	}
@@ -112,6 +112,11 @@ public class HomeController {
 	@GetMapping("ceo/cs/register")
 	public String ceo_cs_register() {
 		return "ceo/ceo_cs_register";
+	}
+	
+	@GetMapping("ceo/cs")
+	public String ceo_cs() {
+		return "ceo/ceo_cs";
 	}
 	
 	@GetMapping("payment/info")
@@ -258,7 +263,6 @@ public class HomeController {
 	public String member_cs_faq() {
 		return "cs/member_cs_faq";
 	}
-<<<<<<< HEAD
 	
 	@GetMapping("member/cs/notice")
 	public String member_cs_notice() {
@@ -284,10 +288,5 @@ public class HomeController {
 	public String member_cs_register() {
 		return "cs/member_cs_register";
 	}
-	
-	
-=======
-//
->>>>>>> branch 'master' of https://github.com/HyeongSeok-dev/Table_zzimkong.git
 	
 }
