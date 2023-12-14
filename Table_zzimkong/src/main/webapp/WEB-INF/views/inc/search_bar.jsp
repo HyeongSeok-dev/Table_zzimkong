@@ -90,38 +90,38 @@
 									<li class="filter-item" id="location"><span>지역</span>
 										<ul class="sub-list location">
 											<li>서울
-												<ul class="detail-list">
-													<li>서울 전체</li>
-													<li>강남</li>
-													<li>서초</li>
-													<li>잠실/송파/강동</li>
-													<li>영등포/여의도/강서</li>
-													<li>건대/성수/왕십리</li>
-													<li>종로/중구</li>
-													<li>홍대/합정/마포</li>
-													<li>성북/노원/중랑</li>
-													<li>구로/관악/동작</li>
-												</ul>
-											</li>
+									            <ul class="detail-list">
+									                <li><label for="서울_서울전체"><input type="radio" id="서울_서울전체" name="location" value="서울_서울전체"> 전체</label></li>
+									                <li><label for="서울_강남"><input type="radio" id="서울_강남" name="location" value="서울_강남"> 강남</label></li>
+									                <li><label for="서울_서초"><input type="radio" id="서울_서초" name="location" value="서울_서초"> 서초</label></li>
+									                <li><label for="서울_잠실송파강동"><input type="radio" id="서울_잠실송파강동" name="location" value="서울_잠실송파강동"> 잠실/송파/강동</label></li>
+									                <li><label for="서울_영등포여의도강서"><input type="radio" id="서울_영등포여의도강서" name="location" value="서울_영등포여의도강서"> 영등포/여의도/강서</label></li>
+									                <li><label for="서울_건대성수왕십리"><input type="radio" id="서울_건대성수왕십리" name="location" value="서울_건대성수왕십리"> 건대/성수/왕십리</label></li>
+									                <li><label for="서울_종로중구"><input type="radio" id="서울_종로중구" name="location" value="서울_종로중구"> 종로/중구</label></li>
+									                <li><label for="서울_홍대합정마포"><input type="radio" id="서울_홍대합정마포" name="location" value="서울_홍대합정마포"> 홍대/합정/마포</label></li>
+									                <li><label for="서울_성북노원중랑"><input type="radio" id="서울_성북노원중랑" name="location" value="서울_성북노원중랑"> 성북/노원/중랑</label></li>
+									                <li><label for="서울_구로관악동작"><input type="radio" id="서울_구로관악동작" name="location" value="서울_구로관악동작"> 구로/관악/동작</label></li>
+									            </ul>
+									        </li>
 											<li>경기
-												<ul class="detail-list">
-													<li>경기 전체</li>
-													<li>성남시(분당/판교/성남)</li>
-													<li>수원</li>
-													<li>용인/화성(동탄)</li>
-													<li>안양/과천</li>
-													<li>군포/의왕</li>
-													<li>부천/안산/시흥/광명</li>
-													<li>평택/오산/안성</li>
-													<li>고양/파주</li>
-													<li>김포</li>
-													<li>가평/양평</li>
-													<li>광주/이천/여주</li>
-													<li>남양주/의정부</li>
-													<li>하남/구리</li>
-													<li>포천/양주/동두천/연천</li>
-												</ul>
-											</li>
+										    <ul class="detail-list">
+										        <li><label for="경기_경기전체"><input type="radio" id="경기_경기전체" name="location" value="경기_경기전체"> 경기 전체</label></li>
+										        <li><label for="경기_성남시"><input type="radio" id="경기_성남시" name="location" value="경기_성남시"> 성남시(분당/판교/성남)</label></li>
+										        <li><label for="경기_수원"><input type="radio" id="경기_수원" name="location" value="경기_수원"> 수원</label></li>
+										        <li><label for="경기_용인화성"><input type="radio" id="경기_용인화성" name="location" value="경기_용인화성"> 용인/화성(동탄)</label></li>
+										        <li><label for="경기_안양과천"><input type="radio" id="경기_안양과천" name="location" value="경기_안양과천"> 안양/과천</label></li>
+										        <li><label for="경기_군포의왕"><input type="radio" id="경기_군포의왕" name="location" value="경기_군포의왕"> 군포/의왕</label></li>
+										        <li><label for="경기_부천안산"><input type="radio" id="경기_부천안산" name="location" value="경기_부천안산"> 부천/안산/시흥/광명</label></li>
+										        <li><label for="경기_평택오산"><input type="radio" id="경기_평택오산" name="location" value="경기_평택오산"> 평택/오산/안성</label></li>
+										        <li><label for="경기_고양파주"><input type="radio" id="경기_고양파주" name="location" value="경기_고양파주"> 고양/파주</label></li>
+										        <li><label for="경기_김포"><input type="radio" id="경기_김포" name="location" value="경기_김포"> 김포</label></li>
+										        <li><label for="경기_가평양평"><input type="radio" id="경기_가평양평" name="location" value="경기_가평양평"> 가평/양평</label></li>
+										        <li><label for="경기_광주이천"><input type="radio" id="경기_광주이천" name="location" value="경기_광주이천"> 광주/이천/여주</label></li>
+										        <li><label for="경기_남양주의정부"><input type="radio" id="경기_남양주의정부" name="location" value="경기_남양주의정부"> 남양주/의정부</label></li>
+										        <li><label for="경기_하남구리"><input type="radio" id="경기_하남구리" name="location" value="경기_하남구리"> 하남/구리</label></li>
+										        <li><label for="경기_포천양주"><input type="radio" id="경기_포천양주" name="location" value="경기_포천양주"> 포천/양주/동두천/연천</label></li>
+										    </ul>
+										</li>
 											<li>인천
 												<ul class="detail-list">
 													<li>인천 전체</li>
@@ -134,40 +134,40 @@
 											</li>
 											<li>부산
 												<ul class="detail-list">
-													<li><label for="all"><input type="radio"
-															id="all" name="location" value="all"> 전체</label></li>
-													<li><label for="강서구"><input type="radio"
-															id="강서구" name="location" value="강서구"> 강서구</label></li>
-													<li><label for="금정구"><input type="radio"
-															id="금정구" name="location" value="금정구"> 금정구</label></li>
-													<li><label for="남구"><input type="radio"
-															id="남구" name="location" value="남구"> 남구</label></li>
-													<li><label for="동구"><input type="radio"
-															id="동구" name="location" value="동구"> 동구</label></li>
-													<li><label for="동래구"><input type="radio"
-															id="동래구" name="location" value="동래구"> 동래구</label></li>
-													<li><label for="부산진구"><input type="radio"
-															id="부산진구" name="location" value="부산진구"> 부산진구</label></li>
-													<li><label for="북구"><input type="radio"
-															id="북구구" name="location" value="북구"> 북구</label></li>
-													<li><label for="사상구"><input type="radio"
-															id="사상구" name="location" value="사상구"> 사상구</label></li>
-													<li><label for="사하구"><input type="radio"
-															id="사하구" name="location" value="사하구"> 사하구</label></li>
-													<li><label for="서구"><input type="radio"
-															id="서구" name="location" value="서구"> 서구</label></li>
-													<li><label for="수영구"><input type="radio"
-															id="수영구" name="location" value="수영구"> 수영구</label></li>
-													<li><label for="연제구"><input type="radio"
-															id="연제구" name="location" value="연제구"> 연제구</label></li>
-													<li><label for="영도구"><input type="radio"
-															id="영도구" name="location" value="영도구"> 영도구</label></li>
-													<li><label for="중구"><input type="radio"
-															id="중구" name="location" value="중구"> 중구</label></li>
-													<li><label for="해운대구"><input type="radio"
-															id="해운대구" name="location" value="해운대구"> 해운대구</label></li>
-													<li><label for="기장군"><input type="radio"
-															id="기장군" name="location" value="기장군"> 기장군</label></li>
+													<li><label for="부산_all"><input type="radio"
+															id="부산_all" name="location" value="부산_all"> 전체</label></li>
+													<li><label for="부산_강서구"><input type="radio"
+															id="부산_강서구" name="location" value="부산_강서구"> 강서구</label></li>
+													<li><label for="부산_금정구"><input type="radio"
+															id="부산_금정구" name="location" value="부산_금정구"> 금정구</label></li>
+													<li><label for="부산_남구"><input type="radio"
+															id="부산_남구" name="location" value="부산_남구"> 남구</label></li>
+													<li><label for="부산_동구"><input type="radio"
+															id="부산_동구" name="location" value="부산_동구"> 동구</label></li>
+													<li><label for="부산_동래구"><input type="radio"
+															id="부산_동래구" name="location" value="부산_동래구"> 동래구</label></li>
+													<li><label for="부산_부산진구"><input type="radio"
+															id="부산_부산진구" name="location" value="부산_부산진구"> 부산진구</label></li>
+													<li><label for="부산_북구"><input type="radio"
+															id="부산_북구" name="location" value="부산_북구"> 북구</label></li>
+													<li><label for="부산_사상구"><input type="radio"
+															id="부산_사상구" name="location" value="부산_사상구"> 사상구</label></li>
+													<li><label for="부산_사하구"><input type="radio"
+															id="부산_사하구" name="location" value="부산_사하구"> 사하구</label></li>
+													<li><label for="부산_서구"><input type="radio"
+															id="부산_서구" name="location" value="부산_서구"> 서구</label></li>
+													<li><label for="부산_수영구"><input type="radio"
+															id="부산_수영구" name="location" value="부산_수영구"> 수영구</label></li>
+													<li><label for="부산_연제구"><input type="radio"
+															id="부산_연제구" name="location" value="부산_연제구"> 연제구</label></li>
+													<li><label for="부산_영도구"><input type="radio"
+															id="부산_영도구" name="location" value="부산_영도구"> 영도구</label></li>
+													<li><label for="부산_중구"><input type="radio"
+															id="부산_중구" name="location" value="부산_중구"> 중구</label></li>
+													<li><label for="부산_해운대구"><input type="radio"
+															id="부산_해운대구" name="location" value="부산_해운대구"> 해운대구</label></li>
+													<li><label for="부산_기장군"><input type="radio"
+															id="부산_기장군" name="location" value="부산_기장군"> 기장군</label></li>
 												</ul>
 											</li>
 											<li>제주도

@@ -1,11 +1,28 @@
 $(document).ready(function() {
-	// 모든 모달창을 숨깁니다.
+	//서치바 파라미터 정리
+	var initialMenuPrice;
+	initialMenuPrice = $('#price').val();
+
+	$(".search_icon").click(function() {
+		// Check if the slider value has changed
+		if ($('#price').val() === initialMenuPrice) {
+			// If not changed, remove the slider's name attribute to prevent submission
+			$('#price').removeAttr('name');
+		}
+		$("form").submit();
+	});
+
 	$('.modal').hide();
+	// 모든 모달창을 숨깁니다.
 
 	function closeAllModals() {
 		$('.modal').hide();
 	}
 
+	function resetFilterModal() {
+		$('#filterModal input[type="radio"]').prop('checked', false);
+		$('#filterModal .selected').removeClass('selected');
+	}
 	// 필터 모달 오프너 클릭 이벤트
 	$('.filter_wrapper').click(function() {
 		closeAllModals(); // 다른 모달 닫기
@@ -17,6 +34,14 @@ $(document).ready(function() {
 		closeAllModals(); // 다른 모달 닫기
 		$('#table_modal').show(); // 테이블 모달 열기
 	});
+
+	function closeFilterModal() {
+		$('#filterModal').hide();
+		resetFilterModal(); // 필터 모달창 닫힐 때 초기화
+	}
+
+	// 필터 모달창 닫기 버튼 클릭 이벤트
+	$('#filterModal .close').click(closeFilterModal);
 
 	// 닫기 버튼을 클릭했을 때, 해당 버튼이 속한 모달창만을 닫습니다.
 	$(document).on('click', '.close', function() {
@@ -30,6 +55,7 @@ $(document).ready(function() {
 	$(window).click(function(event) {
 		if (!$(event.target).closest('.modal').length && !$(event.target).hasClass('modal-opener')) {
 			closeAllModals();
+			resetModal()
 		}
 	});
 
@@ -138,59 +164,57 @@ $(document).ready(function() {
 	$('.filter-item').click(function() {
 		var subList = $(this).find('.sub-list').clone(true); // 해당하는 서브 리스트를 복제합니다.
 		$('.sub-list-wrap').empty().append(subList); // 서브 리스트 래퍼에 복제된 서브 리스트를 추가합니다.
+		console.log("필터리스트 클릭됨")
 
 		// 디테일 리스트를 비웁니다.
 		$('.detail-list-wrap').empty();
 		subList.css('display', 'flex'); // 서브 리스트를 표시합니다.
 	});
 
-	$('.sub-list > li').click(function(event) {
-		// 현재 클릭된 요소에 대한 상세 리스트가 있는지 확인합니다.
-		event.stopPropagation();
-		
-		var detailList = $(this).find('.detail-list');
-			// 상세 리스트가 있는 경우, 복제하고 '.detail-list-wrap'에 추가합니다.
-			var clonedDetailList = detailList.clone(true);
-			$('.detail-list-wrap').empty().append(clonedDetailList);
-			clonedDetailList.css('display', 'flex');
-			console.log("리스트 만들어짐")
-	});
-
-	$(document).on('click', '.filter-list li, .sub-list li, .detail-list li', function(e) {
-		var radio = $(this).find('input[type="radio"]');
-		var wasChecked = radio.prop('checked');
-
-		if (!wasChecked) {
-			// 현재 클릭된 항목에 따라 다른 레벨의 checked 클래스를 제거
-			if ($(this).parents('.filter-list').length) {
-				// filter-list 클릭 시
-				$('.filter-list li').removeClass('selected');
-				$('.sub-list li').removeClass('selected');
-				$('.detail-list li').removeClass('selected');
-			console.log("필터리스트 클릭됨")
-				
-			} else if ($(this).parents('.sub-list').length) {
-				// sub-list 클릭 시
-				$(this).closest('.sub-list').find('li').removeClass('selected');
-				$('.detail-list li').removeClass('selected');
-				console.log("서브리스트 클릭됨")
-			} else if ($(this).parents('.detail-list').length) {
-				// detail-list 클릭 시
-				$(this).closest('.detail-list').find('li').removeClass('selected');
-			console.log("디테일 리스트 클릭됨")
-				
-			}
-
-			// 선택된 라디오 버튼에 대한 클래스 적용
-			radio.prop('checked', true);
-			$(this).addClass('selected');
+	$(document).on('click', '.sub-list > li', function(event) {
+		if ($(this).find('input[type="radio"]').length > 0) {
+			event.stopPropagation();
 		}
+		var detailList = $(this).find('.detail-list');
+		var clonedDetailList = detailList.clone(true);
+		$('.detail-list-wrap').empty().append(clonedDetailList);
+		clonedDetailList.css('display', 'flex');
 	});
 
-	$('.sub-list').on('input', '#price', function() {
-		$('#priceValue').text($(this).val());
-		console.log("슬라이더 값 변경: ", $(this).val());
+	$('#price').on('change', function() {
+		var newValue = $(this).val();
+		$('#priceValue').text(newValue); // Update the displayed price value
+
+		// Trigger a click event on #priceValue
+		$('#priceValue').trigger('click');
 	});
+
+	$(document).on('click', '.filter-list li, .sub-list li, .detail-list li', function(event) {
+		var radio = $(this).find('input[type="radio"]');
+		// 현재 클릭된 항목에 따라 다른 레벨의 checked 클래스를 제거
+		if ($(this).parents('.filter-list').length) {
+			// filter-list 클릭 시
+			$('.filter-list li').removeClass('selected');
+			$('.sub-list li').removeClass('selected');
+			$('.detail-list li').removeClass('selected');
+		} else if ($(this).parents('.sub-list').length) {
+			// sub-list 클릭 시
+			event.stopPropagation(); // 이벤트 버블링 중단
+			$(this).closest('.sub-list').find('li').removeClass('selected');
+			$('.detail-list li').removeClass('selected');
+		} else if ($(this).parents('.detail-list').length) {
+			// detail-list 클릭 시
+			$(this).closest('.detail-list').find('li').removeClass('selected');
+
+		}
+		// 선택된 라디오 버튼에 대한 클래스 적용
+		radio.prop('checked', true);
+		$(this).addClass('selected');
+	});
+
+
+
+
 
 });
 
