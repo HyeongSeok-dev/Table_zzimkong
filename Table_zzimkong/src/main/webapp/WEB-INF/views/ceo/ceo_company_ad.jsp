@@ -22,29 +22,29 @@
 	<section>
 		<h3>광고 등록</h3>
 		<br><br>
-		<form action="payAdPro" method="post" name="com_ad_join">
+		<form action="payAdPro" method="post" name="comAdJoin">
 			<table>
 				<tr>
 					<th>업체번호</th>
 					<td colspan="1">1</td>
 					<th>업체명</th>
-					<td colspan="3"><input type="text" value=""></td>
+					<td colspan="3"><input type="text" value="" name="comName"></td>
 				</tr>
 				<tr>
 					<th>광고상태</th>
-					<td colspan="1"><input type="text" value=""></td>
+					<td colspan="1"><input type="text" value="" name="adStatus"></td>
 					<th>광고등급</th>
 					<td colspan="3">
 						<select id="company_state" onchange="company_shut_down()">
-							<option value="1">광고없음</option>
-							<option value="2">1단계</option>
-							<option value="3">2단계</option>
-							<option value="4">3단계</option>
+							<option value="1" name="zeroLevel">광고없음</option>
+							<option value="2" name="firstLevel">1단계</option>
+							<option value="3" name="secondeLevel">2단계</option>
+							<option value="4" name="thirdLevel">3단계</option>
 						</select>
 					</td>
 				</tr>	
 				<tr>
-					<th colspan="6">광고 가격</th>
+					<th colspan="6">광고 등급당 가격 안내</th>
 				</tr>
 				<tr>
 					<th colspan="2">등급</th>

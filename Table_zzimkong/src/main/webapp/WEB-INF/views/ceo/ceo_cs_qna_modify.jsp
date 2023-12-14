@@ -25,6 +25,7 @@
 					<th>유형</th>
 					<td>
 						<select class="category_select">
+		            		<option>유형선택</option>
 		            		<option>예약관리</option>
 		            		<option>메뉴관리</option>
 		            		<option>광고</option>
