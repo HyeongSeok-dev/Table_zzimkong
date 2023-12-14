@@ -45,7 +45,7 @@
 			</tr>
 		</table>
 	</section>
-	
+
 	<br>
 	<section>
 		<button type="submit" class="button_olive" onclick="report_blind()">승인</button>
