@@ -352,11 +352,11 @@
 		</div>
 	</div>
 		<!-- 삭제 확인 팝업창 -->
-<!-- 	<div id="deleteConfirmationPopup" class="popup"> -->
-<!-- 	    <p>리뷰를 삭제하시겠습니까?</p> -->
-<!-- 	    <button id="confirmDelete">네</button> -->
-<!-- 	    <button id="cancelDelete">아니오</button> -->
-<!-- 	</div> -->
+	<div id="deleteConfirmationPopup" class="popup">
+	    <p>리뷰를 삭제하시겠습니까?</p>
+	    <button id="confirmDelete">네</button>
+	    <button id="cancelDelete">아니오</button>
+	</div>
 	<br>
 	<br>
 	<br>

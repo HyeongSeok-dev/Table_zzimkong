@@ -29,7 +29,38 @@ document.addEventListener('DOMContentLoaded', function() {
                     + (-imageWidth * currentIndex) + 'px)';
             }
         });
+	// 삭제
+	 // 팝업창을 숨김
+    var deleteConfirmationPopup = document.getElementById('deleteConfirmationPopup');
+    deleteConfirmationPopup.style.display = 'none';
 
+    // 모든 "삭제" 버튼에 대해 이벤트 리스너를 추가
+    var deleteButtons = document.querySelectorAll('.review_delete');
+    deleteButtons.forEach(function(deleteButton) {
+        deleteButton.addEventListener('click', function(event) {
+            // 팝업창을 표시
+            deleteConfirmationPopup.style.display = 'block';
+
+            // 기본 이벤트 방지 (링크 이동 등)
+            event.preventDefault();
+        });
+    });
+
+    // "네" 버튼 클릭 이벤트 리스너
+    document.getElementById('confirmDelete').addEventListener('click', function() {
+        // 삭제 로직을 여기에 추가
+        // 예: 서버에 삭제 요청을 보낸다거나, 리스트에서 해당 항목을 제거
+
+        // 팝업창을 숨김
+        deleteConfirmationPopup.style.display = 'none';
+    });
+
+    // "아니오" 버튼 클릭 이벤트 리스너
+    document.getElementById('cancelDelete').addEventListener('click', function() {
+        // 팝업창을 숨김
+        deleteConfirmationPopup.style.display = 'none';
+    });	
+		
     var moreButton = document.querySelector('.more-button');
     var hiddenItems = document.querySelectorAll('.rv_sl_1:nth-child(n+6)');
     var svgIcon = moreButton.querySelector('.svg-icon');
@@ -65,39 +96,4 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-	// 삭제 팝업창
-//    document.addEventListener('DOMContentLoaded', function() {
-//    // 팝업을 숨김
-//    var popup = document.getElementById('deleteConfirmationPopup');
-//    popup.style.display = 'none';
-//
-//    // "삭제" 버튼 클릭 이벤트 리스너
-//    var deleteButtons = document.querySelectorAll('.review_delete');
-//    deleteButtons.forEach(function(deleteButton) {
-//        deleteButton.addEventListener('click', function(event) {
-//            // 팝업의 위치를 계산
-//            var buttonRect = deleteButton.getBoundingClientRect();
-//            var top = window.scrollY + buttonRect.top + buttonRect.height; // 버튼 아래에 표시
-//            var left = window.scrollX + buttonRect.left - popup.offsetWidth / 2 + deleteButton.offsetWidth / 2; // 버튼 가운데 정렬
-//
-//            // 팝업
-//            popup.style.top = top + 'px';
-//            popup.style.left = left + 'px';
-//            popup.style.display = 'block';
-//        });
-//    });
-//
-//    // "네" 클릭 이벤트 리스너
-//    var confirmDeleteButton = document.getElementById('confirmDelete');
-//    confirmDeleteButton.addEventListener('click', function() {
-//        // 삭제 로직
-//        popup.style.display = 'none';
-//        //삭제 서버 요청
-//    });
-//
-//    // "아니오" 버튼 클릭이벤트
-//    var cancelDeleteButton = document.getElementById('cancelDelete');
-//    cancelDeleteButton.addEventListener('click', function() {
-//        popup.style.display = 'none';
-//    });
-//});
+

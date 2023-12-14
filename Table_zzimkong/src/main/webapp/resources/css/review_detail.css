@@ -1050,16 +1050,16 @@ h1 {
 
 
 /* 삭제 팝업창 */
-/* .popup { */
-/*     display: none; 기본적으로 숨김 */
-/*     position: absolute; 절대 위치 */
-/*     background-color: white; */
-/*     border: 1px solid #ddd; */
-/*     padding: 20px; */
-/*     z-index: 1000; 다른 요소 위에 표시 */
-/* } */
+.popup {
+    display: none; 
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 20px;
+    z-index: 1000; 
+}
 
-/* .popup button { */
-/*     margin: 10px; */
-/* } */
+.popup button {
+    margin: 10px;
+}
 
