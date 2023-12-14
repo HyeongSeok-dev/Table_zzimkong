@@ -15,7 +15,7 @@
 <!--  <header> -->
 <%--  	<jsp:include page="../inc/top_ns.jsp"></jsp:include> --%>
 <!--  </header> -->
- <form action="${pageContext.request.contextPath }/payment" name="reservation" onsubmit="return btnPay();">
+ <form action="payment" name="reservation" onsubmit="return btnPay();">
 <!-- 	<action="" name="reservation" onsubmit="return validateForm()"> -->
 	<div class="out_block">
 		<!-- 찜버튼 박스 -->
@@ -523,7 +523,7 @@
 					</div>
 				</section>
 			</div>
-			<button type="button" class="payment" onclick="btnPay();">결제하기</button>
+			<button type="submit" class="payment" onclick="btnPay();">결제하기</button>
 		</div>
 		<!-- 	</action> -->
 	</div>
