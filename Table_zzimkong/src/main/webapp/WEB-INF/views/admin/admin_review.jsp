@@ -9,12 +9,9 @@
 <title>Insert title here</title>
 <link href="${pageContext.request.contextPath}/resources/css/global.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resources/css/admin_article.css" rel="stylesheet">
-<%-- <link href="${pageContext.request.contextPath}/resources/css/admin_sidebar.css" rel="stylesheet"> --%>
 <script src="${pageContext.request.contextPath}/resources/js/admin_script.js"></script>
 </head>
-<body>
-	<%-- 사이드바 삽입 --%>
-	<%-- <jsp:include page="/inc/admin_sidebar.jsp"/> --%>
+<body id="body">
 	<header>
 		<jsp:include page="../inc/admin_top.jsp"/>
 	</header>
@@ -76,5 +73,10 @@
 			</table>
 		</div>
 	</section>
+	
+	<%-- 상단으로 --%>
+	<footer>
+		<jsp:include page="../inc/admin_topup.jsp"/>
+	</footer>
 </body>
 </html>

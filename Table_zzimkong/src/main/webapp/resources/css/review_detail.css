@@ -1022,15 +1022,15 @@ h1 {
 }
 
 /* 리뷰 버튼(삭제/수정/신고) */
-.review-actions button {
-  background-color: lightgray; /* 버튼 배경색 */
+.review-actions button  {
+  background-color: lightgray !important; /* 버튼 배경색 */
   border: none; /* 테두리 없음 */
   color: white; /* 글자색 */
   padding: 5px 7px; /* 버튼 내부 패딩 */
   text-align: center; /* 텍스트 중앙 정렬 */
   text-decoration: none; /* 텍스트 디코레이션 없음 */
   display: inline-block;
-  font-size: 12px; /* 글자 크기 */
+  font-size: 14px; /* 글자 크기 */
   margin: 2px 2px;
   cursor: pointer; /* 마우스 오버시 포인터 모양 */
   transition-duration: 0.4s; /* 부드러운 전환 효과 */
@@ -1048,7 +1048,6 @@ h1 {
 	margin-left: 15px;
 }				
 
-
 /* 삭제 팝업창 */
 .popup {
     display: none; 
@@ -1063,3 +1062,19 @@ h1 {
     margin: 10px;
 }
 
+/* 삭제 input 버튼 */
+.review_delete {
+  background-color: lightgray !important; /* 버튼 배경색 */
+  border: none; /* 테두리 없음 */
+  color: white; /* 글자색 */
+  padding: 5px 7px; /* 버튼 내부 패딩 */
+  text-align: center; /* 텍스트 중앙 정렬 */
+  text-decoration: none; /* 텍스트 디코레이션 없음 */
+  display: inline-block;
+  font-size: 14px; /* 글자 크기 */
+  margin: 2px 2px;
+  cursor: pointer; /* 마우스 오버시 포인터 모양 */
+  transition-duration: 0.4s; /* 부드러운 전환 효과 */
+  border-radius: 9px; /* 버튼 모서리 둥글게 */
+  text-align: right;
+}

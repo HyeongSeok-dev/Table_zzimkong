@@ -23,7 +23,8 @@
 		        </span>
 		        <span>
 					<button type="button" id="buttonNotice" onclick="location.href='member_cs_notice.jsp'">공지사항</button>	
-					<button type="button" id="buttonRegister" onclick="location.href='member_cs_register.jsp'">문의하기</button>	
+					<button type="button" id="buttonFaq" onclick="location.href='member_cs_faq.jsp'">자주묻는 질문</button>	
+					<button type="button" id="buttonRegister" onclick="location.href='member_cs_qna_register.jsp'">문의하기</button>	
 		    	</span>
 		    </div>
 		
@@ -62,41 +63,31 @@
 				            <th scope="col" class="th-category">유형</th>
 				            <th scope="col" class="th-title">제목</th>
 				            <th scope="col" class="th-date">등록일</th>
-				            <th scope="col" class="th-date">수정</th>
 				        </tr>
 				        </thead>
 				        <tbody>
 				        <tr>
 				            <td>3</td>
-				            <th class="cs_th">블랙리스트</th>
+				            <th class="cs_th">주문/결제</th>
 				            <th class="cs_th">
-				              <a href="#!">문의문의</a>
+				              <a href="member_cs_qna_modify.jsp">문의문의</a>
 				              <p>테스트</p>
 				            </th>
 				            <td>2017.07.13</td>
-				            <td class="td_button">
-								<button type="button">수정</button>
-							</td>
 				        </tr>
 				
 				        <tr>
 				            <td>2</td>
-				            <th class="cs_th">블랙리스트</th>
-				            <th class="cs_th"><a href="#!">문의문의</a></th>
+				            <th class="cs_th">예약</th>
+				            <th class="cs_th"><a href="member_cs_qna_modify.jsp">문의문의</a></th>
 				            <td>2017.06.15</td>
-				            <td class="td_button">
-								<button type="button">수정</button>
-							</td>
 				        </tr>
 				
 				        <tr>
 				            <td>1</td>
-				            <th class="cs_th">블랙리스트</th>
-				            <th class="cs_th"><a href="#!">문의문의</a></th>
+				            <th class="cs_th">리뷰</th>
+				            <th class="cs_th"><a href="member_cs_qna_modify.jsp">문의문의</a></th>
 				            <td>2017.06.15</td>
-				            <td class="td_button">
-								<button type="button">수정</button>
-							</td>
 				        </tr>
 				        </tbody>
 				    </table>

@@ -13,13 +13,20 @@
 }
 
 /* 메인 가게 전경이미지 */
-/* .img-responsive { */
-/*   width: 300x; 이미지의 너비 */
-/*   height: 300px; 이미지의 높이를 자동으로 조정하여 비율 유지 */
-/*   border-radius: 20% !important; 모서리를 둥글게 */
-/* } */
+.img-responsive {
+  width: 200x; /*이미지의 너비*/
+  height: 200px; /*이미지의 높이를 자동으로 조정하여 비율 유지*/
+  border-radius: 10% !important; /*모서리를 둥글게*/
+}
 
+.img-responsive_main {
+	width: 100%;
+}
 
+.owl_example1_items_images {
+	margin-right: 30px;
+	margin-bottom: 50px;
+}
 
 /*--
     Common Css
@@ -271,9 +278,8 @@ nav .block .navbar-default .navbar-nav > .active > a:hover:before {
   text-align: center;
 }
 #slider .block .owl-carousel img {
-  padding-right: 30px;
-  border-radius: 2px;
-  padding-bottom: 50px;
+  margin-right: 30px;
+  margin-bottom: 50px;
 }
 #slider .block .owl-carousel .owl-pagination .active {
 /*   background: #FF5333; */
