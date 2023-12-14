@@ -43,7 +43,7 @@
 	header-img start 
 	============================== -->
 	<section id="hero-area">
-		<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/omakase.jpg" alt="">
+		<img class="img-responsive_main" src="${pageContext.request.contextPath}/resources/img/omakase.jpg" alt="">
 	</section>
 	<!--
     Header start 
@@ -102,34 +102,35 @@
 				<div class="col-md-12">
 					<div class="block wow fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
 						<div class="title">
-							<h3>인기많은 <span>별점순</span></h3>
+							<h3>부산전포 <span>위생순</span></h3>
 						</div>
 						<div id="owl-example1" class="owl-carousel">
 						
-							<div>
+						<%-- 상세페이지로 가는 이미지 --%>
+							<div class="owl_example1_items_images">
 								<a href="${pageContext.request.contextPath}/product/detail">
 									<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/list_com.jpg" >
 								</a>
 							</div>
-							<div>
+							<div class="owl_example1_items_images">
 									<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_restaurant2.jpg" >
 							</div>
-							<div>
+							<div  class="owl_example1_items_images">
 								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_restaurant3.jpg" >
 							</div>
-							<div>
+							<div  class="owl_example1_items_images">
 								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_restaurant4.jpg" >
 							</div>
-							<div>
+							<div  class="owl_example1_items_images">
 								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_restaurant5.jpg" >
 							</div>
-							<div>
+							<div  class="owl_example1_items_images">
 								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_restaurant6.jpg" >
 							</div>
-							<div>
+							<div  class="owl_example1_items_images">
 								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_restaurant7.jpg">
 							</div>
-							<div>
+							<div  class="owl_example1_items_images">
 								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_restaurant8.jpg">
 							</div>
 

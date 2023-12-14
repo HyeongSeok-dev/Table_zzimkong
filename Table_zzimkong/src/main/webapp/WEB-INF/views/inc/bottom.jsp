@@ -5,7 +5,7 @@
 
 <style>
 body {
-  background-color: #f4f4f4; /* 배경색 설정 */
+/*   background-color: #f4f4f4; /* 배경색 설정 */ */
   color: #333; /* 글자색 설정 */
 }
 
