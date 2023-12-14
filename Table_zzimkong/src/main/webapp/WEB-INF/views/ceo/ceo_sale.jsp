@@ -9,35 +9,25 @@
 <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
 <%-- 본문 css --%>
 <link href="${pageContext.request.contextPath }/resources/css/article_style.css" rel="stylesheet">
-<style type="text/css">
-	#date{
-	    border-radius: 10px;
-   		border: 1px solid #d9d9d9;
-   	 	padding: 10px;
-    	margin: 10px;
-	}
-	
-
-	
-	
-</style>
 </head>
 <body>
 	<header>
 		<jsp:include page="../inc/ceo_top.jsp"/>
 	</header>
-	<br><br>
-	<select id="storeList">
-		<option value="레스토랑">레스토랑</option>
-		<option value="고깃집">고깃집</option>
-		<option value="횟집">횟집</option>
-		<option value="이자카야">이자카야</option>
-	</select>
-	<input type="date" id="date">
+	
 	<section class="article">
-	
-	
 		<div class="text">
+			<div class="storeList_div">
+				<select id="storeList">
+					<option value="레스토랑">레스토랑</option>
+					<option value="고깃집">고깃집</option>
+					<option value="횟집">횟집</option>
+					<option value="이자카야">이자카야</option>
+				</select>
+				<input type="date" id="date">
+			</div>
+			<div class="storeList_div_after"></div>
+			
 			<span><h3>일별판매금액</h3></span>
 			
 			<table border="1">
