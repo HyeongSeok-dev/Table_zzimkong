@@ -166,7 +166,7 @@
 	 <button><a href="ceo/cs/faq">ceo/cs/faq</a></button>
 	 <button><a href="ceo/cs/notice">ceo/cs/notice</a></button>
 	 <button><a href="ceo/cs/qna/modify">ceo/cs/qna/modify</a></button>
-	 <button><a href="ceo/cs/qna/regiter">ceo/cs/qna/regiter</a></button>
+	 <button><a href="ceo/cs/qna/register">ceo/cs/qna/register</a></button>
 	 <button><a href="ceo/cs/qna">ceo/cs/qna</a></button>
 	 <hr>
 	 
