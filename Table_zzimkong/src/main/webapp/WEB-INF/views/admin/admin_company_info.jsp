@@ -13,7 +13,7 @@
 	<section>
 		<h3>업체 상세 정보</h3>
 		<br><br>
-		<form action="" method="GET">
+		<form action="" method="GET" name="">
 			<table>
 				<tr>
 					<th>업체번호</th>

@@ -7,6 +7,7 @@
 <title>admin_company.jsp</title>
 <link href="${pageContext.request.contextPath}/resources/css/global.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resources/css/admin_article.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <script src="${pageContext.request.contextPath}/resources/js/admin_script.js"></script>
 </head>
 <body id="body">
@@ -16,6 +17,24 @@
 
 	<section class="article">
 		<div class="text">
+		
+			<%-- 검색창 --%>
+			<div id="board-search">
+				<div class="container">
+					<div class="search-window">
+						<form action="">
+							<div class="search-wrap">
+								<input id="search" type="search" name="" placeholder="검색어를 입력해주세요." value="">
+								<button type="submit" class="btn btn-dark">
+									<i class="material-icons search_icon">&#xe8b6;</i>
+								</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="float_after"></div>
+	        
 			<h3>업체 관리</h3>
 			
 			<table border="1">
@@ -39,7 +58,7 @@
 					<td>09:00~23:30</td>
 					<td>8개</td>
 					<td>19명</td>
-					<td>2023/12/25</td>
+					<td>2023/12/25 05:12</td>
 					<td>0단계</td>
 					<td>
 						<button type="button" class="button_olive" onclick="company_approve()">승인</button>
@@ -54,7 +73,7 @@
 					<td>11:00~21:30</td>
 					<td>10개</td>
 					<td>20명</td>
-					<td>2023/12/24</td>
+					<td>2023/12/24 11:17</td>
 					<td>1단계</td>
 					<td>정상</td>
 				</tr>
@@ -62,21 +81,6 @@
 				
 				<%-- 삭제 예정 --%>
 				<tr>
-					<td onclick="company_info_open()"></td>
-					<td onclick="업체페이지로">칸다소바</td>
-					<td>일식</td>
-					<td>051-430-1230</td>
-					<td>09:00~23:30</td>
-					<td>8개</td>
-					<td>19명</td>
-					<td>2023/12/25</td>
-					<td>0단계</td>
-					<td>
-						<button type="button" class="button_olive" onclick="company_approve()">승인</button>
-						<button type="button" class="button_cancel" onclick="company_disapprove()">거부</button>
-					</td>
-				</tr>
-				<tr>
 					<td onclick="company_info_open()">1</td>
 					<td>아오모리</td>
 					<td>일식</td>
@@ -84,26 +88,11 @@
 					<td>11:00~21:30</td>
 					<td>10개</td>
 					<td>20명</td>
-					<td>2023/12/24</td>
+					<td>2023/12/24 11:17</td>
 					<td>1단계</td>
 					<td>정상</td>
 				</tr>
 				<tr>
-					<td onclick="company_info_open()"></td>
-					<td onclick="업체페이지로">칸다소바</td>
-					<td>일식</td>
-					<td>051-430-1230</td>
-					<td>09:00~23:30</td>
-					<td>8개</td>
-					<td>19명</td>
-					<td>2023/12/25</td>
-					<td>0단계</td>
-					<td>
-						<button type="button" class="button_olive" onclick="company_approve()">승인</button>
-						<button type="button" class="button_cancel" onclick="company_disapprove()">거부</button>
-					</td>
-				</tr>
-				<tr>
 					<td onclick="company_info_open()">1</td>
 					<td>아오모리</td>
 					<td>일식</td>
@@ -111,26 +100,11 @@
 					<td>11:00~21:30</td>
 					<td>10개</td>
 					<td>20명</td>
-					<td>2023/12/24</td>
+					<td>2023/12/24 11:17</td>
 					<td>1단계</td>
 					<td>정상</td>
 				</tr>
 				<tr>
-					<td onclick="company_info_open()"></td>
-					<td onclick="업체페이지로">칸다소바</td>
-					<td>일식</td>
-					<td>051-430-1230</td>
-					<td>09:00~23:30</td>
-					<td>8개</td>
-					<td>19명</td>
-					<td>2023/12/25</td>
-					<td>0단계</td>
-					<td>
-						<button type="button" class="button_olive" onclick="company_approve()">승인</button>
-						<button type="button" class="button_cancel" onclick="company_disapprove()">거부</button>
-					</td>
-				</tr>
-				<tr>
 					<td onclick="company_info_open()">1</td>
 					<td>아오모리</td>
 					<td>일식</td>
@@ -138,26 +112,11 @@
 					<td>11:00~21:30</td>
 					<td>10개</td>
 					<td>20명</td>
-					<td>2023/12/24</td>
+					<td>2023/12/24 11:17</td>
 					<td>1단계</td>
 					<td>정상</td>
 				</tr>
 				<tr>
-					<td onclick="company_info_open()"></td>
-					<td onclick="업체페이지로">칸다소바</td>
-					<td>일식</td>
-					<td>051-430-1230</td>
-					<td>09:00~23:30</td>
-					<td>8개</td>
-					<td>19명</td>
-					<td>2023/12/25</td>
-					<td>0단계</td>
-					<td>
-						<button type="button" class="button_olive" onclick="company_approve()">승인</button>
-						<button type="button" class="button_cancel" onclick="company_disapprove()">거부</button>
-					</td>
-				</tr>
-				<tr>
 					<td onclick="company_info_open()">1</td>
 					<td>아오모리</td>
 					<td>일식</td>
@@ -165,26 +124,11 @@
 					<td>11:00~21:30</td>
 					<td>10개</td>
 					<td>20명</td>
-					<td>2023/12/24</td>
+					<td>2023/12/24 11:17</td>
 					<td>1단계</td>
 					<td>정상</td>
 				</tr>
 				<tr>
-					<td onclick="company_info_open()"></td>
-					<td onclick="업체페이지로">칸다소바</td>
-					<td>일식</td>
-					<td>051-430-1230</td>
-					<td>09:00~23:30</td>
-					<td>8개</td>
-					<td>19명</td>
-					<td>2023/12/25</td>
-					<td>0단계</td>
-					<td>
-						<button type="button" class="button_olive" onclick="company_approve()">승인</button>
-						<button type="button" class="button_cancel" onclick="company_disapprove()">거부</button>
-					</td>
-				</tr>
-				<tr>
 					<td onclick="company_info_open()">1</td>
 					<td>아오모리</td>
 					<td>일식</td>
@@ -192,26 +136,11 @@
 					<td>11:00~21:30</td>
 					<td>10개</td>
 					<td>20명</td>
-					<td>2023/12/24</td>
+					<td>2023/12/24 11:17</td>
 					<td>1단계</td>
 					<td>정상</td>
 				</tr>
 				<tr>
-					<td onclick="company_info_open()"></td>
-					<td onclick="업체페이지로">칸다소바</td>
-					<td>일식</td>
-					<td>051-430-1230</td>
-					<td>09:00~23:30</td>
-					<td>8개</td>
-					<td>19명</td>
-					<td>2023/12/25</td>
-					<td>0단계</td>
-					<td>
-						<button type="button" class="button_olive" onclick="company_approve()">승인</button>
-						<button type="button" class="button_cancel" onclick="company_disapprove()">거부</button>
-					</td>
-				</tr>
-				<tr>
 					<td onclick="company_info_open()">1</td>
 					<td>아오모리</td>
 					<td>일식</td>
@@ -219,26 +148,11 @@
 					<td>11:00~21:30</td>
 					<td>10개</td>
 					<td>20명</td>
-					<td>2023/12/24</td>
+					<td>2023/12/24 11:17</td>
 					<td>1단계</td>
 					<td>정상</td>
 				</tr>
 				<tr>
-					<td onclick="company_info_open()"></td>
-					<td onclick="업체페이지로">칸다소바</td>
-					<td>일식</td>
-					<td>051-430-1230</td>
-					<td>09:00~23:30</td>
-					<td>8개</td>
-					<td>19명</td>
-					<td>2023/12/25</td>
-					<td>0단계</td>
-					<td>
-						<button type="button" class="button_olive" onclick="company_approve()">승인</button>
-						<button type="button" class="button_cancel" onclick="company_disapprove()">거부</button>
-					</td>
-				</tr>
-				<tr>
 					<td onclick="company_info_open()">1</td>
 					<td>아오모리</td>
 					<td>일식</td>
@@ -246,26 +160,11 @@
 					<td>11:00~21:30</td>
 					<td>10개</td>
 					<td>20명</td>
-					<td>2023/12/24</td>
+					<td>2023/12/24 11:17</td>
 					<td>1단계</td>
 					<td>정상</td>
 				</tr>
 				<tr>
-					<td onclick="company_info_open()"></td>
-					<td onclick="업체페이지로">칸다소바</td>
-					<td>일식</td>
-					<td>051-430-1230</td>
-					<td>09:00~23:30</td>
-					<td>8개</td>
-					<td>19명</td>
-					<td>2023/12/25</td>
-					<td>0단계</td>
-					<td>
-						<button type="button" class="button_olive" onclick="company_approve()">승인</button>
-						<button type="button" class="button_cancel" onclick="company_disapprove()">거부</button>
-					</td>
-				</tr>
-				<tr>
 					<td onclick="company_info_open()">1</td>
 					<td>아오모리</td>
 					<td>일식</td>
@@ -273,26 +172,11 @@
 					<td>11:00~21:30</td>
 					<td>10개</td>
 					<td>20명</td>
-					<td>2023/12/24</td>
+					<td>2023/12/24 11:17</td>
 					<td>1단계</td>
 					<td>정상</td>
 				</tr>
 				<tr>
-					<td onclick="company_info_open()"></td>
-					<td onclick="업체페이지로">칸다소바</td>
-					<td>일식</td>
-					<td>051-430-1230</td>
-					<td>09:00~23:30</td>
-					<td>8개</td>
-					<td>19명</td>
-					<td>2023/12/25</td>
-					<td>0단계</td>
-					<td>
-						<button type="button" class="button_olive" onclick="company_approve()">승인</button>
-						<button type="button" class="button_cancel" onclick="company_disapprove()">거부</button>
-					</td>
-				</tr>
-				<tr>
 					<td onclick="company_info_open()">1</td>
 					<td>아오모리</td>
 					<td>일식</td>
@@ -300,26 +184,11 @@
 					<td>11:00~21:30</td>
 					<td>10개</td>
 					<td>20명</td>
-					<td>2023/12/24</td>
+					<td>2023/12/24 11:17</td>
 					<td>1단계</td>
 					<td>정상</td>
 				</tr>
 				<tr>
-					<td onclick="company_info_open()"></td>
-					<td onclick="업체페이지로">칸다소바</td>
-					<td>일식</td>
-					<td>051-430-1230</td>
-					<td>09:00~23:30</td>
-					<td>8개</td>
-					<td>19명</td>
-					<td>2023/12/25</td>
-					<td>0단계</td>
-					<td>
-						<button type="button" class="button_olive" onclick="company_approve()">승인</button>
-						<button type="button" class="button_cancel" onclick="company_disapprove()">거부</button>
-					</td>
-				</tr>
-				<tr>
 					<td onclick="company_info_open()">1</td>
 					<td>아오모리</td>
 					<td>일식</td>
@@ -327,26 +196,11 @@
 					<td>11:00~21:30</td>
 					<td>10개</td>
 					<td>20명</td>
-					<td>2023/12/24</td>
+					<td>2023/12/24 11:17</td>
 					<td>1단계</td>
 					<td>정상</td>
 				</tr>
 				<tr>
-					<td onclick="company_info_open()"></td>
-					<td onclick="업체페이지로">칸다소바</td>
-					<td>일식</td>
-					<td>051-430-1230</td>
-					<td>09:00~23:30</td>
-					<td>8개</td>
-					<td>19명</td>
-					<td>2023/12/25</td>
-					<td>0단계</td>
-					<td>
-						<button type="button" class="button_olive" onclick="company_approve()">승인</button>
-						<button type="button" class="button_cancel" onclick="company_disapprove()">거부</button>
-					</td>
-				</tr>
-				<tr>
 					<td onclick="company_info_open()">1</td>
 					<td>아오모리</td>
 					<td>일식</td>
@@ -354,26 +208,11 @@
 					<td>11:00~21:30</td>
 					<td>10개</td>
 					<td>20명</td>
-					<td>2023/12/24</td>
+					<td>2023/12/24 11:17</td>
 					<td>1단계</td>
 					<td>정상</td>
 				</tr>
 				<tr>
-					<td onclick="company_info_open()"></td>
-					<td onclick="업체페이지로">칸다소바</td>
-					<td>일식</td>
-					<td>051-430-1230</td>
-					<td>09:00~23:30</td>
-					<td>8개</td>
-					<td>19명</td>
-					<td>2023/12/25</td>
-					<td>0단계</td>
-					<td>
-						<button type="button" class="button_olive" onclick="company_approve()">승인</button>
-						<button type="button" class="button_cancel" onclick="company_disapprove()">거부</button>
-					</td>
-				</tr>
-				<tr>
 					<td onclick="company_info_open()">1</td>
 					<td>아오모리</td>
 					<td>일식</td>
@@ -381,24 +220,21 @@
 					<td>11:00~21:30</td>
 					<td>10개</td>
 					<td>20명</td>
-					<td>2023/12/24</td>
+					<td>2023/12/24 11:17</td>
 					<td>1단계</td>
 					<td>정상</td>
 				</tr>
 				<tr>
-					<td onclick="company_info_open()"></td>
-					<td onclick="업체페이지로">칸다소바</td>
+					<td onclick="company_info_open()">1</td>
+					<td>아오모리</td>
 					<td>일식</td>
-					<td>051-430-1230</td>
-					<td>09:00~23:30</td>
-					<td>8개</td>
-					<td>19명</td>
-					<td>2023/12/25</td>
-					<td>0단계</td>
-					<td>
-						<button type="button" class="button_olive" onclick="company_approve()">승인</button>
-						<button type="button" class="button_cancel" onclick="company_disapprove()">거부</button>
-					</td>
+					<td>051-720-8200</td>
+					<td>11:00~21:30</td>
+					<td>10개</td>
+					<td>20명</td>
+					<td>2023/12/24 11:17</td>
+					<td>1단계</td>
+					<td>정상</td>
 				</tr>
 				<tr>
 					<td onclick="company_info_open()">1</td>
@@ -408,11 +244,84 @@
 					<td>11:00~21:30</td>
 					<td>10개</td>
 					<td>20명</td>
-					<td>2023/12/24</td>
+					<td>2023/12/24 11:17</td>
+					<td>1단계</td>
+					<td>정상</td>
+				</tr>
+				<tr>
+					<td onclick="company_info_open()">1</td>
+					<td>아오모리</td>
+					<td>일식</td>
+					<td>051-720-8200</td>
+					<td>11:00~21:30</td>
+					<td>10개</td>
+					<td>20명</td>
+					<td>2023/12/24 11:17</td>
+					<td>1단계</td>
+					<td>정상</td>
+				</tr>
+				<tr>
+					<td onclick="company_info_open()">1</td>
+					<td>아오모리</td>
+					<td>일식</td>
+					<td>051-720-8200</td>
+					<td>11:00~21:30</td>
+					<td>10개</td>
+					<td>20명</td>
+					<td>2023/12/24 11:17</td>
+					<td>1단계</td>
+					<td>정상</td>
+				</tr>
+				<tr>
+					<td onclick="company_info_open()">1</td>
+					<td>아오모리</td>
+					<td>일식</td>
+					<td>051-720-8200</td>
+					<td>11:00~21:30</td>
+					<td>10개</td>
+					<td>20명</td>
+					<td>2023/12/24 11:17</td>
+					<td>1단계</td>
+					<td>정상</td>
+				</tr>
+				<tr>
+					<td onclick="company_info_open()">1</td>
+					<td>아오모리</td>
+					<td>일식</td>
+					<td>051-720-8200</td>
+					<td>11:00~21:30</td>
+					<td>10개</td>
+					<td>20명</td>
+					<td>2023/12/24 11:17</td>
+					<td>1단계</td>
+					<td>정상</td>
+				</tr>
+				<tr>
+					<td onclick="company_info_open()">1</td>
+					<td>아오모리</td>
+					<td>일식</td>
+					<td>051-720-8200</td>
+					<td>11:00~21:30</td>
+					<td>10개</td>
+					<td>20명</td>
+					<td>2023/12/24 11:17</td>
+					<td>1단계</td>
+					<td>정상</td>
+				</tr>
+				<tr>
+					<td onclick="company_info_open()">1</td>
+					<td>아오모리</td>
+					<td>일식</td>
+					<td>051-720-8200</td>
+					<td>11:00~21:30</td>
+					<td>10개</td>
+					<td>20명</td>
+					<td>2023/12/24 11:17</td>
 					<td>1단계</td>
 					<td>정상</td>
 				</tr>
 				<%-- 삭제 예정 끝 --%>
+				
 			</table>			
 		</div>
 	</section>
