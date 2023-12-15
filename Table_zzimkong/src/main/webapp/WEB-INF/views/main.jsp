@@ -163,7 +163,11 @@
 	 <button><a href="ceo/menu/register">ceo/menu/register</a></button>
 	 <button><a href="ceo/reservation">ceo/reservation</a></button>
 	 <button><a href="ceo/reservation/detail">ceo/reservation/detail</a></button>
-	 <button><a href="ceo/cs">ceo/cs</a></button>
+	 <button><a href="ceo/cs/faq">ceo/cs/faq</a></button>
+	 <button><a href="ceo/cs/notice">ceo/cs/notice</a></button>
+	 <button><a href="ceo/cs/qna/modify">ceo/cs/qna/modify</a></button>
+	 <button><a href="ceo/cs/qna/regiter">ceo/cs/qna/regiter</a></button>
+	 <button><a href="ceo/cs/qna">ceo/cs/qna</a></button>
 	 <hr>
 	 
 	 <button><a href="payment/info">payment/info</a></button>
