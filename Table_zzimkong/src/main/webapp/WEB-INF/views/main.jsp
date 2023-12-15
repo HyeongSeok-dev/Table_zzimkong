@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%-- 수정!!!! --%>
 <!DOCTYPE html>
 <html class="no-js">
@@ -61,29 +62,41 @@
 										
 										<%-- 상단 로고 --%>
 										<div class="header_img">
-											<img alt="logo1" src="${pageContext.request.contextPath}/resources/img/logo1_2.png">
-											<img alt="logo2" src="${pageContext.request.contextPath}/resources/img/logo5_b.png">
+											<a href="./">
+												<img alt="logo1" src="${pageContext.request.contextPath}/resources/img/logo1_2.png">
+												<img alt="logo2" src="${pageContext.request.contextPath}/resources/img/logo5_b.png">
+											</a>
 										</div>
 									</div>
 									
 									<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 										<ul class="nav navbar-nav navbar-right">
-											<%--로그인 --%>
-											<li><a href="${pageContext.request.contextPath}/login">
-											<img src="${pageContext.request.contextPath}/resources/img/user.png"
-											style="width: 30px; height: 30px;"></a></li>
-											<%--알림 --%>
-											<li><a href="${pageContext.request.contextPath}/#">
-											<img src="${pageContext.request.contextPath}/resources/img/bell.png"
-											style="width: 30px; height: 30px;"></a></li>
-											<%--마이페이지 --%>
-											<li><a href="${pageContext.request.contextPath}/my/list">
-											<img src="${pageContext.request.contextPath}/resources/img/user.png"
-												style="width: 30px; height: 30px;"></a></li>
-											<%--고객센터 --%>
-											<li><a href="${pageContext.request.contextPath}/member/cs/faq">
-											<img  src="${pageContext.request.contextPath}/resources/img/headset.png"
-											style="width: 30px; height: 30px;"></a></li>
+											<c:choose>
+												<c:when test="${empty sessionScope.sId }"> <%-- 미 로그인 시 --%>
+													<%--로그인 --%>
+													<li><a href="${pageContext.request.contextPath}/login">
+													<img src="${pageContext.request.contextPath}/resources/img/user.png"
+													style="width: 30px; height: 30px;"></a></li>
+													<%--고객센터 --%>
+													<li><a href="${pageContext.request.contextPath}/member/cs/faq">
+													<img  src="${pageContext.request.contextPath}/resources/img/headset.png"
+													style="width: 30px; height: 30px;"></a></li>
+												</c:when>
+												<c:otherwise>
+													<%--마이페이지 --%>
+													<li><a href="${pageContext.request.contextPath}/my/list">
+													<img src="${pageContext.request.contextPath}/resources/img/user.png"
+														style="width: 30px; height: 30px;"></a></li>
+													<%--알림 --%>
+													<li><a href="${pageContext.request.contextPath}/#">
+													<img src="${pageContext.request.contextPath}/resources/img/bell.png"
+													style="width: 30px; height: 30px;"></a></li>
+													<%--고객센터 --%>
+													<li><a href="${pageContext.request.contextPath}/member/cs/faq">
+													<img  src="${pageContext.request.contextPath}/resources/img/headset.png"
+													style="width: 30px; height: 30px;"></a></li>
+												</c:otherwise>
+											</c:choose>
 										</ul>
 									</div><!-- /.navbar-collapse -->
 								</div>
@@ -122,25 +135,39 @@
 								</a>
 							</div>
 							<div class="owl_example1_items_images">
+								<a href="">
 									<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_restaurant2.jpg" >
+								</a>
 							</div>
 							<div  class="owl_example1_items_images">
+								<a href="">
 								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_restaurant3.jpg" >
+								</a>
 							</div>
 							<div  class="owl_example1_items_images">
+								<a href="">
 								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_restaurant4.jpg" >
+								</a>
 							</div>
 							<div  class="owl_example1_items_images">
+								<a href="">
 								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_restaurant5.jpg" >
+								</a>
 							</div>
 							<div  class="owl_example1_items_images">
+								<a href="">
 								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_restaurant6.jpg" >
+								</a>
 							</div>
 							<div  class="owl_example1_items_images">
+								<a href="">
 								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_restaurant7.jpg">
+								</a>
 							</div>
 							<div  class="owl_example1_items_images">
+								<a href="">
 								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_restaurant8.jpg">
+								</a>
 							</div>
 
 						</div>

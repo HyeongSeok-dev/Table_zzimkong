@@ -15,18 +15,11 @@
 <!-- 	</div> -->
 <!-- </div> -->
 	<div class="header_all">
-	<div class="headerMenu imgP snipcss-X9RSH">
-		<img alt="logo1" src="${pageContext.request.contextPath }/resources/img/logo1_2.png" width="100px">
-		<img alt="logo2" src="${pageContext.request.contextPath }/resources/img/logo3_2.png" width="260px">
+	<div class="headerMenu1">
+		<img alt="logo1" src="${pageContext.request.contextPath }/resources/img/logo4_3.png" width="50px">
 	</div>
-	<div class="headerMenu imgP snipcss-X9RSH">
+	<div class="headerMenu2">
 	  <ul class="">
-	<!--     <li> -->
-	<%--       <a id="about" href="${pageContext.request.contextPath }/views/company/com_dashboard.jsp" class="on"> --%>
-	<%--       <img alt="logo" src="${pageContext.request.contextPath }/resources/img/logo1_1.png" width="150px"><br> --%>
-	<!--       <div class="page_name">업주 페이지</div> -->
-	<!--       </a> -->
-	<!--     </li> -->
 	    <li>
 	      <a id="menu" href="${pageContext.request.contextPath }/ceo/sale">
 	        판매관리

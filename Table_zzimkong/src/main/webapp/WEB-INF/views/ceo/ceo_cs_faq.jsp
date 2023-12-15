@@ -69,7 +69,7 @@
 				              	업체관리
 				            </th>
 				            <th class="cs_th">
-				              <a href="#!">문의문의</a>
+				              <a href="${pageContext.request.contextPath }/ceo/cs/faq/view">문의문의</a>
 				              <p>테스트</p>
 				            </th>
 				            <td>2017.07.13</td>
@@ -78,14 +78,14 @@
 				        <tr>
 				            <td>2</td>
 				            <th class="cs_th">예약관리</th>
-				            <th class="cs_th"><a href="#!">문의문의</a></th>
+				            <th class="cs_th"><a href="${pageContext.request.contextPath }/ceo/cs/faq/view">문의문의</a></th>
 				            <td>2017.06.15</td>
 				        </tr>
 				
 				        <tr>
 				            <td>1</td>
 				            <th class="cs_th">광고</th>
-				            <th class="cs_th"><a href="#!">문의문의</a></th>
+				            <th class="cs_th"><a href="${pageContext.request.contextPath }/ceo/cs/faq/view">문의문의</a></th>
 				            <td>2017.06.15</td>
 				        </tr>
 				        </tbody>

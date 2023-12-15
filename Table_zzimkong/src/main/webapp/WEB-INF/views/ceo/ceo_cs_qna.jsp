@@ -22,7 +22,7 @@
 		        </span>
 		        <span>
 					<button type="button" id="buttonNotice" onclick="location.href='${pageContext.request.contextPath }/ceo/cs/notice'">공지사항</button>	
-					<button type="button" id="buttonFnq" onclick="location.href='${pageContext.request.contextPath }/ceo/cs/fnq'">자주묻는 질문</button>	
+					<button type="button" id="buttonFnq" onclick="location.href='${pageContext.request.contextPath }/ceo/cs/faq'">자주묻는 질문</button>	
 					<button type="button" id="buttonRegister" onclick="location.href='${pageContext.request.contextPath }/ceo/cs/qna/register'">문의하기</button>	
 		    	</span>
 		    </div>
@@ -69,7 +69,7 @@
 				            <td>3</td>
 				            <th class="cs_th">블랙리스트</th>
 				            <th class="cs_th">
-				              <a href="#!">문의문의</a>
+				              <a href="${pageContext.request.contextPath }/ceo/cs/qna/modify">문의문의</a>
 				              <p>테스트</p>
 				            </th>
 				            <td>2017.07.13</td>
@@ -78,14 +78,18 @@
 				        <tr>
 				            <td>2</td>
 				            <th class="cs_th">블랙리스트</th>
-				            <th class="cs_th"><a href="#!">문의문의</a></th>
+				            <th class="cs_th">
+				            	<a href="${pageContext.request.contextPath }/ceo/cs/qna/modify">문의문의</a>
+				            </th>
 				            <td>2017.06.15</td>
 				        </tr>
 				
 				        <tr>
 				            <td>1</td>
 				            <th class="cs_th">블랙리스트</th>
-				            <th class="cs_th"><a href="#!">문의문의</a></th>
+				            <th class="cs_th">
+				            	<a href="${pageContext.request.contextPath }/ceo/cs/qna/modify">문의문의</a>
+				            </th>
 				            <td>2017.06.15</td>
 				        </tr>
 				        </tbody>

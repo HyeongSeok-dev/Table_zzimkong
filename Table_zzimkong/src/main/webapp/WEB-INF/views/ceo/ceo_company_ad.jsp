@@ -35,11 +35,11 @@
 					<td colspan="1"><input type="text" value="" name="adStatus"></td>
 					<th>광고등급</th>
 					<td colspan="3">
-						<select id="company_state" onchange="company_shut_down()">
-							<option value="1" name="zeroLevel">광고없음</option>
-							<option value="2" name="firstLevel">1단계</option>
-							<option value="3" name="secondeLevel">2단계</option>
-							<option value="4" name="thirdLevel">3단계</option>
+						<select id="company_state" onchange="company_shut_down()" name="adStatusLevel">
+							<option value="1">광고없음</option>
+							<option value="2">1단계</option>
+							<option value="3">2단계</option>
+							<option value="4">3단계</option>
 						</select>
 					</td>
 				</tr>	
