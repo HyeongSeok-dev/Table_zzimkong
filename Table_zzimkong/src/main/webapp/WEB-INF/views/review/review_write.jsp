@@ -41,8 +41,8 @@
     </svg>
 				이런 곳 좋아요
 			</button>
-			<!-- 토스트 메시지 -->
-			<div id="toastMessage" class="toast-message">좋아요가 반영되었습니다</div>
+			<!-- 			<!-- 토스트 메시지 -->
+			<!-- 			<div id="toastMessage" class="toast-message">좋아요가 반영되었습니다</div> -->
 		</div>
 		<br>
 		<div class="separator"></div>
@@ -76,7 +76,7 @@
 				</div>
 				<div class="keyword_category">
 					<h3>&nbsp;&nbsp;&nbsp;&nbsp;</h3>
-					<button class="keyword_btn">선택할 키워드가 없어요.</button>
+					<button id="noKeywordBtn" class="keyword_btn">선택할 키워드가 없어요</button>
 				</div>
 				<div class="separator"></div>
 
@@ -132,5 +132,7 @@
 		</p>
 		<button onclick="closePopup()">닫기</button>
 	</div>
+	<!-- 토스트 메시지 -->
+	<div id="toastMessage" class="toast-message">좋아요가 반영되었습니다</div>
 </body>
 </html>

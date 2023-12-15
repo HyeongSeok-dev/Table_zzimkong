@@ -1078,3 +1078,10 @@ h1 {
   border-radius: 9px; /* 버튼 모서리 둥글게 */
   text-align: right;
 }
+
+
+/* 아이콘 뒤집기 */
+.svg-icon.flipped {
+    transform: rotate(180deg); /* 아이콘 뒤집기 */
+    transition: transform 0.3s ease; /* 부드러운 전환 효과 */
+}

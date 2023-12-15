@@ -1,6 +1,43 @@
-
 document.addEventListener('DOMContentLoaded', function() {
+    var keywordButtons = document.querySelectorAll('.keyword_btn');
+    var noKeywordBtn = document.getElementById('noKeywordBtn');
+    var selectedCount = 0;
 
+    keywordButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            if (noKeywordBtn.classList.contains('active') && this !== noKeywordBtn) {
+                alert('다른 키워드를 선택할 수 없습니다.'); /* 활성화가 되지 않음 */
+                return;  
+            }
+
+            if (this.classList.contains('active')) {
+                this.classList.remove('active');
+                selectedCount--;
+            } else if (selectedCount < 5 || this === noKeywordBtn) {
+                this.classList.add('active');
+                selectedCount++;
+            } else {
+                alert('최대 5개까지만 선택할 수 있습니다.');
+            }
+        });
+    });
+
+    noKeywordBtn.addEventListener('click', function() {
+        if (this.classList.contains('active')) {
+            keywordButtons.forEach(function(btn) {
+                if (btn !== noKeywordBtn) {
+                    btn.classList.remove('active');
+                    btn.disabled = true;
+                }
+            });
+            selectedCount = 1;
+        } else {
+            keywordButtons.forEach(function(btn) {
+                btn.disabled = false;
+            });
+            selectedCount = 0;
+        }
+    });
 	// 팝업 열기
 	window.openPopup = function() {
 		document.getElementById('popup').style.display = 'block';
@@ -57,6 +94,5 @@ document.addEventListener('DOMContentLoaded', function() {
 			toastMessage.classList.remove('show');
 		}, 2000);
 	});
+
 });
-
-

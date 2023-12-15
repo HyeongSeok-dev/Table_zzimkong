@@ -1,5 +1,28 @@
 document.addEventListener('DOMContentLoaded', function() {
 
+ // 더보기 버튼 기능
+    var moreButton = document.querySelector('.more-button');
+    var hiddenItems = document.querySelectorAll('.review_select_list .rv_sl_1:nth-child(n+6)');
+    var svgIcon = moreButton.querySelector('.svg-icon');
+    var buttonText = moreButton.querySelector('.blind-text');
+3
+    moreButton.addEventListener('click', function(event) {
+        event.preventDefault();
+
+        hiddenItems.forEach(function(item) {
+            item.style.display = (item.style.display === 'none' || item.style.display === '') ? 'block' : 'none';
+        });
+
+        if (buttonText.textContent.trim() === '더보기') {
+            buttonText.textContent = '접기';
+            svgIcon.style.transform = 'rotate(180deg)'; // 아이콘 뒤집기
+        } else {
+            buttonText.textContent = '더보기';
+            svgIcon.style.transform = 'rotate(0deg)'; // 원래 아이콘
+        }
+    });
+
+
 	// -----------------------------------------------------------------------	
 	var carouselInner = document.querySelector('.carousel-inner');
 	var images = Array.from(carouselInner.children);
@@ -57,38 +80,36 @@ document.addEventListener('DOMContentLoaded', function() {
         // 팝업창을 숨김
         deleteConfirmationPopup.style.display = 'none';
     });	
-		
-    var moreButton = document.querySelector('.more-button');
-    var hiddenItems = document.querySelectorAll('.rv_sl_1:nth-child(n+6)');
-    var svgIcon = moreButton.querySelector('.svg-icon');
-    var buttonText = moreButton.querySelector('.blind-text');
+		  
 	// --------------------------------------------------------
+	
 	// 더보기 
-	var moreButton = document.querySelector('.more-button');
-	var hiddenItems = document.querySelectorAll('.rv_sl_1:nth-child(n+6)');
-	var svgIcon = moreButton.querySelector('.svg-icon');
-	var buttonText = moreButton.querySelector('.blind-text');
+//	var moreButton = document.querySelector('.more-button');
+//	var hiddenItems = document.querySelectorAll('.rv_sl_1:nth-child(n+6)');
+//	var svgIcon = moreButton.querySelector('.svg-icon');
+//	var buttonText = moreButton.querySelector('.blind-text');
+//
+//
+//	moreButton.addEventListener(
+//		'click',
+//		function(event) {
+//			event.preventDefault();
+//
+//			hiddenItems.forEach(function(item) {
+//				item.style.display = (item.style.display === 'none' || item.style.display === '') ? 'block'
+//					: 'none';
+//			});
+//
+//			if (buttonText.textContent.trim() === '더보기') {
+//				buttonText.textContent = '접기';
+//				svgIcon.style.transform = 'rotate(180deg)'; // 아이콘 뒤집기
+//			} else {
+//				buttonText.textContent = '더보기';
+//				svgIcon.style.transform = 'rotate(0deg)'; // 원래 아이콘
+//			}
+//		});
 
-
-	moreButton.addEventListener(
-		'click',
-		function(event) {
-			event.preventDefault();
-
-			hiddenItems.forEach(function(item) {
-				item.style.display = (item.style.display === 'none' || item.style.display === '') ? 'block'
-					: 'none';
-			});
-
-			if (buttonText.textContent.trim() === '더보기') {
-				buttonText.textContent = '접기';
-				svgIcon.style.transform = 'rotate(180deg)'; // 아이콘 뒤집기
-			} else {
-				buttonText.textContent = '더보기';
-				svgIcon.style.transform = 'rotate(0deg)'; // 원래 아이콘
-			}
-		});
-
+	// --------------------------------------------------------
 
 	// 하트누르기 
 	document.getElementById('heartIcon').addEventListener('click',

@@ -120,11 +120,12 @@
   background-color: white;
   border: 1px solid lightgray;
   color: black;
-  padding: 12px;
+  padding: 16px;
   cursor: pointer;
   transition-duration: 0.4s;
   text-align: center; /* 텍스트 중앙 정렬 */
   font-size: 13px;
+ 
 }
 
 .keyword-btn:hover {
@@ -245,3 +246,15 @@
   to {bottom: 0; opacity: 0;}
 }
 
+/* 버튼 활성화(이런점이 좋았어요) */
+.keyword_btn {
+    /* 기존 버튼 스타일 */
+    background-color: white;
+    color: black;
+    /* (중략) */
+}
+
+.keyword_btn.active {
+    background-color: skyblue; /* 하늘색 배경 */
+    color: white; /* 하얀색 글씨 */
+}
