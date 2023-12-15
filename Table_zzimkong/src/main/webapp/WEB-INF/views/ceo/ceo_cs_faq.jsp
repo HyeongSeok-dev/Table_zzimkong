@@ -21,8 +21,8 @@
 		            <h3>고객센터 - 자주묻는 질문</h3>
 		        </span>
 		        <span>
-					<button type="button" id="buttonNotice" onclick="location.href='ceo_cs_notice.jsp'">공지사항</button>	
-					<button type="button" id="buttonQna" onclick="location.href='ceo_cs_qna.jsp'">1 : 1문의</button>	
+					<button type="button" id="buttonNotice" onclick="location.href='${pageContext.request.contextPath }/ceo/cs/notice'">공지사항</button>	
+					<button type="button" id="buttonQna" onclick="location.href='${pageContext.request.contextPath }/ceo/cs/qna'">1 : 1문의</button>	
 		    	</span>
 		    </div>
 		

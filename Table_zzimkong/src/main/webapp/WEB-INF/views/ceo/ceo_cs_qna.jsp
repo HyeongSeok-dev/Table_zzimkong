@@ -21,9 +21,9 @@
 		            <h3>고객센터 - 1 : 1 문의</h3>
 		        </span>
 		        <span>
-					<button type="button" id="buttonNotice" onclick="location.href='ceo_cs_notice.jsp'">공지사항</button>	
-					<button type="button" id="buttonFnq" onclick="location.href='ceo_cs_fnq.jsp'">자주묻는 질문</button>	
-					<button type="button" id="buttonRegister" onclick="location.href='ceo_cs_qna_register.jsp'">문의하기</button>	
+					<button type="button" id="buttonNotice" onclick="location.href='${pageContext.request.contextPath }/ceo/cs/notice'">공지사항</button>	
+					<button type="button" id="buttonFnq" onclick="location.href='${pageContext.request.contextPath }/ceo/cs/fnq'">자주묻는 질문</button>	
+					<button type="button" id="buttonRegister" onclick="location.href='${pageContext.request.contextPath }/ceo/cs/qna/register'">문의하기</button>	
 		    	</span>
 		    </div>
 		
