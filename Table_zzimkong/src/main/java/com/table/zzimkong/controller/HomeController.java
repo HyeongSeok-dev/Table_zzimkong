@@ -109,16 +109,6 @@ public class HomeController {
 		return "ceo/ceo_cs_qna";
 	}
 	
-	@GetMapping("ceo/cs/register")
-	public String ceo_cs_register() {
-		return "ceo/ceo_cs_register";
-	}
-	
-	@GetMapping("ceo/cs")
-	public String ceo_cs() {
-		return "ceo/ceo_cs";
-	}
-	
 	@GetMapping("payment/info")
 	public String payment_info() {
 		return "payment/payment_info";
