@@ -90,7 +90,24 @@
 		    <artifactId>log4jdbc-log4j2-jdbc4.1</artifactId>
 		    <version>1.16</version>
 		</dependency>
-				
+		
+		<!-- 6. VO 클래스 요소 자동 관리를 위한 lombok 라이브러리 -->
+        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.30</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- 7. 비밀번호 암호화를 위한 BCryptPasswordEncoder 라이브러리-->
+        <!-- 주의! JDK 11(class file version 55) 기준 5.x.x 버전까지만 가능 -->
+        <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-web -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>5.8.8</version>
+        </dependency>		
 		
 		<!-- AspectJ -->
 		<dependency>
