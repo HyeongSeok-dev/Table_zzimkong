@@ -23,4 +23,11 @@ public class ProductController {
 		return "product/product_list";
 	}
 	
+	@GetMapping("product/searchResult")
+	public String search_result(Model model, HttpServletRequest request) {
+		
+		model.addAttribute("currentUrl", request.getRequestURI());
+		return "product/product_list";
+	}
+	
 }

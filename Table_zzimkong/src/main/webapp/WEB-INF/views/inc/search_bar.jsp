@@ -306,7 +306,7 @@
 											<li><label for="카페"><input type="radio"
 													name="category" id="카페" value="카페">카페</label></li>
 										</ul></li>
-									<li class="filter-item" id="menu_price"><span>메뉴 가격</span>
+									<li class="filter-item" id="menu_price"><span>가격대</span>
 										<ul class="sub-list">
 											<li><label for="price">가격대: <span id="priceValue">50000</span>원
 											</label><br> <input type="range" id="price" name="price" min="10000"

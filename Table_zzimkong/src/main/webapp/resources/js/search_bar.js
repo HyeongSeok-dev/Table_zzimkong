@@ -1,30 +1,15 @@
 $(document).ready(function() {
 	//서치바 파라미터 정리
-	var initialMenuPrice;
-	initialMenuPrice = $('#price').val();
-
-	$(".search_icon").click(function() {
-		// Check if the slider value has changed
-		if ($('#price').val() === initialMenuPrice) {
-			// If not changed, remove the slider's name attribute to prevent submission
-			$('#price').removeAttr('name');
-		}
-		$("form").submit();
-	});
-
-	$('.modal').hide();
+	var formData = {}; // 폼 데이터를 저장할 객체 생성
+	var isPriceChange = false;
 	// 모든 모달창을 숨깁니다.
 
 	function closeAllModals() {
 		$('.modal').hide();
 	}
-
-	function resetFilterModal() {
-		$('#filterModal input[type="radio"]').prop('checked', false);
-		$('#filterModal .selected').removeClass('selected');
-	}
+	closeAllModals();
 	// 필터 모달 오프너 클릭 이벤트
-	$('.filter_wrapper').click(function() {
+	$('.filter_wrapper').off('click').click(function() {
 		closeAllModals(); // 다른 모달 닫기
 		$('#filterModal').show(); // 필터 모달 열기
 	});
@@ -35,33 +20,27 @@ $(document).ready(function() {
 		$('#table_modal').show(); // 테이블 모달 열기
 	});
 
-	function closeFilterModal() {
+	function cleanFilterModal() {
 		$('#filterModal').hide();
-		resetFilterModal(); // 필터 모달창 닫힐 때 초기화
+		$('#filterModal input[type="radio"]').prop('checked', false);
+		$('#filterModal .selected').removeClass('selected');
+		isPriceChange = false;
 	}
 
 	// 필터 모달창 닫기 버튼 클릭 이벤트
-	$('#filterModal .close').click(closeFilterModal);
-
+	$('#filterModal .close').click(cleanFilterModal);
 	// 닫기 버튼을 클릭했을 때, 해당 버튼이 속한 모달창만을 닫습니다.
-	$(document).on('click', '.close', function() {
+	$(document).off('click', '.close').on('click', '.close', function() {
 		$(this).closest('.modal').hide();
 	});
-	$(document).on('click', '#confirm', function() {
-		$(this).closest('.modal').hide();
-	});
-
 	// 모달창 바깥 부분을 클릭했을 때, 해당 부분이 속한 모달창만을 닫습니다.
-	$(window).click(function(event) {
+	$(window).off('click').on('click', function(event){
 		if (!$(event.target).closest('.modal').length && !$(event.target).hasClass('modal-opener')) {
 			closeAllModals();
-			resetModal()
+			if ($(event.target).closest('#filterModal')) {
+				cleanFilterModal();
+			}
 		}
-	});
-
-	//검색아이콘 폼제출
-	$(".search_icon").click(function() {
-		$("form").submit();
 	});
 
 	// Get today's date
@@ -110,25 +89,6 @@ $(document).ready(function() {
 
 	showButtons();
 
-	// When the user hits enter in the search input, submit the form
-	$(".search_input_text").keypress(function(event) {
-		if (event.keyCode == 13) {
-			event.preventDefault();
-			// Get input values
-			var date = $("#reservation-date").val();
-			var persons = $("input[name='persons']:checked").val();
-			var time = $("input[name='time']:checked").val();
-
-			// Update the form data
-			$("form").find("input[name='date']").val(date);
-			$("form").find("input[name='persons']").val(persons);
-			$("form").find("input[name='time']").val(time);
-
-			// Submit the form
-			$("form").submit();
-		}
-	});
-
 	$("#confirm").click(function() {
 		// Get input values
 		var date = $("#reservation-date").val();
@@ -156,8 +116,6 @@ $(document).ready(function() {
 
 	//필터부분
 
-
-
 	$('.sub-list, .detail-list').css('display', 'none');
 
 	// '.filter-item' 클릭 시 이벤트 핸들러
@@ -170,11 +128,9 @@ $(document).ready(function() {
 		$('.detail-list-wrap').empty();
 		subList.css('display', 'flex'); // 서브 리스트를 표시합니다.
 	});
-/**/
+
 	$(document).on('click', '.sub-list > li', function(event) {
-		if ($(this).find('input[type="radio"]').length > 0) {
-			event.stopPropagation();
-		}
+		event.stopPropagation();
 		var detailList = $(this).find('.detail-list');
 		var clonedDetailList = detailList.clone(true);
 		$('.detail-list-wrap').empty().append(clonedDetailList);
@@ -184,9 +140,9 @@ $(document).ready(function() {
 	$('#price').on('change', function() {
 		var newValue = $(this).val();
 		$('#priceValue').text(newValue); // Update the displayed price value
-
 		// Trigger a click event on #priceValue
 		$('#priceValue').trigger('click');
+		isPriceChange = true;
 	});
 
 	$(document).on('click', '.filter-list li, .sub-list li, .detail-list li', function(event) {
@@ -213,7 +169,56 @@ $(document).ready(function() {
 	});
 
 
+	// 필터 모달창 내의 라디오 버튼 클릭 이벤트 처리
+	$(document).on('click', '.filterModal input[type="radio"]', function() {
+		var name = $(this).attr('name');
+		var value = $(this).val();
 
+		formData[name] = value; // 동일한 name 속성의 값을 교체하거나 새로 추가
+		console.log(formData[name]); //동작안함
+	});
+
+	function sendFormData() {
+		var formData = {
+			context: $('.search_input_text').val(),
+			persons: $("input[name='persons']:checked").val(),
+			time: $("input[name='time']:checked").val(),
+			date: $("#reservation-date").val(),
+			location: $("input[name='location']:checked").val(),
+			category: $("input[name='category']:checked").val(),
+			price: $('#price').val(),
+			mood: $("input[name='mood']:checked").val(),
+			facilities: $("input[name='facilities']:checked").val(),
+			table_type: $("input[name='table_type']:checked").val(),
+			hygiene: $("input[name='hygiene']:checked").val()
+		};
+
+		// AJAX 요청
+		$.ajax({
+			url: 'product/searchResult',
+			type: 'GET',
+			dataType: 'json',
+			data: formData,
+			success: function(response) {
+				// 성공적으로 데이터를 받으면 실행할 코드
+				console.log("Response: ", response);
+			},
+			error: function(error) {
+				// 에러가 발생했을 때 실행할 코드
+				console.log("Error: ", error);
+			}
+		});
+	}
+
+//	 검색어 입력창에서 엔터 누를 때
+	$(".search_input_text").off('keypress').on('keypress', function(event) {
+		if (event.keyCode === 13) {
+			sendFormData();
+		}
+	});
+
+	// 검색 아이콘 클릭 시
+	$(".search_icon").click(sendFormData);
 
 
 });
