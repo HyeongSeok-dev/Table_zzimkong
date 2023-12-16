@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +9,8 @@
 <title>Table 찜콩 - 결제</title>
 <link href="${pageContext.request.contextPath }/resources/css/payment.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet" type="text/css">
+<script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/payment.js"></script>
 <script type="text/javascript">
 	window.onload = function() {
 		
@@ -18,11 +21,11 @@
 	// 	};
 		
 		//전체동의 체크박스 선택시 동의란 모두 체크됨
-		document.querySelector("#checkAllAgree").onclick = function() {
+		/* document.querySelector("#checkAllAgree").onclick = function() {
 			for(let i = 0; i < document.payForm.agreement.length; i++) {
 				document.payForm.agreement[i].checked = document.querySelector("#checkAllAgree").checked;
 			}
-		};
+		}; */
 		
 		//무통장 입금시 각은행별 계좌번호
 		document.payForm.bankSelect.onchange = function() {
@@ -94,7 +97,7 @@
 						<div class="coupon_and_point">
 							<div class="coupon">
 								<div class="font_stlye">쿠폰선택</div>
-								<select class="select_coupon">
+								<select class="select_coupon" name="selectCoupon">
 									<option value="" >쿠폰을 선택해주세요</option>
 								</select>
 								<button class="use_button"  type="button">사용하기</button>
@@ -104,7 +107,7 @@
 									<span class="font_stlye">포인트</span> 
 									<span class="point_available">사용가능금액 <span id="useable">1000<%--${} --%></span>원</span>
 								</div>
-								<input type="text" value="0원" class="point_to_use">
+								<input type="text" value="0원" class="point_to_use" name="pointToUse">
 								<button id="useAllPoint" class="use_button"  type="button">전액사용</button>
 							</div>
 						</div>
@@ -118,7 +121,7 @@
 							</div>	
 							<br>
 							<div>
-								<input type="radio" name="payment" value="카드결제"><span class="font_stlye">카드결제</span>
+								<input type="radio" name="cardPayment" value="카드결제"><span class="font_stlye">카드결제</span>
 								<select class="select" id="cardSelect" name="cardSelect">
 									<option value="">카드사를 선택해 주세요</option>
 									<option value="삼성">삼성</option>
@@ -135,7 +138,7 @@
 							</div>
 							<br>
 							<div>
-								<input type="radio" name="payment" value="무통장입금"><span class="font_stlye">무통장입금</span>
+								<input type="radio" name="bankPayment" value="무통장입금"><span class="font_stlye">무통장입금</span>
 								<span class="pm_acc_comment">20분 이내 입금되지 않으면 자동 취소됩니다.</span>
 								<br>
 								<select class="select_b" id="bankSelect" name="bankSelect">
@@ -159,7 +162,7 @@
 							</div>
 							<br>
 							<div>	
-								<input type="radio" name="payment" value="휴대폰결제"><span class="font_stlye">휴대폰결제</span>
+								<input type="radio" name="phonePayment" value="휴대폰결제"><span class="font_stlye">휴대폰결제</span>
 								<br>
 								<div class="tele_com">
 									<input type="radio" name="telecom" value="SK">SK
@@ -168,10 +171,10 @@
 								</div>
 							</div>
 							<div class="tele_detail">
-								<input type="text" placeholder="핸드폰 번호를 입력해주세요." class="phone_num_text">
+								<input type="text" name="phoneNum" placeholder="핸드폰 번호를 입력해주세요." class="phone_num_text">
 								<button class="phone_button1"  type="button">인증번호 발송</button>
 								<br>
-								<input type="text" placeholder="인증번호를 입력해 주세요." class="check_num">
+								<input type="text" name="authenticationNum" placeholder="인증번호를 입력해 주세요." class="check_num">
 								<button class="phone_button2"  type="button">인증하기</button>
 							</div>
 						</div>
@@ -181,7 +184,7 @@
 						<div class="agree_top">
 							<div class="agree_main">
 							<span>
-								<input type="checkbox" value="전체동의" class="agree" id="checkAllAgree">
+								<input type="checkbox" name="checkAllAgree" value="전체동의" class="agree" id="checkAllAgree">
 								<span>
 									<span class="all_agree">[전체동의]</span>
 									 서비스약관에 동의 합니다.
@@ -191,7 +194,7 @@
 							</div>
 							<div class="agree_main">
 								<span>
-									<input type="checkbox" name="agreement" value="결제대행동의" class="agree">
+									<input type="checkbox" name="agreement1" value="결제대행동의" class="agree">
 									<span>
 										<span class="agree_font">[필수]</span> 
 										결제 대행 서비스 이용 약관 동의 합니다.
@@ -203,7 +206,7 @@
 							</div>	
 							<div class="agree_main">
 								<span>
-									<input type="checkbox" name="agreement" value="취소환불동의" class="agree">
+									<input type="checkbox" name="agreement2" value="취소환불동의" class="agree">
 									<span>
 										<span class="agree_font">[필수]</span> 
 										취소 및 환불규정 동의 합니다.
@@ -215,7 +218,7 @@
 							</div>
 							<div class="agree_main">
 								<span>
-									<input type="checkbox" name="agreement" value="개인정보동의" class="agree">
+									<input type="checkbox" name="agreement3" value="개인정보동의" class="agree">
 									<span>
 										<span class="agree_font">[선택]</span> 
 										개인정보 제3자 제공 동의 합니다.
@@ -240,7 +243,11 @@
 							<div class="res_main">
 								<ul>
 									<li class="res_li">
+										<span class="res_info">상호명</span>
 										<h3 class="res_com_name">프맄<%--${} --%></h3>
+									</li>
+									<li class="res_li">
+										<span class="res_info">주소</span>
 										<span class="res_add">부산광역시 부산진구 서전로38번길<%--${} --%></span>
 									</li>
 									<li class="res_li">
@@ -263,7 +270,7 @@
 										<span class="res_info">인원수</span>
 										<span class="per_detail">2<%--${} --%>명</span>
 									</li>
-									<li>
+									<li class="res_li2">
 										<div class="res_info">고객 요청사항</div>
 										<div class="request_detail">기념일인데 좋은 자리로 부탁드려요<%--${} --%></div>
 									</li>
@@ -304,28 +311,28 @@
 									</div> 
 									<div>
 										<span class="detail">쿠폰할인</span>
-										<span class="detail_price">0<%--${} --%>원</span>
+										<span class="detail_price">- 0<%--${} --%>원</span>
 									</div> 
 									<div>
 										<span class="detail">포인트할인</span>
-										<span class="detail_price">0<%--${} --%>원</span>
+										<span class="detail_price">- 0<%--${} --%>원</span>
 									</div> 
 								</div>
 								<div class="point">
 								<div class="points_earn">
 									<span class="detail">적립예정 포인트</span>
-									<span class="detail_price">0<%--${} --%>원</span>
+									<span class="detail_price">1,270<%--${} --%>원</span>
 								</div>
 								<div>
 										<span class="detail"> </span>
 										<span class="detail_price">
 											<div class="info_price">
-												<span class="menu_name">현제 포인트</span>
+												<span class="menu_name2">현제 포인트</span>
 												<span class="price">1,000원</span>
 											</div>
 											<div class="info_price">
-												<span class="menu_name">총 포인트</span>
-												<span class="price">1,270원</span>
+												<span class="menu_name2">총 포인트</span>
+												<span class="price">2,270원</span>
 											</div>
 										</span>
 									</div> 

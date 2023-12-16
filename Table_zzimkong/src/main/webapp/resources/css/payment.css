@@ -54,10 +54,6 @@
     padding: 30px; 
 }
 
-#rightSec01 ul li {
-    margin-bottom: 5px;
-}
-
 #rightSec02 {
 	margin-bottom: 20px;
     width: 400px;
@@ -109,14 +105,14 @@ h2 {
 
 .phone_button1 {
     margin-left: 10px;
-    height: 40px;
+    height: 35px;
     width: 25%;
     margin-top: 5px;
 }
 
 .phone_button2{
     margin-left: 10px;
-    height: 40px;
+    height: 35px;
     width: 25%;
     margin-top: 5px;
 }
@@ -137,7 +133,7 @@ h2 {
 	/* 스타일1 */
 	padding-right: 15px;
 	text-align: right;
-	margin: 10px;
+	margin: 5px;
 }
 
 .coupon_and_point, .choice_pay {
@@ -191,25 +187,24 @@ h2 {
 .res_li {
 	display: flex;
 	justify-content: space-between;
-	align-items: center
+	align-items: baseline;
+	margin: 5px 5px;
+}
+.res_li2 {
+	margin: 5px 5px;
 }
 
 .res_com_name {
-	font-size: 25px;
+	font-size: 20px;
 	padding: 0;
 	margin: 0;
 	margin-left: 10px;
-}
-.res_add {
-	font-size: 18px;
 }
 
 .res_info {
 	font-size: 14px;
 	font-weight: bold;
 	color: gray;
-	margin-left: 10px;
-	margin-bottom: 10px;
 }
 
 .total_detail {
@@ -264,7 +259,7 @@ h2 {
 
 .res_add,.date_detail,.per_detail,.other_name,.phone_num,.request_detail {
 	font-weight: bold;
-	font-size: 18px;
+	font-size: 14px;
 	padding-left: 10px;
 }
 
@@ -294,7 +289,7 @@ h2 {
 
 .select {
 	margin-top: 8px;
-	width: 75%;
+	width: 95%;
 	height: 40px;
 }
 
@@ -427,7 +422,7 @@ path[Attributes] {
 	margin-bottom: 5px;
 }
 
-.menu_name, .count {
+.menu_name, .count, .menu_name2 {
 	font-size: 12px;
 	color: gray;
 	margin-left: 10px;
@@ -437,9 +432,13 @@ path[Attributes] {
 .menu_name {
 	width: 70px;
 }
+.menu_name2 {
+	width: 70px;
+	padding-left: 22px;
+}
 
 .price {
-	font-size: 14px;
+	font-size: 12px;
 	width: 180px;
 	text-align: right;
 }
@@ -449,4 +448,6 @@ path[Attributes] {
 	margin-top: 3px;
 }
 
-
+.request_detail {
+	margin-top: 7px;
+}
