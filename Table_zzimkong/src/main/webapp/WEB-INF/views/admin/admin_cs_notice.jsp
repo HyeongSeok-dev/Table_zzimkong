@@ -7,7 +7,7 @@
 <title>Insert title here</title>
  <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
  <link href="${pageContext.request.contextPath }/resources/css/admin_cs.css" rel="stylesheet">
- <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/admin_top.css"> 
+ <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/admin_top.css">
 <script type="text/javascript">
 	function noticeRegisterForm() {
 		/* 팝업창 중앙 정렬 */
@@ -125,8 +125,10 @@
 		   </div> 
 		</div>
 	</section>
-<!-- 	<footer> -->
-<%-- 		<jsp:include page="bottom.jsp"></jsp:include> --%>
-<!-- 	</footer> -->
+<%-- 상단으로/bottom --%>
+	<footer>
+		<jsp:include page="../inc/admin_topup.jsp"/>
+	<%-- 	<jsp:include page="../inc/bottom_main.jsp"/> --%>
+	</footer>
 </body>
 </html>

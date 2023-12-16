@@ -22,8 +22,8 @@
 			     	 <h3>공지사항</h3>
 		        </span>
 		        <span>
-					<button type="button" id="buttonFaq" onclick="location.href='member_cs_faq.jsp'">자주묻는 질문</button>	
-					<button type="button" onclick="location.href='member_cs_qna.jsp'" id="buttonQna">1 : 1 문의</button>	
+					<button type="button" id="buttonFaq" onclick="location.href='${pageContext.request.contextPath }/member/cs/faq'">자주묻는 질문</button>	
+					<button type="button" onclick="location.href='${pageContext.request.contextPath }/member/cs/qna'" id="buttonQna">1 : 1 문의</button>	
 		    	</span>
 		    </div>
 		

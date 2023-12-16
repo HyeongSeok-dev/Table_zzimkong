@@ -45,7 +45,7 @@
 			                	</span>
 			                    <span class="search-wrap">
 			                        <label for="search" class="blind">공지사항 내용 검색</label>
-			                        <input id="search" type="search" name="" placeholder="검색어를 입력해주세요." value="">
+			                        <input id="search" type="search" name="searchNotice" placeholder="검색어를 입력해주세요." value="">
 			                        <button type="submit" class="btn btn-dark">검색</button>
 			                    </span>
 		                   </div>
@@ -70,7 +70,7 @@
 				            <td>3</td>
 				            <th class="cs_th">주문/결제</th>
 				            <th class="cs_th">
-				              <a href="member_cs_qna_modify.jsp">문의문의</a>
+				              <a href="member_cs_qna_view.jsp">문의문의</a>
 				              <p>테스트</p>
 				            </th>
 				            <td>2017.07.13</td>
@@ -79,14 +79,14 @@
 				        <tr>
 				            <td>2</td>
 				            <th class="cs_th">예약</th>
-				            <th class="cs_th"><a href="member_cs_qna_modify.jsp">문의문의</a></th>
+				            <th class="cs_th"><a href="member_cs_qna_view.jsp">문의문의</a></th>
 				            <td>2017.06.15</td>
 				        </tr>
 				
 				        <tr>
 				            <td>1</td>
 				            <th class="cs_th">리뷰</th>
-				            <th class="cs_th"><a href="member_cs_qna_modify.jsp">문의문의</a></th>
+				            <th class="cs_th"><a href="member_cs_qna_view.jsp">문의문의</a></th>
 				            <td>2017.06.15</td>
 				        </tr>
 				        </tbody>

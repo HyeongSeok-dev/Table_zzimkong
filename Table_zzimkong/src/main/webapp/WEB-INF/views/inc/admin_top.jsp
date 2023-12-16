@@ -11,12 +11,9 @@
 <body>
 	<div class="header_all">
 	<div class="headerMenu1">
-		<a href="${pageContext.request.contextPath}">
+		<a href="${pageContext.request.contextPath}/admin/main">
 			<img alt="logo1" src="${pageContext.request.contextPath }/resources/img/logo4_1.png" width="50px">
 		</a>
-	</div>
-	<div class="headerMenu1">
-		<div class="page_name">관리자 페이지</div>
 	</div>
 	<div class="headerMenu2">
 	  <ul class="">
@@ -54,7 +51,11 @@
 				      </span>
 				    </a>
 				</span>
-			</div>	
+				<span> 
+					<a href="${pageContext.request.contextPath}">
+						<img src="">
+					</a>
+				</span>
 	    </li>
 	  </ul>
 	  </div>

@@ -25,7 +25,7 @@
 					<th>번호</th>
 					<td>1</td>
 					<th>
-						질문유형
+						유형
 					</th>
 					<td>
 					[일반회원의 경우 질문유형]<br>
@@ -40,14 +40,14 @@
 					</td>
 				</tr>
 				<tr>
-					<th colspan="1">문의내용</th>
+					<th colspan="1">질문</th>
 					<td colspan="3">
 						--여기 문의내용
 					</td>
 				</tr>
 				<tr>
-					<th colspan="2">답변</th>
-					<td colspan="4">
+					<th colspan="1">답변</th>
+					<td colspan="3">
 						--여기 답변내용
 					</td>
 				</tr>

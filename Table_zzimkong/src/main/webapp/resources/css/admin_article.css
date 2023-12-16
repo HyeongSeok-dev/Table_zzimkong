@@ -12,6 +12,7 @@ h3 {
     font-size: 30px;
     /* 하이라이트 CSS 추가 */
     display: inline; /* 글자 길이에 맞게 */
+    margin-bottom: 20px !important; 
 }
 
 .article {
@@ -151,7 +152,7 @@ td> select {
 	float: right;
 	/* 검색창 너비 */
 	width: 20%;
-/* 	margin-bottom: -20px; */
+ /* 	margin-bottom: 20px; */
 }
 
 /* .float_after { */

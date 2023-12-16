@@ -137,8 +137,10 @@
 		   </div> 
 		</div>
 	</section>
-<!-- 	<footer> -->
-<%-- 		<jsp:include page="bottom.jsp"></jsp:include> --%>
-<!-- 	</footer> -->
+	<%-- 상단으로/bottom --%>
+	<footer>
+		<jsp:include page="../inc/admin_topup.jsp"/>
+	<%-- 	<jsp:include page="../inc/bottom_main.jsp"/> --%>
+	</footer>
 </body>
 </html>

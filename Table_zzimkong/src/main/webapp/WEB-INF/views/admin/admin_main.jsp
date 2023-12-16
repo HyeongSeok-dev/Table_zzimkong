@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 <link href="${pageContext.request.contextPath}/resources/css/global.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resources/css/admin_article.css" rel="stylesheet">
+<!-- 바텀 못넣었음...ㅠㅠㅠㅠㅠ -->
 </head>
 <body id="body">
 	<header>
@@ -70,9 +71,10 @@
 		</div>
 	</section>
 	
-	<%-- 상단으로 --%>
+	<%-- 상단으로/bottom --%>
 	<footer>
 		<jsp:include page="../inc/admin_topup.jsp"/>
+		<%-- <jsp:include page="../inc/bottom_main.jsp"/> --%>
 	</footer>
 </body>
 </html>

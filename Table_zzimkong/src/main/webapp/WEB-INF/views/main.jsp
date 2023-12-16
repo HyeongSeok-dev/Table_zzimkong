@@ -236,10 +236,13 @@
 	 <button><a href="reservation">reservation</a></button>
 	<hr>
 	<button><a href="member/cs/faq">member/cs/faq</a></button>
+	<button><a href="member/cs/faq/view">member/cs/faq/view</a></button>
 	<button><a href="member/cs/notice">member/cs/notice</a></button>
-	<button><a href="member/cs/qna/register">member/cs/qna/register</a></button>
+	<button><a href="member/cs/notice/view">member/cs/notice/view</a></button>
 	<button><a href="member/cs/qna">member/cs/qna</a></button>
-	<button><a href="member/cs/register">member/cs/register</a></button>
+	<button><a href="member/cs/qna/register">member/cs/qna/register</a></button>
+	<button><a href="member/cs/qna/view">member/cs/qna/view</a></button>
+	<button><a href="member/cs/qna/modify">member/cs/qna/modify</a></button>
 	<br>
 	
 	   

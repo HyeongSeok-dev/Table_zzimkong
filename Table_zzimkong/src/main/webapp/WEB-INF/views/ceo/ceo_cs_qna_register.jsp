@@ -20,14 +20,14 @@
 			</div>
 		</div>
 		<div class="text_inner_form">
-			<form action="" method="post" name="memberQnaPro">
+			<form action="" method="post" name="ceoQnaForm">
 				<table>
 					<tr>
 						<th width="80">회원정보</th>
 						<td width="100">이형석</td>
 						<th width="80">유형</th>
 						<td>
-							<select class="category_select">
+							<select class="category_select" name="ceoCategory">
 			            		<option value="">유형선택</option>
 			            		<option value="예약관리">예약관리</option>
 			            		<option value="메뉴관리">메뉴관리</option>
