@@ -8,15 +8,18 @@
 <%-- 글로벌 css --%>
 <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
 <%-- 본문 css --%>
-<link href="${pageContext.request.contextPath }/resources/css/ceo_res_detaile.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath }/resources/css/ceo_article.css" rel="stylesheet">
 <%-- 사이드바 css --%>
 <!-- <link href="side_bar.css" rel="stylesheet"> -->
 </head>
 <body>
-	<section class="article">
-        <div class="text">예약관리 상세정보</div>
-        <br>
-		<div class="text">
+	<section class="ceo_popup_sec">
+		<div class="text_inner">
+			<div class="header_div01">
+				<span><h3>예약 상세 정보</h3></span>
+			</div>
+		</div>
+		<div class="text_inner">
 <!-- 			<h3>예약자</h3> -->
 			<table border="1">
 				<tr>
@@ -76,6 +79,8 @@
 					<td></td>
 				</tr>
 			</table>
+			<br>
+			<button type="button" class="button_olive" onclick="javascript:window.close()">닫기</button>
 		</div>
 	</section>	
 

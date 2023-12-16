@@ -44,54 +44,61 @@
 	</header>
 	<section class="ceo_sec">
 		<div class="text">
-			<div class="header">
-			<span><h3>업체 관리 리스트</h3></span>
-			<span><button type="button" class="button_olive" onclick="companyRegistration()">업체등록</button></span>
+			<div class="text_inner">
+				<div class="header_div01">
+				<span><h1>사업장 관리</h1></span>
+				</div>
 			</div>
-			<table border="1">
-				<tr>
-					<th>업체번호</th>
-					<th>상호명</th>
-					<th>영업시간</th>
-					<th>등록일자</th>
-					<th>업체상태</th>
-					<th colspan="2">광고등급</th>
-					<th>수정/삭제</th>
-				</tr>
-				<tr>
-					<td>1</td>
-					<td>칸다소바</td>
-					<td>09:00~23:30</td>
-					<td>2023/12/25</td>
-					<td>영업중지</td>
-					<td>
-						0단계
-					</td>
-					<td>
-						<button type="button" class="button_olive" onclick="comAdRegistration()">광고등록</button>
-					</td>
-					<td>
-						<button type="button" class="button_olive" onclick="companyInfoOpen()">수정</button>
-					<!-- 	<input type="button" value="폐점신청" class="button_red" onclick="company_disapprove()"> -->
-					</td>
-				</tr>
-				<tr>
-					<td>2</td>
-					<td>아오모리</td>
-					<td>11:00~21:30</td>
-					<td>2023/12/24</td>
-					<td>영업중지</td>
-					<td>
-						0단계
-					</td>
-					<td>
-						<button type="button" class="button_olive" onclick="comAdRegistration()">광고등록</button>
-					</td>
-					<td>
-						<button type="button" class="button_olive" onclick="companyInfoOpen()">수정</button>
-					</td>
-				</tr>
-			</table>
+			<div class="text_inner">
+				<div class="header">
+				<span><h3>사업장 목록</h3></span>
+				<span><button type="button" class="button_olive" onclick="companyRegistration()">신규등록</button></span>
+				</div>
+				<table border="1">
+					<tr>
+						<th>번호</th>
+						<th>상호명</th>
+						<th>영업시간</th>
+						<th>등록일자</th>
+						<th>업체상태</th>
+						<th colspan="2">광고등급</th>
+						<th>수정/폐점신청</th>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>칸다소바</td>
+						<td>09:00~23:30</td>
+						<td>2023/12/25</td>
+						<td>영업중지</td>
+						<td>
+							0단계
+						</td>
+						<td>
+							<button type="button" class="button_olive" onclick="comAdRegistration()">광고등록</button>
+						</td>
+						<td>
+							<button type="button" class="button_olive" onclick="companyInfoOpen()">수정</button>
+						<!-- 	<input type="button" value="폐점신청" class="button_red" onclick="company_disapprove()"> -->
+						</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>아오모리</td>
+						<td>11:00~21:30</td>
+						<td>2023/12/24</td>
+						<td>영업중지</td>
+						<td>
+							0단계
+						</td>
+						<td>
+							<button type="button" class="button_olive" onclick="comAdRegistration()">광고등록</button>
+						</td>
+						<td>
+							<button type="button" class="button_olive" onclick="companyInfoOpen()">수정</button>
+						</td>
+					</tr>
+				</table>
+			</div>	
 		</div>
 	</section>
 </body>

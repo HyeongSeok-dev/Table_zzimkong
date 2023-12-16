@@ -1,31 +1,6 @@
 @charset "UTF-8";
 
 
-/* 본문 CSS */
-
-h3 {
-	color: #515151;
-    margin-bottom: 30px;
-    font-size: 30px;
-    /* 하이라이트 CSS 추가 */
-    display: inline; /* 글자 길이에 맞게 */
-}
-
-.article {
-	display: block;
-	border: none;
-	background-color: #fff;
-	margin-top: 40px;
-}
-
-.text {
-	display: block;
-	width: 1200px;
-	padding: 0 30px;
-    margin: 0 auto;
-}
-
-
 textarea {
     width: 100%;
     padding: 12px 20px;
@@ -74,18 +49,3 @@ textarea {
 }
 
 
-#comNumText {
-	width: 65%;
-	margin-right: 10px;
-}
-
-#my_delete {
-	border: 1px solid #ddd;
-	background-color: #fff;
-	color:#3FAFFC;
-}
-
-#my_delete:hover {
-	background-color:  #ddd;
-    color: #3FAFFC;
-}

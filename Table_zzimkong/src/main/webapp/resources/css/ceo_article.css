@@ -9,26 +9,41 @@ body {
 
 h3 {
     color: #515151;
-    margin-bottom: 30px;
-    font-size: 30px;
+    font-size: 25px;
     /* 하이라이트 CSS 추가 */
     display: inline; /* 글자 길이에 맞게 */
 }
+
+h1 {
+    color: #515151;
+    font-size: 35px;
+    /* 하이라이트 CSS 추가 */
+    display: inline; /* 글자 길이에 맞게 */
+}
+
 .ceo_sec{
-	text-align: center;
-	width: 1000px;
-	display: block;
+	width: 100%;
+	display: flex;
+	justify-content: center;
 	border: none;
 	background-color: #fff;
-	margin-top: 100px;
+	margin-top: 50px;
 }
 
 .text {
 	display: block;
 	width: 1200px;
 	padding: 0 30px;
-    margin: 0 auto;
+    margin: 0;
 }
+
+.text {
+	display: block;
+	width: 1200px;
+	padding: 0 30px;
+    margin: 0;
+}
+
 
 input[type="text"] {
     width: 100%;
@@ -42,11 +57,16 @@ input[type="text"] {
 
 
 /* 버튼 : 빨간색 - 탈퇴, 거부 */
-#button_cancel {
+#button_cancel, #my_delete  {
 	color: #3FAFFC;
 	background-color: #fff;
 	border: 1px solid #d5d5d5; 
 	padding: 5px;
+}
+
+#button_cancel, #my_delete:hover  {
+	background-color:  #ddd;
+    color: #3FAFFC;
 }
 
 /* 버튼 : 올리브색 - 승인 */
@@ -75,32 +95,39 @@ input[type="text"] {
 /* } */
 
 
-/* 상세 정보 창 CSS */
-.info_window {
-	padding: 10%;
-	line-height: 1.6;
-}
-
-.info_window section {
-	justify-content: center;
+.ceo_popup_sec {
 	text-align: center;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	border: none;
+	background-color: #fff;
+	margin-top: 50px;
 }
 
-.info_window table {
+.text_inner>form>table {
 	/* ## 테이블 간격 조정 */
 	width: 900px;
 	border-collapse: collapse;
 	margin: auto;
 	table-layout: auto;
 }
+
+.text_inner_view>table {
+	/* view 테이블 간격 조정 */
+	width: 600px;
+	border-collapse: collapse;
+	margin: auto;
+	table-layout: auto;
+}
 	
-.info_window td {
+.text_inner>form>table>td {
 	/* 	width: 90%; */
 	text-align: center;
 }
-	
+
 /* 버튼 가운데 정렬 */
-.info_window_table input[type="button"] {
+.text_inner_table input[type="button"] {
 	display: flex;
 	justify-content: center;
 }
@@ -123,7 +150,38 @@ input[type="text"] {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	margin-bottom: 20px;
 }
+
+.header_div01 {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-bottom: 20px;
+}
+
+.header_span {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.header_span>select {
+	background: none;
+	height: 38px;
+	width: 200px;
+	color: #333;
+}
+
+input[type="date"] {
+	width: 200px;
+	height: 30px;
+}
+
+.text_inner {
+	margin-bottom: 50px;
+}
+
 
 .hour, .minute {
 	width: 35%;
@@ -136,3 +194,34 @@ input[type="text"] {
 	margin-right: 10px;
 }
 
+#memberNumText {
+	width: 65%;
+	margin-right: 10px;
+}
+
+#my_delete {
+	border: 1px solid #ddd;
+	background-color: #fff;
+	color:#3FAFFC;
+}
+
+#my_delete:hover {
+	background-color:  #ddd;
+    color: #3FAFFC;
+}
+
+/* ceo_cs_qna_register/modify */
+.text_inner_form>form>table {
+	/* ## 테이블 간격 조정 */
+	width: 600px;
+	border-collapse: collapse;
+	margin: auto;
+	table-layout: auto;
+}
+
+#csQnaRegiTitle {
+	width: 90%;
+}
+#csQnaRegiContent {
+	width: 90%;
+}

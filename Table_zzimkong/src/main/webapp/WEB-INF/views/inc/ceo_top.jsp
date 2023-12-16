@@ -16,7 +16,7 @@
 <!-- </div> -->
 	<div class="header_all">
 	<div class="headerMenu1">
-		<img alt="logo1" src="${pageContext.request.contextPath }/resources/img/logo4_3.png" width="50px">
+		<img alt="logo1" src="${pageContext.request.contextPath }/resources/img/logo4_1.png" width="50px">
 	</div>
 	<div class="headerMenu2">
 	  <ul class="">
@@ -27,7 +27,7 @@
 	    </li>
 	    <li>
 	      <a id="franchise" href="${pageContext.request.contextPath }/ceo/company/list">
-	        내업체관리
+	        사업장관리
 	      </a>
 	    </li>
 	    <li>

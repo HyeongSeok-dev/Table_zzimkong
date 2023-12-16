@@ -52,6 +52,8 @@
 					</td>
 				</tr>
 			</table>
+			<br><br>
+			<button type="button" class="button_olive" onclick="javascript:window.close()">닫기</button>
 			<%--자주묻는 질문의 수정과 삭제 권한은 오직 관리자에게만 있음 수정과 삭제는 관리자 페이지에서 진행!! --%>
 	</section>
 </body>

@@ -114,6 +114,11 @@ public class HomeController {
 		return "ceo/ceo_cs_qna_register";
 	}
 	
+	@GetMapping("ceo/cs/qna/view")
+	public String ceo_cs_qna_view() {
+		return "ceo/ceo_cs_qna_view";
+	}
+	
 	@GetMapping("ceo/cs/qna")
 	public String ceo_cs_qna() {
 		return "ceo/ceo_cs_qna";
