@@ -8,7 +8,24 @@
  <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
  <link href="${pageContext.request.contextPath }/resources/css/admin_cs.css" rel="stylesheet">
  <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/admin_top.css"> 
-
+<script type="text/javascript">
+	function noticeRegisterForm() {
+		/* 팝업창 중앙 정렬 */
+		var popupW = 950;
+		var popupH = 700;
+		var left = Math.ceil((window.screen.width - popupW)/2);
+		var top = Math.ceil((window.screen.height - popupH)/2);
+		window.open('${pageContext.request.contextPath }/admin/cs/notice/register','','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
+	}
+	function noticeModifyForm() {
+		/* 팝업창 중앙 정렬 */
+		var popupW = 950;
+		var popupH = 700;
+		var left = Math.ceil((window.screen.width - popupW)/2);
+		var top = Math.ceil((window.screen.height - popupH)/2);
+		window.open('${pageContext.request.contextPath }/admin/cs/notice/modify','','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
+	}
+</script>
 </head>
 <body>
 	<header>
@@ -21,9 +38,9 @@
 		            <h3>고객센터 - 공지사항 관리</h3>
 		        </span>
 		        <span>
-					<button type="button" id="buttonQna" onclick="location.href='admin_cs_qna.jsp'">1:1 문의 관리</button>	
-					<button type="button" id="buttonFaq" onclick="location.href='admin_cs_faq.jsp'">자주묻는 질문 관리</button>	
-		    		<button type="button" id="buttonRegister" onclick="location.href='admin_notice_register.jsp'">새글작성</button>
+					<button type="button" id="buttonQna" onclick="location.href='qna'">1:1 문의 관리</button>	
+					<button type="button" id="buttonFaq" onclick="location.href='faq'">자주묻는 질문 관리</button>	
+		    		<button type="button" id="buttonRegister" onclick="noticeRegisterForm()">새글작성</button>
 		    	</span>
 		    </div>
 		
@@ -66,9 +83,9 @@
 				        <tr>
 				            <th scope="col" class="th-category">
 								<select class="user_select">
-				            		<option>유형</option>
-									<option>일반</option>
-									<option>업주</option>
+				            		<option>회원유형</option>
+									<option>일반회원</option>
+									<option>사업자회원</option>
 				            	</select>
 							</th>
 				        </tr>
@@ -76,27 +93,27 @@
 				        <tbody>
 				        <tr>
 				            <td>3</td>
-				            <th class="cs_th">업주</th>
+				            <th class="cs_th">사업자회원</th>
 				            <th class="cs_th">
-				              <a href="#!">[공지사항] 개인정보 처리방침 변경안내처리방침</a>
+				              <a onclick="noticeModifyForm()">[공지사항] 개인정보 처리방침 변경안내처리방침</a>
 				              <p>테스트</p>
 				            </th>
 				            <td>2017.07.13</td>
 				        </tr>
 				        <tr>
 				            <td>2</td>
-				            <th class="cs_th">업주</th>
+				            <th class="cs_th">사업자회원</th>
 				            <th class="cs_th">
-				              <a href="#!">[공지사항] 개인정보 처리방침 변경안내처리방침</a>
+				              <a onclick="noticeModifyForm()">[공지사항] 개인정보 처리방침 변경안내처리방침</a>
 				              <p>테스트</p>
 				            </th>
 				            <td>2017.07.13</td>
 				        </tr>
 				        <tr>
 				            <td>1</td>
-				            <th class="cs_th">업주</th>
+				            <th class="cs_th">사업자회원</th>
 				            <th class="cs_th">
-				              <a href="#!">[공지사항] 개인정보 처리방침 변경안내처리방침</a>
+				              <a onclick="noticeModifyForm()">[공지사항] 개인정보 처리방침 변경안내처리방침</a>
 				              <p>테스트</p>
 				            </th>
 				            <td>2017.07.13</td>

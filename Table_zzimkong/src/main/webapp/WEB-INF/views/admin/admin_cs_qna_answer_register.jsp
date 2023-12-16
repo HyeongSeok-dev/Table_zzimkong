@@ -10,20 +10,12 @@
 <link href="${pageContext.request.contextPath }/resources/css/cs_register.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
 <script type="text/javascript">
-function qnaAnswerRegisterForm() {
-	/* 팝업창 중앙 정렬 */
-	var popupW = 950;
-	var popupH = 700;
-	var left = Math.ceil((window.screen.width - popupW)/2);
-	var top = Math.ceil((window.screen.height - popupH)/2);
-	window.open('${pageContext.request.contextPath }/admin/cs/qna/answer/register','','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
-}
-
+	
 </script>
 </head>
 <body class="info_window">
 	<section>
-		<h3>1 : 1 문의사항</h3>
+		<h3>1 : 1 답글</h3>
 		<br><br>
 		<form action="" method="post" name="memberQnaForm">
 			<table>
@@ -38,37 +30,50 @@ function qnaAnswerRegisterForm() {
 				<tr>
 					<th>유형</th>
 					<td>
-						사업자회원
+					--회원유형	
 					</td>
 					<th>
 						질문유형
 					</th>
 					<td>
-						예약관리
+					--질문유형
 					</td>
 				</tr>
 				<tr>
-					<th colspan="2">제목</th>
+					<th colspan="2">문의제목</th>
 					<td colspan="4">
-					--제목제목
+					--문의제목
 					</td>
 				</tr>
 				<tr>
-					<th colspan="2">내용</th>
+					<th colspan="2">문의내용</th>
 					<td colspan="4">
-					--내용내용
+					--문의내용
 					</td>
 				</tr>
 				<tr>
-					<th colspan="2">파일첨부</th>
+					<th colspan="2">파일</th>
 					<td colspan="4" class="td_file">
-					--사진파일 올라오는 곳<!-- <img rsc=""> -->
+					--첨부파일
+					</td>
+				</tr>
+				<tr>
+					<th colspan="2">답변제목</th>
+					<td colspan="4">
+						<input type="text" placeholder="제목" id="">
+					</td>
+				</tr>
+				<tr>
+					<th colspan="2">답변내용</th>
+					<td colspan="4">
+						<textarea rows="20" cols="80"></textarea>
 					</td>
 				</tr>
 			</table>
 			<br><br>
-			<button type="button" class="button_olive" onclick="location.href='${pageContext.request.contextPath }/admin/cs/qna/answer/register'">답글</button>
-			<button type="button" id="cs_button_delete">삭제</button>
+			<button type="button" class="button_olive" onclick="location.href='javascript:history.back()'">뒤로가기</button>
+			<button type="submit" class="button_olive">답글남기기</button>
+			<button type="reset" id="cs_button_delete">초기화</button>
 		</form>
 	</section>
 </body>

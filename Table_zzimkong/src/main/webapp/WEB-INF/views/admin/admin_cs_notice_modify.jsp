@@ -25,9 +25,9 @@
 					<th>유형</th>
 					<td>
 						<select class="user_select">
-		            		<option>유형</option>
-							<option>일반</option>
-							<option>업주</option>
+		            		<option>회원유형</option>
+							<option>일반회원</option>
+							<option>사업자회원</option>
 		            	</select>
 					</td>
 				</tr>

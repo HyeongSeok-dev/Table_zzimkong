@@ -163,6 +163,61 @@ public class HomeController {
 	public String admin_review_detail() {
 		return "admin/admin_review_detail";
 	}
+
+	@GetMapping("admin/cs/qna")
+	public String admin_cs_qna() {
+		return "admin/admin_cs_qna";
+	}
+	
+	@GetMapping("admin/cs/qna/answer/register")
+	public String admin_cs_qna_answer_register() {
+		return "admin/admin_cs_qna_answer_register";
+	}
+	
+	@GetMapping("admin/cs/qna/answer/view")
+	public String admin_cs_qna_answer_view() {
+		return "admin/admin_cs_qna_answer_view";
+	}
+	
+	@GetMapping("admin/cs/qna/answer/modify")
+	public String admin_cs_qna_answer_modify() {
+		return "admin/admin_cs_qna_answer_modify";
+	}
+	
+	@GetMapping("admin/cs/qna/question")
+	public String admin_cs_qna_question() {
+		return "admin/admin_cs_qna_question";
+	}
+
+	@GetMapping("admin/cs/faq")
+	public String admin_cs_faq() {
+		return "admin/admin_cs_faq";
+	}
+	
+	@GetMapping("admin/cs/faq/register")
+	public String admin_cs_faq_register() {
+		return "admin/admin_cs_faq_register";
+	}
+	
+	@GetMapping("admin/cs/faq/modify")
+	public String admin_cs_faq_modify() {
+		return "admin/admin_cs_faq_modify";
+	}
+	
+	@GetMapping("admin/cs/notice")
+	public String admin_cs_notice() {
+		return "admin/admin_cs_notice";
+	}
+	
+	@GetMapping("admin/cs/notice/modify")
+	public String admin_cs_notice_modify() {
+		return "admin/admin_cs_notice_modify";
+	}
+	
+	@GetMapping("admin/cs/notice/register")
+	public String admin_cs_notice_register() {
+		return "admin/admin_cs_notice_register";
+	}
 	
 	@GetMapping("join/join")
 	public String join() {

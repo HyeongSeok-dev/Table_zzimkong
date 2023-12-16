@@ -8,7 +8,24 @@
  <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
  <link href="${pageContext.request.contextPath }/resources/css/admin_cs.css" rel="stylesheet">
  <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/admin_top.css"> 
-
+<script type="text/javascript">
+	function qnaQuestionForm() {
+		/* 팝업창 중앙 정렬 */
+		var popupW = 950;
+		var popupH = 700;
+		var left = Math.ceil((window.screen.width - popupW)/2);
+		var top = Math.ceil((window.screen.height - popupH)/2);
+		window.open('${pageContext.request.contextPath }/admin/cs/qna/question','','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
+	}
+	function qnaAnswerViewForm() {
+		/* 팝업창 중앙 정렬 */
+		var popupW = 950;
+		var popupH = 700;
+		var left = Math.ceil((window.screen.width - popupW)/2);
+		var top = Math.ceil((window.screen.height - popupH)/2);
+		window.open('${pageContext.request.contextPath }/admin/cs/qna/answer/view','','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
+	}
+</script>
 </head>
 <body>
 	<header>
@@ -21,8 +38,8 @@
 		            <h3>고객센터 - 1 : 1 문의 관리</h3>
 		        </span>
 		        <span>
-					<button type="button" id="buttonNotice" onclick="location.href='admin_cs_notice.jsp'">공지사항 관리</button>	
-					<button type="button" id="buttonFaq" onclick="location.href='admin_cs_faq.jsp'">자주묻는 질문 관리</button>	
+					<button type="button" id="buttonNotice" onclick="location.href='notice'">공지사항 관리</button>	
+					<button type="button" id="buttonFaq" onclick="location.href='faq'">자주묻는 질문 관리</button>	
 		    	</span>
 		    </div>
 		
@@ -67,9 +84,9 @@
 				        <tr>
 				            <th scope="col" class="th-category">
 								<select class="user_select">
-				            		<option>회원</option>
+				            		<option>회원유형</option>
 									<option>일반회원</option>
-									<option>업주회원</option>
+									<option>사업자회원</option>
 				            	</select>
 							</th>
 				            <th scope="col" class="th-category">
@@ -95,10 +112,10 @@
 				        <tbody>
 				        <tr>
 				            <td>3</td>
-				            <th class="cs_th">업주회원</th>
+				            <th class="cs_th">사업자회원</th>
 				            <th class="cs_th">블랙리스트</th>
 				            <th class="cs_th">
-				              <a href="#!">문의문의</a>
+				              <a onclick="qnaQuestionForm()">문의문의</a>
 				              <p>테스트</p>
 				            </th>
 				            <td>zzim</td>
@@ -106,23 +123,21 @@
 				        </tr>
 				        <tr>
 				            <td>2</td>
-				            <th class="cs_th">업주회원</th>
+				            <th class="cs_th">사업자회원</th>
 				            <th class="cs_th">블랙리스트</th>
 				            <th class="cs_th">
-				              <a href="#!">문의문의</a>
+				              <a onclick="qnaQuestionForm()">문의문의</a> <%--문의 제목 누르면 문의 내용 열람하고 viewForm에 답변달기 버튼있음 --%>
 				              <p>테스트</p>
 				            </th>
 				            <td>zzim</td>
 				            <td>2017.07.13</td>
 				        </tr>
-				        <tr>
-				        </tr>
-				        <tr class="cs_re_tr">
-				            <td class="cs_re_td">[답글]2</td>
+				        <tr class="cs_re_tr"> <%--문의에 대한 답글 --%>
+				            <td class="cs_re_td">2-[답글]</td>
 				            <th class="cs_re_th">관리자</th>
 				            <th class="cs_re_th">블랙리스트</th>
 				            <th class="cs_re_th">
-				              <a href="#!">문의문의에대한 답입니다.</a>
+				              <a onclick="qnaAnswerViewForm()">문의문의에대한 답입니다.</a>
 				              <p>테스트</p>
 				            </th>
 				            <td class="cs_re_td">admin</td>
@@ -131,9 +146,9 @@
 				        <tr>
 				            <td>1</td>
 				            <th class="cs_th">블랙리스트</th>
-				            <th class="cs_th">업주회원</th>
+				            <th class="cs_th">사업자회원</th>
 				            <th class="cs_th">
-				              <a href="#!">문의문의</a>
+				              <a onclick="qnaQuestionForm()">문의문의</a>
 				              <p>테스트</p>
 				            </th>
 				            <td>zzim</td>

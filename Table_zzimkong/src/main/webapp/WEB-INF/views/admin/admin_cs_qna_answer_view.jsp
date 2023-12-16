@@ -17,46 +17,54 @@
 	<section>
 		<h3>1 : 1 답글</h3>
 		<br><br>
-		<form action="" method="post" name="memberQnaForm">
 			<table>
 				<tr>
 					<th>번호</th>
 					<td>1</td>
 					<th>유형</th>
 					<td>
-						
+						--회원유형
 					</td>
 					<th>
 						질문유형
 					</th>
 					<td>
-					
+						--질문유형
 					</td>
 				</tr>
 				<tr>
-					<th colspan="2">제목</th>
+					<th colspan="2">문의제목</th>
 					<td colspan="4">
-						<input type="text" placeholder="제목" id="">
+					--문의제목
 					</td>
 				</tr>
 				<tr>
 					<th colspan="2">문의내용</th>
 					<td colspan="4">
-						<textarea rows="20" cols="80"></textarea>
+					--문의내용
 					</td>
 				</tr>
 				<tr>
-					<th colspan="2">파일첨부</th>
+					<th colspan="2">파일</th>
 					<td colspan="4" class="td_file">
-						<input type="file" multiple="multiple">
-						<div class="file_5">* 파일 5개까지 첨부 가능</div>
+					--파일 보여주기 <%--<a rsc=""></a> 이태그필요?? --%>
+					</td>
+				</tr>
+				<tr>
+					<th colspan="2">답변제목</th>
+					<td colspan="4">
+					--답변제목
+					</td>
+				</tr>
+				<tr>
+					<th colspan="2">답변내용</th>
+					<td colspan="4">
+					--답변내용
 					</td>
 				</tr>
 			</table>
 			<br><br>
-			<button type="submit" class="button_olive">답글남기기</button>
-			<button type="reset" id="cs_button_delete">초기화</button>
-		</form>
+			<button type="submit" class="button_olive" onclick="location.href='${pageContext.request.contextPath }/admin/cs/qna/answer/modify'">수정</button>
 	</section>
 </body>
 </html>

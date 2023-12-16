@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%-- 본문 css --%>
-<link href="${pageContext.request.contextPath }/resources/css/ceo_article.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath }/resources/css/admin_popup.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/resources/css/cs_register.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
 <script type="text/javascript">
@@ -25,9 +25,9 @@
 					<th>유형</th>
 					<td>
 						<select class="user_select">
-		            		<option>회원</option>
+		            		<option>회원유형</option>
 							<option>일반회원</option>
-							<option>업주회원</option>
+							<option>사업자회원</option>
 		            	</select>
 					</td>
 					<th>

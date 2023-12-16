@@ -10,19 +10,16 @@
 </head>
 <body>
 	<div class="header_all">
-	<div class="headerMenu imgP snipcss-X9RSH">
+	<div class="headerMenu1">
 		<a href="${pageContext.request.contextPath}">
-			<img alt="logo1" src="${pageContext.request.contextPath }/resources/img/logo1_2.png" width="100px">
-			<img alt="logo2" src="${pageContext.request.contextPath }/resources/img/logo3_2.png" width="260px">
+			<img alt="logo1" src="${pageContext.request.contextPath }/resources/img/logo4_1.png" width="50px">
 		</a>
 	</div>
-	<div class="headerMenu imgP snipcss-X9RSH">
+	<div class="headerMenu1">
+		<div class="page_name">관리자 페이지</div>
+	</div>
+	<div class="headerMenu2">
 	  <ul class="">
-	    <li>
-	      <a id="about" class="on">
-	      	<div class="page_name">관리자 페이지</div>
-	      </a>
-	    </li>
 	    <li>
 	      <a id="menu" href="${pageContext.request.contextPath }/admin/main">
 	        Dashboard
@@ -44,7 +41,7 @@
 	      </a>
 	    </li>
 	    <li>
-	      <a id="news" href="${pageContext.request.contextPath }/ceo/cs">
+	      <a id="news" href="${pageContext.request.contextPath }/admin/cs/qna">
 	        고객센터
 	      </a>
 	    </li>

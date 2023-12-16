@@ -209,6 +209,9 @@
 	 <button><a href="admin/company/info">admin/company/info</a></button>
 	 <button><a href="admin/review">admin/review</a></button>
 	 <button><a href="admin/review/detail">admin/review/detail</a></button>
+	 <button><a href="admin/cs/notice">admin/cs/notice</a></button>
+	 <button><a href="admin/cs/faq">admin/cs/faq</a></button>
+	 <button><a href="admin/cs/qna">admin/cs/qna</a></button>
 	 <hr>
 	 <button><a href="join/join">join</a></button>
 	 <button><a href="join/ceo">join/ceo</a></button>

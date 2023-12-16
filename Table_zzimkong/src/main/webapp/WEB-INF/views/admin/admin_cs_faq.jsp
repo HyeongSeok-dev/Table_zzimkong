@@ -8,7 +8,24 @@
  <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
  <link href="${pageContext.request.contextPath }/resources/css/admin_cs.css" rel="stylesheet">
  <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/ceo_top.css"> 
-
+<script type="text/javascript">
+	function faqRegisterForm() {
+		/* 팝업창 중앙 정렬 */
+		var popupW = 950;
+		var popupH = 700;
+		var left = Math.ceil((window.screen.width - popupW)/2);
+		var top = Math.ceil((window.screen.height - popupH)/2);
+		window.open('${pageContext.request.contextPath }/admin/cs/faq/register','','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
+	}
+	function faqModifyForm() {
+		/* 팝업창 중앙 정렬 */
+		var popupW = 950;
+		var popupH = 700;
+		var left = Math.ceil((window.screen.width - popupW)/2);
+		var top = Math.ceil((window.screen.height - popupH)/2);
+		window.open('${pageContext.request.contextPath }/admin/cs/faq/modify','','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
+	}
+</script>
 </head>
 <body>
 	<header>
@@ -21,9 +38,9 @@
 		            <h3>고객센터 - 자주묻는 질문</h3>
 		        </span>
 		        <span>
-					<button type="button" id="buttonNotice" onclick="location.href='admin_cs_notice.jsp'">공지사항 관리</button>	
-					<button type="button" id="buttonQna" onclick="location.href='admin_cs_qna.jsp'">1 : 1문의 관리</button>	
-					<button type="button" id="buttonRegister" onclick="location.href='admin_faq_register.jsp'">새글작성</button>
+					<button type="button" id="buttonNotice" onclick="location.href='notice'">공지사항 관리</button>	
+					<button type="button" id="buttonQna" onclick="location.href='qna'">1 : 1문의 관리</button>	
+					<button type="button" id="buttonRegister" onclick="faqRegisterForm()">새글작성</button>
 		    	</span>
 		    </div>
 		
@@ -88,7 +105,7 @@
 				            <th class="cs_th">업주</th>
 				            <th class="cs_th">블랙리스트</th>
 				            <th class="cs_th">
-				              <a href="#!">자주묻는 질문1</a>
+				              <a onclick="faqModifyForm()">자주묻는 질문1</a>
 				              <p>테스트</p>
 				            </th>
 				            <td>2017.07.13</td>
@@ -98,7 +115,7 @@
 				            <th class="cs_th">업주회원</th>
 				            <th class="cs_th">블랙리스트</th>
 				            <th class="cs_th">
-				              <a href="#!">자주묻는 질문2</a>
+				              <a onclick="faqModifyForm()">자주묻는 질문2</a>
 				              <p>테스트</p>
 				            </th>
 				            <td>2017.07.13</td>
@@ -108,7 +125,7 @@
 				            <th class="cs_th">업주회원</th>
 				            <th class="cs_th">블랙리스트</th>
 				            <th class="cs_th">
-				              <a href="#!">자주묻는 질문3</a>
+				              <a onclick="faqModifyForm()">자주묻는 질문3</a>
 				              <p>테스트</p>
 				            </th>
 				            <td>2017.07.13</td>
