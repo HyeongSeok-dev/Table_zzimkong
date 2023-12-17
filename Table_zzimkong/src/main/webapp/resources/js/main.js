@@ -46,6 +46,19 @@ $(document).ready(function() {
 		slideSpeed: 800,
 	});
 
+/* 광고 슬라이드  */
+	$("#owl-example6").owlCarousel({
+        items: 1,
+        loop: true,
+        autoplay: true,
+        autoplayTimeout: 5000, // 5초 후에 다음 이미지로 넘어갑니다.
+        slideSpeed: 800,
+        navigation: true,
+        navigationText: ["", "<i class='fa fa-angle-right'></i>"],
+    });
+ 
+    
+    
 	$("#navigation").sticky({
 		topSpacing: 75,
 	});
@@ -67,4 +80,8 @@ $(document).ready(function() {
 	//Initiat WOW JS
 	new WOW().init();
 
+
+
+
 });
+

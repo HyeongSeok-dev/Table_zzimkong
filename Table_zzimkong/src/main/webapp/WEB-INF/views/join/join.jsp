@@ -3,10 +3,15 @@
 <!DOCTYPE html>
 <html>
   <head>
+  
+  <script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
+  
     <meta charset="UTF-8">
     <title>일반회원 가입</title>
     <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/join_total.css">
+    <script src="${pageContext.request.contextPath }/resources/js/join.js"></script>
+    
 
   </head>
   <body>
@@ -22,19 +27,23 @@
       </div>
         <div class="nmLoginWrap">
           <div class="loginBox">
-            <form id="loginForm" method="POST" target="_self">
+            <form id="loginForm" method="post" target="_self"  onsubmit="return join()" name="joinForm">
               <input type="hidden" name="URL" value="https://www.ahnlab.com/kr/site/login/userLogin.do">
 <!--               <input type="hidden" name="fromUrl" value=""> -->
 <!--               <input type="hidden" name="brandId" value=""> -->
               
               <!-- 아이디 -->
-              	<input type="text" id="userId" name="userId" class="inputTxt inpBig" placeholder="아이디" onkeydown="eventObj.loginByEnterKey(event)" maxlength="100" />
+              	<input type="text" id="userId" name="userId" class="inputTxt inpBig" placeholder="아이디" 
+              	onkeydown="eventObj.loginByEnterKey(event)" maxlength="100" />
+              	<span id="checkIdResult"></span>
               <!-- 비밀번호 -->
               <input type="password" id="passwd" name="passwd" class="inputTxt inpBig"  style="text-align: left;"
               placeholder="비밀번호 (영문, 숫자, 특수문자 조합 8~16자리)" onkeydown="eventObj.loginByEnterKey(event)" maxlength="16" autocomplete="false">
+          
               <!-- 비밀번호 확인 -->              
               <input type="password" id="passwd2" name="passwd2" class="inputTxt inpBig"  style="text-align: left;"
-              placeholder="비밀번호 확인" onkeydown="eventObj.loginByEnterKey(event)" maxlength="16" autocomplete="false">
+              placeholder="비밀번호 확인" onkeydown="eventObj.loginByEnterKey(event)" maxlength="16" autocomplete="false"  oninput="checkPasswd()">
+             <span id = "checkPasswd2Result" ></span>
               <!-- 닉네임 -->
               <input type="text" id="u_nick" name="u_nick" class="inputTxt inpBig" placeholder="닉네임" onkeydown="eventObj.loginByEnterKey(event)" maxlength="100">
               <!-- 이름 -->
@@ -64,7 +73,7 @@
 			  </div>
 				              
               <!-- 가입하기 버튼 -->
-              <button type="submit" class="btnJoin btnB" id="joinBtn">
+              <button type="submit" class="btnJoin btnB" id="joinBtn"  >
                 <span>
                   가입하기
                 </span>
@@ -78,6 +87,5 @@
     <footer>
 		      	<jsp:include page="../inc/bottom.jsp"></jsp:include>
     </footer>
-    
   </body>
 </html>
