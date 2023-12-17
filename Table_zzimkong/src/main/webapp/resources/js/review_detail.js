@@ -1,5 +1,29 @@
 document.addEventListener('DOMContentLoaded', function() {
 
+	//-----------------이런 점이 좋았어요 -------------------------
+	document.querySelectorAll('.review_select_chart_1_1').forEach(function(element) {
+
+		var percentage = parseInt(element.getAttribute('data-percentage'), 10);
+		var fillDiv = document.createElement('div');
+		fillDiv.classList.add('review_select_chart_fill');
+		fillDiv.style.width = percentage + '20%';
+		//	element.querySelector('.review_select_chart_1').appendChild(fillDiv);
+
+	});
+
+	// ---------댓글-----------------------------------------------
+	var commentIcon = document.getElementById('commentIcon');
+
+	commentIcon.addEventListener('click', function() {
+//		var url = "${pageContext.request.contextPath}/review/comment";
+		var url = "http://localhost:8080/zzimkong/review/comment";
+		var windowName = "commentPopup";
+		var windowSize = "width=500,height=600";
+
+		window.open(url, windowName, windowSize);
+	});
+	// ---------------------------------------------------------------
+
 	// 더보기 버튼 기능
 	var moreButton = document.querySelector('.more-button');
 	var hiddenItems = document.querySelectorAll('.review_select_list .rv_sl_1:nth-child(n+6)');
@@ -22,14 +46,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 	});
 
-	// ---------댓글-----------------------------------------------
-	// 댓글 아이콘 클릭 이벤트 핸들러
-	document.getElementById('commentIcon').addEventListener('click', function() {
-		// 새 창으로 댓글 페이지 열기
-		window.open('${pageContext.request.contextPath}/review/comment', 'CommentWindow', 'width=600,height=400');
-	});
-
-	// ---------------------------------------------------------------
 
 
 	// 하트누르기 
@@ -96,18 +112,19 @@ document.addEventListener('DOMContentLoaded', function() {
 	});
 
 	// "네" 버튼 클릭 이벤트 리스너
-	document.getElementById('confirmDelete').addEventListener('click', function() {
-		// 삭제 로직을 여기에 추가
-		// 예: 서버에 삭제 요청을 보낸다거나, 리스트에서 해당 항목을 제거
+	//document.getElementById('confirmDelete').addEventListener('click', function() {
+	// 삭제 로직을 여기에 추가
+	// 예: 서버에 삭제 요청을 보낸다거나, 리스트에서 해당 항목을 제거
 
-		// 팝업창을 숨김
-		deleteConfirmationPopup.style.display = 'none';
-	});
-
-	// "아니오" 버튼 클릭 이벤트 리스너
-	document.getElementById('cancelDelete').addEventListener('click', function() {
-		// 팝업창을 숨김
-		deleteConfirmationPopup.style.display = 'none';
-	});
-
+	// 팝업창을 숨김
+	//	deleteConfirmationPopup.style.display = 'none';
 });
+
+// "아니오" 버튼 클릭 이벤트 리스너
+//document.getElementById('cancelDelete').addEventListener('click', function() {
+	// 팝업창을 숨김
+//	deleteConfirmationPopup.style.display = 'none';
+//});
+
+
+//});

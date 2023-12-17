@@ -27,6 +27,17 @@
 			<p>먹은 메뉴</p>
 		</div>
 		<div class="separator"></div>
+		<div class="starpoint_wrap">
+			<div class="rating">
+				<span class="rating__result"></span> <i
+					class="rating__star far fa-star"></i> <i
+					class="rating__star far fa-star"></i> <i
+					class="rating__star far fa-star"></i> <i
+					class="rating__star far fa-star"></i> <i
+					class="rating__star far fa-star"></i>
+			</div>
+		</div>
+		<br>
 		<div class="like_section" style="text-align: center;">
 			<p>
 				이곳이 마음에 든다면,<br> '좋아요'를 눌러주세요<br>

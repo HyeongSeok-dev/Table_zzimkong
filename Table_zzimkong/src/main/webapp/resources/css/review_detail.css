@@ -1,5 +1,14 @@
 @charset "UTF-8";
 
+.review_select_chart_fill {
+    background-color: #3FAFFC; /* 또는 원하는 그라데이션 또는 색상 */
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+
 /* 섹션 나누는 회색선 */
 .separator { 
   border-bottom: 1px solid lightgray;
@@ -331,15 +340,171 @@ strong {
 .review_select_list .rv_sl_1:nth-child(15).ani { animation-delay: .25s; }
 
 
-.review_select_list .review_select_chart_1 {
+.review_select_list .rv_sl_1 .review_select_chart_1 {
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     padding: 0 13px;
     border-radius: 5px;
-    background: #7EC9FD;
     box-sizing: border-box;
+    width: 250px;
+    background-color: #C8E4F7;
+}
+
+.review_select_list .rv_sl_1 .review_select_chart_2 {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    padding: 0 13px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    width: 200px;
+    background-color: #C8E4F7;
+}
+.review_select_list .rv_sl_1 .review_select_chart_3 {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    padding: 0 13px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    width: 150px;
+    background-color: #C8E4F7;
+}
+.review_select_list .rv_sl_1 .review_select_chart_4 {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    padding: 0 13px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    width: 130px;
+    background-color: #C8E4F7;
+}
+.review_select_list .rv_sl_1 .review_select_chart_5 {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    padding: 0 13px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    width: 100px;
+    background-color: #C8E4F7;
+}
+.review_select_list .rv_sl_1 .review_select_chart_6 {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    padding: 0 13px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    width: 80px;
+    background-color: #C8E4F7;
+}
+.review_select_list .rv_sl_1 .review_select_chart_7 {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    padding: 0 13px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    width: 60px;
+    background-color: #C8E4F7;
+}
+.review_select_list .rv_sl_1 .review_select_chart_8 {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    padding: 0 13px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    width: 50px;
+    background-color: #C8E4F7;
+}
+.review_select_list .rv_sl_1 .review_select_chart_9 {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    padding: 0 13px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    width: 40px;
+    background-color: #C8E4F7;
+}
+.review_select_list .rv_sl_1 .review_select_chart_10 {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    padding: 0 13px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    width: 30px;
+    background-color: #C8E4F7;
+}
+.review_select_list .rv_sl_1 .review_select_chart_11 {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    padding: 0 13px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    width: 20px;
+    background-color: #C8E4F7;
+}
+.review_select_list .rv_sl_1 .review_select_chart_12 {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    padding: 0 13px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    width: 15px;
+    background-color: #C8E4F7;
+}
+.review_select_list .rv_sl_1 .review_select_chart_13 {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    padding: 0 13px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    width: 10px;
+    background-color: #C8E4F7;
+}
+.review_select_list .rv_sl_1 .review_select_chart_14 {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    padding: 0 13px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    width: 8px;
+    background-color: #C8E4F7;
+}
+.review_select_list .rv_sl_1 .review_select_chart_15 {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    padding: 0 13px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    width: 5px;
+    background-color: #C8E4F7;
 }
 
 /* 항목 그라데이션 */
@@ -356,16 +521,6 @@ strong {
     margin-top: 3px;
 }
 
-.review_select_list .rv_sl_1 .review_select_chart_1 {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    padding: 0 13px;
-    border-radius: 5px;
-    box-sizing: border-box;
-    background: linear-gradient(to right, #3FAFFC, #3FAFFC 6.66%, #3FAFFC 13.33%, #3FAFFC 20%, #3FAFFC 26.66%, #3FAFFC 33.33%, #3FAFFC 40%, #3FAFFC 46.66%, #3FAFFC 53.33%, #3FAFFC 60%, #3FAFFC 66.66%, #3FAFFC 73.33%, #3FAFFC 80%, #3FAFFC 86.66%, #3FAFFC 93.33%, #3FAFFC);
-}
 
 
 /* ------ 항목 그라데이션 끝 ------*/
@@ -383,7 +538,19 @@ img {
     position: relative;
     padding: 0 18px 0 13px;
     color: #222225;
-    line-height: 45px;}
+    line-height: 45px;
+/*     width: 100%; Full width of the container */
+/*     background-color: lightgrey; Default background color */
+    
+    }
+    
+    .review_select_chart_fill {
+    height: 100%;
+    background-color: green; /* Example color */
+    position: absolute;
+    left: 0;
+    top: 0;
+}
 
 
 .review_select_list .review_select_chart_1_1 { margin-right: 9px; }
@@ -957,6 +1124,18 @@ h1 {
     letter-spacing: -0.2px;
     margin-right: 10px; /* 오른쪽 여백 추가 */
 
+}
+
+.reviewer_order {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+/*     font-weight: bold; */
+    color: #222225;
+    letter-spacing: -0.2px;
+    margin-left: 938px;
+    font-size: 16px;
 }
 
 .reviewer_info {

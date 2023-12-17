@@ -4,25 +4,29 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
 <!-- CSS -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/review_comment.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/global.css">
+<!-- <link rel="stylesheet" -->
+<%-- 	href="${pageContext.request.contextPath}/resources/css/global.css"> --%>
 <!-- Js -->
-<script src="${pageContext.request.contextPath}/resources/js/review_detail.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/review_comment.js"></script>
+<title>Insert title here</title>
 </head>
 <body>
-	<div class="review-actions">
-		<i class="far fa-comment" id="commentIcon" style="cursor: pointer;"></i>
-		<!-- Popup for commenting -->
-		<div id="commentPopup" class="comment-popup">
-			<div class="comment-content">
-				<textarea placeholder="Write your comment here..."></textarea>
-				<button id="submitComment">Submit</button>
-				<button id="closePopup">Close</button>
-			</div>
-		</div>
-	</div>
+<div class="comment-header">
+<h3>칸다소바 부전동점</h3>
+<!-- <div class="review-button"  id="closeButton"> -->
+<%--     <img src="${pageContext.request.contextPath}/resources/img/comment_close.png" alt="닫기"  />  --%>
+<!-- </div> -->
+</div>
+	<p class="no-comments">등록된 댓글이 없습니다.</p>
+<div class="comment-container">
+	<hr class="separator">
+	
+    <div class="comment-box" contenteditable="true" placeholder="리뷰에 따뜻한 댓글을 달아주세요."></div>
+    <button class="submit-comment">등록</button>
+</div>
 </body>
 </html>

@@ -1,23 +1,110 @@
 @charset "UTF-8";
-.comment-popup {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    border: 1px solid #888;
-    width: 60%; /* Could be more or less, depending on screen size */
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    z-index: 1; /* Sit on top */
-    background-color: white;
-    padding: 20px;
+
+@font-face {
+	font-family: 'Pretendard-Regular';
+	src:
+		url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff')
+		format('woff');
+	font-weight: 400;
+	font-style: normal;
 }
 
-.comment-content {
+body {
+	font-family: 'Pretendard-Regular', sans-serif;
+	width:450px;
+	height: 600px;
+	margin: 0 auto; /* 페이지를 중앙에 배치 */
+}
+
+.comment-header {
+	display: flex;
+	align-items: center;
+	padding: 10px;
+	background-color: #fff;
+	border-bottom: 1px solid #ddd;
+	height: 30px;
+}
+
+.no-comments {
+	width: 100%; /* 전체 너비로 설정 */
+	margin: 20px 0; /* 상하 마진 설정 */
+	padding: 20px; /* 내부 여백을 늘려줍니다 */
+	text-align: center; /* 텍스트 중앙 정렬 */
+	font-size: 18px; /* 폰트 크기 조정 */
+	color: gray;
+}
+
+.no-comments {
+    margin: 20px 0;
+    padding: 10px;
+    height: 370px;
+    width: auto;
+}
+
+/* .separator { */
+/* 	border: none; */
+/* 	height: 1px; */
+/* 	background-color: #ddd; */
+/* 	margin: 25px 0; */
+/* 	margin-bottom: 25px; */
+/* } */
+
+.separator {
+    border-top: 1px solid #C0C0C0; /* 회색 구분선 색상 설정 */
+    margin-top: 20px; /* 상단 여백 설정 */
+    margin-bottom: 20px; /* 하단 여백 설정 */
+}
+
+.comment-box {
+	width: 81%;
+	padding: 10px;
+	border: none;
+	min-height: 59px;
+	overflow: auto;
+	margin-right: 10px;
+	margin-top: 2px;
+}
+
+.comment-box[placeholder]:empty:before {
+	content: attr(placeholder);
+	color: #aaa;
+}
+
+.submit-comment {
+    font-family: 'Pretendard-Regular', sans-serif;
+    padding: 8px 20px;
+    font-size: 16px;
+    border-radius: 10px;
+    background-color: #3FAFFC;
+    color: #fbfcfd;
+    cursor: pointer;
+    font-weight: 500;
+    margin: 10px;
+    text-align: center;
+    margin-left: auto;
+    border: none;
+    margin-bottom: 51px;
+    width: 72px;
+}
+
+.custom-separator {
+    border-top: 1px solid #C0C0C0; /* 회색 구분선 색상 */
+    margin: 20px 0; /* 상단 및 하단 여백 */
+}
+
+.comment-container {
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 52px;
+}
+.review-button {
+    margin-left: 552px;
 }
 
-.comment-content textarea {
-    margin-bottom: 10px;
+
+.review-button img {
+  display: block;
+  margin: 0 auto;
+  weight: 10px;
 }

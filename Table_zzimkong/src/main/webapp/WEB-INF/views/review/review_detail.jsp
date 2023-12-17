@@ -61,12 +61,11 @@
 						alt="" width="22" height="22" data-grid-lazy="false"> <span
 						class="review_select_chart_content">&nbsp;&nbsp;"(분위기)
 						인테리어가 멋져요"</span> <span class="review_select_chart_count"> <span
-						class="review_blind">이 키워드를 선택한 인원</span>126
-					</span>
+						class="review_blind">이 키워드를 선택한 인원</span>126 
 				</div>
 			</li>
 			<li class="rv_sl_1">
-				<div class="review_select_chart_1"></div>
+				<div class="review_select_chart_2"></div>
 				<div class="review_select_chart_1_1">
 					<img
 						src="${pageContext.request.contextPath}/resources/img/review_alone.png"
@@ -77,7 +76,7 @@
 				</div>
 			</li>
 			<li class="rv_sl_1">
-				<div class="review_select_chart_1"></div>
+				<div class="review_select_chart_3"></div>
 				<div class="review_select_chart_1_1">
 					<img
 						src="${pageContext.request.contextPath}/resources/img/review_big.png"
@@ -88,7 +87,7 @@
 				</div>
 			</li>
 			<li class="rv_sl_1">
-				<div class="review_select_chart_1"></div>
+				<div class="review_select_chart_4"></div>
 				<div class="review_select_chart_1_1">
 					<img
 						src="${pageContext.request.contextPath}/resources/img/review_many.png"
@@ -99,7 +98,7 @@
 				</div>
 			</li>
 			<li class="rv_sl_1">
-				<div class="review_select_chart_1"></div>
+				<div class="review_select_chart_5"></div>
 				<div class="review_select_chart_1_1">
 					<img
 						src="${pageContext.request.contextPath}/resources/img/review_view.png"
@@ -110,7 +109,7 @@
 				</div>
 			</li>
 			<li class="rv_sl_1">
-				<div class="review_select_chart_1"></div>
+				<div class="review_select_chart_6"></div>
 				<div class="review_select_chart_1_1">
 					<img
 						src="${pageContext.request.contextPath}/resources/img/review_rice.png"
@@ -121,7 +120,7 @@
 				</div>
 			</li>
 			<li class="rv_sl_1">
-				<div class="review_select_chart_1"></div>
+				<div class="review_select_chart_7"></div>
 				<div class="review_select_chart_1_1">
 					<img
 						src="${pageContext.request.contextPath}/resources/img/review_deli.png"
@@ -132,7 +131,7 @@
 				</div>
 			</li>
 			<li class="rv_sl_1">
-				<div class="review_select_chart_1"></div>
+				<div class="review_select_chart_8"></div>
 				<div class="review_select_chart_1_1">
 					<img
 						src="${pageContext.request.contextPath}/resources/img/review_money.png"
@@ -143,7 +142,7 @@
 				</div>
 			</li>
 			<li class="rv_sl_1">
-				<div class="review_select_chart_1"></div>
+				<div class="review_select_chart_9"></div>
 				<div class="review_select_chart_1_1">
 					<img
 						src="${pageContext.request.contextPath}/resources/img/review_fresh.png"
@@ -154,7 +153,7 @@
 				</div>
 			</li>
 			<li class="rv_sl_1">
-				<div class="review_select_chart_1"></div>
+				<div class="review_select_chart_10"></div>
 				<div class="review_select_chart_1_1">
 					<img
 						src="${pageContext.request.contextPath}/resources/img/review_nice.png"
@@ -165,7 +164,7 @@
 				</div>
 			</li>
 			<li class="rv_sl_1">
-				<div class="review_select_chart_1"></div>
+				<div class="review_select_chart_11"></div>
 				<div class="review_select_chart_1_1">
 					<img
 						src="${pageContext.request.contextPath}/resources/img/review_kind.png"
@@ -176,7 +175,7 @@
 				</div>
 			</li>
 			<li class="rv_sl_1">
-				<div class="review_select_chart_1"></div>
+				<div class="review_select_chart_12"></div>
 				<div class="review_select_chart_1_1">
 					<img
 						src="${pageContext.request.contextPath}/resources/img/review_toilet.png"
@@ -187,7 +186,7 @@
 				</div>
 			</li>
 			<li class="rv_sl_1">
-				<div class="review_select_chart_1"></div>
+				<div class="review_select_chart_13"></div>
 				<div class="review_select_chart_1_1">
 					<img
 						src="${pageContext.request.contextPath}/resources/img/review_hurry.png"
@@ -198,7 +197,7 @@
 				</div>
 			</li>
 			<li class="rv_sl_1">
-				<div class="review_select_chart_1"></div>
+				<div class="review_select_chart_14"></div>
 				<div class="review_select_chart_1_1">
 					<img
 						src="${pageContext.request.contextPath}/resources/img/review_child.png"
@@ -209,7 +208,7 @@
 				</div>
 			</li>
 			<li class="rv_sl_1">
-				<div class="review_select_chart_1"></div>
+				<div class="review_select_chart_15"></div>
 				<div class="review_select_chart_1_1">
 					<img
 						src="${pageContext.request.contextPath}/resources/img/review_couch.png"
@@ -298,6 +297,7 @@
 	</div>
 	<br>
 	<br>
+	<div class="reviewer_order">최신순 | 별점순 | 좋아요순</div>
 	<div class="separator"></div>
 	<div class="review_list">
 		<div class="reviewer">
@@ -331,31 +331,28 @@
 			</div>
 			<p class="review_content">추석명절에도 영업해서 줄 많이안서고 먹었어요 라멘육수가 진해서 좋네요
 				다시마식초를 쓰면 더깔끔해요 오자마자 키오스크에 주문하면됩니다 서비스 밥 비벼먹은것도 맛있어요</p>
+
 			<div class="review-actions">
-				<br> <i class="far fa-comment" id="commentIcon"
-					style="cursor: pointer;"></i>
+				<i class="far fa-comment" id="commentIcon" style="cursor: pointer;"></i>
 				<!-- 댓글 아이콘 -->
 				<i class="far fa-heart" id="heartIcon" style="cursor: pointer;"></i>
-				<!-- Popup for commenting -->
-				<div id="commentPopup" class="comment-popup">
-					<div class="comment-content">
-						<a href="../WEB-INF/views/review/review_why.jsp"></a>
-					</div>
-				</div>
-				<!-- 빈 하트 아이콘 -->
+				<!-- 하트 아이콘 -->
 			</div>
-			<br>
-			<div class="review-actions">
-				<!-- 				<button class="review_delete">삭제</button> -->
-				<input type="submit" class="review_delete" value="삭제"
-					onclick="if(!confirm('리뷰를 삭제하시겠습니까?')){return false;}" />
-				<button class="review_modify">수정</button>
-				<a href="${pageContext.request.contextPath}/review/report">
-					<button class="review_report_btn">리뷰 신고하기</button>
-				</a> <span class="comment-icon" onclick="showCommentForm()"> <br>
-					<br>
-			</div>
+
 		</div>
+	</div>
+	<br>
+	<div class="review-actions">
+		<!-- 				<button class="review_delete">삭제</button> -->
+		<input type="submit" class="review_delete" value="삭제"
+			onclick="if(!confirm('리뷰를 삭제하시겠습니까?')){return false;}" />
+		<button class="review_modify">수정</button>
+		<a href="${pageContext.request.contextPath}/review/report">
+			<button class="review_report_btn">리뷰 신고하기</button>
+		</a> <span class="comment-icon" onclick="showCommentForm()"> <br>
+			<br>
+	</div>
+	</div>
 	</div>
 	<br>
 	<br>
