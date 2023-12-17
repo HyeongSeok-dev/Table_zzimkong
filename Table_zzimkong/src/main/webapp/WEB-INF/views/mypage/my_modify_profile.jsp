@@ -48,7 +48,7 @@
 					<tr>
 						<th>닉네임</th>
 						<td>
-							<input type="text" class="input_text"  placeholder="닉네임은 8자 이내로">
+							<input type="text" id=nickname class="input_text"  placeholder="닉네임은 8자 이내로">
 							<p>사용하실 닉네임을 입력해주세요. </p>
 						</td>
 					</tr>
