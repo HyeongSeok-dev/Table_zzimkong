@@ -1,23 +1,33 @@
 $(document).ready(function() {
 	//서치바 파라미터 정리
-	var formData = {}; // 폼 데이터를 저장할 객체 생성
+	var formData = {
+		persons: $("input[name='persons']:checked").val(),
+		time: $("input[name='time']:checked").val(),
+		date: $("#reservation-date").val(),
+	}; // 폼 데이터를 저장할 객체 생성
 	var isPriceChange = false;
-	// 모든 모달창을 숨깁니다.
+	var currentSliderValue = $('#price').val();
+	var selectedFilterItemId = null;
+	var contextRoot = window.location.pathname.substring(0, window.location.pathname.indexOf("/",2));
 
+	// 모든 모달창을 숨깁니다.
 	function closeAllModals() {
 		$('.modal').hide();
 	}
 	closeAllModals();
+
 	// 필터 모달 오프너 클릭 이벤트
 	$('.filter_wrapper').off('click').click(function() {
-		closeAllModals(); // 다른 모달 닫기
+		$('#table_modal').hide();
 		$('#filterModal').show(); // 필터 모달 열기
+		console.log("필터모달 클릭됨")
 	});
 
 	// 테이블 모달 오프너 클릭 이벤트
 	$('.search_info').first().click(function() {
-		closeAllModals(); // 다른 모달 닫기
+		$('#filterModal').hide();
 		$('#table_modal').show(); // 테이블 모달 열기
+		console.log("테이블모달 클릭됨")
 	});
 
 	function cleanFilterModal() {
@@ -33,8 +43,9 @@ $(document).ready(function() {
 	$(document).off('click', '.close').on('click', '.close', function() {
 		$(this).closest('.modal').hide();
 	});
+
 	// 모달창 바깥 부분을 클릭했을 때, 해당 부분이 속한 모달창만을 닫습니다.
-	$(window).off('click').on('click', function(event){
+	$(window).off('click').on('click', function(event) {
 		if (!$(event.target).closest('.modal').length && !$(event.target).hasClass('modal-opener')) {
 			closeAllModals();
 			if ($(event.target).closest('#filterModal')) {
@@ -89,28 +100,14 @@ $(document).ready(function() {
 
 	showButtons();
 
-	$("#confirm").click(function() {
-		// Get input values
-		var date = $("#reservation-date").val();
-		var persons = $("input[name='persons']:checked").val();
-		var time = $("input[name='time']:checked").val();
-
-		// Format the date
-		var today = new Date().toISOString().split('T')[0];
-		var tomorrow = new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toISOString().split('T')[0];
-		var displayDate;
-
-		if (date == today) {
-			displayDate = "오늘";
-		} else if (date == tomorrow) {
-			displayDate = "내일";
-		} else {
-			displayDate = date.substring(5).replace('-', '월') + '일'; // 년도를 제외한 날짜만 출력
-		}
-
-		// Update the info text
-		$(".info_text").text("테이블 인원수: " + persons + "명, " + displayDate + " " + time);
-
+	$("#confirm").click(function(event) {
+		event.stopPropagation();
+		formData['date'] = $("#reservation-date").val();
+		formData['persons'] = $("input[name='persons']:checked").val();
+		formData['time'] = $("input[name='time']:checked").val();
+		console.log("테이블 모달 데이터 적용됨: ", formData);
+		sendFormDataToCurrentPage();
+		$(this).closest('.modal').css('display', 'none');
 	});
 
 
@@ -119,14 +116,22 @@ $(document).ready(function() {
 	$('.sub-list, .detail-list').css('display', 'none');
 
 	// '.filter-item' 클릭 시 이벤트 핸들러
-	$('.filter-item').click(function() {
-		var subList = $(this).find('.sub-list').clone(true); // 해당하는 서브 리스트를 복제합니다.
-		$('.sub-list-wrap').empty().append(subList); // 서브 리스트 래퍼에 복제된 서브 리스트를 추가합니다.
-		console.log("필터리스트 클릭됨")
+	$('.filter-item').off('click').click(function() {
+		var currentFilterItemId = $(this).attr('id'); // 현재 클릭된 filter-item의 아이디
+
+		// 선택된 filter-item의 아이디가 현재 클릭된 아이디와 다르다면 서브 리스트를 업데이트
+		if (selectedFilterItemId !== currentFilterItemId) {
+			var subList = $(this).find('.sub-list').clone(true); // 해당하는 서브 리스트를 복제합니다.
+			$('.sub-list-wrap').empty().append(subList); // 서브 리스트 래퍼에 복제된 서브 리스트를 추가합니다.
+			subList.css('display', 'flex'); // 서브 리스트를 표시합니다.
+
+			selectedFilterItemId = currentFilterItemId; // 선택된 filter-item의 아이디를 업데이트
+		}
 
 		// 디테일 리스트를 비웁니다.
 		$('.detail-list-wrap').empty();
-		subList.css('display', 'flex'); // 서브 리스트를 표시합니다.
+
+		console.log("필터아이템 클릭됨");
 	});
 
 	$(document).on('click', '.sub-list > li', function(event) {
@@ -137,66 +142,62 @@ $(document).ready(function() {
 		clonedDetailList.css('display', 'flex');
 	});
 
-	$('#price').on('change', function() {
+	$(document).on('change', '#price', function() {
 		var newValue = $(this).val();
-		$('#priceValue').text(newValue); // Update the displayed price value
-		// Trigger a click event on #priceValue
-		$('#priceValue').trigger('click');
+		console.log("새로운 가격: ", newValue);
 		isPriceChange = true;
+		currentSliderValue = newValue;
+		$('#priceValue').text(currentSliderValue);
+		$('#priceValue').css('display', 'flex');
 	});
 
-	$(document).on('click', '.filter-list li, .sub-list li, .detail-list li', function(event) {
-		var radio = $(this).find('input[type="radio"]');
-		// 현재 클릭된 항목에 따라 다른 레벨의 checked 클래스를 제거
-		if ($(this).parents('.filter-list').length) {
-			// filter-list 클릭 시
-			$('.filter-list li').removeClass('selected');
-			$('.sub-list li').removeClass('selected');
-			$('.detail-list li').removeClass('selected');
-		} else if ($(this).parents('.sub-list').length) {
-			// sub-list 클릭 시
-			event.stopPropagation(); // 이벤트 버블링 중단
-			$(this).closest('.sub-list').find('li').removeClass('selected');
-			$('.detail-list li').removeClass('selected');
-		} else if ($(this).parents('.detail-list').length) {
-			// detail-list 클릭 시
-			$(this).closest('.detail-list').find('li').removeClass('selected');
+	// 클릭된 li의 상태 변경을 처리하는 함수
+	function changeSelectedState(clickedLi) {
+		// 동일한 레벨의 다른 li들에서 'selected' 클래스 제거
+		clickedLi.siblings().removeClass('selected');
+		console.log('색 제거됨');
+		// 클릭된 li에 'selected' 클래스 추가
+		clickedLi.addClass('selected');
+		console.log('색 추가됨');
+	}
 
-		}
-		// 선택된 라디오 버튼에 대한 클래스 적용
+	// 클릭된 li 내의 라디오 버튼 체크 처리 함수
+	function checkRadioButton(clickedLi) {
+		var radio = clickedLi.find('input[type="radio"]');
 		radio.prop('checked', true);
-		$(this).addClass('selected');
+		console.log('라디오버튼 체크됨');
+	}
+
+	// li 클릭 이벤트 핸들러
+	$(document).on('click', '.filter-list li, .sub-list li, .detail-list li', function() {
+		var $li = $(this);
+		changeSelectedState($li); // 상태 변경
+		checkRadioButton($li);    // 라디오 버튼 체크
 	});
 
+	// '필터 모달' 적용 버튼 클릭 이벤트
+	$('#filterModal #applyBtn').click(function(event) {
+		// '필터 모달'의 데이터 수집
+		event.stopPropagation();
+		formData['location'] = $("input[name='location']:checked").val();
+		formData['category'] = $("input[name='category']:checked").val();
+		formData['price'] = isPriceChange ? currentSliderValue : '0';
+		formData['mood'] = $("input[name='mood']:checked").val();
+		formData['facilities'] = $("input[name='facilities']:checked").val();
+		formData['table_type'] = $("input[name='table_type']:checked").val();
+		formData['hygiene'] = $("input[name='hygiene']:checked").val();
+		console.log("필터 모달 데이터 적용됨: ", formData);
+		sendFormDataToCurrentPage();
+		$('#filterModal').hide();
 
-	// 필터 모달창 내의 라디오 버튼 클릭 이벤트 처리
-	$(document).on('click', '.filterModal input[type="radio"]', function() {
-		var name = $(this).attr('name');
-		var value = $(this).val();
-
-		formData[name] = value; // 동일한 name 속성의 값을 교체하거나 새로 추가
-		console.log(formData[name]); //동작안함
+		// 필요한 경우 여기서 서버로 데이터 전송
 	});
 
-	function sendFormData() {
-		var formData = {
-			context: $('.search_input_text').val(),
-			persons: $("input[name='persons']:checked").val(),
-			time: $("input[name='time']:checked").val(),
-			date: $("#reservation-date").val(),
-			location: $("input[name='location']:checked").val(),
-			category: $("input[name='category']:checked").val(),
-			price: $('#price').val(),
-			mood: $("input[name='mood']:checked").val(),
-			facilities: $("input[name='facilities']:checked").val(),
-			table_type: $("input[name='table_type']:checked").val(),
-			hygiene: $("input[name='hygiene']:checked").val()
-		};
-
+	function sendFormDataToCurrentPage() {
 		// AJAX 요청
 		$.ajax({
-			url: 'product/searchResult',
-			type: 'GET',
+			url: contextRoot + '/product/searchResult',
+			type: 'POST',
 			dataType: 'json',
 			data: formData,
 			success: function(response) {
@@ -210,16 +211,37 @@ $(document).ready(function() {
 		});
 	}
 
-//	 검색어 입력창에서 엔터 누를 때
+
+	function SendFormDataToNextPage() {
+		formData['context'] = $('.search_input_text').val();
+		formData['triggered_by'] = 'next_page';
+		console.log("검색 데이터: ", formData);
+		$.ajax({
+			url: contextRoot + '/product/searchResult',
+			type: 'POST',
+			dataType: 'json',
+			data: formData,
+			success: function(response) {
+				// 성공적으로 데이터를 받으면 실행할 코드
+				console.log("Response: ", response);
+			},
+			error: function(error) {
+				// 에러가 발생했을 때 실행할 코드
+				console.log("Error: ", error);
+			}
+		});
+	}
+	//	 검색어 입력창에서 엔터 누를 때
 	$(".search_input_text").off('keypress').on('keypress', function(event) {
+		event.preventDefault();
 		if (event.keyCode === 13) {
-			sendFormData();
+			SendFormDataToNextPage();
 		}
 	});
 
-	// 검색 아이콘 클릭 시
-	$(".search_icon").click(sendFormData);
-
+	$(".search_icon").click(function() {
+		SendFormDataToNextPage();
+	});
 
 });
 

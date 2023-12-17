@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class SearchVO {
-	String context ;
+	String context;
 	int persons;
 	String time;
 	String date;
@@ -15,4 +15,5 @@ public class SearchVO {
 	String facilities;
 	String table_type;
 	String hygiene;
+	String triggered_by;
 }
