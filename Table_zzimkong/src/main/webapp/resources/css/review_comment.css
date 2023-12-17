@@ -1,0 +1,23 @@
+@charset "UTF-8";
+.comment-popup {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid #888;
+    width: 60%; /* Could be more or less, depending on screen size */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    z-index: 1; /* Sit on top */
+    background-color: white;
+    padding: 20px;
+}
+
+.comment-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.comment-content textarea {
+    margin-bottom: 10px;
+}

@@ -7,10 +7,12 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, minimum-scale=1" />
 <!-- CSS -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/review_report.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/review_report.css">
 <%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/global.css"> --%>
 <!-- Js -->
-<script src="${pageContext.request.contextPath}/resources/js/review_report.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/review_report.js"></script>
 
 </head>
 <body>
@@ -35,8 +37,8 @@
 						<div class="form_block_body">
 							<div class="checkbox-group">
 								<br> <label class="label_checkbox"> <input
-									type="checkbox" class="form_checkbox" name="why" checked> <span
-									class="label strong">신뢰하기 어려운 홍보 게시물</span></label> <label
+									type="checkbox" class="form_checkbox" name="why" checked>
+									<span class="label strong">신뢰하기 어려운 홍보 게시물</span></label> <label
 									class="label_checkbox"><input type="checkbox"
 									class="form_checkbox" name="why"><span
 									class="label strong">음란성 또는 부적절한 내용</span></label><label
@@ -75,8 +77,7 @@
 						<h3 class="form_block_title">답변 받으실 휴대폰 번호</h3>
 						<br>
 						<div class="form_block_body">
-							<input type="tel" class="form-input"
-								placeholder="사용자 휴대폰 번호">
+							<input type="tel" class="form-input" placeholder="사용자 휴대폰 번호">
 						</div>
 					</div>
 					<br>
@@ -84,8 +85,7 @@
 						<h3 class="form_block_title">답변 받으실 이메일 주소</h3>
 						<br>
 						<div class="form_block_body">
-							<input type="tel" class="form-input"
-								placeholder="사용자 이메일 주소">
+							<input type="tel" class="form-input" placeholder="사용자 이메일 주소">
 						</div>
 					</div>
 					<hr class="line">
@@ -99,6 +99,22 @@
 						<label class="label_checkbox"><input type="checkbox"
 							class="form_checkbox"> <span class="label strong">[필수]
 								개인정보 수집 및 이용 동의</span></label><a href="#" class="info-content">보기</a>
+						<!-- Popup window -->
+						<div id="infoPopup" class="popup">
+							<div class="popup-content">
+								<div class="law_content">개인정보 처리 방침</div><br>
+								<p>주식회사 찜콩(이하 "회사"라 한다)는 정보통신망 이용촉진 및 정보보호 등에 관한 법률, 개인정보보호법
+									등 관련 법령에 따라 이용자의 개인정보를 보호하고, 이와 관련한 고충을 신속하고 원활하게 처리할 수 있도록 하기
+									위하여 다음과 같이 개인정보처리방침을 수립합니다.</p><br>
+								<p>개인정보처리방침은 이용자가 언제나 쉽게 열람할 수 있도록 서비스 초기화면을 통해 공개하고 있으며
+									관련법령, 지침, 고시 또는 캐치테이블 서비스 정책의 변경에 따라 달라질 수 있습니다. 1. 개인정보의 수집·이용
+									회사는 다음과 같이 이용자의 개인정보를 수집합니다. 처리하고 있는 개인정보는 다음의 수집·이용 목적 이외의
+									용도로는 활용되지 않으며, 수집·이용 목적이 변경되는 경우에는 개인정보보호법에 따라 별도의 동의를 받는 등 필요한
+									조치를 이행합니다.</p>
+								<!-- Close button -->
+								<button id="closePopup" class="close-btn">닫기</button>
+							</div>
+						</div>
 					</div>
 				</div>
 			</section>

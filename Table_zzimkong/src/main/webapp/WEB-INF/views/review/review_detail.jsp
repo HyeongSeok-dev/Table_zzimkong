@@ -46,7 +46,8 @@
 </svg>
 		</h2>
 		<div class="review_write_button">
-		    <a href="${pageContext.request.contextPath}/review/write"><i class="fas fa-pencil-alt"></i> 리뷰쓰기</a>
+			<a href="${pageContext.request.contextPath}/review/write"><i
+				class="fas fa-pencil-alt"></i> 리뷰쓰기</a>
 		</div>
 	</div>
 	<div class="review_select">
@@ -274,9 +275,9 @@
 		<h2 class="review_subject">
 			리뷰&nbsp;<span class="review_subject_count">126</span>
 		</h2>
-		<label class="checkbox-container"><input type="checkbox"><span class="checkmark"></span>사진/영상
-			리뷰만
-		</div>
+		<label class="checkbox-container"><input type="checkbox"><span
+			class="checkmark"></span>사진/영상 리뷰만 
+	</div>
 	</div>
 	<div class="menu_select">
 		<span class="menu_select_subject">&nbsp;&nbsp;&nbsp;&nbsp;메뉴&nbsp;</span>
@@ -308,15 +309,13 @@
 						<img
 							src="${pageContext.request.contextPath}/resources/img/person.png"
 							alt="프로필" width="38" height="38">
-					</div>
-					<!-- 사용자가 썼던 리뷰를 볼 수 있는 창 연결 -->
+					</div> <!-- 사용자가 썼던 리뷰를 볼 수 있는 창 연결 -->
 				</a> <a href="마이페이지 프로필 연결" target="_blank" role="button"
 					class="review_details">
 					<div class="reviewer_name">사용자닉네임</div>
 				</a>
 			</div>
-			<div class="reviewer_info">
-			</div>
+			<div class="reviewer_info"></div>
 			<div class="review_photos">
 				<img
 					src="${pageContext.request.contextPath}/resources/img/soba.jpeg"
@@ -337,12 +336,19 @@
 					style="cursor: pointer;"></i>
 				<!-- 댓글 아이콘 -->
 				<i class="far fa-heart" id="heartIcon" style="cursor: pointer;"></i>
+				<!-- Popup for commenting -->
+				<div id="commentPopup" class="comment-popup">
+					<div class="comment-content">
+						<a href="../WEB-INF/views/review/review_why.jsp"></a>
+					</div>
+				</div>
 				<!-- 빈 하트 아이콘 -->
 			</div>
 			<br>
 			<div class="review-actions">
-<!-- 				<button class="review_delete">삭제</button> -->
-				<input type="submit" class ="review_delete"value="삭제" onclick="if(!confirm('리뷰를 삭제하시겠습니까?')){return false;}" />
+				<!-- 				<button class="review_delete">삭제</button> -->
+				<input type="submit" class="review_delete" value="삭제"
+					onclick="if(!confirm('리뷰를 삭제하시겠습니까?')){return false;}" />
 				<button class="review_modify">수정</button>
 				<a href="${pageContext.request.contextPath}/review/report">
 					<button class="review_report_btn">리뷰 신고하기</button>
