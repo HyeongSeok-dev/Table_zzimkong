@@ -314,6 +314,11 @@ public class HomeController {
 		return "review/review_report";
 	}
 
+	@GetMapping("review/comment")
+	public String review_comment() {
+		return "review/review_comment";
+	}
+
 	@GetMapping("reservation")
 	public String reservation() {
 		return "reservation/reservation";

@@ -232,6 +232,7 @@
 	 <button><a href="review/write">review/write</a></button>
 	 <button><a href="review/complete">review/complete</a></button>
 	 <button><a href="review/report">review/report</a></button>
+	 <button><a href="review/comment">review/comment</a></button>
 	 <hr>
 	 <button><a href="reservation">reservation</a></button>
 	<hr>
