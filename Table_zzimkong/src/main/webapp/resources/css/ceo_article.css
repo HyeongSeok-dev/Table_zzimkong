@@ -210,6 +210,11 @@ input[type="date"] {
     color: #3FAFFC;
 }
 
+.button_grey2:hover {
+	background-color:  #ddd;
+    color: #3FAFFC;
+}
+
 /* ceo_cs_qna_register/modify */
 .text_inner_form>form>table {
 	/* ## 테이블 간격 조정 */

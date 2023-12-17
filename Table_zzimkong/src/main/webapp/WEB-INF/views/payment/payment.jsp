@@ -28,38 +28,38 @@
 		}; */
 		
 		//무통장 입금시 각은행별 계좌번호
-		document.payForm.bankSelect.onchange = function() {
-			switch (document.payForm.bankSelect.value) {
-			case "신한": document.payForm.accNum.value = "111-1234-12345"; 
-						break;
-			case "국민": document.payForm.accNum.value = "222-1234-12345";
-						break;
-			case "우리": document.payForm.accNum.value = "333-1234-12345";
-						break;
-			case "하나": document.payForm.accNum.value = "444-1234-12345";
-						break;
-			case "농협": document.payForm.accNum.value = "555-1234-12345";
-						break;
-			case "기업": document.payForm.accNum.value = "666-1234-12345";
-						break;
-			case "시티": document.payForm.accNum.value = "777-1234-12345";
-						break;
-			case "SC": document.payForm.accNum.value = "888-1234-12345";
-						break;
-			case "우체국": document.payForm.accNum.value = "999-1234-12345";
-						break;
-			case "부산": document.payForm.accNum.value = "1010-1234-12345";
-						break;
-			case "대구": document.payForm.accNum.value = "1111-1234-12345";
-						break;
-			case "외환": document.payForm.accNum.value = "1212-1234-12345";
-						break;
-			case "카카오뱅크": document.payForm.accNum.value = "1313-1234-12345";
-						break;
-			case "케이뱅크": document.payForm.accNum.value = "1414-1234-12345";
-						break;
-			}
-		};
+// 		document.payForm.bankSelect.onchange = function() {
+// 			switch (document.payForm.bankSelect.value) {
+// 			case "신한": document.payForm.accNum.value = "111-1234-12345"; 
+// 						break;
+// 			case "국민": document.payForm.accNum.value = "222-1234-12345";
+// 						break;
+// 			case "우리": document.payForm.accNum.value = "333-1234-12345";
+// 						break;
+// 			case "하나": document.payForm.accNum.value = "444-1234-12345";
+// 						break;
+// 			case "농협": document.payForm.accNum.value = "555-1234-12345";
+// 						break;
+// 			case "기업": document.payForm.accNum.value = "666-1234-12345";
+// 						break;
+// 			case "시티": document.payForm.accNum.value = "777-1234-12345";
+// 						break;
+// 			case "SC": document.payForm.accNum.value = "888-1234-12345";
+// 						break;
+// 			case "우체국": document.payForm.accNum.value = "999-1234-12345";
+// 						break;
+// 			case "부산": document.payForm.accNum.value = "1010-1234-12345";
+// 						break;
+// 			case "대구": document.payForm.accNum.value = "1111-1234-12345";
+// 						break;
+// 			case "외환": document.payForm.accNum.value = "1212-1234-12345";
+// 						break;
+// 			case "카카오뱅크": document.payForm.accNum.value = "1313-1234-12345";
+// 						break;
+// 			case "케이뱅크": document.payForm.accNum.value = "1414-1234-12345";
+// 						break;
+// 			}
+// 		};
 		
 		
 	};
@@ -105,9 +105,9 @@
 							<div class="point">
 								<div class="point_result">
 									<span class="font_stlye">포인트</span> 
-									<span class="point_available">사용가능금액 <span id="useable">1000<%--${} --%></span>원</span>
+									<span class="point_available">사용가능금액 <span id="useablePoint">1000<%--${} --%></span>원</span>
 								</div>
-								<input type="text" value="0원" class="point_to_use" name="pointToUse">
+								<input type="text" value="" placeholder="0원" class="point_to_use" name="pointToUse">
 								<button id="useAllPoint" class="use_button"  type="button">전액사용</button>
 							</div>
 						</div>
@@ -121,7 +121,7 @@
 							</div>	
 							<br>
 							<div>
-								<input type="radio" name="cardPayment" value="카드결제"><span class="font_stlye">카드결제</span>
+								<input type="radio" name="choicePayment" value="카드결제"><span class="font_stlye">카드결제</span>
 								<select class="select" id="cardSelect" name="cardSelect">
 									<option value="">카드사를 선택해 주세요</option>
 									<option value="삼성">삼성</option>
@@ -138,7 +138,7 @@
 							</div>
 							<br>
 							<div>
-								<input type="radio" name="bankPayment" value="무통장입금"><span class="font_stlye">무통장입금</span>
+								<input type="radio" name="choicePayment" value="무통장입금"><span class="font_stlye">무통장입금</span>
 								<span class="pm_acc_comment">20분 이내 입금되지 않으면 자동 취소됩니다.</span>
 								<br>
 								<select class="select_b" id="bankSelect" name="bankSelect">
@@ -158,24 +158,11 @@
 									<option value="카카오뱅크">카카오뱅크</option>
 									<option value="케이뱅크">케이뱅크</option>
 								</select>
-								<input type="text" placeholder="계좌번호" class="account" name="accNum">
+								<input type="text" placeholder="계좌번호" value="" class="account" name="accNum">
 							</div>
 							<br>
 							<div>	
-								<input type="radio" name="phonePayment" value="휴대폰결제"><span class="font_stlye">휴대폰결제</span>
-								<br>
-								<div class="tele_com">
-									<input type="radio" name="telecom" value="SK">SK
-									<input type="radio" name="telecom" value="KT">KT
-									<input type="radio" name="telecom" value="U+">U+
-								</div>
-							</div>
-							<div class="tele_detail">
-								<input type="text" name="phoneNum" placeholder="핸드폰 번호를 입력해주세요." class="phone_num_text">
-								<button class="phone_button1"  type="button">인증번호 발송</button>
-								<br>
-								<input type="text" name="authenticationNum" placeholder="인증번호를 입력해 주세요." class="check_num">
-								<button class="phone_button2"  type="button">인증하기</button>
+								<input type="radio" name="choicePayment" value="휴대폰결제"><span class="font_stlye">휴대폰결제</span>
 							</div>
 						</div>
 					</section>
@@ -194,7 +181,7 @@
 							</div>
 							<div class="agree_main">
 								<span>
-									<input type="checkbox" name="agreement1" value="결제대행동의" class="agree">
+									<input type="checkbox" name="agreement" value="결제대행동의" class="agree">
 									<span>
 										<span class="agree_font">[필수]</span> 
 										결제 대행 서비스 이용 약관 동의 합니다.
@@ -206,7 +193,7 @@
 							</div>	
 							<div class="agree_main">
 								<span>
-									<input type="checkbox" name="agreement2" value="취소환불동의" class="agree">
+									<input type="checkbox" name="agreement" value="취소환불동의" class="agree">
 									<span>
 										<span class="agree_font">[필수]</span> 
 										취소 및 환불규정 동의 합니다.
@@ -218,7 +205,7 @@
 							</div>
 							<div class="agree_main">
 								<span>
-									<input type="checkbox" name="agreement3" value="개인정보동의" class="agree">
+									<input type="checkbox" name="agreement" value="개인정보동의" class="agree">
 									<span>
 										<span class="agree_font">[선택]</span> 
 										개인정보 제3자 제공 동의 합니다.
@@ -311,11 +298,11 @@
 									</div> 
 									<div>
 										<span class="detail">쿠폰할인</span>
-										<span class="detail_price">- 0<%--${} --%>원</span>
+										<span>- <span class="detail_price">0<%--${} --%>원</span></span>
 									</div> 
 									<div>
 										<span class="detail">포인트할인</span>
-										<span class="detail_price">- 0<%--${} --%>원</span>
+										<span>- <span class="detail_price" id="discountPoint">0<%--${} --%>원</span></span>
 									</div> 
 								</div>
 								<div class="point">
@@ -328,7 +315,7 @@
 										<span class="detail_price">
 											<div class="info_price">
 												<span class="menu_name2">현제 포인트</span>
-												<span class="price">1,000원</span>
+												<span class="price" id="nowPoint">1,000원</span>
 											</div>
 											<div class="info_price">
 												<span class="menu_name2">총 포인트</span>
@@ -339,7 +326,7 @@
 								</div>
 								<div class="total_detail">
 									<span class="total_info">총 결제 금액</span>
-									<span class="total_price">127,000<%--${} --%>원</span>
+									<span class="total_price" id="totalPayment">127,000<%--${} --%>원</span>
 								</div>
 							</div>
 						</section>
