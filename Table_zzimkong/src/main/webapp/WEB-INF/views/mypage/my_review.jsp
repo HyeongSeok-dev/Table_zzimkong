@@ -7,6 +7,14 @@
 <title>Insert title here</title>
 <link href="${pageContext.request.contextPath }/resources/css/mypage.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
+<script type="text/javascript">
+	function reviewDelete() {
+		confirm("리뷰를 삭제하시겠습니까?")
+		if(true){
+			alert("리뷰를 삭제하였습니다.")
+		}
+	}
+</script>
 </head>
 <body>
 	<jsp:include page="../inc/my_sidebar.jsp" />
@@ -49,7 +57,7 @@
 					<td>★★★★★<br>존맛 대존맛</td>
 					<td align="center">
 					<button type="button">수정</button>
-					<button type="reset" id="my_delete" >삭제</button>
+					<button type="reset" id="my_delete" onclick="reviewDelete()">삭제</button>
 					</td>
 				</tr>
 			</table>

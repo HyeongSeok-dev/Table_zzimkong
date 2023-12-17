@@ -294,6 +294,21 @@ public class HomeController {
 		return "mypage/my_point";
 	}
 	
+	@GetMapping("my/reservation")
+	public String my_reservation() {
+		return "mypage/my_reservation";
+	}
+	
+	@GetMapping("my/edit/reservation")
+	public String my_edit_reservation() {
+		return "mypage/my_edit_reservation";
+	}
+	
+	@GetMapping("my/bookmark")
+	public String my_bookmark() {
+		return "mypage/my_bookmark";
+	}
+	
 	@GetMapping("review/detail")
 	public String review_detail() {
 		return "review/review_detail";

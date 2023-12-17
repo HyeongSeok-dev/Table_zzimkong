@@ -5,42 +5,95 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="${pageContext.request.contextPath }/resources/css/mypage.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
+ <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
+ <link href="${pageContext.request.contextPath }/resources/css/member_cs.css" rel="stylesheet">
+ <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/ceo_top.css"> 
+
 </head>
 <body>
 	<jsp:include page="../inc/my_sidebar.jsp"/>
-	<div class="wrapper">
-		<div>
-			<div class ="title">
-			<span class= "mypg">
-				<h1>1:1 문의</h1>
-			</span>
-			<span>
-				<input type="date">
-				-
-				<input type="date">
-				<button type="button" onclick="showDate()">조회</button>
-				<p id="selectedDate"></p>
-			</span>
-			</div>
-			<br>
-			<table style="width: 1000px; height: 100px; table-layout: fixed;">
-				<tr>
-					<th style="width: 500px;">제목</th>
-					<th style="width: 300px;">작성일</th>				
-					<th style="width: 200px;">처리 상태</th>
-				</tr>
-				<tr>
-					<td>포인트 사용 문의</td>
-					<td>23/09/15 14:00</td>
-					<td>답변 완료</td>
-				</tr>
-			</table>
-			<div class="click_button">
-			<button type="button" onclick="">1:1 문의하기</button>
-			</div>
+	<section class="notice">
+	  <div class="text">
+		  <div class="page-title">
+		        <span class="container">
+		            <h3>1 : 1 문의</h3>
+		        </span>
+		        <span>
+					<button type="button" id="buttonNotice" onclick="location.href='member_cs_notice.jsp'">공지사항</button>	
+					<button type="button" id="buttonFaq" onclick="location.href='member_cs_faq.jsp'">자주묻는 질문</button>	
+					<button type="button" id="buttonRegister" onclick="location.href='member_cs_qna_register.jsp'">문의하기</button>	
+		    	</span>
+		    </div>
+		
+		    <!-- board seach area -->
+		    <div id="board-search" style="width:1000px; margin-left:60px;">
+		        <div class="container">
+		            <div class="search-window">
+		                <form action="">
+		                	<div class="search_and_date">
+			                	<span class="date_input_wrap">
+				                    <div class="datepicker dp1">
+				                        <input type="date" maxlength="10" name="sdate" id="sdate" class="hasDatepicker" placeholder="">
+				                    </div>
+				                    <span>~</span>
+				                    <div class="datepicker dp2">
+				                        <input type="date" maxlength="10" name="edate" id="edate" class="hasDatepicker">
+				                    </div>
+			                	</span>
+			                    <span class="search-wrap">
+			                        <label for="search" class="blind">공지사항 내용 검색</label>
+			                        <input id="search" type="search" name="searchNotice" placeholder="검색어를 입력해주세요." value="">
+			                        <button type="submit" class="btn btn-dark">검색</button>
+			                    </span>
+		                   </div>
+		                </form>
+		            </div>
+		        </div>
+		    </div>
+		
+		   <div id="board-list">
+		   		<div class="container">
+				    <table class="board-table" style="width: 1000px; height: 100px; table-layout: fixed;">
+				        <thead>
+				        <tr>
+				            <th scope="col" class="th-num">번호</th>
+				            <th scope="col" class="th-category">유형</th>
+				            <th scope="col" class="th-title">제목</th>
+				            <th scope="col" class="th-date">등록일</th>
+				        </tr>
+				        </thead>
+				        <tbody>
+				        <tr>
+				            <td>3</td>
+				            <th class="cs_th">주문/결제</th>
+				            <th class="cs_th">
+				              <a href="member_cs_qna_view.jsp">문의문의</a>
+				              <p>테스트</p>
+				            </th>
+				            <td>2017.07.13</td>
+				        </tr>
+				
+				        <tr>
+				            <td>2</td>
+				            <th class="cs_th">예약</th>
+				            <th class="cs_th"><a href="member_cs_qna_view.jsp">문의문의</a></th>
+				            <td>2017.06.15</td>
+				        </tr>
+				
+				        <tr>
+				            <td>1</td>
+				            <th class="cs_th">리뷰</th>
+				            <th class="cs_th"><a href="member_cs_qna_view.jsp">문의문의</a></th>
+				            <td>2017.06.15</td>
+				        </tr>
+				        </tbody>
+				    </table>
+				</div>
+		   </div> 
 		</div>
-	</div>
+	</section>
+<!-- 	<footer> -->
+<%-- 		<jsp:include page="bottom.jsp"></jsp:include> --%>
+<!-- 	</footer> -->
 </body>
 </html>

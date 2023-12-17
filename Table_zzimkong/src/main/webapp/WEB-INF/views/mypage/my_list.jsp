@@ -5,11 +5,24 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<!-- css -->
 <link href="${pageContext.request.contextPath }/resources/css/mypage.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
 <script type="text/javascript">
-	function cancleReservation(){
+	function cancelReservation(){
 		confirm("예약을 취소하시겠습니까?");
+		
+		if(true) {
+			alert("예약이 취소되었습니다.");
+		}
+	}
+	function editReservation() {
+		/* 팝업창 중앙 정렬 */
+		var popupW = 950;
+		var popupH = 700;
+		var left = Math.ceil((window.screen.width - popupW)/2);
+		var top = Math.ceil((window.screen.height - popupH)/2);
+		window.open('edit/reservation','','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
 	}
 </script>
 </head>
@@ -22,12 +35,12 @@
 				<h1>나의 예약 내역</h1>
 			</span>
 			<span>
-				<button type= "button">더보기</button>
+				<button type= "button" onclick="location.href='reservation'">더보기</button>
 			</span>
 			</div>
 			<br>
 			<table style="width: 1000px; height: 400px; table-layout: fixed;">
-				<tr>
+				<tr class ="subject">
 					<th style="width:150px;">예약일자</th>
 					<th>가게명</th>
 					<th>주소</th>					
@@ -45,8 +58,8 @@
 					<td>예약 완료</td>
 					<td>
 						<div class="div_button">
-							<button type="button">변경</button>
-							<button type="reset" id="my_delete" >취소</button>
+							<button type="button" onclick="editReservation()">변경</button>
+							<button type="reset" id="my_delete" onclick="cancelReservation()">취소</button>
 						</div>
 					</td>
 				</tr>

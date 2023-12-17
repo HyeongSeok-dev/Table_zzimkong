@@ -39,6 +39,15 @@ table {
     /* ※테이블 가운데 정렬 하고싶은 경우 : margin: auto; */
 }
 
+
+.subject {
+	text-align: center;
+    background-color: #fafaf4;
+    color: #333;
+    padding: 15px;
+    font-size: 15px;
+}
+
 th {
     background-color: #fafaf4;
     color: #333;
@@ -123,5 +132,17 @@ input[type="date"]::before {
 
 #qna {
 	align: center;
+}
+
+#button_grey2 {
+    color: #3FAFFC;
+    background-color: #fff;
+    border: 1px solid #d5d5d5; 
+    padding: 5px;
+}
+
+#button_grey2:hover {
+    background-color:  #ddd;
+    color: #3FAFFC;
 }
 
