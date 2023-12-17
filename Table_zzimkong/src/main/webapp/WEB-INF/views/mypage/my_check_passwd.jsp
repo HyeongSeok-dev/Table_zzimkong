@@ -16,7 +16,7 @@
 	<div align="center">
 		<input type="password" class="input_text" placeholder="비밀번호를 입력해주세요."><br><br>
 		<button type="submit">확인</button>
-		<button type="reset">취소</button>
+		<button type="button" id="my_delete">취소</button>
 	</div>
 </body>
 </html>

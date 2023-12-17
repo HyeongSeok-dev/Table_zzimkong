@@ -39,7 +39,7 @@
 					<td>★★★★★<br>맛있어서 울면서 먹었어요</td>
 					<td align="center">
 					<button type="button">수정</button>
-					<button type="reset" id="my_delete" >삭제</button>
+					<button type="button" id="my_delete" onclick="reviewDelete()">삭제</button>
 					</td>
 				</tr>
 				<tr>
@@ -48,7 +48,7 @@
 					<td>★★<br>음식은 맛있는데 청결하지 못한 매장</td>
 					<td align="center">
 					<button type="button">수정</button>
-					<button type="reset" id="my_delete" >삭제</button>
+					<button type="button" id="my_delete" onclick="reviewDelete()">삭제</button>
 					</td>
 				</tr>
 				<tr>
@@ -57,7 +57,7 @@
 					<td>★★★★★<br>존맛 대존맛</td>
 					<td align="center">
 					<button type="button">수정</button>
-					<button type="reset" id="my_delete" onclick="reviewDelete()">삭제</button>
+					<button type="button" id="my_delete" onclick="reviewDelete()">삭제</button>
 					</td>
 				</tr>
 			</table>

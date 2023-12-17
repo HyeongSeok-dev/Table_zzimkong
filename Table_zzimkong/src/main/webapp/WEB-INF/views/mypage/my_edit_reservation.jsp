@@ -21,18 +21,18 @@
 					<th style="width:15%;" name="memberNum">회원 번호</th>
 					<td colspan="2">
 						<div>
-							<input type="text" id="memberNumText" readonly>
+							<input type="text"  class="input_text" id="memberNumText" readonly>
 							<button type="button">회원조회</button>
 						</div>	
 					</td>
 					<th style="width:15%;">아이디</th>
-					<td colspan="2"><input type="text" value="" name="id"></td>
+					<td colspan="2"><input type="text" class="input_text" value="" name="id"></td>
 				</tr>
 				<tr>
 					<th>이름</th>
-					<td colspan="2"><input type="text" value="" name="name"></td>
+					<td colspan="2"><input type="text" class="input_text" value="" name="name"></td>
 					<th>연락처</th>
-					<td colspan="2"><input type="text" value="" name="phoneNum"></td>
+					<td colspan="2"><input type="text" class="input_text" value="" name="phoneNum"></td>
 				</tr>
 				<tr>
 					<th>사유</th>
@@ -40,8 +40,10 @@
 				</tr>
 			</table>
 			<br>
+			<div class = "click_button">
 			<button type="button">등록</button>
 			<button type="button" id="my_delete" onclick="javascript:window.close()">취소</button>
+			</div>
 		</form>
 	</div>
 </body>

@@ -11,7 +11,6 @@
 <script type="text/javascript">
 	function cancelReservation(){
 		confirm("예약을 취소하시겠습니까?");
-		
 		if(true) {
 			alert("예약이 취소되었습니다.");
 		}
@@ -59,7 +58,7 @@
 					<td>
 						<div class="div_button">
 							<button type="button" onclick="editReservation()">변경</button>
-							<button type="reset" id="my_delete" onclick="cancelReservation()">취소</button>
+							<button type="button" id="my_delete" onclick="cancelReservation()">취소</button>
 						</div>
 					</td>
 				</tr>
@@ -73,7 +72,7 @@
 					<td>
 						<div class="div_button">
 							<button type="button">변경</button>
-							<button type="reset" id="my_delete" >취소</button>
+							<button type="button" id="my_delete" onclick="cancelReservation()">취소</button>
 						</div>
 					</td>
 				</tr>
@@ -87,7 +86,7 @@
 					<td>
 						<div class="div_button">
 							<button type="button">변경</button>
-							<button type="reset" id="my_delete" onclick="cancleReservation()">취소</button>
+							<button type="button" id="my_delete" onclick="cancleReservation()">취소</button>
 						</div>
 					</td>
 				</tr>
@@ -99,22 +98,46 @@
 				<h1>나의 북마크</h1>
 			</span>			
 			<span>
-				<button type= "button">더보기</button>
+				<button type= "button" onclick="location.href='bookmark'">더보기</button>
 			</span>
-			</div>			
+			</div>
 			<br>
-			<table style="width: 1000px; table-layout: fixed;">
-				<tr>
-					<td style="height: 200px;">사진</td>
-					<td>사진</td>
-					<td>사진</td>
-				</tr>
-				<tr >
-					<td style="height: 30px;">(♥) 또갈래 떡볶이</td>
-					<td>(♥) 맛있다 파스타</td>
-					<td>(♥) 나도갈래 치킨</td>
-				</tr>
-			</table>
+			<div class="bookmark_image">
+				<div>
+					<a href="${pageContext.request.contextPath}/product/detail">
+						<img class="image_size" src="${pageContext.request.contextPath}/resources/img/bookmark_image1.jpg" >
+					</a>
+				<div id="likeButton" class="like_button">
+					<svg id="heart" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+				        <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+				    </svg>
+						83해치
+				</div>
+				</div>			
+				<div>
+					<a href="${pageContext.request.contextPath}/product/detail">
+						<img class="image_size" src="${pageContext.request.contextPath}/resources/img/bookmark_image2.jpg" >
+					</a>
+				<div id="likeButton" class="like_button">
+					<svg id="heart" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+				        <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+				    </svg>
+						이재모피자 부산역점
+				</div>	
+				</div>	
+				<div>
+					<a href="${pageContext.request.contextPath}/product/detail">
+						<img class="image_size" src="${pageContext.request.contextPath}/resources/img/bookmark_image3.jpg" >
+					</a>
+					<div id="likeButton" class="like_button">
+					<svg id="heart" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+				        <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+				    </svg>
+						아덴블랑제리 부전점
+				</div>
+				</div>	
+			</div>		
+			<br>
 			<br>
 			<div class ="title">
 			<span class= "mypg">

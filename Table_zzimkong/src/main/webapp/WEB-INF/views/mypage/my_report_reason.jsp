@@ -34,5 +34,6 @@
 			<button type="button" id="my_delete" onclick="javascript:window.close()">취소</button>
 		</div>
 	</form>
+</div>
 </body>
 </html>

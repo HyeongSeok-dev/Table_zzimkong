@@ -15,13 +15,14 @@
 	<main>
 		<jsp:include page="../inc/my_sidebar.jsp" />
 	<div class="wrapper">
-		<div>
+		<form action="" method="post">
 			<div class="title">
 			<span class= "mypg">
 				<h1>회원정보 변경</h1>
 			</span>
 			</div>
 			<br>
+				
 				<table style="width: 1000px; table-layout: fixed;">
 					<tr>
 						<th style="width: 300px;">프로필사진</th>
@@ -75,7 +76,8 @@
             <div class = "click_button">
             		<button type="button" >수정하기</button>
 			</div>
-	</div>
+		</form>
+	</div>		
 	</main>
 	<footer>
 <%-- 		<jsp:include page="../inc/bottom.jsp"/> --%>
