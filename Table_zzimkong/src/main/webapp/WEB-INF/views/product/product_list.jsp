@@ -6,6 +6,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/list.css" />
 	<link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 	<div class="top">
