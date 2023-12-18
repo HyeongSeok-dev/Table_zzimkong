@@ -7,7 +7,9 @@
 <title>Insert title here</title>
 <link href="${pageContext.request.contextPath}/resources/css/global.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resources/css/admin_article.css" rel="stylesheet">
-<!-- 바텀 못넣었음...ㅠㅠㅠㅠㅠ -->
+<%-- <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet"> --%>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/chart_script.js"></script>
 </head>
 <body id="body">
 	<header>
@@ -45,36 +47,68 @@
 			</table>
 			
 			<br>
-			
-			<table border="1">
+		
+
+	
+			<%-- Chart.js --%>
+			<h3>방문&가입자 현황</h3>
+
+			<button type="button" id="chart_time" onclick="myChart1()" >시간별</button>
+			<button type="button" id="chart_date" onclick="myChart2()">날짜별</button>
+
+			<table class="chart_table">
 				<tr>
-					<th>방문자 현황</th>
-					<%-- 시간별 통계 (선 차트) --%>
-					<th>가입자 현황</th>
-					<%-- 일, 주, 월 별 통계 (막대 차트) --%>
-				</tr>
-				<tr>
-					<td>시간별 현황 (선 차트)</td>
-					<td>일, 주, 월 별 (막대 차트)</td>
-				</tr>
-				<tr>
-					<th>예약 현황</th>
-					<%-- 일, 주, 월 별 통계 (막대 차트) --%>
-					<th>지역별 업체 현황</th>
-					<%-- 일단 부산 지도 중심으로 (버블 차트) --%>
-				</tr>
-				<tr>
-					<td>일, 주, 월 별 (막대 차트)</td>
-					<td>일단 부산 지도 중심으로 (버블 차트)</td>
+					<th>
+						<br>
+						
+ 						<div id="content1" style="display: none;">
+							<div style="width: 100%; height: auto; text-align: center">
+								<canvas id="myChart"></canvas>
+							</div>
+						</div>
+						
+ 						<div id="content2" style="display: none;">
+							<div style="width: 100%; height: auto; text-align: center">
+								<canvas id="myChart2"></canvas>
+							</div>
+						</div>
+					</th>
 				</tr>
 			</table>
+			
+			
+			<h3>예약자 현황</h3>
+			<button type="button" id="chart_time" onclick="myChart3()">시간별</button>
+			<button type="button" id="chart_date" onclick="myChart4()">날짜별</button>
+			
+			<table class="chart_table">
+				<tr>
+					<th>
+						<br>
+						
+ 						<div id="content3" style="display: none;">
+							<div style="width: 100%; height: auto; text-align: center">
+								<canvas id="myChart3"></canvas>
+							</div>
+						</div>
+						
+ 						<div id="content4" style="display: none;">
+							<div style="width: 100%; height: auto; text-align: center">
+								<canvas id="myChart4"></canvas>
+							</div>
+						</div>
+					</th>
+				</tr>
+			</table>
+			
+			
 		</div>
 	</section>
-	
+		
 	<%-- 상단으로/bottom --%>
 	<footer>
 		<jsp:include page="../inc/admin_topup.jsp"/>
-		<%-- <jsp:include page="../inc/bottom_main.jsp"/> --%>
+		<jsp:include page="../inc/bottom_main.jsp"/>
 	</footer>
 </body>
 </html>

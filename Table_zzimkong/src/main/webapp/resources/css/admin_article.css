@@ -271,8 +271,9 @@ td> select {
 #footer-bottom {
   background: #E9E9E9;
 /*   padding: 40px 0px; */
-  padding-left: -20px;
+/*   padding-left: -20px; */
   padding-top: 50px;
+  margin-top: 100px;
   
 }
 #footer-bottom p {
@@ -283,19 +284,24 @@ td> select {
   font-size: 12px;
   font-weight: 600;
   line-height: 2.0;
-
-  margin-left: 150px;
+  letter-spacing: 0.2px;
+  margin-left: 100px;
 }
+
 #footer-bottom p a {
   color: #3FAFFC;
   font-size: 12px;
 }
 
-
 /* Chart */
-.chart_table {
-	border: none;
+.chart_table th {
+/* 	border: none; */
+	background-color: #FFF;
+	padding: 70px;
+/* 	padding-left: 250px; */
+/* 	padding-right: 250px; */
 }
+
 
 
 
