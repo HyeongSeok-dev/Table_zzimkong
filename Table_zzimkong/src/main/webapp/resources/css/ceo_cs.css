@@ -4,6 +4,13 @@ body {
     padding: 0 20%;
     line-height: 1.6;
 }
+
+h1 {
+    color: #515151;
+    font-size: 35px;
+    /* 하이라이트 CSS 추가 */
+    display: inline; /* 글자 길이에 맞게 */
+}
 table {
 	  border-collapse: collapse;
 	  border-spacing: 0;
@@ -12,7 +19,7 @@ table {
 	  display: block;
 	  border: none;
 	  background-color: #fff;
-	  margin-top: 100px;
+	  margin-top: 50px;
 	}
 	
 	.page-title {
@@ -23,7 +30,7 @@ table {
 	h3 {
     color: #515151;
     margin-bottom: 30px;
-    font-size: 30px;
+    font-size: 25px;
     /* 하이라이트 CSS 추가 */
     display: inline; /* 글자 길이에 맞게 */
 }
@@ -239,22 +246,10 @@ table {
 	.datepicker input {
     display: block;
     width: 100%;
-    border: none;
     padding-left: 15px;
     line-height: 28px;
     height: 28px;
     vertical-align: middle;
-	}
-	
-	.datepicker:before {
-    content: '';
-    display: block;
-    position: absolute;
-    top: 5px;
-    right: 10px;
-    background: url(//static.wconcept.co.kr/web/images/common/spr-input.png) -90px 0 no-repeat;
-    width: 16px;
-    height: 17px;
 	}
 	
 	.date_input_wrap span {
@@ -271,30 +266,20 @@ table {
 	    background-color: #fff;
 	}
 	
-/* .hasDatepicker::-webkit-calendar-picker-indicator {
-    display: none;
-}
-
-.hasDatepicker::-webkit-inner-spin-button {
-    display: none;
-}
-
-.hasDatepicker::-webkit-clear-button {
-    display: none; 
-} */
-
-.hasDatepicker::-webkit-calendar-picker-indicator {
-    opacity: 0;
-}
-
-.hasDatepicker::before {
-    content: "";
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    background: transparent;
-    position: relative;
-    top: -3px;
-    right: -6px;
-}
-
+	.topup {
+    position: fixed;
+    bottom: 25px;
+    right: 30px;
+    cursor: pointer;
+	}
+	
+	.topup:hover svg circle {
+	    fill : #3FAFFC;
+	}
+	
+	.header_div01 {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-bottom: 50px;
+	}

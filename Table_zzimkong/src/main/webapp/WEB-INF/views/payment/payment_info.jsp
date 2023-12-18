@@ -51,7 +51,7 @@
 							<span class="res_date">18:00<%--${} --%></span>
 						</div>
 						<div class="reservation_div">
-							<span class="res_info">예약자 이름</span>
+							<span class="res_info">방문자 이름</span>
 							<span class="other_name">홍길동<%--${} --%></span>
 						</div>
 						<div class="reservation_div">

@@ -92,5 +92,8 @@
 			</div>
 		</div>
 	</section>
+	<footer>
+		<jsp:include page="../inc/admin_topup.jsp"/>
+	</footer>
 </body>
 </html>

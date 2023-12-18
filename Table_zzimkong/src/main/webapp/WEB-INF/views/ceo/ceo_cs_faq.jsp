@@ -25,15 +25,18 @@
 	</header>
 	<section class="notice">
 	  <div class="text">
-		  <div class="page-title">
+		  	<div class="header_div01">
+		        <span><h1>사업자 고객센터</h1></span>
+	   		</div>
+		  	<div class="page-title">
 		        <span class="container">
-		            <h3>고객센터 - 자주묻는 질문</h3>
+		            <h3>자주묻는 질문</h3>
 		        </span>
 		        <span>
 					<button type="button" id="buttonNotice" onclick="location.href='${pageContext.request.contextPath }/ceo/cs/notice'">공지사항</button>	
 					<button type="button" id="buttonQna" onclick="location.href='${pageContext.request.contextPath }/ceo/cs/qna'">1 : 1문의</button>	
 		    	</span>
-		    </div>
+	   		</div>
 		
 		    <!-- board seach area -->
 		    <div id="board-search">
@@ -52,13 +55,13 @@
 		    </div>
 		
 		   <div id="board-list">
-		   		<div class="container">
+		   		<div class="text_inner">
 				    <table class="board-table">
 				        <thead>
 				        <tr>
 				            <th scope="col" class="th-num">번호</th>
 				            <th scope="col" class="th-num">
-				            	<select name="ceoCategory">
+				            	<select name="ceoCategory" style="border: none; background-color: rgb(244, 250, 255); font-weight: bold; text-align: center; font-size: 15px; color: #333;">
 				            		<option value="">유형선택</option>
 				            		<option value="예약관리">예약관리</option>
 				            		<option value="메뉴관리">메뉴관리</option>
@@ -103,6 +106,9 @@
 		   </div> 
 		</div>
 	</section>
+	<footer>
+		<jsp:include page="../inc/admin_topup.jsp"/>
+	</footer>
 <!-- 	<footer> -->
 <%-- 		<jsp:include page="bottom.jsp"></jsp:include> --%>
 <!-- 	</footer> -->

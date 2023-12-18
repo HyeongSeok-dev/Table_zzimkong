@@ -16,7 +16,9 @@
 <!-- </div> -->
 	<div class="header_all">
 	<div class="headerMenu1">
-		<img alt="logo1" src="${pageContext.request.contextPath }/resources/img/logo4_1.png" width="50px">
+		<a href="${pageContext.request.contextPath }/ceo/sale">
+			<img alt="logo1" src="${pageContext.request.contextPath }/resources/img/logo4_1.png" width="50px">
+		</a>
 	</div>
 	<div class="headerMenu2">
 	  <ul class="">

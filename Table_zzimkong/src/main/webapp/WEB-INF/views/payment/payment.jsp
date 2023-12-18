@@ -12,57 +12,7 @@
 <script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/payment.js"></script>
 <script type="text/javascript">
-	window.onload = function() {
-		
-	// 	만약 포인트사용 가능한 금액이 결제금액 보다 적으면 포인트가 적습니다 표시 아니
-	// 	라면 텍스트박스의 value값이 변하고 사용가능한 금액이 0원으로 변함
-	// 	document.querySelector("#useAllPoint").onclick = function() {
-	// 		if(document.payForm.)
-	// 	};
-		
-		//전체동의 체크박스 선택시 동의란 모두 체크됨
-		/* document.querySelector("#checkAllAgree").onclick = function() {
-			for(let i = 0; i < document.payForm.agreement.length; i++) {
-				document.payForm.agreement[i].checked = document.querySelector("#checkAllAgree").checked;
-			}
-		}; */
-		
-		//무통장 입금시 각은행별 계좌번호
-// 		document.payForm.bankSelect.onchange = function() {
-// 			switch (document.payForm.bankSelect.value) {
-// 			case "신한": document.payForm.accNum.value = "111-1234-12345"; 
-// 						break;
-// 			case "국민": document.payForm.accNum.value = "222-1234-12345";
-// 						break;
-// 			case "우리": document.payForm.accNum.value = "333-1234-12345";
-// 						break;
-// 			case "하나": document.payForm.accNum.value = "444-1234-12345";
-// 						break;
-// 			case "농협": document.payForm.accNum.value = "555-1234-12345";
-// 						break;
-// 			case "기업": document.payForm.accNum.value = "666-1234-12345";
-// 						break;
-// 			case "시티": document.payForm.accNum.value = "777-1234-12345";
-// 						break;
-// 			case "SC": document.payForm.accNum.value = "888-1234-12345";
-// 						break;
-// 			case "우체국": document.payForm.accNum.value = "999-1234-12345";
-// 						break;
-// 			case "부산": document.payForm.accNum.value = "1010-1234-12345";
-// 						break;
-// 			case "대구": document.payForm.accNum.value = "1111-1234-12345";
-// 						break;
-// 			case "외환": document.payForm.accNum.value = "1212-1234-12345";
-// 						break;
-// 			case "카카오뱅크": document.payForm.accNum.value = "1313-1234-12345";
-// 						break;
-// 			case "케이뱅크": document.payForm.accNum.value = "1414-1234-12345";
-// 						break;
-// 			}
-// 		};
-		
-		
-	};
+
 </script>
 </head>
 <body>
@@ -116,12 +66,12 @@
 						<h2>결제수단</h2>
 						<div class="choice_pay">
 							<div>
-								<input type="radio" name="onSitePayment" value="현장결제"><span class="font_stlye">메뉴만 현장결제</span>
+								<input type="radio" name="onSitePayment" value="현장결제" id="onSitePayment"><span class="font_stlye">메뉴만 현장결제</span>
 								<span class="on_site_payment">선택시 노쇼방지 예약금만 결제 됩니다.</span>
 							</div>	
 							<br>
 							<div>
-								<input type="radio" name="choicePayment" value="카드결제"><span class="font_stlye">카드결제</span>
+								<input type="radio" name="choicePayment" value="카드결제" id="creditCardPayment"><span class="font_stlye">카드결제</span>
 								<select class="select" id="cardSelect" name="cardSelect">
 									<option value="">카드사를 선택해 주세요</option>
 									<option value="삼성">삼성</option>
@@ -138,7 +88,7 @@
 							</div>
 							<br>
 							<div>
-								<input type="radio" name="choicePayment" value="무통장입금"><span class="font_stlye">무통장입금</span>
+								<input type="radio" name="choicePayment" value="무통장입금" id="accountPayment"><span class="font_stlye">무통장입금</span>
 								<span class="pm_acc_comment">20분 이내 입금되지 않으면 자동 취소됩니다.</span>
 								<br>
 								<select class="select_b" id="bankSelect" name="bankSelect">
@@ -162,7 +112,7 @@
 							</div>
 							<br>
 							<div>	
-								<input type="radio" name="choicePayment" value="휴대폰결제"><span class="font_stlye">휴대폰결제</span>
+								<input type="radio" name="choicePayment" value="휴대폰결제" id="mobilePhonePayment"><span class="font_stlye">휴대폰결제</span>
 							</div>
 						</div>
 					</section>
@@ -239,14 +189,14 @@
 									</li>
 									<li class="res_li">
 										<span class="res_info">예약 날짜</span>
-										<span class="date_detail">2023.12.31(일)<%--${} --%></span>
+										<span class="date_detail">2023.12.31 (일)<%--${} --%></span>
 									</li>
 									<li class="res_li">
 										<span class="res_info">시간</span>
 										<span class="date_detail">18:00<%--${} --%></span>
 									</li>
 									<li class="res_li">
-										<span class="res_info">예약자명</span>
+										<span class="res_info">방문자명</span>
 										<span class="other_name">홍길동<%--${} --%></span>
 									</li>
 									<li class="res_li">
@@ -270,63 +220,66 @@
 								<div class="price_detail">
 									<div>
 										<span class="detail">예약금액</span>
-										<span class="detail_price">20,000<%--${} --%>원</span>
+										<span class="detail_price"><span id="reservationPrice">20,000<%--${} --%></span>원</span>
 									</div>
 									<div>
 										<span class="detail">메뉴 선결제금액</span>
-										<span class="detail_price">0<%--${} --%>원</span>
+										<span class="detail_price"><span id="preOrderTotalPrice">97,000</span>원</span>
+										<!-- <span class="detail_price"><span id="preOrderTotalPrice">0</span>원</span> -->
 									</div> 
+									<%-- 여기부터 선결제 있으면 표시함 --%>
 									<div>
 										<span class="detail"> </span>
 										<span class="detail_price">
 											<div class="info_price">
 												<span class="menu_name">시저샐러드</span>
-												<span class="count">1개</span>
-												<span class="price">18,000원</span>
+												<span class="count"><span>1</span>개</span>
+												<span class="price"><span>18,000<%--${} --%></span>원</span>
 											</div>
 											<div class="info_price">
 												<span class="menu_name">뇨끼파스타</span>
-												<span class="count">1개</span>
-												<span class="price">24,000원</span>
+												<span class="count"><span>1</span>개</span>
+												<span class="price"><span>24,000<%--${} --%></span>원</span>
 											</div>
 											<div class="info_price">
 												<span class="menu_name">안심스테이크</span>
-												<span class="count">1개</span>
-												<span class="price">55,000원</span>
+												<span class="count"><span>1</span>개</span>
+												<span class="price"><span>55,000<%--${} --%></span>원</span>
 											</div>
 										</span>
 									</div> 
+									<%-- 여기까지 --%>
 									<div>
 										<span class="detail">쿠폰할인</span>
-										<span>- <span class="detail_price">0<%--${} --%>원</span></span>
+										 <span class="detail_price">- <span>0<%--${} --%></span>원</span>
 									</div> 
 									<div>
 										<span class="detail">포인트할인</span>
-										<span>- <span class="detail_price" id="discountPoint">0<%--${} --%>원</span></span>
+										<span class="detail_price">- <span id="discountPoint">0<%--${} --%></span>원</span>
 									</div> 
 								</div>
 								<div class="point">
 								<div class="points_earn">
 									<span class="detail">적립예정 포인트</span>
-									<span class="detail_price">1,270<%--${} --%>원</span>
+									<span class="detail_price"><span id="receivePoint">1,270<%--${} --%></span>원</span>
 								</div>
 								<div>
 										<span class="detail"> </span>
 										<span class="detail_price">
 											<div class="info_price">
 												<span class="menu_name2">현제 포인트</span>
-												<span class="price" id="nowPoint">1,000원</span>
+												<span class="price" ><span id="nowPoint">1,000<%--${} --%></span>원</span>
 											</div>
 											<div class="info_price">
 												<span class="menu_name2">총 포인트</span>
-												<span class="price">2,270원</span>
+												<span class="price"><span id="totalPoint">2,270<%--${} --%></span>원</span>
 											</div>
 										</span>
 									</div> 
 								</div>
 								<div class="total_detail">
 									<span class="total_info">총 결제 금액</span>
-									<span class="total_price" id="totalPayment">127,000<%--${} --%>원</span>
+									<span class="total_price" ><span id="totalPayment">127,000<%--${} --%></span>원</span>
 								</div>
 							</div>
 						</section>

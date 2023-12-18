@@ -43,11 +43,37 @@ $(function() {
 	
 	$("#useAllPoint").on("click", function() {
 		$("#useablePoint").text("0");
-		$(".point_to_use").val("1000"); //여기 내포인트 전액이 와야함
-		$("#discountPoint").text("1000원"); //여기 내포인트 전액이 와야함
-		$("#nowPoint").text("0원");
-		$("#totalPayment").text("126,000원");// 여기 총결제 금액에서 포인트사용된 금액표시
+		$(".point_to_use").val("1000원"); //여기 내포인트 전액이 와야함
+		$("#discountPoint").text("1000"); //여기 내포인트 전액이 와야함
+		$("#nowPoint").text("0");
+		$("#totalPayment").text("126,000");// 여기 총결제 금액에서 포인트사용된 금액표시
 		
+	});
+	
+	var isChecked;
+	$("#onSitePayment").click(function() {
+		if($("#preOrderTotalPrice").text() !== "0"){ //파라미터가 있으면
+			if(isChecked) {
+	            $("#onSitePayment").prop('checked', false);
+	            isChecked = false;
+	            $("#preOrderTotalPrice").text("0");
+	        } else {
+	            isChecked = true;
+	            $("#preOrderTotalPrice").text("9,7000");//여기파라미터값
+	        }
+		} else if($("#preOrderTotalPrice").text() == "0"){ //파라미터가 없으면으로 바꿔야함
+			if(!isChecked) {
+	            $("#onSitePayment").prop('checked', false);
+	            alert("선결제할 금액이 없습니다!");
+	        } 
+	        
+		}
+		
+	});
+	
+	// 만약 선주문이 있을 떄(예약에서 넘어온 값이 있음)
+	
+	$("form").submit(function() {
 	});
 	
 });

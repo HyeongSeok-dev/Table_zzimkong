@@ -385,3 +385,7 @@ li.selected {
 input[type="range"] {
     width: 100%;
 }
+
+#mainSearchBar {
+	background-color: #fff;
+}

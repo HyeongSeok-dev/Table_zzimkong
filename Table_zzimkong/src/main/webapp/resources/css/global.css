@@ -89,6 +89,8 @@ button[type="reset"] {
     margin: 5px;
     color: #3FAFFC;
     text-align: center;
+    border: 1px solid #3FAFFC;
+    background-color: #fff;
 }
 
 input[type="password"]{

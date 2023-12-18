@@ -116,17 +116,11 @@
 			</div>
 		</div>
 	</section>
+	<footer>
+		<jsp:include page="../inc/admin_topup.jsp"/>
+	</footer>
 	<%-- <footer>
 		<jsp:include page="../inc/bottom.jsp"></jsp:include>
 	</footer> --%>
 </body>
-<!-- <script type="text/javascript"> -->
-
-
-<!-- // 	function newDetails(){ -->
-<!-- // 		window.open("com_main_detaile.jsp", "address_window", "width = 700, height = 800"); -->
-<!-- // 	} -->
-	
-
-<!-- </script> -->
 </html>

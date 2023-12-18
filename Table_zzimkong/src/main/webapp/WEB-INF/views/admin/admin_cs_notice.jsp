@@ -33,9 +33,12 @@
 	</header>
 	<section class="notice">
 	  <div class="text">
-		  <div class="page-title">
+	  		<div class="header_div01">
+		        <span><h1>사업자 고객센터</h1></span>
+	   		</div>
+		  	<div class="page-title">
 		        <span class="container">
-		            <h3>고객센터 - 공지사항 관리</h3>
+		            <h3>공지사항 관리</h3>
 		        </span>
 		        <span>
 					<button type="button" id="buttonQna" onclick="location.href='qna'">1:1 문의 관리</button>	
@@ -76,18 +79,15 @@
 				        <thead>
 				        <tr>
 				            <th scope="col" class="th-num" rowspan="2">번호</th>
-				            <th scope="col" class="th-category">게시판유형</th>
-				            <th scope="col" class="th-title" rowspan="2">제목</th>
-				            <th scope="col" class="th-date" rowspan="2">등록일</th>
-				        </tr>
-				        <tr>
 				            <th scope="col" class="th-category">
-								<select class="user_select">
+								<select class="user_select" style="border: none; background-color: rgb(244, 250, 255); font-weight: bold; text-align: center; font-size: 15px; color: #333;">
 				            		<option>회원유형</option>
 									<option>일반회원</option>
 									<option>사업자회원</option>
 				            	</select>
 							</th>
+				            <th scope="col" class="th-title" rowspan="2">제목</th>
+				            <th scope="col" class="th-date" rowspan="2">등록일</th>
 				        </tr>
 				        </thead>
 				        <tbody>

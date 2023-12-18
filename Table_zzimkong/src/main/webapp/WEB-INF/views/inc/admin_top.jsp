@@ -38,7 +38,7 @@
 	      </a>
 	    </li>
 	    <li>
-	      <a id="news" href="${pageContext.request.contextPath }/admin/cs/qna">
+	      <a id="news" href="${pageContext.request.contextPath }/admin/cs/faq">
 	        고객센터
 	      </a>
 	    </li>

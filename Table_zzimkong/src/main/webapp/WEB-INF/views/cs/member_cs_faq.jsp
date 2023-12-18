@@ -50,7 +50,7 @@
 				        <tr>
 				            <th scope="col" class="th-num">번호</th>
 				            <th scope="col" class="th-num">
-				            	<select name="memberCategory">
+				            	<select name="memberCategory" style="border: none; background-color: rgb(244, 250, 255); font-weight: bold; text-align: center; font-size: 15px; color: #333;">
 				            		<option value="">유형선택</option>
 				            		<option value="예약">예약</option>
 									<option value="주문/결제">주문/결제</option>

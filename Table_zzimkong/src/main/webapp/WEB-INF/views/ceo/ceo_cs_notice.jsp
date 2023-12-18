@@ -24,9 +24,12 @@
 	</header>
 	<section class="notice">
 	  <div class="text">
-		  <div class="page-title">
+	  		<div class="header_div01">
+		        <span><h1>사업자 고객센터</h1></span>
+	   		</div>
+		  	<div class="page-title">
 		        <span class="container">
-		            <h3>고객센터 - 공지사항</h3>
+		            <h3>공지사항</h3>
 		        </span>
 		        <span>
 					<button type="button" id="buttonFaq" onclick="location.href='${pageContext.request.contextPath }/ceo/cs/faq'">자주묻는 질문</button>	
@@ -91,6 +94,9 @@
 			</div>
 		</div>
 	</section>
+	<footer>
+		<jsp:include page="../inc/admin_topup.jsp"/>
+	</footer>
 <!-- 	<footer> -->
 <%-- 		<jsp:include page="bottom.jsp"></jsp:include> --%>
 <!-- 	</footer> -->

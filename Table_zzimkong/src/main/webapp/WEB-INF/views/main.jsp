@@ -25,7 +25,7 @@
 <!-- Responsive Stylesheet -->
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/responsive.css">
 
-<%-- <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet"> --%>
+<link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
 <!-- Js -->
 <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
 <script>

@@ -65,22 +65,16 @@
 				    <table class="board-table">
 				        <thead>
 				        <tr>
-				            <th scope="col" class="th-num" rowspan="2">번호</th>
-				            <th scope="col" class="th-user">회원</th>
-				            <th scope="col" class="th-category">질문유형</th>
-				            <th scope="col" class="th-title" rowspan="2">제목</th>
-				            <th scope="col" class="th-date" rowspan="2">등록일</th>
-				        </tr>
-				        <tr>
-				            <th scope="col" class="th-category">
-								<select class="user_select">
+				            <th scope="col" class="th-num">번호</th>
+ 							<th scope="col" class="th-user" width="80">
+								<select class="user_select" style="border: none; background-color: rgb(244, 250, 255); font-weight: bold; text-align: center; font-size: 15px; color: #333;">
 				            		<option>회원</option>
 									<option>일반회원</option>
 									<option>업주회원</option>
 				            	</select>
 							</th>
 				            <th scope="col" class="th-category">
-				            	<select class="member_category_select">
+				            	<select class="member_category_select" style="border: none; background-color: rgb(244, 250, 255); font-weight: bold; text-align: center; font-size: 15px; color: #333;">
 				            		<option>질문유형</option>
 									<option>주문/결제</option>
 									<option>리뷰</option>
@@ -88,7 +82,7 @@
 									<option>이용문의</option>
 									<option>쿠폰/포인트</option>
 				            	</select>
-				            	<select class="ceo_category_select" hidden="">
+				            	<select class="ceo_category_select" hidden="" style="border: none; background-color: rgb(244, 250, 255); font-weight: bold; text-align: center; font-size: 15px; color: #333;">
 				            		<option>질문유형</option>
 				            		<option>예약관리</option>
 				            		<option>메뉴관리</option>
@@ -97,6 +91,8 @@
 				            		<option>업체관리</option>
 				            	</select>
 				            </th>
+				            <th scope="col" class="th-title">제목</th>
+				            <th scope="col" class="th-date">등록일</th>
 				        </tr>
 				        </thead>
 				        <tbody>
