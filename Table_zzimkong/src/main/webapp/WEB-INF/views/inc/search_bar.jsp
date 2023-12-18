@@ -83,8 +83,8 @@
 						src="${pageContext.request.contextPath}/resources/img/search_filter.svg" />
 					<div id="filterModal" class="modal">
 						<div class="filter-modal-content">
+							<h2>조건 상세설정</h2>
 							<span class="close">&times;</span>
-							<h2>어떤곳을 원하시나요?</h2>
 							<div class="filter-content">
 								<ul class="filter-list">
 									<li class="filter-item" id="location"><span>지역</span>

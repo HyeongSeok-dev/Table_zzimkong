@@ -278,14 +278,13 @@ h2 {
 
 #filterModal {
     position: absolute; /* 절대 위치 설정 */
-    left: -350%; /* 오른쪽 정렬 */
+   left: -1400%; /* 오른쪽 정렬 */
     top: 200%; /* 상단에서의 위치 조정 */
-    width: 400px; /* 너비 설정 */
-    height: 400px; /* 높이 설정 */
+    width: 1000px; /* 너비 설정 */
+    height: 300px; /* 높이 설정 */
     background-color: #fff; /* 배경색 설정 */
     border-radius: 10px; /* 테두리 둥글게 */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
-    padding: 20px; /* 패딩 설정 */
     box-sizing: border-box; /* 박스 사이징 */
     z-index: 1001; /* z-index 값 */
 }
@@ -295,16 +294,17 @@ h2 {
     display: flex;
     flex-direction: column;
     align-items: center; 
-    justify-content: center; 
+    justify-content: space-between; 
     padding: 20px; 
     box-sizing: border-box; 
-    background-color: #f4f4f4; /* 배경색 변경 */
     border-radius: 8px; /* 테두리 둥글게 */
 }
 
 .filter-modal-content h2 {
-    text-align: center; 
-    margin-bottom: 20px; 
+    padding: 0;
+    margin: 10px;
+    border-bottom: 1px solid #3FAFFC;
+    width: 200px;
 }
 
 .modal-footer {
@@ -318,16 +318,18 @@ h2 {
 
 .filter-content {
     display: flex;
-    justify-content: space-between; 
+    flex-direction: column;
+    justify-content: center;
     width: 100%;
     overflow: auto;
-    
+    align-items: center;
 }
 
 .filter-list {
     list-style-type: none; 
     padding: 0; 
     text-align: center; 
+    font-size: 16px;
 }
 
 
@@ -336,21 +338,34 @@ h2 {
     flex-direction: column;
     align-items: center; 
     text-align: center; 
+    font-size: 14px;
+    
 }
+
 .filter-list, .sub-list, .detail-list {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: stretch; 
+    align-content: space-between;
     list-style-type: none;
     padding: 0;
     margin: 0; 
+    
+    
 }
 
 .filter-item, .sub-list > li, .detail-list > li {
     padding: 10px;
     background-color: #fff; /* 배경색 변경 */
     border: 1px solid #ccc; /* 테두리 색상 변경 */
-    margin-bottom: 8px; /* 마진 변경 */
+}
+
+.filter-item {
+	margin: 10px 10px;; /* 마진 변경 */
+}
+
+.sub-list > li, .detail-list > li {
+	margin: 5px 8px;; /* 마진 변경 */
 }
 
 .filter-item > span:hover {
@@ -362,9 +377,10 @@ h2 {
 .sub-list > li,
 .detail-list > li {
     box-sizing: border-box;
-    padding: 10px;
+    padding: 6px;
     border: 1px solid #ddd;
     cursor: pointer;
+    border-radius: 10px;
 }
 
 

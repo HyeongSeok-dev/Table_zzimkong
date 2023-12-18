@@ -1300,7 +1300,7 @@ button.close{padding:0;cursor:pointer;background:0 0;border:0}
 .modal-header .close{margin-top:-2px}
 .modal-title{margin:0;line-height:1.42857143}
 .modal-body{position:relative;padding:15px}
-.modal-footer{padding:15px;text-align:right;border-top:1px solid #e5e5e5}
+.modal-footer{padding:5px;text-align:right;/* border-top:1px solid #e5e5e5 */}
 .modal-footer .btn+.btn{margin-bottom:0;margin-left:5px}
 .modal-footer .btn-group .btn+.btn{margin-left:-1px}
 .modal-footer .btn-block+.btn-block{margin-left:0}
