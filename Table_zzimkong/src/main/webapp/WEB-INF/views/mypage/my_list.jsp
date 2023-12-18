@@ -8,22 +8,8 @@
 <!-- css -->
 <link href="${pageContext.request.contextPath }/resources/css/mypage.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
-<script type="text/javascript">
-	function cancelReservation(){
-		confirm("예약을 취소하시겠습니까?");
-		if(true) {
-			alert("예약이 취소되었습니다.");
-		}
-	}
-	function editReservation() {
-		/* 팝업창 중앙 정렬 */
-		var popupW = 950;
-		var popupH = 700;
-		var left = Math.ceil((window.screen.width - popupW)/2);
-		var top = Math.ceil((window.screen.height - popupH)/2);
-		window.open('edit/reservation','','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
-	}
-</script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/my_list.js"></script>
 </head>
 <body>
 	<jsp:include page="../inc/my_sidebar.jsp" />
@@ -57,8 +43,7 @@
 					<td>예약 완료</td>
 					<td>
 						<div class="div_button">
-							<button type="button" onclick="editReservation()">변경</button>
-							<button type="button" id="my_delete" onclick="cancelReservation()">취소</button>
+							<button type="button" id="my_delete" onclick="cancelReservation()">예약취소</button>
 						</div>
 					</td>
 				</tr>
@@ -71,8 +56,8 @@
 					<td>예약 취소</td>
 					<td>
 						<div class="div_button">
-							<button type="button">변경</button>
-							<button type="button" id="my_delete" onclick="cancelReservation()">취소</button>
+<!-- 							<button type="button">변경</button> -->
+							<button type="button" id="my_delete" onclick="cancelReservation()">예약취소</button>
 						</div>
 					</td>
 				</tr>
@@ -85,8 +70,8 @@
 					<td>예약 완료</td>
 					<td>
 						<div class="div_button">
-							<button type="button">변경</button>
-							<button type="button" id="my_delete" onclick="cancleReservation()">취소</button>
+<!-- 							<button type="button">변경</button> -->
+							<button type="button" id="my_delete" onclick="cancleReservation()">예약취소</button>
 						</div>
 					</td>
 				</tr>

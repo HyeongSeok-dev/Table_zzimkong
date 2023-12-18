@@ -63,7 +63,6 @@
 					<td>예약 완료</td>
 					<td>
 						<div class="div_button">
-							<button type="button" onclick="editReservation()">예약변경</button>
 							<button type="button" id="my_delete" onclick="cancelReservation()">예약취소</button>
 						</div>
 					</td>
@@ -77,7 +76,6 @@
 					<td>예약 취소</td>
 					<td>
 						<div class="div_button">
-							<button type="button" onclick="editReservation()">예약변경</button>
 							<button type="button" id="my_delete" onclick="cancelReservation()">예약취소</button>
 						</div>
 					</td>
