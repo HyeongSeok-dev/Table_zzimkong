@@ -230,3 +230,17 @@ input[type="date"] {
 #csQnaRegiContent {
 	width: 90%;
 }
+
+
+/* top 버튼 CSS */
+.topup {
+    position: fixed;
+    bottom: 25px;
+    right: 30px;
+    cursor: pointer;
+}
+
+.topup:hover svg circle {
+    fill : #3FAFFC;
+}
+
