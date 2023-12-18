@@ -15,9 +15,10 @@ document.addEventListener('DOMContentLoaded', function() {
 	var commentIcon = document.getElementById('commentIcon');
 
 	commentIcon.addEventListener('click', function() {
-//		var url = "${pageContext.request.contextPath}/review/comment";
+		var contextRoot = window.location.pathname.substring(0, window.location.pathname.indexOf("/",2));
+		var url = contextRoot +  "/review/comment";
 //		var url = "http://localhost:8081/zzimkong/review/comment";
-		var url = "comment";
+//		var url = "comment";
 		var windowName = "commentPopup";
 		var windowSize = "width=500,height=600";
 
