@@ -810,6 +810,157 @@ img[alt="logo2"] {
 	height: auto;
 }
 
+.similar_rest_box { 
+    position: relative; 
+    overflow: hidden; 
+    box-sizing: border-box; 
+    padding: 6px; 
+    border-radius: 18px; 
+    width: 100%; 
+    height: 152px;
+} 
+
+.similar_rest_title { 
+    max-width: 152px; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    white-space: nowrap; 
+    padding-left: .125rem; 
+    font-size: 18px; 
+    font-weight: 700; 
+    letter-spacing: -1px; 
+    text-align: left; 
+    color: #202020; 
+    height: 68px; 
+    line-height: 26px; 
+    margin-top: 10px;
+} 
+
+.similar_rest_card {
+    display: flex;
+    flex-direction: column; /* 이 부분 추가 */
+    align-items: stretch; /* 이 부분을 수정 */
+    width: 100%;
+    height: 100%;
+}
+
+.more_similar_button {
+	display: grid;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	padding: 19px 0 20px;
+	border-radius: 8px;
+}
+
+.similar_recom_title .rn {
+	font-weight: 700;
+	line-height: 29px;
+	text-align: left;
+}
+
+.similar_rest_head {
+	padding: 4px 0;
+	display: flex;
+	align-items: flex-start;
+	font-size: 24px;
+	font-weight: 700;
+	line-height: 32px;
+	letter-spacing: -1.1px;
+	color: #202020
+}
+
+.similar_content {
+	grid-template-columns: 152px 152px 152px 152px;
+	padding: 20px 0;
+	box-sizing: border-box;
+	display: grid;
+	grid-template-rows: 228px
+}
+
+.similar_section {
+	position: relative;
+	padding: 20px;
+	box-shadow: 1px 1px 3px #d8d8d8
+}
+
+.similar_rest_distance .similar_rest_distance_img  { 
+    width: 10px; 
+    height: 13.3px;
+} 
+
+.similar_rest_box .similar_rest_distance  { 
+    position: absolute; 
+    z-index: 10; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    gap: 3px; 
+    padding: 4px 7px; 
+    border-radius: 14px; 
+    background-color: rgba(0,0,0,.48);
+} 
+
+
+.similar_rest_box .similar_rest_average  { 
+    position: absolute; 
+    bottom: 0; 
+    right: 0; 
+    z-index: 10; 
+    display: flex; 
+    align-items: center; 
+    gap: 1.6px; 
+    background-color: rgba(0,0,0,.44); 
+    border-radius: 22px 0 18px; 
+    padding: 3px 11px 4px; 
+    font-size: 15px; 
+    font-weight: 400; 
+    font-stretch: normal; 
+    font-style: normal; 
+    line-height: 21px; 
+    letter-spacing: -.75px; 
+    text-align: left; 
+    color: #fff;
+} 
+
+
+
+.similar_rest_distance .similar_rest_distance_number  { 
+    font-size: 14px; 
+    font-weight: 500; 
+    font-stretch: normal; 
+    font-style: normal; 
+    line-height: 20px; 
+    letter-spacing: -.7px; 
+    text-align: left; 
+    color: #fff;
+} 
+
+.similar_rest_average .similar_rest_average_img  { 
+    position: relative; 
+    top: 1px; 
+    width: 13.9px; 
+    height: 13px;
+} 
+
+.similar_rest_box .similar_rest_img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    width: 152px;
+    height: 152px;
+    object-fit: cover;
+    border-radius: 18px;
+    background-color: #eee;
+}
+
+.similar_rest_average .similar_rest_average_number  { 
+    position: relative; 
+    top: 1px;
+    color: #fff;
+} 
+
 
 
 
