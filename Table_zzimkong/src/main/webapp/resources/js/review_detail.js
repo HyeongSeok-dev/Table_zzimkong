@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	commentIcon.addEventListener('click', function() {
 //		var url = "${pageContext.request.contextPath}/review/comment";
-		var url = "http://localhost:8080/zzimkong/review/comment";
+		var url = "http://localhost:8081/zzimkong/review/comment";
 		var windowName = "commentPopup";
 		var windowSize = "width=500,height=600";
 
