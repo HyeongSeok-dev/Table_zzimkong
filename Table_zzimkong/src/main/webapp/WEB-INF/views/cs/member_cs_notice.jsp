@@ -9,6 +9,16 @@
  <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
  <link href="${pageContext.request.contextPath }/resources/css/member_cs.css" rel="stylesheet">
  <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/ceo_top.css"> 
+ <script type="text/javascript">
+	function noticeViewForm() {
+		/* 팝업창 중앙 정렬 */
+		var popupW = 950;
+		var popupH = 700;
+		var left = Math.ceil((window.screen.width - popupW)/2);
+		var top = Math.ceil((window.screen.height - popupH)/2);
+		window.open('${pageContext.request.contextPath }/member/cs/notice/view','','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
+	}
+</script>
 </head>
 <body>
 	<%-- <header>
@@ -58,7 +68,7 @@
 		                <tr>
 		                    <td>3</td>
 		                    <th class="cs_th">
-		                      <a href="#!">[공지사항] 개인정보 처리방침 변경안내처리방침</a>
+		                      <a onclick="noticeViewForm()">[공지사항] 개인정보 처리방침 변경안내처리방침</a>
 		                      <p>테스트</p>
 		                    </th>
 		                    <td>2017.07.13</td>
@@ -66,13 +76,13 @@
 		
 		                <tr>
 		                    <td>2</td>
-		                    <th class="cs_th"><a href="#!">공지사항 안내입니다. 이용해주셔서 감사합니다</a></th>
+		                    <th class="cs_th"><a onclick="noticeViewForm()">공지사항 안내입니다. 이용해주셔서 감사합니다</a></th>
 		                    <td>2017.06.15</td>
 		                </tr>
 		
 		                <tr>
 		                    <td>1</td>
-		                    <th class="cs_th"><a href="#!">공지사항 안내입니다. 이용해주셔서 감사합니다</a></th>
+		                    <th class="cs_th"><a onclick="noticeViewForm()">공지사항 안내입니다. 이용해주셔서 감사합니다</a></th>
 		                    <td>2017.06.15</td>
 		                </tr>
 		                </tbody>
