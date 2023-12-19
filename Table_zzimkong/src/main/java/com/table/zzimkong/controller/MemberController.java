@@ -1,6 +1,5 @@
 package com.table.zzimkong.controller;
 
-import javax.servlet.http.*;
 
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
@@ -31,15 +30,15 @@ public class MemberController {
 			
 		}//joinPro()
 	
-		// "MemberLogout" 요청에 대한 로그아웃 비즈니스 로직 처리
-			@GetMapping("MemberLogout")
-			public String logout(HttpSession session) {
-				// 세션 초기화
-				session.invalidate();
-				return "redirect:/";
-			} //logou
+		//MemberJoinSuccess요청에대한 페이지 포워딩======================================
+//		@GetMapping("MemberJoinSuccess")
+//		public String JoinSuccess() {
+//			return "redirect:/";
+//		}
 	
-	 //아이디 중복검사 MemberCheckDupId    
+	
+	
+		//아이디 중복검사 MemberCheckDupId =============================================
 		
 			
 			

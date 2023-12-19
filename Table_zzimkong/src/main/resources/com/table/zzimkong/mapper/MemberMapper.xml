@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.table.zzimkong.mapper.MenuMapper">
+
+<!-- 회원가입 [INSERT] -->
+<insert id="insertMember">
+	INSERT 
+	INTO user
+	VALUES (
+		null
+		,#{user_id}
+		,#{user_passwd}
+		,#{user_nick}
+		, CONCAT(#{email1}, '@', #{email2})
+		,#{user_name}
+		,#{user_birth}
+		,#{com_num}
+		,now()
+	)
+	
+</insert>
+
+</mapper>
