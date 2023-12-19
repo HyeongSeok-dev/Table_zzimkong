@@ -47,6 +47,38 @@ public class HomeController {
 	    }
 	    return "main";
 	}
+	@GetMapping("/main_1")
+	
+	public String main_1(Model model) {
+		if(model.getAttribute("persons") == null) {
+			model.addAttribute("persons", 2);
+			
+			LocalDateTime defaultTime = LocalDateTime.now().plusHours(2);
+			LocalDate date;
+			String time;
+			String displayTime;
+			if (defaultTime.toLocalTime().isAfter(LocalTime.of(22, 0)) || defaultTime.toLocalTime().isBefore(LocalTime.of(1, 0))) {
+				date = LocalDate.now().plusDays(1);
+				time = "13"; 
+				model.addAttribute("display_date", "내일");
+			} else if (defaultTime.toLocalTime().isBefore(LocalTime.of(10, 0))) {
+				date = LocalDate.now();
+				time = "13"; 
+				model.addAttribute("display_date", "오늘");
+			} else {
+				date = LocalDate.now();
+				time = defaultTime.format(DateTimeFormatter.ofPattern("HH")); // 현재 시간에서 2시간 더한 시간
+				model.addAttribute("display_date", "오늘");
+			}
+			LocalTime localTime = LocalTime.parse(time, DateTimeFormatter.ofPattern("HH"));
+			displayTime = localTime.format(DateTimeFormatter.ofPattern("a h시"));
+			
+			model.addAttribute("date", date);
+			model.addAttribute("time", time);
+			model.addAttribute("display_time", displayTime);
+		}
+		return "main_1";
+	}
 
 	@GetMapping("ceo/sale")
 	public String ceo_sale() {
