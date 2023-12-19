@@ -1,19 +1,27 @@
 package com.table.zzimkong.vo;
 
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 import lombok.Data;
 
 @Data
 public class SearchVO {
 	String context;
 	int persons;
-	String time;
-	String date;
+	LocalTime time;
+	LocalDate date;
 	String location;
 	String category;
-	String price;
+	String minPrice;
+	String maxPrice;
 	String mood;
 	String facilities;
-	String table_type;
+	String tableType;
 	String hygiene;
-	String triggered_by;
+	String requestURL;
+	String displayDate;
+	String displayTime;
+	
 }

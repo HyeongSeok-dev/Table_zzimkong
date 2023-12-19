@@ -1,14 +1,12 @@
 $(document).ready(function() {
 	//서치바 파라미터 정리
 	var formData = {
-		persons: $("input[name='persons']:checked").val(),
-		time: $("input[name='time']:checked").val(),
+		persons: $("input[name='persons']").val(),
+		time: $("select[name='time']").val(),
 		date: $("#reservation-date").val(),
 	}; // 폼 데이터를 저장할 객체 생성
-	var isPriceChange = false;
-	var currentSliderValue = $('#price').val();
 	var selectedFilterItemId = null;
-	var contextRoot = window.location.pathname.substring(0, window.location.pathname.indexOf("/",2));
+	var contextRoot = window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2));
 
 	// 모든 모달창을 숨깁니다.
 	function closeAllModals() {
@@ -34,7 +32,6 @@ $(document).ready(function() {
 		$('#filterModal').hide();
 		$('#filterModal input[type="radio"]').prop('checked', false);
 		$('#filterModal .selected').removeClass('selected');
-		isPriceChange = false;
 	}
 
 	// 필터 모달창 닫기 버튼 클릭 이벤트
@@ -54,31 +51,11 @@ $(document).ready(function() {
 		}
 	});
 
-	// Get today's date
-	var today = new Date();
-	var day = today.getDate();
-	var month = today.getMonth() + 1; // January is 0!
-	var year = today.getFullYear();
-
-	// Adjust day and month for single digit values
-	if (day < 10) {
-		day = '0' + day;
-	}
-	if (month < 10) {
-		month = '0' + month;
-	}
-
-	// Set min date
-	today = year + '-' + month + '-' + day;
-	$("#reservation-date").attr('min', today);
-
-
-
 	$("#confirm").click(function(event) {
 		event.stopPropagation();
 		formData['date'] = $("#reservation-date").val();
-		formData['persons'] = $("input[name='persons']:checked").val();
-		formData['time'] = $("input[name='time']:checked").val();
+		formData['persons'] = $("input[name='persons']").val();
+		formData['time'] = $("select[name='time']").val();
 		console.log("테이블 모달 데이터 적용됨: ", formData);
 		sendFormDataToCurrentPage();
 		$(this).closest('.modal').css('display', 'none');
@@ -116,14 +93,6 @@ $(document).ready(function() {
 		clonedDetailList.css('display', 'flex');
 	});
 
-	$(document).on('change', '#price', function() {
-		var newValue = $(this).val();
-		console.log("새로운 가격: ", newValue);
-		isPriceChange = true;
-		currentSliderValue = newValue;
-		$('#priceValue').text(currentSliderValue);
-		$('#priceValue').css('display', 'flex');
-	});
 
 	// 클릭된 li의 상태 변경을 처리하는 함수
 	function changeSelectedState(clickedLi) {
@@ -155,32 +124,40 @@ $(document).ready(function() {
 		event.stopPropagation();
 		formData['location'] = $("input[name='location']:checked").val();
 		formData['category'] = $("input[name='category']:checked").val();
-		formData['price'] = isPriceChange ? currentSliderValue : '0';
+		formData['minPrice'] = $("select[name='minPrice']").val();
+		formData['maxPrice'] = $("select[name='maxPrice']").val();
 		formData['mood'] = $("input[name='mood']:checked").val();
 		formData['facilities'] = $("input[name='facilities']:checked").val();
-		formData['table_type'] = $("input[name='table_type']:checked").val();
+		formData['tableType'] = $("input[name='table_type']:checked").val();
 		formData['hygiene'] = $("input[name='hygiene']:checked").val();
 		console.log("필터 모달 데이터 적용됨: ", formData);
 		sendFormDataToCurrentPage();
 		$('#filterModal').hide();
-
+		console.log("선택된 최소 가격: ", formData['minPrice']);
+		console.log("선택된 최대 가격: ", formData['maxPrice']);
 		// 필요한 경우 여기서 서버로 데이터 전송
 	});
 
 	function sendFormDataToCurrentPage() {
 		// AJAX 요청
+		formData['requestURL'] = window.location.pathname.replace(contextRoot, '')
+		formData['context'] = $('.search_input_text').val();
 		$.ajax({
 			url: contextRoot + '/product/searchResult',
 			type: 'POST',
 			dataType: 'json',
-			data: formData,
+			contentType: 'application/json',
+			data: JSON.stringify(formData),
 			success: function(response) {
 				// 성공적으로 데이터를 받으면 실행할 코드
 				console.log("Response: ", response);
+          		$(".info_text").text("테이블 인원수: " + response.persons + "명, " + response.displayDate + " " + response.displayTime);
+          		$(".seleted_location").text(response.location.replace('_',' '));
 			},
 			error: function(error) {
 				// 에러가 발생했을 때 실행할 코드
 				console.log("Error: ", error);
+
 			}
 		});
 	}
@@ -188,16 +165,33 @@ $(document).ready(function() {
 
 	function SendFormDataToNextPage() {
 		formData['context'] = $('.search_input_text').val();
-		formData['triggered_by'] = 'next_page';
 		console.log("검색 데이터: ", formData);
 		$.ajax({
 			url: contextRoot + '/product/searchResult',
 			type: 'POST',
+			contentType: 'application/json',
 			dataType: 'json',
-			data: formData,
+			data: JSON.stringify(formData),
 			success: function(response) {
 				// 성공적으로 데이터를 받으면 실행할 코드
 				console.log("Response: ", response);
+				var Params = $.param({
+					context: response.context,
+					persons: response.persons,
+					time: response.time,
+					date: response.date,
+					location: response.location,
+					category: response.category,
+					minPrice: response.minPrice,
+					maxPrice: response.maxPrice,
+					mood: response.mood,
+					facilities: response.facilities,
+					tableType: response.tableType,
+					hygiene: response.hygiene
+				});
+
+				// product/list 페이지로 리디렉션
+				window.location.href = contextRoot + '/product/list?' + Params;
 			},
 			error: function(error) {
 				// 에러가 발생했을 때 실행할 코드

@@ -136,6 +136,7 @@ a {
     box-sizing: content-box !important;
 }
 
+
 #table_modal {
    position: absolute;
     left: 0;
@@ -150,13 +151,13 @@ a {
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     border-radius: 5px;
     z-index:90;
+    padding: 10px;
 }
 
 #confirm {
-	 position: absolute; 
-    bottom: -25px; 
-    left: 50%; 
-    transform: translateX(-50%); 
+    grid-column: 1 / span 3; /* 3열 전체를 차지 */
+    margin-top: 10px;
+    align-self: center; /* 중앙 정렬 */
 }
 
 .close {
@@ -182,88 +183,29 @@ h2 {
 }
 
 .input-group {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; /* 3열 구조 */
+    grid-template-rows: auto auto; /* 2행 구조 */
+    gap: 10px; /* 요소 간 간격 */
     width: 100%;
-    margin: 10px 0;
-    box-sizing: content-box !important;
+    margin: 10px 0px;
+    box-sizing: border-box;
 }
 
-.date-group, .persons-group {
+.date-group, .persons-group, .time-group {
     display: flex;
-    align-items: center;
-    box-sizing: content-box !important;
-}
-
-.persons-group {
-    align-items: center;
-    box-sizing: content-box !important;
-}
-
-.input-group label {
-    margin: 0 10px;
-    box-sizing: content-box !important;
-}
-
-.arrow {
-    cursor: pointer;
-    margin: 0 10px;
-    
-}
-
-.input-group input[type="radio"],
-.persons-group input[type="radio"] {
-    display: none !important;
+    flex-direction: column;
+    align-items: start; /* 왼쪽 정렬 */
+    justify-content: center; /* 가로 방향 중앙 정렬 */
+    width: 100%; 
+    align-items: center;  
+    box-sizing: border-box;
+    padding: 10px;
+    border: 1px solid #ddd; /* 테두리 추가 */
+    border-radius: 5px; /* 둥근 모서리 */
 }
 
 
-.input-group label,
-.persons-group label {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 5px;
-    margin: 5px;
-    border: 2px solid #888;
-    border-radius: 50%;
-    width: 25px;
-    height: 25px;
-    background-color: #fff;
-    cursor: pointer;
-    box-sizing: content-box !important;
-}
-
-.time-group label {
-    width: 50px;
-    height: 50px;
-        display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 5px;
-    margin: 5px;
-    border: 2px solid #888;
-    border-radius: 50%;
-    background-color: #fff;
-    cursor: pointer;
-    box-sizing: content-box !important;
-    text-align: center;
-    
-}
-
-
-.input-group input[type="radio"]:checked + label,
-.persons-group input[type="radio"]:checked + label {
-    background-color: #888;
-    color: #fff;
-}
-.date-label {
-    font-weight: 700; 
-    margin-right: 20px;
-    margin-left : 20px;
-    box-sizing: content-box !important;
-    
-}
 
 .close {
     color: #aaa;
@@ -278,6 +220,8 @@ h2 {
     text-decoration: none;
     cursor: pointer;
 }
+
+/*여기서부터 필터모달 CSS*/
 
 #filterModal {
     position: fixed; /* 뷰포트에 상대적으로 배치 */
@@ -403,10 +347,51 @@ li.selected {
     background-color: lightblue; 
 }
 
-input[type="range"] {
-    width: 100%;
-}
 
 #mainSearchBar {
 	background-color: #fff;
+}
+
+.location_gyeonggi, .location_busan{
+    display: flex;
+    flex-wrap: wrap; /* 내용이 넘치면 다음 줄로 이동 */
+    justify-content: center; /* 가운데 정렬 */
+    column-count: 2; 
+    column-fill: auto;
+}
+
+.location_gyeonggi li {
+    display: inline-block; /* 인라인 블록 요소로 표시 */
+    width: 170px;          /* 각 요소의 너비를 컨테이너의 100%로 설정 */
+    box-sizing: border-box; /* border와 padding을 너비에 포함 */
+    height: 40px;          /* 각 요소의 높이를 일정하게 설정 */
+    justify-content : center;
+}
+
+.location_busan li {
+    display: inline-block; /* 인라인 블록 요소로 표시 */
+    width: 90px;          /* 각 요소의 너비를 컨테이너의 100%로 설정 */
+    box-sizing: border-box; /* border와 padding을 너비에 포함 */
+    height: 40px;          /* 각 요소의 높이를 일정하게 설정 */
+    justify-content : center;
+}
+
+.price-range-selector {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 20px;
+}
+
+.price-select {
+	padding: 10px;
+	margin: 0 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	background-color: #fff;
+}
+
+.price-select-label {
+	font-weight: bold;
+	margin-right: 10px;
 }

@@ -31,55 +31,50 @@
 						<h2>언제 방문하시나요?</h2>
 						<div class="input-group">
 							<div class="date-group">
-								<div class="date-label">예약 날짜 :</div>
+								<div class="date-label">예약 날짜</div>
 								<input type="date" id="reservation-date" name="date"
 									value="${date}">
 							</div>
 							<div class="persons-group">
-								<p>예약 인원:</p>
-								<input type="radio" id="one" name="persons" value="1"
-									${persons == 1 ? 'checked' : ''}> <label for="one">1명</label>
-								<input type="radio" id="two" name="persons" value="2"
-									${persons == 2 ? 'checked' : ''}> <label for="two">2명</label>
-								<input type="radio" id="three" name="persons" value="3"
-									${persons == 3 ? 'checked' : ''}><label for="three">3명</label>
-								<input type="radio" id="four" name="persons" value="4"
-									${persons == 4 ? 'checked' : ''}> <label for="four">4명</label>
+							    <p>예약 인원</p>
+							    <input type="number" id="persons" name="persons" value="${persons}" min="1" max="20">
 							</div>
-						</div>
-						<div class="input-group time-group">
-							<span class="arrow left">&lt;</span> <input type="radio"
-								id="time11" name="time" value="오전11시"
-								${time eq "11" ? 'checked' : ''}> <label for="time11">오전 <br>
-								11시</label> <input type="radio" id="time12" name="time" value="오전12시"
-								${time eq "12" ? 'checked' : ''}> <label for="time12">오전 <br>
-								12시 </label> <input type="radio" id="time13" name="time" value="오후1시"
-								${time eq "13" ? 'checked' : ''}> <label for="time13">오후
-								1시</label> <input type="radio" id="time14" name="time" value="오후2시"
-								${time eq "14" ? 'checked' : ''}> <label for="time14">오후
-								2시</label> <input type="radio" id="time15" name="time" value="오후3시"
-								${time eq "15" ? 'checked' : ''}> <label for="time15">오후
-								3시</label> <input type="radio" id="time16" name="time" value="오후4시"
-								${time eq "16" ? 'checked' : ''}> <label for="time16">오후
-								4시</label> <input type="radio" id="time17" name="time" value="오후5시"
-								${time eq "17" ? 'checked' : ''}> <label for="time17">오후
-								5시</label> <input type="radio" id="time18" name="time" value="오후6시"
-								${time eq "18" ? 'checked' : ''}> <label for="time18">오후
-								6시</label> <input type="radio" id="time19" name="time" value="오후7시"
-								${time eq "19" ? 'checked' : ''}> <label for="time19">오후
-								7시</label> <input type="radio" id="time20" name="time" value="오후8시"
-								${time eq "20" ? 'checked' : ''}> <label for="time20">오후
-								8시</label> <input type="radio" id="time21" name="time" value="오후9시"
-								${time eq "21" ? 'checked' : ''}> <label for="time21">오후
-								9시</label> <input type="radio" id="time22" name="time" value="오후10시"
-								${time eq "22" ? 'checked' : ''}> <label
-								for="time22">오후 <br> 10시</label> <span class="arrow right">&gt;</span>
+							<div class="time-group">
+								<p>예약 시간</p>
+							     <select name="time" id="time-select">
+							        <!-- 오전 시간대 -->
+							        <option value="11:00" ${time eq "11:00" ? 'selected' : ''}>오전 11시</option>
+							        <option value="11:30" ${time eq "11:30" ? 'selected' : ''}>오전 11시 30분</option>
+							        <option value="12:00" ${time eq "12:00" ? 'selected' : ''}>오전 12시</option>
+							        <option value="12:30" ${time eq "12:30" ? 'selected' : ''}>오전 12시 30분</option>
+							        <option value="13:00" ${time eq "13:00" ? 'selected' : ''}>오후 1시</option>
+							        <option value="13:30" ${time eq "13:30" ? 'selected' : ''}>오후 1시 30분</option>
+							        <option value="14:00" ${time eq "14:00" ? 'selected' : ''}>오후 2시</option>
+							        <option value="14:30" ${time eq "14:30" ? 'selected' : ''}>오후 2시 30분</option>
+							        <option value="15:00" ${time eq "15:00" ? 'selected' : ''}>오후 3시</option>
+							        <option value="15:30" ${time eq "15:30" ? 'selected' : ''}>오후 3시 30분</option>
+							        <option value="16:00" ${time eq "16:00" ? 'selected' : ''}>오후 4시</option>
+							        <option value="16:30" ${time eq "16:30" ? 'selected' : ''}>오후 4시 30분</option>
+							        <option value="17:00" ${time eq "17:00" ? 'selected' : ''}>오후 5시</option>
+							        <option value="17:30" ${time eq "17:30" ? 'selected' : ''}>오후 5시 30분</option>
+							        <option value="18:00" ${time eq "18:00" ? 'selected' : ''}>오후 6시</option>
+							        <option value="18:30" ${time eq "18:30" ? 'selected' : ''}>오후 6시 30분</option>
+							        <option value="19:00" ${time eq "19:00" ? 'selected' : ''}>오후 7시</option>
+							        <option value="19:30" ${time eq "19:30" ? 'selected' : ''}>오후 7시 30분</option>
+							        <option value="20:00" ${time eq "20:00" ? 'selected' : ''}>오후 8시</option>
+							        <option value="20:30" ${time eq "20:30" ? 'selected' : ''}>오후 8시 30분</option>
+							        <option value="21:00" ${time eq "21:00" ? 'selected' : ''}>오후 9시</option>
+							        <option value="21:30" ${time eq "21:30" ? 'selected' : ''}>오후 9시 30분</option>
+							        <option value="22:00" ${time eq "22:00" ? 'selected' : ''}>오후 10시</option>
+							        <option value="22:30" ${time eq "22:30" ? 'selected' : ''}>오후 10시 30분</option>
+							    </select>
+							</div>
 							<button id="confirm" type="button">적용</button>
 						</div>
 					</div>
 				</div>
 				<div class="filter_wrapper">
-						<div class="modal-opener">${display_location} </div>
+						<div class="modal-opener seleted_location">${display_location} </div>
 					<img class="filter_icon modal-opener"
 						src="${pageContext.request.contextPath}/resources/img/search_filter.png"/>
 					<div id="filterModal" class="modal">
@@ -92,7 +87,6 @@
 										<ul class="sub-list location">
 											<li>서울
 									            <ul class="detail-list">
-									           		
 									                <li><label for="서울_서울전체"><input type="radio" id="서울_서울전체" name="location" value="서울_서울전체"> 전체</label></li>
 									                <li><label for="서울_강남"><input type="radio" id="서울_강남" name="location" value="서울_강남"> 강남</label></li>
 									                <li><label for="서울_서초"><input type="radio" id="서울_서초" name="location" value="서울_서초"> 서초</label></li>
@@ -106,20 +100,18 @@
 									            </ul>
 									        </li>
 											<li>경기
-											    <ul class="detail-list half">
+												<ul class="detail-list location_gyeonggi">
 											        <li><label for="경기_경기전체"><input type="radio" id="경기_경기전체" name="location" value="경기_경기전체"> 경기 전체</label></li>
 											        <li><label for="경기_성남시"><input type="radio" id="경기_성남시" name="location" value="경기_성남시"> 성남시(분당/판교/성남)</label></li>
 											        <li><label for="경기_수원"><input type="radio" id="경기_수원" name="location" value="경기_수원"> 수원</label></li>
 											        <li><label for="경기_용인화성"><input type="radio" id="경기_용인화성" name="location" value="경기_용인화성"> 용인/화성(동탄)</label></li>
 											        <li><label for="경기_안양과천"><input type="radio" id="경기_안양과천" name="location" value="경기_안양과천"> 안양/과천</label></li>
-											    </ul>
-											    <ul class="detail-list half">
 											        <li><label for="경기_군포의왕"><input type="radio" id="경기_군포의왕" name="location" value="경기_군포의왕"> 군포/의왕</label></li>
 											        <li><label for="경기_부천안산"><input type="radio" id="경기_부천안산" name="location" value="경기_부천안산"> 부천/안산/시흥/광명</label></li>
 											        <li><label for="경기_평택오산"><input type="radio" id="경기_평택오산" name="location" value="경기_평택오산"> 평택/오산/안성</label></li>
 											        <li><label for="경기_고양파주"><input type="radio" id="경기_고양파주" name="location" value="경기_고양파주"> 고양/파주</label></li>
 											        <li><label for="경기_김포"><input type="radio" id="경기_김포" name="location" value="경기_김포"> 김포</label></li>
-											    </ul>
+										        </ul>
 											</li>
 											<li>인천
 												<ul class="detail-list">
@@ -132,10 +124,9 @@
 												</ul>
 											</li>
 											<li>부산
-												<ul class="detail-list">
-													<ul class="detail-list half">
+												<ul class="detail-list location_busan">
 													<li><label for="부산_all"><input type="radio"
-															id="부산_all" name="location" value="부산_all"> 전체</label></li>
+															id="부산_all" name="location" value="부산_all"> 부산 전체</label></li>
 													<li><label for="부산_강서구"><input type="radio"
 															id="부산_강서구" name="location" value="부산_강서구"> 강서구</label></li>
 													<li><label for="부산_금정구"><input type="radio"
@@ -152,8 +143,6 @@
 															id="부산_북구" name="location" value="부산_북구"> 북구</label></li>
 													<li><label for="부산_사상구"><input type="radio"
 															id="부산_사상구" name="location" value="부산_사상구"> 사상구</label></li>
-													</ul>
-													<ul class="detail-list half">
 													<li><label for="부산_사하구"><input type="radio"
 															id="부산_사하구" name="location" value="부산_사하구"> 사하구</label></li>
 													<li><label for="부산_서구"><input type="radio"
@@ -170,7 +159,6 @@
 															id="부산_해운대구" name="location" value="부산_해운대구"> 해운대구</label></li>
 													<li><label for="부산_기장군"><input type="radio"
 															id="부산_기장군" name="location" value="부산_기장군"> 기장군</label></li>
-													</ul>
 												</ul>
 											</li>
 											<li>제주도
@@ -311,9 +299,36 @@
 										</ul></li>
 									<li class="filter-item" id="menu_price"><span>가격대</span>
 										<ul class="sub-list">
-											<li><label for="price">가격대: <span id="priceValue">50000</span>원
-											</label><br> <input type="range" id="price" name="price" min="10000"
-												max="100000" value="50000" step="10000"></li>
+											 <div class="price-range-selector">
+										        <span class="price-select-label">최소 가격:</span>
+										        <select class="price-select" name="minPrice">
+										            <option value="all">무제한</option>
+										            <option value="10000">10,000원</option>
+										            <option value="20000">20,000원</option>
+										            <option value="30000">30,000원</option>
+										            <option value="40000">40,000원</option>
+										            <option value="50000">50,000원</option>
+										            <option value="60000">60,000원</option>
+										            <option value="70000">70,000원</option>
+										            <option value="80000">80,000원</option>
+										            <option value="90000">90,000원</option>
+										            <option value="100000">100,000원</option>
+										        </select>
+										        <span class="price-select-label">최대 가격:</span>
+										        <select class="price-select" name="maxPrice">
+										            <option value="all">무제한</option>
+										            <option value="10000">10,000원</option>
+										            <option value="20000">20,000원</option>
+										            <option value="30000">30,000원</option>
+										            <option value="40000">40,000원</option>
+										            <option value="50000">50,000원</option>
+										            <option value="60000">60,000원</option>
+										            <option value="70000">70,000원</option>
+										            <option value="80000">80,000원</option>
+										            <option value="90000">90,000원</option>
+										            <option value="100000">100,000원</option>
+									            </select>
+										    </div>
 										</ul></li>
 									<li class="filter-item" id="mood"><span>분위기</span>
 										<ul class="sub-list">
@@ -334,7 +349,7 @@
 											<li><label for="노키즈존"><input type="radio"
 													name="facilities" id="노키즈존" value="노키즈존">노키즈존</label></li>
 											<li><label for="장애인 편의시설"><input type="radio"
-													name="facilities" id="장애인 편의시설" value="장애인 편의시설">장애인
+													name="facilities" id="장애인_편의시설" value="장애인_편의시설">장애인
 													편의시설</label></li>
 											<li><label for="반려동물 동반"><input type="radio"
 													name="facilities" id="반려동물 동반" value="반려동물 동반">반려동물
