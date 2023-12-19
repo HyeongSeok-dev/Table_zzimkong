@@ -15,7 +15,7 @@
 <!--  <header> -->
 <%--  	<jsp:include page="../inc/top_ns.jsp"></jsp:include> --%>
 <!--  </header> -->
- <form action="payment" name="reservation" onsubmit="return btnPay();">
+ <form action="payment" name="reservation" >
 <!-- 	<action="" name="reservation" onsubmit="return validateForm()"> -->
 	<div class="out_block">
 		<!-- 찜버튼 박스 -->
@@ -121,7 +121,7 @@
 				</section>
 			</div>
 			<!-- 방문자 정보 박스 -->
-			<div class="section_box">
+			<div class="section_box" name="visitName">
 				<section class="sec03">
 					<h2>방문자 정보</h2>
 					<div class="sec03_info">
@@ -523,8 +523,8 @@
 					</div>
 				</section>
 			</div>
-			<button type="submit" class="payment" onclick="btnPay();">결제하기</button>
-		</div>
+			<button type="button" class="payment" onclick="btnPay();">결제하기</button>
+<!-- onclick="btnPay();" -->
 		<!-- 	</action> -->
 	</div>
  </form>
