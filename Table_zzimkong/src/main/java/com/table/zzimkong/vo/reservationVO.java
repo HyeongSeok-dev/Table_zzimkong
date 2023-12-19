@@ -21,5 +21,5 @@ public class reservationVO {
 	private String res_phone;
 	private boolean res_status;
 	private Date res_now;
-
+	/**/
 }
