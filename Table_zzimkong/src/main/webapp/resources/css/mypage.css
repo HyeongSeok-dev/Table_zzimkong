@@ -83,7 +83,7 @@ p {
 }
 
 .input_text2 {
-    width: 70%;
+    width: 30%;
     height: 40px;
     border: solid #d5d5d5 1px;
     font-size: 13px;
@@ -198,65 +198,14 @@ input[type="date"]::before {
     fill: #fff;
 }
 
-/* #heartIcon.filled { */
-/*   color: #3FAFFC; */
-/* } */
-
-/* #heartIcon { */
-/*   font-size: 1.6em; */
-/* } */
-
-/* #heartIcon { */
-/*   margin-left: 8px; */
-/* } */
-
-/* .slideshow-container { */
-/*   position: relative; */
-/*   max-width: 100%; */
-/* } */
-
-/* .my_slides { */
-/*   display: none; */
-/*   position: absolute; */
-/*   width: 100%; */
-/* } */
-
-/* .prev, .next { */
-/*   cursor: pointer; */
-/*   position: absolute; */
-/*   top: 50%; */
-/*   padding: 16px; */
-/*   color: white; */
-/*   font-weight: bold; */
-/*   transition: 0.6s ease; */
-/*   border-radius: 0 3px 3px 0; */
-/*   user-select: none; */
-/* } */
-
-/* .next { */
-/*   right: 0; */
-/*   border-radius: 3px 0 0 3px; */
-/* } */
-
-/* .prev:hover, .next:hover { */
-/*   background-color: rgba(0,0,0,0.8); */
-/* } */
-
-/* .my_slides { */
-/* 	display: flex; */
-/* 	margin-top: 20px; */
-/* } */
-
-/* .my_slides img { */
-/* 	margin-right:70px; */
-/* } */
-
-.wrapper2{
+/* 최근 본 매장 */
+.wrapper2 {
   display: flex;
-  max-width: 1200px;
+  width: 1000px;
   position: relative;
 }
-.wrapper2 i{
+
+.wrapper2 i {
   top: 50%;
   height: 44px;
   width: 44px;
@@ -271,43 +220,53 @@ input[type="date"]::before {
   transform: translateY(-50%);
   transition: transform 0.1s linear;
 }
-.wrapper2 i:active{
+
+.wrapper2 i:active {
   transform: translateY(-50%) scale(0.9);
 }
-.wrapper2 i:hover{
+
+.wrapper2 i:hover {
   background: #f2f2f2;
 }
-.wrapper2 i:first-child{
+
+.wrapper2 i:first-child {
   left: -22px;
   display: none;
 }
-.wrapper2 i:last-child{
+
+.wrapper2 i:last-child {
   right: -22px;
 }
-.wrapper2 .carousel{
+
+.wrapper2 .carousel {
   font-size: 0px;
   cursor: pointer;
   overflow: hidden;
   white-space: nowrap;
   scroll-behavior: smooth;
 }
-.carousel.dragging{
+
+.carousel.dragging {
   cursor: grab;
   scroll-behavior: auto;
 }
-.carousel.dragging img{
+
+.carousel.dragging img {
   pointer-events: none;
 }
-.carousel img{
-  height: 340px;
+
+.carousel img {
+  height: 320px;
   object-fit: cover;
   user-select: none;
-  margin-left: 14px;
-  width: calc(100% / 3);
+  width: 300px;
+  border-radius: 10%;
+  margin-right: 20px;
 }
-.carousel img:first-child{
-  margin-left: 0px;
-}
+
+/* .carousel img:first-child { */
+/* } */
+
 @media screen and (max-width: 900px) {
   .carousel img{
     width: calc(100% / 2);

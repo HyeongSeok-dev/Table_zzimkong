@@ -8,7 +8,7 @@
 <link href="${pageContext.request.contextPath }/resources/css/mypage.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
 <script
-	src="${pageContext.request.contextPath}/resources/js/my_list2.js">
+	src="${pageContext.request.contextPath}/resources/js/my_list.js">
 </script>
 </head>
 <body>
@@ -24,7 +24,7 @@
 			<div class="bookmark_image">
 				<div>
 					<a href="${pageContext.request.contextPath}/product/detail">
-						<img class="image_size" src="${pageContext.request.contextPath}/resources/img/bookmark_image1.jpg" >
+						<img class="image_size" src="${pageContext.request.contextPath}/resources/img/mylist_image1.jpg.jpg" >
 					</a>
 				<div id="likeButton" class="like_button">
 					<svg id="heart" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -35,7 +35,7 @@
 				</div>			
 				<div>
 					<a href="${pageContext.request.contextPath}/product/detail">
-						<img class="image_size" src="${pageContext.request.contextPath}/resources/img/bookmark_image2.jpg" >
+						<img class="image_size" src="${pageContext.request.contextPath}/resources/mylist_image2.jpg" >
 					</a>
 				<div id="likeButton" class="like_button">
 					<svg id="heart" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -46,7 +46,7 @@
 				</div>	
 				<div>
 					<a href="${pageContext.request.contextPath}/product/detail">
-						<img class="image_size" src="${pageContext.request.contextPath}/resources/img/bookmark_image3.jpg" >
+						<img class="image_size" src="${pageContext.request.contextPath}/resources/img/mylist_image3.jpg" >
 					</a>
 				<div id="likeButton" class="like_button">
 					<svg id="heart" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -59,7 +59,7 @@
 			<div class="bookmark_image">
 				<div>
 					<a href="${pageContext.request.contextPath}/product/detail">
-						<img class="image_size" src="${pageContext.request.contextPath}/resources/img/bookmark_image4.jpg" >
+						<img class="image_size" src="${pageContext.request.contextPath}/resources/img/mylist_image4.jpg" >
 					</a>
 				<div id="likeButton" class="like_button">
 					<svg id="heart" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -70,7 +70,7 @@
 				</div>	
 				<div>
 					<a href="${pageContext.request.contextPath}/product/detail">
-						<img class="image_size" src="${pageContext.request.contextPath}/resources/img/bookmark_image5.jpg" >
+						<img class="image_size" src="${pageContext.request.contextPath}/resources/img/mylist_image5.jpg" >
 					</a>
 				<div id="likeButton" class="like_button">
 					<svg id="heart" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -81,7 +81,7 @@
 				</div>	
 				<div>
 					<a href="${pageContext.request.contextPath}/product/detail">
-						<img class="image_size" src="${pageContext.request.contextPath}/resources/img/bookmark_image6.jpg" >
+						<img class="image_size" src="${pageContext.request.contextPath}/resources/img/mylist_image6.jpg" >
 					</a>
 				<div id="likeButton" class="like_button">
 					<svg id="heart" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">

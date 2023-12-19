@@ -73,7 +73,7 @@
 					<td>
 						<div class="div_button">
 <!-- 							<button type="button">변경</button> -->
-							<button type="button" id="my_delete" onclick="cancleReservation()">예약취소</button>
+							<button type="button" id="my_delete" onclick="cancelReservation()">예약취소</button>
 						</div>
 					</td>
 				</tr>
@@ -92,7 +92,7 @@
 			<div class="bookmark_image">
 				<div>
 					<a href="${pageContext.request.contextPath}/product/detail">
-						<img class="image_size" src="${pageContext.request.contextPath}/resources/img/bookmark_image1.jpg" >
+						<img class="image_size" src="${pageContext.request.contextPath}/resources/img/mylist_image1.jpg" >
 					</a>
 				<div id="likeButton" class="like_button">
 					<svg id="heart" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -103,7 +103,7 @@
 				</div>			
 				<div>
 					<a href="${pageContext.request.contextPath}/product/detail">
-						<img class="image_size" src="${pageContext.request.contextPath}/resources/img/bookmark_image2.jpg" >
+						<img class="image_size" src="${pageContext.request.contextPath}/resources/img/mylist_image2.jpg" >
 					</a>
 				<div id="likeButton" class="like_button">
 					<svg id="heart" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -114,7 +114,7 @@
 				</div>	
 				<div>
 					<a href="${pageContext.request.contextPath}/product/detail">
-						<img class="image_size" src="${pageContext.request.contextPath}/resources/img/bookmark_image3.jpg" >
+						<img class="image_size" src="${pageContext.request.contextPath}/resources/img/mylist_image3.jpg" >
 					</a>
 					<div id="likeButton" class="like_button">
 					<svg id="heart" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -133,59 +133,42 @@
 			<br>
 			</div>			
 			<br>
-<!-- 			<table style="width: 1000px; table-layout: fixed;"> -->
-<!-- 				<tr> -->
-<!-- 					<td style="height: 200px;">사진</td> -->
-<!-- 					<td>사진</td> -->
-<!-- 					<td>사진</td> -->
-<!-- 				</tr> -->
-<!-- 				<tr> -->
-<!-- 					<td style="height: 30px;">또갈래 떡볶이</td> -->
-<!-- 					<td>맛있다 파스타</td> -->
-<!-- 					<td>나도갈래 치킨</td> -->
-<!-- 				</tr> -->
-<!-- 			</table> -->
-<!-- 		 <div class="slideshow-container"> -->
-	
-<!-- 			<div class="my_slides"> -->
-<!-- 			  <div> -->
-<%-- 			    <img class="image_size" src="${pageContext.request.contextPath}/resources/img/bookmark_image4.jpg"> --%>
-<!-- 			  </div> -->
-			
-<!-- 			  <div> -->
-<%-- 			    <img class="image_size" src="${pageContext.request.contextPath}/resources/img/bookmark_image5.jpg"> --%>
-<!-- 			  </div> -->
-			
-<!-- 			  <div> -->
-<%-- 			    <img class="image_size" src="${pageContext.request.contextPath}/resources/img/bookmark_image6.jpg"> --%>
-<!-- 			  </div> -->
-<!-- 			  <div> -->
-<%-- 			    <img class="image_size" src="${pageContext.request.contextPath}/resources/img/bookmark_image1.jpg"> --%>
-<!-- 			  </div> -->
-<!-- 			  <div> -->
-<%-- 			    <img class="image_size" src="${pageContext.request.contextPath}/resources/img/bookmark_image2.jpg"> --%>
-<!-- 			  </div> -->
-<!-- 			  <div> -->
-<%-- 			    <img class="image_size" src="${pageContext.request.contextPath}/resources/img/bookmark_image3.jpg"> --%>
-<!-- 			  </div> -->
-<!-- 				  <a class="prev" onclick="plusSlides(-1)">&#10094;</a> -->
-<!-- 				  <a class="next" onclick="plusSlides(1)">&#10095;</a> -->
-			  
-<!-- 			</div> -->
-			
-<!-- 		</div> -->
-		<div class="wrapper2">
-	      <i id="left" class="fa-solid fa-angle-left"></i>
-	      <div class="carousel">
-	        <img src="${pageContext.request.contextPath}/resources/img/bookmark_image4.jpg" alt="img" draggable="false">
-	        <img src="${pageContext.request.contextPath}/resources/img/bookmark_image5.jpg" alt="img" draggable="false">
-	        <img src="${pageContext.request.contextPath}/resources/img/bookmark_image6.jpg" alt="img" draggable="false">
-	        <img src="${pageContext.request.contextPath}/resources/img/bookmark_image1.jpg" alt="img" draggable="false">
-	        <img src="${pageContext.request.contextPath}/resources/img/bookmark_image2.jpg" alt="img" draggable="false">
-	        <img src="${pageContext.request.contextPath}/resources/img/bookmark_image3.jpg" alt="img" draggable="false">
-	      </div>
-	      <i id="right" class="fa-solid fa-angle-right"></i>
-	    </div>
+			<div class="wrapper2">
+		      <i id="left" class="fa-solid fa-angle-left"></i>
+		      <div class="carousel">
+		      	<a href="${pageContext.request.contextPath}/product/detail">
+		        	<img src="${pageContext.request.contextPath}/resources/img/mylist_image4.jpg" alt="img" draggable="false">
+		        </a>
+		        <a href="${pageContext.request.contextPath}/product/detail">
+		        	<img src="${pageContext.request.contextPath}/resources/img/mylist_image5.jpg" alt="img" draggable="false">
+		        </a>
+		        <a href="${pageContext.request.contextPath}/product/detail">
+		        	<img src="${pageContext.request.contextPath}/resources/img/mylist_image6.jpg" alt="img" draggable="false">
+		        </a>
+		        <a href="${pageContext.request.contextPath}/product/detail">
+		        	<img src="${pageContext.request.contextPath}/resources/img/mylist_image7.jpg" alt="img" draggable="false">
+		        </a>
+		        <a href="${pageContext.request.contextPath}/product/detail">
+		        	<img src="${pageContext.request.contextPath}/resources/img/mylist_image8.jpg" alt="img" draggable="false">
+		        </a>
+		        <a href="${pageContext.request.contextPath}/product/detail">
+		            <img src="${pageContext.request.contextPath}/resources/img/mylist_image9.jpg" alt="img" draggable="false">
+		        </a>
+		        <a href="${pageContext.request.contextPath}/product/detail">
+		        	<img src="${pageContext.request.contextPath}/resources/img/mylist_image10.jpg" alt="img" draggable="false">
+		        </a>
+		        <a href="${pageContext.request.contextPath}/product/detail">
+		        	<img src="${pageContext.request.contextPath}/resources/img/mylist_image1.jpg" alt="img" draggable="false">
+		        </a>
+		        <a href="${pageContext.request.contextPath}/product/detail">
+		        	<img src="${pageContext.request.contextPath}/resources/img/mylist_image2.jpg" alt="img" draggable="false">
+		        </a>
+		        <a href="${pageContext.request.contextPath}/product/detail">
+		        	<img src="${pageContext.request.contextPath}/resources/img/mylist_image3.jpg" alt="img" draggable="false">
+		      	</a>
+		      </div>
+		      <i id="right" class="fa-solid fa-angle-right"></i>
+		    </div>
 	</div>
 </body>
 </html>
