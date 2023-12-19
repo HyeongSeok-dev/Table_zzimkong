@@ -77,15 +77,3 @@ function copyInfo() {
 
 
 
-//function checkResInfo(){
-//	 // 사용자에게 결제를 진행할 것인지 확인받는 confirm 창을 띄웁니다.
-//	  var isConfirmed = confirm("방문자 정보를 한번 더 확인해 주세요!\n방문자 : 이재환 연락처 : 010");
-//		  // 사용자가 확인을 클릭했을 때만 결제 페이지로 이동합니다.
-//	  if (isConfirmed) {
-//		//결제페이지로 넘어가기
-//	    window.location.href = "payment";
-//	  }else{
-//		visitName.focus();
-//	  }
-//	  return false;  // form의 기본 제출 동작을 방지합니다.
-//}
