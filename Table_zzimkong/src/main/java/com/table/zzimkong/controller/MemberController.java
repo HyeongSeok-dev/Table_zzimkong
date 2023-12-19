@@ -16,7 +16,7 @@ public class MemberController {
 	@Autowired
 	private MemberService service;
 
-	@PostMapping("MemberJoinPro")
+	@RequestMapping("join/MemberJoinPro")
 	public String joinPro(MemberVO member, Model model) {
 		
 			int insertCount = service.registMember(member);
