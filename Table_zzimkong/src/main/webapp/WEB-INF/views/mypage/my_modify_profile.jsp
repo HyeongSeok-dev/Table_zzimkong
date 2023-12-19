@@ -65,8 +65,8 @@
 						 	<div>
 	                     	<input type="password" id="txtPassword" class="input_text" placeholder="현재 비밀번호"><br>
 	                     	<p>특수문자(예: !@#$ 등) 1자 이상을 포함한 10~15 글자의 비밀번호로 설정해주세요.</p>
-	                     	<input type="password" id="txtPassword" class="input_text" placeholder="새 비밀번호"><br>
-	                     	<input type="password" id="txtPassword2" class="input_text" placeholder="비밀번호 확인"><br>
+	                     	<input type="password" id="txtPassword" class="input_text2" placeholder="새 비밀번호"><br>
+	                     	<input type="password" id="txtPassword2" class="input_text2" placeholder="비밀번호 확인"><br>
 	                     </div>
 						</td>
 					</tr>

@@ -1,36 +1,140 @@
+document.addEventListener('DOMContentLoaded', function() {
 
+//	 var heartIcon = document.getElementById('heartIcon');
+//    if (heartIcon) {
+//        heartIcon.addEventListener('click', function() {
+//            this.classList.toggle('far');
+//            this.classList.toggle('fas');
+//            this.classList.toggle('filled');
+//        });
+//    }
 
 
 var likeButton = document.getElementById('likeButton');
 	likeButton.addEventListener('click', function() {
 		this.classList.toggle('active');
 	});
-var likeButton = document.getElementById('likeButton');
-	var toastMessage = document.getElementById('toastMessage');
-	var isLiked = false; // '좋아요' 상태를 추적하는 변수
-
-	likeButton.addEventListener('click', function() {
-		// '좋아요' 상태 변경
-		isLiked = !isLiked;
-
-		// 토스트 메시지 내용 설정
-		toastMessage.textContent = isLiked ? '좋아요가 반영되었습니다' : '좋아요가 취소되었습니다';
-
-		// 토스트 메시지 표시
-		toastMessage.classList.add('show');
-
-		// 2초 후에 토스트 메시지 숨김
-		setTimeout(function() {
-			toastMessage.classList.remove('show');
-		}, 2000);
-	});
+//	
+//var likeButton = document.getElementById('likeButton');
+//	var toastMessage = document.getElementById('toastMessage');
+//	var isLiked = false; // '좋아요' 상태를 추적하는 변수
+//
+//	likeButton.addEventListener('click', function() {
+//		// '좋아요' 상태 변경
+//		isLiked = !isLiked;
+//
+//		// 토스트 메시지 내용 설정
+////		toastMessage.textContent = isLiked ? '좋아요가 반영되었습니다' : '좋아요가 취소되었습니다';
+//
+//		// 토스트 메시지 표시
+//		toastMessage.classList.add('show');
+//
+//		// 2초 후에 토스트 메시지 숨김
+//		setTimeout(function() {
+//			toastMessage.classList.remove('show');
+//		}, 2000);
+//	});
 	
 	
+});
 
-/* 예약 취소 모달창 */
+
+/* 예약 취소 모달창 my_list.jsp */
 function cancelReservation(){
 		confirm("예약을 취소하시겠습니까?");
 		if(true) {
 			alert("예약이 취소되었습니다.");
 		}
 	}
+	
+//var slideIndex = 1;
+//showSlides(slideIndex);
+//
+//function plusSlides(n) {
+//  showSlides(slideIndex += n);
+//}
+//
+//function showSlides(n) {
+//  var i;
+//  var slides = document.getElementsByClassName("mySlides");
+//  if (n > slides.length) {slideIndex = 1}
+//  if (n < 1) {slideIndex = slides.length}
+//  for (i = 0; i < slides.length; i++) {
+//      slides[i].style.display = "none";
+//  }
+//  slides[slideIndex-1].style.display = "block";
+//}
+
+const carousel = document.querySelector(".carousel"),
+firstImg = carousel.querySelectorAll("img")[0],
+arrowIcons = document.querySelectorAll(".wrapper i");
+
+let isDragStart = false, isDragging = false, prevPageX, prevScrollLeft, positionDiff;
+
+const showHideIcons = () => {
+    // showing and hiding prev/next icon according to carousel scroll left value
+    let scrollWidth = carousel.scrollWidth - carousel.clientWidth; // getting max scrollable width
+    arrowIcons[0].style.display = carousel.scrollLeft == 0 ? "none" : "block";
+    arrowIcons[1].style.display = carousel.scrollLeft == scrollWidth ? "none" : "block";
+}
+
+arrowIcons.forEach(icon => {
+    icon.addEventListener("click", () => {
+        let firstImgWidth = firstImg.clientWidth + 14; // getting first img width & adding 14 margin value
+        // if clicked icon is left, reduce width value from the carousel scroll left else add to it
+        carousel.scrollLeft += icon.id == "left" ? -firstImgWidth : firstImgWidth;
+        setTimeout(() => showHideIcons(), 60); // calling showHideIcons after 60ms
+    });
+});
+
+const autoSlide = () => {
+    // if there is no image left to scroll then return from here
+    if(carousel.scrollLeft - (carousel.scrollWidth - carousel.clientWidth) > -1 || carousel.scrollLeft <= 0) return;
+
+    positionDiff = Math.abs(positionDiff); // making positionDiff value to positive
+    let firstImgWidth = firstImg.clientWidth + 14;
+    // getting difference value that needs to add or reduce from carousel left to take middle img center
+    let valDifference = firstImgWidth - positionDiff;
+
+    if(carousel.scrollLeft > prevScrollLeft) { // if user is scrolling to the right
+        return carousel.scrollLeft += positionDiff > firstImgWidth / 3 ? valDifference : -positionDiff;
+    }
+    // if user is scrolling to the left
+    carousel.scrollLeft -= positionDiff > firstImgWidth / 3 ? valDifference : -positionDiff;
+}
+
+const dragStart = (e) => {
+    // updatating global variables value on mouse down event
+    isDragStart = true;
+    prevPageX = e.pageX || e.touches[0].pageX;
+    prevScrollLeft = carousel.scrollLeft;
+}
+
+const dragging = (e) => {
+    // scrolling images/carousel to left according to mouse pointer
+    if(!isDragStart) return;
+    e.preventDefault();
+    isDragging = true;
+    carousel.classList.add("dragging");
+    positionDiff = (e.pageX || e.touches[0].pageX) - prevPageX;
+    carousel.scrollLeft = prevScrollLeft - positionDiff;
+    showHideIcons();
+}
+
+const dragStop = () => {
+    isDragStart = false;
+    carousel.classList.remove("dragging");
+
+    if(!isDragging) return;
+    isDragging = false;
+    autoSlide();
+}
+
+carousel.addEventListener("mousedown", dragStart);
+carousel.addEventListener("touchstart", dragStart);
+
+document.addEventListener("mousemove", dragging);
+carousel.addEventListener("touchmove", dragging);
+
+document.addEventListener("mouseup", dragStop);
+carousel.addEventListener("touchend", dragStop);

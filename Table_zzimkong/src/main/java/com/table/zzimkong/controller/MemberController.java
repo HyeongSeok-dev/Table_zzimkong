@@ -32,10 +32,7 @@ public class MemberController {
 		return "join/join_choice";
 	}
 	
-	@GetMapping("login")
-	public String login() {
-		return "login/login";
-	}
+
 	
 	@GetMapping("login/find/id")
 	public String login_find_id() {
@@ -73,9 +70,11 @@ public class MemberController {
 //		}
 	
 	
-	
 		//아이디 중복검사 MemberCheckDupId =============================================
 		
-			
+	@GetMapping("login")
+	public String login() {
+		return "login/login";
+	}	
 			
 }//MemberController

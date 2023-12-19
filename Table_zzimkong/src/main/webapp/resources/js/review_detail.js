@@ -1,4 +1,3 @@
-document.addEventListener('DOMContentLoaded', function() {
 
 	//-----------------이런 점이 좋았어요 -------------------------
 	document.querySelectorAll('.review_select_chart_1_1').forEach(function(element) {
@@ -120,7 +119,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	// 팝업창을 숨김
 	//	deleteConfirmationPopup.style.display = 'none';
-});
 
 // "아니오" 버튼 클릭 이벤트 리스너
 //document.getElementById('cancelDelete').addEventListener('click', function() {
