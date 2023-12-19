@@ -41,6 +41,7 @@ $(function() {
 			}
 	});
 	
+	// 만약 포인트가 0이거나, 내포인트가 param.pointToUse 보다작으면 사용불가메세지
 	$("#useAllPoint").on("click", function() {
 		$("#useablePoint").text("0");
 		$(".point_to_use").val("1000원"); //여기 내포인트 전액이 와야함
