@@ -29,9 +29,9 @@
 			<form action="payAdPro" method="post" name="comAdJoin">
 				<table>
 					<tr>
-						<th>업체번호</th>
+						<th>사업자번호</th>
 						<td colspan="1">1</td>
-						<th>업체명</th>
+						<th>상호명</th>
 						<td colspan="3"><input type="text" value="" name="comName"></td>
 					</tr>
 					<tr>

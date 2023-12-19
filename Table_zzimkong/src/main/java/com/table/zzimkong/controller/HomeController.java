@@ -102,6 +102,11 @@ public class HomeController {
 		return "ceo/ceo_company_list";
 	}
 	
+	@GetMapping("ceo/company/view")
+	public String ceo_company_view() {
+		return "ceo/ceo_company_view";
+	}
+	
 	@GetMapping("ceo/company/register")
 	public String ceo_company_register() {
 		return "ceo/ceo_company_register";

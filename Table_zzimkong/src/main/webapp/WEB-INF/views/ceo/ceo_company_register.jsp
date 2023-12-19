@@ -97,9 +97,9 @@
 						</td>
 					</tr>	
 					<tr>
-						<th>시간당 최대 테이블</th>
+						<th>시간당 최대 인원</th>
 						<td colspan="2"><input name="perHourMaxTable" type="text" value="10명"></td>
-						<th>건당 최대인원</th>
+						<th>건당 최대 인원</th>
 						<td colspan="2"><input name="perResMaxPerson" type="text" value="20명"></td>
 					</tr>
 					<tr>

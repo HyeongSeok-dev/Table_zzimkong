@@ -79,7 +79,7 @@
 						</td>
 					</tr>	
 					<tr>
-						<th colspan="2">시간당 최대 테이블</th>
+						<th colspan="2">시간당 최대 인원</th>
 						<td colspan="1"><input type="text" value="10명" name="perHourMaxTable"></td>
 						<th colspan="1">광고등급</th>
 						<td colspan="2">
@@ -87,7 +87,7 @@
 						</td>
 					</tr>
 					<tr>
-						<th colspan="2">건당 최대인원</th>
+						<th colspan="2">건당 최대 인원</th>
 						<td colspan="1"><input type="text" value="20명" name="perResMaxPerson"></td>
 						<th colspan="1">등록일자</th>
 						<td colspan="2">2023/12/24</td>
