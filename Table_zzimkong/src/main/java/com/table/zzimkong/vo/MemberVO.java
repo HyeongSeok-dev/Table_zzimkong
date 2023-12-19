@@ -14,6 +14,13 @@ public class MemberVO {
 	String user_birth;
 	String com_num; //사업자번호
 	String user_reg_date;
+	String user_phone;
+	int user_pay_point;
+	int user_event_point;
+	int user_level;
+	String user_img;
+	int user_status;
+	int user_category;
 	
 } //MemberVO
 
