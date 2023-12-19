@@ -20,6 +20,7 @@ public class MemberController {
 	public String joinPro(MemberVO member, Model model) {
 		
 			int insertCount = service.registMember(member);
+			
 			if(insertCount > 0) { // 성공				
 				return "redirect:/";
 			} else { // 실패
