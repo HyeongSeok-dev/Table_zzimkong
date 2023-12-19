@@ -8,7 +8,11 @@
  <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
  <link href="${pageContext.request.contextPath }/resources/css/member_cs.css" rel="stylesheet">
  <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/ceo_top.css"> 
-
+ <script type="text/javascript">
+ 	function popupResister() {
+ 		window.open('${pageContext.request.contextPath }/member/cs/qna/register')
+ 	}
+ </script>
 </head>
 <body>
 	<%-- <header>
@@ -22,9 +26,9 @@
 		            <h3>1 : 1 문의</h3>
 		        </span>
 		        <span>
-					<button type="button" id="buttonNotice" onclick="location.href='member_cs_notice.jsp'">공지사항</button>	
-					<button type="button" id="buttonFaq" onclick="location.href='member_cs_faq.jsp'">자주묻는 질문</button>	
-					<button type="button" id="buttonRegister" onclick="location.href='member_cs_qna_register.jsp'">문의하기</button>	
+					<button type="button" id="buttonNotice" onclick="location.href='${pageContext.request.contextPath }/member/cs/notice">공지사항</button>	
+					<button type="button" id="buttonFaq" onclick="location.href='${pageContext.request.contextPath }/member/cs/faq'">자주묻는 질문</button>	
+					<button type="button" id="buttonRegister" onclick="popupResister()">문의하기</button>	
 		    	</span>
 		    </div>
 		
@@ -70,7 +74,7 @@
 				            <td>3</td>
 				            <th class="cs_th">주문/결제</th>
 				            <th class="cs_th">
-				              <a href="member_cs_qna_view.jsp">문의문의</a>
+				              <a href="${pageContext.request.contextPath }/member/cs/qna/view">문의문의</a>
 				              <p>테스트</p>
 				            </th>
 				            <td>2017.07.13</td>
@@ -79,14 +83,14 @@
 				        <tr>
 				            <td>2</td>
 				            <th class="cs_th">예약</th>
-				            <th class="cs_th"><a href="member_cs_qna_view.jsp">문의문의</a></th>
+				            <th class="cs_th"><a href="${pageContext.request.contextPath }/member/cs/qna/view">문의문의</a></th>
 				            <td>2017.06.15</td>
 				        </tr>
 				
 				        <tr>
 				            <td>1</td>
 				            <th class="cs_th">리뷰</th>
-				            <th class="cs_th"><a href="member_cs_qna_view.jsp">문의문의</a></th>
+				            <th class="cs_th"><a href="${pageContext.request.contextPath }/member/cs/qna/view">문의문의</a></th>
 				            <td>2017.06.15</td>
 				        </tr>
 				        </tbody>

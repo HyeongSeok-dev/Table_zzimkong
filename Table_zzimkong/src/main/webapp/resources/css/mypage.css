@@ -5,9 +5,9 @@
 }
 
 .wrapper {
-	margin-left: 320px;
+	margin-left: 500px;
 	margin-right: 300px;
-	margin-top: 50px;
+	margin-top: 70px;
 }
 
 .title{
@@ -175,7 +175,7 @@ input[type="date"]::before {
 #heart {
     height: 25px;
     width: 25px;
-    stroke: #F361A6; /* 하트 테두리의 색상을 연한 회색으로 변경 */
+    stroke: #F361A6; 
     transition: filter linear .3s;
 }
 
@@ -183,3 +183,5 @@ input[type="date"]::before {
     fill: #3FAFFC; /* 버튼이 눌렸을 때 하트 색상을 빨간색으로 변경 */
     stroke: #3FAFFC; /* 버튼이 눌렸을 때 하트 테두리 색상을 빨간색으로 변경 */
 }
+
+
