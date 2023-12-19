@@ -33,11 +33,11 @@
 <!--               <input type="hidden" name="brandId" value=""> -->
               
               <!-- 아이디 -->
-              	<input type="text" id="userId" name="userId" class="inputTxt inpBig" placeholder="아이디" 
+              	<input type="text" id="userId" name="user_id" class="inputTxt inpBig" placeholder="아이디" 
               	onkeydown="eventObj.loginByEnterKey(event)" maxlength="100" />
               	<span id="checkIdResult"></span>
               <!-- 비밀번호 -->
-              <input type="password" id="passwd" name="passwd" class="inputTxt inpBig"  style="text-align: left;"
+              <input type="password" id="passwd" name="user_passwd" class="inputTxt inpBig"  style="text-align: left;"
               placeholder="비밀번호 (영문, 숫자, 특수문자 조합 8~16자리)" onkeydown="eventObj.loginByEnterKey(event)" maxlength="16" autocomplete="false">
           
               <!-- 비밀번호 확인 -->              
@@ -45,18 +45,18 @@
               placeholder="비밀번호 확인" onkeydown="eventObj.loginByEnterKey(event)" maxlength="16" autocomplete="false" >
              <span id = "checkPasswd2Result" ></span>
               <!-- 닉네임 -->
-              <input type="text" id="u_nick" name="u_nick" class="inputTxt inpBig" placeholder="닉네임" onkeydown="eventObj.loginByEnterKey(event)" maxlength="100">
+              <input type="text" id="u_nick" name="user_nick" class="inputTxt inpBig" placeholder="닉네임" onkeydown="eventObj.loginByEnterKey(event)" maxlength="100">
               <!-- 이름 -->
-              <input type="text" id="u_name" name="u_name" class="inputTxt inpBig" placeholder="이름" onkeydown="eventObj.loginByEnterKey(event)" maxlength="16" autocomplete="false">
+              <input type="text" id="u_name" name="user_name" class="inputTxt inpBig" placeholder="이름" onkeydown="eventObj.loginByEnterKey(event)" maxlength="16" autocomplete="false">
               <!-- 생년월일 --><span class="bday">생년월일</span>
-              <input type="date" id="com_birth" name="u_birth" class="inputTxt inpBig" 
+              <input type="date" id="com_birth" name="user_birth" class="inputTxt inpBig" 
                onkeydown="eventObj.loginByEnterKey(event)" maxlength="16" autocomplete="false">
 	             
               <!-- 이메일 -->
 	              <div class="u_emil">
-	                <input type="text" id="u_email" name="u_email" class="inputTxt inpBig" placeholder="이메일" onkeydown="eventObj.loginByEnterKey(event)" maxlength="16" autocomplete="false">
+	                <input type="text" id="u_email" name="user_email1" class="inputTxt inpBig" placeholder="이메일" onkeydown="eventObj.loginByEnterKey(event)" maxlength="16" autocomplete="false">
 	                <span id="at">@</span>
-					<select id="u_email2" name="u_email" class="inputTxt inpBig" >
+					<select id="u_email2" name="user_email2" class="inputTxt inpBig" >
 		                <option value="">선택하세요</option>
 		                <option value="gmail.com">gmail.com</option>
 		                <option value="naver.com">naver.com</option>
@@ -68,7 +68,7 @@
               
               <!-- 전화번호 -->
               <div id="phoneBox">
-				  <input type="text" id="u_phone" name="u_phone" class="inputTxt inpBig" placeholder="전화번호 (' - ' 를 빼고 입력)" onkeydown="eventObj.loginByEnterKey(event)" maxlength="100">
+				  <input type="text" id="u_phone" name="user_phone" class="inputTxt inpBig" placeholder="전화번호 (' - ' 를 빼고 입력)" onkeydown="eventObj.loginByEnterKey(event)" maxlength="100">
 				  <button type="button" class="inputTxt inpBig">인증하기</button>
 			  </div>
 				              
