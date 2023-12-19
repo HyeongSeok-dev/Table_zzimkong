@@ -58,9 +58,12 @@
 
 .filter_wrapper {
 	flex-grow: 1; 
+	justify-content : center;
 	position: relative;
 }
-
+.filter_icon {
+	margin: 10px;
+}
 .search_input {
 	width: 100%; 
 	display: flex; 

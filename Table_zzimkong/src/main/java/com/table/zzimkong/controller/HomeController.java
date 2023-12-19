@@ -44,6 +44,8 @@ public class HomeController {
 	        model.addAttribute("date", date);
 	        model.addAttribute("time", time);
 	        model.addAttribute("display_time", displayTime);
+	        model.addAttribute("display_location", "전국");
+	        
 	    }
 	    return "main";
 	}

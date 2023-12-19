@@ -79,8 +79,9 @@
 					</div>
 				</div>
 				<div class="filter_wrapper">
+						<div class="modal-opener">${display_location} </div>
 					<img class="filter_icon modal-opener"
-						src="${pageContext.request.contextPath}/resources/img/search_filter.svg" />
+						src="${pageContext.request.contextPath}/resources/img/search_filter.png"/>
 					<div id="filterModal" class="modal">
 						<div class="filter-modal-content">
 							<h2>조건 상세설정</h2>
@@ -132,6 +133,7 @@
 											</li>
 											<li>부산
 												<ul class="detail-list">
+													<ul class="detail-list half">
 													<li><label for="부산_all"><input type="radio"
 															id="부산_all" name="location" value="부산_all"> 전체</label></li>
 													<li><label for="부산_강서구"><input type="radio"
@@ -150,6 +152,8 @@
 															id="부산_북구" name="location" value="부산_북구"> 북구</label></li>
 													<li><label for="부산_사상구"><input type="radio"
 															id="부산_사상구" name="location" value="부산_사상구"> 사상구</label></li>
+													</ul>
+													<ul class="detail-list half">
 													<li><label for="부산_사하구"><input type="radio"
 															id="부산_사하구" name="location" value="부산_사하구"> 사하구</label></li>
 													<li><label for="부산_서구"><input type="radio"
@@ -166,6 +170,7 @@
 															id="부산_해운대구" name="location" value="부산_해운대구"> 해운대구</label></li>
 													<li><label for="부산_기장군"><input type="radio"
 															id="부산_기장군" name="location" value="부산_기장군"> 기장군</label></li>
+													</ul>
 												</ul>
 											</li>
 											<li>제주도
