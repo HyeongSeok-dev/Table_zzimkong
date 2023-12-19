@@ -91,6 +91,7 @@
 										<ul class="sub-list location">
 											<li>서울
 									            <ul class="detail-list">
+									           		
 									                <li><label for="서울_서울전체"><input type="radio" id="서울_서울전체" name="location" value="서울_서울전체"> 전체</label></li>
 									                <li><label for="서울_강남"><input type="radio" id="서울_강남" name="location" value="서울_강남"> 강남</label></li>
 									                <li><label for="서울_서초"><input type="radio" id="서울_서초" name="location" value="서울_서초"> 서초</label></li>
@@ -104,7 +105,7 @@
 									            </ul>
 									        </li>
 											<li>경기
-										    <ul class="detail-list">
+										    <ul class="detail-list location_group">
 										        <li><label for="경기_경기전체"><input type="radio" id="경기_경기전체" name="location" value="경기_경기전체"> 경기 전체</label></li>
 										        <li><label for="경기_성남시"><input type="radio" id="경기_성남시" name="location" value="경기_성남시"> 성남시(분당/판교/성남)</label></li>
 										        <li><label for="경기_수원"><input type="radio" id="경기_수원" name="location" value="경기_수원"> 수원</label></li>

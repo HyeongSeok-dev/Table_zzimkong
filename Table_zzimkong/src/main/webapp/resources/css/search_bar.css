@@ -277,16 +277,18 @@ h2 {
 }
 
 #filterModal {
-    position: absolute; /* 절대 위치 설정 */
-   left: -1400%; /* 오른쪽 정렬 */
-    top: 200%; /* 상단에서의 위치 조정 */
-    width: 1000px; /* 너비 설정 */
-    height: 300px; /* 높이 설정 */
+    position: fixed; /* 뷰포트에 상대적으로 배치 */
+    left: 50%;       /* 왼쪽 가장자리를 화면 중앙으로 이동 */
+    top: 30%;        /* 상단 가장자리를 화면 중앙으로 이동 */
+    transform: translate(-50%, -50%); /* 요소의 중심을 화면 중앙으로 이동 */
+    width: 1000px;
+    height: 300px;
     background-color: #fff; /* 배경색 설정 */
     border-radius: 10px; /* 테두리 둥글게 */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
     box-sizing: border-box; /* 박스 사이징 */
     z-index: 1001; /* z-index 값 */
+    opacity: 95%;
 }
 .filter-modal-content {
  	width: 100%; 

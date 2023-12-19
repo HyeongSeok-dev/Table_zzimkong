@@ -72,33 +72,7 @@ $(document).ready(function() {
 	today = year + '-' + month + '-' + day;
 	$("#reservation-date").attr('min', today);
 
-	// Radio button slider
-	var start = 0;
-	var end = 6;
 
-	function showButtons() {
-		$('.time-group input[type="radio"], .time-group label').hide();
-		$('.time-group input[type="radio"]').slice(start, end).show();
-		$('.time-group input[type="radio"]').slice(start, end).next('label').show();
-	}
-
-	$('.arrow.left').click(function() {
-		if (start > 0) {
-			start -= 1;
-			end -= 1;
-			showButtons();
-		}
-	});
-
-	$('.arrow.right').click(function() {
-		if (end < $('.time-group input[type="radio"]').length) {
-			start += 1;
-			end += 1;
-			showButtons();
-		}
-	});
-
-	showButtons();
 
 	$("#confirm").click(function(event) {
 		event.stopPropagation();
