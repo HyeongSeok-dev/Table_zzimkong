@@ -8,7 +8,7 @@
 <link href="${pageContext.request.contextPath }/resources/css/mypage.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
 <script
-	src="${pageContext.request.contextPath}/resources/js/my_list.js">
+	src="${pageContext.request.contextPath}/resources/js/my_list2.js">
 </script>
 </head>
 <body>
