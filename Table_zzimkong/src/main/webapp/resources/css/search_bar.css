@@ -282,7 +282,7 @@ h2 {
     top: 30%;        /* 상단 가장자리를 화면 중앙으로 이동 */
     transform: translate(-50%, -50%); /* 요소의 중심을 화면 중앙으로 이동 */
     width: 1000px;
-    height: 300px;
+    height: 350px;
     background-color: #fff; /* 배경색 설정 */
     border-radius: 10px; /* 테두리 둥글게 */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 효과 */

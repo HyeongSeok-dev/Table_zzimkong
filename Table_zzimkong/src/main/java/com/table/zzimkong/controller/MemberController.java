@@ -50,7 +50,7 @@ public class MemberController {
 	@PostMapping("join/MemberJoinPro")
 	public String joinPro(MemberVO member, Model model) {
 		
-//	      member.setUser_category(1);
+	      member.setUser_category(1);
 //		  member.setUser_phone("010-111-1111");
 		
 			int insertCount = service.registMember(member);

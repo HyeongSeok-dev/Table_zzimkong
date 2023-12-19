@@ -105,24 +105,21 @@
 									            </ul>
 									        </li>
 											<li>경기
-										    <ul class="detail-list location_group">
-										        <li><label for="경기_경기전체"><input type="radio" id="경기_경기전체" name="location" value="경기_경기전체"> 경기 전체</label></li>
-										        <li><label for="경기_성남시"><input type="radio" id="경기_성남시" name="location" value="경기_성남시"> 성남시(분당/판교/성남)</label></li>
-										        <li><label for="경기_수원"><input type="radio" id="경기_수원" name="location" value="경기_수원"> 수원</label></li>
-										        <li><label for="경기_용인화성"><input type="radio" id="경기_용인화성" name="location" value="경기_용인화성"> 용인/화성(동탄)</label></li>
-										        <li><label for="경기_안양과천"><input type="radio" id="경기_안양과천" name="location" value="경기_안양과천"> 안양/과천</label></li>
-										        <li><label for="경기_군포의왕"><input type="radio" id="경기_군포의왕" name="location" value="경기_군포의왕"> 군포/의왕</label></li>
-										        <li><label for="경기_부천안산"><input type="radio" id="경기_부천안산" name="location" value="경기_부천안산"> 부천/안산/시흥/광명</label></li>
-										        <li><label for="경기_평택오산"><input type="radio" id="경기_평택오산" name="location" value="경기_평택오산"> 평택/오산/안성</label></li>
-										        <li><label for="경기_고양파주"><input type="radio" id="경기_고양파주" name="location" value="경기_고양파주"> 고양/파주</label></li>
-										        <li><label for="경기_김포"><input type="radio" id="경기_김포" name="location" value="경기_김포"> 김포</label></li>
-										        <li><label for="경기_가평양평"><input type="radio" id="경기_가평양평" name="location" value="경기_가평양평"> 가평/양평</label></li>
-										        <li><label for="경기_광주이천"><input type="radio" id="경기_광주이천" name="location" value="경기_광주이천"> 광주/이천/여주</label></li>
-										        <li><label for="경기_남양주의정부"><input type="radio" id="경기_남양주의정부" name="location" value="경기_남양주의정부"> 남양주/의정부</label></li>
-										        <li><label for="경기_하남구리"><input type="radio" id="경기_하남구리" name="location" value="경기_하남구리"> 하남/구리</label></li>
-										        <li><label for="경기_포천양주"><input type="radio" id="경기_포천양주" name="location" value="경기_포천양주"> 포천/양주/동두천/연천</label></li>
-										    </ul>
-										</li>
+											    <ul class="detail-list half">
+											        <li><label for="경기_경기전체"><input type="radio" id="경기_경기전체" name="location" value="경기_경기전체"> 경기 전체</label></li>
+											        <li><label for="경기_성남시"><input type="radio" id="경기_성남시" name="location" value="경기_성남시"> 성남시(분당/판교/성남)</label></li>
+											        <li><label for="경기_수원"><input type="radio" id="경기_수원" name="location" value="경기_수원"> 수원</label></li>
+											        <li><label for="경기_용인화성"><input type="radio" id="경기_용인화성" name="location" value="경기_용인화성"> 용인/화성(동탄)</label></li>
+											        <li><label for="경기_안양과천"><input type="radio" id="경기_안양과천" name="location" value="경기_안양과천"> 안양/과천</label></li>
+											    </ul>
+											    <ul class="detail-list half">
+											        <li><label for="경기_군포의왕"><input type="radio" id="경기_군포의왕" name="location" value="경기_군포의왕"> 군포/의왕</label></li>
+											        <li><label for="경기_부천안산"><input type="radio" id="경기_부천안산" name="location" value="경기_부천안산"> 부천/안산/시흥/광명</label></li>
+											        <li><label for="경기_평택오산"><input type="radio" id="경기_평택오산" name="location" value="경기_평택오산"> 평택/오산/안성</label></li>
+											        <li><label for="경기_고양파주"><input type="radio" id="경기_고양파주" name="location" value="경기_고양파주"> 고양/파주</label></li>
+											        <li><label for="경기_김포"><input type="radio" id="경기_김포" name="location" value="경기_김포"> 김포</label></li>
+											    </ul>
+											</li>
 											<li>인천
 												<ul class="detail-list">
 													<li>인천 전체</li>

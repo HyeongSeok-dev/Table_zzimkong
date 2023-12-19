@@ -275,36 +275,6 @@ public class HomeController {
 		return "admin/admin_cs_notice_register";
 	}
 	
-	@GetMapping("join/join")
-	public String join() {
-		return "join/join";
-	}
-	
-	@GetMapping("join/ceo")
-	public String join_ceo() {
-		return "join/join_ceo";
-	}
-	
-	@GetMapping("join/choice")
-	public String join_choice() {
-		return "join/join_choice";
-	}
-	
-	@GetMapping("login")
-	public String login() {
-		return "login/login";
-	}
-	
-	@GetMapping("login/find/id")
-	public String login_find_id() {
-		return "login/login_find_id";
-	}
-	
-	@GetMapping("login/find/passwd")
-	public String login_find_passwd() {
-		return "login/login_find_passwd";
-	}
-	
 	@GetMapping("my/list")
 	public String my_list() {
 		return "mypage/my_list";

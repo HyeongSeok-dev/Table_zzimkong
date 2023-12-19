@@ -15,18 +15,19 @@
 		, #{user_id}
 		, #{user_passwd}
 		, #{user_nick}
+		, CONCAT(#{user_email1}, '@', #{user_email2})
 		, #{user_name}
 		, #{user_birth}
-		, CONCAT(#{user_email1}, '@', #{user_email2})
 		, #{com_num}
 		, now()
-		, " ds"
-		, 1
-		, 22
-		, ew
-		, "dwq"
-		, 2
-		, d	)
+		, "ds"
+		, '1'
+		, '1'
+		, '1'
+		, '11'
+		, '1'
+		, #{user_category}
+		)
 	
 </insert>
 
