@@ -11,7 +11,7 @@ import com.table.zzimkong.vo.*;
 
 @Controller
 public class MemberController {
-	
+	/**/
 	// MemberService 객체 자동 주입
 	@Autowired
 	private MemberService service;
