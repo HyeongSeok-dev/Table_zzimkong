@@ -20,6 +20,13 @@
 		,#{user_birth}
 		,#{com_num}
 		,now()
+		,#{user_phone}
+		,#{user_pay_point}
+		,#{user_event_point}
+		,#{user_level}
+		,#{user_img}
+		,#{user_status}
+		,#{user_category}
 	)
 	
 </insert>
