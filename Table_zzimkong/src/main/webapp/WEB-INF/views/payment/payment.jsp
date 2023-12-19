@@ -224,7 +224,16 @@
 									</div>
 									<div>
 										<span class="detail">메뉴 선결제금액</span>
-										<span class="detail_price"><span id="preOrderTotalPrice">97,000</span>원</span>
+										<span class="detail_price">
+											<%-- <c:choose>
+												<c:when test="${pageNum eq i }"> --%>
+													<span id="preOrderTotalPrice">${}</span>원
+												<%-- </c:when>
+												<c:otherwise> --%>
+													<span id="preOrderTotalPrice">0</span>원
+												<%-- </c:otherwise>
+											</c:choose> --%>
+										</span>
 										<!-- <span class="detail_price"><span id="preOrderTotalPrice">0</span>원</span> -->
 									</div> 
 									<%-- 여기부터 선결제 있으면 표시함 --%>

@@ -53,18 +53,19 @@ $(function() {
 	
 	var isChecked;
 	$("#onSitePayment").click(function() {
-		if($("#preOrderTotalPrice").text() !== "0"){ //파라미터가 있으면
+		if($("#preOrderTotalPrice").text() != "0") { 
 			if(isChecked) {
 	            $("#onSitePayment").prop('checked', false);
-	            isChecked = false;
-	            $("#preOrderTotalPrice").text("0");
-	        } else {
-	            isChecked = true;
 	            $("#preOrderTotalPrice").text("9,7000");//여기파라미터값
+	            isChecked = false;
+	        } else {
+	            $("#preOrderTotalPrice").text("0");
+	            isChecked = true;
 	        }
 		} else if($("#preOrderTotalPrice").text() == "0"){ //파라미터가 없으면으로 바꿔야함
 			if(!isChecked) {
 	            $("#onSitePayment").prop('checked', false);
+	            isChecked = false;
 	            alert("선결제할 금액이 없습니다!");
 	        } 
 	        
