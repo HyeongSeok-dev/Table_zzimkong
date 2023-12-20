@@ -43,7 +43,6 @@ $(function() {
 	
 	var isChecked;
 	$("#onSitePayment").click(function(event) {
-		
 		if($("#preOrderTotalPrice").text() == "선결제 없음") { //파라미터가 없으면으로 바꿔야함
 			 event.preventDefault();
 	         alert("선결제할 금액이 없습니다!");
@@ -73,10 +72,46 @@ $(function() {
 	});
 	
 	
-	// 만약 선주문이 있을 떄(예약에서 넘어온 값이 있음)
-	
 	$("form").submit(function() {
 		
-	});
+		if($('input[name="choicePayment"]:checked').length == 0) { 
+			
+			if($("#preOrderTotalPrice").text() == "선결제 없음") { 
+				alert("예약금의 결제수단을 선택해 주세요.");
+				$('html, body').animate({
+                scrollTop: $('#leftSec02').offset().top
+            	}, 500);
+				return false;
+			} else if($("#preOrderTotalPrice").text() != "선결제 없음") { 
+				alert("결제수단을 선택해 주세요.");
+				$('html, body').animate({
+                scrollTop: $('#leftSec02').offset().top
+            	}, 500);
+				return false;
+			}
+		
+		} else if($("#creditCardPayment").is(':checked') || $("#cardSelect").val() == "") {
+				alert( $("#cardSelect").val() + "카드사를 선택해 주세요.");
+				$('html, body').animate({
+                scrollTop: $('#leftSec02').offset().top
+            	}, 500);
+				return false;
+		} else if($("#accountPayment").is(':checked') || $("#bankSelect").val() == "") {
+				alert("은행을 선택해 주세요.");
+				$('html, body').animate({
+                scrollTop: $('#leftSec02').offset().top
+            	}, 500);
+				return false;
+		} else if(!$('#payAgree').is(':checked') || !$('#revocationAgree').is(':checked')) {
+				alert("필수동의에 체크해주세요.");
+				$('html, body').animate({
+                scrollTop: $('#leftSec03').offset().top
+           		 }, 500);
+				return false;
+		}				
+		
+		
+		return true;
+	}); //submit버튼
 	
-});
+}); //jquery문 전체

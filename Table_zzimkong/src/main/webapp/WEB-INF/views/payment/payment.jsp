@@ -94,7 +94,7 @@
 							<br>
 							<div>
 								<input type="radio" name="choicePayment" value="무통장입금" id="accountPayment"><span class="font_stlye">무통장입금</span>
-								<span class="pm_acc_comment">20분 이내 입금되지 않으면 자동 취소됩니다.</span>
+								<span class="pm_acc_comment">20분 이내 입금되지 않으면 예약은 자동 취소됩니다.</span>
 								<br>
 								<select class="select_b" id="bankSelect" name="bankSelect">
 									<option value="">입금은행</option>
@@ -136,7 +136,7 @@
 							</div>
 							<div class="agree_main">
 								<span>
-									<input type="checkbox" name="agreement" value="결제대행동의" class="agree">
+									<input type="checkbox" id="payAgree" name="agreement" value="결제대행동의" class="agree">
 									<span>
 										<span class="agree_font">[필수]</span> 
 										결제 대행 서비스 이용 약관 동의 합니다.
@@ -148,7 +148,7 @@
 							</div>	
 							<div class="agree_main">
 								<span>
-									<input type="checkbox" name="agreement" value="취소환불동의" class="agree">
+									<input type="checkbox" id="revocationAgree" name="agreement" value="취소환불동의" class="agree">
 									<span>
 										<span class="agree_font">[필수]</span> 
 										취소 및 환불규정 동의 합니다.
@@ -236,19 +236,19 @@
 										<span class="detail_price">
 									<%--  <c:choose>
 												<c:when test="${param.resMenuPrice eq null }"> --%>
-										<!-- 			<span id="preOrderTotalPrice" name="preOrderIsNone">선결제 없음</span>
+													<span id="preOrderTotalPrice" name="preOrderIsNone">선결제 없음</span>
 										</span>
-									</div>  -->
+									</div>  
 												<%-- </c:when>
 												<c:otherwise> --%>
-													<span id="preOrderTotalPrice" name="PreOrderIsExist">
-													97,000
+													<!-- <span id="preOrderTotalPrice" name="PreOrderIsExist">
+													97,000 -->
 												<%-- 	${param.resMenuPrice } --%>
-													</span>원
+											<!-- 		</span>원
  										</span>
- 									</div> 
+ 									</div>  -->
 									<%-- 여기부터 선결제 있으면 표시함 --%>
-									<div>
+									<%-- <div>
 										<span class="detail"> </span>
 										<span class="detail_price">
 											<div class="info_price">
@@ -258,7 +258,7 @@
 													개
 												</span>
 												<span class="price">
-													<span>18,000<%--${} --%></span>
+													<span>18,000${}</span>
 													원
 												</span>
 											</div>
@@ -269,7 +269,7 @@
 													개
 												</span>
 												<span class="price">
-													<span>24,000<%--${} --%></span>
+													<span>24,000${}</span>
 													원
 												</span>
 											</div>
@@ -280,12 +280,12 @@
 													개
 												</span>
 												<span class="price">
-													<span>55,000<%--${} --%></span>
+													<span>55,000${}</span>
 													원
 												</span>
 											</div>
 										</span>
-									</div> 
+									</div>  --%>
 										<%-- 		</c:otherwise>
 											</c:choose> --%>
 									<div>
