@@ -11,9 +11,6 @@
 <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet" type="text/css">
 <script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/payment.js"></script>
-<script type="text/javascript">
-
-</script>
 </head>
 <body>
 <!-- 	<header> -->
@@ -49,13 +46,21 @@
 								<div class="font_stlye">쿠폰선택</div>
 								<select class="select_coupon" name="selectCoupon">
 									<option value="" >쿠폰을 선택해주세요</option>
+									<option value="신규회원쿠폰1" >[신규회원] 가입축하기념 5000원 할인</option>
+									<option value="크리스마스쿠폰1" >[크리스마스] 크리스마스외식 테이블찜콩 10% 할인</option>
 								</select>
 								<button class="use_button"  type="button">사용하기</button>
 							</div>
 							<div class="point">
 								<div class="point_result">
 									<span class="font_stlye">포인트</span> 
-									<span class="point_available">사용가능금액 <span id="useablePoint">1000<%--${} --%></span>원</span>
+									<span class="point_available">
+										사용가능금액
+										<span id="useablePoint">
+											<%-- ${param.} --%>1000
+										</span>
+										원
+									</span>
 								</div>
 								<input type="text" value="" placeholder="0원" class="point_to_use" name="pointToUse">
 								<button id="useAllPoint" class="use_button"  type="button">전액사용</button>
@@ -197,11 +202,15 @@
 									</li>
 									<li class="res_li">
 										<span class="res_info">방문자명</span>
-										<span class="other_name">홍길동<%--${} --%></span>
+										<span class="other_name">dd
+											<%-- ${param.name} --%>
+										</span>
 									</li>
 									<li class="res_li">
 										<span class="res_info">휴대폰 번호</span>
-										<span class="phone_num">010-1234-5678<%--${} --%></span>
+										<span class="phone_num">dd
+											<%-- ${param.number} --%>
+										</span>
 									</li>
 									<li class="res_li">
 										<span class="res_info">인원수</span>
@@ -225,46 +234,75 @@
 									<div>
 										<span class="detail">메뉴 선결제금액</span>
 										<span class="detail_price">
-											<%-- <c:choose>
-												<c:when test="${pageNum eq i }"> --%>
-													<span id="preOrderTotalPrice">${}</span>원
+									<%--  <c:choose>
+												<c:when test="${param.resMenuPrice eq null }"> --%>
+										<!-- 			<span id="preOrderTotalPrice" name="preOrderIsNone">선결제 없음</span>
+										</span>
+									</div>  -->
 												<%-- </c:when>
 												<c:otherwise> --%>
-													<span id="preOrderTotalPrice">0</span>원
-												<%-- </c:otherwise>
-											</c:choose> --%>
-										</span>
-										<!-- <span class="detail_price"><span id="preOrderTotalPrice">0</span>원</span> -->
-									</div> 
+													<span id="preOrderTotalPrice" name="PreOrderIsExist">
+													97,000
+												<%-- 	${param.resMenuPrice } --%>
+													</span>원
+ 										</span>
+ 									</div> 
 									<%-- 여기부터 선결제 있으면 표시함 --%>
 									<div>
 										<span class="detail"> </span>
 										<span class="detail_price">
 											<div class="info_price">
 												<span class="menu_name">시저샐러드</span>
-												<span class="count"><span>1</span>개</span>
-												<span class="price"><span>18,000<%--${} --%></span>원</span>
+												<span class="count">
+													<span>1</span>
+													개
+												</span>
+												<span class="price">
+													<span>18,000<%--${} --%></span>
+													원
+												</span>
 											</div>
 											<div class="info_price">
 												<span class="menu_name">뇨끼파스타</span>
-												<span class="count"><span>1</span>개</span>
-												<span class="price"><span>24,000<%--${} --%></span>원</span>
+												<span class="count">
+													<span>1</span>
+													개
+												</span>
+												<span class="price">
+													<span>24,000<%--${} --%></span>
+													원
+												</span>
 											</div>
 											<div class="info_price">
 												<span class="menu_name">안심스테이크</span>
-												<span class="count"><span>1</span>개</span>
-												<span class="price"><span>55,000<%--${} --%></span>원</span>
+												<span class="count">
+													<span>1</span>
+													개
+												</span>
+												<span class="price">
+													<span>55,000<%--${} --%></span>
+													원
+												</span>
 											</div>
 										</span>
 									</div> 
-									<%-- 여기까지 --%>
+										<%-- 		</c:otherwise>
+											</c:choose> --%>
 									<div>
 										<span class="detail">쿠폰할인</span>
-										 <span class="detail_price">- <span>0<%--${} --%></span>원</span>
+										 <span class="detail_price">
+										 	- 
+										 	<span>0<%--${} --%></span>
+										 	원
+										 </span>
 									</div> 
 									<div>
 										<span class="detail">포인트할인</span>
-										<span class="detail_price">- <span id="discountPoint">0<%--${} --%></span>원</span>
+										<span class="detail_price">
+											- 
+											<span id="discountPoint">0<%--${} --%></span>
+											원
+										</span>
 									</div> 
 								</div>
 								<div class="point">
@@ -277,18 +315,27 @@
 										<span class="detail_price">
 											<div class="info_price">
 												<span class="menu_name2">현제 포인트</span>
-												<span class="price" ><span id="nowPoint">1,000<%--${} --%></span>원</span>
+												<span class="price" >
+													<span id="nowPoint">1,000<%--${} --%></span>
+													원
+												</span>
 											</div>
 											<div class="info_price">
 												<span class="menu_name2">총 포인트</span>
-												<span class="price"><span id="totalPoint">2,270<%--${} --%></span>원</span>
+												<span class="price">
+													<span id="totalPoint">2,270<%--${} --%></span>
+													원
+												</span>
 											</div>
 										</span>
 									</div> 
 								</div>
 								<div class="total_detail">
 									<span class="total_info">총 결제 금액</span>
-									<span class="total_price" ><span id="totalPayment">127,000<%--${} --%></span>원</span>
+									<span class="total_price" >
+										<span id="totalPayment">127,000<%--${} --%></span>
+										원
+									</span>
 								</div>
 							</div>
 						</section>

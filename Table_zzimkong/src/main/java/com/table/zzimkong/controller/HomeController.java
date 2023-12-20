@@ -188,16 +188,6 @@ public class HomeController {
 		return "ceo/ceo_cs_qna";
 	}
 	
-	@GetMapping("payment/info")
-	public String payment_info() {
-		return "payment/payment_info";
-	}
-	
-	@GetMapping("payment")
-	public String payment() {
-		return "payment/payment";
-	}
-	
 	@GetMapping("admin/main")
 	public String admin_main() {
 		return "admin/admin_main";

@@ -41,6 +41,27 @@ $(function() {
 			}
 	});
 	
+	var isChecked;
+	$("#onSitePayment").click(function(event) {
+		
+		if($("#preOrderTotalPrice").text() == "선결제 없음") { //파라미터가 없으면으로 바꿔야함
+			 event.preventDefault();
+	         alert("선결제할 금액이 없습니다!");
+		
+		} else if($("#preOrderTotalPrice").text() != "선결제 없음") { 
+			if(isChecked) {
+	            $("#onSitePayment").prop('checked', false);
+	            $("#preOrderTotalPrice").text("97,000");//여기파라미터값
+	            $("#totalPayment").text("127,000원");
+	            isChecked = false;
+	        } else {
+	            $("#preOrderTotalPrice").text("0");
+	            $("#totalPayment").text("37,000원");
+	            isChecked = true;
+	        }
+		}
+	});
+	
 	// 만약 포인트가 0이거나, 내포인트가 param.pointToUse 보다작으면 사용불가메세지
 	$("#useAllPoint").on("click", function() {
 		$("#useablePoint").text("0");
@@ -51,31 +72,11 @@ $(function() {
 		
 	});
 	
-	var isChecked;
-	$("#onSitePayment").click(function() {
-		if($("#preOrderTotalPrice").text() != "0") { 
-			if(isChecked) {
-	            $("#onSitePayment").prop('checked', false);
-	            $("#preOrderTotalPrice").text("9,7000");//여기파라미터값
-	            isChecked = false;
-	        } else {
-	            $("#preOrderTotalPrice").text("0");
-	            isChecked = true;
-	        }
-		} else if($("#preOrderTotalPrice").text() == "0"){ //파라미터가 없으면으로 바꿔야함
-			if(!isChecked) {
-	            $("#onSitePayment").prop('checked', false);
-	            isChecked = false;
-	            alert("선결제할 금액이 없습니다!");
-	        } 
-	        
-		}
-		
-	});
 	
 	// 만약 선주문이 있을 떄(예약에서 넘어온 값이 있음)
 	
 	$("form").submit(function() {
+		
 	});
 	
 });
