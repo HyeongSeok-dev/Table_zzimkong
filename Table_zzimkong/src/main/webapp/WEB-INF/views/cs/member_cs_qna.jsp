@@ -42,7 +42,7 @@
 		            <h3>1 : 1 문의</h3>
 		        </span>
 		        <span>
-					<button type="button" id="buttonNotice" onclick="location.href='${pageContext.request.contextPath }/member/cs/notice">공지사항</button>	
+					<button type="button" id="buttonNotice" onclick="location.href='${pageContext.request.contextPath }/member/cs/notice'">공지사항</button>	
 					<button type="button" id="buttonFaq" onclick="location.href='${pageContext.request.contextPath }/member/cs/faq'">자주묻는 질문</button>	
 					<button type="button" id="buttonRegister" onclick="popupResister()">문의하기</button>	
 		    	</span>
