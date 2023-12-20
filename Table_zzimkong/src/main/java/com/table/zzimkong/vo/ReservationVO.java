@@ -6,7 +6,7 @@ import java.sql.Time;
 import lombok.Data;
 
 @Data
-public class reservationVO {
+public class ReservationVO {
 	private int res_idx;
 	private String res_num;
 	private int com_id;
