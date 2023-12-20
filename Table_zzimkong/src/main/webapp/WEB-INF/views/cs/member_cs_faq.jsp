@@ -19,7 +19,9 @@
 	}
 </script>
 </head>
+
 <body>
+
 	<%-- <header>
 		<jsp:include page="../inc/ceo_top.jsp"/>
 	</header> --%>
@@ -73,6 +75,7 @@
 				            <th scope="col" class="th-date">등록일</th>
 				        </tr>
 				        </thead>
+				        
 				        <tbody>
 				        <tr>
 				            <td>3</td>
