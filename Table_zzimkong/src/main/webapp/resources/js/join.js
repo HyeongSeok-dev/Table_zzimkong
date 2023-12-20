@@ -77,7 +77,7 @@ $(document).ready(function() {
 	
 	
 	//비밀번호 일치===============================
-	$("#passwd2").change(function() {
+	$("#passwd2").keyup(function() {
 		let passwd = document.getElementById('passwd').value;
 		let passwdck =document.getElementById('passwd2').value;
 		

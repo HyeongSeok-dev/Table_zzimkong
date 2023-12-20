@@ -28,6 +28,24 @@
 		, '1'
 		, #{user_category}
 		)
+
+<!-- ================================= -->
+<!-- 		null -->
+<!-- 		, #{user_id} -->
+<!-- 		, #{user_passwd} -->
+<!-- 		, #{user_nick} -->
+<!-- 		, #{user_name} -->
+<!-- 		, #{user_birth} -->
+<!-- 		, CONCAT(#{user_email1}, '@', #{user_email2}) -->
+<!-- 		, #{com_num} -->
+<!-- 		, now() -->
+<!-- 		, #{user_phone} -->
+<!-- 		, #{user_pay_point} -->
+<!-- 		, #{user_event_point} -->
+<!-- 		, #{user_level} -->
+<!-- 		, #{user_img} -->
+<!-- 		, #{user_status} -->
+<!-- 		, #{user_category} -->
 	
 </insert>
 

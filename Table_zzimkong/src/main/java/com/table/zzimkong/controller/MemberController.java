@@ -32,6 +32,11 @@ public class MemberController {
 		return "join/join_choice";
 	}
 	
+	@GetMapping("join/complete")
+	public String join_complete() {
+		return "join/join_complete";
+	}
+	
 
 	
 	@GetMapping("login/find/id")

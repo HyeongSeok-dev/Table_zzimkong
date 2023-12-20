@@ -5,10 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <!-- CSS -->
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/review_complete.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/complete_total.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/global.css">
 <!-- Js -->
-<script src="${pageContext.request.contextPath}/resources/js/review_complete.css"></script>
+<script src="${pageContext.request.contextPath}/resources/js/review_complete.js"></script>
 <title>Insert title here</title>
 </head>
 <body>	

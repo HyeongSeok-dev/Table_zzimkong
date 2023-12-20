@@ -219,6 +219,7 @@
 	 <button><a href="join/join">join</a></button>
 	 <button><a href="join/ceo">join/ceo</a></button>
 	 <button><a href="join/choice">join/choice</a></button>
+ 	 <button><a href="join/complete">join/complete</a></button>
 	 <button><a href="login">login</a></button>
 	 <hr>
 	 <button><a href="login/find/id">login/find/id</a></button>
