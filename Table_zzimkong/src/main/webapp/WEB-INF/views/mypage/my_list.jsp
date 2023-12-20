@@ -8,6 +8,7 @@
 <!-- css -->
 <link href="${pageContext.request.contextPath }/resources/css/mypage.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 <!-- javascript -->
 <script
 	src="${pageContext.request.contextPath}/resources/js/my_list.js">

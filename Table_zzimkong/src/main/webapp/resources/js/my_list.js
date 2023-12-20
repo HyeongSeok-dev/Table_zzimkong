@@ -94,4 +94,17 @@ document.addEventListener('DOMContentLoaded', function() {
 	carousel.addEventListener("touchend", dragStop);
 	
 	
+	/* 회원정보 수정 - 이메일 */
+	document.modifyForm.emailDomain.onchange = function() {
+		document.modifyForm.email2.value = document.modifyForm.emailDomain.value;
+		if(document.modifyForm.emailDomain.value == "") { // 직접 입력 선택시
+			document.modifyForm.email2.fucus(); // 포커스 요청
+			document.modifyForm.email2.readOnly = false; // // 입력창 잠금 해제(readonly 아님!)
+			document.modifyForm.email2.style.background = "";
+		} else { // 도메인 선택시
+			document.modifyForm.email2.readOnly = true; // 입력창 잠금 해제
+			document.modifyForm.email2.style.background = "lightgray";
+		}
+	};
+	
 	});

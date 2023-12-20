@@ -15,7 +15,7 @@
 	<main>
 		<jsp:include page="../inc/my_sidebar.jsp" />
 	<div class="wrapper">
-		<form action="" method="post">
+		<form action="" method="post" name="modifyForm">
 			<div class="title">
 			<span class= "mypg">
 				<h1>회원정보 변경</h1>
@@ -48,32 +48,31 @@
 					<tr>
 						<th>닉네임</th>
 						<td>
-							<input type="text" id=nickname class="input_text2"  placeholder="닉네임은 8자 이내로">
-							<p>사용하실 닉네임을 입력해주세요. </p>
+							<input type="text" id=nickname class="input_text"  placeholder="닉네임은 8자 이내로">
 						</td>
 					</tr>
 					<tr>
 						<th>이메일</th>
 						<td>
-							<input type="text" class="input_text2" placeholder="이메일"> @
-							<input type="text" class="input_text2" placeholder="이메일"><br>
-	                    	<select name="emailDomain">
-							<option value="">직접입력</option>
-							<option value="naver.com">naver.com</option>
-							<option value="gmail.com">gmail.com</option>
-							<option value="nate.com">nate.com</option>
+							<input type="text" name="email1" class="email_text"> @
+<!-- 							<input type="text" name="email2" class="input_text2" ><br> -->
+	                    	<select class="email_domain" name="emailDomain">
+								<option value="">선택하세요</option>
+				                <option value="gmail.com">gmail.com</option>
+				                <option value="naver.com">naver.com</option>
+				                <option value="daum.net">daum.net</option>
+				                <option value="yahoo.com">yahoo.com</option>
+				                <option value="">직접입력</option>
 							</select>
-	                    	<p>이메일을 입력해 주세요.</p>
 						</td>
 					</tr>
 					<tr>
 						<th>비밀번호</th>
 						<td>
 						 	<div>
-	                     	<input type="password" id="txtPassword" class="input_text" placeholder="현재 비밀번호"><br>
-	                     	<p>특수문자(예: !@#$ 등) 1자 이상을 포함한 10~15 글자의 비밀번호로 설정해주세요.</p>
-	                     	<input type="password" id="txtPassword" class="input_text" placeholder="새 비밀번호"><br>
-	                     	<input type="password" id="txtPassword2" class="input_text" placeholder="비밀번호 확인"><br>
+	                     	<input type="password" id="txtPassword" class="input_text" placeholder="현재 비밀번호"><br><br>
+	                     	<input type="password" id="txtPassword" class="passwd_text" placeholder="새 비밀번호 (영문, 숫자, 특수문자 조합 8~16자리)"><br>
+	                     	<input type="password" id="txtPassword2" class="passwd_text" placeholder="비밀번호 확인"><br>
 	                     </div>
 						</td>
 					</tr>
