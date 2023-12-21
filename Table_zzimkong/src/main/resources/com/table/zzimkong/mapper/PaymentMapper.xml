@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.table.zzimkong.mapper.PaymentMapper">
+	<select id="selectResForPay" resultType="resForPay">
+		 SELECT *
+		 FROM reservation
+		 WHERE res_idx = #{res_idx}
+	</select>
+	
+	<select id="selectCoupon" resultType="user_id">
+		SELECT point_value, point_category 
+		FROM point
+		WHERE 
+			user_idx = #{user_idx} AND
+			point_status = 1 AND
+			
+	</select>
+</mapper>

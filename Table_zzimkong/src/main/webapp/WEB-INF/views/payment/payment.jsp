@@ -180,7 +180,7 @@
 					<div class="right_box_stiky">
 						<section id="rightSec01" class="section_box">
 							<div class="res_header">
-								<h2 id="res_h2">예약 상세</h2><h3 class="res_num">R231119_PR10<%--${} --%></h3>
+								<h2 id="res_h2">예약 상세</h2><h3 class="res_num">R231119_PR10<%--${param.res_num} --%></h3>
 							</div>
 							<div class="res_main">
 								<ul>
