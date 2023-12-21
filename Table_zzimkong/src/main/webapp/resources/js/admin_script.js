@@ -1,11 +1,3 @@
-// top 스크롤
-$(".topup").on("click",function(){
-	$('html, body').animate({
-		scrollTop: 0
-	}, 'slow');
-});
-
-
 // admin_user.jsp
 function user_withdraw() {
 	confirm("강제 탈퇴시키겠습니까?");

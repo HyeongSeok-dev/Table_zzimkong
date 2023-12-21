@@ -11,7 +11,7 @@
 <link href="${pageContext.request.contextPath }/resources/css/ceo_article.css" rel="stylesheet">
 <%-- 팝업창 js --%>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/ceo_detail.js"></script>
-
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
 	<header>
@@ -117,7 +117,7 @@
 		</div>
 	</section>
 	<footer>
-		<jsp:include page="../inc/admin_topup.jsp"/>
+		<jsp:include page="../inc/topup.jsp"/>
 	</footer>
 	<%-- <footer>
 		<jsp:include page="../inc/bottom.jsp"></jsp:include>

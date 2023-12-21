@@ -8,9 +8,10 @@
 <link href="${pageContext.request.contextPath}/resources/css/global.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resources/css/admin_article.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/admin_script.js"></script>
 </head>
-<body id="body">
+<body>
 	<header>
 		<jsp:include page="../inc/admin_top.jsp"/>
 	</header>
@@ -328,8 +329,8 @@
 	
 	<%-- 상단으로/bottom --%>
 	<footer>
-		<jsp:include page="../inc/admin_topup.jsp"/>
-	<%-- 	<jsp:include page="../inc/bottom_main.jsp"/> --%>
+		<jsp:include page="../inc/topup.jsp"/>
+		<jsp:include page="../inc/bottom_main.jsp"/>
 	</footer>
 </body>
 </html>

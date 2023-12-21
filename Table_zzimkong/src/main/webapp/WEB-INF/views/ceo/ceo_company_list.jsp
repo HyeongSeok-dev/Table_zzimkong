@@ -8,6 +8,7 @@
 <%-- 본문 css --%>
 <link href="${pageContext.request.contextPath }/resources/css/ceo_article.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
 	function companyRegistration() {
 		/* 팝업창 중앙 정렬 */
@@ -105,7 +106,7 @@
 		</div>
 	</section>
 	<footer>
-		<jsp:include page="../inc/admin_topup.jsp"/>
+		<jsp:include page="../inc/topup.jsp"/>
 	</footer>
 </body>
 </html>

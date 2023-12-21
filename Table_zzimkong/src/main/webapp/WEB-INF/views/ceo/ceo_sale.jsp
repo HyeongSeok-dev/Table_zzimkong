@@ -9,10 +9,9 @@
 <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
 <%-- 본문 css --%>
 <link href="${pageContext.request.contextPath }/resources/css/ceo_article.css" rel="stylesheet">
-<%-- 상단 이동 버튼 css --%>
-<script src="${pageContext.request.contextPath}/resources/js/admin_script.js"></script>
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
 </head>
-<body id="body">
+<body>
 	<header>
 		<jsp:include page="../inc/ceo_top.jsp"/>
 	</header>
@@ -383,7 +382,7 @@
 	<br><br><br>
 	<footer>
 		<%-- 상단으로 --%>
-		<jsp:include page="../inc/admin_topup.jsp"/>
+		<jsp:include page="../inc/topup.jsp"/>
 		<jsp:include page="../inc/bottom.jsp"></jsp:include>
 	</footer>
 </body>

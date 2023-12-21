@@ -5,13 +5,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="${pageContext.request.contextPath}/resources/css/global.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/css/global.css" rel="stylesheet"> <%-- 공통 CSS --%>
 <link href="${pageContext.request.contextPath}/resources/css/admin_article.css" rel="stylesheet">
-<%-- <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet"> --%>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/chart_script.js"></script>
+<script src="https://code.jquery.com/jquery-latest.min.js"></script> <%-- 항상 최신 jQuery 라이브러리를 불러오는 소스 --%>
+<script src="${pageContext.request.contextPath}/resources/js/admin_script.js"></script> <%-- 관리자 페이지의 모든 자바스크립트 --%>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script> <%-- Chart.js --%>
+<script src="${pageContext.request.contextPath}/resources/js/chart_script.js"></script> <%-- Chart.js --%>
 </head>
-<body id="body">
+<body>
 	<header>
 		<jsp:include page="../inc/admin_top.jsp"/>
 	</header>
@@ -53,7 +54,7 @@
 			<%-- Chart.js --%>
 			<h3>방문&가입자 현황</h3>
 
-			<button type="button" id="chart_time" onclick="myChart1()" >시간별</button>
+			<button type="button" id="chart_time" onclick="myChart1()">시간별</button>
 			<button type="button" id="chart_date" onclick="myChart2()">날짜별</button>
 
 			<table class="chart_table">
@@ -107,7 +108,7 @@
 		
 	<%-- 상단으로/bottom --%>
 	<footer>
-		<jsp:include page="../inc/admin_topup.jsp"/>
+		<jsp:include page="../inc/topup.jsp"/>
 		<jsp:include page="../inc/bottom_main.jsp"/>
 	</footer>
 </body>

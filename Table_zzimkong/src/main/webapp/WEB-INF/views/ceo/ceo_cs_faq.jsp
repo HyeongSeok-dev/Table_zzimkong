@@ -8,6 +8,7 @@
  <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
  <link href="${pageContext.request.contextPath }/resources/css/ceo_cs.css" rel="stylesheet">
  <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/ceo_top.css"> 
+ <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
 	function faqViewForm() {
 		/* 팝업창 중앙 정렬 */
@@ -107,7 +108,7 @@
 		</div>
 	</section>
 	<footer>
-		<jsp:include page="../inc/admin_topup.jsp"/>
+		<jsp:include page="../inc/topup.jsp"/>
 	</footer>
 <!-- 	<footer> -->
 <%-- 		<jsp:include page="bottom.jsp"></jsp:include> --%>

@@ -7,6 +7,7 @@
 <title>Insert title here</title>
  <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
  <link href="${pageContext.request.contextPath }/resources/css/admin_cs.css" rel="stylesheet">
+ <script src="https://code.jquery.com/jquery-latest.min.js"></script>
  <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/admin_top.css"> 
 <script type="text/javascript">
 	function qnaQuestionForm() {
@@ -158,8 +159,8 @@
 	</section>
 <	<%-- 상단으로/bottom --%>
 	<footer>
-		<jsp:include page="../inc/admin_topup.jsp"/>
-	<%-- 	<jsp:include page="../inc/bottom_main.jsp"/> --%>
+		<jsp:include page="../inc/topup.jsp"/>
+		<jsp:include page="../inc/bottom_main.jsp"/>
 	</footer>
 </body>
 </html>

@@ -131,22 +131,6 @@ td> select {
 	width: 93%;
 }
 
-
-/* top 버튼 CSS */
-.topup {
-    position: fixed;
-/*     bottom: 5%; */
-/*     right : 5%; */
-    bottom: 25px;
-    right: 30px;
-    cursor: pointer;
-}
-
-.topup:hover svg circle {
-    fill : #3FAFFC;
-}
-
-
 /* 검색창 CSS */
 #board-search {
 	float: right;
