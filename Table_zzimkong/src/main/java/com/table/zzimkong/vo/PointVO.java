@@ -1,6 +1,7 @@
 package com.table.zzimkong.vo;
 
-import java.sql.Date;
+
+import java.time.LocalDateTime;
 
 import lombok.Data;
 
@@ -12,5 +13,5 @@ public class PointVO {
 	private int point_category;
 	private int point_category_idx;
 	private int point_status;
-	private Date point_date;
+	private LocalDateTime point_date;
 }

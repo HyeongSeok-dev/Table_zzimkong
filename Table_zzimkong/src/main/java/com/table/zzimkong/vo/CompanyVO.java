@@ -1,6 +1,7 @@
 package com.table.zzimkong.vo;
 
-import java.sql.Date;
+
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -26,7 +27,6 @@ public class CompanyVO {
     
     private MultipartFile file;
     private String com_img;
-    /**/
     private int com_max_people;
     
     private boolean com_tag_date;
@@ -43,7 +43,7 @@ public class CompanyVO {
     private boolean com_tag_window;
     
     private String com_hyg_rank;
-    private Date com_hyg_start_date;
+    private LocalDateTime com_hyg_start_date;
     private int com_status;
     private int com_ad_grade;
 }
