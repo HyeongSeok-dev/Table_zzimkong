@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>top</title>
 <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/top1.css">  
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/top2.css">  
 </head>
 <body>
 <!-- <div> -->
