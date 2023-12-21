@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.table.zzimkong.vo.SearchVO;
+
 /**
  * Handles requests for the application home page.
  */
@@ -17,9 +19,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomeController {
 
 	@GetMapping("/")
-	public String main(Model model) {
-	    if(model.getAttribute("persons") == null || model.getAttribute("persons").equals(0)) {
-	        model.addAttribute("persons", 2);
+	public String main(Model model, SearchVO search) {
+	        search.setPersons(2);
 	        
 	        LocalDateTime defaultTime = LocalDateTime.now().plusHours(2);
 	        LocalDate date;
@@ -28,28 +29,37 @@ public class HomeController {
 	        if (defaultTime.toLocalTime().isAfter(LocalTime.of(22, 0)) || defaultTime.toLocalTime().isBefore(LocalTime.of(1, 0))) {
 	            date = LocalDate.now().plusDays(1);
 	            time = "13:00"; 
-	            model.addAttribute("display_date", "내일");
+	            search.setDisplayDate("내일");
 	        } else if (defaultTime.toLocalTime().isBefore(LocalTime.of(10, 0))) {
 	            date = LocalDate.now();
 	            time = "13:00"; 
-	            model.addAttribute("display_date", "오늘");
+	            search.setDisplayDate("오늘");
 	        } else {
-	            date = LocalDate.now();
-	            time = defaultTime.format(DateTimeFormatter.ofPattern("HH:mm")); // 현재 시간에서 2시간 더한 시간
-	            model.addAttribute("display_date", "오늘");
+	        	date = LocalDate.now();
+	            // 30분 단위로 반올림
+	            int minute = defaultTime.getMinute();
+	            if (minute % 30 >= 15) {
+	                defaultTime = defaultTime.plusMinutes(30 - (minute % 30));
+	            } else {
+	                defaultTime = defaultTime.minusMinutes(minute % 30);
+	            }
+	            time = defaultTime.format(DateTimeFormatter.ofPattern("HH:mm")); 
+	            search.setDisplayDate("오늘");
 	        }
 	        LocalTime localTime = LocalTime.parse(time, DateTimeFormatter.ofPattern("HH:mm"));
-	        displayTime = localTime.format(DateTimeFormatter.ofPattern("a h시 mm분"));
-
-	        model.addAttribute("date", date);
-	        model.addAttribute("time", time);
-	        model.addAttribute("display_time", displayTime);
-	        model.addAttribute("display_location", "전국");
+	        displayTime = localTime.format(DateTimeFormatter.ofPattern("a h:mm"));
+	        search.setDate(date.toString());
+	        search.setTime(time);
+	        search.setDisplayTime(displayTime);
+	        search.setLocation("전국");
 	        
-	    }
+	        model.addAttribute("search", search);
+	        
+	        System.out.println(search);
 	    
 	    return "main";
 	}
+	
 	@GetMapping("/main_1")
 	
 	public String main_1(Model model) {

@@ -57,6 +57,8 @@ $(document).ready(function() {
 		formData['persons'] = $("input[name='persons']").val();
 		formData['time'] = $("select[name='time']").val();
 		console.log("테이블 모달 데이터 적용됨: ", formData);
+		console.log($("#reservation-date").val());
+		console.log($("select[name='time']").val());
 		sendFormDataToCurrentPage();
 		$(this).closest('.modal').css('display', 'none');
 	});
@@ -85,6 +87,7 @@ $(document).ready(function() {
 		console.log("필터아이템 클릭됨");
 	});
 
+//디테일 리스트 열기
 	$(document).on('click', '.sub-list > li', function(event) {
 		event.stopPropagation();
 		var detailList = $(this).find('.detail-list');
@@ -112,12 +115,16 @@ $(document).ready(function() {
 	}
 
 	// li 클릭 이벤트 핸들러
-	$(document).on('click', '.filter-list li, .sub-list li, .detail-list li', function() {
+	$(document).on('click', '.filter-list li, .sub-list li, .detail-list li', function(event) {
 		var $li = $(this);
+		if ($(event.target).is('label') || $(event.target).parents('label').length) {
+		changeSelectedState($li); // 상태 변경
+			return;
+		}
 		changeSelectedState($li); // 상태 변경
 		checkRadioButton($li);    // 라디오 버튼 체크
 	});
-	
+
     // 최소 가격 셀렉트 박스 변경 이벤트
     $("select[name='minPrice']").change(function() {
         formData['minPrice'] = $(this).val();
@@ -141,7 +148,6 @@ $(document).ready(function() {
 		console.log("필터 모달 데이터 적용됨: ", formData);
 		sendFormDataToCurrentPage();
 		$('#filterModal').hide();
-		// 필요한 경우 여기서 서버로 데이터 전송
 	});
 
 	function sendFormDataToCurrentPage() {
@@ -183,7 +189,7 @@ $(document).ready(function() {
 			success: function(response) {
 				// 성공적으로 데이터를 받으면 실행할 코드
 				console.log("Response: ", response);
-				var Params = $.param({
+				var params = $.param({
 					context: response.context,
 					persons: response.persons,
 					time: response.time,
@@ -195,11 +201,12 @@ $(document).ready(function() {
 					mood: response.mood,
 					facilities: response.facilities,
 					tableType: response.tableType,
-					hygiene: response.hygiene
+					hygiene: response.hygiene,
+					displayDate: response.displayDate,
+					displayTime: response.displayTime
 				});
-
 				// product/list 페이지로 리디렉션
-				window.location.href = contextRoot + '/product/list?' + Params;
+				window.location.href = contextRoot + '/product/list?' + params;
 			},
 			error: function(error) {
 				// 에러가 발생했을 때 실행할 코드

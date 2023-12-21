@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css'
 	rel='stylesheet'>
 <link rel="stylesheet"
@@ -24,8 +25,10 @@
 					</div>
 				</div>
 				<div class="search_info">
-					<p class="info_text modal-opener">테이블 인원수 : ${persons}명, ${display_date}
-						${display_time}</p>
+					<p class="info_text modal-opener">
+						테이블 인원수 : ${search.persons}명, ${search.displayDate}
+						${search.displayTime}
+					</p>
 					<div id="table_modal" class="modal">
 						<span class="close">&times;</span>
 						<h2>언제 방문하시나요?</h2>
@@ -33,40 +36,40 @@
 							<div class="date-group">
 								<div class="date-label">예약 날짜</div>
 								<input type="date" id="reservation-date" name="date"
-									value="${date}">
+									value="${search.date}">
 							</div>
 							<div class="persons-group">
 							    <p>예약 인원</p>
-							    <input type="number" id="persons" name="persons" value="${persons}" min="1" max="20">
+							    <input type="number" id="persons" name="persons" value="${search.persons}" min="1" max="20">
 							</div>
 							<div class="time-group">
 								<p>예약 시간</p>
 							     <select name="time" id="time-select">
 							        <!-- 오전 시간대 -->
-							        <option value="11:00" ${time eq "11:00" ? 'selected' : ''}>오전 11시</option>
-							        <option value="11:30" ${time eq "11:30" ? 'selected' : ''}>오전 11시 30분</option>
-							        <option value="12:00" ${time eq "12:00" ? 'selected' : ''}>오전 12시</option>
-							        <option value="12:30" ${time eq "12:30" ? 'selected' : ''}>오전 12시 30분</option>
-							        <option value="13:00" ${time eq "13:00" ? 'selected' : ''}>오후 1시</option>
-							        <option value="13:30" ${time eq "13:30" ? 'selected' : ''}>오후 1시 30분</option>
-							        <option value="14:00" ${time eq "14:00" ? 'selected' : ''}>오후 2시</option>
-							        <option value="14:30" ${time eq "14:30" ? 'selected' : ''}>오후 2시 30분</option>
-							        <option value="15:00" ${time eq "15:00" ? 'selected' : ''}>오후 3시</option>
-							        <option value="15:30" ${time eq "15:30" ? 'selected' : ''}>오후 3시 30분</option>
-							        <option value="16:00" ${time eq "16:00" ? 'selected' : ''}>오후 4시</option>
-							        <option value="16:30" ${time eq "16:30" ? 'selected' : ''}>오후 4시 30분</option>
-							        <option value="17:00" ${time eq "17:00" ? 'selected' : ''}>오후 5시</option>
-							        <option value="17:30" ${time eq "17:30" ? 'selected' : ''}>오후 5시 30분</option>
-							        <option value="18:00" ${time eq "18:00" ? 'selected' : ''}>오후 6시</option>
-							        <option value="18:30" ${time eq "18:30" ? 'selected' : ''}>오후 6시 30분</option>
-							        <option value="19:00" ${time eq "19:00" ? 'selected' : ''}>오후 7시</option>
-							        <option value="19:30" ${time eq "19:30" ? 'selected' : ''}>오후 7시 30분</option>
-							        <option value="20:00" ${time eq "20:00" ? 'selected' : ''}>오후 8시</option>
-							        <option value="20:30" ${time eq "20:30" ? 'selected' : ''}>오후 8시 30분</option>
-							        <option value="21:00" ${time eq "21:00" ? 'selected' : ''}>오후 9시</option>
-							        <option value="21:30" ${time eq "21:30" ? 'selected' : ''}>오후 9시 30분</option>
-							        <option value="22:00" ${time eq "22:00" ? 'selected' : ''}>오후 10시</option>
-							        <option value="22:30" ${time eq "22:30" ? 'selected' : ''}>오후 10시 30분</option>
+							        <option value="11:00" ${search.time eq "11:00" ? 'selected' : ''}>오전 11시</option>
+							        <option value="11:30" ${search.time eq "11:30" ? 'selected' : ''}>오전 11시 30분</option>
+							        <option value="12:00" ${search.time eq "12:00" ? 'selected' : ''}>오전 12시</option>
+							        <option value="12:30" ${search.time eq "12:30" ? 'selected' : ''}>오전 12시 30분</option>
+							        <option value="13:00" ${search.time eq "13:00" ? 'selected' : ''}>오후 1시</option>
+							        <option value="13:30" ${search.time eq "13:30" ? 'selected' : ''}>오후 1시 30분</option>
+							        <option value="14:00" ${search.time eq "14:00" ? 'selected' : ''}>오후 2시</option>
+							        <option value="14:30" ${search.time eq "14:30" ? 'selected' : ''}>오후 2시 30분</option>
+							        <option value="15:00" ${search.time eq "15:00" ? 'selected' : ''}>오후 3시</option>
+							        <option value="15:30" ${search.time eq "15:30" ? 'selected' : ''}>오후 3시 30분</option>
+							        <option value="16:00" ${search.time eq "16:00" ? 'selected' : ''}>오후 4시</option>
+							        <option value="16:30" ${search.time eq "16:30" ? 'selected' : ''}>오후 4시 30분</option>
+							        <option value="17:00" ${search.time eq "17:00" ? 'selected' : ''}>오후 5시</option>
+							        <option value="17:30" ${search.time eq "17:30" ? 'selected' : ''}>오후 5시 30분</option>
+							        <option value="18:00" ${search.time eq "18:00" ? 'selected' : ''}>오후 6시</option>
+							        <option value="18:30" ${search.time eq "18:30" ? 'selected' : ''}>오후 6시 30분</option>
+							        <option value="19:00" ${search.time eq "19:00" ? 'selected' : ''}>오후 7시</option>
+							        <option value="19:30" ${search.time eq "19:30" ? 'selected' : ''}>오후 7시 30분</option>
+							        <option value="20:00" ${search.time eq "20:00" ? 'selected' : ''}>오후 8시</option>
+							        <option value="20:30" ${search.time eq "20:30" ? 'selected' : ''}>오후 8시 30분</option>
+							        <option value="21:00" ${search.time eq "21:00" ? 'selected' : ''}>오후 9시</option>
+							        <option value="21:30" ${search.time eq "21:30" ? 'selected' : ''}>오후 9시 30분</option>
+							        <option value="22:00" ${search.time eq "22:00" ? 'selected' : ''}>오후 10시</option>
+							        <option value="22:30" ${search.time eq "22:30" ? 'selected' : ''}>오후 10시 30분</option>
 							    </select>
 							</div>
 							<button id="confirm" type="button">적용</button>
@@ -74,7 +77,7 @@
 					</div>
 				</div>
 				<div class="filter_wrapper">
-						<div class="modal-opener seleted_location">${display_location} </div>
+						<div class="modal-opener seleted_location">${search.location} </div>
 					<img class="filter_icon modal-opener"
 						src="${pageContext.request.contextPath}/resources/img/search_filter.png"/>
 					<div id="filterModal" class="modal">
@@ -126,39 +129,39 @@
 											<li>부산
 												<ul class="detail-list location_busan">
 													<li><label for="부산_all"><input type="radio"
-															id="부산_all" name="location" value="부산_all"> 부산 전체</label></li>
+															id="부산_all" name="location" value="부산_all" ${search.location eq "부산_all" ? 'selected' : ''}> 부산 전체</label></li>
 													<li><label for="부산_강서구"><input type="radio"
-															id="부산_강서구" name="location" value="부산_강서구"> 강서구</label></li>
+															id="부산_강서구" name="location" value="부산_강서구" ${search.location eq "부산_강서구" ? 'selected' : ''}> 강서구</label></li>
 													<li><label for="부산_금정구"><input type="radio"
-															id="부산_금정구" name="location" value="부산_금정구"> 금정구</label></li>
+															id="부산_금정구" name="location" value="부산_금정구" ${search.location eq "부산_금정구" ? 'selected' : ''}> 금정구</label></li>
 													<li><label for="부산_남구"><input type="radio"
-															id="부산_남구" name="location" value="부산_남구"> 남구</label></li>
+															id="부산_남구" name="location" value="부산_남구" ${search.location eq "부산_남구" ? 'selected' : ''}> 남구</label></li>
 													<li><label for="부산_동구"><input type="radio"
-															id="부산_동구" name="location" value="부산_동구"> 동구</label></li>
+															id="부산_동구" name="location" value="부산_동구" ${search.location eq "부산_동구" ? 'selected' : ''}> 동구</label></li>
 													<li><label for="부산_동래구"><input type="radio"
-															id="부산_동래구" name="location" value="부산_동래구"> 동래구</label></li>
+															id="부산_동래구" name="location" value="부산_동래구" ${search.location eq "부산_동래구" ? 'selected' : ''}> 동래구</label></li>
 													<li><label for="부산_부산진구"><input type="radio"
-															id="부산_부산진구" name="location" value="부산_부산진구"> 부산진구</label></li>
+															id="부산_부산진구" name="location" value="부산_부산진구" ${search.location eq "부산_부산진구" ? 'selected' : ''}> 부산진구</label></li>
 													<li><label for="부산_북구"><input type="radio"
-															id="부산_북구" name="location" value="부산_북구"> 북구</label></li>
+															id="부산_북구" name="location" value="부산_북구" ${search.location eq "부산_북구" ? 'selected' : ''}> 북구</label></li>
 													<li><label for="부산_사상구"><input type="radio"
-															id="부산_사상구" name="location" value="부산_사상구"> 사상구</label></li>
+															id="부산_사상구" name="location" value="부산_사상구" ${search.location eq "부산_사상구" ? 'selected' : ''}> 사상구</label></li>
 													<li><label for="부산_사하구"><input type="radio"
-															id="부산_사하구" name="location" value="부산_사하구"> 사하구</label></li>
+															id="부산_사하구" name="location" value="부산_사하구" ${search.location eq "부산_사하구" ? 'selected' : ''}> 사하구</label></li>
 													<li><label for="부산_서구"><input type="radio"
-															id="부산_서구" name="location" value="부산_서구"> 서구</label></li>
+															id="부산_서구" name="location" value="부산_서구" ${search.location eq "부산_서구" ? 'selected' : ''}> 서구</label></li>
 													<li><label for="부산_수영구"><input type="radio"
-															id="부산_수영구" name="location" value="부산_수영구"> 수영구</label></li>
+															id="부산_수영구" name="location" value="부산_수영구" ${search.location eq "부산_수영구" ? 'selected' : ''}> 수영구</label></li>
 													<li><label for="부산_연제구"><input type="radio"
-															id="부산_연제구" name="location" value="부산_연제구"> 연제구</label></li>
+															id="부산_연제구" name="location" value="부산_연제구" ${search.location eq "부산_연제구" ? 'selected' : ''}> 연제구</label></li>
 													<li><label for="부산_영도구"><input type="radio"
-															id="부산_영도구" name="location" value="부산_영도구"> 영도구</label></li>
+															id="부산_영도구" name="location" value="부산_영도구" ${search.location eq "부산_영도구" ? 'selected' : ''}> 영도구</label></li>
 													<li><label for="부산_중구"><input type="radio"
-															id="부산_중구" name="location" value="부산_중구"> 중구</label></li>
+															id="부산_중구" name="location" value="부산_중구" ${search.location eq "부산_중구" ? 'selected' : ''}> 중구</label></li>
 													<li><label for="부산_해운대구"><input type="radio"
-															id="부산_해운대구" name="location" value="부산_해운대구"> 해운대구</label></li>
+															id="부산_해운대구" name="location" value="부산_해운대구" ${search.location eq "부산_해운대구" ? 'selected' : ''}> 해운대구</label></li>
 													<li><label for="부산_기장군"><input type="radio"
-															id="부산_기장군" name="location" value="부산_기장군"> 기장군</label></li>
+															id="부산_기장군" name="location" value="부산_기장군" ${search.location eq "부산_기장군" ? 'selected' : ''}> 기장군</label></li>
 												</ul>
 											</li>
 											<li>제주도
@@ -285,17 +288,17 @@
 									<li class="filter-item" id="food"><span>음식종류</span>
 										<ul class="sub-list">
 											<li><label for="한식"><input type="radio"
-													name="category" id="한식" value="한식" >한식</label></li>
+													name="category" id="한식" value="한식" ${search.category eq "한식" ? 'selected' : ''}>한식</label></li>
 											<li><label for="중식"><input type="radio"
-													name="category" id="중식" value="중식">중식</label></li>
+													name="category" id="중식" value="중식" ${search.category eq "중식" ? 'selected' : ''}>중식</label></li>
 											<li><label for="일식"><input type="radio"
-													name="category" id="일식" value="일식">일식</label></li>
+													name="category" id="일식" value="일식" ${search.category eq "일식" ? 'selected' : ''}>일식</label></li>
 											<li><label for="육류"><input type="radio"
-													name="category" id="육류" value="육류">육류</label></li>
+													name="category" id="육류" value="육류" ${search.category eq "육류" ? 'selected' : ''}>육류</label></li>
 											<li><label for="패밀리레스토랑"><input type="radio"
-													name="category" id="패밀리레스토랑" value="패밀리레스토랑">패밀리레스토랑</label></li>
+													name="category" id="패밀리레스토랑" value="패밀리레스토랑" ${search.category eq "패밀리레스토랑" ? 'selected' : ''}>패밀리레스토랑</label></li>
 											<li><label for="카페"><input type="radio"
-													name="category" id="카페" value="카페">카페</label></li>
+													name="category" id="카페" value="카페" ${search.category eq "카페" ? 'selected' : ''}>카페</label></li>
 										</ul></li>
 									<li class="filter-item" id="menu_price"><span>가격대</span>
 										<ul class="sub-list">

@@ -1,8 +1,6 @@
 package com.table.zzimkong.vo;
 
-
-import java.time.LocalDate;
-import java.time.LocalTime;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Data;
 
@@ -10,8 +8,10 @@ import lombok.Data;
 public class SearchVO {
 	String context;
 	int persons;
-	LocalTime time;
-	LocalDate date;
+	@DateTimeFormat(pattern = "h:mm")
+	String time;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	String date;
 	String location;
 	String category;
 	String minPrice;
