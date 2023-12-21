@@ -39,13 +39,14 @@
               <!-- 비밀번호 -->
               <input type="password" id="passwd" name="user_passwd" class="inputTxt inpBig"  style="text-align: left;"
               placeholder="비밀번호 (영문, 숫자, 특수문자 조합 8~16자리)" onkeydown="eventObj.loginByEnterKey(event)" maxlength="16" autocomplete="false">
-          
+             <span id = "checkPasswdResult" ></span>
               <!-- 비밀번호 확인 -->              
               <input type="password" id="passwd2" name="passwd2" class="inputTxt inpBig"  style="text-align: left;"
               placeholder="비밀번호 확인" onkeydown="eventObj.loginByEnterKey(event)" maxlength="16" autocomplete="false" >
              <span id = "checkPasswd2Result" ></span>
               <!-- 닉네임 -->
               <input type="text" id="u_nick" name="user_nick" class="inputTxt inpBig" placeholder="닉네임" onkeydown="eventObj.loginByEnterKey(event)" maxlength="100">
+              <span id="checkNickResult"></span>
               <!-- 이름 -->
               <input type="text" id="u_name" name="user_name" class="inputTxt inpBig" placeholder="이름" onkeydown="eventObj.loginByEnterKey(event)" maxlength="16" autocomplete="false">
               <!-- 생년월일 --><span class="bday">생년월일</span>

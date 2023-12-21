@@ -8,16 +8,36 @@
     <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/reservation.css">
 
+<style type="text/css">
+
+.out_block{
+	width: 600px;
+/* 	display: flex; */
+/* 	justify-content: center; */
+/* 		flex-direction: column; */
+}
+
+h1 {
+  color: #3FAFFC;
+}
+
+
+</style>
+
   </head>
   <body>
   
-  	<h1>테이블찜콩 회원가입을 시작합니다. </h1>
-  	<h3>약관에 동의해 주세요.</h3>
-  	<br>
-	<div class="section_box">
-		<section class="sec05">
-			<h2>테이블찜콩 서비스 이용약관 동의</h2>
-			<textarea readonly="readonly">
+  	<div class="out_block">
+  
+  	<h1>테이블찜콩 회원가입을 환영합니다. </h1>
+  	
+
+		  	<h3>약관에 동의해 주세요.</h3>
+		  	<br>
+			<div class="section_box">
+				<section class="sec05">
+					<h2>테이블찜콩 서비스 이용약관 동의</h2>
+					<textarea readonly="readonly">
 제 1조 (목 적)
 이 서비스 이용약관(이하 “약관”이라 합니다)은 테이블찜콩㈜(이하 “회사”라 합니다)가 제공하는 서비스와 관련하여 회사와 이용 고객(또는 회원) 간에 서비스의 이용 조건 및 절차, 회사와 회원 간의 권리, 의무 및 책임 사항 기타 필요한 사항을 규정함을 목적으로 합니다.
 
@@ -207,15 +227,15 @@
 
 공고일자 : 2023년 12월 21일
 시행일자 : 2020년 1월 21일
-			</textarea><br>
-				<input type="checkbox" name="agree" id="checkbox_agree"><span>[필수]이용약관에 동의합니다.</span>
-		</section>
-	</div>
-	
-	<div class="section_box">
-		<section class="sec05">
-			<h2>테이블찜콩 개인정보 수집 및 이용 동의</h2>
-			<textarea readonly="readonly">
+					</textarea><br>
+						<input type="checkbox" name="agree" id="checkbox_agree"><span>[필수]이용약관에 동의합니다.</span>
+				</section>
+			</div>
+			
+			<div class="section_box">
+				<section class="sec05">
+					<h2>테이블찜콩 개인정보 수집 및 이용 동의</h2>
+					<textarea readonly="readonly">
 이용목적 및 보유기간
 
 1)이용자 식별 및 본인여부 확인
@@ -234,17 +254,17 @@
 [항목]법정 생년월일
 [보유기간]회원 탈퇴 시까지
 
-º개인정보 수집 및 이용에 대해서는 거부할 수 있으며, 거부 시에는 회원가입이 불가합니다.
-º서비스 제공을 위해서 반드시 필요한 최소한의 개인정보이므로 동의를 하셔야 서비스 이용이 가능합니다.
-º이 외 서비스 이용과정에서 별도 동의를 통해 추가정보 수집이 있을 수 있습니다.
-			</textarea><br>
-				<input type="checkbox" name="agree" id="checkbox_agree"><span>[필수]개인정보 수집 및 이용에 동의합니다.</span>
-		</section>
-	</div>
-	
-	<div class="section_box">
-		<section class="sec05">
-			<h2>테이블찜콩 개인정보 수집 및 이용 동의</h2>
+*개인정보 수집 및 이용에 대해서는 거부할 수 있으며, 거부 시에는 회원가입이 불가합니다.
+*서비스 제공을 위해서 반드시 필요한 최소한의 개인정보이므로 동의를 하셔야 서비스 이용이 가능합니다.
+*이 외 서비스 이용과정에서 별도 동의를 통해 추가정보 수집이 있을 수 있습니다.
+					</textarea><br>
+						<input type="checkbox" name="agree" id="checkbox_agree"><span>[필수]개인정보 수집 및 이용에 동의합니다.</span>
+				</section>
+			</div>
+			
+			<div class="section_box">
+				<section class="sec05">
+					<h2>테이블찜콩 개인정보 수집 및 이용 동의</h2>
 			<textarea readonly="readonly">
 이용목적 및 보유기간
 
@@ -252,23 +272,22 @@
 [항목]이메일 주소, 휴대폰 번호
 [보유기간]회원 탈퇴 시까지
 
-º테이블찜콩 에서 제공하는 이벤트 등 다양한 정보를 휴대전화(문자), 이메일로 받아보실 수 있습니다.
-º중요 공지 및 알림 등은 설정에 관계없이 발송됩니다.
-º신동의 여부 및 자세한 설정은 마이페이지 > 광고성 정보수신 설정하기에서 언제든지 변경할 수 있으며, 수신동의를 철회할 경우, 광고성 정보를 발송하지 않습니다.
-			</textarea><br>
-				<input type="checkbox" name="agree" id="checkbox_agree"><span>[선택]광고성 정보 수신에 동의합니다.</span>
-		</section>
-	</div>
-	
-	<%--전체동의 --%>
-		<input type="checkbox" name="check" id="checkAll" onclick="checkbox_allCheck()">
-		<span class="all_agree">[전체동의]</span>
-									 유의사항에 전체 동의 합니다.
-		</span>
-		
-	<br><br><br><br>
-	<button type="button" class="payment" onclick="">다음</button>
-	<br><br>
+*테이블찜콩 에서 제공하는 이벤트 등 다양한 정보를 휴대전화(문자), 이메일로 받아보실 수 있습니다.
+*중요 공지 및 알림 등은 설정에 관계없이 발송됩니다.
+*신동의 여부 및 자세한 설정은 마이페이지 > 광고성 정보수신 설정하기에서 언제든지 변경할 수 있으며, 수신동의를 철회할 경우, 광고성 정보를 발송하지 않습니다.
+					</textarea><br>
+						<input type="checkbox" name="agree" id="checkbox_agree"><span>[선택]광고성 정보 수신에 동의합니다.</span>
+				</section>
+			</div>
+			
+			<%--전체동의 --%>
+				<input type="checkbox" name="check" id="checkAll" onclick="checkbox_allCheck()">
+				<span class="all_agree">[전체동의] 유의사항에 전체 동의 합니다.		</span>
+			<br><br><br><br>
+			<button type="button" class="payment" onclick="location.href='${pageContext.request.contextPath}/join/choice'">다음</button>
+			<br><br>
+    
+    </div><!-- out_block -->
     
     <footer>
     		      	<jsp:include page="../inc/bottom.jsp"></jsp:include>

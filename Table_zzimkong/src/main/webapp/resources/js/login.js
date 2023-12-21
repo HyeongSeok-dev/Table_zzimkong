@@ -1,6 +1,6 @@
-//회원가입 누르면 join_choice.jsp로 이동
-function joinChoice() {
-    window.location.href = "join/choice";
+//회원가입 누르면 join_agree.jsp로 이동
+function joinAgree() {
+    window.location.href = "join/agree";
 }
 
 //아이디찾기 누르면 팝업창(login_findId.jsp)이동
