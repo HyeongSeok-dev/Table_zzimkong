@@ -12,21 +12,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.table.zzimkong.service.AdminService;
 import com.table.zzimkong.service.MemberService;
+import com.table.zzimkong.vo.CompanyVO;
 import com.table.zzimkong.vo.MemberVO;
 
 @Controller
 public class AdminController {
+	/* 메모
+	 * - session.setAttribute("sId", "admin");	/// 세션 아이디 test
+	 *   AdminService.java 에 있음 => 로그인 기능 구현 후 수정!
+	 */
+	
 	@Autowired
 	private AdminService service;
 	
-	// 공통 - 관리자 페이지 접근 권한 설정
+	// 공통 - 관리자 페이지 접근 권한 설정 (service.checkAdminAccess)
 	
 	@GetMapping("admin/main") 
 	public String adminMain(HttpSession session, Model model) {
-		// 세션 아이디가 null 이거나 "admin" 이 아닐 경우 접근불가
-		session.setAttribute("sId", "admin");	/// 세션 아이디 test
-		String sId = (String) session.getAttribute("sId");
-		if (sId == null || !sId.equals("admin")) {
+		// 관리자 페이지 접근 제한
+		if (!service.checkAdminAccess(session)) {
 			model.addAttribute("msg", "잘못된 접근입니다");
 			return "fail_back";
 		}
@@ -37,46 +41,38 @@ public class AdminController {
 	// 관리자 페이지 - 회원 목록 조회
 	@GetMapping("admin/user") 
 	public String memberList(HttpSession session, Model model) {
-		// 세션 아이디가 null 이거나 "admin" 이 아닐 경우 접근불가
-		String sId = (String) session.getAttribute("sId");
-		session.setAttribute("sId", "admin");	/// 세션 아이디 test
-		if (sId == null || !sId.equals("admin")) {
+		// 관리자 페이지 접근 제한
+		if (!service.checkAdminAccess(session)) {
 			model.addAttribute("msg", "잘못된 접근입니다");
 			return "fail_back";
 		}
-		System.out.println("연결은 됨");
 		
-		// AdminService - adminMemberList() 메서드 호출하여 회원 목록 조회 요청
-		// => 파라미터 : 없음 / 리턴타입 : List<MemberVO>(memberList)
 		List<MemberVO> memberList = service.adminMemberList();
 		
-		// Model 객체에 회원 목록 조회 결과 저장
 		model.addAttribute("memberList", memberList);
 		
-		// 회원 목록 조회 페이지(admin/admin_user.jsp)로 포워딩
 		return "admin/admin_user";
-		
 	}
 	
+	// 관리자 페이지 - 업체 목록 조회 : 구현 중
 	@GetMapping("admin/company")
 	public String admin_company(HttpSession session, Model model) {
-		// 세션 아이디가 null 이거나 "admin" 이 아닐 경우 접근불가
-		String sId = (String) session.getAttribute("sId");
-		session.setAttribute("sId", "admin");	/// 세션 아이디 test
-		if (sId == null || !sId.equals("admin")) {
+		// 관리자 페이지 접근 제한
+		if (!service.checkAdminAccess(session)) {
 			model.addAttribute("msg", "잘못된 접근입니다");
 			return "fail_back";
 		}
+		
+		List<CompanyVO> companyList = service.adminCompanyList();
+		model.addAttribute("companyList", companyList);
 		
 		return "admin/admin_company";
 	}
 	
 	@GetMapping("admin/company/info")
 	public String admin_company_info(HttpSession session, Model model) {
-		// 세션 아이디가 null 이거나 "admin" 이 아닐 경우 접근불가
-		String sId = (String) session.getAttribute("sId");
-		session.setAttribute("sId", "admin");	/// 세션 아이디 test
-		if (sId == null || !sId.equals("admin")) {
+		// 관리자 페이지 접근 제한
+		if (!service.checkAdminAccess(session)) {
 			model.addAttribute("msg", "잘못된 접근입니다");
 			return "fail_back";
 		}
@@ -86,10 +82,8 @@ public class AdminController {
 	
 	@GetMapping("admin/review")
 	public String admin_review(HttpSession session, Model model) {
-		// 세션 아이디가 null 이거나 "admin" 이 아닐 경우 접근불가
-		String sId = (String) session.getAttribute("sId");
-		session.setAttribute("sId", "admin");	/// 세션 아이디 test
-		if (sId == null || !sId.equals("admin")) {
+		// 관리자 페이지 접근 제한
+		if (!service.checkAdminAccess(session)) {
 			model.addAttribute("msg", "잘못된 접근입니다");
 			return "fail_back";
 		}
@@ -99,10 +93,8 @@ public class AdminController {
 	
 	@GetMapping("admin/review/detail")
 	public String admin_review_detail(HttpSession session, Model model) {
-		// 세션 아이디가 null 이거나 "admin" 이 아닐 경우 접근불가
-		String sId = (String) session.getAttribute("sId");
-		session.setAttribute("sId", "admin");	/// 세션 아이디 test
-		if (sId == null || !sId.equals("admin")) {
+		// 관리자 페이지 접근 제한
+		if (!service.checkAdminAccess(session)) {
 			model.addAttribute("msg", "잘못된 접근입니다");
 			return "fail_back";
 		}
@@ -112,10 +104,8 @@ public class AdminController {
 
 	@GetMapping("admin/cs/qna")
 	public String admin_cs_qna(HttpSession session, Model model) {
-		// 세션 아이디가 null 이거나 "admin" 이 아닐 경우 접근불가
-		String sId = (String) session.getAttribute("sId");
-		session.setAttribute("sId", "admin");	/// 세션 아이디 test
-		if (sId == null || !sId.equals("admin")) {
+		// 관리자 페이지 접근 제한
+		if (!service.checkAdminAccess(session)) {
 			model.addAttribute("msg", "잘못된 접근입니다");
 			return "fail_back";
 		}
@@ -125,10 +115,8 @@ public class AdminController {
 	
 	@GetMapping("admin/cs/qna/answer/register")
 	public String admin_cs_qna_answer_register(HttpSession session, Model model) {
-		// 세션 아이디가 null 이거나 "admin" 이 아닐 경우 접근불가
-		String sId = (String) session.getAttribute("sId");
-		session.setAttribute("sId", "admin");	/// 세션 아이디 test
-		if (sId == null || !sId.equals("admin")) {
+		// 관리자 페이지 접근 제한
+		if (!service.checkAdminAccess(session)) {
 			model.addAttribute("msg", "잘못된 접근입니다");
 			return "fail_back";
 		}
@@ -138,10 +126,8 @@ public class AdminController {
 	
 	@GetMapping("admin/cs/qna/answer/view")
 	public String admin_cs_qna_answer_view(HttpSession session, Model model) {
-		// 세션 아이디가 null 이거나 "admin" 이 아닐 경우 접근불가
-		String sId = (String) session.getAttribute("sId");
-		session.setAttribute("sId", "admin");	/// 세션 아이디 test
-		if (sId == null || !sId.equals("admin")) {
+		// 관리자 페이지 접근 제한
+		if (!service.checkAdminAccess(session)) {
 			model.addAttribute("msg", "잘못된 접근입니다");
 			return "fail_back";
 		}
@@ -151,10 +137,8 @@ public class AdminController {
 	
 	@GetMapping("admin/cs/qna/answer/modify")
 	public String admin_cs_qna_answer_modify(HttpSession session, Model model) {
-		// 세션 아이디가 null 이거나 "admin" 이 아닐 경우 접근불가
-		String sId = (String) session.getAttribute("sId");
-		session.setAttribute("sId", "admin");	/// 세션 아이디 test
-		if (sId == null || !sId.equals("admin")) {
+		// 관리자 페이지 접근 제한
+		if (!service.checkAdminAccess(session)) {
 			model.addAttribute("msg", "잘못된 접근입니다");
 			return "fail_back";
 		}
@@ -164,10 +148,8 @@ public class AdminController {
 	
 	@GetMapping("admin/cs/qna/question")
 	public String admin_cs_qna_question(HttpSession session, Model model) {
-		// 세션 아이디가 null 이거나 "admin" 이 아닐 경우 접근불가
-		String sId = (String) session.getAttribute("sId");
-		session.setAttribute("sId", "admin");	/// 세션 아이디 test
-		if (sId == null || !sId.equals("admin")) {
+		// 관리자 페이지 접근 제한
+		if (!service.checkAdminAccess(session)) {
 			model.addAttribute("msg", "잘못된 접근입니다");
 			return "fail_back";
 		}
@@ -177,10 +159,8 @@ public class AdminController {
 
 	@GetMapping("admin/cs/faq")
 	public String admin_cs_faq(HttpSession session, Model model) {
-		// 세션 아이디가 null 이거나 "admin" 이 아닐 경우 접근불가
-		String sId = (String) session.getAttribute("sId");
-		session.setAttribute("sId", "admin");	/// 세션 아이디 test
-		if (sId == null || !sId.equals("admin")) {
+		// 관리자 페이지 접근 제한
+		if (!service.checkAdminAccess(session)) {
 			model.addAttribute("msg", "잘못된 접근입니다");
 			return "fail_back";
 		}
@@ -190,10 +170,8 @@ public class AdminController {
 	
 	@GetMapping("admin/cs/faq/register")
 	public String admin_cs_faq_register(HttpSession session, Model model) {
-		// 세션 아이디가 null 이거나 "admin" 이 아닐 경우 접근불가
-		String sId = (String) session.getAttribute("sId");
-		session.setAttribute("sId", "admin");	/// 세션 아이디 test
-		if (sId == null || !sId.equals("admin")) {
+		// 관리자 페이지 접근 제한
+		if (!service.checkAdminAccess(session)) {
 			model.addAttribute("msg", "잘못된 접근입니다");
 			return "fail_back";
 		}
@@ -203,10 +181,8 @@ public class AdminController {
 	
 	@GetMapping("admin/cs/faq/modify")
 	public String admin_cs_faq_modify(HttpSession session, Model model) {
-		// 세션 아이디가 null 이거나 "admin" 이 아닐 경우 접근불가
-		String sId = (String) session.getAttribute("sId");
-		session.setAttribute("sId", "admin");	/// 세션 아이디 test
-		if (sId == null || !sId.equals("admin")) {
+		// 관리자 페이지 접근 제한
+		if (!service.checkAdminAccess(session)) {
 			model.addAttribute("msg", "잘못된 접근입니다");
 			return "fail_back";
 		}
@@ -216,10 +192,8 @@ public class AdminController {
 	
 	@GetMapping("admin/cs/notice")
 	public String admin_cs_notice(HttpSession session, Model model) {
-		// 세션 아이디가 null 이거나 "admin" 이 아닐 경우 접근불가
-		String sId = (String) session.getAttribute("sId");
-		session.setAttribute("sId", "admin");	/// 세션 아이디 test
-		if (sId == null || !sId.equals("admin")) {
+		// 관리자 페이지 접근 제한
+		if (!service.checkAdminAccess(session)) {
 			model.addAttribute("msg", "잘못된 접근입니다");
 			return "fail_back";
 		}
@@ -229,10 +203,8 @@ public class AdminController {
 	
 	@GetMapping("admin/cs/notice/modify")
 	public String admin_cs_notice_modify(HttpSession session, Model model) {
-		// 세션 아이디가 null 이거나 "admin" 이 아닐 경우 접근불가
-		String sId = (String) session.getAttribute("sId");
-		session.setAttribute("sId", "admin");	/// 세션 아이디 test
-		if (sId == null || !sId.equals("admin")) {
+		// 관리자 페이지 접근 제한
+		if (!service.checkAdminAccess(session)) {
 			model.addAttribute("msg", "잘못된 접근입니다");
 			return "fail_back";
 		}
@@ -242,10 +214,8 @@ public class AdminController {
 	
 	@GetMapping("admin/cs/notice/register")
 	public String admin_cs_notice_register(HttpSession session, Model model) {
-		// 세션 아이디가 null 이거나 "admin" 이 아닐 경우 접근불가
-		String sId = (String) session.getAttribute("sId");
-		session.setAttribute("sId", "admin");	/// 세션 아이디 test
-		if (sId == null || !sId.equals("admin")) {
+		// 관리자 페이지 접근 제한
+		if (!service.checkAdminAccess(session)) {
 			model.addAttribute("msg", "잘못된 접근입니다");
 			return "fail_back";
 		}

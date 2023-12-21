@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -79,7 +80,7 @@
 								<td>업주회원</td>
 							</c:when>
 							<c:when test="${member.user_category eq '3'}">
-								<td>관리자</td> <%-- 혹시나 몰라서;; --%>
+								<td>관리자</td>
 							</c:when>
 							<c:otherwise>
 								<td style="color:red;">알수없음</td>
@@ -87,7 +88,10 @@
 						</c:choose>
 						<td>${member.user_id}</td>
 						<td>${member.user_nick}</td>
-						<td>${member.user_pay_point + member.user_event_point}p</td>
+						<td>
+							<%-- 숫자값 : 쉼표로 구분된 형식으로 --%>
+							<fmt:formatNumber value="${member.point_value}" groupingUsed="true"/>p
+						</td>
 						<td>${member.user_reg_date}</td>
 						<%-- 회원 상태 --%>
 						<c:choose>

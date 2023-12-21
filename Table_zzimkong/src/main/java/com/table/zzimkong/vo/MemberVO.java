@@ -19,6 +19,7 @@ public class MemberVO {
 	private String user_img;
 	private int user_status;
 	private int user_category;
+	private int point_value; // 포인트
 	
 } //MemberVO
 

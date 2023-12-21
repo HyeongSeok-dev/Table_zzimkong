@@ -6,10 +6,20 @@
 	
 	<!-- 관리자 - 회원 목록 조회 -->
 	<select id="selectAdminMemberList">
-		SELECT *
-		FROM user
+		SELECT u.*, p.point_value
+		FROM user u
+		LEFT JOIN point p
+		ON u.user_idx = p.user_idx
 		WHERE user_id != 'admin'
 		ORDER BY user_idx DESC;
 	</select>
+	
+	<!-- 관리자 - 업체 목록 조회 -->
+	<select id="selectAdminCompanyList">
+		SELECT *
+		FROM company
+		ORDER BY com_id DESC;
+	</select>
+
 
 </mapper>
