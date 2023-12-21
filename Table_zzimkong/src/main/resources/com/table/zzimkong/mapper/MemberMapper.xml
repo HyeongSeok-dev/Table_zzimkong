@@ -40,8 +40,6 @@
 		, #{com_num}
 		, now()
 		, #{user_phone}
-		, 0
-		, 0
 		, 1
 		, 1
 		, 1
