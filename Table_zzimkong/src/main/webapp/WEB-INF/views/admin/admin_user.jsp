@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,9 +9,10 @@
 <link href="${pageContext.request.contextPath}/resources/css/global.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resources/css/admin_article.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/admin_script.js"></script>
 </head>
-<body id="body">
+<body>
 	<header>
 		<jsp:include page="../inc/admin_top.jsp"/>
 	</header>
@@ -24,6 +26,15 @@
 		            <div class="search-window">
 		                <form action="">
 		                    <div class="search-wrap">
+	
+<!-- 			                   	 <select id="search_"> -->
+<!-- 								    <option value="member_all" selected>회원구분</option> -->
+<!-- 								    <option value="member_admin">관리자</option> -->
+<!-- 								    <option value="member_user">일반회원</option> -->
+<!-- 								    <option value="member_ceo">업주회원</option> -->
+<!-- 			                   	 </select> -->
+								
+								
 		                        <input id="search" type="search" name="" placeholder="검색어를 입력해주세요." value="">
 								<button type="submit" class="btn btn-dark">
 									<i class="material-icons search_icon">&#xe8b6;</i>
@@ -55,50 +66,54 @@
 					<th>회원상태</th>
 					<th>탈퇴</th>	
 				</tr>
-				<tr>
-					<td>1</td>
-					<td>관리자</td>
-					<td>admin</td>
-					<td>admin</td>
-					<td>99,999</td>
-					<td>2023/12/03 00:00</td>
-					<td>정상</td>
-					<td>
-						<button type="button" onclick="user_withdraw()" class="button_cancel">탈퇴</button>
-					</td>	
-				</tr>
-				<tr>
-					<td>2</td>
-					<td>일반회원</td>
-					<td>user</td>
-					<td>Nick</td>
-					<td>5,000</td>
-					<td>2023/12/25 14:00</td>
-					<td>휴먼/정지</td>
-					<td>
-						<button type="button" onclick="user_withdraw()" class="button_cancel">탈퇴</button>
-					</td>	
-				</tr>
-				<tr>
-					<td>3</td>
-					<td>업주회원</td>
-					<td>owner</td>
-					<td>사장</td>
-					<td>10,500</td>
-					<td>2023/12/26 23:21</td>
-					<td>탈퇴</td>
-					<td>
-						<button type="button" onclick="user_withdraw()" class="button_cancel">탈퇴</button>
-					</td>	
-				</tr>
+				<%-- 아래로 회원 목록 출력 --%>
+				<c:forEach var="member" items="#{memberList}">
+					<tr>
+						<td>${member.user_idx}</td>
+						<%-- 회원 구분 --%>
+						<c:choose>
+							<c:when test="${member.user_category eq '1'}">
+								<td>일반회원</td>
+							</c:when>
+							<c:when test="${member.user_category eq '2'}">
+								<td>업주회원</td>
+							</c:when>
+							<c:when test="${member.user_category eq '3'}">
+								<td>관리자</td> <%-- 혹시나 몰라서;; --%>
+							</c:when>
+							<c:otherwise>
+								<td style="color:red;">알수없음</td>
+							</c:otherwise>
+						</c:choose>
+						<td>${member.user_id}</td>
+						<td>${member.user_nick}</td>
+						<td>${member.user_pay_point + member.user_event_point}p</td>
+						<td>${member.user_reg_date}</td>
+						<%-- 회원 상태 --%>
+						<c:choose>
+							<c:when test="${member.user_status eq '1'}">
+								<td>정상</td>
+							</c:when>
+							<c:when test="${member.user_status eq '2'}">
+								<td>휴면/정지</td>
+							</c:when>
+							<c:when test="${member.user_status eq '3'}">
+								<td>탈퇴</td>
+							</c:when>
+						</c:choose>
+						<td>
+							<button type="button" onclick="user_withdraw()" class="button_cancel">탈퇴</button>
+						</td>	
+					</tr>
+				</c:forEach>
 			</table>
 		</div>
 	</section>
 
 	<%-- 상단으로/bottom --%>
 	<footer>
-		<jsp:include page="../inc/admin_topup.jsp"/>
-		<%-- <jsp:include page="../inc/bottom_main.jsp"/> --%>
+		<jsp:include page="../inc/topup.jsp"/>
+		<jsp:include page="../inc/bottom_main.jsp"/>
 	</footer>
 </body>
 </html>
