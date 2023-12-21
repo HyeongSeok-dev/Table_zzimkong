@@ -54,7 +54,16 @@ html {
     background: #3FAFFC;
     display: flex;
     justify-content: space-around;
-    align-items: baseline;
+    align-items: center;
+    
+}
+
+.headerMenu_search_bar { 
+    width: 100%; 
+    background: #3FAFFC;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
 } 
 
 img[alt="logo1"] {
@@ -89,7 +98,10 @@ img[alt="logo2"] {
 }
 
 .top_menu {
+	width : 100px;
 	height: 30px;
+	display: flex;
+	justify-content: space-evenly;
 }
 
 #name:hover {
@@ -104,7 +116,10 @@ img[alt="logo2"] {
 }
 .top_search_button {
 	position: relative;
-	bottom: 10px;
+	/* bottom: 15px; */
 	right: 10px;
 	width: 600px;
+}
+.li {
+	list-style: none;
 }

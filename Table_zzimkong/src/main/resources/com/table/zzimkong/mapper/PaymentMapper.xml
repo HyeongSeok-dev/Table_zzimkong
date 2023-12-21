@@ -11,7 +11,7 @@
 		 WHERE res_idx = #{res_idx}
 	</select>
 	
-	<select id="selectCoupon" resultType="user_id">
+	<select id="selectPoint" resultType="user_id">
 		SELECT point_value, point_category 
 		FROM point
 		WHERE 

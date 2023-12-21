@@ -15,7 +15,7 @@
 <!-- 		<a  href="/"></a>  -->
 <!-- 	</div> -->
 <!-- </div> -->
-	<div class="headerMenu">
+	<div class="headerMenu_search_bar">
 		<div class="top_logo_img">
 			<img alt="logo1" id="logo1" src="${pageContext.request.contextPath }/resources/img/logo1_2.png">
 			<img alt="logo2" id="logo2" src="${pageContext.request.contextPath }/resources/img/logo3_2.png">
@@ -27,27 +27,27 @@
 			<c:choose>
 				<c:when test="${empty sessionScope.sId }"> <%-- 미 로그인 시 --%>
 					<%--로그인 --%>
-					<li><a href="${pageContext.request.contextPath}/login">
-					<img src="${pageContext.request.contextPath}/resources/img/user.png"
-					style="width: 30px; height: 30px;"></a></li>
+					<li class="li"><a href="${pageContext.request.contextPath}/login">
+					<img src="${pageContext.request.contextPath}/resources/img/top_user.png"
+					style="width: 25px; height: 25px;"></a></li>
 					<%--고객센터 --%>
-					<li><a href="${pageContext.request.contextPath}/member/cs/faq">
-					<img  src="${pageContext.request.contextPath}/resources/img/headset.png"
-					style="width: 30px; height: 30px;"></a></li>
+					<li class="li"><a href="${pageContext.request.contextPath}/member/cs/faq">
+					<img  src="${pageContext.request.contextPath}/resources/img/top_headset.png"
+					style="width: 25px; height: 25px;"></a></li>
 				</c:when>
 				<c:otherwise>
 					<%--마이페이지 --%>
-					<li><a href="${pageContext.request.contextPath}/my/list">
-					<img src="${pageContext.request.contextPath}/resources/img/user.png"
-						style="width: 30px; height: 30px;"></a></li>
+					<li class="li"><a href="${pageContext.request.contextPath}/my/list">
+					<img src="${pageContext.request.contextPath}/resources/img/top_user.png"
+						style="width: 25px; height: 25px;"></a></li>
 					<%--알림 --%>
-					<li><a href="${pageContext.request.contextPath}/#">
-					<img src="${pageContext.request.contextPath}/resources/img/bell.png"
-					style="width: 30px; height: 30px;"></a></li>
+					<li class="li"><a href="${pageContext.request.contextPath}/#">
+					<img src="${pageContext.request.contextPath}/resources/img/top_bell.png"
+					style="width: 25px; height: 25px;"></a></li>
 					<%--고객센터 --%>
-					<li><a href="${pageContext.request.contextPath}/member/cs/faq">
-					<img  src="${pageContext.request.contextPath}/resources/img/headset.png"
-					style="width: 30px; height: 30px;"></a></li>
+<%-- 				<li><a href="${pageContext.request.contextPath}/member/cs/faq"> --%>
+<%-- 				<img  src="${pageContext.request.contextPath}/resources/img/headset.png" --%>
+<!-- 				style="width: 30px; height: 30px;"></a></li> -->
 				</c:otherwise>
 			</c:choose>
 		</div>

@@ -318,4 +318,14 @@ public class HomeController {
 		return "cs/member_cs_qna_view";
 	}
 	
+	@GetMapping("top2")
+	public String top2() {
+		return "inc/top2";
+	}
+	
+	@GetMapping("top2/searchbar")
+	public String top2_search_bar() {
+		return "inc/top2_search_bar";
+	}
+	
 }
