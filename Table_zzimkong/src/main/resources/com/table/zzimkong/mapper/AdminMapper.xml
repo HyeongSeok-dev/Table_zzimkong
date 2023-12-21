@@ -21,5 +21,4 @@
 		ORDER BY com_id DESC;
 	</select>
 
-
 </mapper>
