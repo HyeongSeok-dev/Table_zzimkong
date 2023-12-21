@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -21,40 +22,43 @@ import com.table.zzimkong.vo.SearchVO;
 
 @Controller
 public class ProductController {
+
+	@RequestMapping("/product/searchResult")
+	public ResponseEntity<?> search_result(@RequestBody SearchVO searchInfo) {
+
+		LocalDate localDate = LocalDate.parse(searchInfo.getDate());
+		LocalTime localTime = LocalTime.parse(searchInfo.getTime());
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("h:mm");
+		
+		if (LocalDate.now().equals(localDate)) {
+	        searchInfo.setDisplayDate("오늘");
+	    } else if (LocalDate.now().plusDays(1).equals(localDate)) {
+	        searchInfo.setDisplayDate("내일");
+	    } else {
+	        searchInfo.setDisplayDate(localDate.toString());
+	    }
+
+		if (localTime.isBefore(LocalTime.NOON)) {
+	        searchInfo.setDisplayTime("오전 " + localTime.format(formatter));
+	    } else {
+	        searchInfo.setDisplayTime("오후 " + localTime.format(formatter));
+	    }
+
+		System.out.println(searchInfo.toString());
+		return ResponseEntity.ok(searchInfo);
+	}
+
+	@GetMapping("product/list")
+	public String product_list(Model model, SearchVO search) {
+		
+		System.out.println("리스트에서 받음" + search);
+        model.addAttribute("search", search);
+		return "product/product_list";
+	}
 	
 	@GetMapping("product/detail")
 	public String product_detail() {
 		
 		return "product/product_detail";
 	}
-	
-	@GetMapping("product/list")
-	public String product_list(Model model) {
-		return "product/product_list";
-	}
-	
-	@RequestMapping("/product/searchResult")
-	public ResponseEntity<?> search_result(@RequestBody SearchVO searchInfo) {
-
-			
-		if(LocalDate.now().equals(searchInfo.getDate())) {
-			searchInfo.setDisplayDate("오늘");
-		}else if (LocalDate.now().plusDays(1).equals(searchInfo.getDate())) {
-			searchInfo.setDisplayDate("내일");
-		}else {
-			searchInfo.setDisplayDate(searchInfo.getDate().toString());
-		}
-		
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm");
-		
-		if(searchInfo.getTime().isBefore(LocalTime.NOON)) {
-			searchInfo.setDisplayTime("오전 " + searchInfo.getTime().format(formatter));
-		} else {
-			searchInfo.setDisplayTime("오후 " + searchInfo.getTime().format(formatter));
-	    }
-		
-		System.out.println(searchInfo.toString());
-		return ResponseEntity.ok(searchInfo);
-	}
-	
 }

@@ -81,8 +81,7 @@ public class MemberController {
 	@ResponseBody
 	@GetMapping("join/MemberCheckDupId")
 	public String checkDupId(MemberVO member) {
-		MemberVO dbMember = service.getMember(member);
-//		System.out.println(dbMember.getUser_id());
+		MemberVO dbMember = service.getId(member);
 		//조회 결과 판별
 		if(dbMember == null) {
 			return "false";
@@ -91,6 +90,19 @@ public class MemberController {
 		}
 		
 	} //checkDupId()
+	
+	//MemberCheckDupNick(닉네임 중복확인)에대한 비지니스 로직 처리===============================
+	@ResponseBody
+	@GetMapping("join/MemberCheckDupNick")
+	public String checkDupNick(MemberVO member) {
+		MemberVO dbMember = service.getNick(member);
+		
+		if(dbMember == null) {
+			return "false";
+		}else {
+			return "true";
+		}
+	} //MemberCheckDupNick()
 	
 	
 }//MemberController

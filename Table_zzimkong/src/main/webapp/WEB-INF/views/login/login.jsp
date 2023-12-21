@@ -53,7 +53,7 @@
 		    </div>
 		    <ul class="siteList">
 		      <li>
-		        <div onclick="joinChoice()">
+		        <div onclick="joinAgree()">
 		          회원가입
 		        </div>
 		      </li>

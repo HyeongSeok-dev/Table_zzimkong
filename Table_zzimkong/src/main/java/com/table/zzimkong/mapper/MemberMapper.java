@@ -9,7 +9,10 @@ public interface MemberMapper {
 
 	int insertMember(MemberVO member);
 
-	//회원 상제정보 조회 요청
-	MemberVO selectMember(MemberVO member);
+	//회원 아이디정보 조회 요청
+	MemberVO selectId(MemberVO member);
+
+	//회원 닉네임정보 조회 요청
+	MemberVO selectNick(MemberVO member);
 	
 } //MemberMapper

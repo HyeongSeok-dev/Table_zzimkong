@@ -20,7 +20,7 @@
 	<!-- 	</header> -->
 						<!-- 제일 바깥테두리를 위한 div -->
 			<div class="choiceBox">
-				<h1>테이블찜콩 회원가입을 환영합니다.</h1>
+		
 			
 				<div class="outBox">
 					<!-- 일반회원 테두리를 위한 div -->
