@@ -1,6 +1,8 @@
 package com.table.zzimkong.controller;
 
 
+import javax.servlet.http.*;
+
 import org.apache.ibatis.reflection.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
@@ -52,12 +54,7 @@ public class MemberController {
 	public String login_find_passwd() {
 		return "login/login_find_passwd";
 	}
-	
-	@GetMapping("login")
-	public String login() {
-		return "login/login";
-	}
-	
+
 	
 	
 	
@@ -103,6 +100,25 @@ public class MemberController {
 			return "true";
 		}
 	} //MemberCheckDupNick()
+	
+	
+	//==========================================================================
+		// [ 로그인]
+		
+		@GetMapping("login")
+		public String login() {
+			return "login/login";
+		}
+		
+		@PostMapping("loginPro") 
+		public String longinPro(MemberVO member, HttpSession session, Model model) {
+			
+//			System.out.println(member);
+			MemberVO dbMember = service.getMember(member);
+			System.out.println(dbMember);
+			
+			return "redirect:/";
+		}	
 	
 	
 }//MemberController

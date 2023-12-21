@@ -24,14 +24,11 @@
 		  </div>
 		    <div class="nmLoginWrap">
 		      <div class="loginBox">
-		        <form id="loginForm" method="POST" target="_self" >
-		          <input type="hidden" name="URL" value="https://www.ahnlab.com/kr/site/login/userLogin.do">
-		          <input type="hidden" name="fromUrl" value="">
-		          <input type="hidden" name="brandId" value="">
+		        <form action="loginPro" id="loginForm" method="post">
 		          <!-- ID입력 텍스트박스 -->
-		          <input type="text" id="userId" name="userId" class="inputTxt inpBig" placeholder="아이디" onkeydown="eventObj.loginByEnterKey(event)" maxlength="100">
+		          <input type="text" id="userId" name="user_id" class="inputTxt inpBig" placeholder="아이디" onkeydown="eventObj.loginByEnterKey(event)" maxlength="100">
 		          <!-- 비밀번호 입력 텍스트박스 -->
-		          <input type="password" id="passwd" name="passwd" class="inputTxt inpBig" style="text-align: left;"
+		          <input type="password" id="passwd" name="user_passwd" class="inputTxt inpBig" style="text-align: left;"
 		           placeholder="비밀번호 (영문, 숫자, 특수문자 조합 8~16자리)" onkeydown="eventObj.loginByEnterKey(event)" maxlength="16" autocomplete="false">
 		           <!-- ID기억하기 체크박스 -->
 		           <div class="check" align="left">
