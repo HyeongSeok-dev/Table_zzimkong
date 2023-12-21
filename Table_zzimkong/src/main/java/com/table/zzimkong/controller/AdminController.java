@@ -30,8 +30,9 @@ public class AdminController {
 	@GetMapping("admin/main") 
 	public String adminMain(HttpSession session, Model model) {
 		// 관리자 페이지 접근 제한
-		if (!service.checkAdminAccess(session)) {
-			model.addAttribute("msg", "잘못된 접근입니다");
+		session.setAttribute("sId", "admin");
+		
+		if(!isvalid((String)session.getAttribute("sId"))) {
 			return "fail_back";
 		}
 		
@@ -42,8 +43,7 @@ public class AdminController {
 	@GetMapping("admin/user") 
 	public String memberList(HttpSession session, Model model) {
 		// 관리자 페이지 접근 제한
-		if (!service.checkAdminAccess(session)) {
-			model.addAttribute("msg", "잘못된 접근입니다");
+		if(!isvalid((String)session.getAttribute("sId"))) {
 			return "fail_back";
 		}
 		
@@ -58,8 +58,7 @@ public class AdminController {
 	@GetMapping("admin/company")
 	public String admin_company(HttpSession session, Model model) {
 		// 관리자 페이지 접근 제한
-		if (!service.checkAdminAccess(session)) {
-			model.addAttribute("msg", "잘못된 접근입니다");
+		if(!isvalid((String)session.getAttribute("sId"))) {
 			return "fail_back";
 		}
 		
@@ -72,8 +71,7 @@ public class AdminController {
 	@GetMapping("admin/company/info")
 	public String admin_company_info(HttpSession session, Model model) {
 		// 관리자 페이지 접근 제한
-		if (!service.checkAdminAccess(session)) {
-			model.addAttribute("msg", "잘못된 접근입니다");
+		if(!isvalid((String)session.getAttribute("sId"))) {
 			return "fail_back";
 		}
 		
@@ -83,8 +81,7 @@ public class AdminController {
 	@GetMapping("admin/review")
 	public String admin_review(HttpSession session, Model model) {
 		// 관리자 페이지 접근 제한
-		if (!service.checkAdminAccess(session)) {
-			model.addAttribute("msg", "잘못된 접근입니다");
+		if(!isvalid((String)session.getAttribute("sId"))) {
 			return "fail_back";
 		}
 				
@@ -94,8 +91,7 @@ public class AdminController {
 	@GetMapping("admin/review/detail")
 	public String admin_review_detail(HttpSession session, Model model) {
 		// 관리자 페이지 접근 제한
-		if (!service.checkAdminAccess(session)) {
-			model.addAttribute("msg", "잘못된 접근입니다");
+		if(!isvalid((String)session.getAttribute("sId"))) {
 			return "fail_back";
 		}
 				
@@ -105,8 +101,7 @@ public class AdminController {
 	@GetMapping("admin/cs/qna")
 	public String admin_cs_qna(HttpSession session, Model model) {
 		// 관리자 페이지 접근 제한
-		if (!service.checkAdminAccess(session)) {
-			model.addAttribute("msg", "잘못된 접근입니다");
+		if(!isvalid((String)session.getAttribute("sId"))) {
 			return "fail_back";
 		}
 				
@@ -116,8 +111,7 @@ public class AdminController {
 	@GetMapping("admin/cs/qna/answer/register")
 	public String admin_cs_qna_answer_register(HttpSession session, Model model) {
 		// 관리자 페이지 접근 제한
-		if (!service.checkAdminAccess(session)) {
-			model.addAttribute("msg", "잘못된 접근입니다");
+		if(!isvalid((String)session.getAttribute("sId"))) {
 			return "fail_back";
 		}
 				
@@ -127,8 +121,7 @@ public class AdminController {
 	@GetMapping("admin/cs/qna/answer/view")
 	public String admin_cs_qna_answer_view(HttpSession session, Model model) {
 		// 관리자 페이지 접근 제한
-		if (!service.checkAdminAccess(session)) {
-			model.addAttribute("msg", "잘못된 접근입니다");
+		if(!isvalid((String)session.getAttribute("sId"))) {
 			return "fail_back";
 		}
 				
@@ -138,8 +131,7 @@ public class AdminController {
 	@GetMapping("admin/cs/qna/answer/modify")
 	public String admin_cs_qna_answer_modify(HttpSession session, Model model) {
 		// 관리자 페이지 접근 제한
-		if (!service.checkAdminAccess(session)) {
-			model.addAttribute("msg", "잘못된 접근입니다");
+		if(!isvalid((String)session.getAttribute("sId"))) {
 			return "fail_back";
 		}
 				
@@ -149,8 +141,7 @@ public class AdminController {
 	@GetMapping("admin/cs/qna/question")
 	public String admin_cs_qna_question(HttpSession session, Model model) {
 		// 관리자 페이지 접근 제한
-		if (!service.checkAdminAccess(session)) {
-			model.addAttribute("msg", "잘못된 접근입니다");
+		if(!isvalid((String)session.getAttribute("sId"))) {
 			return "fail_back";
 		}
 				
@@ -160,8 +151,7 @@ public class AdminController {
 	@GetMapping("admin/cs/faq")
 	public String admin_cs_faq(HttpSession session, Model model) {
 		// 관리자 페이지 접근 제한
-		if (!service.checkAdminAccess(session)) {
-			model.addAttribute("msg", "잘못된 접근입니다");
+		if(!isvalid((String)session.getAttribute("sId"))) {
 			return "fail_back";
 		}
 				
@@ -171,8 +161,7 @@ public class AdminController {
 	@GetMapping("admin/cs/faq/register")
 	public String admin_cs_faq_register(HttpSession session, Model model) {
 		// 관리자 페이지 접근 제한
-		if (!service.checkAdminAccess(session)) {
-			model.addAttribute("msg", "잘못된 접근입니다");
+		if(!isvalid((String)session.getAttribute("sId"))) {
 			return "fail_back";
 		}
 				
@@ -182,8 +171,7 @@ public class AdminController {
 	@GetMapping("admin/cs/faq/modify")
 	public String admin_cs_faq_modify(HttpSession session, Model model) {
 		// 관리자 페이지 접근 제한
-		if (!service.checkAdminAccess(session)) {
-			model.addAttribute("msg", "잘못된 접근입니다");
+		if(!isvalid((String)session.getAttribute("sId"))) {
 			return "fail_back";
 		}
 				
@@ -193,8 +181,7 @@ public class AdminController {
 	@GetMapping("admin/cs/notice")
 	public String admin_cs_notice(HttpSession session, Model model) {
 		// 관리자 페이지 접근 제한
-		if (!service.checkAdminAccess(session)) {
-			model.addAttribute("msg", "잘못된 접근입니다");
+		if(!isvalid((String)session.getAttribute("sId"))) {
 			return "fail_back";
 		}
 				
@@ -204,8 +191,7 @@ public class AdminController {
 	@GetMapping("admin/cs/notice/modify")
 	public String admin_cs_notice_modify(HttpSession session, Model model) {
 		// 관리자 페이지 접근 제한
-		if (!service.checkAdminAccess(session)) {
-			model.addAttribute("msg", "잘못된 접근입니다");
+		if(!isvalid((String)session.getAttribute("sId"))) {
 			return "fail_back";
 		}
 				
@@ -215,11 +201,18 @@ public class AdminController {
 	@GetMapping("admin/cs/notice/register")
 	public String admin_cs_notice_register(HttpSession session, Model model) {
 		// 관리자 페이지 접근 제한
-		if (!service.checkAdminAccess(session)) {
-			model.addAttribute("msg", "잘못된 접근입니다");
+		if(!isvalid((String)session.getAttribute("sId"))) {
 			return "fail_back";
 		}
 				
 		return "admin/admin_cs_notice_register";
+	}
+	
+	public boolean isvalid(String sId) {
+	        if (sId == null || !sId.equals("admin")) {
+	            return false;
+	        }else {
+	        	return true;
+	        }
 	}
 }
