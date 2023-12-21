@@ -73,7 +73,7 @@ $(document).ready(function() {
 		//    alert('회원 가입이 완료되었습니다.');
 		//    return true;
 		
-	}); //join()
+	}); 
 	
 	
 	//비밀번호 일치===============================
@@ -90,8 +90,61 @@ $(document).ready(function() {
 					document.getElementById('checkPasswd2Result').style.color = "red";
 	//				isSamePasswd = false;
 				}
+				
+	}); //비밀번호 일치확인
+	
+	//ID중복및 입력양식 검증===============================
+	
+	let isDuplicateId = false; //아이디 중복 여부 저장할 변수
+	let isSamePasswd = false; //패스워드 일치 여부 저장할 변수
+	
+	$("#user_id").keyup(function(){
+		
+		//아이디 입력값 가져오기
+		let id = $("#user_id").val();
+		
+		//아이디 입력값 검증(정규표현식)
+		// 영문 대소문자,숫자를 포함하여 8~16자리 입력,  중복아이디 확인 (한글입력X)
+		let regex = /^[A-Za-z0-9][\w]{3,15}$/;
+		
+		if(!regex.exec(id)) { //입력값 검증 실패시
+			$("#checkIdResult").html("영문자, 숫자 조합 4~16자리 필수(첫글자 _ 사용불가)");
+			$("#checkIdResult").css("color", "red");
+		}else{ //입력값 검증 성공시
+			$.ajax({
+				url: "MemberCheckDupId",
+				data: {
+					"userId" : id
+				},
+				dataType: "json",
+				success : function(checkDuplicateResult){
+					if(checkDuplicateRisult){ //중복
+						$("#checkIdResult").html("이미 사용중인 아이디");
+						$("#checkIdResult").css("color", "red");
+						isDuplicateId = true;
+					}else{ //중복X
+						$("#checkIdResult").html("사용 가능한 아이디");
+						$("#checkIdResult").css("color", "blue");
+						isDuplicateId = false;
+					}
+				} //success
+			}); //ajax
+		}
+		
+	}); //ID중복및 입력양식 검증
+	
+	//비밀번호검증===============================
+	$("#user_passwd").blur(function(){
+		let passwd = $("#passwd").val();
+		let msg = "";
+		let color = "";
+		
+		//비밀번호 길이 검증
+		// 대소문자, 숫자 ,특수문자(!@#$%)를 포함하여 8~16 입력
 		
 		
-	}); //checkPasswd()
+		
+	}); //비밀번호검증
+	
 });
 	

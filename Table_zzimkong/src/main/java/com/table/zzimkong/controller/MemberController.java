@@ -52,12 +52,11 @@ public class MemberController {
 	@PostMapping("join/MemberJoinPro")
 	public String joinPro(MemberVO member, Model model) {
 		
-	      member.setUser_category(1);
-//		  member.setUser_phone("010-111-1111");
+	      member.setUser_category(1); //임시 - 일반회원(1) or 업주회원(2)
 		
 			int insertCount = service.registMember(member);
 			if(insertCount > 0) { // 성공				
-				return "redirect:/";
+				return "redirect:/join/complete";
 			} else { // 실패
 				// 실패 시 메세지 출력 및 이전페이지로 돌아가는 기능을 모듈화 한 fail_back.jsp 페이지
 				model.addAttribute("msg", "회원 가입 실패!");
@@ -66,20 +65,20 @@ public class MemberController {
 			
 		}//joinPro()
 	
-	
-	
-		//MemberJoinSuccess요청에대한 페이지 포워딩======================================
-//		@GetMapping("MemberJoinSuccess")
-//		public String JoinSuccess() {
-//			return "redirect:/";
-//		}
-	
-	
-		//아이디 중복검사 MemberCheckDupId =============================================
+	//MemberCheckDupId(아이디 중복확인)에대한 비지니스 로직 처리
+	@ResponseBody
+	@GetMapping("MemberCheckDupId")
+	public String checkDupId(MemberVO member) {
+		MemberVO dbMember = service.getMember(member);
 		
-	@GetMapping("login")
-	public String login() {
-		return "login/login";
-	}	
-			
+		//조회 결과 판별
+		if(dbMember == null) {
+			return "false";
+		}else {
+			return "true";
+		}
+		
+	} //checkDupId()
+	
+	
 }//MemberController
