@@ -46,17 +46,15 @@
 </svg>
 		</h2>
 		<div class="review_write_button">
-			<a href="${pageContext.request.contextPath}/review/write"><i
-				class="fas fa-pencil-alt"></i> 리뷰쓰기</a>
+		    <a href="write"><i class="fas fa-pencil-alt"></i> 리뷰쓰기</a>
 		</div>
 	</div>
 	<div class="review_select">
 		<ul class="review_select_list">
-
 			<li class="rv_sl_1">
 				<div class="review_select_chart_1"></div>
 				<div class="review_select_chart_1_1">
-					<img
+					<imgs
 						src="${pageContext.request.contextPath}/resources/img/review_interior.png"
 						alt="" width="22" height="22" data-grid-lazy="false"> <span
 						class="review_select_chart_content">&nbsp;&nbsp;"(분위기)
