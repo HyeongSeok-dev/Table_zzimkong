@@ -37,7 +37,7 @@ public class PaymentController {
 		System.out.println(session.getAttribute("uId"));
 		
 		// 예약정보를 불러오기 위해 임의로 값넣음
-		request.setAttribute("res_num", res_num);
+		request.setAttribute("res_num", "wleijfoi43wekjl");
 		
 		// 예약정보조회
 		ReservationVO resForPay = service.getReservation(res_num);

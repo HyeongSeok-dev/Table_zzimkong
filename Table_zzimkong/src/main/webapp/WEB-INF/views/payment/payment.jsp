@@ -72,12 +72,12 @@
 						<div class="choice_pay">
 							<div>
 								<input type="radio" name="onSitePayment" value="현장결제" id="onSitePayment"><span class="font_stlye">메뉴만 현장결제</span>
-								<span class="on_site_payment">선택시 노쇼방지 예약금만 결제 됩니다.</span>
+								<span class="pay_on_sit">선택시 노쇼방지 예약금만 결제 됩니다.</span>
 							</div>	
 							<br>
 							<div>
 								<input type="radio" name="choicePayment" value="카드결제" id="creditCardPayment"><span class="font_stlye">카드결제</span>
-								<select class="select" id="cardSelect" name="cardSelect">
+								<select class="select" id="cardSelect" name="pay_method">
 									<option value="">카드사를 선택해 주세요</option>
 									<option value="삼성">삼성</option>
 									<option value="신한">신한</option>
@@ -93,7 +93,7 @@
 							</div>
 							<br>
 							<div>
-								<input type="radio" name="choicePayment" value="무통장입금" id="accountPayment"><span class="font_stlye">무통장입금</span>
+								<input type="radio" name="pay_method" value="무통장입금" id="accountPayment"><span class="font_stlye">무통장입금</span>
 								<span class="pm_acc_comment">20분 이내 입금되지 않으면 예약은 자동 취소됩니다.</span>
 								<br>
 								<select class="select_b" id="bankSelect" name="bankSelect">
@@ -117,7 +117,7 @@
 							</div>
 							<br>
 							<div>	
-								<input type="radio" name="choicePayment" value="휴대폰결제" id="mobilePhonePayment"><span class="font_stlye">휴대폰결제</span>
+								<input type="radio" name="pay_method" value="휴대폰결제" id="mobilePhonePayment"><span class="font_stlye">휴대폰결제</span>
 							</div>
 						</div>
 					</section>
@@ -160,7 +160,7 @@
 							</div>
 							<div class="agree_main">
 								<span>
-									<input type="checkbox" name="agreement" value="개인정보동의" class="agree">
+									<input type="checkbox" name="per_info_consent" value="개인정보동의" class="agree">
 									<span>
 										<span class="agree_font">[선택]</span> 
 										개인정보 제3자 제공 동의 합니다.
