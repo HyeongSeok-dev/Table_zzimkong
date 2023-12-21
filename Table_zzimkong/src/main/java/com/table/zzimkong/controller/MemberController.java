@@ -49,6 +49,12 @@ public class MemberController {
 		return "login/login_find_passwd";
 	}
 	
+	@GetMapping("login")
+	public String login() {
+		return "login/login";
+	}
+	
+	
 	@PostMapping("join/MemberJoinPro")
 	public String joinPro(MemberVO member, Model model) {
 		
