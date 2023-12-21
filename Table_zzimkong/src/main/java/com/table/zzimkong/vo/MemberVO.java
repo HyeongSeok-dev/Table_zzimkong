@@ -4,23 +4,23 @@ import lombok.Data;
 
 @Data
 public class MemberVO {
-	String user_idx;
-	String user_id;
-	String user_passwd;
-	String user_nick;
-	String user_email1;
-	String user_email2;
-	String user_name;
-	String user_birth;
-	String com_num; //사업자번호
-	String user_reg_date;
-	String user_phone;
-	int user_pay_point;
-	int user_event_point;
-	int user_level;
-	String user_img;
-	int user_status;
-	int user_category;
+	private int user_idx;
+	private String user_id;
+	private String user_passwd;
+	private String user_nick;
+	private String user_email1;
+	private String user_email2;
+	private String user_name;
+	private String user_birth;
+	private String com_num; //사업자번호
+	private String user_reg_date;
+	private String user_phone;
+	private int user_pay_point;
+	private int user_event_point;
+	private int user_level;
+	private String user_img;
+	private int user_status;
+	private int user_category;
 	
 } //MemberVO
 

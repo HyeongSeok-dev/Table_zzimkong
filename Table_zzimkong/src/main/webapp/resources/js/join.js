@@ -98,27 +98,28 @@ $(document).ready(function() {
 	let isDuplicateId = false; //아이디 중복 여부 저장할 변수
 	let isSamePasswd = false; //패스워드 일치 여부 저장할 변수
 	
-	$("#user_id").keyup(function(){
+	$("#userId").keyup(function(){
 		
 		//아이디 입력값 가져오기
-		let id = $("#user_id").val();
+		let user_id = $("#userId").val();
 		
 		//아이디 입력값 검증(정규표현식)
-		// 영문 대소문자,숫자를 포함하여 8~16자리 입력,  중복아이디 확인 (한글입력X)
-		let regex = /^[A-Za-z0-9][\w]{3,15}$/;
+		// 요구사항 : 영문 대소문자,숫자를 포함하여 8~16자리 입력,  중복아이디 확인 (한글입력X)
+		//영문 대소문자 숫자포함 8~16자리, 특수문자 한글입력불가	
+		let regex = /^[a-zA-Z0-9]{8,16}$/;
 		
-		if(!regex.exec(id)) { //입력값 검증 실패시
-			$("#checkIdResult").html("영문자, 숫자 조합 4~16자리 필수(첫글자 _ 사용불가)");
+		if(!regex.exec(user_id)) { //입력값 검증 실패시
+			$("#checkIdResult").html("영문자, 숫자 조합 8~16자리 필수(한글, 특수문자 사용불가)");
 			$("#checkIdResult").css("color", "red");
 		}else{ //입력값 검증 성공시
 			$.ajax({
 				url: "MemberCheckDupId",
 				data: {
-					"userId" : id
+					user_id : user_id
 				},
 				dataType: "json",
 				success : function(checkDuplicateResult){
-					if(checkDuplicateRisult){ //중복
+					if(checkDuplicateResult ){ //중복
 						$("#checkIdResult").html("이미 사용중인 아이디");
 						$("#checkIdResult").css("color", "red");
 						isDuplicateId = true;

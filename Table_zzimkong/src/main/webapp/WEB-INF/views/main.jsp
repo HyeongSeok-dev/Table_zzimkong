@@ -78,26 +78,26 @@
 												<c:when test="${empty sessionScope.sId }"> <%-- 미 로그인 시 --%>
 													<%--로그인 --%>
 													<li><a href="${pageContext.request.contextPath}/login">
-													<img src="${pageContext.request.contextPath}/resources/img/user.png"
-													style="width: 30px; height: 30px;"></a></li>
+													<img src="${pageContext.request.contextPath}/resources/img/top_user.png"
+													style="width: 25px; height: 25px;"></a></li>
 													<%--고객센터 --%>
 													<li><a href="${pageContext.request.contextPath}/member/cs/faq">
-													<img  src="${pageContext.request.contextPath}/resources/img/headset.png"
-													style="width: 30px; height: 30px;"></a></li>
+													<img  src="${pageContext.request.contextPath}/resources/img/top_headset.png"
+													style="width: 25px; height: 25px;"></a></li>
 												</c:when>
 												<c:otherwise>
 													<%--마이페이지 --%>
 													<li><a href="${pageContext.request.contextPath}/my/list">
-													<img src="${pageContext.request.contextPath}/resources/img/user.png"
-														style="width: 30px; height: 30px;"></a></li>
+													<img src="${pageContext.request.contextPath}/resources/img/top_user.png"
+														style="width: 25px; height: 25px;"></a></li>
 													<%--알림 --%>
 													<li><a href="${pageContext.request.contextPath}/#">
-													<img src="${pageContext.request.contextPath}/resources/img/bell.png"
-													style="width: 30px; height: 30px;"></a></li>
+													<img src="${pageContext.request.contextPath}/resources/img/top_bell.png"
+													style="width: 25px; height: 25px;"></a></li>
 													<%--고객센터 --%>
-													<li><a href="${pageContext.request.contextPath}/member/cs/faq">
-													<img  src="${pageContext.request.contextPath}/resources/img/headset.png"
-													style="width: 30px; height: 30px;"></a></li>
+<%-- 													<li><a href="${pageContext.request.contextPath}/member/cs/faq"> --%>
+<%-- 													<img  src="${pageContext.request.contextPath}/resources/img/headset.png" --%>
+<!-- 													style="width: 30px; height: 30px;"></a></li> -->
 												</c:otherwise>
 											</c:choose>
 										</ul>
@@ -220,6 +220,7 @@
 	 <button><a href="join/ceo">join/ceo</a></button>
 	 <button><a href="join/choice">join/choice</a></button>
  	 <button><a href="join/complete">join/complete</a></button>
+ 	 <button><a href="join/agree">join/agree</a></button>
 	 <button><a href="login">login</a></button>
 	 <hr>
 	 <button><a href="login/find/id">login/find/id</a></button>

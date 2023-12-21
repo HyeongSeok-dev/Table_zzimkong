@@ -1,6 +1,7 @@
 package com.table.zzimkong.controller;
 
 
+import org.apache.ibatis.reflection.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 import org.springframework.ui.*;
@@ -37,7 +38,10 @@ public class MemberController {
 		return "join/join_complete";
 	}
 	
-
+	@GetMapping("join/agree")
+	public String join_agree() {
+		return "join/join_agree";
+	}
 	
 	@GetMapping("login/find/id")
 	public String login_find_id() {
@@ -53,6 +57,8 @@ public class MemberController {
 	public String login() {
 		return "login/login";
 	}
+	
+	
 	
 	
 	@PostMapping("join/MemberJoinPro")
@@ -71,12 +77,12 @@ public class MemberController {
 			
 		}//joinPro()
 	
-	//MemberCheckDupId(아이디 중복확인)에대한 비지니스 로직 처리
+	//MemberCheckDupId(아이디 중복확인)에대한 비지니스 로직 처리===============================
 	@ResponseBody
-	@GetMapping("MemberCheckDupId")
+	@GetMapping("join/MemberCheckDupId")
 	public String checkDupId(MemberVO member) {
 		MemberVO dbMember = service.getMember(member);
-		
+//		System.out.println(dbMember.getUser_id());
 		//조회 결과 판별
 		if(dbMember == null) {
 			return "false";

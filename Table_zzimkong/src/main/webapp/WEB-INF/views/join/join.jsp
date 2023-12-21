@@ -33,8 +33,8 @@
 <!--               <input type="hidden" name="brandId" value=""> -->
               
               <!-- 아이디 -->
-              	<input type="text" id="userId" name="user_id" class="inputTxt inpBig" placeholder="아이디" 
-              	onkeydown="eventObj.loginByEnterKey(event)" maxlength="100" />
+              	<input type="text" id="userId" name="user_id" class="inputTxt inpBig" placeholder="아이디 (영문자, 숫자 조합 8~16자리 필수(한글, 특수문자 사용불가 )"
+               maxlength="100" />
               	<span id="checkIdResult"></span>
               <!-- 비밀번호 -->
               <input type="password" id="passwd" name="user_passwd" class="inputTxt inpBig"  style="text-align: left;"

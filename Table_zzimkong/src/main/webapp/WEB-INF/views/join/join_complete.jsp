@@ -7,22 +7,24 @@
 <!-- CSS -->
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/complete_total.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/global.css">
+
 <!-- Js -->
-<!-- <script type="text/javascript">
+<script type="text/javascript">
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('closeImage').addEventListener('click', function() {
-        window.close();
+        window.location.href = "${pageContext.request.contextPath}/";
     });
 });
-</script> -->
+</script>
+
 <title>회원가입</title>
 </head>
 <body>	
 	<div class="review_complete_ment">
 	<img src="${pageContext.request.contextPath}/resources/img/complete_check.svg" id="check">
-<%-- 	<img src="${pageContext.request.contextPath}/resources/img/complete_x.svg" id="closeImage"> --%>
+	<%-- X표시 누르면 main으로 이동--%> 
+	<img src="${pageContext.request.contextPath}/resources/img/complete_x.svg" id="closeImage">
 	<h1 class="review_complete">회원가입 완료!</h1>
-
     <div class="review_complete_content">찜콩테이블 회원가입을 축하드립니다!</div>
    	<br><br>
     <%--로그인하러가기 버튼 --%>
