@@ -29,8 +29,7 @@ public class ProductController {
 	}
 	
 	@GetMapping("product/list")
-	public String product_list() {
-		
+	public String product_list(Model model) {
 		return "product/product_list";
 	}
 	

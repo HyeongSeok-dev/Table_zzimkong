@@ -117,6 +117,16 @@ $(document).ready(function() {
 		changeSelectedState($li); // 상태 변경
 		checkRadioButton($li);    // 라디오 버튼 체크
 	});
+	
+    // 최소 가격 셀렉트 박스 변경 이벤트
+    $("select[name='minPrice']").change(function() {
+        formData['minPrice'] = $(this).val();
+    });
+
+    // 최대 가격 셀렉트 박스 변경 이벤트
+    $("select[name='maxPrice']").change(function() {
+        formData['maxPrice'] = $(this).val();
+    });
 
 	// '필터 모달' 적용 버튼 클릭 이벤트
 	$('#filterModal #applyBtn').click(function(event) {
@@ -124,8 +134,6 @@ $(document).ready(function() {
 		event.stopPropagation();
 		formData['location'] = $("input[name='location']:checked").val();
 		formData['category'] = $("input[name='category']:checked").val();
-		formData['minPrice'] = $("select[name='minPrice']").val();
-		formData['maxPrice'] = $("select[name='maxPrice']").val();
 		formData['mood'] = $("input[name='mood']:checked").val();
 		formData['facilities'] = $("input[name='facilities']:checked").val();
 		formData['tableType'] = $("input[name='table_type']:checked").val();
@@ -133,8 +141,6 @@ $(document).ready(function() {
 		console.log("필터 모달 데이터 적용됨: ", formData);
 		sendFormDataToCurrentPage();
 		$('#filterModal').hide();
-		console.log("선택된 최소 가격: ", formData['minPrice']);
-		console.log("선택된 최대 가격: ", formData['maxPrice']);
 		// 필요한 경우 여기서 서버로 데이터 전송
 	});
 
@@ -152,7 +158,9 @@ $(document).ready(function() {
 				// 성공적으로 데이터를 받으면 실행할 코드
 				console.log("Response: ", response);
           		$(".info_text").text("테이블 인원수: " + response.persons + "명, " + response.displayDate + " " + response.displayTime);
+          		if(response.location != null){
           		$(".seleted_location").text(response.location.replace('_',' '));
+				}
 			},
 			error: function(error) {
 				// 에러가 발생했을 때 실행할 코드
