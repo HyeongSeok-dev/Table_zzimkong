@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.table.zzimkong.service.AdminService;
 import com.table.zzimkong.service.MemberService;
-import com.table.zzimkong.vo.CompanyVO;
+//import com.table.zzimkong.vo.CompanyVO;
 import com.table.zzimkong.vo.MemberVO;
 
 @Controller
@@ -62,8 +62,8 @@ public class AdminController {
 			return "fail_back";
 		}
 		
-		List<CompanyVO> companyList = service.adminCompanyList();
-		model.addAttribute("companyList", companyList);
+//		List<CompanyVO> companyList = service.adminCompanyList();
+//		model.addAttribute("companyList", companyList);
 		
 		return "admin/admin_company";
 	}

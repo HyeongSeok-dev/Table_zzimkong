@@ -1,15 +1,3 @@
-package com.table.zzimkong.service;
-
-import java.util.List;
-
-import javax.servlet.http.HttpSession;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.table.zzimkong.mapper.AdminMapper;
-import com.table.zzimkong.vo.CompanyVO;
-//import com.table.zzimkong.vo.CompanyVO;
 import com.table.zzimkong.vo.MemberVO;
 
 @Service
@@ -38,9 +26,9 @@ public class AdminService {
 	}
 
 	// 관리자 - 업체 목록 조회
-//	public List<CompanyVO> adminCompanyList() {
-//		return mapper.selectAdminCompanyList();
-//	}
+	public List<CompanyVO> adminCompanyList() {
+		return mapper.selectAdminCompanyList();
+	}
 
 
 
