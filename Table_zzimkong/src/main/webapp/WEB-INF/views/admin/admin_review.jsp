@@ -1,5 +1,3 @@
- 
- 
  <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -9,6 +7,7 @@
 <title>Insert title here</title>
 <link href="${pageContext.request.contextPath}/resources/css/global.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resources/css/admin_article.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/admin_script.js"></script>
 </head>
 <body id="body">
@@ -77,7 +76,7 @@
 	<%-- 상단으로/bottom --%>
 	<footer>
 		<jsp:include page="../inc/admin_topup.jsp"/>
-		<%-- <jsp:include page="../inc/bottom_main.jsp"/> --%>
+		<jsp:include page="../inc/bottom_main.jsp"/>
 	</footer>
 </body>
 </html>
