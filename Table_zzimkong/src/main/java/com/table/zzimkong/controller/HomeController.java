@@ -337,5 +337,11 @@ public class HomeController {
 	public String top2_search_bar() {
 		return "inc/top2_search_bar";
 	}
-	
+
+
+	@GetMapping("fail_back")
+	public String fail_back(Model model) {
+		model.addAttribute("msg", "잘못된 접근입니다.");
+		return "fail_back";
+	}
 }
