@@ -14,11 +14,9 @@
 </head>
 	<body>
 
+		  	<jsp:include page="../inc/top2.jsp"></jsp:include>
 		
-	<!-- 	<header> -->
-	<%--   	<jsp:include page="top.jsp"></jsp:include> --%>
-	<!-- 	</header> -->
-						<!-- 제일 바깥테두리를 위한 div -->
+			<!-- 제일 바깥테두리를 위한 div -->
 			<div class="choiceBox">
 		
 			
@@ -63,9 +61,11 @@
 					</div>
 				</div>
 			</div>
-		<%--    <footer>
-		<jsp:include page="bottom.jsp"></jsp:include>
-		</footer> --%>
+			
+  <footer>
+		      	<jsp:include page="../inc/bottom.jsp"></jsp:include>
+    </footer>
+    
 	</body>
 </html>
 

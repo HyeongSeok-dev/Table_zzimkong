@@ -16,8 +16,7 @@
   </head>
   <body>
   
-<%--   	<jsp:include page="top.jsp"></jsp:include> --%>
-  
+  	<jsp:include page="../inc/top2.jsp"></jsp:include>
   
     <div id="nmContainer" class="nmContainer">
       <div class="nmTit">

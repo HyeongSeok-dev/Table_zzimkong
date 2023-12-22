@@ -80,7 +80,16 @@ $(document).ready(function() {
 		}
 	
 		//아이디 중복일 경우
+	    if(isDuplicateId){
+			alert("아이디 중복입니다.");
+			return false;		
+		}
+		
 		//닉네임 중복일 경우
+	    if(isDuplicateNick){
+			alert("닉네임 중복입니다.");
+			return false;		
+		}
 	   
 	}); 
 	
@@ -180,7 +189,7 @@ $(document).ready(function() {
 	}); //ID중복및 입력양식 검증
 	
 	//닉네임 중복확인==========================================
-		$("#u_nick").keyup(function(){
+		$("#u_nick").blur(function(){
 			
 			//닉네임 입력값 가져오기
 			let user_nick = $("#u_nick").val();
