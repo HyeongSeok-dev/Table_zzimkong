@@ -46,5 +46,10 @@ public class CompanyVO {
     private LocalDateTime com_hyg_start_date;
     private int com_status;
     private int com_ad_grade;
+    
+	private int min_price;
+	private int max_price;
+	private String[] reservationable_times;
+	private int distance;
 }
 

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,38 +20,45 @@
 			<div class="restaurant_list_wrapper">
 				<div class="filer_line">
 					<!-- 갯수/ 필터공간 -->
-					<div class="result_sum">1개의 식당을 찾음</div>
+					<div class="result_sum">${listCount}개의 식당을 찾음</div>
 					<div class="filter">
-						<select name="sort">
-							<option value="recommand">추천순</option>
-							<option value="star">별점순</option>
-							<option value="review">리뷰많은순</option>
-							<option value="distance">거리순</option>
+						
+						<select name="sort" class="sort">
+							<option value="recommand" <c:if test="${search.sort eq 'recommand' or search.sort eq ''}">selected</c:if> >추천순</option>
+							<option value="star" <c:if test="${search.sort eq 'star'}">selected</c:if>>별점순</option>
+							<option value="review" <c:if test="${search.sort eq 'review'}">selected</c:if>>리뷰많은순</option>
+							<option value="distance" <c:if test="${search.sort eq 'distance'}">selected</c:if>>거리순</option>
 						</select>
 					</div>
 				</div>
 				<div class="rowgroup">
+					
+					<c:forEach var="company" items="${companyList}">
+					
 					<div class="restaurant-list">
-						<div class="restaurant-card" onclick="location.href='detail'"><!-- 임시 링크 -->
+						<div class="restaurant-card">
 							<div class="restaurant-img">
-								<img src="${pageContext.request.contextPath}/resources/img/list_com.jpg" class="com_pic">
+								<img src="${pageContext.request.contextPath}/resources/upload/${company.com_img}" class="com_pic">
 							</div>
 							<div class="restaurant-details">
 								<div class="restaurant-info">
 									<div class="name-distance">
-										<div class="restaurant-name">음식점 이름</div>
-										<div class="restaurant-distance">나와의 거리 ~m</div>
+										<div class="restaurant-name">${company.com_name}</div>
+										<div class="restaurant-distance">${company.distance}m</div>
 									</div>
-									<div class="restaurant-category">음식점 분류</div>
-									<div class="restaurant-description">음식점 상세</div>
-									<div class="restaurant-price-range">최저금액 ~ 최고금액</div>
+									<div class="restaurant-category">${company.com_category}</div>
+									<div class="restaurant-price-range">${company.min_price} ~ ${company.max_price}</div>
 								</div>
 								<div class="reservation-time">
-									<span class="time-slot">22:00</span> <span class="time-slot">23:00</span>
+<%-- 									<c:forEach var="time" items="reservationable_times"> --%>
+<%-- 										<span class="time-slot">${time[0]}</span> <span class="time-slot">${time[1]}</span> --%>
+<%-- 									</c:forEach> --%>
 								</div>
 							</div>
 						</div>
 					</div>
+					
+					</c:forEach>
 				</div>
 			</div>
 		</div>

@@ -4,8 +4,8 @@ import lombok.Data;
 
 @Data
 public class MenuVO {
-	String menu_name;
-	String menu_price;
-	String menu_describe;
+	private String menu_name;
+	private String menu_price;
+	private String menu_describe;
 	
 }

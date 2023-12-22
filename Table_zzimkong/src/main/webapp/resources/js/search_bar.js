@@ -7,6 +7,9 @@ $(document).ready(function() {
 	}; // 폼 데이터를 저장할 객체 생성
 	var selectedFilterItemId = null;
 	var contextRoot = window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2));
+    var today = new Date().toISOString().split('T')[0]; 
+    //오늘날짜 이전 제한
+    $('#reservation-date').attr('min', today);
 
 	// 모든 모달창을 숨깁니다.
 	function closeAllModals() {
@@ -124,8 +127,34 @@ $(document).ready(function() {
 		changeSelectedState($li); // 상태 변경
 		checkRadioButton($li);    // 라디오 버튼 체크
 	});
+	
+	 $('#minPrice, #maxPrice').change(function() {
+        // Get the current values
+        var minPrice = $('#minPrice').val();
+        var maxPrice = $('#maxPrice').val();
+		console.log(minPrice, maxPrice)
+        // Check if either is 'all'
+        if(minPrice == 'all' || maxPrice == 'all') return;
 
-    // 최소 가격 셀렉트 박스 변경 이벤트
+        // Parse to integers
+        minPrice = parseInt(minPrice);
+        maxPrice = parseInt(maxPrice);
+
+		console.log(minPrice, maxPrice)
+        // Check the validity
+        if(minPrice > maxPrice) {
+            alert("최소 가격은 최대 가격보다 클 수 없습니다.");
+             $('#minPrice').val('all'); 
+            return false;
+        }
+        if(maxPrice < minPrice) {
+            alert("최대 가격은 최소 가격보다 작을 수 없습니다.");
+             $('#maxPrice').val('all'); 
+            return false;
+        }
+    });
+    
+        // 최소 가격 셀렉트 박스 변경 이벤트
     $("select[name='minPrice']").change(function() {
         formData['minPrice'] = $(this).val();
     });
@@ -154,6 +183,7 @@ $(document).ready(function() {
 		// AJAX 요청
 		formData['requestURL'] = window.location.pathname.replace(contextRoot, '')
 		formData['context'] = $('.search_input_text').val();
+		formData['sort'] = $("select[name='sort']").val();
 		$.ajax({
 			url: contextRoot + '/product/searchResult',
 			type: 'POST',
@@ -177,8 +207,9 @@ $(document).ready(function() {
 	}
 
 
-	function SendFormDataToNextPage() {
+	function sendFormDataToNextPage() {
 		formData['context'] = $('.search_input_text').val();
+		formData['sort'] = $("select[name='sort']").val();
 		console.log("검색 데이터: ", formData);
 		$.ajax({
 			url: contextRoot + '/product/searchResult',
@@ -189,24 +220,8 @@ $(document).ready(function() {
 			success: function(response) {
 				// 성공적으로 데이터를 받으면 실행할 코드
 				console.log("Response: ", response);
-				var params = $.param({
-					context: response.context,
-					persons: response.persons,
-					time: response.time,
-					date: response.date,
-					location: response.location,
-					category: response.category,
-					minPrice: response.minPrice,
-					maxPrice: response.maxPrice,
-					mood: response.mood,
-					facilities: response.facilities,
-					tableType: response.tableType,
-					hygiene: response.hygiene,
-					displayDate: response.displayDate,
-					displayTime: response.displayTime
-				});
 				// product/list 페이지로 리디렉션
-				window.location.href = contextRoot + '/product/list?' + params;
+				window.location.href = contextRoot + response.redirectURL;
 			},
 			error: function(error) {
 				// 에러가 발생했을 때 실행할 코드
@@ -218,12 +233,16 @@ $(document).ready(function() {
 	$(".search_input_text").off('keypress').on('keypress', function(event) {
 		event.preventDefault();
 		if (event.keyCode === 13) {
-			SendFormDataToNextPage();
+			sendFormDataToNextPage();
 		}
 	});
 
 	$(".search_icon").click(function() {
-		SendFormDataToNextPage();
+		sendFormDataToNextPage();
+	});
+
+	$(".sort").change(function() {
+		sendFormDataToNextPage();
 	});
 
 });

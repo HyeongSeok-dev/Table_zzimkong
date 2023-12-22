@@ -304,7 +304,7 @@
 										<ul class="sub-list">
 											 <div class="price-range-selector">
 										        <span class="price-select-label">최소 가격:</span>
-										        <select class="price-select" name="minPrice">
+										        <select class="price-select" name="minPrice" id="minPrice">
 										            <option value="all">무제한</option>
 										            <option value="10000">10,000원</option>
 										            <option value="20000">20,000원</option>
@@ -318,7 +318,7 @@
 										            <option value="100000">100,000원</option>
 										        </select>
 										        <span class="price-select-label">최대 가격:</span>
-										        <select class="price-select" name="maxPrice">
+										        <select class="price-select" name="maxPrice" id="maxPrice">
 										            <option value="all">무제한</option>
 										            <option value="10000">10,000원</option>
 										            <option value="20000">20,000원</option>

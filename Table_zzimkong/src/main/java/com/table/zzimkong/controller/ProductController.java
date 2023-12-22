@@ -1,30 +1,32 @@
 package com.table.zzimkong.controller;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
+import com.table.zzimkong.service.ProductService;
+import com.table.zzimkong.vo.CompanyVO;
 import com.table.zzimkong.vo.SearchVO;
 
 @Controller
 public class ProductController {
+	
+	@Autowired
+	private ProductService service;
 
 	@RequestMapping("/product/searchResult")
-	public ResponseEntity<?> search_result(@RequestBody SearchVO searchInfo) {
+	public ResponseEntity<?> search_result(@RequestBody SearchVO searchInfo, HttpSession session) {
 
 		LocalDate localDate = LocalDate.parse(searchInfo.getDate());
 		LocalTime localTime = LocalTime.parse(searchInfo.getTime());
@@ -43,16 +45,32 @@ public class ProductController {
 	    } else {
 	        searchInfo.setDisplayTime("오후 " + localTime.format(formatter));
 	    }
+		
+		session.setAttribute("search", searchInfo);
+		searchInfo.setRedirectURL("/product/list");
 
 		System.out.println(searchInfo.toString());
+		
 		return ResponseEntity.ok(searchInfo);
 	}
 
-	@GetMapping("product/list")
-	public String product_list(Model model, SearchVO search) {
+	@RequestMapping("product/list")
+	public String product_list(Model model, SearchVO search, HttpSession session) {
+		
+		search = (SearchVO)session.getAttribute("search");
 		
 		System.out.println("리스트에서 받음" + search);
-        model.addAttribute("search", search);
+		
+		
+		List<CompanyVO> companyList = service.getCompanyList(search);
+		
+		int listCount = companyList.size();
+
+		
+		model.addAttribute("search", search);
+		model.addAttribute("listCount", listCount);
+		model.addAttribute("companyList", companyList);
+		
 		return "product/product_list";
 	}
 	

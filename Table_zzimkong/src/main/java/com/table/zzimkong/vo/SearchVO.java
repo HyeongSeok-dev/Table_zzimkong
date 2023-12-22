@@ -6,22 +6,23 @@ import lombok.Data;
 
 @Data
 public class SearchVO {
-	String context;
-	int persons;
+	private String context;
+	private int persons;
 	@DateTimeFormat(pattern = "h:mm")
-	String time;
+	private String time;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	String date;
-	String location;
-	String category;
-	String minPrice;
-	String maxPrice;
-	String mood;
-	String facilities;
-	String tableType;
-	String hygiene;
-	String requestURL;
-	String displayDate;
-	String displayTime;
-	
+	private String date;
+	private String location;
+	private String category;
+	private String minPrice;
+	private String maxPrice;
+	private String mood;
+	private String facilities;
+	private String tableType;
+	private String hygiene;
+	private String displayDate;
+	private String displayTime;
+	private String sort;
+	private String requestURL;
+	private String redirectURL;
 }
