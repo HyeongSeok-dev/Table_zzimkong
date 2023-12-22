@@ -10,8 +10,8 @@ public interface PaymentMapper {
 	
 	int insertPayment();
 
-	ReservationVO selectResForPay(int res_id);
+	ReservationVO selectResForPay(ReservationVO res);
 
-	MemberVO selectPoint(int user_id);
+	int selectPoint(ReservationVO res);
 	
 }

@@ -24,28 +24,32 @@ public class PaymentController {
 		
 	@GetMapping("payment")
 	public String payment(HttpSession session, Model model, HttpServletRequest request,
-								@Param("res_num") int res_num, @Param("user_id") int user_id) {
+								ReservationVO res) {
 		// 세션에 저장된 아이디로 회원정보확인 하기 위해 일단 세션에 임의의 값 넣음
-		session.setAttribute("uId", "user2");
+//		session.setAttribute("sId", "user2");
+//		
+//		if(session.getAttribute("sId") == null) {
+//			model.addAttribute("msg", "접근권한이 없습니다!");
+//			model.addAttribute("targetURL", "login");
+//			return "forward";
+//		}
 		
-		if(session.getAttribute("sId") == null) {
-			model.addAttribute("msg", "접근권한이 없습니다!");
-			model.addAttribute("targetURL", "login");
-			return "forward";
-		}
-		
-		System.out.println(session.getAttribute("uId"));
+		System.out.println(session.getAttribute("uRes_num"));
 		
 		// 예약정보를 불러오기 위해 임의로 값넣음
-		request.setAttribute("res_num", "wleijfoi43wekjl");
+		request.setAttribute("res_num", "RES1");
 		
 		// 예약정보조회
-		ReservationVO resForPay = service.getReservation(res_num);
+		res = service.getReservation(res);
 		
 		// 포인트조회
-		MemberVO member = service.getPoint(user_id);
+		int userTotalPoint = service.getPoint(res);
 		
-		model.addAttribute("res", resForPay);
+		System.out.println(res);
+		System.out.println(userTotalPoint);
+		
+		model.addAttribute("res", res);
+		model.addAttribute("point", userTotalPoint);
 		
 		return "payment/payment";
 	}

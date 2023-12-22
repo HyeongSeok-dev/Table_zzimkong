@@ -5,18 +5,17 @@
 
 
 <mapper namespace="com.table.zzimkong.mapper.PaymentMapper">
-	<!-- <select id="selectResForPay" resultType="resForPay">
+	<select id="selectResForPay" resultType="reservation">
 		 SELECT *
 		 FROM reservation
-		 WHERE res_idx = #{res_idx}
+		 WHERE res_num = #{res_num}
 	</select>
 	
-	<select id="selectPoint" resultType="user_id">
-		SELECT point_value, point_category 
+	<select id="selectPoint" resultType="int">
+		SELECT sum(point_value) 
 		FROM point
-		WHERE 
-			user_idx = #{user_idx} AND
-			point_status = 1 AND
-			
-	</select> -->
+		WHERE point_status != 2
+		GROUP BY user_idx 
+		HAVING user_idx = ${user_id};
+	</select>
 </mapper>

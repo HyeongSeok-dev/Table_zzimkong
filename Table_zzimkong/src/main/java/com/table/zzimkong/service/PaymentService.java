@@ -14,20 +14,19 @@ public class PaymentService {
 	@Autowired
 	private PaymentMapper mapper;
 
-	public ReservationVO getReservation(int res_idx) {
+	public ReservationVO getReservation(ReservationVO res) {
 		
-		return mapper.selectResForPay(res_idx);
+		return mapper.selectResForPay(res);
 	}
 	
+	public int getPoint(ReservationVO res) {
+		
+		return mapper.selectPoint(res);
+	}
+
 	public int paymentReservation(PaymentVO payment) {
 		
 		return mapper.insertPayment();
 	}
-
-	public MemberVO getPoint(int user_id) {
-		
-		return mapper.selectPoint(user_id);
-	}
-
 	
 }
