@@ -75,7 +75,7 @@ td, th {
 
 
 .input_text {
-    width: 70%;
+    width: 30%;
     height: 40px;
     border: solid #d5d5d5 1px;
     font-size: 13px;
@@ -84,7 +84,7 @@ td, th {
 }
 
 .email_text {
-    width: 30%;
+    width: 25%;
     height: 40px;
     border: solid #d5d5d5 1px;
     font-size: 13px;
@@ -97,7 +97,7 @@ td, th {
     border: 1px solid #d9d9d9;
     padding: 10px;
     margin: 5px;
-    width: 30%;
+    width: 20%;
 }
 
 .passwd_text {
@@ -108,6 +108,16 @@ td, th {
     line-height: 1.5;
     padding-left: 10px;
     margin-top: 20px;
+}
+
+.passwd_text2 {
+	width: 70%;
+	height: 40px;
+	border: solid #d5d5d5 1px;
+	font-size: 13px;
+	line-height: 1.5;
+	padding-left: 10px;
+	margin-top: 20px;
 }
 
 .btn_out {

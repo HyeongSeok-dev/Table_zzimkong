@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/detail.css">
+	href="${pageContext.request.contextPath}/resources/css/product_detail.css">
 <link
 	href="${pageContext.request.contextPath }/resources/css/global.css"
 	rel="stylesheet">
@@ -17,7 +17,7 @@
 </head>
 <body>
 <%-- 		<jsp:include page="../inc/top_ns.jsp"></jsp:include> --%>
-	<jsp:include page="../inc/search_bar.jsp"></jsp:include>
+	<jsp:include page="../inc/top2_search_bar.jsp"></jsp:include>
 	<p class="gap20"></p>
 	<div class="s-list pic-grade">
 		<div class="com_pic_wrapper">

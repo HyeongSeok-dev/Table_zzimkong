@@ -28,6 +28,12 @@ public class MemberService {
 	public MemberVO getNick(MemberVO member) {
 		return mapper.selectNick(member);
 	}
+
+	// 회원 상세정보 조회 요청
+	public MemberVO getMember(MemberVO member) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 	
