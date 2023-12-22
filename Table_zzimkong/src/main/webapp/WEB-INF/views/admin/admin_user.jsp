@@ -73,13 +73,13 @@
 						<td>${member.user_idx}</td>
 						<%-- 회원 구분 --%>
 						<c:choose>
-							<c:when test="${member.user_category eq '1'}">
+							<c:when test="${member.user_category eq 1}">
 								<td>일반회원</td>
 							</c:when>
-							<c:when test="${member.user_category eq '2'}">
+							<c:when test="${member.user_category eq 2}">
 								<td>업주회원</td>
 							</c:when>
-							<c:when test="${member.user_category eq '3'}">
+							<c:when test="${member.user_category eq 3}">
 								<td>관리자</td>
 							</c:when>
 							<c:otherwise>
@@ -95,15 +95,18 @@
 						<td>${member.user_reg_date}</td>
 						<%-- 회원 상태 --%>
 						<c:choose>
-							<c:when test="${member.user_status eq '1'}">
+							<c:when test="${member.user_status eq 1}">
 								<td>정상</td>
 							</c:when>
-							<c:when test="${member.user_status eq '2'}">
+							<c:when test="${member.user_status eq 2}">
 								<td>휴면/정지</td>
 							</c:when>
-							<c:when test="${member.user_status eq '3'}">
+							<c:when test="${member.user_status eq 3}">
 								<td>탈퇴</td>
 							</c:when>
+							<c:otherwise>
+								<td style="color:red;">알수없음</td>
+							</c:otherwise>
 						</c:choose>
 						<td>
 							<button type="button" onclick="user_withdraw()" class="button_cancel">탈퇴</button>
