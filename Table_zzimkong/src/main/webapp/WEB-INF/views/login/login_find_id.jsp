@@ -54,16 +54,9 @@
 		          </div>
 		          
 				 <!-- 바텀 -->
-				 <div align="center">
-					 <br>
-					 <hr>
-					 <br>
-					  <a href="">서비스 이용약관</a>
-					 |
-					 <a href="">개인정보 처리방침</a>
-					 | 
-					 <a href="">위치정보 이용약관</a>	  
-				</div>
+			<footer>
+	      		<jsp:include page="../inc/bottom.jsp"></jsp:include>
+   			</footer>
 				
 		        </form>
 		      </div>
