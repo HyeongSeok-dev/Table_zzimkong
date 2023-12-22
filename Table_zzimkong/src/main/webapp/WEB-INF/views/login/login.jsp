@@ -26,16 +26,16 @@
 		      <div class="loginBox">
 		        <form action="loginPro" id="loginForm" method="post">
 		          <!-- ID입력 텍스트박스 -->
-		          <input type="text" id="userId" name="user_id" class="inputTxt inpBig" placeholder="아이디" onkeydown="eventObj.loginByEnterKey(event)" maxlength="100">
+		          <input type="text" id="userId" name="user_id" class="inputTxt inpBig" placeholder="아이디">
 		          <!-- 비밀번호 입력 텍스트박스 -->
 		          <input type="password" id="passwd" name="user_passwd" class="inputTxt inpBig" style="text-align: left;"
-		           placeholder="비밀번호 (영문, 숫자, 특수문자 조합 8~16자리)" onkeydown="eventObj.loginByEnterKey(event)" maxlength="16" autocomplete="false">
+		           placeholder="비밀번호 (영문, 숫자, 특수문자 조합 8~16자리)">
 		           <!-- ID기억하기 체크박스 -->
 		           <div class="check" align="left">
 					    <input type="checkbox"  id="remember-id">
 					    <label for="remember-id">ID기억하기</label>
 					</div>
-		          <button type="button" class="btnLogin btnB" id="loginBtn">
+		          <button type="submit" class="btnLogin btnB" id="loginBtn">
 		            <span>
 		              로그인
 		            </span>
@@ -70,8 +70,6 @@
 		    </ul>
 		  </div>
 	</body>
-	
-	<script src="./js/login.js"></script>
 	
 	
 	<footer>

@@ -111,9 +111,9 @@ public class MemberController {
 		
 		@PostMapping("loginPro") 
 		public String longinPro(MemberVO member, HttpSession session, Model model) {
-//			System.out.println(member);
-			MemberVO dbMember = service.getMember(member);
-			System.out.println(dbMember);
+			System.out.println(member);
+//			MemberVO dbMember = service.getMember(member);
+//			System.out.println(dbMember);
 			
 			return "redirect:/";
 		}	
