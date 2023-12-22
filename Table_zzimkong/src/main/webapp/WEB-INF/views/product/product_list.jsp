@@ -4,7 +4,7 @@
 <html>
 <head>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/list.css" />
+	href="${pageContext.request.contextPath}/resources/css/product_list.css" />
 	<link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
@@ -12,7 +12,7 @@
 	<div class="top">
 <%-- 		<jsp:include page="../inc/top_ns.jsp"></jsp:include> --%>
 	</div>
-	<jsp:include page="../inc/search_bar.jsp"></jsp:include>
+	<jsp:include page="../inc/top2_search_bar.jsp"></jsp:include>
 	<p class="gap10"></p>
 	<div class="project">
 		<div class="list_main">

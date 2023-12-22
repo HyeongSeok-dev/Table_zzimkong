@@ -127,7 +127,7 @@
 				<div class="col-md-12">
 					<div class="block wow fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
 						<div class="title">
-							<h3><span class="seleted_location">${display_location}</span> <span>위생순</span></h3>
+							<h3><span class="seleted_location">${search.location}</span> <span>위생순</span></h3>
 						</div>
 						<div id="owl-example1" class="owl-carousel">
 						

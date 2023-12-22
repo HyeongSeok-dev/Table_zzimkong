@@ -3,12 +3,12 @@ body {
 	font-size: 14px;
 	color: #222228;
 	line-height: 150%;
-	width: 65%;
-	margin: 0 auto;
+	width: 85%;
 	background: 0 0;
 	overflow-x: hidden;
 	overflow-y: visible;
 	letter-spacing: -.93px;
+	justify-content: center;
 }
 
 .gap10 {
