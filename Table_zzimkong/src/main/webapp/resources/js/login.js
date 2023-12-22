@@ -13,13 +13,4 @@ function popupFindId(){
 function popupFindPasswd(){
 		    window.open("login/find/passwd", "address_window", "width=500,height=550");
 		}
-		
-<<<<<<< HEAD
 
-=======
-		
-//		document.getElementById('find_passwd').addEventListener('click', function(event) {
-//		    event.preventDefault();
-//		    popupFindPasswd();
-//		});
->>>>>>> stash
