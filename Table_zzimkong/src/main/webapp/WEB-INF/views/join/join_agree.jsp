@@ -12,13 +12,11 @@
 <style type="text/css">
 
 .out_block{
-	width: 600px;
 	display: flex; 
 	justify-content: center; 
  	flex-direction: column; 
  	align-items: center;
  	width: 100%;
- 	margin:  0 50px;
 }
 
 h1 {

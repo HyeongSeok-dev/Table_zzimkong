@@ -5,7 +5,6 @@
 #footer-bottom {
 /* 	background: #E9E9E9; */
 	background : #fff;
-	padding: 50px 50px 50px 0px;
 /* 	margin-top: 100px; */
     padding-bottom: 45px;
 }
@@ -23,22 +22,18 @@
 	font-size: 12px;
 }
 .container_bottom {
-    padding-right: 15px;
-/*  padding-left: 15px; */
     margin-right: auto;
     margin-left: auto;
 }
 .p_col-md-12, .p_col-sm-12 {
 	position: relative;
 	min-height: 1px;
-	padding-right: 30px;
-	padding-left: 30px;
 }
 
 @media (min-width: 992px) {
 	.container_bottom {
 	 /* width: 970px; */
-		width: 80%;
+		width: 100%;
 	}
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -53,7 +48,7 @@
 	<div class="container_bottom">
 		<div class="row">
 			<div class="p_col-md-12 p_col-sm-12">
-				<div class="block">
+				<div class="block_bottom">
 					<hr>
 					<br>
 					<p>서비스 이용약관 | 개인정보 처리방침 | 위치정보 이용약관 | 인재 채용 | 광고/제휴문의 </p>
