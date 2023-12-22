@@ -243,10 +243,7 @@ public class HomeController {
 		return "review/review_comment";
 	}
 
-	@GetMapping("reservation")
-	public String reservation() {
-		return "reservation/reservation";
-	}
+
 	
 	@GetMapping("top2")
 	public String top2() {
