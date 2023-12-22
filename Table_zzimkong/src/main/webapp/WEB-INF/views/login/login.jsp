@@ -14,7 +14,7 @@
 	
 	<body>
 	
-<%-- 	<jsp:include page="top_ns.jsp"></jsp:include> --%>
+		<jsp:include page="../inc/top2.jsp"></jsp:include>
 
 		<div id="nmContainer" class="nmContainer snipcss-FsXc1">
 		  <div class="nmTit">

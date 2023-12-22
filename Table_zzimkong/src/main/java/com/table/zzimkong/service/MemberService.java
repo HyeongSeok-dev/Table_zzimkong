@@ -19,20 +19,11 @@ public class MemberService {
 		return mapper.insertMember(member);
 	} //registMember()
 
-	//회원 아이디정보 조회 요청
-	public MemberVO getId(MemberVO member) {
-		return mapper.selectId(member);
-	}
-
-	//회원 닉네임 조회 요청
-	public MemberVO getNick(MemberVO member) {
-		return mapper.selectNick(member);
-	}
 
 	// 회원 상세정보 조회 요청
 	public MemberVO getMember(MemberVO member) {
 		// TODO Auto-generated method stub
-		return null;
+		return mapper.selectMember(member);
 	}
 	
 	
