@@ -5,7 +5,7 @@
 
 
 <mapper namespace="com.table.zzimkong.mapper.PaymentMapper">
-	<select id="selectResForPay" resultType="reservation">
+	<select id="selectResForPay" resultType="res">
 		 SELECT *
 		 FROM reservation
 		 WHERE res_num = #{res_num}
@@ -16,6 +16,6 @@
 		FROM point
 		WHERE point_status != 2
 		GROUP BY user_idx 
-		HAVING user_idx = ${user_id};
+		HAVING user_idx = ${user_idx};
 	</select>
 </mapper>

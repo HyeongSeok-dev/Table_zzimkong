@@ -6,5 +6,6 @@
 	<typeAliases>
 		<typeAlias type="com.table.zzimkong.vo.MemberVO"  alias="member"/>
 		<typeAlias type="com.table.zzimkong.vo.PaymentVO"  alias="payment"/>
+		<typeAlias type="com.table.zzimkong.vo.ReservationVO"  alias="res"/>
 	</typeAliases>
 </configuration>

@@ -34,9 +34,7 @@ public class PaymentController {
 //			return "forward";
 //		}
 		
-		System.out.println(session.getAttribute("uRes_num"));
-		
-		// 예약정보를 불러오기 위해 임의로 값넣음
+		// session에 임의로 값넣음
 		request.setAttribute("res_num", "RES1");
 		
 		// 예약정보조회
