@@ -21,4 +21,10 @@
 		ORDER BY com_id DESC;
 	</select>
 
+	<!-- 관리자 - 업체 상세 정보 -->
+	<select id="selectAdminCompanyInfo">
+		SELECT *
+		FROM company
+		WHERE com_id = #{com_id}
+	</select>
 </mapper>

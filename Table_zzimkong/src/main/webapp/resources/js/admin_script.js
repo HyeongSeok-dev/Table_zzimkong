@@ -26,13 +26,17 @@ function report_blind_not() {
 
 
 // admin_company.jsp
-function company_info_open() {
+function company_info_open(com_id) {
 	/* 팝업창 중앙 정렬 */
 	var popupW = 750;
 	var popupH = 650;
 	var left = Math.ceil((window.screen.width - popupW)/2);
 	var top = Math.ceil((window.screen.height - popupH)/2);
-	window.open('company/info','','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
+	
+	/* 각 업체정보로 이동하기 위한 주소 */
+	var url = "company/info?com_id=" + com_id;
+	
+	window.open(url,'','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
 }
 
 function company_approve() {

@@ -1,6 +1,8 @@
 package com.table.zzimkong.controller;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -12,7 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.table.zzimkong.service.AdminService;
-//import com.table.zzimkong.vo.CompanyVO;
+import com.table.zzimkong.vo.CompanyVO;
 import com.table.zzimkong.vo.MemberVO;
 
 @Controller
@@ -54,25 +56,38 @@ public class AdminController {
 		return "admin/admin_user";
 	}
 	
-	// 관리자 페이지 - 업체 목록 조회 : 구현 중
+	// 관리자 페이지 - 업체 목록 조회
 	@GetMapping("admin/company")
-	public String admin_company(HttpSession session, Model model, HttpServletResponse response) {
+	public String companyList(HttpSession session, Model model, HttpServletResponse response) {
 		// 관리자 페이지 접근 제한
 		isvalid(session, model, response);
 		
-//		List<CompanyVO> companyList = service.adminCompanyList();
-//		model.addAttribute("companyList", companyList);
+		List<CompanyVO> companyList = service.adminCompanyList();
+		model.addAttribute("companyList", companyList);
 		
 		return "admin/admin_company";
 	}
 	
+	// 관리자 페이지 - 업체 목록 상세정보창 열기
 	@GetMapping("admin/company/info")
-	public String admin_company_info(HttpSession session, Model model, HttpServletResponse response) {
+	public String admin_company_info(CompanyVO company, HttpSession session, Model model, HttpServletResponse response) {
 		// 관리자 페이지 접근 제한
 		isvalid(session, model, response);
 		
+		company = service.adminCompanyInfo(company);
+		model.addAttribute("company", company);
+		
 		return "admin/admin_company_info";
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	@GetMapping("admin/review")
 	public String admin_review(HttpSession session, Model model, HttpServletResponse response) {

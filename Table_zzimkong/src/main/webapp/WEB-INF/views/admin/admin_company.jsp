@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +21,6 @@
 
 	<section class="article">
 		<div class="text">
-		
 			<%-- 검색창 --%>
 			<div id="board-search">
 				<div class="container">
@@ -43,286 +45,53 @@
 					<th>업체번호</th>
 					<th>업체명</th>
 					<th>업태</th>
+					<th>대표자명</th>
 					<th>전화번호</th>
 					<th>영업시간</th>
-					<th>시간당<br>최대 테이블</th>
 					<th>건당<br>최대인원</th>
 					<th>등록일자</th>
 					<th>광고등급</th>
 					<th>업체상태</th>
 				</tr>
-				<tr>
-					<td onclick="company_info_open()"></td>
-					<td onclick="업체페이지로">칸다소바</td>
-					<td>일식</td>
-					<td>051-430-1230</td>
-					<td>09:00~23:30</td>
-					<td>8개</td>
-					<td>19명</td>
-					<td>2023/12/25 05:12</td>
-					<td>0단계</td>
-					<td>
-						<button type="button" class="button_olive" onclick="company_approve()">승인</button>
-						<button type="button" class="button_cancel" onclick="company_disapprove()">거부</button>
-					</td>
-				</tr>
-				<tr>
-					<td onclick="company_info_open()">1</td>
-					<td>아오모리</td>
-					<td>일식</td>
-					<td>051-720-8200</td>
-					<td>11:00~21:30</td>
-					<td>10개</td>
-					<td>20명</td>
-					<td>2023/12/24 11:17</td>
-					<td>1단계</td>
-					<td>정상</td>
-				</tr>
 				
-				
-				<%-- 삭제 예정 --%>
-				<tr>
-					<td onclick="company_info_open()">1</td>
-					<td>아오모리</td>
-					<td>일식</td>
-					<td>051-720-8200</td>
-					<td>11:00~21:30</td>
-					<td>10개</td>
-					<td>20명</td>
-					<td>2023/12/24 11:17</td>
-					<td>1단계</td>
-					<td>정상</td>
-				</tr>
-				<tr>
-					<td onclick="company_info_open()">1</td>
-					<td>아오모리</td>
-					<td>일식</td>
-					<td>051-720-8200</td>
-					<td>11:00~21:30</td>
-					<td>10개</td>
-					<td>20명</td>
-					<td>2023/12/24 11:17</td>
-					<td>1단계</td>
-					<td>정상</td>
-				</tr>
-				<tr>
-					<td onclick="company_info_open()">1</td>
-					<td>아오모리</td>
-					<td>일식</td>
-					<td>051-720-8200</td>
-					<td>11:00~21:30</td>
-					<td>10개</td>
-					<td>20명</td>
-					<td>2023/12/24 11:17</td>
-					<td>1단계</td>
-					<td>정상</td>
-				</tr>
-				<tr>
-					<td onclick="company_info_open()">1</td>
-					<td>아오모리</td>
-					<td>일식</td>
-					<td>051-720-8200</td>
-					<td>11:00~21:30</td>
-					<td>10개</td>
-					<td>20명</td>
-					<td>2023/12/24 11:17</td>
-					<td>1단계</td>
-					<td>정상</td>
-				</tr>
-				<tr>
-					<td onclick="company_info_open()">1</td>
-					<td>아오모리</td>
-					<td>일식</td>
-					<td>051-720-8200</td>
-					<td>11:00~21:30</td>
-					<td>10개</td>
-					<td>20명</td>
-					<td>2023/12/24 11:17</td>
-					<td>1단계</td>
-					<td>정상</td>
-				</tr>
-				<tr>
-					<td onclick="company_info_open()">1</td>
-					<td>아오모리</td>
-					<td>일식</td>
-					<td>051-720-8200</td>
-					<td>11:00~21:30</td>
-					<td>10개</td>
-					<td>20명</td>
-					<td>2023/12/24 11:17</td>
-					<td>1단계</td>
-					<td>정상</td>
-				</tr>
-				<tr>
-					<td onclick="company_info_open()">1</td>
-					<td>아오모리</td>
-					<td>일식</td>
-					<td>051-720-8200</td>
-					<td>11:00~21:30</td>
-					<td>10개</td>
-					<td>20명</td>
-					<td>2023/12/24 11:17</td>
-					<td>1단계</td>
-					<td>정상</td>
-				</tr>
-				<tr>
-					<td onclick="company_info_open()">1</td>
-					<td>아오모리</td>
-					<td>일식</td>
-					<td>051-720-8200</td>
-					<td>11:00~21:30</td>
-					<td>10개</td>
-					<td>20명</td>
-					<td>2023/12/24 11:17</td>
-					<td>1단계</td>
-					<td>정상</td>
-				</tr>
-				<tr>
-					<td onclick="company_info_open()">1</td>
-					<td>아오모리</td>
-					<td>일식</td>
-					<td>051-720-8200</td>
-					<td>11:00~21:30</td>
-					<td>10개</td>
-					<td>20명</td>
-					<td>2023/12/24 11:17</td>
-					<td>1단계</td>
-					<td>정상</td>
-				</tr>
-				<tr>
-					<td onclick="company_info_open()">1</td>
-					<td>아오모리</td>
-					<td>일식</td>
-					<td>051-720-8200</td>
-					<td>11:00~21:30</td>
-					<td>10개</td>
-					<td>20명</td>
-					<td>2023/12/24 11:17</td>
-					<td>1단계</td>
-					<td>정상</td>
-				</tr>
-				<tr>
-					<td onclick="company_info_open()">1</td>
-					<td>아오모리</td>
-					<td>일식</td>
-					<td>051-720-8200</td>
-					<td>11:00~21:30</td>
-					<td>10개</td>
-					<td>20명</td>
-					<td>2023/12/24 11:17</td>
-					<td>1단계</td>
-					<td>정상</td>
-				</tr>
-				<tr>
-					<td onclick="company_info_open()">1</td>
-					<td>아오모리</td>
-					<td>일식</td>
-					<td>051-720-8200</td>
-					<td>11:00~21:30</td>
-					<td>10개</td>
-					<td>20명</td>
-					<td>2023/12/24 11:17</td>
-					<td>1단계</td>
-					<td>정상</td>
-				</tr>
-				<tr>
-					<td onclick="company_info_open()">1</td>
-					<td>아오모리</td>
-					<td>일식</td>
-					<td>051-720-8200</td>
-					<td>11:00~21:30</td>
-					<td>10개</td>
-					<td>20명</td>
-					<td>2023/12/24 11:17</td>
-					<td>1단계</td>
-					<td>정상</td>
-				</tr>
-				<tr>
-					<td onclick="company_info_open()">1</td>
-					<td>아오모리</td>
-					<td>일식</td>
-					<td>051-720-8200</td>
-					<td>11:00~21:30</td>
-					<td>10개</td>
-					<td>20명</td>
-					<td>2023/12/24 11:17</td>
-					<td>1단계</td>
-					<td>정상</td>
-				</tr>
-				<tr>
-					<td onclick="company_info_open()">1</td>
-					<td>아오모리</td>
-					<td>일식</td>
-					<td>051-720-8200</td>
-					<td>11:00~21:30</td>
-					<td>10개</td>
-					<td>20명</td>
-					<td>2023/12/24 11:17</td>
-					<td>1단계</td>
-					<td>정상</td>
-				</tr>
-				<tr>
-					<td onclick="company_info_open()">1</td>
-					<td>아오모리</td>
-					<td>일식</td>
-					<td>051-720-8200</td>
-					<td>11:00~21:30</td>
-					<td>10개</td>
-					<td>20명</td>
-					<td>2023/12/24 11:17</td>
-					<td>1단계</td>
-					<td>정상</td>
-				</tr>
-				<tr>
-					<td onclick="company_info_open()">1</td>
-					<td>아오모리</td>
-					<td>일식</td>
-					<td>051-720-8200</td>
-					<td>11:00~21:30</td>
-					<td>10개</td>
-					<td>20명</td>
-					<td>2023/12/24 11:17</td>
-					<td>1단계</td>
-					<td>정상</td>
-				</tr>
-				<tr>
-					<td onclick="company_info_open()">1</td>
-					<td>아오모리</td>
-					<td>일식</td>
-					<td>051-720-8200</td>
-					<td>11:00~21:30</td>
-					<td>10개</td>
-					<td>20명</td>
-					<td>2023/12/24 11:17</td>
-					<td>1단계</td>
-					<td>정상</td>
-				</tr>
-				<tr>
-					<td onclick="company_info_open()">1</td>
-					<td>아오모리</td>
-					<td>일식</td>
-					<td>051-720-8200</td>
-					<td>11:00~21:30</td>
-					<td>10개</td>
-					<td>20명</td>
-					<td>2023/12/24 11:17</td>
-					<td>1단계</td>
-					<td>정상</td>
-				</tr>
-				<tr>
-					<td onclick="company_info_open()">1</td>
-					<td>아오모리</td>
-					<td>일식</td>
-					<td>051-720-8200</td>
-					<td>11:00~21:30</td>
-					<td>10개</td>
-					<td>20명</td>
-					<td>2023/12/24 11:17</td>
-					<td>1단계</td>
-					<td>정상</td>
-				</tr>
-				<%-- 삭제 예정 끝 --%>
-				
+				<%-- 아래로 회원 목록 출력 --%>
+				<c:forEach var="company" items="#{companyList}">
+					<tr>
+						<td onclick="company_info_open('${company.com_id}')">${company.com_id}</td>
+						<td onclick="업체페이지로">${company.com_name}</td>
+						<td>${company.com_category}</td>
+						<td>${company.com_ceo}</td>
+						<td>
+							<c:set var="tel" value="${company.com_tel}"/>
+							${fn:substring(tel, 0, 3)}-${fn:substring(tel, 3, 7)}-${fn:substring(tel, 7, 12)}
+						</td>
+						<td>${company.com_open_time} ~ ${company.com_close_time}</td>
+						<td>${company.com_max_people}명</td>
+						<td><fmt:formatDate value="${company.com_reg_date}" pattern="yy/MM/dd HH:mm"/></td>
+						<td>${company.com_ad_grade}단계</td>
+						<%-- 업체 상태 --%>
+						<c:choose>
+							<c:when test="${company.com_status eq 1}">
+								<td>정상</td>
+							</c:when>
+							<c:when test="${company.com_status eq 2}">
+								<td>
+									<button type="button" class="button_olive" onclick="company_approve()">승인</button>
+									<button type="button" class="button_cancel" onclick="company_disapprove()">거부</button>
+								</td>
+							</c:when>
+							<c:when test="${company.com_status eq 3}">
+								<td>영업중지</td>
+							</c:when>
+							<c:when test="${company.com_status eq 4}">
+								<td>폐점</td>
+							</c:when>
+							<c:otherwise>
+								<td style="color:red;">알수없음</td>
+							</c:otherwise>
+						</c:choose>
+					</tr>
+				</c:forEach>
 			</table>			
 		</div>
 	</section>

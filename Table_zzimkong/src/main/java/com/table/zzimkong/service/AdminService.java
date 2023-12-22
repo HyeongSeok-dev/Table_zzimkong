@@ -14,14 +14,19 @@ public class AdminService {
 	@Autowired
 	private AdminMapper mapper;
 	 
-	// 관리자 - 회원 목록 조회
+	// 관리자 - 회원 목록 조회 요청
 	public List<MemberVO> adminMemberList() {
 		return mapper.selectAdminMemberList();
 	}
 
-	// 관리자 - 업체 목록 조회
+	// 관리자 - 업체 목록 조회 요청
 	public List<CompanyVO> adminCompanyList() {
 		return mapper.selectAdminCompanyList();
+	}
+
+	// 관리자 - 업체 상세 정보 요청
+	public CompanyVO adminCompanyInfo(CompanyVO company) {
+		return mapper.selectAdminCompanyInfo(company);
 	}
 
 
