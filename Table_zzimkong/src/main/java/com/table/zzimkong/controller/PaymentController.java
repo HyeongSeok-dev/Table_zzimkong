@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.table.zzimkong.service.PaymentService;
 import com.table.zzimkong.vo.MemberVO;
 import com.table.zzimkong.vo.ReservationVO;
+import com.table.zzimkong.vo.TotalPoint;
 
 @Controller
 public class PaymentController {
@@ -35,19 +36,20 @@ public class PaymentController {
 //		}
 		
 		// session에 임의로 값넣음
-		request.setAttribute("res_num", "RES1");
+//		request.setAttribute("res_num", "RES1");
+//		
+//		// 예약정보조회
+//		res = service.getReservation(res);
 		
-		// 예약정보조회
-		res = service.getReservation(res);
+		res.setUser_idx(2);
 		
 		// 포인트조회
 		int userTotalPoint = service.getPoint(res);
 		
-		System.out.println(res);
-		System.out.println(userTotalPoint);
+		TotalPoint totalPoint = new TotalPoint(userTotalPoint);
 		
 		model.addAttribute("res", res);
-		model.addAttribute("point", userTotalPoint);
+		model.addAttribute("point", totalPoint);
 		
 		return "payment/payment";
 	}

@@ -2,13 +2,12 @@ package com.table.zzimkong.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.table.zzimkong.vo.MemberVO;
 import com.table.zzimkong.vo.ReservationVO;
 
 @Mapper
 public interface PaymentMapper {
 	
-	int insertPayment();
+//	int insertPayment();
 
 	ReservationVO selectResForPay(ReservationVO res);
 

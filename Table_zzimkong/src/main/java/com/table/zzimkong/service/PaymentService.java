@@ -24,9 +24,9 @@ public class PaymentService {
 		return mapper.selectPoint(res);
 	}
 
-	public int paymentReservation(PaymentVO payment) {
-		
-		return mapper.insertPayment();
-	}
+//	public int paymentReservation(PaymentVO payment) {
+//		
+//		return mapper.insertPayment();
+//	}
 	
 }

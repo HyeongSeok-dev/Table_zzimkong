@@ -57,7 +57,7 @@
 									<span class="point_available">
 										사용가능금액
 										<span id="useablePoint">
-											<%-- ${param.} --%>1000
+											${point.totalPoint}
 										</span>
 										원
 									</span>
@@ -180,45 +180,45 @@
 					<div class="right_box_stiky">
 						<section id="rightSec01" class="section_box">
 							<div class="res_header">
-								<h2 id="res_h2">예약 상세</h2><h3 class="res_num">R231119_PR10<%--${param.res_num} --%></h3>
+								<h2 id="res_h2">예약 상세</h2><h3 class="res_num">${res.res_num}</h3>
 							</div>
 							<div class="res_main">
 								<ul>
 									<li class="res_li">
 										<span class="res_info">상호명</span>
-										<h3 class="res_com_name">프맄<%--${} --%></h3>
+										<h3 class="res_com_name">${company.com_id}</h3>
 									</li>
 									<li class="res_li">
 										<span class="res_info">주소</span>
-										<span class="res_add">부산광역시 부산진구 서전로38번길<%--${} --%></span>
+										<span class="res_add">${company.com_address}</span>
 									</li>
 									<li class="res_li">
 										<span class="res_info">예약 날짜</span>
-										<span class="date_detail">2023.12.31 (일)<%--${} --%></span>
+										<span class="date_detail">${res.res_date}</span>
 									</li>
 									<li class="res_li">
 										<span class="res_info">시간</span>
-										<span class="date_detail">18:00<%--${} --%></span>
+										<span class="date_detail">${res.res_time}></span>
 									</li>
 									<li class="res_li">
 										<span class="res_info">방문자명</span>
-										<span class="other_name">dd
-											<%-- ${param.name} --%>
+										<span class="other_name">
+											${res.res_name}
 										</span>
 									</li>
 									<li class="res_li">
 										<span class="res_info">휴대폰 번호</span>
-										<span class="phone_num">dd
-											<%-- ${param.number} --%>
+										<span class="phone_num">
+											${res.res_phone}
 										</span>
 									</li>
 									<li class="res_li">
 										<span class="res_info">인원수</span>
-										<span class="per_detail">2<%--${} --%>명</span>
+										<span class="per_detail">${res.res_person}명</span>
 									</li>
 									<li class="res_li2">
 										<div class="res_info">고객 요청사항</div>
-										<div class="request_detail">기념일인데 좋은 자리로 부탁드려요<%--${} --%></div>
+										<div class="request_detail">${res.res_request}</div>
 									</li>
 								</ul>
 							</div>
@@ -229,7 +229,7 @@
 								<div class="price_detail">
 									<div>
 										<span class="detail">예약금액</span>
-										<span class="detail_price"><span id="reservationPrice">20,000<%--${} --%></span>원</span>
+										<span class="detail_price"><span id="reservationPrice">${res.res_table_price}</span>원</span>
 									</div>
 									<div>
 										<span class="detail">메뉴 선결제금액</span>
@@ -292,7 +292,7 @@
 										<span class="detail">쿠폰할인</span>
 										 <span class="detail_price">
 										 	- 
-										 	<span>0<%--${} --%></span>
+										 	<span>0</span>
 										 	원
 										 </span>
 									</div> 
@@ -300,7 +300,7 @@
 										<span class="detail">포인트할인</span>
 										<span class="detail_price">
 											- 
-											<span id="discountPoint">0<%--${} --%></span>
+											<span id="discountPoint">0</span>
 											원
 										</span>
 									</div> 
@@ -308,7 +308,7 @@
 								<div class="point">
 								<div class="points_earn">
 									<span class="detail">적립예정 포인트</span>
-									<span class="detail_price"><span id="receivePoint">1,270<%--${} --%></span>원</span>
+									<span class="detail_price"><span id="receivePoint">0</span>원</span>
 								</div>
 								<div>
 										<span class="detail"> </span>
@@ -316,14 +316,14 @@
 											<div class="info_price">
 												<span class="menu_name2">현제 포인트</span>
 												<span class="price" >
-													<span id="nowPoint">1,000<%--${} --%></span>
+													<span id="nowPoint">0</span>
 													원
 												</span>
 											</div>
 											<div class="info_price">
 												<span class="menu_name2">총 포인트</span>
 												<span class="price">
-													<span id="totalPoint">2,270<%--${} --%></span>
+													<span id="totalPoint">0</span>
 													원
 												</span>
 											</div>
@@ -333,7 +333,7 @@
 								<div class="total_detail">
 									<span class="total_info">총 결제 금액</span>
 									<span class="total_price" >
-										<span id="totalPayment">127,000<%--${} --%></span>
+										<span id="totalPayment">0</span>
 										원
 									</span>
 								</div>
