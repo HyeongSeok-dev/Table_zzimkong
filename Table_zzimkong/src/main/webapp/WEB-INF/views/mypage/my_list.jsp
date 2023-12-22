@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 <!-- javascript -->
 <script
-	src="${pageContext.request.contextPath}/resources/js/my_list.js">
+	src="${pageContext.request.contextPath}/resources/js/mypage.js">
 </script>
 </head>
 <body>

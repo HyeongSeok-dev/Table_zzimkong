@@ -1,3 +1,28 @@
+	/* 회원정보 수정 - 이메일 */
+window.onload = function() {
+	document.modifyForm.emailDomain.onchange = function() {
+		console.log(document.modifyForm.emailDomain.value);
+		document.modifyForm.email2.value = document.modifyForm.emailDomain.value;
+	  if(document.modifyForm.emailDomain.value == "") { // 직접 입력 선택 시
+	    	document.modifyForm.email2.focus(); // 포커스 요청
+	    	document.modifyForm.email2.readOnly = false; // 입력창 잠금 해제(readonly 아님!)
+	    	document.modifyForm.email2.style.background = "";
+	    } else { // 도메인 선택 시
+	    	document.modifyForm.email2.readOnly = true; // 입력창 잠금 해제
+//	    	document.modifyForm.email2.value = "";
+	    }
+	};
+	
+};
+
+	/* 예약 취소 모달창 my_list.jsp */
+	function cancelReservation(){
+			confirm("예약을 취소하시겠습니까?");
+			if(true) {
+				alert("예약이 취소되었습니다.");
+			}
+		}
+
 document.addEventListener('DOMContentLoaded', function() {
 
     /* 북마크 추가/삭제 */
@@ -10,13 +35,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-	/* 예약 취소 모달창 my_list.jsp */
-	function cancelReservation(){
-			confirm("예약을 취소하시겠습니까?");
-			if(true) {
-				alert("예약이 취소되었습니다.");
-			}
-		}
 		
 	/* 최근 본 매장 슬라이드 */
 	const carousel = document.querySelector(".carousel"),

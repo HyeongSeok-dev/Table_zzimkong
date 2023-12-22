@@ -8,6 +8,9 @@
 <link href="${pageContext.request.contextPath }/resources/css/mypage.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
 </head>
+<script
+	src="${pageContext.request.contextPath}/resources/js/mypage.js">
+</script>
 <body>
 	<header>
 <%-- 		<jsp:include page="../inc/top.jsp"/> --%>
@@ -55,7 +58,7 @@
 						<th>이메일</th>
 						<td>
 							<input type="text" name="email1" class="email_text"> @
-<!-- 							<input type="text" name="email2" class="input_text2" ><br> -->
+							<input type="text" name="email2" class="email_text">
 	                    	<select class="email_domain" name="emailDomain">
 								<option value="">선택하세요</option>
 				                <option value="gmail.com">gmail.com</option>
@@ -70,9 +73,9 @@
 						<th>비밀번호</th>
 						<td>
 						 	<div>
-	                     	<input type="password" id="txtPassword" class="input_text" placeholder="현재 비밀번호"><br><br>
-	                     	<input type="password" id="txtPassword" class="passwd_text" placeholder="새 비밀번호 (영문, 숫자, 특수문자 조합 8~16자리)"><br>
-	                     	<input type="password" id="txtPassword2" class="passwd_text" placeholder="비밀번호 확인"><br>
+	                     	<input type="password" id="txtPassword" class="passwd_text" placeholder="현재 비밀번호"><br><br>
+	                     	<input type="password" id="txtPassword" class="passwd_text2" placeholder="새 비밀번호 (영문, 숫자, 특수문자 조합 8~16자리)"><br>
+	                     	<input type="password" id="txtPassword2" class="passwd_text2" placeholder="비밀번호 확인"><br>
 	                     </div>
 						</td>
 					</tr>

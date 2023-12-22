@@ -3,7 +3,6 @@ package com.table.zzimkong.controller;
 
 import javax.servlet.http.*;
 
-import org.apache.ibatis.reflection.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 import org.springframework.ui.*;
@@ -14,7 +13,7 @@ import com.table.zzimkong.vo.*;
 
 @Controller
 public class MemberController {
-	/**/
+	
 	// MemberService 객체 자동 주입
 	@Autowired
 	private MemberService service;
@@ -112,7 +111,6 @@ public class MemberController {
 		
 		@PostMapping("loginPro") 
 		public String longinPro(MemberVO member, HttpSession session, Model model) {
-			
 //			System.out.println(member);
 			MemberVO dbMember = service.getMember(member);
 			System.out.println(dbMember);
