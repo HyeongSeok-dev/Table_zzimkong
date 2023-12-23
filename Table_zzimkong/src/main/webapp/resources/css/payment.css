@@ -1,8 +1,13 @@
 @charset "UTF-8";
+
+header {
+	position: sticky;
+}
 .div_outter {
 	max-width: 974px;
     margin: 0px auto;
     max-height: 3000px;
+    margin-top: 40px;
 }
 
 .div_inner {
@@ -68,6 +73,7 @@ h1, h2, h3 {
 h1 {
 	padding: 10px;
 	margin: 10px;
+	font-size: 25px;
 }
 
 h2 {
@@ -128,8 +134,8 @@ h2 {
 	font-size: 14px;
 }
 .point_to_use {
-	width: 67%;
-	height: 35px;
+	width: 73%;
+	height: 40px;
 	/* 스타일1 */
 	padding-right: 15px;
 	text-align: right;
@@ -182,6 +188,7 @@ h2 {
    color: gray;
    margin: 0;
    padding-right: 10px;
+   font-size: 18px;
 }
 
 .res_li {
@@ -227,6 +234,15 @@ h2 {
 
 .detail_price {
 	font-weight: bold;
+	margin-bottom: 3px;
+	margin-top: 3px;
+	font-weight: bold;
+    font-size: 14px;
+}
+
+.detail {
+	font-size: 14px;
+    font-weight: 500;
 }
 
 .price_detail {
@@ -304,7 +320,7 @@ h2 {
 	margin-top: 10px;
 	margin-left: 10px;
 	width: 60%;
-	height: 35px;
+	height: 40px;
 }
 
 .phone_num_text {
@@ -315,11 +331,6 @@ h2 {
 .check_num {
 	width: 65%;
 	height: 35px;
-}
-
-.agree {
-	margin-bottom: 7px;
-	margin-left: 17px;
 }
 
 .agree_top {
@@ -333,7 +344,7 @@ h2 {
 }
 
 .all_agree, .agree_font{
-	font-size: 18px;
+	font-size: 16px;
 	font-weight: bold;
 }
 
@@ -434,7 +445,7 @@ path[Attributes] {
 }
 .menu_name2 {
 	width: 70px;
-	padding-left: 22px;
+	padding-left: 10px;
 }
 
 .price {
@@ -443,11 +454,23 @@ path[Attributes] {
 	text-align: right;
 }
 
-.detail_price {
-	margin-bottom: 3px;
-	margin-top: 3px;
+.won {
+	font-size: 17px;
+	font-weight: 500;
+}
+
+.pay_on_sit {
+	color: #bb5b67;
 }
 
 .request_detail {
 	margin-top: 7px;
+}
+#useAllPoint {
+	font-size: 15px;
+	border-bottom: 1px solid #929294;
+}
+
+#useAllPoint:hover {
+	border-bottom: 2px solid #3FAFFC; 
 }

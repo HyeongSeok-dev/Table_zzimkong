@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -13,9 +12,9 @@
 <script src="${pageContext.request.contextPath }/resources/js/payment.js"></script>
 </head>
 <body>
-<!-- 	<header> -->
-<%-- 		<jsp:include page="../top.jsp"></jsp:include> --%>
-<!-- 	</header> -->
+ 	<header>
+		<jsp:include page="../inc/top2.jsp"></jsp:include>
+	</header>
 	<div class="div_outter">
 		<div class="div_form_header">
 			<span><h1>결제</h1></span>
@@ -55,15 +54,16 @@
 								<div class="point_result">
 									<span class="font_stlye">포인트</span> 
 									<span class="point_available">
-										사용가능금액
+										사용가능금액&nbsp;
 										<span id="useablePoint">
-											${point.totalPoint}
+											${map.point.totalPoint} 
 										</span>
 										원
+										 &nbsp; <span><a id="useAllPoint">전액사용</a></span>
 									</span>
 								</div>
-								<input type="text" value="" placeholder="0원" class="point_to_use" name="pointToUse">
-								<button id="useAllPoint" class="use_button"  type="button">전액사용</button>
+								<input type="text" value="" placeholder="0" class="point_to_use" name="pointToUse"><span class="won">원</span>
+								<button id="usePoint" class="use_button"  type="button">사용하기</button>
 							</div>
 						</div>
 					</section>
@@ -72,11 +72,11 @@
 						<div class="choice_pay">
 							<div>
 								<input type="radio" name="onSitePayment" value="현장결제" id="onSitePayment"><span class="font_stlye">메뉴만 현장결제</span>
-								<span class="pay_on_sit">선택시 노쇼방지 예약금만 결제 됩니다.</span>
+								<span class="pay_on_sit">* 선택시 노쇼방지 예약금만 결제 됩니다.</span>
 							</div>	
 							<br>
 							<div>
-								<input type="radio" name="choicePayment" value="카드결제" id="creditCardPayment"><span class="font_stlye">카드결제</span>
+								<input type="radio" name="pay_method" value="카드결제" id="creditCardPayment"><span class="font_stlye">카드결제</span>
 								<select class="select" id="cardSelect" name="pay_method">
 									<option value="">카드사를 선택해 주세요</option>
 									<option value="삼성">삼성</option>
@@ -127,7 +127,7 @@
 							<div class="agree_main">
 							<span>
 								<input type="checkbox" name="checkAllAgree" value="전체동의" class="agree" id="checkAllAgree">
-								<span>
+								<span class="each_agree">
 									<span class="all_agree">[전체동의]</span>
 									 서비스약관에 동의 합니다.
 								</span>
@@ -137,7 +137,7 @@
 							<div class="agree_main">
 								<span>
 									<input type="checkbox" id="payAgree" name="agreement" value="결제대행동의" class="agree">
-									<span>
+									<span class="each_agree">
 										<span class="agree_font">[필수]</span> 
 										결제 대행 서비스 이용 약관 동의 합니다.
 									</span>
@@ -149,7 +149,7 @@
 							<div class="agree_main">
 								<span>
 									<input type="checkbox" id="revocationAgree" name="agreement" value="취소환불동의" class="agree">
-									<span>
+									<span class="each_agree">
 										<span class="agree_font">[필수]</span> 
 										취소 및 환불규정 동의 합니다.
 									</span>
@@ -161,7 +161,7 @@
 							<div class="agree_main">
 								<span>
 									<input type="checkbox" name="per_info_consent" value="개인정보동의" class="agree">
-									<span>
+									<span class="each_agree">
 										<span class="agree_font">[선택]</span> 
 										개인정보 제3자 제공 동의 합니다.
 									</span>
@@ -180,45 +180,45 @@
 					<div class="right_box_stiky">
 						<section id="rightSec01" class="section_box">
 							<div class="res_header">
-								<h2 id="res_h2">예약 상세</h2><h3 class="res_num">${res.res_num}</h3>
+								<h2 id="res_h2">예약 상세</h2><h3 class="res_num">${map.res.res_num}</h3>
 							</div>
 							<div class="res_main">
 								<ul>
 									<li class="res_li">
 										<span class="res_info">상호명</span>
-										<h3 class="res_com_name">${company.com_id}</h3>
+										<h3 class="res_com_name">${map.com.com_name}</h3>
 									</li>
 									<li class="res_li">
 										<span class="res_info">주소</span>
-										<span class="res_add">${company.com_address}</span>
+										<span class="res_add">${map.com.com_address}</span>
 									</li>
 									<li class="res_li">
 										<span class="res_info">예약 날짜</span>
-										<span class="date_detail">${res.res_date}</span>
+										<span class="date_detail">${map.res.res_date}</span>
 									</li>
 									<li class="res_li">
 										<span class="res_info">시간</span>
-										<span class="date_detail">${res.res_time}></span>
+										<span class="date_detail">${map.res.res_time}</span>
 									</li>
 									<li class="res_li">
 										<span class="res_info">방문자명</span>
 										<span class="other_name">
-											${res.res_name}
+											${map.res.res_name}
 										</span>
 									</li>
 									<li class="res_li">
 										<span class="res_info">휴대폰 번호</span>
 										<span class="phone_num">
-											${res.res_phone}
+											${map.res.res_phone}
 										</span>
 									</li>
 									<li class="res_li">
 										<span class="res_info">인원수</span>
-										<span class="per_detail">${res.res_person}명</span>
+										<span class="per_detail">${map.res.res_person} 명</span>
 									</li>
 									<li class="res_li2">
 										<div class="res_info">고객 요청사항</div>
-										<div class="request_detail">${res.res_request}</div>
+										<div class="request_detail">${map.res.res_request}</div>
 									</li>
 								</ul>
 							</div>
@@ -229,65 +229,64 @@
 								<div class="price_detail">
 									<div>
 										<span class="detail">예약금액</span>
-										<span class="detail_price"><span id="reservationPrice">${res.res_table_price}</span>원</span>
+										<span class="detail_price"><span id="reservationPrice">${map.tablePrice.res_table_price}</span>원</span>
 									</div>
 									<div>
 										<span class="detail">메뉴 선결제금액</span>
 										<span class="detail_price">
-									<%--  <c:choose>
-												<c:when test="${param.resMenuPrice eq null }"> --%>
-													<span id="preOrderTotalPrice" name="preOrderIsNone">선결제 없음</span>
+								<c:choose>
+									<c:when test="${empty map.totalPreOrderPrice}">
+											<span id="preOrderTotalPrice" name="preOrderIsNone">선결제 없음</span>
 										</span>
 									</div>  
-												<%-- </c:when>
-												<c:otherwise> --%>
-													<!-- <span id="preOrderTotalPrice" name="PreOrderIsExist">
-													97,000 -->
-												<%-- 	${param.resMenuPrice } --%>
-											<!-- 		</span>원
+									</c:when>
+									<c:otherwise> 
+											<span id="preOrderTotalPrice" name="PreOrderIsExist">
+												${map.totalPreOrderPrice }
+											</span>원
  										</span>
- 									</div>  -->
+ 									</div>
 									<%-- 여기부터 선결제 있으면 표시함 --%>
-									<%-- <div>
+									 <div>
 										<span class="detail"> </span>
 										<span class="detail_price">
 											<div class="info_price">
-												<span class="menu_name">시저샐러드</span>
+												<span class="menu_name">${map.menu.menu_name}</span>
 												<span class="count">
-													<span>1</span>
+													<span>${map.pre.pre_num}</span>
 													개
 												</span>
 												<span class="price">
-													<span>18,000${}</span>
+													<span>${map.menu.price}</span>
 													원
 												</span>
 											</div>
 											<div class="info_price">
-												<span class="menu_name">뇨끼파스타</span>
+												<span class="menu_name">${map.menu.menu_name}</span>
 												<span class="count">
-													<span>1</span>
+													<span>${map.pre.pre_num}</span>
 													개
 												</span>
 												<span class="price">
-													<span>24,000${}</span>
+													<span>${map.menu.price}</span>
 													원
 												</span>
 											</div>
 											<div class="info_price">
-												<span class="menu_name">안심스테이크</span>
+												<span class="menu_name">${map.menu.menu_name}</span>
 												<span class="count">
-													<span>1</span>
+													<span>${map.pre.pre_num}</span>
 													개
 												</span>
 												<span class="price">
-													<span>55,000${}</span>
+													<span>${map.menu.price}</span>
 													원
 												</span>
 											</div>
 										</span>
-									</div>  --%>
-										<%-- 		</c:otherwise>
-											</c:choose> --%>
+									</div>
+							 		</c:otherwise>
+								</c:choose>
 									<div>
 										<span class="detail">쿠폰할인</span>
 										 <span class="detail_price">
@@ -308,15 +307,17 @@
 								<div class="point">
 								<div class="points_earn">
 									<span class="detail">적립예정 포인트</span>
-									<span class="detail_price"><span id="receivePoint">0</span>원</span>
+									<span class="detail_price">
+										<span id="receivePoint">0</span>원
+									</span>
 								</div>
 								<div>
 										<span class="detail"> </span>
 										<span class="detail_price">
 											<div class="info_price">
-												<span class="menu_name2">현제 포인트</span>
+												<span class="menu_name2">현재 포인트</span>
 												<span class="price" >
-													<span id="nowPoint">0</span>
+													<span id="nowPoint">${map.point.totalPoint}</span>
 													원
 												</span>
 											</div>

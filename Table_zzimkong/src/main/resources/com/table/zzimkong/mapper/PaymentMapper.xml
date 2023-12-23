@@ -15,6 +15,24 @@
 		FROM point
 		WHERE point_status != 2
 		GROUP BY user_idx 
-		HAVING user_idx = ${user_idx};
+		HAVING user_idx = #{user_idx}
 	</select>
+	
+	<select id="selectResCom" resultType="company">
+		SELECT com_name, com_address
+		FROM company
+		WHERE com_id = #{com_id}
+	</select>
+
+	<!-- <select id="selectPreOrder" resultType="pre">
+		SELECT  
+		FROM pre_order
+		WHERE pre_idx = #{pre_idx}
+	</select> -->
+	
+<!-- 	<select id="selectPreMenu" resultType="menu"> -->
+<!-- 		SELECT  -->
+<!-- 		FROM point -->
+<!-- 		WHERE point_status != 2 -->
+<!-- 	</select> -->
 </mapper>

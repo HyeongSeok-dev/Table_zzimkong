@@ -52,7 +52,7 @@ html {
     width: 100%; 
     background: #3FAFFC;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
     
 }
@@ -117,7 +117,7 @@ img[alt="logo2"] {
 	position: relative;
 	/* bottom: 15px; */
 	right: 10px;
-	width: 600px;
+	width: 300px;
 }
 .li {
 	list-style: none;

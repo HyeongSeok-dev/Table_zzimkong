@@ -164,6 +164,8 @@ input[type="checkbox"] {
     background-origin: initial; 
     background-clip: initial; 
     background-color: initial;
+    position: relative;
+	top: 5px;
 }
 
 input[type="checkbox"]:checked {

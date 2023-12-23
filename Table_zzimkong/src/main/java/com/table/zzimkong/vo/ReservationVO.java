@@ -21,7 +21,7 @@ public class ReservationVO {
 	private Date res_now;
 	private int res_pay_status;
 	private String res_request;
-	
+	private int pre_idx;
 	
 	
 }

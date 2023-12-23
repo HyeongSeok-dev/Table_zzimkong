@@ -1,4 +1,15 @@
 $(function() {
+	
+	var preOrderTotalPrice = $("#preOrderTotalPrice").text();
+	var reservationPrice = $("#reservationPrice").text();
+	var totalPayment = $("#totalPayment").text();
+	if($("#preOrderTotalPrice").text() == "선결제 없음"){
+		$("#totalPayment").text( $("#reservationPrice").text());
+	}
+	 else {
+		$("#totalPayment").text(parseInt(preOrderTotalPrice) + parseInt(reservationPrice));
+	}
+	
 	$("#checkAllAgree").on("change", function() { 
 		
 			if($("#checkAllAgree").prop("checked")){
@@ -61,20 +72,35 @@ $(function() {
 		}
 	});
 	
-	// 만약 포인트가 0이거나, 내포인트가 param.pointToUse 보다작으면 사용불가메세지
+	// 만약 포인트가 0이거나, 내포인트가 input text 보다작으면 사용불가메세지
 	$("#useAllPoint").on("click", function() {
-		$("#useablePoint").text("0");
-		$(".point_to_use").val("1000원"); //여기 내포인트 전액이 와야함
-		$("#discountPoint").text("1000"); //여기 내포인트 전액이 와야함
-		$("#nowPoint").text("0");
-		$("#totalPayment").text("126,000");// 여기 총결제 금액에서 포인트사용된 금액표시
-		
+			if($("#useablePoint").text() == "0") {
+				alert("사용가능한 포인트가 없습니다!");
+			} else {
+				$(".point_to_use").val($("#useablePoint").text().trim()); //여기 내포인트 전액이 와야함
+				 //여기 내포인트 전액이 와야함
+				$("#useablePoint").text("0");
+			}
 	});
 	
-	
+	$("#usePoint").on("click", function() {
+		
+		if($(".point_to_use").val() == "") {
+			alert("포인트를 입력해주세요!");
+		} else {
+			$("#discountPoint").text($(".point_to_use").val());
+			$("#nowPoint").text("0");
+			var getTotalPayment = $("#totalPayment").text();
+			var discountPoint = $("#discountPoint").text();
+			totalPayment = getTotalPayment - discountPoint;
+			$("#totalPayment").text(totalPayment);
+			//총결제금액에서 -된금액이 와야함
+		}
+	});	
+
 	$("form").submit(function() {
 		
-		if($('input[name="choicePayment"]:checked').length == 0) { 
+		if($('input[name="pay_method"]:checked').length == 0) { 
 			
 			if($("#preOrderTotalPrice").text() == "선결제 없음") { 
 				alert("예약금의 결제수단을 선택해 주세요.");
@@ -90,19 +116,19 @@ $(function() {
 				return false;
 			}
 		
-		} else if($("#creditCardPayment").is(':checked') || $("#cardSelect").val() == "") {
-				alert( $("#cardSelect").val() + "카드사를 선택해 주세요.");
+		} else if($("#creditCardPayment").is(':checked') && $("#cardSelect").val() == "") {
+				alert("카드사를 선택해 주세요.");
 				$('html, body').animate({
                 scrollTop: $('#leftSec02').offset().top
             	}, 500);
 				return false;
-		} else if($("#accountPayment").is(':checked') || $("#bankSelect").val() == "") {
+		} else if($("#accountPayment").is(':checked') && $("#bankSelect").val() == "") {
 				alert("은행을 선택해 주세요.");
 				$('html, body').animate({
                 scrollTop: $('#leftSec02').offset().top
             	}, 500);
 				return false;
-		} else if(!$('#payAgree').is(':checked') || !$('#revocationAgree').is(':checked')) {
+		} else if(!$('#payAgree').is(':checked') && !$('#revocationAgree').is(':checked')) {
 				alert("필수동의에 체크해주세요.");
 				$('html, body').animate({
                 scrollTop: $('#leftSec03').offset().top

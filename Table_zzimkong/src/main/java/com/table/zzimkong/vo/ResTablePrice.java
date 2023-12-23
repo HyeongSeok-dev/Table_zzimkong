@@ -1,7 +1,6 @@
 package com.table.zzimkong.vo;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,6 +11,6 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class TotalPoint {
-	private String totalPoint;
+public class ResTablePrice {
+	private String res_table_price;
 }
