@@ -3,6 +3,7 @@ package com.table.zzimkong.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.NumberFormat;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
@@ -18,12 +19,12 @@ import org.springframework.web.servlet.ModelAndView;
 import com.table.zzimkong.service.PaymentService;
 import com.table.zzimkong.vo.CompanyVO;
 import com.table.zzimkong.vo.MemberVO;
+import com.table.zzimkong.vo.MenuList;
 import com.table.zzimkong.vo.MenuVO;
+import com.table.zzimkong.vo.PaymentInfo;
 import com.table.zzimkong.vo.PointVO;
 import com.table.zzimkong.vo.PreOrderVO;
-import com.table.zzimkong.vo.ResTablePrice;
 import com.table.zzimkong.vo.ReservationVO;
-import com.table.zzimkong.vo.TotalPoint;
 
 @Controller
 public class PaymentController {
@@ -32,8 +33,8 @@ public class PaymentController {
 	private PaymentService service;
 		
 	@GetMapping("payment")
-	public ModelAndView payment(HttpSession session, Model model
-								,Map<String, Object> map, ReservationVO res, PreOrderVO pre, MenuVO menu,CompanyVO company, PointVO point) {
+	public ModelAndView payment(HttpSession session, Map<String, Object> map,
+								 ReservationVO res, MenuVO menu, CompanyVO company, PointVO point) {
 		ModelAndView mav; 
 		//세션에 저장된 아이디로 회원정보확인 하기 위해 일단 세션에 임의의 값 넣음
 		session.setAttribute("sId", "user2");
@@ -44,7 +45,7 @@ public class PaymentController {
 			map.put("msg", "접근권한이 없습니다!");
 			map.put("targetURL", "login");
 			
-			mav = new ModelAndView("payment/payment", "map", map);
+			mav = new ModelAndView("forword", "map", map);
 			return mav;
 		}
 		res.setUser_idx(2);
@@ -53,32 +54,49 @@ public class PaymentController {
 		
 		//[ 예약정보조회 ]
 		res = service.getReservation(res);
-		//정보중 테이블 예약금액에 천단위 쉼표줌
+		//테이블 예약금액에 천단위 쉼표줌
 		NumberFormat numberFormat = NumberFormat.getInstance();
-		ResTablePrice res_table_price = new ResTablePrice(numberFormat.format(res.getRes_table_price()));
-		
+		String res_table_price = numberFormat.format(res.getRes_table_price());
 		// [예약정보중 사업장정보 조회]
 		company = service.getCompany(res);
 		
-//		// [예약정보중 선주문정보 조회]
-//		pre = service.getPreOrder(res);
-//		
-//		// [선주문 정보중 메뉴정보 조회]
-//		menu = service.getMenu(pre);
-		
+		// [예약정보중 선주문정보 조회]
+		List<PreOrderVO> preList = service.getPreOrder(res);
+		int count = 0;
+		int eachMenuTotalPriceInt = 0;
+		for(PreOrderVO preOrder : preList) {
+			System.out.println(preOrder);
+			count++;
+			System.out.println(count);
+			// [선주문 정보중 메뉴정보 조회]
+			menu = service.getMenu(preOrder);
+			// [선주문정보와 메뉴정보를 이용해서 결제할 가격 구하기 ] 
+			// 1. 개수를 곱한 메뉴가격 
+			eachMenuTotalPriceInt = (Integer.parseInt(menu.getMenu_price())) * preOrder.getPre_num();
+		}
+		// 2. 선주문한 총 가격
+		int menuTotalPriceInt = count * eachMenuTotalPriceInt;
+		// 3. 총가격
+		String totalPrice = numberFormat.format(res.getRes_table_price() + menuTotalPriceInt);
+		String eachMenuTotalPrice = numberFormat.format(eachMenuTotalPriceInt);
+		String menuTotalPrice = numberFormat.format(menuTotalPriceInt);
 		//--------------------------------------------------------------------
 		//[ 사용가능 포인트 조회 ]
 		// 예약정보에서 회원을 확인하기 위한 정보
 		// 포인트조회
-		TotalPoint totalPoint = service.getPoint(res);
+		int dbPoint = service.getPoint(res);
+		String totalPoint = numberFormat.format(dbPoint);
 		
 		//--------------------------------------------------------------------
+		// [ PaymentInfo 객체에 파라미터 전달]
+		PaymentInfo paymentInfo = new PaymentInfo(eachMenuTotalPrice,menuTotalPrice,totalPrice,totalPoint,res_table_price);
 		
 		// 예약조회, 포인트조회,사업장정보조회,선주문조회 
 		map.put("res", res);
-		map.put("tablePrice", res_table_price);
-		map.put("point", totalPoint);
+		map.put("paymentInfo", paymentInfo);
 		map.put("com", company);
+		map.put("pre", preList);
+		map.put("menu", menu);
 
 		mav = new ModelAndView("payment/payment", "map", map);
 		return mav;

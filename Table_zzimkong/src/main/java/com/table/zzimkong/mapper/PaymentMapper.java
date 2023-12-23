@@ -1,5 +1,7 @@
 package com.table.zzimkong.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.table.zzimkong.vo.CompanyVO;
@@ -18,7 +20,7 @@ public interface PaymentMapper {
 
 	CompanyVO selectResCom(ReservationVO res);
 
-	PreOrderVO selectPreOrder(ReservationVO res);
+	List<PreOrderVO> selectPreOrder(ReservationVO res);
 
 	MenuVO selectPreMenu(PreOrderVO pre);
 	

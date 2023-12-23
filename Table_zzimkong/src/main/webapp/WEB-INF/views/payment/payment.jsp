@@ -45,10 +45,10 @@
 								<div class="font_stlye">쿠폰선택</div>
 								<select class="select_coupon" name="selectCoupon">
 									<option value="" >쿠폰을 선택해주세요</option>
-									<option value="신규회원쿠폰1" >[신규회원] 가입축하기념 5000원 할인</option>
-									<option value="크리스마스쿠폰1" >[크리스마스] 크리스마스외식 테이블찜콩 10% 할인</option>
+									<option value="5000" >[신규회원] 가입축하기념 5,000원 할인</option>
+									<option value="0.1" >[크리스마스] 크리스마스외식 테이블찜콩 10% 할인</option>
 								</select>
-								<button class="use_button"  type="button">사용하기</button>
+								<button id="useCoupone" class="use_button"  type="button">사용하기</button>
 							</div>
 							<div class="point">
 								<div class="point_result">
@@ -56,7 +56,7 @@
 									<span class="point_available">
 										사용가능금액&nbsp;
 										<span id="useablePoint">
-											${map.point.totalPoint} 
+											${map.paymentInfo.totalPoint} 
 										</span>
 										원
 										 &nbsp; <span><a id="useAllPoint">전액사용</a></span>
@@ -229,69 +229,72 @@
 								<div class="price_detail">
 									<div>
 										<span class="detail">예약금액</span>
-										<span class="detail_price"><span id="reservationPrice">${map.tablePrice.res_table_price}</span>원</span>
+										<span class="detail_price"><span id="reservationPrice">${map.paymentInfo.res_table_price}</span> 원</span>
 									</div>
 									<div>
 										<span class="detail">메뉴 선결제금액</span>
 										<span class="detail_price">
 								<c:choose>
-									<c:when test="${empty map.totalPreOrderPrice}">
+									<c:when test="${empty map.res.pre_idx}">
 											<span id="preOrderTotalPrice" name="preOrderIsNone">선결제 없음</span>
 										</span>
 									</div>  
 									</c:when>
 									<c:otherwise> 
 											<span id="preOrderTotalPrice" name="PreOrderIsExist">
-												${map.totalPreOrderPrice }
+												${map.paymentInfo.menuTotalPrice }
 											</span>원
  										</span>
  									</div>
 									<%-- 여기부터 선결제 있으면 표시함 --%>
 									 <div>
+									 	<c:forEach var="pre" items="${preList }">
 										<span class="detail"> </span>
 										<span class="detail_price">
 											<div class="info_price">
-												<span class="menu_name">${map.menu.menu_name}</span>
+												<span class="menu_name">${pre.map.menu.menu_name}</span>
 												<span class="count">
-													<span>${map.pre.pre_num}</span>
+													<span>${pre.map.pre.pre_num}</span>
 													개
 												</span>
 												<span class="price">
-													<span>${map.menu.price}</span>
+													<span>${pre.map.paymentInfo.eachMenuTotalPrice}</span>
 													원
 												</span>
 											</div>
-											<div class="info_price">
-												<span class="menu_name">${map.menu.menu_name}</span>
-												<span class="count">
-													<span>${map.pre.pre_num}</span>
-													개
-												</span>
-												<span class="price">
-													<span>${map.menu.price}</span>
-													원
-												</span>
-											</div>
-											<div class="info_price">
-												<span class="menu_name">${map.menu.menu_name}</span>
-												<span class="count">
-													<span>${map.pre.pre_num}</span>
-													개
-												</span>
-												<span class="price">
-													<span>${map.menu.price}</span>
-													원
-												</span>
-											</div>
-										</span>
-									</div>
+									 		</span>
+									 	</c:forEach>
+										</div>	
+<!-- 											<div class="info_price"> -->
+<%-- 												<span class="menu_name">${map.menu.menu_name}</span> --%>
+<!-- 												<span class="count"> -->
+<%-- 													<span>${map.pre.pre_num}</span> --%>
+<!-- 													개 -->
+<!-- 												</span> -->
+<!-- 												<span class="price"> -->
+<%-- 													<span>${map.menu.menu_price}</span> --%>
+<!-- 													원 -->
+<!-- 												</span> -->
+<!-- 											</div> -->
+<!-- 											<div class="info_price"> -->
+<%-- 												<span class="menu_name">${map.menu.menu_name}</span> --%>
+<!-- 												<span class="count"> -->
+<%-- 													<span>${map.pre.pre_num}</span> --%>
+<!-- 													개 -->
+<!-- 												</span> -->
+<!-- 												<span class="price"> -->
+<%-- 													<span>${map.menu.menu_price}</span> --%>
+<!-- 													원 -->
+<!-- 												</span> -->
+<!-- 											</div> -->
+									
 							 		</c:otherwise>
 								</c:choose>
 									<div>
 										<span class="detail">쿠폰할인</span>
 										 <span class="detail_price">
 										 	- 
-										 	<span>0</span>
+										 	<span id="discountCoupon">0</span>
 										 	원
 										 </span>
 									</div> 
@@ -308,7 +311,7 @@
 								<div class="points_earn">
 									<span class="detail">적립예정 포인트</span>
 									<span class="detail_price">
-										<span id="receivePoint">0</span>원
+										<span id="receivePoint">0</span> 원
 									</span>
 								</div>
 								<div>
@@ -317,7 +320,7 @@
 											<div class="info_price">
 												<span class="menu_name2">현재 포인트</span>
 												<span class="price" >
-													<span id="nowPoint">${map.point.totalPoint}</span>
+													<span id="nowPoint">${map.paymentInfo.totalPoint}</span>
 													원
 												</span>
 											</div>
@@ -334,7 +337,7 @@
 								<div class="total_detail">
 									<span class="total_info">총 결제 금액</span>
 									<span class="total_price" >
-										<span id="totalPayment">0</span>
+										<span id="totalPayment">${map.paymentInfo.totalPrice}</span>
 										원
 									</span>
 								</div>

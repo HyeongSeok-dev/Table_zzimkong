@@ -11,6 +11,10 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class PreOderMenuTotalPrice {
-	private int menuTotalPrice;
+public class PaymentInfo {
+	private String eachMenuTotalPrice;
+	private String menuTotalPrice;
+	private String totalPrice;
+	private String totalPoint;
+	private String res_table_price;
 }

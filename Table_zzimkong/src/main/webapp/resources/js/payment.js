@@ -1,15 +1,4 @@
 $(function() {
-	
-	var preOrderTotalPrice = $("#preOrderTotalPrice").text();
-	var reservationPrice = $("#reservationPrice").text();
-	var totalPayment = $("#totalPayment").text();
-	if($("#preOrderTotalPrice").text() == "선결제 없음"){
-		$("#totalPayment").text( $("#reservationPrice").text());
-	}
-	 else {
-		$("#totalPayment").text(parseInt(preOrderTotalPrice) + parseInt(reservationPrice));
-	}
-	
 	$("#checkAllAgree").on("change", function() { 
 		
 			if($("#checkAllAgree").prop("checked")){
@@ -72,7 +61,7 @@ $(function() {
 		}
 	});
 	
-	// 만약 포인트가 0이거나, 내포인트가 input text 보다작으면 사용불가메세지
+	// 만약 포인트가 0이면 사용불가메세지
 	$("#useAllPoint").on("click", function() {
 			if($("#useablePoint").text() == "0") {
 				alert("사용가능한 포인트가 없습니다!");
@@ -83,20 +72,42 @@ $(function() {
 			}
 	});
 	
-	$("#usePoint").on("click", function() {
-		
-		if($(".point_to_use").val() == "") {
-			alert("포인트를 입력해주세요!");
-		} else {
-			$("#discountPoint").text($(".point_to_use").val());
-			$("#nowPoint").text("0");
-			var getTotalPayment = $("#totalPayment").text();
-			var discountPoint = $("#discountPoint").text();
-			totalPayment = getTotalPayment - discountPoint;
-			$("#totalPayment").text(totalPayment);
-			//총결제금액에서 -된금액이 와야함
-		}
-	});	
+	//오류있음!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//	$("#usePoint").on("click", function() {
+//		if($(".point_to_use").val() == "") {
+//			alert("포인트를 입력해주세요!");
+//		} else {
+//			var getTotalPayment = parseInt(totalPayment.replace(/,/g, ''));
+//			var discountPoint = parseInt($("#discountPoint").text().replace(/,/g, ''));
+//			if(getTotalPayment > discountPoint) {
+//				$("#discountPoint").text($(".point_to_use").val());
+//				$("#nowPoint").text("0");
+//				$("#totalPayment").text((getTotalPayment - discountPoint).toLocaleString());
+//			} else {
+//				alert("사용가능한 포인트를 다시 확인해 주세요!");
+//			}
+//		}
+//	});	
+
+	//오류있음!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//	$("#useCoupone").on("click", function() {
+//		
+//		if($(".select_coupon").val() == "") {
+//			alert("쿠폰을 선택해 주세요!");
+//		} else if($(".select_coupon").val() == "5000"){
+//			var getTotalPayment = totalPayment.replace(/,/g, '');
+//			var discountCoupon = $(".select_coupon").val();
+//			totalPayment = parseInt(getTotalPayment) - parseInt(discountCoupon);
+//			$("#totalPayment").text(totalPayment.toLocaleString());
+//			$("#discountCoupon").text(parseInt(discountCoupon).toLocaleString());
+//		} else if($(".select_coupon").val() == "0.1"){
+//			var getTotalPayment = totalPayment.replace(/,/g, '');
+//			var discountCoupon = $(".select_coupon").val();
+//			totalPayment = parseInt(parseFloat(getTotalPayment) * (1 - parseFloat(discountCoupon)));
+//			$("#totalPayment").text(totalPayment.toLocaleString());
+//			$("#discountCoupon").text((parseInt(parseFloat(getTotalPayment) * parseFloat(discountCoupon))));
+//		}
+//	});	
 
 	$("form").submit(function() {
 		

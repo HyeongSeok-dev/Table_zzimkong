@@ -24,15 +24,15 @@
 		WHERE com_id = #{com_id}
 	</select>
 
-	<!-- <select id="selectPreOrder" resultType="pre">
-		SELECT  
+	<select id="selectPreOrder" resultType="pre">
+		SELECT menu_idx, pre_num 
 		FROM pre_order
-		WHERE pre_idx = #{pre_idx}
-	</select> -->
+		WHERE res_idx = #{res_idx}
+	</select>
 	
-<!-- 	<select id="selectPreMenu" resultType="menu"> -->
-<!-- 		SELECT  -->
-<!-- 		FROM point -->
-<!-- 		WHERE point_status != 2 -->
-<!-- 	</select> -->
+	<select id="selectPreMenu" resultType="menu">
+		SELECT menu_name, menu_price
+		FROM menu
+		WHERE menu_idx = #{menu_idx}
+ 	</select>
 </mapper>
