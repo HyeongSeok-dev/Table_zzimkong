@@ -45,7 +45,8 @@ public class ProductController {
 	    } else {
 	        searchInfo.setDisplayTime("오후 " + localTime.format(formatter));
 	    }
-		
+
+		session.setAttribute("search", null);
 		session.setAttribute("search", searchInfo);
 		searchInfo.setRedirectURL("/product/list");
 
@@ -57,12 +58,21 @@ public class ProductController {
 	@RequestMapping("product/list")
 	public String product_list(Model model, SearchVO search, HttpSession session) {
 		
+		if(search == null) {
+			model.addAttribute("msg","잘못된 접근입니다!");
+			return "fail_back";
+		}
+		
 		search = (SearchVO)session.getAttribute("search");
 		
 		System.out.println("리스트에서 받음" + search);
 		
+		if(search.getSort() == null) {
+			search.setSort("recommend");
+		}
 		
 		List<CompanyVO> companyList = service.getCompanyList(search);
+		
 		
 		int listCount = companyList.size();
 

@@ -90,7 +90,7 @@
 										<ul class="sub-list location">
 											<li>서울
 									            <ul class="detail-list">
-									                <li><label for="서울_서울전체"><input type="radio" id="서울_서울전체" name="location" value="서울_서울전체"> 전체</label></li>
+									                <li><label for="서울_전체"><input type="radio" id="서울_전체" name="location" value="서울_전체"> 서울 전체</label></li>
 									                <li><label for="서울_강남"><input type="radio" id="서울_강남" name="location" value="서울_강남"> 강남</label></li>
 									                <li><label for="서울_서초"><input type="radio" id="서울_서초" name="location" value="서울_서초"> 서초</label></li>
 									                <li><label for="서울_잠실송파강동"><input type="radio" id="서울_잠실송파강동" name="location" value="서울_잠실송파강동"> 잠실/송파/강동</label></li>
@@ -104,7 +104,7 @@
 									        </li>
 											<li>경기
 												<ul class="detail-list location_gyeonggi">
-											        <li><label for="경기_경기전체"><input type="radio" id="경기_경기전체" name="location" value="경기_경기전체"> 경기 전체</label></li>
+											        <li><label for="경기_전체"><input type="radio" id="경기_전체" name="location" value="경기_전체"> 경기 전체</label></li>
 											        <li><label for="경기_성남시"><input type="radio" id="경기_성남시" name="location" value="경기_성남시"> 성남시(분당/판교/성남)</label></li>
 											        <li><label for="경기_수원"><input type="radio" id="경기_수원" name="location" value="경기_수원"> 수원</label></li>
 											        <li><label for="경기_용인화성"><input type="radio" id="경기_용인화성" name="location" value="경기_용인화성"> 용인/화성(동탄)</label></li>
@@ -128,8 +128,8 @@
 											</li>
 											<li>부산
 												<ul class="detail-list location_busan">
-													<li><label for="부산_all"><input type="radio"
-															id="부산_all" name="location" value="부산_all" ${search.location eq "부산_all" ? 'selected' : ''}> 부산 전체</label></li>
+													<li><label for="부산_전체"><input type="radio"
+															id="부산_전체" name="location" value="부산_전체" ${search.location eq "부산_전체" ? 'selected' : ''}> 부산 전체</label></li>
 													<li><label for="부산_강서구"><input type="radio"
 															id="부산_강서구" name="location" value="부산_강서구" ${search.location eq "부산_강서구" ? 'selected' : ''}> 강서구</label></li>
 													<li><label for="부산_금정구"><input type="radio"
@@ -354,8 +354,8 @@
 											<li><label for="장애인 편의시설"><input type="radio"
 													name="facilities" id="장애인_편의시설" value="장애인_편의시설">장애인
 													편의시설</label></li>
-											<li><label for="반려동물 동반"><input type="radio"
-													name="facilities" id="반려동물 동반" value="반려동물 동반">반려동물
+											<li><label for="반려동물_동반"><input type="radio"
+													name="facilities" id="반려동물_동반" value="반려동물_동반">반려동물
 													동반</label></li>
 										</ul></li>
 									<li class="filter-item" id="table_type"><span>테이블

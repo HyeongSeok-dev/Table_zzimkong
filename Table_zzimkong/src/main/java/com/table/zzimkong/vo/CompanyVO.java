@@ -20,8 +20,8 @@ public class CompanyVO {
     private String com_gugun;
     private String com_lat;
     private String com_lng;
-    private LocalTime com_open_time;
-    private LocalTime com_close_time;
+    private String com_open_time;
+    private String com_close_time;
     private String com_break_time;
     private int com_num;
     
@@ -46,11 +46,23 @@ public class CompanyVO {
     private Date com_hyg_start_date;
     private int com_status;
     private int com_ad_grade;
+    private String com_search_tag;
     private Date com_reg_date;
     
 	private int min_price;
 	private int max_price;
-	private String[] reservationable_times;
 	private int distance;
+	private int review_count;
+	private double avg_score;
+	
+	private int total_reserved;
+	private int remaining_people;
+	private int remaining_people2;
+	private int remaining_people3;
+	private int remaining_people4;
+	private int menu_idx;
+	private String menu_name;
+	private String menu_describe;
+	private String menu_img ;
 }
 
