@@ -74,12 +74,15 @@ public class PaymentController {
 			// 1. 개수를 곱한 메뉴가격 
 			eachMenuTotalPriceInt = (Integer.parseInt(menu.getMenu_price())) * preOrder.getPre_num();
 		}
+		System.out.println(eachMenuTotalPriceInt);
 		// 2. 선주문한 총 가격
 		int menuTotalPriceInt = count * eachMenuTotalPriceInt;
+		System.out.println(menuTotalPriceInt);
 		// 3. 총가격
 		String totalPrice = numberFormat.format(res.getRes_table_price() + menuTotalPriceInt);
 		String eachMenuTotalPrice = numberFormat.format(eachMenuTotalPriceInt);
 		String menuTotalPrice = numberFormat.format(menuTotalPriceInt);
+		System.out.println(preList);
 		//--------------------------------------------------------------------
 		//[ 사용가능 포인트 조회 ]
 		// 예약정보에서 회원을 확인하기 위한 정보

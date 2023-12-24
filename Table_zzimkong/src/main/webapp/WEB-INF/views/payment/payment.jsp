@@ -248,22 +248,22 @@
  									</div>
 									<%-- 여기부터 선결제 있으면 표시함 --%>
 									 <div>
-									 	<c:forEach var="pre" items="${preList }">
 										<span class="detail"> </span>
 										<span class="detail_price">
+									 	<c:forEach var="preList" items="${map.pre }">
 											<div class="info_price">
-												<span class="menu_name">${pre.map.menu.menu_name}</span>
+												<span class="menu_name">${map.menu.menu_name}</span>
 												<span class="count">
-													<span>${pre.map.pre.pre_num}</span>
+													<span>${preList.pre_num}</span>
 													개
 												</span>
 												<span class="price">
-													<span>${pre.map.paymentInfo.eachMenuTotalPrice}</span>
+													<span>${map.paymentInfo.eachMenuTotalPrice}</span>
 													원
 												</span>
 											</div>
-									 		</span>
 									 	</c:forEach>
+									 		</span>
 										</div>	
 <!-- 											<div class="info_price"> -->
 <%-- 												<span class="menu_name">${map.menu.menu_name}</span> --%>
