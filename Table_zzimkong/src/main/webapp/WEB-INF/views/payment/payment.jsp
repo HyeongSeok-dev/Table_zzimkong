@@ -10,6 +10,21 @@
 <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet" type="text/css">
 <script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/payment.js"></script>
+<script type="text/javascript">
+	$.ajax({
+	    url: '/paymentPro',  // 요청을 보낼 URL
+	    type: 'POST',  // 요청 방식(GET, POST 등)
+	    data: {  // 서버에 전달할 데이터
+	        text: $('#mySpan').text()
+	    },
+	    success: function(response) {
+	        // 요청이 성공적으로 완료된 후 실행할 코드
+	    },
+	    error: function(xhr, status, error) {
+	        // 요청이 실패했을 때 실행할 코드
+	    }
+	});
+</script>
 </head>
 <body>
  	<header>
@@ -35,7 +50,7 @@
 				</ul>
 			</span>
 		</div>
-		<form action="payment/info" name="payForm">
+		<form action="paymentPro" name="payForm">
 			<div class="div_inner">
 				<div class="div_left_box">
 					<section id="leftSec01" class="section_box">

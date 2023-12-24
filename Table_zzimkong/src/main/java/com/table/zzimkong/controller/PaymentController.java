@@ -67,7 +67,7 @@ public class PaymentController {
 		for(PreOrderVO preOrder : preList) {
 			System.out.println(preOrder);
 			count++;
-			System.out.println(count);
+			System.out.println("count : " + count);
 			// [선주문 정보중 메뉴정보 조회]
 			menu = service.getMenu(preOrder);
 			// [선주문정보와 메뉴정보를 이용해서 결제할 가격 구하기 ] 
@@ -115,7 +115,9 @@ public class PaymentController {
 			return "forward";
 		}
 		
-		return"";
+		
+		
+		return"payment/info";
 	}
 
 	@GetMapping("payment/info")
