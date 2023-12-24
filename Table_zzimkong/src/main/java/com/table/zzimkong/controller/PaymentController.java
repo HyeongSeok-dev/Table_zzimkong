@@ -74,11 +74,11 @@ public class PaymentController {
 			// 1. 개수를 곱한 메뉴가격 
 			eachMenuTotalPriceInt = (Integer.parseInt(menu.getMenu_price())) * preOrder.getPre_num();
 		}
-		System.out.println(eachMenuTotalPriceInt);
+		System.out.println("eachMenuTotalPriceInt : " + eachMenuTotalPriceInt);
 		// 2. 선주문한 총 가격
 		int menuTotalPriceInt = count * eachMenuTotalPriceInt;
-		System.out.println(menuTotalPriceInt);
-		// 3. 총가격
+		System.out.println("menuTotalPriceInt : " + menuTotalPriceInt);
+		// 3. paymentInfo 객체로 넣기전에 정수인 수에 천단위로 쉼표를 넣어서 문자열타입으로 만듬
 		String totalPrice = numberFormat.format(res.getRes_table_price() + menuTotalPriceInt);
 		String eachMenuTotalPrice = numberFormat.format(eachMenuTotalPriceInt);
 		String menuTotalPrice = numberFormat.format(menuTotalPriceInt);
@@ -91,7 +91,7 @@ public class PaymentController {
 		String totalPoint = numberFormat.format(dbPoint);
 		
 		//--------------------------------------------------------------------
-		// [ PaymentInfo 객체에 파라미터 전달]
+		// [ PaymentInfo 객체에 문자열 타입으로 파라미터 전달]
 		PaymentInfo paymentInfo = new PaymentInfo(eachMenuTotalPrice,menuTotalPrice,totalPrice,totalPoint,res_table_price);
 		
 		// 예약조회, 포인트조회,사업장정보조회,선주문조회 

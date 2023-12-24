@@ -56,13 +56,13 @@
 									<span class="point_available">
 										사용가능금액&nbsp;
 										<span id="useablePoint">
-											${map.paymentInfo.totalPoint} 
+ 											${map.paymentInfo.totalPoint}
 										</span>
 										원
 										 &nbsp; <span><a id="useAllPoint">전액사용</a></span>
 									</span>
 								</div>
-								<input type="text" value="" placeholder="0" class="point_to_use" name="pointToUse"><span class="won">원</span>
+								<input type="text" value="" placeholder="0" class="point_to_use" name="pointToUse"/><span class="won">원</span>
 								<button id="usePoint" class="use_button"  type="button">사용하기</button>
 							</div>
 						</div>
@@ -113,7 +113,7 @@
 									<option value="카카오뱅크">카카오뱅크</option>
 									<option value="케이뱅크">케이뱅크</option>
 								</select>
-								<input type="text" placeholder="계좌번호" value="" class="account" name="accNum">
+								<input type="text" placeholder="계좌번호" value="" class="account" name="accNum" readonly>
 							</div>
 							<br>
 							<div>	
@@ -236,7 +236,7 @@
 										<span class="detail_price">
 								<c:choose>
 									<c:when test="${empty map.res.pre_idx}">
-											<span id="preOrderTotalPrice" name="preOrderIsNone">선결제 없음</span>
+											<span id="preOrderTotalPrice" name="preOrderIsNone">선주문 없음</span>
 										</span>
 									</div>  
 									</c:when>
@@ -308,13 +308,13 @@
 									</div> 
 								</div>
 								<div class="point">
-								<div class="points_earn">
-									<span class="detail">적립예정 포인트</span>
-									<span class="detail_price">
-										<span id="receivePoint">0</span> 원
-									</span>
-								</div>
-								<div>
+									<div class="points_earn">
+										<span class="detail">적립예정 포인트</span>
+										<span class="detail_price">
+											<span id="earnedPoints">0</span> 원
+										</span>
+									</div>
+									<div>
 										<span class="detail"> </span>
 										<span class="detail_price">
 											<div class="info_price">

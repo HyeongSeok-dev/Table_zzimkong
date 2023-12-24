@@ -1,4 +1,42 @@
 $(function() {
+	// 포인트 text 박스에 숫자가 입력될 때 마다 숫자에 천단위 쉼표를 찍어주는 쿼리
+	$('.point_to_use').on('input', function() {
+    // 숫자만 입력되도록 처리
+    var input = this.value.replace(/[^0-9]/g, '');
+    // 콤마 추가
+    var numberWithCommas = input.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    // 결과를 입력창에 표시
+    this.value = numberWithCommas;
+	});
+
+	// 연산을 위해 ','를 제거하고 int로 타입변환
+	var useablePoint = parseInt($("#useablePoint").text().replace(/,/g, '')); //사용가능금액
+	var totalPayment = parseInt($("#totalPayment").text().replace(/,/g, '')); //총결제금액(controller에서 예약금과 선결제금이 합산되어 전달됨)
+	var preOrderTotalPrice = parseInt($("#preOrderTotalPrice").text().replace(/,/g, '')); // 선주문이 있을때 메뉴를 합산한총금액
+	var useablePoint  = parseInt($("#useablePoint").text().replace(/,/g, '')); //사용가능 포인트
+	// 페이지 로드후 적립금 계산
+	var nowPoint = parseInt($("#nowPoint").text().trim().replace(/,/g, '')); //할인 후 결제전 현재 보유 포인트
+	var earnedPoints = parseFloat($("#totalPayment").text().trim().replace(/,/g, '')) *  0.01;
+	$("#earnedPoints").text(parseInt(earnedPoints).toLocaleString());
+	console.log(nowPoint);
+	$("#totalPoint").text((parseInt(earnedPoints) + nowPoint).toLocaleString());
+	//페이지 로드후 총포인트 계산
+	
+	
+	// 결제 상세의 값이 바뀔 때 마다 총결제가격과 적립포인트 변경됨
+	function finalTotalPayment(totalPayment,nowPoint) {
+		var finalTotalPoint = totalPayment
+		 							- parseInt($("#discountCoupon").text().trim().replace(/,/g, ''))
+		 							- parseInt($("#discountPoint").text().trim().replace(/,/g, ''));
+		$("#totalPayment").text(finalTotalPoint.toLocaleString());
+		
+		// 결제금액에 따른 포인트 적립(1%적립)(적립예정포인트)
+		var earnedPoints = parseFloat($("#totalPayment").text().trim().replace(/,/g, '')) *  0.01;
+		$("#earnedPoints").text(parseInt(earnedPoints).toLocaleString());  
+		$("#totalPoint").text((parseInt(earnedPoints) + nowPoint).toLocaleString());                                                                          
+	}
+	
+	// 전체선택 체크박스
 	$("#checkAllAgree").on("change", function() { 
 		
 			if($("#checkAllAgree").prop("checked")){
@@ -8,6 +46,7 @@ $(function() {
 			}
 	});
 	
+	// 은행선택시 계좌번호 나오게 하기
 	$("#bankSelect").on("change", function() {
 			switch($("#bankSelect").val()) {
 			case "신한": $(".account").val("111-1234-12345"); 
@@ -41,74 +80,82 @@ $(function() {
 			}
 	});
 	
+	// 선결제유무에 따른 선결제방법 선택 
 	var isChecked;
 	$("#onSitePayment").click(function(event) {
-		if($("#preOrderTotalPrice").text() == "선결제 없음") { //파라미터가 없으면으로 바꿔야함
+		if($("#preOrderTotalPrice").text() == "선주문 없음") { //파라미터가 없으면으로 바꿔야함
 			 event.preventDefault();
-	         alert("선결제할 금액이 없습니다!");
+	         alert("선주문 내역이 없습니다!");
 		
-		} else if($("#preOrderTotalPrice").text() != "선결제 없음") { 
-			if(isChecked) {
-	            $("#onSitePayment").prop('checked', false);
-	            $("#preOrderTotalPrice").text("97,000");//여기파라미터값
-	            $("#totalPayment").text("127,000원");
-	            isChecked = false;
-	        } else {
-	            $("#preOrderTotalPrice").text("0");
-	            $("#totalPayment").text("37,000원");
+		} else { 
+			if(!isChecked) {
+				$("#onSitePayment").prop('checked', true);
+	            $("#preOrderTotalPrice").text("0"); // 선주문메뉴 금액을 합한값을 0으로 만들어줌
+	            $("#totalPayment").text((totalPayment - preOrderTotalPrice).toLocaleString()); //결제해야할 최종합계에서 빼줌
 	            isChecked = true;
-	        }
+	        } else {
+				$("#onSitePayment").prop('checked', false);
+				$("#preOrderTotalPrice").text(preOrderTotalPrice.toLocaleString()); //그전 값으로 다시 돌려줌
+				$("#totalPayment").text(totalPayment.toLocaleString()); //그 전 값으로 다시 돌려줌
+				isChecked = false;
+			}
 		}
 	});
 	
-	// 만약 포인트가 0이면 사용불가메세지
+	// 현재보유포인트에 따른 전액사용 선택시
 	$("#useAllPoint").on("click", function() {
-			if($("#useablePoint").text() == "0") {
+			if($("#useablePoint").text() === "0" ) {
 				alert("사용가능한 포인트가 없습니다!");
 			} else {
-				$(".point_to_use").val($("#useablePoint").text().trim()); //여기 내포인트 전액이 와야함
-				 //여기 내포인트 전액이 와야함
-				$("#useablePoint").text("0");
+				$(".point_to_use").val(useablePoint.toLocaleString()); //여기 내포인트 전액이 와야함
+				$("#useablePoint").text("0"); //사용가능 포인트가 0이된다
 			}
 	});
 	
-	//오류있음!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//	$("#usePoint").on("click", function() {
-//		if($(".point_to_use").val() == "") {
-//			alert("포인트를 입력해주세요!");
-//		} else {
-//			var getTotalPayment = parseInt(totalPayment.replace(/,/g, ''));
-//			var discountPoint = parseInt($("#discountPoint").text().replace(/,/g, ''));
-//			if(getTotalPayment > discountPoint) {
-//				$("#discountPoint").text($(".point_to_use").val());
-//				$("#nowPoint").text("0");
-//				$("#totalPayment").text((getTotalPayment - discountPoint).toLocaleString());
-//			} else {
-//				alert("사용가능한 포인트를 다시 확인해 주세요!");
-//			}
-//		}
-//	});	
+	//---------------------------------------------------------------------
+	// 쿠폰 선택시 할인됨
+	$("#useCoupone").on("click", function() {
+		if($(".select_coupon").val() == "") {
+			alert("쿠폰을 선택해 주세요!");
+		} else if($(".select_coupon").val() == "5000"){
+			var discountCoupon =  parseInt($(".select_coupon").val().replace(/,/g, ''));
+			$("#discountCoupon").text(discountCoupon.toLocaleString());
+		 	// 총결제금액에서 쿠폰할인값과 포인트할인값을 제외한 최종결제금액
+			finalTotalPayment(totalPayment, nowPoint);
+		} else if($(".select_coupon").val() == "0.1"){
+			var discountCoupon =  parseFloat($(".select_coupon").val());
+			$("#discountCoupon").text((parseInt(parseFloat(totalPayment) * discountCoupon)).toLocaleString());
+			finalTotalPayment(totalPayment, nowPoint);
+		}
+	});	
+	
+	// 포인트 사용 버튼 클릭시 현재포인트가 변하고 총결제금액에서 차감됨 
+	$("#usePoint").on("click", function() {
+		//텍스박스내에 입력값 위에서 선언하면 
+		//텍스박스내에 입력값 위에서 선언하면 
+		var pointToUse = parseInt($(".point_to_use").val().replace(/,/g, '')); 
+//		console.log(totalPayment - discountPoint);
+		if($(".point_to_use").val() == "" && pointToUse === 0) {
+			alert("포인트를 입력해주세요!");
+		} else if(pointToUse > 0) { // 포인트의 텍스트 박스의 값이 0보다 클때
+			if(pointToUse > useablePoint) { // 총포인트가 텍스트 박스의 입력값보다 클때 할인적용
+				alert("사용가능한 포인트를 다시 확인해 주세요!");
+			} else {
+				var discountPoint = parseInt($("#discountPoint").text().replace(/,/g, '')); // 포인트 할인부분
+				discountPoint =  pointToUse;
+				$("#discountPoint").text(discountPoint.toLocaleString())
+				$("#nowPoint").text("0");
+				
+		 		finalTotalPayment(totalPayment, nowPoint);
+			}
+		} 
+	});	
 
-	//오류있음!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//	$("#useCoupone").on("click", function() {
-//		
-//		if($(".select_coupon").val() == "") {
-//			alert("쿠폰을 선택해 주세요!");
-//		} else if($(".select_coupon").val() == "5000"){
-//			var getTotalPayment = totalPayment.replace(/,/g, '');
-//			var discountCoupon = $(".select_coupon").val();
-//			totalPayment = parseInt(getTotalPayment) - parseInt(discountCoupon);
-//			$("#totalPayment").text(totalPayment.toLocaleString());
-//			$("#discountCoupon").text(parseInt(discountCoupon).toLocaleString());
-//		} else if($(".select_coupon").val() == "0.1"){
-//			var getTotalPayment = totalPayment.replace(/,/g, '');
-//			var discountCoupon = $(".select_coupon").val();
-//			totalPayment = parseInt(parseFloat(getTotalPayment) * (1 - parseFloat(discountCoupon)));
-//			$("#totalPayment").text(totalPayment.toLocaleString());
-//			$("#discountCoupon").text((parseInt(parseFloat(getTotalPayment) * parseFloat(discountCoupon))));
-//		}
-//	});	
 
+	//포인트, 쿠폰할인 적용후 적립예정 포인트 계산해서 넣어야함
+	$()
+	
+	// 필수선택이 비어있을 때 안내문
 	$("form").submit(function() {
 		
 		if($('input[name="pay_method"]:checked').length == 0) { 
