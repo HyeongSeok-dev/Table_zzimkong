@@ -102,6 +102,7 @@ public class PaymentController {
 		map.put("menu", menu);
 
 		mav = new ModelAndView("payment/payment", "map", map);
+		System.out.println(mav);
 		return mav;
 	}
 	

@@ -52,7 +52,20 @@
 <select id="selectMember"  resultType="member">
 	SELECT *
 	FROM user
-	WHERE user_id = #{user_id}
+	<where>
+		<if test="user_id != null">
+			and user_id = #{user_id}
+	 	</if>
+	 	
+		<if test="user_id == null and user_nick != null">
+			and user_nick = #{user_nick}
+	 	</if>
+	 	
+		<if test="user_id == null and user_email1 != null">
+			and user_email = CONCAT(#{user_email1},'@',#{user_email2})
+	 	</if>
+	
+	</where>
 </select>
 
 

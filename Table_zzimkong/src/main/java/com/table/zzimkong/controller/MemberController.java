@@ -80,7 +80,7 @@ public class MemberController {
 	public String checkDupId(MemberVO member) {
 		MemberVO dbMember = service.getMember(member);
 		//조회 결과 판별
-		if(dbMember.getUser_id().equals(member.getUser_id())) {
+		if(dbMember == null) {
 			return "false";
 		}else {
 			return "true";
@@ -92,9 +92,10 @@ public class MemberController {
 	@ResponseBody
 	@GetMapping("join/MemberCheckDupNick")
 	public String checkDupNick(MemberVO member) {
+		System.out.println(member);
 		MemberVO dbMember = service.getMember(member);
 		
-		if(dbMember.getUser_nick().equals(member.getUser_nick())) {
+		if(dbMember == null) {
 			return "false";
 		}else {
 			return "true";
