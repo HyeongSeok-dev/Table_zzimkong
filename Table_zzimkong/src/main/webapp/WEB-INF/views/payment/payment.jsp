@@ -265,15 +265,15 @@
 									 <div>
 										<span class="detail"> </span>
 										<span class="detail_price">
-									 	<c:forEach var="preList" items="${map.pre }">
+									 	<c:forEach var="preOrder" items="${map.poi }">
 											<div class="info_price">
-												<span class="menu_name">${map.menu.menu_name}</span>
+												<span class="menu_name">${preOrder.menu_name}</span>
 												<span class="count">
-													<span>${preList.pre_num}</span>
+													<span>${preOrder.pre_num}</span>
 													개
 												</span>
 												<span class="price">
-													<span>${map.paymentInfo.eachMenuTotalPrice}</span>
+													<span>${preOrder.eachMenuTotalPrice}</span>
 													원
 												</span>
 											</div>

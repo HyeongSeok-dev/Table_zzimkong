@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.table.zzimkong.vo.CompanyVO;
 import com.table.zzimkong.vo.MenuVO;
+import com.table.zzimkong.vo.PreOrderInfo;
 import com.table.zzimkong.vo.PreOrderVO;
 import com.table.zzimkong.vo.ReservationVO;
 
@@ -20,8 +21,7 @@ public interface PaymentMapper {
 
 	CompanyVO selectResCom(ReservationVO res);
 
-	List<PreOrderVO> selectPreOrder(ReservationVO res);
+	List<PreOrderInfo> selectPreOrder(ReservationVO res);
 
-	MenuVO selectPreMenu(PreOrderVO pre);
 	
 }

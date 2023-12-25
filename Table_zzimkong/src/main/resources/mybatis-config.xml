@@ -9,6 +9,7 @@
 		<typeAlias type="com.table.zzimkong.vo.ReservationVO"  alias="res"/>
 		<typeAlias type="com.table.zzimkong.vo.CompanyVO"  alias="company"/>
 		<typeAlias type="com.table.zzimkong.vo.PreOrderVO"  alias="pre"/>
+		<typeAlias type="com.table.zzimkong.vo.PreOrderInfo"  alias="poi"/>
 		<typeAlias type="com.table.zzimkong.vo.MenuVO"  alias="menu"/>
 		<typeAlias type="com.table.zzimkong.vo.ReviewVO"  alias="review"/>
 	</typeAliases>
