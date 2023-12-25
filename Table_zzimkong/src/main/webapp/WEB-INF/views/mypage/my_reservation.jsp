@@ -25,6 +25,10 @@
 </script>
 </head>
 <body>
+	<header>
+		<jsp:include page="../inc/top2_search_bar.jsp"/>
+	</header>
+	<main>
 	<jsp:include page="../inc/my_sidebar.jsp" />
 	<div class="wrapper">
 		<div>
@@ -133,6 +137,10 @@
 					</td>
 				</tr>
 				</table>
+		</div>
+	</div>
+	</main>
+			
 
 </body>
 </html>

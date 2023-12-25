@@ -19,6 +19,7 @@ public class MypageController {
 	// 회원정보 조회
 	@GetMapping("my/modify/profile")
 	public String my_modify_profile(MemberVO member, HttpSession session, Model model) {
+		session.setAttribute("sId", "gorani");
 		String sId = (String) session.getAttribute("sId");
 		if(sId == null) {
 			model.addAttribute("msg", "잘못된 접근입니다.");
@@ -34,7 +35,8 @@ public class MypageController {
 		// MemberService - getMember() 메서드 호출하여 회원 상세정보 조회 요청
 		// => 파라미터 : MemberVO 객체 리턴타입 : MemberVO(dbMember)
 		MemberVO dbMember = service.getMember(member);
-		
+		System.out.println(dbMember);
+	
 		// 조회 결과 Model 객체에 저장
 		model.addAttribute("member", dbMember);
 		

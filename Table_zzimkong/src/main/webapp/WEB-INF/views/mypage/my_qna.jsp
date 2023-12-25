@@ -11,6 +11,10 @@
 
 </head>
 <body>
+	<header>
+		<jsp:include page="../inc/top2_search_bar.jsp"/>
+	</header>
+	<main>
 	<jsp:include page="../inc/my_sidebar.jsp"/>
 	<section class="notice">
 	  <div class="text">
@@ -92,6 +96,7 @@
 		   </div> 
 		</div>
 	</section>
+	</main>
 <!-- 	<footer> -->
 <%-- 		<jsp:include page="bottom.jsp"></jsp:include> --%>
 <!-- 	</footer> -->

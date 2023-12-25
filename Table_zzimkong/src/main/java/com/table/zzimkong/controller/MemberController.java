@@ -88,7 +88,7 @@ public class MemberController {
 		
 	} //checkDupId()
 	
-	//MemberCheckDupNick(닉네임 중복확인)에대한 비지니스 로직 처리===============================
+	//MemberCheckDupNick(닉네임 중복확인)에 대한 비지니스 로직 처리===============================
 	@ResponseBody
 	@GetMapping("join/MemberCheckDupNick")
 	public String checkDupNick(MemberVO member) {

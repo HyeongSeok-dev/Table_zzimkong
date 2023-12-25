@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%-- JSTL 에서 split() 등의 함수 사용을 위해 functions 라이브러리 추가(${fn:xxx()} 형식으로 활용) --%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -58,8 +61,10 @@
 					<tr>
 						<th>이메일</th>
 						<td>
-							<input type="text" name="email1" class="email_text" value="${member.user_email1}"> @
-							<input type="text" name="email2" class="email_text" value="${member.user_email2}">
+							<%-- 이메일 주소 분리("@" 기준)하여 표시 --%>
+							<c:set var="arrEmail" value="${fn:split(member.user_email, '@')}" />
+							<input type="text" name="email1" class="email_text" value="${arrEmail[0]}"> @
+							<input type="text" name="email2" class="email_text" value="${arrEmail[1]}">
 	                    	<select class="email_domain" name="emailDomain">
 								<option value="">선택하세요</option>
 				                <option value="gmail.com">gmail.com</option>

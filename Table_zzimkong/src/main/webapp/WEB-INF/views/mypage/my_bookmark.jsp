@@ -13,6 +13,10 @@
 </head>
 <body>
 <body>
+	<header>
+		<jsp:include page="../inc/top2_search_bar.jsp"/>
+	</header>
+	<main>
 	<jsp:include page="../inc/my_sidebar.jsp" />
 	<div class="wrapper">
 		<div class ="title">
@@ -24,7 +28,7 @@
 			<div class="bookmark_image">
 				<div>
 					<a href="${pageContext.request.contextPath}/product/detail">
-						<img class="image_size" src="${pageContext.request.contextPath}/resources/img/mylist_image1.jpg.jpg" >
+						<img class="image_size" src="${pageContext.request.contextPath}/resources/img/mylist_image1.jpg" >
 					</a>
 				<div id="likeButton" class="like_button">
 					<svg id="heart" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -35,7 +39,7 @@
 				</div>			
 				<div>
 					<a href="${pageContext.request.contextPath}/product/detail">
-						<img class="image_size" src="${pageContext.request.contextPath}/resources/mylist_image2.jpg" >
+						<img class="image_size" src="${pageContext.request.contextPath}/resources/img/mylist_image2.jpg" >
 					</a>
 				<div id="likeButton" class="like_button">
 					<svg id="heart" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -91,6 +95,7 @@
 				</div>
 				</div>	
 			</div>	
-		</div>		
+		</div>
+	</main>		
 </body>
 </html>
