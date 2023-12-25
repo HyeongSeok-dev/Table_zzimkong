@@ -158,6 +158,11 @@ public class HomeController {
 		return "ceo/ceo_reservation_detail";
 	}
 	
+	@GetMapping("ceo/reservation/info")
+	public String ceo_reservation_info() {
+		return "ceo/ceo_reservation_info";
+	}
+	
 	@GetMapping("my/list")
 	public String my_list() {
 		return "mypage/my_list";

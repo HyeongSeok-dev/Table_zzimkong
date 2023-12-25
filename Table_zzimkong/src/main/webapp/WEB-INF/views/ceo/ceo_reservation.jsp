@@ -38,39 +38,19 @@
 				</div>
 				<table border="1">
 					<tr>
-						<th>상호명</th>
-						<th>회원번호</th>
-						<th>예약날짜</th>
-						<th>방문시간</th>
-						<th>방문인원</th>
-						<th>예약금</th>
-						<th>선주문금액</th>
-					</tr>
-					<tr>
-						<td>voyage bistro</td>
-	<!-- 						<td>6</td> -->
-						<td>12</td>
-						<td>12월 25일</td>
-						<td>17시</td>
-						<td>2명</td>
-						<td>20,000원</td>
-						<td>125,000원</td>
-					</tr>
-					<tr>
 						<th>예약번호</th>
-						<th colspan="2">예약메뉴</th>
-						<th>방문자 성명</th>
-						<th>방문자 연락처</th>
-						<th>예약완료시간</th>
+						<th>예약날짜</th>
+						<th>예약시간</th>
+						<th>예약정보</th>
 						<th>취소여부</th>
 					</tr>
 					<tr>
-						<td>res1fvm2</td>
-	<!-- 						<td>8</td> -->
-						<td colspan="2">스테이크/ 파스타/ 샐러드</td>
-						<td>홍길동</td>
-						<td>010-1111-1111</td>
-						<td>now()</td>
+						<td>f1e9fvl</td>
+						<td>12월 25일</td>
+						<td>17시</td>
+						<td>
+						<button type="button" value="예약 상세 정보" onclick="newInfo()">예약 상세정보</button>
+						</td>
 						<td></td>
 					</tr>
 				</table>
