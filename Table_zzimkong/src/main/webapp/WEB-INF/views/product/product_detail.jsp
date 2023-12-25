@@ -13,7 +13,7 @@
 	rel="stylesheet">
 <script
 	src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
-<script src="${pageContext.request.contextPath }/resources/js/detail.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/product_detail.js"></script>
 </head>
 <body>
 <%-- 		<jsp:include page="../inc/top_ns.jsp"></jsp:include> --%>

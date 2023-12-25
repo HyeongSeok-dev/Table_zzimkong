@@ -12,11 +12,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.table.zzimkong.service.ProductService;
 import com.table.zzimkong.vo.CompanyVO;
+import com.table.zzimkong.vo.MenuVO;
 import com.table.zzimkong.vo.SearchVO;
 
 @Controller
@@ -67,12 +69,13 @@ public class ProductController {
 		
 		System.out.println("리스트에서 받음" + search);
 		
-		if(search.getSort() == null) {
+		if(search != null && search.getSort() == null) {
 			search.setSort("recommend");
 		}
 		
 		List<CompanyVO> companyList = service.getCompanyList(search);
 		
+		List<MenuVO> menuList = service.getMenuList(companyList);
 		
 		int listCount = companyList.size();
 
@@ -80,11 +83,12 @@ public class ProductController {
 		model.addAttribute("search", search);
 		model.addAttribute("listCount", listCount);
 		model.addAttribute("companyList", companyList);
+		model.addAttribute("menuList", menuList);
 		
 		return "product/product_list";
 	}
 	
-	@GetMapping("product/detail")
+	@PostMapping("product/detail")
 	public String product_detail() {
 		
 		return "product/product_detail";

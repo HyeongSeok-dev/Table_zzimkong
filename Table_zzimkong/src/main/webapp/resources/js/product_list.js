@@ -29,6 +29,9 @@ function getRemainingPeople($container, index) {
 }
 
 function reserve(time) {
-    // Reservation logic here
     console.log("Reserve at: " + time);
 }
+
+function submitForm(element) {
+        element.closest('form').submit();
+    }

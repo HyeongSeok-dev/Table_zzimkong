@@ -64,5 +64,7 @@ public class CompanyVO {
 	private String menu_name;
 	private String menu_describe;
 	private String menu_img ;
+	
+	
 }
 
