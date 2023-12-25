@@ -7,6 +7,7 @@ import org.springframework.stereotype.*;
 import org.springframework.ui.*;
 import org.springframework.web.bind.annotation.*;
 
+import com.itwillbs.mvc_board.vo.*;
 import com.table.zzimkong.service.*;
 import com.table.zzimkong.vo.*;
 
@@ -16,7 +17,7 @@ public class MypageController {
 	@Autowired
 	private MypageService service;
 	
-	// 회원정보 조회
+	// [ 회원정보 조회 ]
 	@GetMapping("my/modify/profile")
 	public String my_modify_profile(MemberVO member, HttpSession session, Model model) {
 		session.setAttribute("sId", "gorani");
@@ -46,6 +47,15 @@ public class MypageController {
 		return "mypage/my_modify_profile";
 
 	}
+	//	[ 회원정보 수정 ]
+	@GetMapping("")
+	public String modifyForm(MemberVO member, HttpSession session, Model model) {
+		// 세션 아이디가 없을 경우 "fail_back" 페이지를 통해 "잘못된 접근입니다" 출력 처리
+		String sId = (String) session.getAttribute("sId");
+		if (sId == null) {
+			model.addAttribute("msg", "잘못된 접근입니다");
+			return "fail_back";
+		}
 	
 	
 	

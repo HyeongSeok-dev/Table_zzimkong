@@ -26,6 +26,10 @@ window.onload = function() {
 		    }
 	
 	};
+	
+	/* 새비밀번호 */
+	document.modifyForm.passwd.onkeyup = function() {
+		let passwd = document.joinForm.passwd.value;
 };
 
 
