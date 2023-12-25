@@ -13,7 +13,7 @@
 </script>
 <body>
 	<header>
-<%-- 		<jsp:include page="../inc/top.jsp"/> --%>
+		<jsp:include page="../inc/top2_search_bar.jsp"/>
 	</header>
 	<main>
 		<jsp:include page="../inc/my_sidebar.jsp" />
@@ -33,32 +33,33 @@
 							<img src="${pageContext.request.contextPath}/resources/img/profile.png" width="100" height="100">
 							<p>프로필 사진으로 사용할 이미지를 등록해 주세요.</p>
 	                          <input type="file" name="fImage" class="hide"><br>
-	                          <button type="reset" id="my_delete">프로필 초기화</button>
+	                          <input type="checkbox" > 프로필 초기화
 						</td>
 					</tr>
 					<tr>
 						<th>이름</th>
 						<td>
-							<input type="text" class="input_text" value="홍길동" readonly>
+							<input type="text" class="input_text" value="${member.user_name}" readonly>
 						</td>
 					</tr>
 					<tr>
 						<th>생년월일</th>
 						<td>
-							<input type="text" class="input_text"  value="1996-02-14" readonly>
+							<input type="text" class="input_text" value="${member.user_birth}" readonly>
 						</td>
 					</tr>
 					<tr>
 						<th>닉네임</th>
 						<td>
-							<input type="text" id=nickname class="input_text"  placeholder="닉네임은 8자 이내로">
+							<input type="text" name=nickname class="input_text" value="${member.user_nick}" placeholder="닉네임은 6자 이내로">
+							<span id= "checkNickResult"></span>
 						</td>
 					</tr>
 					<tr>
 						<th>이메일</th>
 						<td>
-							<input type="text" name="email1" class="email_text"> @
-							<input type="text" name="email2" class="email_text">
+							<input type="text" name="email1" class="email_text" value="${member.user_email1}"> @
+							<input type="text" name="email2" class="email_text" value="${member.user_email2}">
 	                    	<select class="email_domain" name="emailDomain">
 								<option value="">선택하세요</option>
 				                <option value="gmail.com">gmail.com</option>

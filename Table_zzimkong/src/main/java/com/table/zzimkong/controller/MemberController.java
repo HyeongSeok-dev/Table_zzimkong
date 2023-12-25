@@ -104,47 +104,48 @@ public class MemberController {
 	
 	
 	//==========================================================================
-		// [ 로그인]
+	// [ 로그인]
+	
+	@GetMapping("login")
+	public String login() {
+		return "login/login";
+	}
+	
+	@PostMapping("loginPro") 
+	public String longinPro(MemberVO member, HttpSession session, Model model) {
+	//	System.out.println(member);
+		MemberVO dbMember = service.getMember(member);
+		System.out.println(dbMember);
 		
-		@GetMapping("login")
-		public String login() {
-			return "login/login";
+	//	if(dbMember.getUser_status() == 3) {
+	//		model.addAttribute("msg", "탈퇴한 회원입니다!");
+	//		return "fail_back";
+	//	}
+		
+	//	BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		
+	//	if(dbMember == null || !passwordEncoder.matches(member.getUser_passwd(), dbMember.getUser_passwd())) {
+		if(dbMember == null || !dbMember.getUser_passwd().equals(member.getUser_passwd())) {
+		// 로그인 실패 처리
+		model.addAttribute("msg", "로그인 실패!");
+		return "fail_back";
+		} else { // 로그인 성공
+		// 세션 객체에 로그인 성공한 아이디를 "sId" 속성으로 추가
+		session.setAttribute("sId", member.getUser_id());
+			
+		// 메인페이지로 리다이렉트
+		return "redirect:/";
 		}
 		
-		@PostMapping("loginPro") 
-		public String longinPro(MemberVO member, HttpSession session, Model model) {
-//			System.out.println(member);
-			MemberVO dbMember = service.getMember(member);
-			System.out.println(dbMember);
-			
-//			if(dbMember.getUser_status() == 3) {
-//				model.addAttribute("msg", "탈퇴한 회원입니다!");
-//				return "fail_back";
-//			}
-			
-//			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-			
-//			if(dbMember == null || !passwordEncoder.matches(member.getUser_passwd(), dbMember.getUser_passwd())) {
-				if(dbMember == null || !dbMember.getUser_passwd().equals(member.getUser_passwd())) {
-				// 로그인 실패 처리
-				model.addAttribute("msg", "로그인 실패!");
-				return "fail_back";
-			} else { // 로그인 성공
-				// 세션 객체에 로그인 성공한 아이디를 "sId" 속성으로 추가
-				session.setAttribute("sId", member.getUser_id());
-				
-				// 메인페이지로 리다이렉트
-				return "redirect:/";
-			}
-			
-		}
-			
-		// "MemberLogout" 요청에 대한 로그아웃 비즈니스 로직 처리
-		@GetMapping("MemberLogout")
-		public String logout(HttpSession session) {
-			// 세션 초기화
-			session.invalidate();
-			return "redirect:/";
-		}
+	}
+		
+	// "MemberLogout" 요청에 대한 로그아웃 비즈니스 로직 처리
+	@GetMapping("MemberLogout")
+	public String logout(HttpSession session) {
+		// 세션 초기화
+		session.invalidate();
+		return "redirect:/";
+	}
+
 		
 }//MemberController

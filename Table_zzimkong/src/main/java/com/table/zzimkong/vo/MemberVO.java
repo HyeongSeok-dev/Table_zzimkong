@@ -10,6 +10,7 @@ public class MemberVO {
 	private String user_nick;
 	private String user_email1;
 	private String user_email2;
+	private String user_email;
 	private String user_name;
 	private String user_birth;
 	private String com_num; //사업자번호

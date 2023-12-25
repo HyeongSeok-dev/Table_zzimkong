@@ -178,10 +178,7 @@ public class HomeController {
 		return "mypage/my_report_reason";
 	}
 	
-	@GetMapping("my/modify/profile")
-	public String my_modify_profile() {
-		return "mypage/my_modify_profile";
-	}
+
 	
 	@GetMapping("my/unregister")
 	public String my_unregister() {
