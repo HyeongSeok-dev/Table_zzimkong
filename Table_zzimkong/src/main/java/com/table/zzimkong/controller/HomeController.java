@@ -218,15 +218,15 @@ public class HomeController {
 		return "mypage/my_bookmark";
 	}
 	
-	@GetMapping("review/detail")
-	public String review_detail() {
-		return "review/review_detail";
-	}
+//	@GetMapping("review/detail")
+//	public String review_detail() {
+//		return "review/review_detail";
+//	}
 	
-	@GetMapping("review/write")
-	public String review_write() {
-		return "review/review_write";
-	}
+//	@GetMapping("review/write")
+//	public String review_write() {
+//		return "review/review_write";
+//	}
 	
 	@GetMapping("review/complete")
 	public String review_complete() {

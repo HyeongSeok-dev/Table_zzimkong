@@ -1,5 +1,17 @@
 document.addEventListener('DOMContentLoaded', function() {
-
+    // AJAX call to fetch review count
+//    var comId = 2;
+//    $.ajax({
+//        url: '/reviewCount',
+//        type: 'GET',
+//        data: { com_id: comId },
+//        success: function(response) {
+//            $('#reviewCountDisplay').text(response + '개 리뷰 별점 평균');
+//        },
+//        error: function(xhr, status, error) {
+//            console.error("AJAX 요청에 실패했습니다: " + status + ", " + error);
+//        }
+//    });
 	//-----------------이런 점이 좋았어요 -------------------------
 	document.querySelectorAll('.review_select_chart_1_1').forEach(function(element) {
 
@@ -11,6 +23,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	});
 
+	// ---------리뷰 이미지 팝업---------------------------------------
+	
+    // Get the image and insert it inside the popup - use its "alt" text as a caption
+    var img = document.querySelector('.clickable-image');
+    var popup = document.getElementById('image-popup');
+    var popupImg = document.getElementById('popup-img');
+    var closeSpan = document.querySelector('.close-popup');
+
+    img.onclick = function(){
+        popup.style.display = "block";
+        popupImg.src = this.src;
+    }
+
+    // When the user clicks on <span> (x), close the popup
+    closeSpan.onclick = function() { 
+        popup.style.display = "none";
+    }
+		
 	// ---------댓글-----------------------------------------------
 	var commentIcon = document.getElementById('commentIcon');
 
@@ -48,6 +78,9 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 	});
 
+	// -----------------------------------------------------------------------	
+
+	// -----------------------------------------------------------------------	
 
 
 	// 하트누르기 
@@ -110,7 +143,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 			// 기본 이벤트 방지 (링크 이동 등)
 			event.preventDefault();
+			
 		});
+
 	});
 
 	// "네" 버튼 클릭 이벤트 리스너

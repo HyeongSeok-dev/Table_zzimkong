@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.table.zzimkong.mapper.ReviewMapper">
+	<!-- 리뷰 등록 작업 - INSERT -->
+	<!-- 이미지 나머지 파일은 디폴트값 넣기 -->
+	<insert id="insertReview"> 
+	INSERT 
+	INTO review
+	VALUES (
+	#{review_num}
+	,'user02'
+	,1
+	,0
+	,1
+	,'0'
+	,#{review_content}
+	,#{review_score}
+	,#{review_mood_interior}
+	,#{review_mood_alone}
+	,#{review_mood_large}
+	,#{review_mood_meeting}
+	,#{review_mood_view}
+	,#{review_food_big}
+	,#{review_food_deli}
+	,#{review_food_cheap}
+	,#{review_food_fresh}
+	,#{review_food_healthy}
+	,#{review_etc_kind}
+	,#{review_etc_parking}
+	,#{review_etc_toilet}
+	,#{review_etc_fast}
+	,#{review_etc_child}
+	,#{review_no_keyword}
+	,#{review_like}
+	,0 
+	,now()
+	,#{review_img_1}
+	,NULL
+	,NULL
+	,NULL
+	,NULL
+	,1
+	)
+	</insert>
+	
+	<!-- 업체이름 불러오기 -->
+	<select id="selectCompanyName" parameterType="int" resultType="String">
+	    SELECT com_name
+	    FROM company
+	    WHERE com_id = #{com_id}
+	</select>
+	
+	<!-- 리뷰 갯수 -->
+	<select id="countReview" resultType="int">
+	    SELECT COUNT(*)
+	    FROM review
+	    WHERE com_id = #{com_id}
+	</select>
+
+	<!-- 별점 평균 -->
+	<select id="averageReview" parameterType="int" resultType="double">
+		SELECT ROUND(AVG(review_score)/2,2)
+		FROM review
+	    WHERE com_id = #{com_id}
+	</select>
+	
+	<!-- 리뷰 리스트 -->
+	<select id="allReviewList" parameterType="int" resultType="review">
+	    SELECT * 
+	    FROM review
+	    WHERE com_id = #{com_id}
+	</select>
+	
+	<!-- 리뷰 수정 -->
+	<select id="modifyReview" parameterType="int" resultType="review">
+	    SELECT * 
+	    FROM review
+	    WHERE review_num = #{review_num}
+	</select>
+
+	<!-- 글 삭제 - DELETE -->
+	<delete id="removeReview">
+		DELETE FROM review
+		WHERE review_num = #{review_num}
+	</delete>
+
+
+
+
+</mapper>

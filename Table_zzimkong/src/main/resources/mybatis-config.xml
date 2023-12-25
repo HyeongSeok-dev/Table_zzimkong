@@ -10,5 +10,6 @@
 		<typeAlias type="com.table.zzimkong.vo.CompanyVO"  alias="company"/>
 		<typeAlias type="com.table.zzimkong.vo.PreOrderVO"  alias="pre"/>
 		<typeAlias type="com.table.zzimkong.vo.MenuVO"  alias="menu"/>
+		<typeAlias type="com.table.zzimkong.vo.ReviewVO"  alias="review"/>
 	</typeAliases>
 </configuration>
