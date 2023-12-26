@@ -9,6 +9,10 @@
 <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
 </head>
 <body>
+	<header>
+		<jsp:include page="../inc/top2_search_bar.jsp"/>
+	</header>
+	<main>
 		<jsp:include page="../inc/my_sidebar.jsp"  />
 	<div class="wrapper">
 		<div class ="title">
@@ -59,6 +63,7 @@
 			</tr>
 		</table>
 	</div>
+	</main>
 	
 
 </body>

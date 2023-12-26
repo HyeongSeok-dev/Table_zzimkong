@@ -1,5 +1,5 @@
-	/* 회원정보 수정 - 이메일 */
 window.onload = function() {
+	/* 회원정보 수정 - 이메일 */
 	document.modifyForm.emailDomain.onchange = function() {
 		console.log(document.modifyForm.emailDomain.value);
 		document.modifyForm.email2.value = document.modifyForm.emailDomain.value;
@@ -13,7 +13,25 @@ window.onload = function() {
 	    }
 	};
 	
+	/* 닉네임 중복확인 */
+	document.modifyForm.nickname.onblur = function() {
+		let nick = document.modifyForm.nickname.value; // 입력받은 닉네임값 저장
+		
+		if(nick.length <= 6) {
+			document.querySelector("#checkNickResult").innerText = "사용 가능";
+			document.querySelector("#checkNickResult").style.color = "#3FAFFC";
+		} else {
+		     	document.querySelector("#checkNickResult").innerText = "6글자 내";
+		     	document.querySelector("#checkNickResult").style.color = "red";
+		    }
+	
+	};
+	
+	/* 새비밀번호 */
+	document.modifyForm.passwd.onkeyup = function() {
+		let passwd = document.joinForm.passwd.value;
 };
+
 
 	/* 예약 취소 모달창 my_list.jsp */
 	function cancelReservation(){
@@ -126,3 +144,4 @@ document.addEventListener('DOMContentLoaded', function() {
 	};
 	
 	});
+}

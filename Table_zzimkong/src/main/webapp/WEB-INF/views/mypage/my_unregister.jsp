@@ -18,6 +18,10 @@
 </script>
 </head>
 <body>
+	<header>
+		<jsp:include page="../inc/top2_search_bar.jsp"/>
+	</header>
+	<main>
 	<div align="center">
 	<h1>회원 탈퇴</h1>
 	<br><br>
@@ -37,5 +41,6 @@
 	<button type="submit" onclick="unRegister()">탈퇴</button>
 	<button type="button" id="my_delete" >취소</button>
 	</div>
+	</main>
 </body>
 </html>

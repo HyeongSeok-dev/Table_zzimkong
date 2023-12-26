@@ -158,6 +158,11 @@ public class HomeController {
 		return "ceo/ceo_reservation_detail";
 	}
 	
+	@GetMapping("ceo/reservation/info")
+	public String ceo_reservation_info() {
+		return "ceo/ceo_reservation_info";
+	}
+	
 	@GetMapping("my/list")
 	public String my_list() {
 		return "mypage/my_list";
@@ -178,10 +183,7 @@ public class HomeController {
 		return "mypage/my_report_reason";
 	}
 	
-	@GetMapping("my/modify/profile")
-	public String my_modify_profile() {
-		return "mypage/my_modify_profile";
-	}
+
 	
 	@GetMapping("my/unregister")
 	public String my_unregister() {

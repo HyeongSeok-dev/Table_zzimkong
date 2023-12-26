@@ -14,9 +14,10 @@
 </head>
 <body>
 	<div class="top">
-<%-- 		<jsp:include page="../inc/top_ns.jsp"></jsp:include> --%>
-	</div>
+	
 	<jsp:include page="../inc/top2_search_bar.jsp"></jsp:include>
+	</div>
+
 	<p class="gap10"></p>
 	<div class="project">
 		<div class="list_main">
@@ -36,11 +37,12 @@
 				</div>
 				<div class="rowgroup">
 					
-					<c:forEach var="company" items="${companyList}">
-						<form action="" method="post" >
-							<div class="restaurant-list">
+					<c:forEach var="company" items="${companyList}" >
+						<form action="../product/detail" method="post" class="company_form">
+							<div class="restaurant-list" onclick="submitForm(this);">
 								<div class="restaurant-card">
 									<div class="restaurant-img">
+										<input type="hidden" name="com_img" value="${company.com_img}">
 										<img src="${pageContext.request.contextPath}/resources/img/${company.com_img}" class="com_pic">
 									</div>
 									<div class="restaurant-details">
@@ -56,6 +58,33 @@
 										<div class="reservation-time" data-start-time="${search.time}" data-persons="${search.persons}" data-remaining1="${company.remaining_people}"
 								             data-remaining2="${company.remaining_people2}" data-remaining3="${company.remaining_people3}" data-remaining4="${company.remaining_people4}" >
 										</div>
+										<input type="hidden" name="com_name" value="${company.com_name}">
+										<input type="hidden" name="distance" value="${company.distance}">
+										<input type="hidden" name="com_category" value="${company.com_category}">
+										<input type="hidden" name="com_search_tag" value="${company.com_search_tag}">
+										<input type="hidden" name="remaining_people" value="${company.remaining_people}">
+										<input type="hidden" name="com_idx" value="${company.com_id}">
+										<input type="hidden" name="com_gugun" value="${company.com_gugun}">
+										<input type="hidden" name="avg_score" value="${company.avg_score}">
+										<input type="hidden" name="com_address" value="${company.com_address}">
+										<input type="hidden" name="com_tel" value="${company.com_tel}">
+										<input type="hidden" name="com_tag_date" value="${company.com_tag_date}">
+										<input type="hidden" name="com_tag_family" value="${company.com_tag_family}">
+										<input type="hidden" name="com_tag_party" value="${company.com_tag_party}">
+										<input type="hidden" name="com_tag_quiet" value="${company.com_tag_quiet}">
+										<input type="hidden" name="com_tag_park" value="${company.com_tag_park}">
+										<input type="hidden" name="com_tag_kids" value="${company.com_tag_kids}">
+										<input type="hidden" name="com_tag_disabled" value="${company.com_tag_disabled}">
+										<input type="hidden" name="com_tag_pet" value="${company.com_tag_pet}">
+										<input type="hidden" name="com_tag_hall" value="${company.com_tag_hall}">
+										<input type="hidden" name="com_tag_room" value="${company.com_tag_room}">
+										<input type="hidden" name="com_tag_terrace" value="${company.com_tag_terrace}">
+										<input type="hidden" name="com_tag_window" value="${company.com_tag_window}">
+										<input type="hidden" name="com_hyg_rank" value="${company.com_hyg_rank}">
+										<input type="hidden" name="com_open_time" value="${company.com_open_time}">
+										<input type="hidden" name="com_close_time" value="${company.com_close_time}">
+										<input type="hidden" name="com_break_time" value="${company.com_break_time}">
+										<input type="hidden" name="com_break_time" value="${company.com_break_time}">
 									</div>
 								</div>
 							</div>

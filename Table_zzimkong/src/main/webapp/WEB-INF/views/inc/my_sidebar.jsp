@@ -19,7 +19,7 @@
       <div class="common-mypage__sc-1loaj4c-0 dZrJws">
         <div class="common-mypage__sc-1loaj4c-1 hvkAAt">
         	<img id="profile" src="${pageContext.request.contextPath}/resources/img/profile.png">
-            <strong>쩝쩝박사</strong>
+            <strong>${member.user_nick}</strong>
             <a href="${pageContext.request.contextPath }/my/modify/profile">회원정보변경</a>
         </div>
      </div>

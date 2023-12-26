@@ -10,47 +10,58 @@
 <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet" type="text/css">
 <script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/payment.js"></script>
-<script type="text/javascript">
-	$.ajax({
-	    url: '/paymentPro',  // 요청을 보낼 URL
-	    type: 'POST',  // 요청 방식(GET, POST 등)
+<script type="text/javascript"> 
+ 	$.ajax({
+ 	    url: '/paymentPro',  // 요청을 보낼 URL
+ 	    type: 'POST',  // 요청 방식(GET, POST 등)
 	    data: {  // 서버에 전달할 데이터
-	        text: $('#mySpan').text()
+	    	// 쿠폰할인 금액
+	        discountCoupon : $('#discountCoupon').text(),
+	        //  포인트할인 금액
+	        discountPoint : $('#discountPoint').text(),
+	        // 적립예정 포인트
+	        earnedPoints : $('#earnedPoints').text(),
+	        // 사용하고 남은 포인트
+	        nowPoint : $('#nowPoint').text(),
+	        // 적립포인트 + 사용하고 남은포인트
+	        totalPoint : $('#totalPoint').text(),
+	        // 최종 결제금액
+	        totalPayment : $('#totalPayment').text()
 	    },
-	    success: function(response) {
-	        // 요청이 성공적으로 완료된 후 실행할 코드
+ 	    success: function(response) {
+ 	        // 요청이 성공적으로 완료된 후 실행할 코드
 	    },
-	    error: function(xhr, status, error) {
-	        // 요청이 실패했을 때 실행할 코드
+ 	    error: function(error) {
+ 	        // 요청이 실패했을 때 실행할 코드
 	    }
-	});
+ 	});
 </script>
 </head>
 <body>
  	<header>
 		<jsp:include page="../inc/top2.jsp"></jsp:include>
 	</header>
-	<div class="div_outter">
-		<div class="div_form_header">
-			<span><h1>결제</h1></span>
-			<span>
-				<ul class="Breadcrumbs_article__24BXb">
-					<li class="Breadcrumbs_item__3_-g5">
-						예약
-						<span class="Breadcrumbs_icon-arrow__2PDd_">
-							<svg xmlns="http://www.w3.org/2000/svg" width="7" height="12" viewBox="0 0 6 10">
-								<path fill="none" fill-rule="evenodd" stroke="#bbbbbd" d="M1 1l4 4-4 4"></path>
-							</svg>
-						</span>
-					</li>
-					<li class="Breadcrumbs_item__3_-g5 Breadcrumbs_show-highlight__14PcM">
-						결제
-						<span class="blind">현재 페이지</span>
-					</li>
-				</ul>
-			</span>
-		</div>
-		<form action="paymentPro" name="payForm">
+	<form action="paymentPro" name="payForm" method="post">
+		<div class="div_outter">
+			<div class="div_form_header">
+				<span><h1>결제</h1></span>
+				<span>
+					<ul class="Breadcrumbs_article__24BXb">
+						<li class="Breadcrumbs_item__3_-g5">
+							예약
+							<span class="Breadcrumbs_icon-arrow__2PDd_">
+								<svg xmlns="http://www.w3.org/2000/svg" width="7" height="12" viewBox="0 0 6 10">
+									<path fill="none" fill-rule="evenodd" stroke="#bbbbbd" d="M1 1l4 4-4 4"></path>
+								</svg>
+							</span>
+						</li>
+						<li class="Breadcrumbs_item__3_-g5 Breadcrumbs_show-highlight__14PcM">
+							결제
+							<span class="blind">현재 페이지</span>
+						</li>
+					</ul>
+				</span>
+			</div>
 			<div class="div_inner">
 				<div class="div_left_box">
 					<section id="leftSec01" class="section_box">
@@ -245,66 +256,52 @@
 									<div>
 										<span class="detail">예약금액</span>
 										<span class="detail_price"><span id="reservationPrice">${map.paymentInfo.res_table_price}</span> 원</span>
+						 <%-- param--%> <input type="hidden" value="${map.paymentInfo.res_table_price}" name="reservationPrice"/>
 									</div>
-									<div>
-										<span class="detail">메뉴 선결제금액</span>
-										<span class="detail_price">
-								<c:choose>
-									<c:when test="${empty map.res.pre_idx}">
-											<span id="preOrderTotalPrice" name="preOrderIsNone">선주문 없음</span>
-										</span>
-									</div>  
-									</c:when>
-									<c:otherwise> 
-											<span id="preOrderTotalPrice" name="PreOrderIsExist">
-												${map.paymentInfo.menuTotalPrice }
-											</span>원
- 										</span>
- 									</div>
-									<%-- 여기부터 선결제 있으면 표시함 --%>
-									 <div>
-										<span class="detail"> </span>
-										<span class="detail_price">
-									 	<c:forEach var="preList" items="${map.pre }">
-											<div class="info_price">
-												<span class="menu_name">${map.menu.menu_name}</span>
-												<span class="count">
-													<span>${preList.pre_num}</span>
-													개
+									<c:choose>
+										<c:when test="${empty map.res.pre_idx}">
+											<div>
+												<span class="detail">메뉴 선결제금액</span>
+												<span class="detail_price">
+													<span id="preOrderTotalPrice">선주문 없음</span>
+									<%-- param--%>	<input type="hidden" value="" name="PreOrderStatus"/>
 												</span>
-												<span class="price">
-													<span>${map.paymentInfo.eachMenuTotalPrice}</span>
-													원
-												</span>
-											</div>
-									 	</c:forEach>
-									 		</span>
-										</div>	
-<!-- 											<div class="info_price"> -->
-<%-- 												<span class="menu_name">${map.menu.menu_name}</span> --%>
-<!-- 												<span class="count"> -->
-<%-- 													<span>${map.pre.pre_num}</span> --%>
-<!-- 													개 -->
-<!-- 												</span> -->
-<!-- 												<span class="price"> -->
-<%-- 													<span>${map.menu.menu_price}</span> --%>
-<!-- 													원 -->
-<!-- 												</span> -->
-<!-- 											</div> -->
-<!-- 											<div class="info_price"> -->
-<%-- 												<span class="menu_name">${map.menu.menu_name}</span> --%>
-<!-- 												<span class="count"> -->
-<%-- 													<span>${map.pre.pre_num}</span> --%>
-<!-- 													개 -->
-<!-- 												</span> -->
-<!-- 												<span class="price"> -->
-<%-- 													<span>${map.menu.menu_price}</span> --%>
-<!-- 													원 -->
-<!-- 												</span> -->
-<!-- 											</div> -->
-									
-							 		</c:otherwise>
-								</c:choose>
+											</div>  
+										</c:when>
+										<c:otherwise> 
+											<div>
+												<span class="detail">메뉴 선결제금액</span>
+												<span class="detail_price">
+													<span id="preOrderTotalPrice" >
+														${map.paymentInfo.menuTotalPrice }
+										<%-- param--%><input type="hidden" value="${map.paymentInfo.menuTotalPrice }" name="PreOrderStatus"/>
+													</span> 원
+		 										</span>
+											</div>  
+										<%-- 여기부터 선결제 있으면 표시함 --%>
+											 <div>
+												<span class="detail"> </span>
+												<span class="detail_price">
+											 	<c:forEach var="preOrder" items="${map.poi }">
+													<div class="info_price">
+														<span class="menu_name">${preOrder.menu_name}</span>
+									   	  <%-- param--%><input type="hidden" value="${preOrder.menu_name}" name="PreOrderStatus"/>
+														<span class="count">
+															<span>${preOrder.pre_num}</span>
+											  <%-- param--%><input type="hidden" value="${preOrder.pre_num}" name="PreOrderStatus"/>
+															개
+														</span>
+														<span class="price">
+															<span>${preOrder.eachMenuTotalPrice}</span>
+										   	  <%-- param--%><input type="hidden" value="${preOrder.eachMenuTotalPrice}" name="PreOrderStatus"/>
+															 원
+														</span>
+													</div>
+											 	</c:forEach>
+											 		</span>
+												</div>	
+								 		</c:otherwise>
+									</c:choose>
 									<div>
 										<span class="detail">쿠폰할인</span>
 										 <span class="detail_price">
@@ -361,11 +358,14 @@
 					</div>
 				</div>
 			</div>
-		</form>
-	</div>
+		</div>
+		<%--info페이지에 필요한 할인전 예약금액 --%>
+		<input type="hidden" value="${map.paymentInfo.totalPrice}" name="beforeDiscountTotalPrice"/>
+		
+	</form>
 	
-<%--	<footer>
-	
-	</footer> --%>
+	<footer>
+		<jsp:include page="../inc/bottom.jsp"></jsp:include>
+	</footer> 
 </body>
 </html>

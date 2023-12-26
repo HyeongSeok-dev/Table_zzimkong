@@ -127,9 +127,9 @@ $(function() {
 
 		} else if(pointToUse >= 0) { // 포인트의 텍스트 박스의 값이 0보다 클때
 			
-			if(pointToUse > useablePoint && $(".point_to_use").val() === "0") { // 총포인트가 텍스트 박스의 입력값보다 클때 할인적용
+			if((parseInt($(".point_to_use").val().replace(/,/g, '')) > useablePoint) || $(".point_to_use").val() === "0") { // 총포인트가 텍스트 박스의 입력값보다 클때 할인적용
 				alert("사용가능한 포인트를 다시 확인해 주세요!");
-			
+
 			} else {
 				var discountPoint = parseInt($("#discountPoint").text().replace(/,/g, '')); // 포인트 할인부분
 				discountPoint =  pointToUse;

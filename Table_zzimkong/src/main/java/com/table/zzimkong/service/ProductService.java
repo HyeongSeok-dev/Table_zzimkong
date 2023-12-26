@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.table.zzimkong.mapper.ProductMapper;
 import com.table.zzimkong.vo.CompanyVO;
+import com.table.zzimkong.vo.MenuVO;
 import com.table.zzimkong.vo.SearchVO;
 
 
@@ -19,6 +20,11 @@ public class ProductService {
 	public List<CompanyVO> getCompanyList(SearchVO search) {
 		// TODO Auto-generated method stub
 		return mapper.selectCompanyList(search);
+	}
+
+	public List<MenuVO> getMenuList(List<CompanyVO> companyList) {
+		// TODO Auto-generated method stub
+		return mapper.selectMenuList(companyList);
 	}
 	
 }

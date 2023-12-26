@@ -12,9 +12,9 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PaymentInfo {
-	private String eachMenuTotalPrice;
 	private String menuTotalPrice;
 	private String totalPrice;
 	private String totalPoint;
 	private String res_table_price;
+
 }

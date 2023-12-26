@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.table.zzimkong.mapper.MypageMapper">
+
+	<!-- 회원정보 조회 - SELECT -->
+	<select id="selectMember"  resultType="member">
+	SELECT *
+	FROM user
+	WHERE user_id = #{user_id}
+	</select>
+</mapper>

@@ -24,15 +24,41 @@
 		WHERE com_id = #{com_id}
 	</select>
 
-	<select id="selectPreOrder" resultType="pre">
-		SELECT menu_idx, pre_num 
-		FROM pre_order
-		WHERE res_idx = #{res_idx}
+	<select id="selectPreOrder" resultType="poi">
+		SELECT pre.pre_num, pre.menu_idx, menu.menu_name, menu_price 
+		FROM pre_order pre , menu
+		WHERE res_idx = #{res_idx} AND pre.menu_idx = menu.menu_idx;
 	</select>
 	
-	<select id="selectPreMenu" resultType="menu">
-		SELECT menu_name, menu_price
-		FROM menu
-		WHERE menu_idx = #{menu_idx}
- 	</select>
+	<insert id="insertSubUsedPoint">
+		INSERT
+		INTO point
+		VALUES (
+			null
+			, #{user_idx}
+			, #{discountPoint}
+			, 4
+			, null
+			, 1
+			, now()
+		)
+	</insert>
+
+	<insert id="insertAddPoint">
+		INSERT
+		INTO point
+		VALUES (
+			null
+			, #{user_idx}
+			, #{earnedPoints}
+			, 1
+			, null
+			, 1
+			, now()
+		)
+	</insert>
+	
+	
+	
+	
 </mapper>

@@ -1,6 +1,5 @@
 package com.table.zzimkong.service;
 
-import java.text.NumberFormat;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,10 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.table.zzimkong.mapper.PaymentMapper;
 import com.table.zzimkong.vo.CompanyVO;
-import com.table.zzimkong.vo.MemberVO;
 import com.table.zzimkong.vo.MenuVO;
-import com.table.zzimkong.vo.PaymentInfo;
-import com.table.zzimkong.vo.PaymentVO;
+import com.table.zzimkong.vo.PreOrderInfo;
 import com.table.zzimkong.vo.PreOrderVO;
 import com.table.zzimkong.vo.ReservationVO;
 
@@ -34,12 +31,17 @@ public class PaymentService {
 		return mapper.selectResCom(res);
 	}
 
-	public List<PreOrderVO> getPreOrder(ReservationVO res) {
+	public List<PreOrderInfo> getPreOrderInfo(ReservationVO res) {
 		return mapper.selectPreOrder(res);
 	}
 
-	public MenuVO getMenu(PreOrderVO pre) {
-		return mapper.selectPreMenu(pre);
+	public int subUsedPoint(ReservationVO res, String discountPoint) {
+		return mapper.insertSubUsedPoint(res, discountPoint);
+	}
+
+	public int addPoint(ReservationVO res, String earnedPoints) {
+		// TODO Auto-generated method stub
+		return mapper.insertAddPoint(res, earnedPoints);
 	}
 
 	

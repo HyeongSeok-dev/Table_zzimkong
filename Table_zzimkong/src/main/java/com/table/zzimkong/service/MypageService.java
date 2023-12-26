@@ -7,25 +7,14 @@ import com.table.zzimkong.mapper.*;
 import com.table.zzimkong.vo.*;
 
 @Service
-public class MemberService {
-	
+public class MypageService {
 	// MemberMapper 객체 자동 주입
 	@Autowired
-	private MemberMapper mapper;
-
-	public int registMember(MemberVO member) {
-		// MemberMapper(인터페이스) - insertMember()
-		// => 파라미터 : MemberVO 객체   리턴타입 : int
-		return mapper.insertMember(member);
-	} //registMember()
-
-
+	private MypageMapper mapper;
 	
+	// 회원정보 조회 요청
 	public MemberVO getMember(MemberVO member) {
-		// TODO Auto-generated method stub
 		return mapper.selectMember(member);
 	}
-	
-	
-	
-} //MemberService
+
+}
