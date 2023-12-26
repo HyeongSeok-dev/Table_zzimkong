@@ -119,6 +119,52 @@ public class MemberController {
 				}
 				
 			}//joinCeoPro()
+		
+		//회원탈퇴=================================================================
+		
+//		@PostMapping("MemberWithdrawPro")
+//		public String withdrawForm(HttpSession session, Model model) {
+//					
+//			String sId = (String)session.getAttribute("sId");
+//			
+//			if(sId == null) {
+//				model.addAttribute("msg", "잘못된 접근 입니다.");
+//				return "fail_back";
+//			}
+//			return "mypage/my_unregister";
+//		}
+		
+		//회원탈퇴 비지니스 로직처리
+		@PostMapping("my/check/MemberWithdrawPro")
+		public String withdrawPro(MemberVO member, HttpSession session, Model model) {
+			
+				String sId = (String)session.getAttribute("sId");
+					
+					if(sId == null) {
+						model.addAttribute("msg", "잘못된 접근 입니다.");
+						return "fail_back";
+					}
+					
+					member.setUser_id(sId);
+					
+					MemberVO dbMember = service.getMember(member);
+					
+					//db랑비교
+					BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+					if(passwordEncoder.matches(member.getUser_passwd(), dbMember.getUser_passwd())) {
+						model.addAttribute("msg", "권한이 없습니다");
+						return "fail_back";
+				}
+					
+				//탈퇴처리 요청
+				int updateCount = service.withdrawMember(member);
+				
+				if(updateCount > 0) { //성공
+					return "mypage/my_complet";
+				}else {
+					return "fail_back";
+				}
+		}
 	
 	//==========================================================================
 	// [ 로그인]

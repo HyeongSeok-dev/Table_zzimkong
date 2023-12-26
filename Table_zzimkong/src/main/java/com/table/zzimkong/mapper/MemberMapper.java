@@ -11,5 +11,8 @@ public interface MemberMapper {
 
 	MemberVO selectMember(MemberVO member);
 
+	//회원탈퇴
+	int updateWithdrawMember(MemberVO member);
+
 	
 } //MemberMapper
