@@ -102,6 +102,23 @@ public class MemberController {
 		}
 	} //MemberCheckDupNick()
 	
+	//업주회원=================================================================
+
+		@PostMapping("join/MemberJoinCeoPro")
+		public String joinCeoPro(MemberVO member, Model model) {
+				
+				System.out.println(member);
+			
+				int insertCount = service.registMember(member);
+				if(insertCount > 0) { // 성공				
+					return "redirect:/join/complete";
+				} else { // 실패
+					// 실패 시 메세지 출력 및 이전페이지로 돌아가는 기능을 모듈화 한 fail_back.jsp 페이지
+					model.addAttribute("msg", "회원 가입 실패!");
+					return "fail_back";
+				}
+				
+			}//joinCeoPro()
 	
 	//==========================================================================
 	// [ 로그인]

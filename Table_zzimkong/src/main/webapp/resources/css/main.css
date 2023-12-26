@@ -12,6 +12,20 @@
     unicode-range: U+1100-11FF,U+3130-318F,U+A960-A97F,U+AC00-D7A3,U+D7B0-D7FF /* 이 부분은 그대로 */
 }
 
+/* 카테고리버튼 */
+#foodBtn, #foodBtn2{
+ display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#foodBtn button, #foodBtn2 button {
+  width: 85px;  /* 버튼의 너비 */
+  height: 85px;  /* 버튼의 높이 */
+  margin: 30px; /*버튼 사이의 간격*/
+  font-size: 20px; /*텍스트 크기*/
+}
+
 /* 메인 가게 전경이미지 */
 .img-responsive {
   width: 200px !important; /*이미지의 너비*/

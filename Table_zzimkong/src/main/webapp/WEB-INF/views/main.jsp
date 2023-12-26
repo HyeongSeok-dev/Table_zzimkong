@@ -44,7 +44,7 @@
 
 <body>
 	
-	<!-- Header start ============================== -->
+	<!-- Header start (메인탑)============================== -->
 	<nav id="navigation">
 		<div class="container_header_width">
 			<div class="row">
@@ -94,10 +94,6 @@
 													<li><a href="${pageContext.request.contextPath}/#">
 													<img src="${pageContext.request.contextPath}/resources/img/top_bell.png"
 													style="width: 25px; height: 25px;"></a></li>
-													<%--고객센터 --%>
-<%-- 													<li><a href="${pageContext.request.contextPath}/member/cs/faq"> --%>
-<%-- 													<img  src="${pageContext.request.contextPath}/resources/img/headset.png" --%>
-<!-- 													style="width: 30px; height: 30px;"></a></li> -->
 												</c:otherwise>
 											</c:choose>
 										</ul>
@@ -116,9 +112,59 @@
 	</nav><!-- header close -->
 	
 	<!--header-img start (광고)============================== -->
+						
 	<section id="hero-area">
 		<img class="img-responsive_main" src="${pageContext.request.contextPath}/resources/img/omakase.jpg" >
+<%-- 		<img class="img-responsive_main" src="${pageContext.request.contextPath}/resources/img/omakase.jpg" > --%>
 	</section>
+							
+	
+	<!-- 카테고리 버튼 -->
+	<div id="foodBtn">
+			<button type="button">
+				<span>한식</span>
+			</button>		
+			
+			<button type="button">
+				<span>양식</span>
+			</button>		
+			
+			<button type="button">
+				<span>중식</span>
+			</button>		
+			
+			<button type="button">
+				<span>일식</span>
+			</button>		
+							
+			<button type="button">
+				<span>채식</span>
+			</button>		
+	</div>
+	
+	<div id="foodBtn2">
+			<button type="button">
+				<span>신년<br>예약</span>
+				<%--신년지나면 '찜콩추천' 카테고리 --%>
+			</button>		
+			
+			<button type="button">
+				<span>육마<br>카세</span>
+			</button>		
+			
+			<button type="button">
+				<span>호텔 <br>다이닝</span>
+			</button>		
+			
+			<button type="button">
+				<span>애견<br>동반</span>
+			</button>		
+			
+			<button type="button">
+				<span>혼밥</span>
+			</button>		
+	</div>				
+						
 	
 	<!--Slider start============================== -->
 	<section id="slider">
@@ -253,9 +299,7 @@
 	
 	   
 	
-	<!--
-    footer-bottom  start
-    ============================= -->
+	<!--footer-bottom  start ============================= -->
 	<footer>
 		<jsp:include page="inc/bottom_main.jsp"/>
 	</footer>
