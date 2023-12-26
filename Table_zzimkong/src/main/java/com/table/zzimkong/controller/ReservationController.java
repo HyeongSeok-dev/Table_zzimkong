@@ -1,5 +1,7 @@
 package com.table.zzimkong.controller;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import javax.servlet.http.HttpSession;
@@ -7,9 +9,12 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.table.zzimkong.service.ReservationService;
+import com.table.zzimkong.vo.MenuList;
 import com.table.zzimkong.vo.MenuVO;
 import com.table.zzimkong.vo.PreOrderVO;
 import com.table.zzimkong.vo.ReservationVO;
@@ -22,8 +27,13 @@ public class ReservationController {
 	
 	
 	@RequestMapping("reservation")
-	public String reservation(HttpSession session, Model model, ReservationVO res) {
+	public String reservation(HttpSession session, Model model) {
 		// 세션 아이디가 없을 경우 "fail_back" 페이지를 통해 "잘못된 접근입니다" 출력 처리
+		ReservationVO res = (ReservationVO) session.getAttribute("res");
+	    List<MenuVO> menuList = (List<MenuVO>) session.getAttribute("menuList");
+	    session.setAttribute("res", null);
+	    session.setAttribute("menuList", null);
+		
 		session.setAttribute("sId", "이재환");
 		session.setAttribute("sPhone", "010-46744-772");
 		

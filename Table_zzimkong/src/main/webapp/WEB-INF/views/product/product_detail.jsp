@@ -30,6 +30,7 @@
 			<p class="tit"></p>
 		</div>
 		<div class="btxt">
+			<input type="hidden" id ="com_id" name="com_id" value="${company.com_id}">
 			<div>${company.com_gugun} | ${company.com_name}</div>
 			<div class="btxt">${company.com_category}</div>
 		</div>
@@ -58,8 +59,7 @@
 				<div>${company.com_address}</div> <br> <span class="Profile__Detail__Distance">
 					현재 위치에서 <strong> ${company_info.distance}m </strong>
 			</span>
-				<button class="Move__Map__Button"
-					onclick="$('#div_map_full').parent().fadeIn(300);">지도보기</button>
+				<button onclick="mapPopup('${company.com_id}')" class="Move__Map__Button">지도보기</button>
 			</li>
 			<li class="tel">${company.com_tel}</li>
 			<li class="tag">${tag_mood}</li>
@@ -90,7 +90,8 @@
 				<p class="gap20"></p>
 				<p class="tit">메뉴정보</p>
 				<c:forEach var="menu" items="${menuList}">
-					<div class="menu_card">
+					<div class="menu_card" data-menu-id="${menu.menu_idx}" data-menu-name="${menu.menu_name}" 
+        				 data-menu-price="${menu.menu_price}">
 						<div class="menu_info">
 							<div class="menu_name">메뉴이름</div>
 							<div class="menu_name_sub">${menu.menu_name}</div>
@@ -99,8 +100,9 @@
 							<div class="menu_price">메뉴가격</div>
 							<div class="menu_button_wrapper">
 								<div class="menu_price_sub">${menu.menu_price}원</div>
-								<input type="checkbox" id="menu1" name="menu" class="menu_check">
-								<label for="menu1" class="menu_button">선주문</label>
+								<input type="checkbox" id="menu_${menu.menu_idx}" name="menu_idx" class="menu_check" value="${menu.menu_idx}">
+								<label for="menu_${menu.menu_idx}" class="menu_button">선주문</label>
+								<input type="number" min="1" max="10" name="order_amount" value="1">
 							</div>
 						</div>
 	
@@ -213,8 +215,8 @@
 		<!-- 리뷰페이지 들어갈 공간 -->
 		<p class="gap20"></p>
 		<div class="button_wrapper">
-			<button type="submit" id="reservation-confirm-button"
-				class="confirm-button">선주문없이 바로 예약하기</button>
+			<button id="reservation-confirm-button"
+				class="confirm-button" type="button">선주문없이 바로 예약하기</button>
 		</div>
 	</form>
 	<jsp:include page="../inc/bottom.jsp"></jsp:include>

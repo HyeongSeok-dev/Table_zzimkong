@@ -10,5 +10,6 @@ public class MenuVO {
 	private String menu_price;
 	private String menu_describe;
 	private String menu_img;
+	private int order_amount;
 	
 }

@@ -3,7 +3,10 @@ package com.table.zzimkong.controller;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -15,10 +18,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.table.zzimkong.service.ProductService;
 import com.table.zzimkong.vo.CompanyVO;
 import com.table.zzimkong.vo.MenuVO;
+import com.table.zzimkong.vo.ReservationVO;
 import com.table.zzimkong.vo.SearchVO;
 
 @Controller
@@ -48,7 +53,6 @@ public class ProductController {
 	        searchInfo.setDisplayTime("오후 " + localTime.format(formatter));
 	    }
 
-		session.setAttribute("search", null);
 		session.setAttribute("search", searchInfo);
 		searchInfo.setRedirectURL("/product/list");
 
@@ -60,14 +64,14 @@ public class ProductController {
 	@RequestMapping("product/list")
 	public String product_list(Model model, SearchVO search, HttpSession session) {
 		
+		search = (SearchVO)session.getAttribute("search");
+		
 		if(search == null) {
 			model.addAttribute("msg","잘못된 접근입니다!");
 			return "fail_back";
 		}
 		
-		search = (SearchVO)session.getAttribute("search");
-		
-		System.out.println("리스트에서 받음" + search);
+		System.out.println("세션에서 받음" + search);
 		
 		if(search != null && search.getSort() == null) {
 			search.setSort("recommend");
@@ -136,4 +140,35 @@ public class ProductController {
 		
 		return "product/product_detail";
 	}
+	
+	@GetMapping("product/map")
+	public String product_map() {
+		
+		return "product/product_map";
+	}
+	
+	@RequestMapping("product/detailPro")
+	public ResponseEntity<String> detail_pro(@RequestBody Map<String, Object> map, HttpSession session, ReservationVO res, MenuVO menu, Model model) {
+		System.out.println(map);
+		SearchVO search = (SearchVO)session.getAttribute("search");
+		System.out.println(search);
+		res.setCom_id(Integer.parseInt((String)map.get("com_id")));
+		res.setRes_person(search.getPersons());
+		res.setRes_table_price(search.getPersons()*20000);
+		res.setRes_time(search.getTime());
+		res.setRes_date(search.getDate());
+		
+		List<MenuVO> menuList = new ArrayList<MenuVO>();
+		menuList = (List<MenuVO>) map.get("menus");
+
+		System.out.println("프로에서 찍음" + res); 
+		System.out.println("프로에서 찍음" + menuList); 
+		
+		session.setAttribute("res", res);
+	    session.setAttribute("menuList", menuList);
+		
+		return ResponseEntity.ok("/reservation");
+	}
+	
+	
 }

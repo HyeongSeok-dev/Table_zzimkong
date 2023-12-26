@@ -11,8 +11,8 @@ public class ReservationVO {
 	private String res_num;
 	private int com_id;
 	private int user_idx;
-	private Date res_date;
-	private Time res_time;
+	private String res_date;
+	private String res_time;
 	private int res_table_price;
 	private int res_person;
 	private boolean res_status;

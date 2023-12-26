@@ -582,11 +582,11 @@ strong {
 	top: -6px;
 	right: 0;
 	padding: 6px 12px;
+	border: solid 1px;
 	border-radius: 6px;
 	font-size: 14px;
 	line-height: 20px;
 	letter-spacing: -.7px;
-	color: #fff
 }
 
 .s-list.detail-info .busi-hours-today .list li {
