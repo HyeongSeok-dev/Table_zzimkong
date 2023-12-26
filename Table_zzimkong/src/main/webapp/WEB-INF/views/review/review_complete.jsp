@@ -14,7 +14,9 @@
 <body>	
 	<div class="review_complete_ment">
 	<img src="${pageContext.request.contextPath}/resources/img/complete_check.svg" id="check">
+	<a href="${pageContext.request.contextPath}/review/redetail?com_id=1">
 	<img src="${pageContext.request.contextPath}/resources/img/complete_x.svg" id="closeImage">
+	</a>
 	<h1 class="review_complete">리뷰 쓰기 완료!</h1>
     <div class="review_complete_content">장소를 찾는 사람들에게 많은 도움이 될 거예요!</div>
     </div>

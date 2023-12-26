@@ -828,6 +828,17 @@ svg {
   transform: rotate(45deg);
 }
 
+/* 수정,삭제,신고버튼 */
+.review-action-buttons  {
+    display: flex!important;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.review_delete, .review_modify, .review_report_btn {
+    margin-right: 10px; /* Adjust as necessary */
+}
+
 /* 추천순/최신순 */
 .recommend {
 	font-size: 1.2rem;
@@ -1339,4 +1350,12 @@ h1 {
 .comment-content textarea {
     margin-bottom: 10px;
 }
+
+
+.keyword_btn.active {
+    background-color: blue; /* or your desired color */
+    color: white; /* or your desired text color */
+    /* other styling as needed */
+}
+
 

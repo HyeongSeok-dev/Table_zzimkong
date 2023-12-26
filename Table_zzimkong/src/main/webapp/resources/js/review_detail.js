@@ -22,25 +22,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		//	element.querySelector('.review_select_chart_1').appendChild(fillDiv);
 
 	});
-
-	// ---------리뷰 이미지 팝업---------------------------------------
-	
-    // Get the image and insert it inside the popup - use its "alt" text as a caption
-    var img = document.querySelector('.clickable-image');
-    var popup = document.getElementById('image-popup');
-    var popupImg = document.getElementById('popup-img');
-    var closeSpan = document.querySelector('.close-popup');
-
-    img.onclick = function(){
-        popup.style.display = "block";
-        popupImg.src = this.src;
-    }
-
-    // When the user clicks on <span> (x), close the popup
-    closeSpan.onclick = function() { 
-        popup.style.display = "none";
-    }
-		
 	// ---------댓글-----------------------------------------------
 	var commentIcon = document.getElementById('commentIcon');
 
@@ -163,4 +144,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 //});
+
+	// ---------리뷰 이미지 팝업---------------------------------------
+	
+    // Get the image and insert it inside the popup - use its "alt" text as a caption
+    var img = document.querySelector('.clickable-image');
+    var popup = document.getElementById('image-popup');
+    var popupImg = document.getElementById('popup-img');
+    var closeSpan = document.querySelector('.close-popup');
+
+    img.onclick = function(){
+        popup.style.display = "block";
+        popupImg.src = this.src;
+    }
+
+    // When the user clicks on <span> (x), close the popup
+    closeSpan.onclick = function() { 
+        popup.style.display = "none";
+    }
+		
+
 	});
