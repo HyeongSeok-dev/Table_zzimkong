@@ -14,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.table.zzimkong.service.PaymentService;
@@ -119,6 +120,7 @@ public class PaymentController {
 		return mav;
 	}
 	//----------------------------------------------------------------------------------------------------
+	@ResponseBody
 	@PostMapping("paymentPro")
 	public ModelAndView paymentPro(HttpSession session, ReservationVO res, Map<String, Object> map, 
 									@RequestParam(defaultValue = "") String discountCoupon,
@@ -144,13 +146,6 @@ public class PaymentController {
 			return mav;
 		}
 		res.setRes_num("R0002");
-		////////[ 형석이에게 전달할 부분 ]///////////////////////////////////
-		// 여기서 외래키를 user_idx 보다 user_id로 넣으면 세션값만으로도 쉽게 디비로 전달가능
-		// 아니면 또 select로 user_idx불러와야함
-		//String sId = (String) session.getAttribute("sId");
-		//res.setUser_id(sId);
-//		int user_idx =  res.getUser_idx();
-//		System.out.println(user_idx); //0나옴
 		res.setUser_idx(2);
 		
 		//예약번호 무작위생성
