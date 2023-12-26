@@ -4,16 +4,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- CSS -->
 <link href="${pageContext.request.contextPath}/resources/css/review_write.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resources/css/global.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
 <!-- Js -->
 <script src="${pageContext.request.contextPath}/resources/js/review_write.js"></script>
-<!-- ==================================================================================== -->
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- ==================================================================================== -->
 
 <title>리뷰 작성 페이지</title>
 <!-- 수정 -->
@@ -153,35 +151,7 @@
 		<div class="review_input_section">
 			<div class="separator"></div>
 			<h2 style="text-align: center;">리뷰를 남겨주세요</h2>
-			<!-- ==================================================================================================== -->
-<!-- 			<button class="photo_btn" id="photoBtn" name="file1" style="text-align: center;"> -->
-<!-- 			<i class="fas fa-camera"></i> 사진 추가  -->
-<!-- 			<span style="color: gray; font-size: 0.8em;"> (최대 5장) </span> -->
-<!-- 			</button> -->
-			<!-- =============== 새로 한거 ===================================================================================== -->
-<!-- 			<div> -->
-<!-- 			<input type="file" id="photoInput" name="file1" accept="image/*" style="display: inline;"/> -->
-<!-- 		    <img id="imagePreview" src="#" alt="Image Preview" style="display: none;"/>	 -->
-<!-- 			</div> -->
-			<!-- ==================================================================================================== -->
-<!-- 				<div class="filebox clearfix"> -->
-<!-- 				    <div class="inputFile"> -->
-<!-- 				        <label for="AddImgs" class="addImgBtn">+</label> -->
-<!-- 				        <input type="file" id="AddImgs" class="upload-hidden" accept=".jpg, .png, .gif"> -->
-<!-- 				    </div> -->
-<!-- 				    <ul id="Preview" class="sortable"></ul> -->
-<!-- 				</div> -->
- 			 <!-- ================================================================================================= -->
-<!-- 			<div class="photo_box"> -->
-<!-- 			    <input type="file" id="photoInput" name="file1" accept="image/*" style="display: inline;"/> -->
-<!-- 			    이미지 프리뷰를 위한 img 태그와 컨테이너 div 추가 -->
-<!-- 			    <div id="previewContainer" style="display: none;"> -->
-<!-- 			        <img id="imagePreview" src="#" alt="Image Preview" style="display: block;"/> -->
-<!-- 			        이미지 제거를 위한 버튼 추가, onclick 이벤트에 removePreview 함수 연결 -->
-<!-- 			        <button type="button" onclick="removePreview()">Remove</button> -->
-<!-- 			    </div> -->
-<!-- 			</div>			  -->
-			<!-- ================================================================================================= --> 
+			
 			<!-- 사진 추가 버튼 컨테이너 -->
 			<div class="photo_box">
 		    <input type="file" id="photoInput" name="file1" accept="image/*" style="display: none;"/>
@@ -195,7 +165,8 @@
 		        </div>
 		    </div>
 			</div>
-			<!-- ================================================================================================= -->
+			<!-- ===================================================================== -->
+			<!-- 리뷰 텍스트 박스 -->
 			<textarea class="review_textarea"
 				name="review_content" placeholder="업주와 다른 사용자들이 상처받지 않도록 좋은 표현을 사용해주세요."></textarea>
 			<a class="caution_link" href="#" onclick="openPopup()">리뷰 작성 유의사항</a>
@@ -207,6 +178,7 @@
 		</div>
 	</form>
 	</div>
+	<!-- ===================================================================== -->
 	<!-- 팝업 창 -->
 	<div id="popup">
 		<h2>리뷰 작성 유의사항</h2>
@@ -219,21 +191,19 @@
 		</p>
 
 		<p>
-		<ul>
-			<li>잘못된 방문 인증이나 정상 이용 완료되지 않은 예약에 대해 리뷰를 작성한 경우</li>
-			<br>
-			<li>장소와 무관한 내용이나 사진, 동일 문자의 반복 등 부적합한 내용을 포함한 경우</li>
-			<br>
-			<li>욕설, 비방, 명예훼손을 포함한 내용이 포함한 내용이 있는 경우</li>
-			<br>
-			<li>저작권, 초상권 등 타인의 권리, 명예, 신용, 기타 정당한 이익을 침해하는 경우</li>
-		</ul>
-		<br> 더 자세한 이용 정책은 방문자리뷰 이용정책을 확인해주세요.
+			<ul>
+				<li>잘못된 방문 인증이나 정상 이용 완료되지 않은 예약에 대해 리뷰를 작성한 경우</li><br>
+				<li>장소와 무관한 내용이나 사진, 동일 문자의 반복 등 부적합한 내용을 포함한 경우</li><br>
+				<li>욕설, 비방, 명예훼손을 포함한 내용이 포함한 내용이 있는 경우</li><br>
+				<li>저작권, 초상권 등 타인의 권리, 명예, 신용, 기타 정당한 이익을 침해하는 경우</li>
+			</ul><br>
+			 더 자세한 이용 정책은 방문자리뷰 이용정책을 확인해주세요.
 		</p>
-		<button onclick="closePopup()">닫기</button>
+			<button onclick="closePopup()">닫기</button>
 	</div>
+	<!-- ===================================================================== -->
 	<!-- 토스트 메시지 -->
-	<div id="toastMessage" class="toast-message">좋아요가 반영되었습니다</div>
+	 <div id="toastMessage" class="toast-message">좋아요가 반영되었습니다</div>
 	</article>
 </body>
 </html>

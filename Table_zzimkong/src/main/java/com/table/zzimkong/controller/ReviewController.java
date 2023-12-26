@@ -32,11 +32,7 @@ public class ReviewController {
 	private ReviewService service;
 	
 	@GetMapping("review/redetail")
-	public String review_detail(
-			@RequestParam("com_id") int comId
-//			,@RequestParam("review_score") int reviewScore
-//			,ReviewVO review
-			, Model model){		
+	public String review_detail(@RequestParam("com_id") int comId, Model model){		
 		
 		// 업체 이름 불러오기
 		String comName = service.getCompanyName(comId);
@@ -44,21 +40,18 @@ public class ReviewController {
 		
 		// 리뷰 갯수
 		int reviewCount = service.getReviewCount(comId);
-//		model.addAttribute("com_id",comId);
 		model.addAttribute("reviewCount",reviewCount);
 		
-//		// 리뷰 별점 평균
+		// 리뷰 별점 평균
 		Double reviewAverage = service.getReviewAverage(comId);
 		model.addAttribute("reviewAverage",reviewAverage);
-		
+
 		// 리뷰 리스트 불러오기
 		List<ReviewVO> reviews = service.getAllReviews(comId);
 		model.addAttribute("reviews",reviews);
 		
-		
 		return "review/review_detail";
 	}
-	
 	// ===================================================================
 	// [ 리뷰 작성 ]
 	// "detail" 서블릿 요청에 대한 리뷰 글쓰기 폼 표시
@@ -94,7 +87,6 @@ public class ReviewController {
 //		board.setWriter_ip(request.getRemoteAddr());
 //		System.out.println(board.getWriter_ip()); // 0:0:0:0:0:0:0:1
 		// -------------------------------------------------------------------------------------
-
 		// 가상의 디렉토리 생성
 		String uploadDir = "/resources/upload"; // 가상의 경로
 		// 가상 디렉토리에 대한 실제 경로
@@ -215,11 +207,9 @@ public class ReviewController {
 //		model.addAttribute("review", review);
 		
 		
-		
 		return "review/review_modify";
 		
 	}
-	
 	// ===================================================================
 	// [ 리뷰 삭제 ]
 	@PostMapping("/zzimkong/review/delete")
@@ -279,7 +269,6 @@ public class ReviewController {
 				e.printStackTrace();
 			}
 			
-//			return "redirect:/review/redetail?com_id=" + comId;
 			return "redirect:" + referer;
 			
 		} else {
@@ -289,8 +278,6 @@ public class ReviewController {
 		}
 		
 	}
-	
-	
 
 	@GetMapping("complete")
 	public String review_complete() {

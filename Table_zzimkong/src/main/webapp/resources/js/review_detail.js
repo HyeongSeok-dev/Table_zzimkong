@@ -1,17 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // AJAX call to fetch review count
-//    var comId = 2;
-//    $.ajax({
-//        url: '/reviewCount',
-//        type: 'GET',
-//        data: { com_id: comId },
-//        success: function(response) {
-//            $('#reviewCountDisplay').text(response + '개 리뷰 별점 평균');
-//        },
-//        error: function(xhr, status, error) {
-//            console.error("AJAX 요청에 실패했습니다: " + status + ", " + error);
-//        }
-//    });
+
 	//-----------------이런 점이 좋았어요 -------------------------
 	document.querySelectorAll('.review_select_chart_1_1').forEach(function(element) {
 
@@ -28,15 +16,12 @@ document.addEventListener('DOMContentLoaded', function() {
 	commentIcon.addEventListener('click', function() {
 		var contextRoot = window.location.pathname.substring(0, window.location.pathname.indexOf("/",2));
 		var url = contextRoot +  "/review/comment";
-//		var url = "http://localhost:8081/zzimkong/review/comment";
-//		var url = "comment";
 		var windowName = "commentPopup";
 		var windowSize = "width=500,height=600";
 
 		window.open(url, windowName, windowSize);
 	});
 	// ---------------------------------------------------------------
-
 	// 더보기 버튼 기능
 	var moreButton = document.querySelector('.more-button');
 	var hiddenItems = document.querySelectorAll('.review_select_list .rv_sl_1:nth-child(n+6)');

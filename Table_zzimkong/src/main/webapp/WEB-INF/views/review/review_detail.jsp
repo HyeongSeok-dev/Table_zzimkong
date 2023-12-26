@@ -267,14 +267,19 @@
 			<div class="reviewer_photo">
 				<a href="사용자 사진 크게보기" target="_blank" role="button" class="profile_link">
 					<div class="profile_image">
-						<img src="${pageContext.request.contextPath}/resources/img/person.png" alt="프로필" width="38" height="38">
+						<img src="${pageContext.request.contextPath}/resources/img/profile.png" alt="프로필" width="38" height="38">
 					</div>
 				</a>	 
 					<!-- 사용자가 썼던 리뷰를 볼 수 있는 창 연결 -->
 				 <a href="마이페이지 프로필 연결" target="_blank" role="button" class="review_details">
-<!-- 					<div class="reviewer_name">사용자닉네임</div> -->
-					<div class="reviewer_name">${review.user_id}</div>
-				</a>
+						<div class="reviewer_name">${review.user_id}</div><br>
+						<div class="review_real_score">
+						<div class="score1">
+							<img src="${pageContext.request.contextPath}/resources/img/review_star.png">
+							<fmt:formatNumber value="${review.review_score / 2}" type="number" maxFractionDigits="1"/>
+						</div>
+						</div>
+					</a>
 			</div>
 			<div class="reviewer_info"></div>
 			<div class="review_photos">
@@ -305,8 +310,7 @@
 					    <input type="submit" class="review_delete" value="삭제" onclick="return confirm('리뷰를 삭제하시겠습니까?');">
 						<a href="/review/modify?review_num=${review.review_num}">		
 						<button class="review_modify">수정</button></a>
-						<a href="${pageContext.request.contextPath}/review/report">
-						<button class="review_report_btn">리뷰 신고하기</button></a> 
+						<a href="${pageContext.request.contextPath}/review/report" class="review_report_btn" role="button">리뷰 신고하기</a>
 						<span class="comment-icon" onclick="showCommentForm()"></span><br><br>
 					</form>								
 			   </div>
