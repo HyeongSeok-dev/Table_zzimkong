@@ -43,7 +43,6 @@
 			</svg>
 		</h2>
 		<div class="review_write_button">
-<!-- 		    <a href="write"><i class="fas fa-pencil-alt"></i> 리뷰쓰기</a> -->
 		    <a href="write?com_id="${review.review_num}><i class="fas fa-pencil-alt"></i> 리뷰쓰기</a>
 		</div>
 	</div>

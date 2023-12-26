@@ -88,6 +88,68 @@
 		WHERE review_num = #{review_num}
 	</delete>
 
+	<!-- 이런 점이 좋았어요 -->
+<!-- 	<select id="getKeywordCounts" parameterType="int" resultType="map">
+	    SELECT 'review_mood_interior' AS keyword, COUNT(*) AS count
+    	FROM review
+    	WHERE com_id = #{comId} AND review_mood_interior = 1
+	    UNION
+	    SELECT 'review_mood_alone', COUNT(*)
+	    FROM review
+	    WHERE com_id = #{comId} AND review_mood_alone = 1
+	    UNION
+	    SELECT 'review_mood_large', COUNT(*)
+	    FROM review
+	    WHERE com_id = #{comId} AND review_mood_large = 1
+	    UNION
+	    SELECT 'review_mood_meeting', COUNT(*)
+	    FROM review
+	    WHERE com_id = #{comId} AND review_mood_meeting = 1
+	    UNION
+	    SELECT 'review_mood_view', COUNT(*)
+	    FROM review
+	    WHERE com_id = #{comId} AND review_mood_view = 1
+	    UNION
+	    SELECT 'review_food_big', COUNT(*)
+	    FROM review
+	    WHERE com_id = #{comId} AND review_food_big = 1
+	    UNION
+	    SELECT 'review_food_deli', COUNT(*)
+	    FROM review
+	    WHERE com_id = #{comId} AND review_food_deli = 1
+	    UNION
+	    SELECT 'review_food_cheap', COUNT(*)
+	    FROM review
+	    WHERE com_id = #{comId} AND review_food_cheap = 1
+	    UNION
+	    SELECT 'review_food_fresh', COUNT(*)
+	    FROM review
+	    WHERE com_id = #{comId} AND review_food_fresh = 1
+	    UNION
+	    SELECT 'review_food_healthy', COUNT(*)
+	    FROM review
+	    WHERE com_id = #{comId} AND review_food_healthy = 1
+	    UNION
+	    SELECT 'review_etc_kind', COUNT(*)
+	    FROM review
+	    WHERE com_id = #{comId} AND review_etc_kind = 1
+	    UNION
+	    SELECT 'review_etc_parking', COUNT(*)
+	    FROM review
+	    WHERE com_id = #{comId} AND review_etc_parking = 1
+	    UNION
+	    SELECT 'review_etc_toilet', COUNT(*)
+	    FROM review
+	    WHERE com_id = #{comId} AND review_etc_toilet = 1
+	    UNION
+	    SELECT 'review_etc_fast', COUNT(*)
+	    FROM review
+	    WHERE com_id = #{comId} AND review_etc_fast = 1
+	    UNION
+	    SELECT 'review_etc_child', COUNT(*)
+	    FROM review
+	    WHERE com_id = #{comId} AND review_etc_child = 1
+	</select> -->
 
 
 

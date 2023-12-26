@@ -1,6 +1,7 @@
 package com.table.zzimkong.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,19 +43,8 @@ public class ReviewService {
 		
 		return mapper.allReviewList(comId);
 	}
-
-	// 리뷰 수정
-//	public ReviewVO getReview(int reviewNum) {
-//
-//		return mapper.modifyReview(reviewNum);
-//	}
-
-//	public ReviewVO getReivew(int review_num, boolean b) {
-//
-//		return mapper.modifyReview(review_num, b);
-//	}
-
 	
+	// 리뷰 수정
 	public ReviewVO getReivew(int reviewNum) {
 
 		return mapper.modifyReview(reviewNum);
@@ -65,6 +55,13 @@ public class ReviewService {
 
 		return mapper.removeReview(review);
 	}
+
+	//-------------------------------------------------------------
+	// 이런 점이 좋았어요
+//	public Map<String, Integer> getKeywordsCounts(int comId) {
+//
+//		return mapper.getKeywordCounts(comId);
+//	}
 
 
 

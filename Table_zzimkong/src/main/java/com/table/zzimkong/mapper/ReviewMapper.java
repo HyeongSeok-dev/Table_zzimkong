@@ -1,6 +1,7 @@
 package com.table.zzimkong.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -31,6 +32,11 @@ public interface ReviewMapper {
 
 	// 리뷰 삭제
 	int removeReview(ReviewVO review);
+
+
+	//-------------------------------------------------------------
+	// 이런 점이 좋았어요
+//	Map<String, Integer> getKeywordCounts(int comId);
 
 
 }

@@ -7,8 +7,13 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -49,7 +54,40 @@ public class ReviewController {
 		// 리뷰 리스트 불러오기
 		List<ReviewVO> reviews = service.getAllReviews(comId);
 		model.addAttribute("reviews",reviews);
-		
+
+		//-------------------------------------------------------------
+		// 이런 점이 좋았어요 출력 및 나열하기
+//		Map<String,Integer> keywordCounts = service.getKeywordsCounts(comId);
+//	    keywordCounts = keywordCounts.entrySet().stream()
+//	        .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
+//	        .collect(Collectors.toMap(
+//	            Map.Entry::getKey, 
+//	            Map.Entry::getValue, 
+//	            (e1, e2) -> e1, 
+//	            LinkedHashMap::new));
+//		
+//		model.addAttribute("keywordCounts",keywordCounts);
+//		
+//		
+//		Map<String, String> keywordLabels = new HashMap<>();
+//		keywordLabels.put("review_mood_interior", "(분위기) 인테리어가 멋져요");
+//		keywordLabels.put("review_mood_alone", "(분위기) 혼밥하기 좋아요");
+//		keywordLabels.put("review_mood_large", "(분위기) 매장이 넓어요");
+//		keywordLabels.put("review_mood_meeting", "(분위기) 단체모임 하기 좋아요");
+//		keywordLabels.put("review_mood_view", "(분위기) 뷰가 좋아요");
+//		keywordLabels.put("review_food_big", "(음식/가격) 양이 많아요");
+//		keywordLabels.put("review_food_deli", "(음식/가격) 음식이 맛있어요");
+//		keywordLabels.put("review_food_cheap", "(음식/가격) 가성비가 좋아요");
+//		keywordLabels.put("review_food_fresh", "(음식/가격) 재료가 신선해요");
+//		keywordLabels.put("review_food_healthy", "(음식/가격)  건강한 맛이에요");
+//		keywordLabels.put("review_etc_kind", "(편의시설/기타) 친절해요");
+//		keywordLabels.put("review_etc_parking", "(편의시설/기타) 주차하기 편해요");
+//		keywordLabels.put("review_etc_toilet", "(편의시설/기타) 화장실이 깨끗해요");
+//		keywordLabels.put("review_etc_fast", "(편의시설/기타) 음식이 빨리나와요");
+//		keywordLabels.put("review_etc_child", "(편의시설/기타) 아이와 가기 좋아요");
+//		model.addAttribute("keywordLabels",keywordLabels);
+		//-------------------------------------------------------------
+
 		return "review/review_detail";
 	}
 	// ===================================================================

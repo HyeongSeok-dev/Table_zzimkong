@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
-
-	//-----------------이런 점이 좋았어요 -------------------------
+	// ===================================================================
+	// 이런 점이 좋았어요 차트
 	document.querySelectorAll('.review_select_chart_1_1').forEach(function(element) {
 
 		var percentage = parseInt(element.getAttribute('data-percentage'), 10);
@@ -10,7 +10,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		//	element.querySelector('.review_select_chart_1').appendChild(fillDiv);
 
 	});
-	// ---------댓글-----------------------------------------------
+	// ===================================================================
+	// 댓글 아이콘 팝업
 	 var commentIcons = document.querySelectorAll('.fa-comment');
 
    	 commentIcons.forEach(function(commentIcon) {
@@ -23,7 +24,8 @@ document.addEventListener('DOMContentLoaded', function() {
             window.open(url, windowName, windowSize);
         });
     });
-	// ---------------------------------------------------------------
+    
+	// ===================================================================
 	// 더보기 버튼 기능
 	var moreButton = document.querySelector('.more-button');
 	var hiddenItems = document.querySelectorAll('.review_select_list .rv_sl_1:nth-child(n+6)');
@@ -46,10 +48,10 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 	});
 
-	// -----------------------------------------------------------------------	
+	// ===================================================================
+	// 하트 아이콘(좋아요)
     var heartIcons = document.querySelectorAll('.fa-heart');
 
-    // 각 하트 아이콘에 대해 반복하면서 이벤트 리스너를 추가합니다.
     heartIcons.forEach(function(heartIcon) {
         heartIcon.addEventListener('click', function() {
             this.classList.toggle('far');
@@ -58,17 +60,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-//	// 하트누르기 
-//	var heartIcon = document.getElementById('heartIcon');
-//	if (heartIcon) {
-//		heartIcon.addEventListener('click', function() {
-//			this.classList.toggle('far');
-//			this.classList.toggle('fas');
-//			this.classList.toggle('filled');
-//		});
-//	}
-
-	// -----------------------------------------------------------------------	
+	// ===================================================================
+	// 사진 넘기기 
 	var carouselInner = document.querySelector('.carousel-inner');
 	var images = Array.from(carouselInner.children);
 	var imageWidth = images[0].getBoundingClientRect().width;
@@ -77,28 +70,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		img.style.left = imageWidth * idx + 'px';
 	});
 
-	var currentIndex = 0;
-
-	document.querySelector('.carousel-prev').addEventListener(
-		'click',
-		function() {
-			if (currentIndex > 0) {
-				currentIndex--;
-				carouselInner.style.transform = 'translateX('
-					+ (-imageWidth * currentIndex) + 'px)';
-			}
-		});
-
-	// 리뷰 메뉴버튼 
-
-	document.querySelectorAll('.menu_button').forEach(button => {
-		button.addEventListener('click', function() {
-			this.classList.toggle('active');
-		});
-	});
-
-
-	// 사진 넘기기 
 	document.querySelector('.carousel-next').addEventListener(
 		'click',
 		function() {
@@ -109,7 +80,28 @@ document.addEventListener('DOMContentLoaded', function() {
 			}
 		});
 
-	// 모든 "삭제" 버튼에 대해 이벤트 리스너를 추가
+
+	var currentIndex = 0;
+	document.querySelector('.carousel-prev').addEventListener(
+		'click',
+		function() {
+			if (currentIndex > 0) {
+				currentIndex--;
+				carouselInner.style.transform = 'translateX('
+					+ (-imageWidth * currentIndex) + 'px)';
+			}
+		});
+
+	// ===================================================================
+	// 리뷰 메뉴버튼 
+	document.querySelectorAll('.menu_button').forEach(button => {
+		button.addEventListener('click', function() {
+			this.classList.toggle('active');
+		});
+	});
+
+	// ===================================================================
+	// 삭제 버튼 팝업
 	var deleteButtons = document.querySelectorAll('.review_delete');
 	deleteButtons.forEach(function(deleteButton) {
 		deleteButton.addEventListener('click', function(event) {
@@ -122,26 +114,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		});
 
 	});
-
-	// "네" 버튼 클릭 이벤트 리스너
-	//document.getElementById('confirmDelete').addEventListener('click', function() {
-	// 삭제 로직을 여기에 추가
-	// 예: 서버에 삭제 요청을 보낸다거나, 리스트에서 해당 항목을 제거
-
-	// 팝업창을 숨김
-	//	deleteConfirmationPopup.style.display = 'none';
-// "아니오" 버튼 클릭 이벤트 리스너
-//document.getElementById('cancelDelete').addEventListener('click', function() {
-	// 팝업창을 숨김
-//	deleteConfirmationPopup.style.display = 'none';
-//});
-
-
-//});
-
-	// ---------리뷰 이미지 팝업---------------------------------------
-	
-    // Get the image and insert it inside the popup - use its "alt" text as a caption
+	// ===================================================================
+	// 리뷰 이미지 팝업
     var img = document.querySelector('.clickable-image');
     var popup = document.getElementById('image-popup');
     var popupImg = document.getElementById('popup-img');
@@ -152,7 +126,6 @@ document.addEventListener('DOMContentLoaded', function() {
         popupImg.src = this.src;
     }
 
-    // When the user clicks on <span> (x), close the popup
     closeSpan.onclick = function() { 
         popup.style.display = "none";
     }
