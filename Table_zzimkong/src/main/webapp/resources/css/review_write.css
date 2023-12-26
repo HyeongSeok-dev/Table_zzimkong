@@ -375,4 +375,13 @@
     border-radius: 10px;
 }
  /* ============================================================== */
+ /* 가게이름 하이퍼링크 */
+a {
+    text-decoration: none; 
+    color: inherit;
+}
 
+a:hover {
+		color: #3FAFFC;
+	
+}

@@ -26,7 +26,7 @@
 			 <!--            ~~~~~~~~~ : 나중에 ${com_id}로 고쳐서 값 받아오기 -->
 <!-- 			 <input type="submit" value="음식점 이름" onclick="location.href=detail"> -->
 			<p>몇번째 방문</p>
-			<p>먹은 메뉴</p>
+<!-- 			<p>먹은 메뉴</p> -->
 		</div>
 		<form action="reviewWritePro" name="reviewWriteForm" method="POST" enctype="multipart/form-data">
 		<div class="separator"></div>
