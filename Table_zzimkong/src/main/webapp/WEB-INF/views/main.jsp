@@ -94,6 +94,10 @@
 													<li><a href="${pageContext.request.contextPath}/#">
 													<img src="${pageContext.request.contextPath}/resources/img/top_bell.png"
 													style="width: 25px; height: 25px;"></a></li>
+													<%--고객센터 --%>
+													<li><a href="${pageContext.request.contextPath}/member/cs/faq">
+													<img  src="${pageContext.request.contextPath}/resources/img/top_headset.png"
+													style="width: 25px; height: 25px;"></a></li>
 												</c:otherwise>
 											</c:choose>
 										</ul>
