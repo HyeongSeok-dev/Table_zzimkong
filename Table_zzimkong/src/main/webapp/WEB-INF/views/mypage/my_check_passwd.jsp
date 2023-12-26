@@ -17,7 +17,7 @@
 	<br><br>
 			<div align="center">
 	<form action="MemberWithdrawPro" method="POST">
-				<input type="password" class="input_text" placeholder="비밀번호를 입력해주세요." name="passwd" ><br><br>
+				<input type="password" class="input_text" placeholder="비밀번호를 입력해주세요." name="user_passwd" ><br><br>
 				<button type="submit"  >탈퇴</button>
 	</form>
 				<button type="button" id="my_delete">취소</button>

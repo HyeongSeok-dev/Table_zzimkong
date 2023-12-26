@@ -54,16 +54,8 @@
 <update id="updateWithdrawMember">
 	UPDATE user
     SET
-        user_id = ''
-        , user_passwd=''
-        , user_nick=''
-        , user_email=''
-        , user_name=''
-        , user_birth='1111-11-11'
-        , com_num=''
-        , user_phone=''
-        , user_img=''
-        , user_status=3
+         user_status=3
+         , user_reg_date = now()
     WHERE user_id = #{user_id}
 		
 </update>
