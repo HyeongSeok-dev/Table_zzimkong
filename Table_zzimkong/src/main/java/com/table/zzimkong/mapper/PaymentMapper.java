@@ -3,6 +3,7 @@ package com.table.zzimkong.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.table.zzimkong.vo.CompanyVO;
 import com.table.zzimkong.vo.MenuVO;
@@ -24,13 +25,13 @@ public interface PaymentMapper {
 
 	List<PreOrderInfo> selectPreOrder(ReservationVO res);
 
-	int insertSubUsedPoint(ReservationVO res, String discountPoint);
+	int insertSubUsedPoint(@Param("res") ReservationVO res, @Param("discountPoint")String discountPoint);
 
-	int insertAddPoint(ReservationVO res, String earnedPoints);
+	int insertAddPoint(@Param("res") ReservationVO res, @Param("earnedPoints") String earnedPoints);
 
-	int insertPayment(ReservationVO res, int sIdx, String payNum, PaymentVO payment);
+	int insertPayment(@Param("res")ReservationVO res, @Param("sIdx")int sIdx,
+					@Param("payNum")String payNum, @Param("payment")PaymentVO payment);
 
 	int updateReservationStatus(ReservationVO res);
 
-	
 }

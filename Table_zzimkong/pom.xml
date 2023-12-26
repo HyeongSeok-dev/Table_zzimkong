@@ -107,9 +107,10 @@
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-web</artifactId>
             <version>5.8.8</version>
-        </dependency>		
-		
-			<!-- https://mvnrepository.com/artifact/commons-io/commons-io 아래 두개를 쓰기위한 기초파일-->
+        </dependency>
+        
+        <!-- 8. 파일 처리(업로드 등) 라이브러리(commons-io, commons-fileupload) -->
+		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
 		<dependency>
 		    <groupId>commons-io</groupId>
 		    <artifactId>commons-io</artifactId>
@@ -121,6 +122,14 @@
 		    <groupId>commons-fileupload</groupId>
 		    <artifactId>commons-fileupload</artifactId>
 		    <version>1.5</version>
+		</dependency>
+		
+		<!-- 9. 난수 생성 등의 다양한 작업을 제공하는 commons-lang3 라이브러리 -->
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+		<dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-lang3</artifactId>
+		    <version>3.14.0</version>
 		</dependency>
 		
 		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 난수생성 등--> 

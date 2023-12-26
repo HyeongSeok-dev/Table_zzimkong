@@ -38,31 +38,17 @@
 		VALUES (
 			null
 			, #{payNum}
-			, #{res_idx}
+			, #{res.res_idx}
 			, #{sIdx}
-			, #{pay_method}
-			, #{res_table_price}
-			, #{pay_po_price}
+			, #{payment.pay_method}
+			, #{res.res_table_price}
+			, #{res.pay_table_price}
 			, now()
-			, #{pay_card_co}
-			, #{per_Info_consent}
+			, #{payment.pay_card_co}
+			, #{payment.per_Info_consent}
 			, 1 -- pay_status
-			<!--#{pay_po_site}  -->
-			<choose>
-				<when test="pay_po_price > 0">
-					<choose>
-						<when test="pay_po_site == 2">
-						, 2
-						</when>
-						<when test="pay_po_site != 2">
-						, 3
-						</when>
-					</choose>
-				</when>
-				<otherwise>
-					,1
-				</otherwise>
-			</choose>
+			, #{payment.pay_po_site}
+			
 		)
 	</insert>
 	
@@ -71,7 +57,7 @@
 		INTO point
 		VALUES (
 			null
-			, #{user_idx}
+			, #{res.user_idx}
 			, #{discountPoint}
 			, 4
 			, null
@@ -85,7 +71,7 @@
 		INTO point
 		VALUES (
 			null
-			, #{user_idx}
+			, #{res.user_idx}
 			, #{earnedPoints}
 			, 1
 			, null

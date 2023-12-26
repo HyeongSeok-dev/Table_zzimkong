@@ -127,19 +127,25 @@ public class PaymentController {
 	@ResponseBody
 	@PostMapping("paymentPro")
 	public ModelAndView paymentPro(HttpSession session, PaymentVO payment, ReservationVO res, Map<String, Object> map, 
-									@RequestParam(defaultValue = "") String discountCoupon,
-									@RequestParam(defaultValue = "") String discountPoint,
-									@RequestParam(defaultValue = "") String earnedPoints,
-									@RequestParam(defaultValue = "") String nowPoint,
-									@RequestParam(defaultValue = "") String totalPoint,
-									@RequestParam(defaultValue = "") String totalPayment,
-									@RequestParam(defaultValue = "") String cardSelect
+									@RequestParam("discountCoupon") String discountCoupon,
+									@RequestParam("discountPoint") String discountPoint,
+									@RequestParam("earnedPoints") String earnedPoints,
+									@RequestParam("nowPoint") String nowPoint,
+									@RequestParam("totalPoint") String totalPoint,
+									@RequestParam("totalPayment") String totalPayment,
+									@RequestParam("cardSelect") String cardSelect,
+									@RequestParam("pay_po_price_String") String pay_po_price_String
 									) {
 		
 		ModelAndView mav; 
-		System.out.println(payment);
+		System.out.println("paymentVO : " + payment);
+		System.out.println("discountCoupon : " + discountCoupon);
+		System.out.println("discountPoint : " + discountPoint);
+		System.out.println("earnedPoints : " + earnedPoints);
+		System.out.println("nowPoint : " + nowPoint);
 		//세션에 저장된 아이디로 회원정보확인 하기 위해 일단 세션에 임의의 값 넣음
 		session.setAttribute("sId", "user2");
+		session.setAttribute("sIdx", "2");
 		
 		// 세션에 로그인이 안되어있다면 접근금지
 		if(session.getAttribute("sId") == null) {
@@ -154,21 +160,41 @@ public class PaymentController {
 		res.setRes_num("R0002");
 		
 		// 0.결제번호 무작위생성
-		//날짜 정보 가지고옴
+		// 날짜 정보 가지고옴
 		LocalDate date = LocalDate.now();
-		//년월일 따로 가지고옴
+		// 년월일 따로 가지고옴
 		int year = date.getYear();
 		int month = date.getMonthValue();
 		int day = date.getDayOfMonth();
-		
+//		System.out.println("year : " + year);
+//		System.out.println("month : " + month);
+//		System.out.println("day : " + day);
 		// 무작위 번호앞에 년월일 붙여서 결제번호생성
-		String payNum = year + month + day + UUID.randomUUID().toString()  ;
+		String payNum = year +( month + (day + UUID.randomUUID().toString().substring(0,7)))  ;
 		System.out.println("payNum : " + payNum);
 		
 		
 		// 1. 최종 결제정보 insert 
 		// payment의 외래키가 user_idx여서 세션에서 불러옴
 		int sIdx = Integer.parseInt((String)session.getAttribute("sIdx"));
+		// 천단위 쉼표제거 후 형변환뒤 payment객체에 넣어줌
+		System.out.println("pay_po_price_String 변환전 : " + pay_po_price_String);
+		int pay_po_price; //현장에서 결제
+		// controller에서만 판별하기 위한 pay_on_sit =1 : 선주문없음 pay_on_sit = 2 : 선주문있음 
+		if(pay_po_price_String.equals("선주문 없음")) {
+			pay_po_price = 0;
+			payment.setPay_on_sit(1); // 선주문 없음
+		} else if(pay_po_price_String.equals("0")) {
+			pay_po_price = 0;
+			payment.setPay_on_sit(2); // 선주문있는데 현장에서 결제함
+		} else {
+			pay_po_price = Integer.parseInt(pay_po_price_String.replace(",", "").trim());
+			payment.setPay_on_sit(3); // 선주문있는데 선결제함
+		}
+		payment.setPay_po_price(pay_po_price); 
+		System.out.println(pay_po_price);
+		System.out.println(payment);
+		
 		int insertPayment = service.paymentSuccess(res,sIdx,payNum,payment); //res의 res_table_price와pay_per_price같음
 		if(insertPayment > 0) {
 			// 1-1. 3번 성공시 예약테이블에서 결제완료상태로 표시 변경 update (res_pay_status = 1)

@@ -11,30 +11,41 @@
 <script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/payment.js"></script>
 <script type="text/javascript"> 
+ 	var discountCoupon = $("#discountCoupon").text();
+ 	var discountPoint = $("#discountPoint").text();
+ 	var earnedPoints = $("#earnedPoints").text();
+ 	var nowPoint = $("#nowPoint").text();
+ 	var totalPoint = $("#totalPoint").text();
+ 	var totalPayment = $("#totalPayment").text();
+ 	var preOrderTotalPrice = $("#preOrderTotalPrice").text();
+
  	$.ajax({
- 	    url: '/paymentPro',  // 요청을 보낼 URL
- 	    type: 'POST',  // 요청 방식(GET, POST 등)
+ 	    url: "paymentPro",  // 요청을 보낼 URL
+ 	    type: "POST",  // 요청 방식(GET, POST 등)
 	    data: {  // 서버에 전달할 데이터
 	    	// 쿠폰할인 금액
-	        discountCoupon : $('#discountCoupon').text(),
+	        discountCoupon: discountCoupon,
 	        //  포인트할인 금액
-	        discountPoint : $('#discountPoint').text(),
+	        discountPoint: discountPoint,
 	        // 적립예정 포인트
-	        earnedPoints : $('#earnedPoints').text(),
+	        earnedPoints: earnedPoints,
 	        // 사용하고 남은 포인트
-	        nowPoint : $('#nowPoint').text(),
+	        nowPoint: nowPoint,
 	        // 적립포인트 + 사용하고 남은포인트
-	        totalPoint : $('#totalPoint').text(),
+	        totalPoint: totalPoint,
 	        // 최종 결제금액
-	        totalPayment : $('#totalPayment').text()
-	    },
+	        totalPayment: totalPayment,
+			// paymentVO객체에 넣기위한 결제금액에 선주문 포함유무
+			// 선주문 없음 : "선주문 없음" / 선주문 있음 : 0또는 보다크다
+	        pay_po_price_String: preOrderTotalPrice
+	        },
  	    success: function(response) {
- 	        // 요청이 성공적으로 완료된 후 실행할 코드
+ 	        console.log(response + " - 파라미터 전달 성공");
 	    },
  	    error: function(error) {
- 	        // 요청이 실패했을 때 실행할 코드
-	    }
- 	});
+ 	    	console.log(error + " - 파라미터 전달 실패");	    
+ 	    }
+ 		});
 </script>
 </head>
 <body>
@@ -274,8 +285,6 @@
 												<span class="detail">메뉴 선결제금액</span>
 												<span class="detail_price">
 													<span id="preOrderTotalPrice">선주문 없음</span>
-													<%--paymentVO --%>
-									<%-- param--%>	<input type="hidden" value="1" name="pay_on_sit"/>
 												</span>
 											</div>  
 										</c:when>
@@ -285,10 +294,6 @@
 												<span class="detail_price">
 													<span id="preOrderTotalPrice" >
 														${map.paymentInfo.menuTotalPrice }
-														<%--paymentVO --%>
-										<%-- param--%><input type="hidden" value="2" name="pay_on_sit"/>
-														<%--paymentVO --%>
-									    <%-- param--%><input type="hidden" value="${map.paymentInfo.menuTotalPrice }" name="per_po_price"/>
 													</span> 원
 		 										</span>
 											</div>  
