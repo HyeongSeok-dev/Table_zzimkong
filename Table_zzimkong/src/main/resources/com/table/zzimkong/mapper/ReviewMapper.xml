@@ -72,6 +72,7 @@
 	    SELECT * 
 	    FROM review
 	    WHERE com_id = #{com_id}
+	    ORDER BY review_update DESC;
 	</select>
 	
 	<!-- 리뷰 수정 -->
