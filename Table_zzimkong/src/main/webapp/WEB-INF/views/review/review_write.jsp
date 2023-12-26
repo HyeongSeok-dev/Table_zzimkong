@@ -16,14 +16,15 @@
 <!-- ==================================================================================== -->
 
 <title>리뷰 작성 페이지</title>
-
+<!-- 수정 -->
 </head>
 <body>
 	<article id="reviewWriteForm">
 	<div class="container">
 		<div class="restaurant_info">
 <!-- 			 <a href="detail?com_id=1"><h1>음식점 이름</h1></a> -->
-			 <a href="redetail?com_id=1"><h1>음식점 이름</h1></a>
+			 <a href="redetail?com_id=1"><h1>칸다소바 부전점</h1></a>
+			 <a href="redetail?com_id=1"><h1>${com_id}</h1></a>
 			 <!--            ~~~~~~~~~ : 나중에 ${com_id}로 고쳐서 값 받아오기 -->
 <!-- 			 <input type="submit" value="음식점 이름" onclick="location.href=detail"> -->
 			<p>몇번째 방문</p>
@@ -73,10 +74,10 @@
 			<div class="keyword_section">
 				<div class="keyword_category">
 					<h3>음식/가격</h3>		
-				        <input type="checkbox" id="review_food_big" class="hidden_checkbox" onclick="updateCheckboxValue(this);">
-				        <input type="hidden" name="review_food_big" value="0">
-				        <label for="review_food_big" class="keyword_btn">양이 많아요</label>
-				      
+				        <input type="checkbox" id="review_food_big" onclick="updateCheckboxValue(this);">
+						<input type="hidden" id="review_food_big" name="review_food_big" value="0">
+						<label for="review_food_big" id="review_food_big">양이 많아요</label>
+
 						<input type="checkbox" id="review_food_deli" onclick="updateCheckboxValue(this);">
 				        <input type="hidden" name="review_food_deli" value="0">
 				        <label for="review_food_deli">음식이 맛있어요</label>

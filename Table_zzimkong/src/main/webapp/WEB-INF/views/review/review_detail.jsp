@@ -50,7 +50,8 @@
 			</svg>
 		</h2>
 		<div class="review_write_button">
-		    <a href="write"><i class="fas fa-pencil-alt"></i> 리뷰쓰기</a>
+<!-- 		    <a href="write"><i class="fas fa-pencil-alt"></i> 리뷰쓰기</a> -->
+		    <a href="write?com_id="${review.review_num}><i class="fas fa-pencil-alt"></i> 리뷰쓰기</a>
 		</div>
 	</div>
 	<div class="review_select">
@@ -297,32 +298,17 @@
 			</div>
 		</div>
 		<br>
-				<div class="review-actions">
-					<div class="review-action2">
-				<!-- 				<button class="review_delete">삭제</button> -->
-					<!-- ======================================================= -->
-<%-- 				<a href="/review/modify?review_num=${review.review_num}" class="review_modify">수정</a> --%>
-<!-- 				<input type="submit" class="review_delete" value="삭제" -->
-<!-- 				    onclick="if(!confirm('리뷰를 삭제하시겠습니까?')){return false;}"/>					 -->
-									
-					<!-- ======================================================= -->
-<!-- 			<input type="submit" class="review_delete" value="삭제" -->
-<!-- 					onclick="if(!confirm('리뷰를 삭제하시겠습니까?')){return false;}" /> -->
-				<form action="review/delete" method="POST">
-	   			 	<input type="hidden" name="review_num" value="${review.review_num}">
-	    			<input type="submit" class="review_delete" value="삭제" onclick="if(!confirm('리뷰를 삭제하시겠습니까?')){return false;}">
-				</form>
-<%-- 				<input type="button" class="review_delete" value="삭제" onclick="deleteReview(${review.review_num})"/> --%>
-					
-					
-					
-				<a href="/review/modify?review_num=${review.review_num}">		
-				<button class="review_modify">수정</button></a>
-
-				<a href="${pageContext.request.contextPath}/review/report">
-					<button class="review_report_btn">리뷰 신고하기</button>
-				</a> <span class="comment-icon" onclick="showCommentForm()"></span><br>
-			   <br>
+			<div class="review-actions">
+				<div class="review-action2">
+					<form action="${pageContext.request.contextPath}/zzimkong/review/delete" method="POST">
+					    <input type="hidden" name="review_num" value="${review.review_num}">
+					    <input type="submit" class="review_delete" value="삭제" onclick="return confirm('리뷰를 삭제하시겠습니까?');">
+						<a href="/review/modify?review_num=${review.review_num}">		
+						<button class="review_modify">수정</button></a>
+						<a href="${pageContext.request.contextPath}/review/report">
+						<button class="review_report_btn">리뷰 신고하기</button></a> 
+						<span class="comment-icon" onclick="showCommentForm()"></span><br><br>
+					</form>								
 			   </div>
 			</div>
 		</li>

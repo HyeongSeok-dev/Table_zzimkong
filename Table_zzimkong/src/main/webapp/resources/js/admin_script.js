@@ -1,6 +1,12 @@
 // admin_user.jsp
-function user_withdraw() {
-	confirm("강제 탈퇴시키겠습니까?");
+function user_withdraw(user_idx) {
+    var result = confirm("강제 탈퇴시키겠습니까?");
+    if(result) { // 확인을 눌렀을 경우
+        document.getElementById('user_idx').value = user_idx;
+        document.getElementById('withdrawForm').submit();
+    } else {
+		event.preventDefault();
+    }
 }
 	
 	
@@ -50,10 +56,19 @@ function company_disapprove() {
 // admin_company_info.jsp
 function company_shut_down() {
 	var company_state = document.getElementById("company_state");
+	var prev_value = company_state.options[company_state.selectedIndex].value;
 	var value = company_state.options[company_state.selectedIndex].value;
+	
+	console.log(prev_value);
+	console.log(value);
+	
 	if(value == "4") {
-		confirm("폐점 상태로 바꾸시겠습니까?");
+		if (!confirm("폐점 상태로 바꾸시겠습니까?")) {
+            value = prevValue; // '취소'를 눌렀을 때 이전 값으로 돌림
+        }
 	} else if(value == "3") {
-		confirm("영업중지 상태로 바꾸시겠습니까?");
+		if (!confirm("영업중지 상태로 바꾸시겠습니까?")) {
+            value = prevValue; // '취소'를 눌렀을 때 이전 값으로 돌림
+        }
 	}
 }

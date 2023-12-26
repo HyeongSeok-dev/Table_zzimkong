@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,20 +23,20 @@
 	<div class="s-list pic-grade">
 		<div class="com_pic_wrapper">
 			<img
-				src="${pageContext.request.contextPath}/resources/img/list_com.jpg"
+				src="${pageContext.request.contextPath}/resources/img/${company.com_img}"
 				class="com_pic">
 		</div>
 		<div class="tit-point">
-			<p class="tit">업체명</p>
+			<p class="tit"></p>
 		</div>
 		<div class="btxt">
-			<div>구군명 |</div>
-			<div class="btxt">분류명(카페 등)</div>
+			<div>${company.com_gugun} | ${company.com_name}</div>
+			<div class="btxt">${company.com_category}</div>
 		</div>
 		<div class="sns-grade">
 			<p class="grade">
-				<span class="point"> (리뷰남긴 사람의 수 )명의 평가 <strong
-					id="lbl_review_point"> (별점 평균) </strong>
+				<span class="point">${company_info.review_count}명의 평가 <strong
+					id="lbl_review_point"> ${company_info.avg_score} </strong>
 				</span><span id="lbl_review_star" class="star"> </span>
 			</p>
 		</div>
@@ -54,15 +55,15 @@
 	<div class="s-list basic-info">
 		<ul class="list">
 			<li class="locat">
-				<div>현재 위치정보</div> <br> <span class="Profile__Detail__Distance">
-					현재 위치에서 <strong> ~m </strong>
+				<div>${company.com_address}</div> <br> <span class="Profile__Detail__Distance">
+					현재 위치에서 <strong> ${company_info.distance}m </strong>
 			</span>
 				<button class="Move__Map__Button"
 					onclick="$('#div_map_full').parent().fadeIn(300);">지도보기</button>
 			</li>
-			<li class="tel">전화번호</li>
-			<li class="tag">분위기 태그</li>
-			<li class="char">편의시설 태그</li>
+			<li class="tel">${company.com_tel}</li>
+			<li class="tag">${tag_mood}</li>
+			<li class="char">${tag_facilities}</li>
 			<li class="feedback button style-UoJ8Z" id="style-UoJ8Z">폐업신고 ·
 				정보수정 제안</li>
 		</ul>
@@ -79,10 +80,7 @@
 				</div>
 				<ul class="list">
 					<li>
-						<p class="r-txt">영업시간: 11:30 - 22:00</p>
-					</li>
-					<li>
-						<p class="r-txt">라스트오더: 21:00 - 영업종료 1시간전으로 일괄 설정</p>
+						<p class="r-txt">${company.com_open_time} ~ ${company.com_close_time} / 브레이크타임 : ${company.com_break_time}</p>
 					</li>
 				</ul>
 			</div>
@@ -91,38 +89,40 @@
 			<div class="menu-info short">
 				<p class="gap20"></p>
 				<p class="tit">메뉴정보</p>
-				<div class="menu_card">
-					<div class="menu_info">
-						<div class="menu_name">메뉴이름</div>
-						<div class="menu_name_sub">파니니 뭐시기 저시기</div>
-						<div class="menu_discribe">메뉴설명</div>
-						<div class="menu_discribe_sub">메뉴설명 뭐시기 거시기 왈라왈라왈랑셩 왈라리 왈라</div>
-						<div class="menu_price">메뉴가격</div>
-						<div class="menu_button_wrapper">
-							<div class="menu_price_sub">12,000원</div>
-							<input type="checkbox" id="menu1" name="menu" class="menu_check">
-							<label for="menu1" class="menu_button">선주문</label>
+				<c:forEach var="menu" items="${menuList}">
+					<div class="menu_card">
+						<div class="menu_info">
+							<div class="menu_name">메뉴이름</div>
+							<div class="menu_name_sub">${menu.menu_name}</div>
+							<div class="menu_discribe">메뉴설명</div>
+							<div class="menu_discribe_sub">${menu.menu_describe}</div>
+							<div class="menu_price">메뉴가격</div>
+							<div class="menu_button_wrapper">
+								<div class="menu_price_sub">${menu.menu_price}원</div>
+								<input type="checkbox" id="menu1" name="menu" class="menu_check">
+								<label for="menu1" class="menu_button">선주문</label>
+							</div>
+						</div>
+	
+						<div class="menu_contents">
+							<div class="menu_box">
+								<img class="menu_img"
+									src="${pageContext.request.contextPath}/resources/img/${menu.menu_img}">
+							</div>
+							<div class=menu_section>
+								<!-- menu_section 내부 내용은 동일 -->
+							</div>
 						</div>
 					</div>
-
-					<div class="menu_contents">
-						<div class="menu_box">
-							<img class="menu_img"
-								src="${pageContext.request.contextPath}/resources/img/detail_com.jpg">
-						</div>
-						<div class=menu_section>
-							<!-- menu_section 내부 내용은 동일 -->
-						</div>
-					</div>
-				</div>
+				</c:forEach>
 			</div>
 		</div>
 		<p class="gap20"></p>
 		<section class="similar_section" id="similar-rest-section">
 			<div class="similar_rest_head">
 				<div class="title-container">
-					<span class="similar_recom_title"><span class="rn">업체명
-					</span><span> 과&nbsp;비슷한 맛집 </span> </span>
+					<span class="similar_recom_title"><span class="rn">${company.com_name}
+					</span><span> 과 비슷한 맛집 </span> </span>
 				</div>
 				<div class="sort-option-set">
 					<div class="sort-option-div sort-option-selected"

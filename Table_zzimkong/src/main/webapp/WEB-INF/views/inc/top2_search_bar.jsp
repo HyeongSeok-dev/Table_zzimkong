@@ -17,8 +17,10 @@
 <!-- </div> -->
 	<div class="headerMenu_search_bar">
 		<div class="top_logo_img">
-			<img alt="logo1" id="logo1" src="${pageContext.request.contextPath }/resources/img/logo1_2.png">
-			<img alt="logo2" id="logo2" src="${pageContext.request.contextPath }/resources/img/logo3_2.png">
+		    <a href="${pageContext.request.contextPath}/">
+				<img alt="logo1" id="logo1" src="${pageContext.request.contextPath }/resources/img/logo1_2.png">
+				<img alt="logo2" id="logo2" src="${pageContext.request.contextPath }/resources/img/logo3_2.png">
+			</a>
 		</div>
 		<div class="top_search_button">
 			<jsp:include page="search_bar.jsp"/>

@@ -55,7 +55,10 @@ public class MemberController {
 		return "login/login_find_passwd";
 	}
 
-	
+	@GetMapping("my/complet")
+	public String my_complet() {
+		return "mypage/my_complet";
+	}
 	
 	
 	@PostMapping("join/MemberJoinPro")
@@ -102,6 +105,70 @@ public class MemberController {
 		}
 	} //MemberCheckDupNick()
 	
+	//업주회원=================================================================
+
+		@PostMapping("join/MemberJoinCeoPro")
+		public String joinCeoPro(MemberVO member, Model model) {
+				
+				System.out.println(member);
+			
+				int insertCount = service.registMember(member);
+				if(insertCount > 0) { // 성공				
+					return "redirect:/join/complete";
+				} else { // 실패
+					// 실패 시 메세지 출력 및 이전페이지로 돌아가는 기능을 모듈화 한 fail_back.jsp 페이지
+					model.addAttribute("msg", "회원 가입 실패!");
+					return "fail_back";
+				}
+				
+			}//joinCeoPro()
+		
+		//회원탈퇴=================================================================
+		
+//		@PostMapping("MemberWithdrawPro")
+//		public String withdrawForm(HttpSession session, Model model) {
+//					
+//			String sId = (String)session.getAttribute("sId");
+//			
+//			if(sId == null) {
+//				model.addAttribute("msg", "잘못된 접근 입니다.");
+//				return "fail_back";
+//			}
+//			return "mypage/my_unregister";
+//		}
+		
+		//회원탈퇴 비지니스 로직처리
+		@PostMapping("my/check/MemberWithdrawPro")
+		public String withdrawPro(MemberVO member, HttpSession session, Model model) {
+			
+				String sId = (String)session.getAttribute("sId");
+					
+					if(sId == null) {
+						model.addAttribute("msg", "잘못된 접근 입니다.");
+						return "fail_back";
+					}
+					
+					member.setUser_id(sId);
+					
+					MemberVO dbMember = service.getMember(member);
+					
+					//db랑비교
+					//추후 비밀번호 암호화기능 추가해야함
+//					BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+					if(dbMember.getUser_passwd().equals(member.getUser_passwd())) {
+						model.addAttribute("msg", "비밀번호가 일치하지 않습니다.");
+						return "fail_back";
+				}
+					
+				//탈퇴처리 요청
+				int updateCount = service.withdrawMember(member);
+				
+				if(updateCount > 0) { //성공
+					return "mypage/my_complet";
+				}else {
+					return "fail_back";
+				}
+		}
 	
 	//==========================================================================
 	// [ 로그인]

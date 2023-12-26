@@ -1,5 +1,24 @@
 @charset "UTF-8";
+/* 폰트 */
+/* @font-face { */
+/*     font-family: 'Pretendard-Regular'; */
+/*     src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff'); */
+/*     font-weight: 400; */
+/*     font-style: normal; */
+/* } */
 
+
+/* .restaurant_info  */
+/* .like_section */
+/* .review_section */
+/* .review_input_section */
+/* .photo_box */
+/* .review_textarea { */
+/* 	font-family: 'Pretendard-Regular'; */
+/* } */
+
+
+/* ---------------------------------- */
 /* 별점 수정*/
 /* ---------------------------------- */
 @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
@@ -30,7 +49,6 @@
 .review_rate label:hover ~ input:checked ~ label { color: gold!important;}
 
 /* ---------------------------------- */
-
 
 .starpoint_wrap {
   display: flex;
@@ -172,8 +190,8 @@
 }
 
 .like_button.active #heart {
-    fill: #3FAFFC; /* 버튼이 눌렸을 때 하트 색상을 빨간색으로 변경 */
-    stroke: #3FAFFC; /* 버튼이 눌렸을 때 하트 테두리 색상을 빨간색으로 변경 */
+    fill: #3FAFFC; /* 버튼이 눌렸을 때 하트 색상 변경 */
+    stroke: #3FAFFC; /* 버튼이 눌렸을 때 하트 테두리 색상 변경 */
 }
 
 /* ===================================================================================== */
@@ -187,6 +205,7 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start; /* 아이템들이 컨테이너의 상단에 정렬되도록 설정 */
+  text-align: center;
 }
 
 .keyword_category>h3{
@@ -194,37 +213,37 @@
 }
 
 .keyword_btn {
-  width: 190px; /* 버튼의 너비 */
+  width: 150px; /* 버튼의 너비 */
   height: 40px; /* 버튼의 높이 */
   margin-bottom: 7px; /* 버튼 사이의 간격 */
   background-color: white;
   border: 1px solid lightgray;
-  color: black;
+  color: black!important;
   padding: 15px;
   cursor: pointer;
   transition-duration: 0.4s;
   text-align: center; /* 텍스트 중앙 정렬 */
-  font-size: 16px;
+  font-size: 13px;
   line-height: 5px; /* 버튼 텍스트 높이 조절 */
  
 }
 
 .keyword-btn:hover {
-  background-color: lightgray;
+/*   background-color: lightgray; */
 }
 
 .keyword-btn:last-child {
-  margin-top: auto; /* 마지막 버튼을 하단에 정렬 */
+/*   margin-top: auto; 마지막 버튼을 하단에 정렬 */
 }
 .review_input_section {
-  position: relative;
-  margin-top: 20px;
+/*   position: relative; */
+/*   margin-top: 20px; */
 }
 
 /* =========================================================  */
 .photo_btn {
     padding: 10px !important;
-    border: 1px dashed grey!important; /* 회색 실선 테두리 */
+    border: 1px solid grey!important; /* 회색 실선 테두리 */
     background-color: white!important; /* 흰색 배경 */
     cursor: pointer!important; /* 마우스 오버 시 커서 변경 */
     display: inline-block!important; /* 인라인 블록 요소로 표시 */
@@ -394,12 +413,35 @@
 /* 버튼 활성화(이런점이 좋았어요) */
 .keyword_btn {
     /* 기존 버튼 스타일 */
-    background-color: white;
-    color: black;
+/*     background-color: white; */
+/*     color: black; */
     /* (중략) */
 }
 
 .keyword_btn.active {
-    background-color: skyblue; /* 하늘색 배경 */
-    color: white; /* 하얀색 글씨 */
+/*     background-color: skyblue; 하늘색 배경 */
+/*     color: white; 하얀색 글씨 */
 }
+
+/* ======================================================= */
+.hidden_checkbox {
+    display: none!important;
+}
+
+.keyword_category>label {
+    font-size: 20px;
+    color: black; /* 글씨색을 연한 회색으로 변경 */
+    border: 1px solid lightgrey; /* 버튼 테두리를 연한 회색으로 변경 */
+    padding: 10px 15px;
+    background-color: white; /* 버튼의 배경색을 흰색으로 설정 */
+    cursor: pointer;
+    transition: color 0.3s ease, background-color 0.3s ease, fill 0.3s ease; /* 색상 및 배경색 변경을 부드럽게 하기 위해 transition퍋가 */
+    border-radius: 10px;
+}
+
+/* .keyword_category input[type="checkbox"]:checked + label { */
+/*     background-color: blue; */
+/*     color: white; */
+/* } */
+/* ======================================================= */
+

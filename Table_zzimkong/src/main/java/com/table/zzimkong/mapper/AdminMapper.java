@@ -13,11 +13,18 @@ public interface AdminMapper {
 	// 관리자 - 회원 목록 조회
 	List<MemberVO> selectAdminMemberList();
 
+	// 관리자 - 회원 탈퇴 처리
+	int updateAdminMemberWithdraw(MemberVO member);
+
 	// 관리자 - 업체 목록 조회
 	List<CompanyVO> selectAdminCompanyList();
 
 	// 관리자 - 업체 상세 정보
 	CompanyVO selectAdminCompanyInfo(CompanyVO company);
+
+	// 관리자 - 업체 상세 정보 수정
+	int updateAdminCompanyInfoModify(CompanyVO company);
+
 
 
 	

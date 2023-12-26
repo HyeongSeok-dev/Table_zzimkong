@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.table.zzimkong.service.ReviewService;
 import com.table.zzimkong.vo.ReviewVO;
@@ -58,8 +59,6 @@ public class ReviewController {
 		return "review/review_detail";
 	}
 	
-	
-
 	// ===================================================================
 	// [ 리뷰 작성 ]
 	// "detail" 서블릿 요청에 대한 리뷰 글쓰기 폼 표시
@@ -168,10 +167,13 @@ public class ReviewController {
 			return "fail_back";
 		}
 
-	} // reviewWritePro
-
+	} // reviewWritePro	
 	// ===================================================================
-	// [ 리뷰 수정 ]
+	// [ 리뷰 작성완료 후 상세페이지 이동 ]
+
+	
+	// ===================================================================
+	// [ 리뷰 수정 ] (진행중)
 	@GetMapping("review/modify")
 	public String review_modify(
 							ReviewVO review
@@ -220,12 +222,15 @@ public class ReviewController {
 	
 	// ===================================================================
 	// [ 리뷰 삭제 ]
-	@PostMapping("review/delete")
+	@PostMapping("/zzimkong/review/delete")
 	public String review_delete(
 			ReviewVO review,
-			@RequestParam(defaultValue = "1") String reviewNum,
+			@RequestParam(defaultValue = "1") int reviewNum,
+//			@RequestParam("com_id") int comId,
 			HttpSession session,
-			Model model) {
+			Model model,
+			HttpServletRequest request) {
+		
 		// 게시물 삭제 권한 확인
 		// 세션 아이디 없을 경우 처리
 //		String sId = (String)session.getAttribute("sId");
@@ -238,18 +243,20 @@ public class ReviewController {
 		
 		// ReviewService - getReview() 메서드 재사용
 		ReviewVO dbReview = service.getReivew(review.getReview_num());
+//		int comId = review.getCom_id();
+	    String referer = request.getHeader("Referer");		
 		
 //		if(dbBoard == null || !sId.equals(dbReview.getUser_name()) && !sId.equals("admin")) {
 //			model.addAttribute("msg", "잘못된 접근입니다");
 //			return "fail_back";
 //		}
 		
-		
 		// ReviewService - removeReview() 메서드 호출하여 글 삭제 작업 요청
 		// => 파라미터 : ReviewVO 객체(글번호 저장 필수)   리턴타입 : int(deleteCount)		
 		int deleteCount = service.removeReview(review);
 		
 		if(deleteCount > 0) {
+			
 			try {
 				String uploadDir = "/resources/upload";
 				String saveDir = session.getServletContext().getRealPath(uploadDir);
@@ -263,7 +270,7 @@ public class ReviewController {
 				
 				// for문을 활용하여 배열 반복
 				for(String fileName : arrFileNames) {
-					if(!fileName.equals("")) {
+				    if(fileName != null && !fileName.equals("")) {
 						Path path = Paths.get(saveDir + "/" + fileName);
 						Files.deleteIfExists(path);
 					}
@@ -272,17 +279,16 @@ public class ReviewController {
 				e.printStackTrace();
 			}
 			
-			return "redirect:/review/detail";
-			 
+//			return "redirect:/review/redetail?com_id=" + comId;
+			return "redirect:" + referer;
+			
 		} else {
 			// 글 삭제 실패!
 			model.addAttribute("msg","글 삭제 실패!");
 			return "fail_back";
 		}
 		
-		
-		
-			}
+	}
 	
 	
 

@@ -20,10 +20,14 @@ public class MemberService {
 	} //registMember()
 
 
-	
+	//회원 상세정보 조회 요청
 	public MemberVO getMember(MemberVO member) {
-		// TODO Auto-generated method stub
 		return mapper.selectMember(member);
+	}
+
+	//회원 탈퇴 요청
+	public int withdrawMember(MemberVO member) {
+		return mapper.updateWithdrawMember(member);
 	}
 	
 	

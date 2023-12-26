@@ -1,3 +1,31 @@
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('photoBtn').addEventListener('click', function() {
+        document.getElementById('photoInput').click();
+    });
+    
+    document.getElementById('photoInput').addEventListener('change', handleImagePreview);
+// ==================================================================================
+    // Function to toggle the color of the label when checkbox is checked/unchecked
+    function toggleLabelColor(checkbox) {
+        var label = document.querySelector('label[for="' + checkbox.id + '"]');
+        if (checkbox.checked) {
+            label.classList.add('active');
+        } else {
+            label.classList.remove('active');
+        }
+    }
+
+    // Add event listeners to all checkboxes
+    var checkboxes = document.querySelectorAll('.hidden_checkbox');
+    checkboxes.forEach(function(checkbox) {
+        checkbox.addEventListener('change', function() {
+            toggleLabelColor(checkbox);
+            updateCheckboxValue(checkbox); // Existing function call
+        });
+    });
+    
+});
+
 // 이 함수들은 전역 스코프에 있어야 하므로 DOMContentLoaded 바깥으로 이동
 function updateCheckboxValue(checkbox) {
     var hiddenInput = document.getElementsByName(checkbox.id)[0];
@@ -14,6 +42,7 @@ function toggleKeywords(checkbox) {
         }
     });
 }
+
 // ====================================
 function updateCheckboxValue(checkbox) {
     var hiddenInput = document.getElementsByName(checkbox.id)[0];
@@ -100,58 +129,6 @@ document.addEventListener('DOMContentLoaded', function() {
 //			}
 //		});
 //	});
-	// 별점
-
-//	const ratingStars = [...document.getElementsByClassName("rating__star")];
-//	const ratingResult = document.querySelector(".rating__result");
-
-//	printRatingResult(ratingResult);
-
-//	function executeRating(stars, result) {
-//		const starClassActive = "rating__star fas fa-star";
-//		const starClassUnactive = "rating__star far fa-star";
-//		const starsLength = stars.length;
-//		let i;
-//		stars.map((star) => {
-//			star.onclick = () => {
-//				i = stars.indexOf(star);
-//
-//				if (star.className.indexOf(starClassUnactive) !== -1) {
-//					printRatingResult(result, i + 1);
-//					for (i; i >= 0; --i) stars[i].className = starClassActive;
-//				} else {
-//					printRatingResult(result, i);
-//					for (i; i < starsLength; ++i) stars[i].className = starClassUnactive;
-//				}
-//			};
-//		});
-//	}
-
-//	function printRatingResult(result, num = 0) {
-//		result.textContent = `${num}/5`;
-//	}
-
-//	executeRating(ratingStars, ratingResult);
-
-	// ------ 
-
-//	noKeywordBtn.addEventListener('click', function() {
-//		if (this.classList.contains('active')) {
-//			keywordButtons.forEach(function(btn) {
-//				if (btn !== noKeywordBtn) {
-//					btn.classList.remove('active');
-//					btn.disabled = true;
-//				}
-//			});
-//			selectedCount = 1;
-//		} else {
-//			keywordButtons.forEach(function(btn) {
-//				btn.disabled = false;
-//			});
-//			selectedCount = 0;
-//		}
-//	});
-	
 	
 	// 팝업 열기
 	window.openPopup = function() {
@@ -218,37 +195,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
 // ==================================================================================
-
-
-// ==================================================================================
-	// 좋아요 버튼 색 변경
-//	var likeButton = document.getElementById('likeButton');
-//	likeButton.addEventListener('click', function() {
-//		this.classList.toggle('active');
-//	});
-//
-//	// 좋아요 버튼 토스트 메세지 팝업
-//	var likeButton = document.getElementById('likeButton');
-//	var toastMessage = document.getElementById('toastMessage');
-//	var isLiked = false; // '좋아요' 상태를 추적하는 변수
-//
-//	likeButton.addEventListener('click', function() {
-//		// '좋아요' 상태 변경
-//		isLiked = !isLiked;
-//
-//		// 토스트 메시지 내용 설정
-//		toastMessage.textContent = isLiked ? '좋아요가 반영되었습니다' : '좋아요가 취소되었습니다';
-//
-//		// 토스트 메시지 표시
-//		toastMessage.classList.add('show');
-//
-//		// 2초 후에 토스트 메시지 숨김
-//		setTimeout(function() {
-//			toastMessage.classList.remove('show');
-//		}, 2000);
-//	});
-
-// ==================================================================================
 // 이미지 프리뷰 함수
 function handleImagePreview(event) {
     var file = event.target.files[0];
@@ -267,6 +213,7 @@ function handleImagePreview(event) {
     }
 }
 
+
 // 이미지 프리뷰 삭제 함수
 function removePreview() {
     var photoInput = document.getElementById('photoInput');
@@ -276,13 +223,3 @@ function removePreview() {
     imagePreview.style.display = 'none';
     previewContainer.style.display = 'none';
 }
-
-document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('photoBtn').addEventListener('click', function() {
-        document.getElementById('photoInput').click();
-    });
-    
-    document.getElementById('photoInput').addEventListener('change', handleImagePreview);
-});
-
-// ==================================================================================

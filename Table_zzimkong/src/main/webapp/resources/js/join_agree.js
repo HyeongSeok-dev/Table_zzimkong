@@ -1,6 +1,14 @@
  //가게유의사항 전체체크
-function checkbox_allCheck(){
-    var checkboxes = document.querySelectorAll("#checkbox_agree1, #checkbox_agree2, #checkbox_agree3");
+//function checkbox_allCheck(){
+//    var checkboxes = document.querySelectorAll("#checkbox_agree1, #checkbox_agree2, #checkbox_agree3");
+//    document.getElementById("checkAll").addEventListener("click", function(){
+//        for(var i=0; i<checkboxes.length; i++) {
+//            checkboxes[i].checked = this.checked;
+//        }
+//    });
+//}
+window.onload = function(){
+    var checkboxes = document.querySelectorAll("#checkbox_agree_terms, #checkbox_agree1, #checkbox_agree2, #checkbox_agree3");
     document.getElementById("checkAll").addEventListener("click", function(){
         for(var i=0; i<checkboxes.length; i++) {
             checkboxes[i].checked = this.checked;

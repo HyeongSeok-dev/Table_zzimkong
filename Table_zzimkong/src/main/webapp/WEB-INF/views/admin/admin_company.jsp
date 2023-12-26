@@ -54,17 +54,18 @@
 					<th>업체상태</th>
 				</tr>
 				
-				<%-- 아래로 회원 목록 출력 --%>
+				<%-- 아래로 업체 목록 출력 --%>
 				<c:forEach var="company" items="#{companyList}">
 					<tr>
 						<td onclick="company_info_open('${company.com_id}')">${company.com_id}</td>
 						<td onclick="업체페이지로">${company.com_name}</td>
 						<td>${company.com_category}</td>
 						<td>${company.com_ceo}</td>
-						<td>
-							<c:set var="tel" value="${company.com_tel}"/>
-							${fn:substring(tel, 0, 3)}-${fn:substring(tel, 3, 7)}-${fn:substring(tel, 7, 12)}
-						</td>
+<!-- 						<td> -->
+<%-- 							<c:set var="tel" value="${company.com_tel}"/> --%>
+<%-- 							${fn:substring(tel, 0, 3)}-${fn:substring(tel, 3, 7)}-${fn:substring(tel, 7, 12)} --%>
+<!-- 						</td> -->
+						<td>${company.com_tel}</td>
 						<td>${company.com_open_time} ~ ${company.com_close_time}</td>
 						<td>${company.com_max_people}명</td>
 						<td><fmt:formatDate value="${company.com_reg_date}" pattern="yy/MM/dd HH:mm"/></td>

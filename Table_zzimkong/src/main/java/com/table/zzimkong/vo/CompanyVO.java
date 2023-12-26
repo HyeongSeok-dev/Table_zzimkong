@@ -4,6 +4,7 @@ package com.table.zzimkong.vo;
 import java.sql.Date;
 import java.time.LocalTime;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Data;

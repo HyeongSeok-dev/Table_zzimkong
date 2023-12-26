@@ -72,6 +72,7 @@
 	    SELECT * 
 	    FROM review
 	    WHERE com_id = #{com_id}
+	    ORDER BY review_update DESC;
 	</select>
 	
 	<!-- 리뷰 수정 -->
@@ -82,7 +83,7 @@
 	</select>
 
 	<!-- 글 삭제 - DELETE -->
-	<delete id="removeReview">
+	<delete id="removeReview" parameterType="int">
 		DELETE FROM review
 		WHERE review_num = #{review_num}
 	</delete>
