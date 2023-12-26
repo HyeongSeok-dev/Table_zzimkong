@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.table.zzimkong.vo.CompanyVO;
 import com.table.zzimkong.vo.MenuVO;
+import com.table.zzimkong.vo.PaymentVO;
 import com.table.zzimkong.vo.PreOrderInfo;
 import com.table.zzimkong.vo.PreOrderVO;
 import com.table.zzimkong.vo.ReservationVO;
@@ -26,6 +27,10 @@ public interface PaymentMapper {
 	int insertSubUsedPoint(ReservationVO res, String discountPoint);
 
 	int insertAddPoint(ReservationVO res, String earnedPoints);
+
+	int insertPayment(ReservationVO res, int sIdx, String payNum, PaymentVO payment);
+
+	int updateReservationStatus(ReservationVO res);
 
 	
 }

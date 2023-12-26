@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원탈퇴</title>
 <link href="${pageContext.request.contextPath }/resources/css/mypage.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
 <script>
@@ -30,10 +30,11 @@
 			<td>
 			회원 탈퇴 전 유의사항을 반드시 확인해주세요!<br><br>
 			1. 30일 내 동일한 휴대폰 번호로 재가입 불가<br>
-			가나다라마바사<br>
-		
+			<br>
 			2. 회원 정보 및 게시물 삭제<br>
-			아자차카타파하<br>
+			<br>
+		
+			
 			</td>
 			</tr>
 		</table>

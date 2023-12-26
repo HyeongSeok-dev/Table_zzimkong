@@ -19,7 +19,6 @@ public class MypageController {
 	// [ 회원정보 조회 ]
 	@GetMapping("my/modify/profile")
 	public String my_modify_profile(MemberVO member, HttpSession session, Model model) {
-		session.setAttribute("sId", "gorani");
 		String sId = (String) session.getAttribute("sId");
 		if(sId == null) {
 			model.addAttribute("msg", "잘못된 접근입니다.");
@@ -60,5 +59,5 @@ public class MypageController {
 		return "";
 	}
 	
-	
+
 }

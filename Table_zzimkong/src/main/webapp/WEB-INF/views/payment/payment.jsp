@@ -97,13 +97,13 @@
 						<h2>결제수단</h2>
 						<div class="choice_pay">
 							<div>
-								<input type="radio" name="onSitePayment" value="현장결제" id="onSitePayment"><span class="font_stlye">메뉴만 현장결제</span>
+								<input type="radio" name="pay_on_sit" value="2" id="onSitePayment"><span class="font_stlye">메뉴만 현장결제</span>
 								<span class="pay_on_sit">* 선택시 노쇼방지 예약금만 결제 됩니다.</span>
 							</div>	
 							<br>
 							<div>
-								<input type="radio" name="pay_method" value="카드결제" id="creditCardPayment"><span class="font_stlye">카드결제</span>
-								<select class="select" id="cardSelect" name="pay_method">
+								<input type="radio" name="pay_method" value="3" id="creditCardPayment"><span class="font_stlye">카드결제</span>
+								<select class="select" id="cardSelect" name="pay_card_co">
 									<option value="">카드사를 선택해 주세요</option>
 									<option value="삼성">삼성</option>
 									<option value="신한">신한</option>
@@ -119,7 +119,7 @@
 							</div>
 							<br>
 							<div>
-								<input type="radio" name="pay_method" value="무통장입금" id="accountPayment"><span class="font_stlye">무통장입금</span>
+								<input type="radio" name="pay_method" value="4" id="accountPayment"><span class="font_stlye">무통장입금</span>
 								<span class="pm_acc_comment">20분 이내 입금되지 않으면 예약은 자동 취소됩니다.</span>
 								<br>
 								<select class="select_b" id="bankSelect" name="bankSelect">
@@ -143,7 +143,7 @@
 							</div>
 							<br>
 							<div>	
-								<input type="radio" name="pay_method" value="휴대폰결제" id="mobilePhonePayment"><span class="font_stlye">휴대폰결제</span>
+								<input type="radio" name="pay_method" value="5" id="mobilePhonePayment"><span class="font_stlye">휴대폰결제</span>
 							</div>
 						</div>
 					</section>
@@ -162,7 +162,7 @@
 							</div>
 							<div class="agree_main">
 								<span>
-									<input type="checkbox" id="payAgree" name="agreement" value="결제대행동의" class="agree">
+									<input type="checkbox" id="payAgree" name="agreement" class="agree">
 									<span class="each_agree">
 										<span class="agree_font">[필수]</span> 
 										결제 대행 서비스 이용 약관 동의 합니다.
@@ -174,7 +174,7 @@
 							</div>	
 							<div class="agree_main">
 								<span>
-									<input type="checkbox" id="revocationAgree" name="agreement" value="취소환불동의" class="agree">
+									<input type="checkbox" id="revocationAgree" name="agreement" class="agree">
 									<span class="each_agree">
 										<span class="agree_font">[필수]</span> 
 										취소 및 환불규정 동의 합니다.
@@ -186,7 +186,7 @@
 							</div>
 							<div class="agree_main">
 								<span>
-									<input type="checkbox" name="per_info_consent" value="개인정보동의" class="agree">
+									<input type="checkbox" name="per_info_consent" class="agree">
 									<span class="each_agree">
 										<span class="agree_font">[선택]</span> 
 										개인정보 제3자 제공 동의 합니다.
@@ -207,44 +207,53 @@
 						<section id="rightSec01" class="section_box">
 							<div class="res_header">
 								<h2 id="res_h2">예약 상세</h2><h3 class="res_num">${map.res.res_num}</h3>
+				  <%-- param--%><input type="hidden" value="${map.res.res_num}" name="res_num">
 							</div>
 							<div class="res_main">
 								<ul>
 									<li class="res_li">
 										<span class="res_info">상호명</span>
 										<h3 class="res_com_name">${map.com.com_name}</h3>
+					  	  <%-- param--%><input type="hidden" value="${map.com.com_name}" name="com_name">
 									</li>
 									<li class="res_li">
 										<span class="res_info">주소</span>
 										<span class="res_add">${map.com.com_address}</span>
+						  <%-- param--%><input type="hidden" value="${map.com.com_address}" name="com_address">
 									</li>
 									<li class="res_li">
 										<span class="res_info">예약 날짜</span>
 										<span class="date_detail">${map.res.res_date}</span>
+						  <%-- param--%><input type="hidden" value="${map.res.res_date}" name="res_date">
 									</li>
 									<li class="res_li">
 										<span class="res_info">시간</span>
 										<span class="date_detail">${map.res.res_time}</span>
+						  <%-- param--%><input type="hidden" value="${map.res.res_time}" name="res_time">
 									</li>
 									<li class="res_li">
 										<span class="res_info">방문자명</span>
 										<span class="other_name">
 											${map.res.res_name}
 										</span>
+						  <%-- param--%><input type="hidden" value="${map.res.res_name}" name="res_name">
 									</li>
 									<li class="res_li">
 										<span class="res_info">휴대폰 번호</span>
 										<span class="phone_num">
 											${map.res.res_phone}
 										</span>
+						  <%-- param--%><input type="hidden" value="${map.res.res_phone}" name="res_phone">
 									</li>
 									<li class="res_li">
 										<span class="res_info">인원수</span>
 										<span class="per_detail">${map.res.res_person} 명</span>
+						  <%-- param--%><input type="hidden" value="${map.res.res_person}" name="res_person">
 									</li>
 									<li class="res_li2">
 										<div class="res_info">고객 요청사항</div>
 										<div class="request_detail">${map.res.res_request}</div>
+						  <%-- param--%><input type="hidden" value="${map.res.res_request}" name="res_request">
 									</li>
 								</ul>
 							</div>
@@ -256,7 +265,8 @@
 									<div>
 										<span class="detail">예약금액</span>
 										<span class="detail_price"><span id="reservationPrice">${map.paymentInfo.res_table_price}</span> 원</span>
-						 <%-- param--%> <input type="hidden" value="${map.paymentInfo.res_table_price}" name="reservationPrice"/>
+										<%--paymentVO --%>
+						 <%-- param--%> <input type="hidden" value="${map.res.res_table_price}" name="pay_per_price"/>
 									</div>
 									<c:choose>
 										<c:when test="${empty map.res.pre_idx}">
@@ -264,7 +274,8 @@
 												<span class="detail">메뉴 선결제금액</span>
 												<span class="detail_price">
 													<span id="preOrderTotalPrice">선주문 없음</span>
-									<%-- param--%>	<input type="hidden" value="" name="PreOrderStatus"/>
+													<%--paymentVO --%>
+									<%-- param--%>	<input type="hidden" value="1" name="pay_on_sit"/>
 												</span>
 											</div>  
 										</c:when>
@@ -274,7 +285,10 @@
 												<span class="detail_price">
 													<span id="preOrderTotalPrice" >
 														${map.paymentInfo.menuTotalPrice }
-										<%-- param--%><input type="hidden" value="${map.paymentInfo.menuTotalPrice }" name="PreOrderStatus"/>
+														<%--paymentVO --%>
+										<%-- param--%><input type="hidden" value="2" name="pay_on_sit"/>
+														<%--paymentVO --%>
+									    <%-- param--%><input type="hidden" value="${map.paymentInfo.menuTotalPrice }" name="per_po_price"/>
 													</span> 원
 		 										</span>
 											</div>  
@@ -293,7 +307,6 @@
 														</span>
 														<span class="price">
 															<span>${preOrder.eachMenuTotalPrice}</span>
-										   	  <%-- param--%><input type="hidden" value="${preOrder.eachMenuTotalPrice}" name="PreOrderStatus"/>
 															 원
 														</span>
 													</div>

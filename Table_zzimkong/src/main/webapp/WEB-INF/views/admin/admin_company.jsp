@@ -66,7 +66,7 @@
 <%-- 							${fn:substring(tel, 0, 3)}-${fn:substring(tel, 3, 7)}-${fn:substring(tel, 7, 12)} --%>
 <!-- 						</td> -->
 						<td>${company.com_tel}</td>
-						<td>${company.com_open_time} ~ ${company.com_close_time}</td>
+						<td>${fn:substring(company.com_open_time, 0, 5)} ~ ${fn:substring(company.com_close_time, 0, 5)}</td>
 						<td>${company.com_max_people}명</td>
 						<td><fmt:formatDate value="${company.com_reg_date}" pattern="yy/MM/dd HH:mm"/></td>
 						<td>${company.com_ad_grade}단계</td>

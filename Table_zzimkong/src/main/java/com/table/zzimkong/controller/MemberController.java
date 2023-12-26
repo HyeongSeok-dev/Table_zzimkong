@@ -123,7 +123,7 @@ public class MemberController {
 				
 			}//joinCeoPro()
 		
-		//회원탈퇴=================================================================
+	//회원탈퇴=================================================================
 		
 //		@PostMapping("MemberWithdrawPro")
 //		public String withdrawForm(HttpSession session, Model model) {
@@ -155,7 +155,9 @@ public class MemberController {
 					//db랑비교
 					//추후 비밀번호 암호화기능 추가해야함
 //					BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-					if(dbMember.getUser_passwd().equals(member.getUser_passwd())) {
+					
+					if(!dbMember.getUser_passwd().equals(member.getUser_passwd())) {
+						System.out.println("확인됨");
 						model.addAttribute("msg", "비밀번호가 일치하지 않습니다.");
 						return "fail_back";
 				}
@@ -169,6 +171,7 @@ public class MemberController {
 					return "fail_back";
 				}
 		}
+	
 	
 	//==========================================================================
 	// [ 로그인]
@@ -199,7 +202,8 @@ public class MemberController {
 		} else { // 로그인 성공
 		// 세션 객체에 로그인 성공한 아이디를 "sId" 속성으로 추가
 		session.setAttribute("sId", member.getUser_id());
-			
+		//  user_idx가 외래키여서 session에 sIdx 넣었음
+		session.setAttribute("sIdx", dbMember.getUser_idx());	
 		// 메인페이지로 리다이렉트
 		return "redirect:/";
 		}

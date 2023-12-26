@@ -220,6 +220,8 @@ public class HomeController {
 		return "mypage/my_bookmark";
 	}
 	
+	
+	
 //	@GetMapping("review/detail")
 //	public String review_detail() {
 //		return "review/review_detail";

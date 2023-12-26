@@ -4,6 +4,7 @@
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.table.zzimkong.mapper.PaymentMapper">
+    <!-- [payment/payment] -->
 	<select id="selectResForPay" resultType="res">
 		 SELECT *
 		 FROM reservation
@@ -29,6 +30,41 @@
 		FROM pre_order pre , menu
 		WHERE res_idx = #{res_idx} AND pre.menu_idx = menu.menu_idx;
 	</select>
+	
+	<!-- [paymentPro] -->
+	<insert id="insertPayment">
+		INSERT
+		INTO payment
+		VALUES (
+			null
+			, #{payNum}
+			, #{res_idx}
+			, #{sIdx}
+			, #{pay_method}
+			, #{res_table_price}
+			, #{pay_po_price}
+			, now()
+			, #{pay_card_co}
+			, #{per_Info_consent}
+			, 1 -- pay_status
+			<!--#{pay_po_site}  -->
+			<choose>
+				<when test="pay_po_price > 0">
+					<choose>
+						<when test="pay_po_site == 2">
+						, 2
+						</when>
+						<when test="pay_po_site != 2">
+						, 3
+						</when>
+					</choose>
+				</when>
+				<otherwise>
+					,1
+				</otherwise>
+			</choose>
+		)
+	</insert>
 	
 	<insert id="insertSubUsedPoint">
 		INSERT
@@ -57,8 +93,12 @@
 			, now()
 		)
 	</insert>
-	
-	
-	
+
+	<!-- 예약테이블에 결제상태 update -->	
+	<update id="updateReservationStatus">
+		UPDATE reservation
+		SET res_pay_status = 1
+		WHERE res_num = #{res_num}
+	</update>
 	
 </mapper>

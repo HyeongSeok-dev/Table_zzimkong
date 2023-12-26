@@ -52,24 +52,11 @@
 
 <!-- 회원탈퇴 -->
 <update id="updateWithdrawMember">
-	UPDATE member
+	UPDATE user
     SET
-        user_id = ''
-        , user_passwd=''
-        , user_nick=''
-        , user_email=''
-        , user_name=''
-        , user_birth=''
-        , com_num=''
-        , user_reg_date=''
-        , user_phone=''
-        , user_level=''
-        , user_img=''
-        , user_status=3
-        , user_category=''
-        , point_value=''
-        , total_point =''
-    WHRER user_id = #{user_id}
+         user_status=3
+         , user_reg_date = now()
+    WHERE user_id = #{user_id}
 		
 </update>
 

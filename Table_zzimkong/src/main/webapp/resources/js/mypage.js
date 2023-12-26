@@ -27,12 +27,13 @@ window.onload = function() {
 	
 	};
 	
-	/* 새비밀번호 */
-	document.modifyForm.passwd.onkeyup = function() {
-		let passwd = document.joinForm.passwd.value;
-};
+//	/* 새비밀번호 */
+//	document.modifyForm.passwd.onkeyup = function() {
+//		let passwd = document.joinForm.passwd.value;
+//};
 
-
+	}
+	
 	/* 예약 취소 모달창 my_list.jsp */
 	function cancelReservation(){
 			confirm("예약을 취소하시겠습니까?");
@@ -144,4 +145,3 @@ document.addEventListener('DOMContentLoaded', function() {
 	};
 	
 	});
-}
