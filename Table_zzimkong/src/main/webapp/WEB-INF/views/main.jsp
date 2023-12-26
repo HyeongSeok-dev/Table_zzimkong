@@ -278,6 +278,7 @@
 	 <button><a href="my/report/reason">my/report/reason</a></button>
 	 <button><a href="my/modify/profile">my/modify/profile</a></button>
 	 <button><a href="my/unregister">my/unregister</a></button>
+	 <button><a href="my/complet">my/complet</a></button>
 	 <hr>
 	 <button><a href="review/detail">review/detail</a></button>
 	 <button><a href="review/write">review/write</a></button>
