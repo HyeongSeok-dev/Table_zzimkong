@@ -7,7 +7,6 @@ import org.springframework.stereotype.*;
 import org.springframework.ui.*;
 import org.springframework.web.bind.annotation.*;
 
-import com.itwillbs.mvc_board.vo.*;
 import com.table.zzimkong.service.*;
 import com.table.zzimkong.vo.*;
 
@@ -58,7 +57,8 @@ public class MypageController {
 		}
 	
 	
-	
+		return "";
+	}
 	
 	
 }
