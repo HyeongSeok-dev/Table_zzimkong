@@ -55,7 +55,10 @@ public class MemberController {
 		return "login/login_find_passwd";
 	}
 
-	
+	@GetMapping("my/complet")
+	public String my_complet() {
+		return "mypage/my_complet";
+	}
 	
 	
 	@PostMapping("join/MemberJoinPro")
@@ -150,9 +153,10 @@ public class MemberController {
 					MemberVO dbMember = service.getMember(member);
 					
 					//db랑비교
-					BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-					if(passwordEncoder.matches(member.getUser_passwd(), dbMember.getUser_passwd())) {
-						model.addAttribute("msg", "권한이 없습니다");
+					//추후 비밀번호 암호화기능 추가해야함
+//					BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+					if(dbMember.getUser_passwd().equals(member.getUser_passwd())) {
+						model.addAttribute("msg", "비밀번호가 일치하지 않습니다.");
 						return "fail_back";
 				}
 					
