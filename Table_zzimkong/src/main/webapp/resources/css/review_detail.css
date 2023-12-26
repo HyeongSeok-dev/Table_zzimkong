@@ -790,6 +790,8 @@ svg {
   width: 20px;
   background-color: #eee;
   border-radius: 4px;
+  margin-top:4px;
+  margin-left:29px;
 }
 
 .checkbox-container:hover input ~ .checkmark {
@@ -1224,7 +1226,7 @@ h1 {
 
 .score1{
 	margin-left:15px;
-	font-size:1.1em;
+	font-size:1.2em;
 	margin-bottom:10px;
 }
 
@@ -1241,6 +1243,7 @@ h1 {
 .review_photos {
     display: flex;
 /*    justify-content: space-between;*/
+	margin-bottom:22px;
 }
 
 .review_photos img {
@@ -1286,11 +1289,12 @@ h1 {
 
 .review-action1{
 	margin-left: -8px;
-	margin-bottom: -8px;
+	margin-bottom: -5px;
 }
 
 .review-action2{
 	margin-left:10px;
+	margin-top:4px;
 }
 
 /* 마우스 오버시 버튼 스타일 */
@@ -1365,9 +1369,9 @@ h1 {
     top: 50%;
     transform: translate(-50%, -50%);
     border: 1px solid #888;
-    width: 60%; /* Could be more or less, depending on screen size */
+    width: 60%;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    z-index: 1; /* Sit on top */
+    z-index: 1;
     background-color: white;
     padding: 20px;
 }
@@ -1383,14 +1387,19 @@ h1 {
 
 
 .keyword_btn.active {
-    background-color: blue; /* or your desired color */
-    color: white; /* or your desired text color */
-    /* other styling as needed */
+    background-color: blue; 
+    color: white; 
+    
 }
 /*  =============================================================  */
 .profile_image {
 	margin-top:-20px;
 }
-
+/*  =============================================================  */
+.review_date {
+	margin-left:960px;
+	color:#888;
+	font-size:1.12em;
+}
 
 

@@ -9,15 +9,11 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, minimum-scale=1" />
 <!-- CSS -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/review_detail.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/global.css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/review_detail.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/global.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <!-- Js -->
-<script
-	src="${pageContext.request.contextPath}/resources/js/review_detail.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/review_detail.js"></script>
 </head>
 <body>
 	<div class="restaurant_name">
@@ -33,9 +29,7 @@
 		</h5>
 		<br>
 		<div class="score">
-<!-- 			<strong>4.8</strong> -->
 			<strong>${reviewAverage}</strong>
-<%-- 			<h3>${reviewAverage}</h3> --%>
 		</div>
 	</div>
 	<br>
@@ -44,8 +38,7 @@
 	<div class="review_container">
 		<h2 class="place_reason">
 			이런 점이 좋았어요&nbsp;
-			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15"
-				class="question_mark" aria-hidden="true">    
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15" class="question_mark" aria-hidden="true">    
 				<path d="M7.5 14.97a7.62 7.62 0 01-2.88-.55 7.25 7.25 0 01-2.44-1.62 7.25 7.25 0 01-1.61-2.43A7.81 7.81 0 010 7.5a7.25 7.25 0 01.55-2.88 7.44 7.44 0 011.63-2.43A7.45 7.45 0 014.62.55 7.27 7.27 0 017.5 0c1.01.01 1.97.2 2.88.57a7.25 7.25 0 012.43 1.61 7.25 7.25 0 011.62 2.43A7.81 7.81 0 0115 7.5a7.25 7.25 0 01-.55 2.88 7.44 7.44 0 01-1.63 2.43A7.45 7.45 0 017.5 15v-.03zM7.5 1a6.3 6.3 0 00-3.25.88 6.59 6.59 0 00-2.37 2.37A6.3 6.3 0 001 7.5c0 1.17.3 2.25.88 3.25a6.59 6.59 0 002.37 2.37A6.3 6.3 0 007.5 14c.87 0 1.7-.16 2.5-.49a6.4 6.4 0 002.1-1.4A6.4 6.4 0 0013.51 10a6.5 6.5 0 000-5 6.4 6.4 0 00-1.4-2.1A6.4 6.4 0 0010 1.49 6.5 6.5 0 007.5 1zM5 5.31C5.06 4.02 5.9 3 7.54 3 9 3 10 3.93 10 5.16c0 .93-.47 1.59-1.22 2.05-.73.45-.94.78-.94 1.4V9H6.82v-.55c0-.78.37-1.32 1.16-1.8.68-.43.94-.8.94-1.44 0-.74-.56-1.28-1.43-1.28-.87 0-1.43.53-1.5 1.38H5zm2.5 6.19a.74.74 0 01-.75-.75c0-.43.33-.75.75-.75.43 0 .75.32.75.75 0 .42-.32.75-.75.75z"></path>
 			</svg>
 		</h2>
@@ -313,11 +306,14 @@
 						<a href="${pageContext.request.contextPath}/review/report" class="review_report_btn" role="button">리뷰 신고하기</a>
 						<span class="comment-icon" onclick="showCommentForm()"></span><br><br>
 					</form>								
+            <div class="review_date">
+                <fmt:formatDate value="${review.review_update}" pattern="yy. MM. dd (E)" /> 작성
+            </div>
 			   </div>
 			</div>
 		</li>
-	</ul>
-	<br><br><br><br>
+	</ul><br>
+	<div class="separator"></div>
 	</c:forEach>
 	<!-- ========================================================================================= -->
 	<br><br><br><br><br><br><br><br><br><br>

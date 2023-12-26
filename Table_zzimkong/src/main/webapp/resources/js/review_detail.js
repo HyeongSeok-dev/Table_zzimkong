@@ -11,16 +11,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	});
 	// ---------댓글-----------------------------------------------
-	var commentIcon = document.getElementById('commentIcon');
+	 var commentIcons = document.querySelectorAll('.fa-comment');
 
-	commentIcon.addEventListener('click', function() {
-		var contextRoot = window.location.pathname.substring(0, window.location.pathname.indexOf("/",2));
-		var url = contextRoot +  "/review/comment";
-		var windowName = "commentPopup";
-		var windowSize = "width=500,height=600";
+   	 commentIcons.forEach(function(commentIcon) {
+        commentIcon.addEventListener('click', function() {
+            var contextRoot = window.location.pathname.substring(0, window.location.pathname.indexOf("/",2));
+            var url = contextRoot +  "/review/comment";
+            var windowName = "commentPopup";
+            var windowSize = "width=500,height=600";
 
-		window.open(url, windowName, windowSize);
-	});
+            window.open(url, windowName, windowSize);
+        });
+    });
 	// ---------------------------------------------------------------
 	// 더보기 버튼 기능
 	var moreButton = document.querySelector('.more-button');
@@ -45,19 +47,26 @@ document.addEventListener('DOMContentLoaded', function() {
 	});
 
 	// -----------------------------------------------------------------------	
+    var heartIcons = document.querySelectorAll('.fa-heart');
 
-	// -----------------------------------------------------------------------	
+    // 각 하트 아이콘에 대해 반복하면서 이벤트 리스너를 추가합니다.
+    heartIcons.forEach(function(heartIcon) {
+        heartIcon.addEventListener('click', function() {
+            this.classList.toggle('far');
+            this.classList.toggle('fas');
+            this.classList.toggle('filled');
+        });
+    });
 
-
-	// 하트누르기 
-	var heartIcon = document.getElementById('heartIcon');
-	if (heartIcon) {
-		heartIcon.addEventListener('click', function() {
-			this.classList.toggle('far');
-			this.classList.toggle('fas');
-			this.classList.toggle('filled');
-		});
-	}
+//	// 하트누르기 
+//	var heartIcon = document.getElementById('heartIcon');
+//	if (heartIcon) {
+//		heartIcon.addEventListener('click', function() {
+//			this.classList.toggle('far');
+//			this.classList.toggle('fas');
+//			this.classList.toggle('filled');
+//		});
+//	}
 
 	// -----------------------------------------------------------------------	
 	var carouselInner = document.querySelector('.carousel-inner');
