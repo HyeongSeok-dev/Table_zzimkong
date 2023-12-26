@@ -6,19 +6,40 @@
 	
 	<!-- 관리자 - 회원 목록 조회 -->
 	<select id="selectAdminMemberList">
-		SELECT u.*, p.point_value
+		SELECT u.*, SUM(p.point_value) AS total_point
 		FROM user u
 		LEFT JOIN point p
 		ON u.user_idx = p.user_idx
 		WHERE user_id != 'admin'
-		ORDER BY user_idx DESC;
+		GROUP BY u.user_idx
+		ORDER BY u.user_idx DESC
 	</select>
+	
+	<!-- 관리자 - 회원 탈퇴 처리 -->
+	<update id="updateAdminMemberWithdraw">
+		UPDATE user
+		SET
+			user_status = 3
+<!-- 			, user_id = '' -->
+<!-- 			, user_passwd = '' -->
+<!-- 			, user_nick = '' -->
+<!-- 			, user_email = '' -->
+<!-- 			, user_name = '' -->
+<!-- 			, user_birth = '' -->
+<!-- 			, com_num = '' -->
+<!-- 			, user_phone = '' -->
+<!-- 			, user_level = '' -->
+<!-- 			, user_img = '' -->
+<!-- 			, user_category = '' -->
+<!-- 			, point_value = '' -->
+		WHERE user_idx = #{user_idx}
+	</update>
 	
 	<!-- 관리자 - 업체 목록 조회 -->
 	<select id="selectAdminCompanyList">
 		SELECT *
 		FROM company
-		ORDER BY com_id DESC;
+		ORDER BY com_id DESC
 	</select>
 
 	<!-- 관리자 - 업체 상세 정보 -->
@@ -27,4 +48,13 @@
 		FROM company
 		WHERE com_id = #{com_id}
 	</select>
+	
+	<!-- 관리자 - 업체 상세 정보 수정 -->
+	<update id="updateAdminCompanyInfoModify">
+		UPDATE company
+		SET
+			com_status = #{com_status}
+			, com_ad_grade = #{com_ad_grade}
+		WHERE com_id = #{com_id}
+	</update>
 </mapper>

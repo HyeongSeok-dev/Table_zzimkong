@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.table.zzimkong.service.AdminService;
 import com.table.zzimkong.vo.CompanyVO;
@@ -56,6 +58,22 @@ public class AdminController {
 		return "admin/admin_user";
 	}
 	
+	// 관리자 페이지 - 회원 탈퇴
+	@PostMapping("admin/user/withdraw/Pro")
+	public String memberwithdrawPro(MemberVO member, HttpSession session, Model model, HttpServletResponse response) {
+		// 관리자 페이지 접근 제한
+		isvalid(session, model, response);
+		
+		int updateCount = service.adminMemberWithdraw(member);
+
+		if(updateCount > 0) { // 성공 시
+			return "redirect:/admin/user";
+		} else { // 실패 시
+			model.addAttribute("msg", "회원 탈퇴 처리 실패!");
+			return "fail_back";
+		}
+	}
+	
 	// 관리자 페이지 - 업체 목록 조회
 	@GetMapping("admin/company")
 	public String companyList(HttpSession session, Model model, HttpServletResponse response) {
@@ -70,7 +88,7 @@ public class AdminController {
 	
 	// 관리자 페이지 - 업체 목록 상세정보창 열기
 	@GetMapping("admin/company/info")
-	public String admin_company_info(CompanyVO company, HttpSession session, Model model, HttpServletResponse response) {
+	public String companyInfo(CompanyVO company, HttpSession session, Model model, HttpServletResponse response) {
 		// 관리자 페이지 접근 제한
 		isvalid(session, model, response);
 		
@@ -80,6 +98,21 @@ public class AdminController {
 		return "admin/admin_company_info";
 	}
 	
+	// 관리자 페이지 - 업체 목록 상세정보 수정
+	@PostMapping("admin/company/info/pro")
+	public String companyInfoModifyPro(CompanyVO company, HttpSession session, Model model, HttpServletResponse response) {
+		// 관리자 페이지 접근 제한
+		isvalid(session, model, response);
+
+		int updateCount = service.adminCompanyInfoModify(company);
+
+		if(updateCount > 0) { // 성공 시
+			return "redirect:/admin/company/info?com_id=" + company.getCom_id();
+		} else { // 실패 시
+			model.addAttribute("msg", "업체 정보 수정 실패!");
+			return "fail_back";
+		}
+	}
 	
 	
 	
@@ -89,19 +122,20 @@ public class AdminController {
 	
 	
 	
+	
+	// 관리자 페이지 - 리뷰 신고 목록 조회 : 일단 후순위로
 	@GetMapping("admin/review")
 	public String admin_review(HttpSession session, Model model, HttpServletResponse response) {
 		// 관리자 페이지 접근 제한
 		isvalid(session, model, response);
-				
+		
 		return "admin/admin_review";
 	}
-	
+
 	@GetMapping("admin/review/detail")
 	public String admin_review_detail(HttpSession session, Model model, HttpServletResponse response) {
 		// 관리자 페이지 접근 제한
 		isvalid(session, model, response);
-			
 				
 		return "admin/admin_review_detail";
 	}

@@ -21,6 +21,7 @@ public class MemberVO {
 	private int user_status;
 	private int user_category;
 	private int point_value; // 포인트
+	private int total_point; // 포인트 합계
 	
 } //MemberVO
 

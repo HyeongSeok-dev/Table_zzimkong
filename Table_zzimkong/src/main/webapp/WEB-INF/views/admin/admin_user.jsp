@@ -49,71 +49,74 @@
 	        
 			<h3>회원 관리</h3>
 			
-			<table border="1">
-				<tr>
-					<th>회원번호</th>
-					<th>
-						<select id="member_category">
-						    <option value="member_all" selected>회원구분</option>
-						    <option value="member_admin">관리자</option>
-						    <option value="member_user">일반회원</option>
-						    <option value="member_ceo">업주회원</option>
-						</select>
-					</th>
-					<th>아이디</th>
-					<th>닉네임</th>
-					<th>포인트</th>
-					<th>가입일자</th>
-					<th>회원상태</th>
-					<th>탈퇴</th>	
-				</tr>
-				<%-- 아래로 회원 목록 출력 --%>
-				<c:forEach var="member" items="#{memberList}">
+			<form action="/zzimkong/admin/user/withdraw/Pro" method="POST" id="withdrawForm">
+				<table border="1">
 					<tr>
-						<td>${member.user_idx}</td>
-						<%-- 회원 구분 --%>
-						<c:choose>
-							<c:when test="${member.user_category eq 1}">
-								<td>일반회원</td>
-							</c:when>
-							<c:when test="${member.user_category eq 2}">
-								<td>업주회원</td>
-							</c:when>
-							<c:when test="${member.user_category eq 3}">
-								<td>관리자</td>
-							</c:when>
-							<c:otherwise>
-								<td style="color:red;">알수없음</td>
-							</c:otherwise>
-						</c:choose>
-						<td>${member.user_id}</td>
-						<td>${member.user_nick}</td>
-						<td>
-							<%-- 숫자값 : 쉼표로 구분된 형식으로 --%>
-							<fmt:formatNumber value="${member.point_value}" groupingUsed="true"/>p
-						</td>
-						<td>${member.user_reg_date}</td>
-						<%-- 회원 상태 --%>
-						<c:choose>
-							<c:when test="${member.user_status eq 1}">
-								<td>정상</td>
-							</c:when>
-							<c:when test="${member.user_status eq 2}">
-								<td>휴면/정지</td>
-							</c:when>
-							<c:when test="${member.user_status eq 3}">
-								<td>탈퇴</td>
-							</c:when>
-							<c:otherwise>
-								<td style="color:red;">알수없음</td>
-							</c:otherwise>
-						</c:choose>
-						<td>
-							<button type="button" onclick="user_withdraw()" class="button_cancel">탈퇴</button>
-						</td>	
+						<th>회원번호</th>
+						<th>
+							<select id="member_category">
+							    <option value="member_all" selected>회원구분</option>
+							    <option value="member_admin">관리자</option>
+							    <option value="member_user">일반회원</option>
+							    <option value="member_ceo">업주회원</option>
+							</select>
+						</th>
+						<th>아이디</th>
+						<th>닉네임</th>
+						<th>포인트</th>
+						<th>가입일자</th>
+						<th>회원상태</th>
+						<th>탈퇴</th>	
 					</tr>
-				</c:forEach>
-			</table>
+					<%-- 아래로 회원 목록 출력 --%>
+					<c:forEach var="member" items="#{memberList}">
+						<tr>
+							<td>${member.user_idx}</td>
+							<%-- 회원 구분 --%>
+							<c:choose>
+								<c:when test="${member.user_category eq 1}">
+									<td>일반회원</td>
+								</c:when>
+								<c:when test="${member.user_category eq 2}">
+									<td>업주회원</td>
+								</c:when>
+								<c:when test="${member.user_category eq 3}">
+									<td>관리자</td>
+								</c:when>
+								<c:otherwise>
+									<td style="color:red;">알수없음</td>
+								</c:otherwise>
+							</c:choose>
+							<td>${member.user_id}</td>
+							<td>${member.user_nick}</td>
+							<td>
+								<%-- 숫자값 : 쉼표로 구분된 형식으로 --%>
+								<fmt:formatNumber value="${member.total_point}" groupingUsed="true"/>p
+							</td>
+							<td>${member.user_reg_date}</td>
+							<%-- 회원 상태 --%>
+							<c:choose>
+								<c:when test="${member.user_status eq 1}">
+									<td>정상</td>
+								</c:when>
+								<c:when test="${member.user_status eq 2}">
+									<td>휴면/정지</td>
+								</c:when>
+								<c:when test="${member.user_status eq 3}">
+									<td>탈퇴</td>
+								</c:when>
+								<c:otherwise>
+									<td style="color:red;">알수없음</td>
+								</c:otherwise>
+							</c:choose>
+							<td>
+								<input type="hidden" id="user_idx" name="user_idx">
+								<button type="submit" onclick="user_withdraw(${member.user_idx})" class="button_cancel">탈퇴</button>
+							</td>	
+						</tr>
+					</c:forEach>
+				</table>
+			</form>
 		</div>
 	</section>
 
