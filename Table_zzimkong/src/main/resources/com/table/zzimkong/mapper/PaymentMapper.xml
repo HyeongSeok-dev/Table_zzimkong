@@ -29,4 +29,36 @@
 		FROM pre_order pre , menu
 		WHERE res_idx = #{res_idx} AND pre.menu_idx = menu.menu_idx;
 	</select>
+	
+	<insert id="insertSubUsedPoint">
+		INSERT
+		INTO point
+		VALUES (
+			null
+			, #{user_idx}
+			, #{discountPoint}
+			, 4
+			, null
+			, 1
+			, now()
+		)
+	</insert>
+
+	<insert id="insertAddPoint">
+		INSERT
+		INTO point
+		VALUES (
+			null
+			, #{user_idx}
+			, #{earnedPoints}
+			, 1
+			, null
+			, 1
+			, now()
+		)
+	</insert>
+	
+	
+	
+	
 </mapper>

@@ -49,7 +49,6 @@ public class PaymentController {
 			mav = new ModelAndView("forword", "map", map);
 			return mav;
 		}
-		res.setUser_idx(2);
 		res.setRes_num("R0002");
 		
 		
@@ -62,7 +61,7 @@ public class PaymentController {
 		company = service.getCompany(res);
 		
 		// [예약정보중 선주문정보 조회]
-		// 1. List<Object> 객체로 받아보기
+		// 1. List<Object> 객체로 받아보기 안됨
 		//List<PaymentInfo> preList = service.getPreOrder(res);
 		
 		
@@ -84,7 +83,6 @@ public class PaymentController {
 			// 1. 개수를 곱한 메뉴가격 
 			System.out.println(" Integer.parseInt(preOrderInfo.getMenu_price()) : " + Integer.parseInt(preOrderInfo.getMenu_price()));
 			System.out.println("preOrderInfo.getPre_num() : " + preOrderInfo.getPre_num());
-			//물어보기------------------------------------------------------------------------------------------!!
 			eachMenuTotalPriceInt = (Integer.parseInt(preOrderInfo.getMenu_price()) * preOrderInfo.getPre_num());
 			menuTotalPriceInt += eachMenuTotalPriceInt;
 			String eachMenuTotalPrice = numberFormat.format(eachMenuTotalPriceInt);
@@ -120,33 +118,97 @@ public class PaymentController {
 		System.out.println(mav);
 		return mav;
 	}
-	
+	//----------------------------------------------------------------------------------------------------
 	@PostMapping("paymentPro")
-	public String paymentPro(HttpSession session, Model model) {
+	public ModelAndView paymentPro(HttpSession session, ReservationVO res, Map<String, Object> map, 
+									@RequestParam(defaultValue = "") String discountCoupon,
+									@RequestParam(defaultValue = "") String discountPoint,
+									@RequestParam(defaultValue = "") String earnedPoints,
+									@RequestParam(defaultValue = "") String nowPoint,
+									@RequestParam(defaultValue = "") String totalPoint,
+									@RequestParam(defaultValue = "") String totalPayment,
+									@RequestParam(defaultValue = "") String cardSelect
+									) {
 		
+		ModelAndView mav; 
+		//세션에 저장된 아이디로 회원정보확인 하기 위해 일단 세션에 임의의 값 넣음
 		session.setAttribute("sId", "user2");
+		
+		// 세션에 로그인이 안되어있다면 접근금지
 		if(session.getAttribute("sId") == null) {
-			model.addAttribute("msg", "접근권한이 없습니다!");
-			model.addAttribute("targetURL", "login");
-			return "forward";
+			
+			map.put("msg", "접근권한이 없습니다!");
+			map.put("targetURL", "login");
+			
+			mav = new ModelAndView("forword", "map", map);
+			return mav;
 		}
+		res.setRes_num("R0002");
+		////////[ 형석이에게 전달할 부분 ]///////////////////////////////////
+		// 여기서 외래키를 user_idx 보다 user_id로 넣으면 세션값만으로도 쉽게 디비로 전달가능
+		// 아니면 또 select로 user_idx불러와야함
+		//String sId = (String) session.getAttribute("sId");
+		//res.setUser_id(sId);
+//		int user_idx =  res.getUser_idx();
+//		System.out.println(user_idx); //0나옴
+		res.setUser_idx(2);
 		
+		//예약번호 무작위생성
+		// 1. 최종 결제정보 insert
+//		int insertPayment = service.paymentSuccess(res, ); //res의 res_table_price와pay_per_price같음
+//
+//		if(insertPayment > 0) {
+//		// 1-1. 3번 성공시 예약테이블에서 결제완료상태로 표시 변경 update (res_pay_status = 1)
+//		} else {
+//			map.put("msg", "결제에 실패했습니다!");
+//			
+//			mav = new ModelAndView("fail_back", "map", map);
+//			return mav;
+//		}
+				
 		
+		// 2. 사용한 포인트 insert (point_category = 4)
+		int insertSubUsedPoint = service.subUsedPoint(res, discountPoint);
 		
-		return"payment/info";
+		if(insertSubUsedPoint < 0) {
+			map.put("msg", "포인트 사용에 실패했습니다!");
+			
+			mav = new ModelAndView("fail_back", "map", map);
+			return mav; 
+		}
+		// 3. 결제로 인한 적립 포인트 insert  (point_category = 1)
+		int insertAddPoint = service.addPoint(res, earnedPoints);
+			
+		if(insertSubUsedPoint < 0) {
+			map.put("msg", "포인트 적립에 실패했습니다!");
+			
+			mav = new ModelAndView("fail_back", "map", map);
+			return mav;
+		}
+			
+		mav = new ModelAndView("redirect:/payment/Info?", "map", map);
+		System.out.println(mav);
+		return mav;
 	}
-
+	//---------------------------------------------------------------------------------------------------------------
 	@GetMapping("payment/info")
-	public String payment_info(HttpSession session, Model model) {
+	public ModelAndView payment_info(HttpSession session, Map<String, Object> map) {
 		
+		ModelAndView mav; 
+		//세션에 저장된 아이디로 회원정보확인 하기 위해 일단 세션에 임의의 값 넣음
 		session.setAttribute("sId", "user2");
+		
+		// 세션에 로그인이 안되어있다면 접근금지
 		if(session.getAttribute("sId") == null) {
-			model.addAttribute("msg", "접근권한이 없습니다!");
-			model.addAttribute("targetURL", "login");
-			return "forward";
+			
+			map.put("msg", "접근권한이 없습니다!");
+			map.put("targetURL", "login");
+			
+			mav = new ModelAndView("forword", "map", map);
+			return mav;
 		}
 		
-		
-		return "payment/payment_info";
+		mav = new ModelAndView("payment/payment_info", "map", map);
+		return mav;
 	}
 }

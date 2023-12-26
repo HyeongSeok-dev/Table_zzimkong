@@ -35,5 +35,14 @@ public class PaymentService {
 		return mapper.selectPreOrder(res);
 	}
 
+	public int subUsedPoint(ReservationVO res, String discountPoint) {
+		return mapper.insertSubUsedPoint(res, discountPoint);
+	}
+
+	public int addPoint(ReservationVO res, String earnedPoints) {
+		// TODO Auto-generated method stub
+		return mapper.insertAddPoint(res, earnedPoints);
+	}
+
 	
 }

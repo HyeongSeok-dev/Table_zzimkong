@@ -23,5 +23,9 @@ public interface PaymentMapper {
 
 	List<PreOrderInfo> selectPreOrder(ReservationVO res);
 
+	int insertSubUsedPoint(ReservationVO res, String discountPoint);
+
+	int insertAddPoint(ReservationVO res, String earnedPoints);
+
 	
 }
