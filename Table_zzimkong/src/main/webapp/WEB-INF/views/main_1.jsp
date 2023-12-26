@@ -88,15 +88,9 @@
 									<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 										<ul class="nav navbar-nav navbar-right">
 										
-													<%-- 로그인 드롭다운 --%>
-													<li class="dropdown">
-													    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-													    <img src="${pageContext.request.contextPath}/resources/img/top_user.png" style="width: 25px; height: 25px;"></a>
-													    <ul class="dropdown-menu">
-													        <li><a href="${pageContext.request.contextPath}/mypage">마이페이지</a></li>
-													        <li><a href="${pageContext.request.contextPath}/logout">로그아웃</a></li>
-													    </ul>
-													</li>
+													<li><a href="${pageContext.request.contextPath}/login">
+													<img src="${pageContext.request.contextPath}/resources/img/user.png"
+													style="width: 25px; height: 25px;"></a></li>
 													<%--고객센터 --%>
 													<li><a href="${pageContext.request.contextPath}/member/cs/faq">
 													<img  src="${pageContext.request.contextPath}/resources/img/headset.png"
