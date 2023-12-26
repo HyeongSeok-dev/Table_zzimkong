@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  
 <style>
 #footer-bottom {
@@ -58,7 +59,7 @@
 					<p>대표번호 : 051-803-0909 / 1544-7070</p>
 					<p>이메일 : class@itwillbs.co.kr</p>
 					<br>
-					<p>서비스 이용약관 | 개인정보 처리방침 | 위치정보 이용약관 | 인재 채용 | 광고/제휴문의 </p>
+					<p>서비스 이용약관 | 개인정보 처리방침 | 위치정보 이용약관 | 인재 채용 | 광고/제휴문의<c:if test="${sessionScope.sId eq 'admin'}"> | <a href="admin/main">관리자페이지</a></c:if></p>
 				</div>
 			</div>
 		</div>
