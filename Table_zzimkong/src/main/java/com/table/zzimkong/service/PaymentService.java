@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.table.zzimkong.mapper.PaymentMapper;
 import com.table.zzimkong.vo.CompanyVO;
 import com.table.zzimkong.vo.MenuVO;
+import com.table.zzimkong.vo.PaymentVO;
 import com.table.zzimkong.vo.PreOrderInfo;
 import com.table.zzimkong.vo.PreOrderVO;
 import com.table.zzimkong.vo.ReservationVO;
@@ -42,6 +43,15 @@ public class PaymentService {
 	public int addPoint(ReservationVO res, String earnedPoints) {
 		// TODO Auto-generated method stub
 		return mapper.insertAddPoint(res, earnedPoints);
+	}
+
+	public int paymentSuccess(ReservationVO res, int sIdx, String payNum, PaymentVO payment) {
+		return mapper.insertPayment(res, sIdx, payNum, payment);
+	}
+
+	public int payStatusChange(ReservationVO res) {
+		// TODO Auto-generated method stub
+		return mapper.updateReservationStatus(res);
 	}
 
 	

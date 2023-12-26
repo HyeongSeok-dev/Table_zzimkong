@@ -3,8 +3,11 @@ package com.table.zzimkong.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.NumberFormat;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +26,7 @@ import com.table.zzimkong.vo.MemberVO;
 import com.table.zzimkong.vo.MenuList;
 import com.table.zzimkong.vo.MenuVO;
 import com.table.zzimkong.vo.PaymentInfo;
+import com.table.zzimkong.vo.PaymentVO;
 import com.table.zzimkong.vo.PointVO;
 import com.table.zzimkong.vo.PreOrderInfo;
 import com.table.zzimkong.vo.PreOrderVO;
@@ -122,7 +126,7 @@ public class PaymentController {
 	//----------------------------------------------------------------------------------------------------
 	@ResponseBody
 	@PostMapping("paymentPro")
-	public ModelAndView paymentPro(HttpSession session, ReservationVO res, Map<String, Object> map, 
+	public ModelAndView paymentPro(HttpSession session, PaymentVO payment, ReservationVO res, Map<String, Object> map, 
 									@RequestParam(defaultValue = "") String discountCoupon,
 									@RequestParam(defaultValue = "") String discountPoint,
 									@RequestParam(defaultValue = "") String earnedPoints,
@@ -133,6 +137,7 @@ public class PaymentController {
 									) {
 		
 		ModelAndView mav; 
+		System.out.println(payment);
 		//세션에 저장된 아이디로 회원정보확인 하기 위해 일단 세션에 임의의 값 넣음
 		session.setAttribute("sId", "user2");
 		
@@ -145,45 +150,64 @@ public class PaymentController {
 			mav = new ModelAndView("forword", "map", map);
 			return mav;
 		}
+		
 		res.setRes_num("R0002");
-		res.setUser_idx(2);
 		
-		//예약번호 무작위생성
-		// 1. 최종 결제정보 insert
-//		int insertPayment = service.paymentSuccess(res, ); //res의 res_table_price와pay_per_price같음
-//
-//		if(insertPayment > 0) {
-//		// 1-1. 3번 성공시 예약테이블에서 결제완료상태로 표시 변경 update (res_pay_status = 1)
-//		} else {
-//			map.put("msg", "결제에 실패했습니다!");
-//			
-//			mav = new ModelAndView("fail_back", "map", map);
-//			return mav;
-//		}
+		// 0.결제번호 무작위생성
+		//날짜 정보 가지고옴
+		LocalDate date = LocalDate.now();
+		//년월일 따로 가지고옴
+		int year = date.getYear();
+		int month = date.getMonthValue();
+		int day = date.getDayOfMonth();
+		
+		// 무작위 번호앞에 년월일 붙여서 결제번호생성
+		String payNum = year + month + day + UUID.randomUUID().toString()  ;
+		System.out.println("payNum : " + payNum);
+		
+		
+		// 1. 최종 결제정보 insert 
+		// payment의 외래키가 user_idx여서 세션에서 불러옴
+		int sIdx = Integer.parseInt((String)session.getAttribute("sIdx"));
+		int insertPayment = service.paymentSuccess(res,sIdx,payNum,payment); //res의 res_table_price와pay_per_price같음
+		if(insertPayment > 0) {
+			// 1-1. 3번 성공시 예약테이블에서 결제완료상태로 표시 변경 update (res_pay_status = 1)
+			int updateReservationStatus = service.payStatusChange(res);
+			if(updateReservationStatus == 0) {
+				map.put("msg", "예약정보에 결제완료 상태표시를 실패했습니다!");
 				
-		
-		// 2. 사용한 포인트 insert (point_category = 4)
-		int insertSubUsedPoint = service.subUsedPoint(res, discountPoint);
-		
-		if(insertSubUsedPoint < 0) {
-			map.put("msg", "포인트 사용에 실패했습니다!");
+				mav = new ModelAndView("fail_back", "map", map);
+				return mav;
+			}
 			
-			mav = new ModelAndView("fail_back", "map", map);
-			return mav; 
-		}
-		// 3. 결제로 인한 적립 포인트 insert  (point_category = 1)
-		int insertAddPoint = service.addPoint(res, earnedPoints);
+			// 2. 사용한 포인트 insert (point_category = 4)
+			int insertSubUsedPoint = service.subUsedPoint(res, discountPoint);
+			if(insertSubUsedPoint == 0) {
+				map.put("msg", "포인트 사용정보 변경을 실패했습니다!");
+				
+				mav = new ModelAndView("fail_back", "map", map);
+				return mav; 
+			}
 			
-		if(insertSubUsedPoint < 0) {
-			map.put("msg", "포인트 적립에 실패했습니다!");
+			// 3. 결제로 인한 적립 포인트 insert  (point_category = 1)
+			int insertAddPoint = service.addPoint(res, earnedPoints);
+			if(insertSubUsedPoint == 0) {
+				map.put("msg", "포인트 적립에 실패했습니다!");
+				
+				mav = new ModelAndView("fail_back", "map", map);
+				return mav;
+			}
+			
+			mav = new ModelAndView("redirect:/payment/Info?", "map", map);
+			System.out.println(mav);
+			return mav;
+			
+		} else {
+			map.put("msg", "결제에 실패했습니다!");
 			
 			mav = new ModelAndView("fail_back", "map", map);
 			return mav;
 		}
-			
-		mav = new ModelAndView("redirect:/payment/Info?", "map", map);
-		System.out.println(mav);
-		return mav;
 	}
 	//---------------------------------------------------------------------------------------------------------------
 	@GetMapping("payment/info")
@@ -202,6 +226,9 @@ public class PaymentController {
 			mav = new ModelAndView("forword", "map", map);
 			return mav;
 		}
+		
+		
+		
 		
 		mav = new ModelAndView("payment/payment_info", "map", map);
 		return mav;
