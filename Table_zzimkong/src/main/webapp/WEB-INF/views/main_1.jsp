@@ -3,10 +3,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+
 <%-- 수정!!!! --%>
 <!DOCTYPE html>
 <html class="no-js">
 <head>
+
+<!-- 제이쿼리 -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>테이블 찜콩에 오신것을 환영합니다.</title>
@@ -78,32 +87,21 @@
 									
 									<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 										<ul class="nav navbar-nav navbar-right">
-											<c:choose>
-												<c:when test="${empty sessionScope.sId }"> <%-- 미 로그인 시 --%>
-													<%--로그인 --%>
-													<li><a href="${pageContext.request.contextPath}/login">
-													<img src="${pageContext.request.contextPath}/resources/img/user.png"
-													style="width: 25px; height: 25px;"></a></li>
+										
+													<%-- 로그인 드롭다운 --%>
+													<li class="dropdown">
+													    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+													    <img src="${pageContext.request.contextPath}/resources/img/top_user.png" style="width: 25px; height: 25px;"></a>
+													    <ul class="dropdown-menu">
+													        <li><a href="${pageContext.request.contextPath}/mypage">마이페이지</a></li>
+													        <li><a href="${pageContext.request.contextPath}/logout">로그아웃</a></li>
+													    </ul>
+													</li>
 													<%--고객센터 --%>
 													<li><a href="${pageContext.request.contextPath}/member/cs/faq">
 													<img  src="${pageContext.request.contextPath}/resources/img/headset.png"
 													style="width: 25px; height: 25px;"></a></li>
-												</c:when>
-												<c:otherwise>
-													<%--마이페이지 --%>
-													<li><a href="${pageContext.request.contextPath}/my/list">
-													<img src="${pageContext.request.contextPath}/resources/img/user.png"
-														style="width: 25px; height: 25px;"></a></li>
-													<%--알림 --%>
-													<li><a href="${pageContext.request.contextPath}/#">
-													<img src="${pageContext.request.contextPath}/resources/img/bell.png"
-													style="width: 25px; height: 25px;"></a></li>
-													<%--고객센터 --%>
-													<li><a href="${pageContext.request.contextPath}/member/cs/faq">
-													<img  src="${pageContext.request.contextPath}/resources/img/headset.png"
-													style="width: 25px; height: 25px;"></a></li>
-												</c:otherwise>
-											</c:choose>
+												
 										</ul>
 									</div><!-- /.navbar-collapse -->
 								</div>

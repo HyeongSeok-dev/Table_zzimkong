@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원탈퇴</title>
 <link href="${pageContext.request.contextPath }/resources/css/mypage.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
 <script>
@@ -33,7 +33,7 @@
 			<br>
 			2. 회원 정보 및 게시물 삭제<br>
 			<br>
-			3. 개인정보는 30일후에 자동 삭제됩니다.
+		
 			
 			</td>
 			</tr>

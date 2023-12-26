@@ -9,6 +9,9 @@
 <title>회원탈퇴</title>
 <link href="${pageContext.request.contextPath }/resources/css//mypage.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
+
+
+
 </head>
 <body>
 	<div align="center">
