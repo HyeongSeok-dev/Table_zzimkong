@@ -297,7 +297,7 @@
 						<i class="far fa-comment" id="commentIcon" style="cursor: pointer;"></i>
 						<!-- 댓글 아이콘 -->
 						<i class="far fa-heart" id="heartIcon" style="cursor: pointer;"></i>
-						<!-- 하트 아이콘 -->
+						<!-- 하트 아이콘! -->
 					</div>
 				</div>
 			</div>
