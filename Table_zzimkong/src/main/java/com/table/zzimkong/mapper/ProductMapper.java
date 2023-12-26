@@ -13,7 +13,9 @@ public interface ProductMapper {
 
 	List<CompanyVO> selectCompanyList(SearchVO search);
 
-	List<MenuVO> selectMenuList(List<CompanyVO> companyList);
+	List<MenuVO> selectMenuList(CompanyVO company);
+
+	CompanyVO selectCompany(CompanyVO company);
 	
 
 }

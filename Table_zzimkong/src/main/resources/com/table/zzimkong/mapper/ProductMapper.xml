@@ -174,13 +174,17 @@
 		
 	</select>
 	
+	<select id="selectCompany">
+		SELECT * 
+		FROM company
+		WHERE com_id = #{com_id}
+	</select>
+	
 	
 	<select id="selectMenuList" resultType="menu">
-	    <foreach item="company" collection="list" open="" close="" separator=";">
 	        SELECT * 
 	        FROM menu
-	        WHERE com_id = #{company.com_id}
-	    </foreach>
+	        WHERE com_id = #{com_id}
 	</select>
 	
 	

@@ -22,9 +22,14 @@ public class ProductService {
 		return mapper.selectCompanyList(search);
 	}
 
-	public List<MenuVO> getMenuList(List<CompanyVO> companyList) {
+	public List<MenuVO> getMenuList(CompanyVO company) {
 		// TODO Auto-generated method stub
-		return mapper.selectMenuList(companyList);
+		return mapper.selectMenuList(company);
+	}
+
+	public CompanyVO getCompany(CompanyVO company) {
+		// TODO Auto-generated method stub
+		return mapper.selectCompany(company);
 	}
 	
 }

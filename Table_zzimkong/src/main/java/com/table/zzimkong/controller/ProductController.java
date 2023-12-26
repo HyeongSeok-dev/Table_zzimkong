@@ -75,7 +75,6 @@ public class ProductController {
 		
 		List<CompanyVO> companyList = service.getCompanyList(search);
 		
-		List<MenuVO> menuList = service.getMenuList(companyList);
 		
 		int listCount = companyList.size();
 
@@ -83,13 +82,57 @@ public class ProductController {
 		model.addAttribute("search", search);
 		model.addAttribute("listCount", listCount);
 		model.addAttribute("companyList", companyList);
-		model.addAttribute("menuList", menuList);
 		
 		return "product/product_list";
 	}
 	
 	@PostMapping("product/detail")
-	public String product_detail() {
+	public String product_detail(Model model, SearchVO search, HttpSession session, CompanyVO company) {
+		
+		if(search == null) {
+			model.addAttribute("msg","잘못된 접근입니다!");
+			return "fail_back";
+		}
+		search = (SearchVO)session.getAttribute("search");
+		System.out.println("디테일에서 받음" + search);
+		System.out.println("디테일에서 받음" +company);
+		CompanyVO dbCompany = service.getCompany(company);
+		List<MenuVO> menuList = service.getMenuList(company);
+		
+		String tagMood ="";
+		String tagFacilities ="";
+		
+		if(dbCompany.isCom_tag_date()) {
+			tagMood += " 데이트 ";
+		}
+		if(dbCompany.isCom_tag_family()) {
+			tagMood += " 가족모임 ";
+		}
+		if(dbCompany.isCom_tag_party()) {
+			tagMood += " 단체회식 ";
+		}
+		if(dbCompany.isCom_tag_quiet()) {
+			tagMood += " 조용한 ";
+		}
+		
+		if(dbCompany.isCom_tag_park()) {
+			tagFacilities += " 주차가능 ";
+		}
+		if(dbCompany.isCom_tag_kids()) {
+			tagFacilities += " 노키즈존 ";
+		}
+		if(dbCompany.isCom_tag_disabled()) {
+			tagFacilities += " 장애인 편의시설 ";
+		}
+		if(dbCompany.isCom_tag_pet()) {
+			tagFacilities += " 반려동물 동반 ";
+		}
+		
+		model.addAttribute("menuList", menuList);
+		model.addAttribute("company", dbCompany);
+		model.addAttribute("company_info", company);
+		model.addAttribute("tag_mood", tagMood);
+		model.addAttribute("tag_facilities", tagFacilities);
 		
 		return "product/product_detail";
 	}
