@@ -158,7 +158,7 @@
             </if>
 		        AND com_status = 1	
         </where>
-        
+        GROUP BY c.com_id
         <if test="sort.equals('recommend')">
         	ORDER BY com_ad_grade DESC
         </if>

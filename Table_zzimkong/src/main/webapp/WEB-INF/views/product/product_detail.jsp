@@ -114,6 +114,8 @@
 							</div>
 						</div>
 					</div>
+					<p class="gap20"></p>
+					<hr>
 				</c:forEach>
 			</div>
 		</div>
