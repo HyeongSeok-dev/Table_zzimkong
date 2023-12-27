@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,14 +9,16 @@
 <title>예약</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/global.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/reservation.css">
+<script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/reservation.js"></script>
 
 </head>
 <body>
-<!--  <header> -->
-<%--  	<jsp:include page="../inc/search_bar.jsp"></jsp:include> --%>
-<!--  </header> -->
- <form action="reservationPro" name="reservation" >
+ <header>
+ 	<jsp:include page="../inc/top2.jsp"></jsp:include>
+ </header>
+ <form action="reservationPro" name="reservation"  method="post">
+ <input type="hidden" name="res_idx" value="${res.res_idx}" />
 <!-- 	<action="" name="reservation" onsubmit="return validateForm()"> -->
 	<div class="out_block">
 		<!-- 찜버튼 박스 -->
@@ -54,11 +57,11 @@
 					<div class="info_tag">
 						<div class="info">
 							<span class="info_title">식당이름</span>
-							<span class="info_content">${res.res_name}</span>
+							<span class="info_content">${map.com.com_name}</span>
 						</div>
 						<div class="info">
 							<span class="info_title">예약 날짜</span>
-							<span class="info_content">${res.res_date}</span>
+							<span class="info_content">${map.res.res_date}</span>
 						</div>
 						<div class="info">
 							<span class="info_title">예약 시간</span>
@@ -66,21 +69,22 @@
 						</div>
 						<div class="info">
 							<span class="info_title">인원</span>
-							<span class="info_content">${res.res_person}</span>
+							<span class="info_content">${res.res_person}명</span>
 						</div>
 						<div class="info">
 							<span class="info_title">예약 금액</span>
 							<span class="info_content"><b>${res.res_table_price}</b>원</span>
 						</div>
 						<div class="info" id="menu_price">
-							<span class="info_title">주문한 메뉴</span>
+							<span class="info_title">주문한 메뉴 금액</span>
 							<span class="info_content"><b>107,000</b>원</span>
 						</div>
 						<div class="info">
 							<span class="info_title"> </span>
 							<span class="info_content" id="menu_content">
+							<c:forEach var="preOrder" items="${map.poi }">
 								<div class="info_price">
-									<span class="menu_name"></span>
+									<span class="menu_name">마르게리따 피자</span>
 									<span class="count">1개</span>
 									<span class="price">18,000원</span>
 								</div>
@@ -93,7 +97,8 @@
 									<span class="menu_name">안심스테이크</span>
 									<span class="count">1개</span>
 									<span class="price">55,000원</span>
-								</div>
+<!-- 								</div> -->
+							</c:forEach>
 							</span>
 						</div>
 						<hr>
@@ -111,11 +116,11 @@
 					<div class="name_number">
 						<div class="input_box">
 							<h3>성명</h3>
-		             		<input type="text" name="resName" class="name" value="${sessionScope.sId }">
+		             		<input type="text" name="userName" class="name" value="${member.user_name }">
 		            	</div>
 			            <div class="input_box">
 							<h3>연락처</h3>
-			            	<input type="text"  name="resNumber" class="number" value="${sessionScope.sPhone }">
+			            	<input type="text"  name="userPhone" class="number" value="${member.user_phone}">
 			            </div>
 					</div>
 				</section>
@@ -135,11 +140,11 @@
 					<div class="name_number">
 						<div class="input_box">
 							<h3>성명</h3>
-		             		<input type="text" placeholder="성명을 입력해주세요." name="name" class="name">
+		             		<input type="text" placeholder="성명을 입력해주세요." name="res_name" class="name">
 		            	</div>
 			            <div class="input_box">
 							<h3>연락처</h3>
-			            	<input type="text" placeholder="휴대폰 번호를 입력해주세요." name="number" class="number">
+			            	<input type="text" placeholder="휴대폰 번호를 입력해주세요." name="res_phone" class="number">
 			            </div>
 					</div>
 				</section>
@@ -523,7 +528,7 @@
 					</div>
 				</section>
 			</div>
-			<button type="submit" class="payment" onclick="btnPay();">결제하기</button>
+			<button type="button" class="payment" onclick="btnPay();">결제하기</button>
 <!-- onclick="btnPay();" -->
 		<!-- 	</action> -->
 	</div>
