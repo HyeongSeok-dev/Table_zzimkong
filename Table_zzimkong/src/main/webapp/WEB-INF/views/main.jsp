@@ -77,11 +77,11 @@
 											<c:choose>
 												<c:when test="${empty sessionScope.sId }"> <%-- 미 로그인 시 --%>
 													<%--로그인 --%>
-													<li><a href="${pageContext.request.contextPath}/login">
+													<li class="dropdown"><a href="${pageContext.request.contextPath}/login">
 <%-- 													<img src="${pageContext.request.contextPath}/resources/img/top_user.png" style="width: 25px; height: 25px;"> --%>
 													로그인</a></li>
 													<%--고객센터 --%>
-													<li><a href="${pageContext.request.contextPath}/member/cs/faq">
+													<li class="dropdown"><a href="${pageContext.request.contextPath}/member/cs/faq">
 <%-- 													<img  src="${pageContext.request.contextPath}/resources/img/top_headset.png" style="width: 25px; height: 25px;"> --%>
 													고객센터</a></li>
 												</c:when>
@@ -90,7 +90,8 @@
 												<%--로그인후 마이페이지/로그아웃 --%>
 													<li class="dropdown">
 													    <a href="main" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-		      										    <input type="text" class="input_text" value="${sessionScope.sNick}&nbsp;님" style="width: 100px;">
+<%-- 		      										    <input type="text" class="input_text" value="${sessionScope.sNick}&nbsp;님" style="width: 100px;"> --%>
+		      										    <span>${sessionScope.sNick}&nbsp;님</span>
 <%-- 													    <img src="${pageContext.request.contextPath}/resources/img/top_user.png" style="width: 25px; height: 25px;"> --%>
 													    </a>
 													    <ul class="dropdown-menu">
@@ -99,11 +100,11 @@
 													    </ul>
 													</li>
 													<%--알림 --%>
-													<li><a href="${pageContext.request.contextPath}/#">
+													<li class="dropdown"><a href="${pageContext.request.contextPath}/#">
 <%-- 													<img src="${pageContext.request.contextPath}/resources/img/top_bell.png" style="width: 25px; height: 25px;"> --%>
 													알림</a></li>
 													<%--고객센터 --%>
-													<li><a href="${pageContext.request.contextPath}/member/cs/faq">
+													<li class="dropdown"><a href="${pageContext.request.contextPath}/member/cs/faq">
 <%-- 													<img  src="${pageContext.request.contextPath}/resources/img/top_headset.png" style="width: 25px; height: 25px;"> --%>
 													고객센터</a></li>
 												</c:otherwise>

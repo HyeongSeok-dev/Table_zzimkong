@@ -198,7 +198,7 @@ $(function() {
 	});
 	
 	// 필수선택이 비어있을 때 안내문
-	$("form").submit(function() {
+	$("form").submit(function(e) {
 		
 		if($('input[name="pay_method"]:checked').length == 0) { 
 			
@@ -238,6 +238,28 @@ $(function() {
            		 }, 500);
 				return false;
 		}				
+		
+		e.preventDefault();
+	
+	    var formData = new FormData(this);
+	    formData.append('discountPoint', $("#discountPoint").text());
+	    formData.append('earnedPoints', $("#earnedPoints").text());
+	    formData.append('totalPayment', $("#totalPayment").text());
+	    formData.append('preOrderTotalPrice', $("#preOrderTotalPrice").text());
+	
+	    $.ajax({
+	        url: "paymentPro",
+	        type: "POST",
+	        data: formData,
+	        contentType: false,
+	        processData: false,
+	        success: function(response) {
+	            console.log(response + " - 파라미터 전달 성공");
+	        },
+	        error: function(error) {
+	            console.log(error + " - 파라미터 전달 실패");	    
+	        }
+	    });
 		
 		return true;
 	}); //submit버튼

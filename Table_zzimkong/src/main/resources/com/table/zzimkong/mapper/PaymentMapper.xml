@@ -9,6 +9,7 @@
 		 SELECT *
 		 FROM reservation
 		 WHERE res_num = #{res_num}
+		 <!-- 혹시 res_idx가 파라미터로 넘어오면 수정해야함 -->
 	</select>
 	
 	<select id="selectPoint" resultType="int">

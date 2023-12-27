@@ -11,34 +11,34 @@
 <script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/payment.js"></script>
 <script type="text/javascript"> 
-$(function() {
-	$("form").submit(function(e) {
+// $(function() {
+// 	$("form").submit(function(e) {
 			
-			e.preventDefault();
+// 			e.preventDefault();
 	
-		    var formData = new FormData(this);
-		    formData.append('discountPoint', $("#discountPoint").text());
-		    formData.append('earnedPoints', $("#earnedPoints").text());
-		    formData.append('totalPayment', $("#totalPayment").text());
-		    formData.append('preOrderTotalPrice', $("#preOrderTotalPrice").text());
+// 		    var formData = new FormData(this);
+// 		    formData.append('discountPoint', $("#discountPoint").text());
+// 		    formData.append('earnedPoints', $("#earnedPoints").text());
+// 		    formData.append('totalPayment', $("#totalPayment").text());
+// 		    formData.append('preOrderTotalPrice', $("#preOrderTotalPrice").text());
 		
-		    $.ajax({
-		        url: "paymentPro",
-		        type: "POST",
-		        data: formData,
-		        contentType: false,
-		        processData: false,
-		        success: function(response) {
-		            console.log(response + " - 파라미터 전달 성공");
-		        },
-		        error: function(error) {
-		            console.log(error + " - 파라미터 전달 실패");	    
-		        }
-		    });
+// 		    $.ajax({
+// 		        url: "paymentPro",
+// 		        type: "POST",
+// 		        data: formData,
+// 		        contentType: false,
+// 		        processData: false,
+// 		        success: function(response) {
+// 		            console.log(response + " - 파라미터 전달 성공");
+// 		        },
+// 		        error: function(error) {
+// 		            console.log(error + " - 파라미터 전달 실패");	    
+// 		        }
+// 		    });
 		
-		    return false;
-		});
-});
+// 		    return true;
+// 		});
+// });
 
 </script>
 </head>

@@ -43,7 +43,7 @@ public class PaymentController {
 								 ReservationVO res, CompanyVO company) {
 		ModelAndView mav; 
 		//세션에 저장된 아이디로 회원정보확인 하기 위해 일단 세션에 임의의 값 넣음
-		session.setAttribute("sId", "user2");
+		session.setAttribute("sId", "user02");
 		
 		// 세션에 로그인이 안되어있다면 접근금지
 		if(session.getAttribute("sId") == null) {
@@ -100,7 +100,12 @@ public class PaymentController {
 		// 예약정보에서 회원을 확인하기 위한 정보
 		// 포인트조회
 		int dbPoint = service.getPoint(res);
-		String totalPoint = numberFormat.format(dbPoint);
+		String totalPoint = "";
+		if(dbPoint > 0) {
+			totalPoint = numberFormat.format(dbPoint);
+		} else {
+			totalPoint = "0";
+		}
 		
 		//--------------------------------------------------------------------
 		// [ PaymentInfo 객체에 문자열 타입으로 파라미터 전달]
@@ -122,10 +127,9 @@ public class PaymentController {
 									PaymentInfo paymentInfo, Map<String, Object> map) {
 		
 		ModelAndView mav; 
-		System.out.println("paymentVO : " + payment);
-		System.out.println("PaymentInfo : " + paymentInfo);
+//		System.out.println("paymentVO : " + payment);
+//		System.out.println("PaymentInfo : " + paymentInfo);
 		//세션에 저장된 아이디로 회원정보확인 하기 위해 일단 세션에 임의의 값 넣음
-		session.setAttribute("sId", "user2");
 		session.setAttribute("sIdx", "2");
 		
 		// 세션에 로그인이 안되어있다면 접근금지
@@ -138,7 +142,7 @@ public class PaymentController {
 			return mav;
 		}
 		
-		res.setRes_num("R0002");
+//		res.setRes_num("R0002");
 		
 		// 0.결제번호 무작위생성
 		// 날짜 정보 가지고옴
@@ -219,7 +223,7 @@ public class PaymentController {
 			}
 			
 			mav = new ModelAndView();
-			mav.setViewName("redirect:/payment/info?res_num=" + res.getRes_num()
+			mav.setViewName("redirect:/info?res_num=" + res.getRes_num()
 			+ "&discountPoint=" + paymentInfo.getDiscountPoint() 
 			+ "&earnedPoints=" + paymentInfo.getEarnedPoints()
 			+ "&finalTotalPayment=" + paymentInfo.getTotalPayment()
