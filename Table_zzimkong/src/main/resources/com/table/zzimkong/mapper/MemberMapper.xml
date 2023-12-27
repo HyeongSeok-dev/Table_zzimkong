@@ -6,7 +6,7 @@
 
 <mapper namespace="com.table.zzimkong.mapper.MemberMapper">
 
-<!-- 회원가입 [INSERT] -->
+<!-- 일반회원가입 [INSERT] -->
 <insert id="insertMember">
 	INSERT 
 	INTO user

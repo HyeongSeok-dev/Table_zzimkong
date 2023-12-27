@@ -13,6 +13,7 @@ public class MemberService {
 	@Autowired
 	private MemberMapper mapper;
 
+	//일반회원가입
 	public int registMember(MemberVO member) {
 		// MemberMapper(인터페이스) - insertMember()
 		// => 파라미터 : MemberVO 객체   리턴타입 : int
@@ -29,6 +30,7 @@ public class MemberService {
 	public int withdrawMember(MemberVO member) {
 		return mapper.updateWithdrawMember(member);
 	}
+
 	
 	
 	

@@ -92,6 +92,7 @@
 													    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 													    <img src="${pageContext.request.contextPath}/resources/img/top_user.png" style="width: 25px; height: 25px;"></a>
 													    <ul class="dropdown-menu">
+<%-- 													        <li>${member.user_nick} 님</li> --%>
 													        <li><a href="${pageContext.request.contextPath}/my/list">마이페이지</a></li>
 													        <li><a href="${pageContext.request.contextPath}/MemberLogout">로그아웃</a></li>
 													    </ul>
