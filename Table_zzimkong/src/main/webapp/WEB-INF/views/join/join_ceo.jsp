@@ -9,7 +9,7 @@
     <meta charset="UTF-8">
     <title>업체 회원 가입</title>
     <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/join_total.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/join_ceo.css">
 
 	<!-- js -->
     <script src="${pageContext.request.contextPath }/resources/js/join_ceo.js"></script>
@@ -36,19 +36,24 @@
               	<input type="text" id="userId" name="user_id" class="inputTxt inpBig" 
               	placeholder="아이디(영문자, 숫자 조합 8~16자리 필수 / 한글, 특수문자 사용불가 )"  maxlength="100" />
              	<span id="checkIdResult"></span>
+             	<br><br>
               <!-- 비밀번호 -->
               <input type="password" id="passwd" name="user_passwd" class="inputTxt inpBig"  style="text-align: left;"
               placeholder="비밀번호 (영문, 숫자, 특수문자 조합 8~16자리)" onkeydown="eventObj.loginByEnterKey(event)" maxlength="16" autocomplete="false">
                <span id = "checkPasswdResult" ></span>
+               <br><br>
               <!-- 비밀번호 확인 -->              
               <input type="password" id="passwd2" name="passwd2" class="inputTxt inpBig" style="text-align: left;"
                placeholder="비밀번호 확인" onkeydown="eventObj.loginByEnterKey(event)" maxlength="16" autocomplete="false">
                <span id = "checkPasswd2Result" ></span>
+               <br><br>
               <!-- 이름 -->
               <input type="text" id="u_name" name="user_name" class="inputTxt inpBig" placeholder="이름" onkeydown="eventObj.loginByEnterKey(event)" maxlength="16" autocomplete="false">
+              <br>
               <!-- 생년월일 --><span class="bday">생년월일</span>
               <input type="date" id="com_birth" name="user_birth" class="inputTxt inpBig"   onkeydown="eventObj.loginByEnterKey(event)" maxlength="16" autocomplete="false">
-	             
+             <br><br><br>
+             <!-- 이메일 -->
 	              <div class="u_emil">
 	                <input type="text" id="u_email" name="user_email1" class="inputTxt inpBig" placeholder="이메일" onkeydown="eventObj.loginByEnterKey(event)" maxlength="16" autocomplete="false">
 	                &nbsp;
@@ -68,14 +73,16 @@
               <div id="phoneBox">
 				  <input type="text" id="u_phone" name="user_phone" class="inputTxt inpBig" placeholder="전화번호 (' - ' 를 빼고 입력)" onkeydown="eventObj.loginByEnterKey(event)" maxlength="100">
 				  <button type="button" class="inputTxt inpBig">인증하기</button>
+                  <span id="checkPhoneResult"></span>
 			  </div>
-			  
+			  <br>
 			   <!-- 사업자번호 -->
-              <div id="phoneBox">
+              <div id="ceoBox">
 				  <input type="text" id="com_num" name="com_num" class="inputTxt inpBig" placeholder="사업자번호 (' - ' 를 빼고 입력)" onkeydown="eventObj.loginByEnterKey(event)" maxlength="100">
 				  <button type="button" class="inputTxt inpBig">인증하기</button>
+               	  <span id="checCeonNmResult"></span>
 			  </div>
-				              
+			  <br>              
               <!-- 가입하기 버튼 -->
               <button type="submit" class="btnJoin btnB" id="joinBtn">
                 <span>

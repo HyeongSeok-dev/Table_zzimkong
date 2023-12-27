@@ -90,7 +90,7 @@
 												<%--로그인후 마이페이지/로그아웃 --%>
 													<li class="dropdown">
 													    <a href="main" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-		      										    <input type="text" class="input_text" value="${sessionScope.sNick}님">
+		      										    <input type="text" class="input_text" value="${sessionScope.sNick}&nbsp;님" style="width: 100px;">
 <%-- 													    <img src="${pageContext.request.contextPath}/resources/img/top_user.png" style="width: 25px; height: 25px;"> --%>
 													    </a>
 													    <ul class="dropdown-menu">

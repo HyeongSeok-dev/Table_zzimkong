@@ -1,4 +1,16 @@
 $(document).ready(function() {
+	//생일 선택시 오늘이후 날짜 선택 막아놓음
+	window.onload = function() {
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    today = yyyy + '-' + mm + '-' + dd;
+    document.getElementById("com_birth").max = today;
+}
+
+	
 	
 	let isDuplicateId = false; //아이디 중복 여부 저장할 변수
 	let isSamePasswd = false; //패스워드 일치 여부 저장할 변수
@@ -187,6 +199,38 @@ $(document).ready(function() {
 		}
 		
 	}); //ID중복및 입력양식 검증
+	
+	//전화번호 길이 제한=====================================
+	$("#u_phone").keyup(function(){
+		let user_phone = $("#u_phone").val();
+		
+		let regex = /^\d{11}$/;
+
+		if (!regex.test(user_phone)) {
+		    $("#checkPhoneResult").html("전화번호는 11자리 숫자여야 합니다. (' - ' 를 빼고 입력)");
+			$("#checkPhoneResult").css("color", "red");
+		}else{
+		    $("#checkPhoneResult").html("사용가능한 전화번호입니다. 인증해주세요");
+			$("#checkPhoneResult").css("color", "blue");
+		}
+
+	}); 
+	
+	//사업자번호 길이 제한=====================================
+	$("#com_num").keyup(function(){
+		let ceo_num = $("#com_num").val();
+		
+		let regex = /^\d{10}$/;
+
+		if (!regex.test(ceo_num)) {
+		    $("#checCeonNmResult").html("사업자번호는 10자리 숫자여야 합니다. (' - ' 를 빼고 입력)");
+			$("#checCeonNmResult").css("color", "red");
+		}else{
+		    $("#checCeonNmResult").html("사용가능한 사업자번호입니다. 인증해주세요");
+			$("#checCeonNmResult").css("color", "blue");
+		}
+
+	}); 
 	
 });
 	

@@ -26,7 +26,7 @@ div {
 
 .nmContainer { 
     width: 100%;
-    height: 800px;
+    height:	875px;
 } 
 
 .nmTit { 
@@ -172,7 +172,7 @@ input.inputTxt {
 
 .loginBox .inputTxt  { 
     width: 100%; 
-    margin-bottom: 20px; 
+/*     margin-bottom: 20px;  */
 } 
 
 input.inputTxt  { 
@@ -231,7 +231,7 @@ button span  {
 
 /* 이메일 텍스트박스, 셀렉트박스 정렬 */
 .u_emil{
-   display: flex;
+  display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 20px;
@@ -241,17 +241,18 @@ button span  {
 /* 텍스트박스안에 생년월일 글씨 넣기 */
 #com_birth {
 	margin-left:0;
-	text-indent:200px;
+	text-indent:195px;
 	border: 1px solid #d9d9d9;
 	border-radius: 10px;
 }
 
 .bday {
 	position: relative;
-	top:30px;
+/* 	top:1px; */
 	left:14px; 
 	font-size: 14px;
 	color:#777; 
+	bottom: -30px;
 }
 
 /* 인증하기 버튼 텍스트 박스안에 넣기 */

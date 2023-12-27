@@ -1,5 +1,17 @@
 $(document).ready(function() {
 	
+	//생일 선택시 오늘이후 날짜 선택 막아놓음
+	window.onload = function() {
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    today = yyyy + '-' + mm + '-' + dd;
+    document.getElementById("com_birth").max = today;
+	}
+
+	
 	let isDuplicateId = false; //아이디 중복 여부 저장할 변수
 	let isDuplicateNick = false; //닉네임 중복 여부 저장할 변수
 	let isSamePasswd = false; //패스워드 일치 여부 저장할 변수
@@ -160,7 +172,6 @@ $(document).ready(function() {
 		//아이디 입력값 검증(정규표현식)
 		// 요구사항 : 영문 대소문자,숫자를 포함하여 8~16자리 입력,  중복아이디 확인 (한글입력X)
 		//영문 대소문자 숫자포함 8~16자리, 특수문자 한글입력불가	
-		console.log("클릭됨")
 		let regex = /^[a-zA-Z0-9]{8,16}$/;
 		
 		if(!regex.exec(user_id)) { //입력값 검증 실패시
@@ -188,6 +199,22 @@ $(document).ready(function() {
 		}
 		
 	}); //ID중복및 입력양식 검증
+	
+	//전화번호 길이 제한=====================================
+	$("#u_phone").keyup(function(){
+		let user_phone = $("#u_phone").val();
+		
+		let regex = /^\d{11}$/;
+
+		if (!regex.test(user_phone)) {
+		    $("#checkPhoneResult").html("전화번호는 11자리 숫자여야 합니다. (' - ' 를 빼고 입력)");
+			$("#checkPhoneResult").css("color", "red");
+		}else{
+		    $("#checkPhoneResult").html("사용가능한 전화번호입니다. 인증해주세요");
+			$("#checkPhoneResult").css("color", "blue");
+		}
+
+	}); 
 	
 	//닉네임 중복확인==========================================
 		$("#u_nick").blur(function(){
