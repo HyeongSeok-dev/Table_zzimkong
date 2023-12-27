@@ -9,21 +9,22 @@ function checkbox_allCheck(){
 
 //성명, 연락처, 약관동의, 유의사항동의 값없으면 포커스 이동
 function btnPay() {
-  var resName = document.forms["reservation"]["resName"];
-  var resNumber = document.forms["reservation"]["resNumber"];
+	
+  var resName = document.forms["reservation"]["res_name"];
+  var resPhone = document.forms["reservation"]["res_phone"];
   var checkbox = document.getElementById("checkbox_agree");
   var checkboxes = document.querySelectorAll(".agree_main input[type='checkbox']");
-
+  
 
   if (resName.value == "") {
-    alert("성명을 입력해주세요.");
+    alert("방문자 성명을 입력해주세요.");
     resName.focus();
     return false;
   }
 
-  if (resNumber.value == "") {
-    alert("연락처를 입력해주세요.");
-    resNumber.focus();
+  if (resPhone.value == "") {
+    alert("방문자 연락처를 입력해주세요.");
+    resPhone.focus();
     return false;
   }
   
@@ -43,21 +44,27 @@ function btnPay() {
     }
     
     //필수값 입력 후 결제하기버튼 클릭 시 컨펌창 띄우기
-	  var isConfirmed = confirm("방문자 정보를 한번 더 확인해 주세요!\n방문자 : 이재환 연락처 : 010");
+	  var isConfirmed = confirm("방문자 정보를 한번 더 확인해 주세요! \n방문자 : "+resName.value+" 연락처 : "+resPhone.value+"");
 	  // 사용자가 확인을 클릭했을 때만 결제 페이지로 이동합니다.
 	  if (isConfirmed) {
+		
+		//reservation update로직
+		//submit
+		var form = document.reservation;
+		
+		console.log("form", form)
+    	form.submit();
+    	
 		//결제페이지로 넘어가기
-	    window.location.href = "payment";
+	    //window.location.href = "payment";
 	  }else{
 		visitName.focus();
 	  }
-    
-    
-    return true;
-	
-
-//  return false;  // form의 기본 제출 동작을 방지합니다.
 				
+}
+
+function updatePay(){
+	
 }
 
 // 예약자정보 방문자정보에 복사 입력
@@ -67,11 +74,11 @@ window.onload = function() {
 
 function copyInfo() {
   if (document.getElementById("checkbox_same_info").checked) {
-    document.getElementsByName("name")[0].value = document.getElementsByName("resName")[0].value;
-    document.getElementsByName("number")[0].value = document.getElementsByName("resNumber")[0].value;
+    document.getElementsByName("res_name")[0].value = document.getElementsByName("userName")[0].value;
+    document.getElementsByName("res_phone")[0].value = document.getElementsByName("userPhone")[0].value;
   } else {
-    document.getElementsByName("name")[0].value = "";
-    document.getElementsByName("number")[0].value = "";
+    document.getElementsByName("res_name")[0].value = "";
+    document.getElementsByName("res_phone")[0].value = "";
   }
 }
 

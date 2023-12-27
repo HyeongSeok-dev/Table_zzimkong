@@ -5,14 +5,69 @@
 
 
 <mapper namespace="com.table.zzimkong.mapper.ReservationMapper">
-	<insert id="insertPreOrder">
-		INSERT INTO pre_order
-		VALUES(
-			#{pre_idx}
-			, #{res_idx}
-			, #{menu_idx}
-			, #{pre_num}
-		)
-	</insert>
+<!-- 	<insert id="insertReservation"> -->
+<!-- 		INSERT  -->
+<!-- 		INTO reservation  -->
+<!-- 		VALUES( -->
+<!-- 			#{res_idx} -->
+<!-- 			, #{res_num} -->
+<!-- 			, #{com_id} -->
+<!-- 			, #{user_idx} -->
+<!-- 			, #{res_date} -->
+<!-- 			, #{res_time} -->
+<!-- 			, #{res_table_price} -->
+<!-- 			, #{res_person} -->
+<!-- 			, #{res_name} -->
+<!-- 			, #{res_phone} -->
+<!-- 			, #{res_status} -->
+<!-- 			, now() -->
+<!-- 			, #{res_pay_status} -->
+<!-- 			, #{res_request} -->
+<!-- 			, #{pre_idx} -->
+<!--  -->		<!--  ) -->
+<!-- 	</insert> -->
+	
+<!-- 	<select id="selectResInfo" resultType="res"> -->
+<!-- 		  SELECT c.com_name, r.res_date, r.res_time, r.res_person, r.res_table_price -->
+<!--   			FROM company c, reservation r -->
+<!--  			WHERE com_id = r.com_id -->
+<!-- 	</select> -->
+		
+		<select id="selectComName" resultType="company">
+			SELECT com_name
+			FROM company
+			WHERE com_id = #{com_id}
+		</select>
+		
+		<select id="selectResInfo" resultType="res">
+			SELECT * FROM reservation
+			WHERE user_idx = #{user_idx}
+		</select>
+		
+		<select id="selectPreOrder" resultType="poi">
+			SELECT p.pre_num, p.menu_idx, menu.menu_name, menu_price
+			FROM pre_order p, menu
+			WHERE res_idx = #{res_idx} AND p.menu_idx = menu.menu_idx
+		</select>
+		
+		<select id="selectUserInfo" resultType="member">
+			SELECT user_name, user_phone
+			FROM user
+			WHERE user_idx = #{user_idx}
+		</select>
+		
+		<update id="updateResInfo">
+			UPDATE reservation
+			SET	
+				res_num = #{res_num}
+				, res_name = #{res_name}
+				, res_phone = #{res_phone}
+				, res_now = CURRENT_TIMESTAMP
+				, res_request = #{res_request}
+			WHERE
+				res_idx = #{res_idx};
+		</update>
+		
+		
 
 </mapper>

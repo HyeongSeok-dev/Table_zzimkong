@@ -12,4 +12,24 @@
 	FROM user
 	WHERE user_id = #{user_id}
 	</select>
+	
+	<!-- 회원정보 수정 - UPDATE -->
+	<!-- @Param 어노테이션을 통해 파라미터 이름을 지정했으므로 #{파라미터명.xxx} 형식으로 객체 접근 -->
+	<!-- 단, 새 패스워드(newPasswd)는 null 또는 널스트링이 아닐 경우에만 변경 -->
+	<update id="updateMember">
+		UPDATE member
+		SET
+			user_name = #{member.user_name}
+			, user_birth = #{member.user_birth}
+			, user_nick = #{member.user_nick}
+			
+			<!-- 새 패스워드(newPasswd) 존재 여부에 따라 변경 여부 결정 -->
+			<!-- 주의! 비교에 사용될 파라미터는 #{} 제외하고 표현 -->
+			<if test="newPasswd != null and !newPasswd.equals('')">
+				, user_passwd = #{newPasswd}  -- 새 패스워드 존재할 경우 기존 패스워드 변경
+			</if>
+			, user_email = CONCAT(#{member.email1}, '@', #{member.email2}) -- email1, email2 문자열 결합
+		WHERE
+			user_id = #{member.user_id}
+	</update>
 </mapper>
