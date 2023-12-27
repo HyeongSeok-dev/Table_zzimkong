@@ -109,9 +109,17 @@
 									<td style="color:red;">알수없음</td>
 								</c:otherwise>
 							</c:choose>
+							<%-- 회원 탈퇴 --%>
 							<td>
 								<input type="hidden" id="user_idx" name="user_idx">
-								<button type="submit" onclick="user_withdraw(${member.user_idx})" class="button_cancel">탈퇴</button>
+								<c:choose>
+									<c:when test="${member.user_status eq 1 || member.user_status eq 2}">
+										<button type="submit" onclick="user_withdraw(${member.user_idx})" class="button_cancel">탈퇴</button>
+									</c:when>
+									<c:otherwise>
+										<button type="button" class="button_grey2">탈퇴</button>
+									</c:otherwise>
+								</c:choose>
 							</td>	
 						</tr>
 					</c:forEach>

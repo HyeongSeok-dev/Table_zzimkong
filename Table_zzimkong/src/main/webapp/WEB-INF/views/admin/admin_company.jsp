@@ -44,7 +44,7 @@
 				<table border="1">
 					<tr>
 						<th>업체번호</th>
-						<th>업체명</th>
+						<th>상호명</th>
 						<th>업태</th>
 						<th>대표자명</th>
 						<th>전화번호</th>

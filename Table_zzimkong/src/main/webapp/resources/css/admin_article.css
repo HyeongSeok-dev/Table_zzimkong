@@ -72,9 +72,9 @@ select {
 
 /* 버튼 : 회색2 - 초기화 */
 .button_grey2 {
-    color: #3FAFFC;
-	background-color: #fff;
-	border: 1px solid #d5d5d5; 
+    color: #3FAFFC !important;
+	background-color: #fff !important;
+	border: 1px solid #d5d5d5 !important; 
 	padding: 3px;
 }
 
