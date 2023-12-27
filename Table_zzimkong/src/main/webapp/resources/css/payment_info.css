@@ -43,7 +43,7 @@ h1 {
     margin-right: 10px;
     color: #acb350;
 }
-.res_info, .pay_info {
+.res_info, .pay_info, .pay_info_point {
 	color: gray;
 	font-size: 15px;
 	margin-left: 20px;
@@ -60,7 +60,7 @@ hr {
 .res_num2, .res_address, .res_date,
 .other_name, .other_phone, .request,
 .pay_money, .pay_point, .res_per, .pay_date,
-.pay_method {
+.pay_method,.pay_point_earn  {
     font-weight: bold;
     margin-left: 10px;
 }
@@ -145,16 +145,4 @@ hr {
 #pointsEarned {
 	margin-top: 20px;
 	font-size: 15px;
-}
-
-.pay_point_earn {
-	font-weight: bold;
-    margin-left: 10px;
-    font-size: 13px;
-}
-
-.pay_info_point {
-	color: gray;
-	font-size: 13px;
-	margin-left: 20px;
 }

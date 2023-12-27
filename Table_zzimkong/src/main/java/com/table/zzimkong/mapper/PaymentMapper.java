@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.table.zzimkong.vo.CompanyVO;
+import com.table.zzimkong.vo.MemberVO;
 import com.table.zzimkong.vo.MenuVO;
 import com.table.zzimkong.vo.PaymentInfo;
 import com.table.zzimkong.vo.PaymentVO;
@@ -34,5 +35,7 @@ public interface PaymentMapper {
 					@Param("payNum")String payNum, @Param("payment") PaymentVO payment);
 
 	int updateReservationStatus(ReservationVO res);
+
+	MemberVO selectMember(String sId);
 
 }

@@ -87,4 +87,5 @@
 		WHERE res_num = #{res_num}
 	</update>
 	
+	<!-- [ payment_info ] -->
 </mapper>

@@ -30,41 +30,41 @@
 							<img src="${pageContext.request.contextPath }/resources/img/payment_화살표.png" width="20">
 							<span>예약정보</span>
 						</span>
-						<span class="res_num1">R231119_PR10<%--${} --%></span>
+						<span class="res_num1">${res.res_num}</span>
 					</div>
 					<hr>
 					<div>
 						<div class="reservation_div">
 							<span class="res_info">업체명</span>
 							<span class="res_address">
-								<span class="res_name">프맄<%--${} --%></span>&nbsp;
-								부산광역시 부산진구 서전로38번길<%--${} --%>
+								<span class="res_name">${com.com_name}</span>&nbsp;
+								${com.com_address}
 							</span>
 						</div>
 						
 						<div class="reservation_div">
 							<span class="res_info">예약 날짜</span>
-							<span class="res_date">2023.12.31(일)<%--${} --%></span>
+							<span class="res_date">${res.res_now}</span>
 						</div>
 						<div class="reservation_div">
 							<span class="res_info">시간</span>
-							<span class="res_date">18:00<%--${} --%></span>
+							<span class="res_date">${res.res_date }</span>
 						</div>
 						<div class="reservation_div">
 							<span class="res_info">방문자 이름</span>
-							<span class="other_name">홍길동<%--${} --%></span>
+							<span class="other_name">${res.res_name }</span>
 						</div>
 						<div class="reservation_div">
 							<span class="res_info">휴대폰 번호</span>
-							<span class="other_phone">010-1234-5678<%--${} --%></span>
+							<span class="other_phone">${res.res_phone }</span>
 						</div>
 						<div class="reservation_div">
 							<span class="res_info">인원수</span>
-							<span class="res_per">2명<%--${} --%></span>
+							<span class="res_per">${res.res_person }명</span>
 						</div>
 						<div class="reservation_div">
 							<span class="res_info">고객요청사항</span>
-							<span class="request">기념일인데 좋은 자리로 부탁드려요<%--${} --%></span>
+							<span class="request">${res.res_request }</span>
 						</div>
 					</div>
 				</section>
@@ -74,61 +74,82 @@
 					<hr>
 					<div>
 						<span class="pay_info">결제번호</span>
-						<span class="res_num2">P1239df231127<%--${} --%></span>
+						<span class="res_num2">${payment.pay_num }</span>
 					</div>
 					<div>
 						<span class="pay_info">이 름</span>
-						<span class="other_name">홍길동<%--${} --%></span>
+						<span class="other_name">${member.user_name }</span>
 					</div>
 					<div>
 						<span class="pay_info">결제일시</span>
-						<span class="pay_date">2023-11-27 17:29:39<%--${} --%></span>
+						<span class="pay_date">${payment.pay_date }</span>
 					</div>
 					<div>
 						<span class="pay_info">결제수단</span>
-						<span class="pay_method">신한카드<%--${} --%></span>
+						<span class="pay_method">${payment.pay_method }</span>
 					</div>
 						<hr>
 					<div>
-						<span class="pay_info">할인전 금액<%--${} --%></span>
-						<span class="pay_money">127,000<%--${} --%>원</span>
+						<span class="pay_info">할인전 금액</span>
+						<span class="pay_money">${beforDiscountPrice }</span>
 					</div>
 					<div id="payPriceInfo">
 						<span class="pay_info"> </span>
 						<span class="detail_price">
 							<div class="info_price">
 								<span class="menu_name">예약금</span>
-								<span class="count">2인</span>
-								<span class="price">20,000원</span>
+								<span class="count">${res_person }명</span>
+								<span class="price">${res_table_price }원</span>
 							</div>
-							<div class="info_price">
-								<span class="menu_name">시저샐러드</span>
-								<span class="count">1개</span>
-								<span class="price">18,000원</span>
-							</div>
-							<div class="info_price">
-								<span class="menu_name">뇨끼파스타</span>
-								<span class="count">1개</span>
-								<span class="price">24,000원</span>
-							</div>
-							<div class="info_price">
-								<span class="menu_name">안심스테이크</span>
-								<span class="count">1개</span>
-								<span class="price">55,000원</span>
-							</div>
+							<c:choose>
+								<c:when test="${payment.pay_po_price} == 0">
+								
+								</c:when>
+								<c:otherwise>
+<!-- 									<div class="info_price"> -->
+<!-- 										<span class="menu_name">시저샐러드</span> -->
+<!-- 										<span class="count">1개</span> -->
+<!-- 										<span class="price">18,000원</span> -->
+<!-- 									</div> -->
+<!-- 									<div class="info_price"> -->
+<!-- 										<span class="menu_name">뇨끼파스타</span> -->
+<!-- 										<span class="count">1개</span> -->
+<!-- 										<span class="price">24,000원</span> -->
+<!-- 									</div> -->
+<!-- 									<div class="info_price"> -->
+<!-- 										<span class="menu_name">안심스테이크</span> -->
+<!-- 										<span class="count">1개</span> -->
+<!-- 										<span class="price">55,000원</span> -->
+<!-- 									</div> -->
+									<c:forEach var="po" items="${preOrder }">
+										<div class="info_price">
+											<span class="menu_name">${po.menu_name}</span>
+											<span class="count">
+												<span>${po.pre_num}</span>
+												개
+											</span>
+											<span class="price">
+												<span>${po.eachMenuTotalPrice}</span>
+												 원
+											</span>
+										</div>
+								 	</c:forEach>
+								</c:otherwise>
+							</c:choose>
+							
 						</span>
 					</div>
 					<div id="payPointInfo">
-						<span class="pay_info">포인트 사용<%--${} --%></span>
-						<span class="pay_point">5,000<%--${} --%>원</span>
+						<span class="pay_info">사용 포인트</span>
+						<span class="pay_point">${discountPoint}원</span>
 					</div>
 					<div id="pointsEarned">
-						<span class="pay_info_point">적립 포인트<%--${} --%></span>
-						<span class="pay_point_earn">1,220<%--${} --%>원</span>
+						<span class="pay_info_point">적립 포인트</span>
+						<span class="pay_point_earn">${earnedPoint}원</span>
 					</div>
 					<div>
 						<span class="pay_info">총 결제금액</span>
-						<span class="total_money">122,000<%--${} --%>원</span>
+						<span class="total_money">${totalPayment }원</span>
 					</div>
 				</section>
 				<button type="submit" class="checked" onclick="location.href='/'">확인</button>

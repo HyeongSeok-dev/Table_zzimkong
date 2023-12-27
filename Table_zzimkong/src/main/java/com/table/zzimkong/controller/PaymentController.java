@@ -220,7 +220,11 @@ public class PaymentController {
 			
 //			mav = new ModelAndView("redirect:/payment/info");
 			mav = new ModelAndView();
-			mav.setViewName("redirect:/payment/info");
+			mav.setViewName("redirect:/payment/info?res_num=" + res.getRes_num()
+			+ "&discountPoint=" + paymentInfo.getDiscountPoint() 
+			+ "&earnedPoints=" + paymentInfo.getEarnedPoints()
+			+ "&totalPayment=" + paymentInfo.getTotalPayment()
+					);
 			return mav;
 		
 		} else {
@@ -232,10 +236,14 @@ public class PaymentController {
 	}
 	//---------------------------------------------------------------------------------------------------------------
 	@GetMapping("payment/info")
-	public ModelAndView payment_info(HttpSession session, Map<String, Object> map, PaymentInfo paymentinfo) {
+	public ModelAndView payment_info(HttpSession session, Map<String, Object> map
+//			,@RequestParam(defaultValue = "") String res_num,  @RequestParam(defaultValue = "0")int discountPoint
+//			,@RequestParam(defaultValue = "0")int earnedPoints, @RequestParam(defaultValue = "") String totalPoint
+			) {
 		
 		ModelAndView mav; 
-		System.out.println(paymentinfo);
+		//세션에 저장된 아이디로 회원정보확인 하기 위해 일단 세션에 임의의 값 넣음
+		session.setAttribute("sId", "user2");
 		
 		// 세션에 로그인이 안되어있다면 접근금지
 		if(session.getAttribute("sId") == null) {
@@ -243,10 +251,76 @@ public class PaymentController {
 			map.put("msg", "접근권한이 없습니다!");
 			map.put("targetURL", "login");
 			
-			mav = new ModelAndView("forward", "map", map);
+			mav = new ModelAndView("forword", "map", map);
 			return mav;
 		}
+		String sId = (String)session.getAttribute("sId");
+		// 1. 회원정보 조회
+		MemberVO member = service.getMember(sId);
 		
+		ReservationVO res;
+		CompanyVO company;
+		
+		String res_num = "dd";
+		//[ 예약정보조회 ]
+		res = service.getReservation(res_num);
+		테이블 예약금액에 천단위 쉼표줌
+		NumberFormat numberFormat = NumberFormat.getInstance();
+		String res_table_price = numberFormat.format(res.getRes_table_price());
+		// [예약정보중 사업장정보 조회]
+		company = service.getCompany(res);
+		
+		// [예약정보중 선주문정보 조회]
+		// PreOrderInfo객체를 생성해서 join문으로 메뉴테이블 정보까지 받아옴
+		List<PreOrderInfo> poiList = service.getPreOrderInfo(res);
+		System.out.println(poiList);
+		List<PreOrderInfo> poiList = service.getPreOrderInfo(res);
+		System.out.println(poiList);
+		// 각 메뉴의 가격과 갯수를 곱한 결과를 저장함
+		int count = 0;
+		int eachMenuTotalPriceInt = 0;
+		int menuTotalPriceInt = 0;
+		for(PreOrderInfo preOrderInfo : poiList) {
+			System.out.println("preOrderInfo : " + preOrderInfo);
+			// [선주문정보와 메뉴정보를 이용해서 결제할 가격 구하기 ] 
+			// [선주문 정보중 메뉴정보 조회]
+			// 1. 개수를 곱한 메뉴가격 
+			System.out.println(" Integer.parseInt(preOrderInfo.getMenu_price()) : " + Integer.parseInt(preOrderInfo.getMenu_price()));
+			System.out.println("preOrderInfo.getPre_num() : " + preOrderInfo.getPre_num());
+			eachMenuTotalPriceInt = (Integer.parseInt(preOrderInfo.getMenu_price()) * preOrderInfo.getPre_num());
+			menuTotalPriceInt += eachMenuTotalPriceInt;
+			String eachMenuTotalPrice = numberFormat.format(eachMenuTotalPriceInt);
+			preOrderInfo.setEachMenuTotalPrice(eachMenuTotalPrice);
+			count++;
+			System.out.println("eachMenuTotalPriceInt : " + eachMenuTotalPriceInt);
+			System.out.println("count : " + count);
+		}
+		
+		// 2. 선주문한 총 가격
+		System.out.println("menuTotalPriceInt : " + menuTotalPriceInt);
+		// 3. paymentInfo 객체로 넣기전에 정수인 수에 천단위로 쉼표를 넣어서 문자열타입으로 만듬
+		String totalPrice = numberFormat.format(res.getRes_table_price() + menuTotalPriceInt);
+		String menuTotalPrice = numberFormat.format(menuTotalPriceInt);
+		System.out.println(poiList);
+		//--------------------------------------------------------------------
+		//[ 사용가능 포인트 조회 ]
+		// 예약정보에서 회원을 확인하기 위한 정보
+		// 포인트조회
+		int dbPoint = service.getPoint(res);
+		String totalPoint = numberFormat.format(dbPoint);
+		
+		//--------------------------------------------------------------------
+		// [ PaymentInfo 객체에 문자열 타입으로 파라미터 전달]
+		PaymentInfo paymentInfo = new PaymentInfo(menuTotalPrice,totalPrice,totalPoint,res_table_price);
+		// 예약조회, 포인트조회,사업장정보조회,선주문조회 
+		map.put("res", res);
+		map.put("paymentInfo", paymentInfo);
+		map.put("com", company);
+		map.put("poi", poiList);
+
+		mav = new ModelAndView("payment/payment", "map", map);
+		System.out.println(mav);
+		return mav;
 		
 		
 		
