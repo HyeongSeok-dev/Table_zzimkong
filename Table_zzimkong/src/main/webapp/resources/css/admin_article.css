@@ -111,8 +111,8 @@ select {
 }
 
 
-/* 리뷰, 회원 카테고리 CSS */
-#review_category, #member_category {
+/* 신고, 회원 카테고리 CSS */
+#report_category, #member_category {
     width: 100%; /* 너비 설정 */
     height: 30px; /* 높이 설정 */
     border: none; /* 테두리 제거 */

@@ -11,7 +11,7 @@
 <body>
 	<div class="header_all">
 	<div class="headerMenu1">
-		<a href="${pageContext.request.contextPath}/admin/main">
+		<a href="${pageContext.request.contextPath}">
 			<img alt="logo1" src="${pageContext.request.contextPath }/resources/img/logo4_1.png" width="50px">
 		</a>
 	</div>
@@ -33,8 +33,8 @@
 	      </a>
 	    </li>
 	    <li>
-	      <a id="news" href="${pageContext.request.contextPath }/admin/review">
-	        리뷰관리
+	      <a id="news" href="${pageContext.request.contextPath }/admin/report">
+	        신고관리
 	      </a>
 	    </li>
 	    <li>
@@ -43,7 +43,7 @@
 	      </a>
 	    </li>
 	    <li>
-	     <div class="com_top_logout">
+	     <div class="com_top_logout"></div>
 				<span class="headerRi">
 				    <a href="">
 				      <span>

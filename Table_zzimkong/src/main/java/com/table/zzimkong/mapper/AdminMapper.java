@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.table.zzimkong.vo.CompanyVO;
 import com.table.zzimkong.vo.MemberVO;
+import com.table.zzimkong.vo.ReportVO;
 
 @Mapper
 public interface AdminMapper {
@@ -25,9 +26,11 @@ public interface AdminMapper {
 	// 관리자 - 업체 상세 정보 수정
 	int updateAdminCompanyInfoModify(CompanyVO company);
 
+	// 관리자 - 업체 승인
+	int updateAdminCompanyApprove(CompanyVO company);
 
-
-	
+	// 관리자 - 신고 목록 조회
+	List<ReportVO> selectAdminReportList();
 
 
 

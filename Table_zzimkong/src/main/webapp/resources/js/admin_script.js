@@ -8,21 +8,21 @@ function user_withdraw(user_idx) {
 		event.preventDefault();
     }
 }
+
 	
-	
-// admin_review.jsp
-function review_declaration() {
+// admin_report.jsp
+function report_declaration() {
 	/* 팝업창 중앙 정렬 */
 	var popupW = 750;
 	var popupH = 650;
 	var left = Math.ceil((window.screen.width - popupW)/2);
 	var top = Math.ceil((window.screen.height - popupH)/2);
-	window.open('review/detail','','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
-//	window.open("admin_review_declaration.jsp", "_blank", "width=400px, height=300px");
+	window.open('report/detail','','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
+//	window.open("admin_report_declaration.jsp", "_blank", "width=400px, height=300px");
 };
 
 
-// admin_review_declaration.jsp
+// admin_report_declaration.jsp
 function report_blind() {
 	confirm("리뷰 블라인드 처리하시겠습니까?");
 }
@@ -45,8 +45,15 @@ function company_info_open(com_id) {
 	window.open(url,'','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
 }
 
-function company_approve() {
-	confirm("입점 승인합니다.");
+function company_approve(com_id) {
+	console.log("com_id : " + com_id);
+	var result = confirm("입점 승인합니다.");
+    if(result) { // 확인을 눌렀을 경우
+        document.getElementById('com_id').value = com_id;
+        document.getElementById('companyApprove').submit();
+    } else {
+		event.preventDefault();
+    }
 }
 function company_disapprove() {
 	confirm("입점 거부합니다.");

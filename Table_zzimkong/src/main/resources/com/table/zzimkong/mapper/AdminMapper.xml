@@ -57,4 +57,18 @@
 			, com_ad_grade = #{com_ad_grade}
 		WHERE com_id = #{com_id}
 	</update>
+	
+	<!-- 관리자 - 업체 승인 -->
+	<update id="updateAdminCompanyApprove">
+		UPDATE company
+		SET com_status = 1
+		WHERE com_id = #{com_id}
+	</update>
+	
+	<!-- 관리자 - 신고 목록 조회 -->
+	<select id="selectAdminReportList">
+		SELECT *
+		FROM report
+		ORDER BY report_num DESC
+	</select>
 </mapper>

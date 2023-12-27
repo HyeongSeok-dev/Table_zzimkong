@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.table.zzimkong.mapper.AdminMapper;
 import com.table.zzimkong.vo.CompanyVO;
 import com.table.zzimkong.vo.MemberVO;
+import com.table.zzimkong.vo.ReportVO;
 
 @Service
 public class AdminService {
@@ -38,17 +39,15 @@ public class AdminService {
 	public int adminCompanyInfoModify(CompanyVO company) {
 		return mapper.updateAdminCompanyInfoModify(company);
 	}
-	
 
+	// 관리자 - 업체 승인 요청
+	public int adminCompanyApprove(CompanyVO company) {
+		return mapper.updateAdminCompanyApprove(company);
+	}
 
-
-
-
-
-
-
-
-	
-	
+	// 관리자 - 신고 목록 조회 요청
+	public List<ReportVO> adminReportList() {
+		return mapper.selectAdminReportList();
+	}
 
 }

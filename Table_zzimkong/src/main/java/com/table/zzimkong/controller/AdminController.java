@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.table.zzimkong.service.AdminService;
 import com.table.zzimkong.vo.CompanyVO;
 import com.table.zzimkong.vo.MemberVO;
+import com.table.zzimkong.vo.ReportVO;
 
 @Controller
 public class AdminController {
@@ -40,7 +41,7 @@ public class AdminController {
 	@GetMapping("admin/main") 
 	public String adminMain(HttpSession session, Model model, HttpServletResponse response) {
 		// 관리자 페이지 접근 제한
-		session.setAttribute("sId", "admin"); // 세션 아이디 - 차후 삭제 예정
+//		session.setAttribute("sId", "admin"); // 세션 아이디 - 차후 삭제 예정
 		isvalid(session, model, response);
 		
 		return "admin/admin_main";
@@ -67,7 +68,11 @@ public class AdminController {
 		int updateCount = service.adminMemberWithdraw(member);
 
 		if(updateCount > 0) { // 성공 시
+//			model.addAttribute("msg", "탈퇴 처리되었습니다!");
+//			model.addAttribute("targetURL", "admin/user");
+//			return "forward";
 			return "redirect:/admin/user";
+			
 		} else { // 실패 시
 			model.addAttribute("msg", "회원 탈퇴 처리 실패!");
 			return "fail_back";
@@ -107,6 +112,9 @@ public class AdminController {
 		int updateCount = service.adminCompanyInfoModify(company);
 
 		if(updateCount > 0) { // 성공 시
+//			model.addAttribute("msg", "수정되었습니다!");
+//			model.addAttribute("targetURL", "admin/company/info?com_id=" + company.getCom_id());
+//			return "forward";
 			return "redirect:/admin/company/info?com_id=" + company.getCom_id();
 		} else { // 실패 시
 			model.addAttribute("msg", "업체 정보 수정 실패!");
@@ -114,30 +122,47 @@ public class AdminController {
 		}
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	// 관리자 페이지 - 리뷰 신고 목록 조회 : 일단 후순위로
-	@GetMapping("admin/review")
-	public String admin_review(HttpSession session, Model model, HttpServletResponse response) {
+	// 관리자 페이지 - 업체 승인
+	@PostMapping("admin/company/approve/Pro")
+	public String companyApprovePro(CompanyVO company, HttpSession session, Model model, HttpServletResponse response) {
 		// 관리자 페이지 접근 제한
 		isvalid(session, model, response);
 		
-		return "admin/admin_review";
+		int updateCount = service.adminCompanyApprove(company);
+//		model.addAttribute("company", company);
+//		System.out.println(company);
+		System.out.println("업체번호 : " + company.getCom_id());
+		
+		if(updateCount > 0) { // 성공 시
+			return "redirect:/admin/company";
+		} else { // 실패 시
+			model.addAttribute("msg", "업체 승인 실패!");
+			return "fail_back";
+		}
+	}
+	
+	// 관리자 페이지 - 신고 목록 조회
+	@GetMapping("admin/report")
+	public String admin_report(HttpSession session, Model model, HttpServletResponse response) {
+		// 관리자 페이지 접근 제한
+		isvalid(session, model, response);
+
+		List<ReportVO> reportList = service.adminReportList();
+		model.addAttribute("reportList", reportList);
+		
+		return "admin/admin_report";
 	}
 
-	@GetMapping("admin/review/detail")
-	public String admin_review_detail(HttpSession session, Model model, HttpServletResponse response) {
+	
+	
+	
+	
+	@GetMapping("admin/report/detail")
+	public String admin_report_detail(HttpSession session, Model model, HttpServletResponse response) {
 		// 관리자 페이지 접근 제한
 		isvalid(session, model, response);
 				
-		return "admin/admin_review_detail";
+		return "admin/admin_report_detail";
 	}
 
 	@GetMapping("admin/cs/qna")
