@@ -58,21 +58,10 @@ public class HomeController {
 	        System.out.println(search);
 	      
 	        model.addAttribute("member", member);
+	        
 	    return "main";
 	}
 	
-	//음식종류 카테고리 누르면 종류별로 이동=======================================================
-	@GetMapping("foodCategory")
-	public String foodCategory(Model model) {
-		
-		//페이징 처리를 위한변수
-		int listLimit = 10;
-		//int startRow = (pageNum -1) * listLimit;
-		
-		//List<BoardVO> boardList = servocie.
-		
-		return "product/product_list";
-	}//foodCategory
 	
 	@GetMapping("ceo/sale")
 	public String ceo_sale() {

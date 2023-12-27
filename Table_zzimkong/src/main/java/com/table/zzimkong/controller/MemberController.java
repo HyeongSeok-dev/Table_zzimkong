@@ -61,8 +61,15 @@ public class MemberController {
 	}
 	
 	
+	//회원가입==========================================================
 	@PostMapping("join/MemberJoinPro")
 	public String joinPro(MemberVO member, Model model) {
+		
+		//암호화
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		String securePasswd = passwordEncoder.encode(member.getUser_passwd());
+		member.setUser_passwd(securePasswd);
+
 		
 	      member.setUser_category(1); //임시 - 일반회원(1) or 업주회원(2)
 		
@@ -154,10 +161,8 @@ public class MemberController {
 					
 					//db랑비교
 					//추후 비밀번호 암호화기능 추가해야함
-//					BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-					
-					if(!dbMember.getUser_passwd().equals(member.getUser_passwd())) {
-						System.out.println("확인됨");
+					BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+					if(passwordEncoder.matches(member.getUser_passwd(), dbMember.getUser_passwd())) {
 						model.addAttribute("msg", "비밀번호가 일치하지 않습니다.");
 						return "fail_back";
 				}
@@ -192,10 +197,10 @@ public class MemberController {
 			return "fail_back";
 		}
 		
-	//	BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		
-	//	if(dbMember == null || !passwordEncoder.matches(member.getUser_passwd(), dbMember.getUser_passwd())) {
-		if(dbMember == null || !dbMember.getUser_passwd().equals(member.getUser_passwd())) {
+		if(dbMember == null || !passwordEncoder.matches(member.getUser_passwd(), dbMember.getUser_passwd())) {
+//		if(dbMember == null || !dbMember.getUser_passwd().equals(member.getUser_passwd())) {
 		// 로그인 실패 처리
 		model.addAttribute("msg", "로그인 실패!");
 		return "fail_back";

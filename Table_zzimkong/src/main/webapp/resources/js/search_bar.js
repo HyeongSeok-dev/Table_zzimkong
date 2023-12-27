@@ -181,9 +181,11 @@ $(document).ready(function() {
 
 	function sendFormDataToCurrentPage() {
 		// AJAX 요청
+		formData['category'] = $("input[name='category']:checked").val();
 		formData['requestURL'] = window.location.pathname.replace(contextRoot, '')
 		formData['context'] = $('.search_input_text').val();
 		formData['sort'] = $("select[name='sort']").val();
+		
 		$.ajax({
 			url: contextRoot + '/product/searchResult',
 			type: 'POST',
@@ -244,6 +246,11 @@ $(document).ready(function() {
 	$(".sort").change(function() {
 		sendFormDataToNextPage();
 	});
-
+	
+	//메인(테마카테고리)
+	$(".foodThemeCategory").click(function() {
+		sendFormDataToNextPage();
+	});
+	
 });
 

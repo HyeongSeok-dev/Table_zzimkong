@@ -32,6 +32,7 @@
 	window.jQuery
 			|| document
 					.write('<script src="${pageContext.request.contextPath}/resources/js/vendor/jquery-1.10.2.min.js"><\/script>')
+					
 </script>
 <script src="${pageContext.request.contextPath }/resources/js/vendor/modernizr-2.6.2.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/jquery.nav.js"></script>
@@ -43,7 +44,6 @@
 </head>
 
 <body>
-	
 	<!-- Header start (메인탑)============================== -->
 	<nav id="navigation">
 		<div class="container_header_width">
@@ -78,19 +78,19 @@
 												<c:when test="${empty sessionScope.sId }"> <%-- 미 로그인 시 --%>
 													<%--로그인 --%>
 													<li><a href="${pageContext.request.contextPath}/login">
-													<img src="${pageContext.request.contextPath}/resources/img/top_user.png"
-													style="width: 25px; height: 25px;"></a></li>
+<%-- 													<img src="${pageContext.request.contextPath}/resources/img/top_user.png" style="width: 25px; height: 25px;"> --%>
+													로그인</a></li>
 													<%--고객센터 --%>
 													<li><a href="${pageContext.request.contextPath}/member/cs/faq">
-													<img  src="${pageContext.request.contextPath}/resources/img/top_headset.png"
-													style="width: 25px; height: 25px;"></a></li>
+<%-- 													<img  src="${pageContext.request.contextPath}/resources/img/top_headset.png" style="width: 25px; height: 25px;"> --%>
+													고객센터</a></li>
 												</c:when>
 												
 												<c:otherwise>
 												<%--로그인후 마이페이지/로그아웃 --%>
 													<li class="dropdown">
 													    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-		      										    <input type="text" id="u_nick" name=nickname class="input_text" value="${member.user_nick}님"  >
+		      										    <input type="text" class="input_text" value="${member.user_nick}">
 <%-- 													    <img src="${pageContext.request.contextPath}/resources/img/top_user.png" style="width: 25px; height: 25px;"> --%>
 													    </a>
 													    <ul class="dropdown-menu">
@@ -100,12 +100,12 @@
 													</li>
 													<%--알림 --%>
 													<li><a href="${pageContext.request.contextPath}/#">
-													<img src="${pageContext.request.contextPath}/resources/img/top_bell.png"
-													style="width: 25px; height: 25px;"></a></li>
+<%-- 													<img src="${pageContext.request.contextPath}/resources/img/top_bell.png" style="width: 25px; height: 25px;"> --%>
+													알림</a></li>
 													<%--고객센터 --%>
 													<li><a href="${pageContext.request.contextPath}/member/cs/faq">
-													<img  src="${pageContext.request.contextPath}/resources/img/top_headset.png"
-													style="width: 25px; height: 25px;"></a></li>
+<%-- 													<img  src="${pageContext.request.contextPath}/resources/img/top_headset.png" style="width: 25px; height: 25px;"> --%>
+													고객센터</a></li>
 												</c:otherwise>
 											</c:choose>
 										</ul>
@@ -132,55 +132,55 @@
 							
 	
 	<!-- 카테고리 버튼 -->
-	<form action="foodCategory">
+	<form action="Category">
 		<div id="foodBtn">
 						
-					<button type="button" value="korea">
+					<button type="button" value="한식" name="category" >
 						<span>한식</span>
 					</button>		
 					
-					<button type="button" value="western">
+					<button type="button" value="패밀리레스토랑" name="category" >
 						<span>양식</span>
 					</button>		
 					
-					<button type="button" value="china">
+					<button type="button" value="중식" name="category" >
 						<span>중식</span>
 					</button>		
 					
-					<button type="button" value="japan">
+					<button type="button" value="일식" name="category">
 						<span>일식</span>
 					</button>		
 									
-					<button type="button" value="vegetarian">
+					<button type="button" value="채식" class="foodThemeCategory">
 						<span>채식</span>
 					</button>		
 		
 		</div>
-	</form>
 	
 	<div id="foodBtn2">
-			<button type="button">
+			<button type="button" value="신년예약"  class="foodThemeCategory">
 				<span>신년<br>예약</span>
 				<%--신년지나면 '찜콩추천' 카테고리 --%>
 			</button>		
 			
-			<button type="button">
+			<button type="button" value="육마카세"  class="foodThemeCategory">
 				<span>육마<br>카세</span>
 			</button>		
 			
-			<button type="button">
+			<button type="button" value="호텔다이닝"  class="foodThemeCategory">
 				<span>호텔 <br>다이닝</span>
 			</button>		
 			
-			<button type="button">
+			<button type="button" value="애견동반"  class="foodThemeCategory">
 				<span>애견<br>동반</span>
 			</button>		
 			
-			<button type="button">
+			<button type="button" value="혼밥"  class="foodThemeCategory">
 				<span>혼밥</span>
 			</button>		
 	</div>				
 						
+	</form>
 	
 	<!--Slider start============================== -->
 	<section id="slider">
