@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.table.zzimkong.vo.CompanyVO;
 import com.table.zzimkong.vo.MenuVO;
+import com.table.zzimkong.vo.PaymentInfo;
 import com.table.zzimkong.vo.PaymentVO;
 import com.table.zzimkong.vo.PreOrderInfo;
 import com.table.zzimkong.vo.PreOrderVO;
@@ -25,12 +26,12 @@ public interface PaymentMapper {
 
 	List<PreOrderInfo> selectPreOrder(ReservationVO res);
 
-	int insertSubUsedPoint(@Param("res") ReservationVO res, @Param("discountPoint")String discountPoint);
+	int insertSubUsedPoint(@Param("sIdx") int sIdx, @Param("discountPoint") int discountPoint);
 
-	int insertAddPoint(@Param("res") ReservationVO res, @Param("earnedPoints") String earnedPoints);
+	int insertAddPoint(@Param("sIdx") int sIdx, @Param("earnedPoints") int earnedPoints);
 
-	int insertPayment(@Param("res")ReservationVO res, @Param("sIdx")int sIdx,
-					@Param("payNum")String payNum, @Param("payment")PaymentVO payment);
+	int insertPayment(@Param("res")ReservationVO res, @Param("sIdx") int sIdx,
+					@Param("payNum")String payNum, @Param("payment") PaymentVO payment);
 
 	int updateReservationStatus(ReservationVO res);
 

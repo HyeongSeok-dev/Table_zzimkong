@@ -12,52 +12,76 @@
 <script src="${pageContext.request.contextPath }/resources/js/payment.js"></script>
 <script type="text/javascript"> 
 $(function() {
-// 	 	var discountCoupon = $("#discountCoupon").text();
-// 	 	var discountPoint = $("#discountPoint").text();
-// 	 	var earnedPoints = $("#earnedPoints").text();
-// 	 	var nowPoint = $("#nowPoint").text();
-// 	 	var totalPoint = $("#totalPoint").text();
-// 	 	var totalPayment = $("#totalPayment").text();
-// 	 	var preOrderTotalPrice = $("#preOrderTotalPrice").text();
-	 	$("form").submit(function() {
-	 		var discountCoupon = $("#discountCoupon").text();
-		 	var discountPoint = $("#discountPoint").text();
-		 	var earnedPoints = $("#earnedPoints").text();
-		 	var nowPoint = $("#nowPoint").text();
-		 	var totalPoint = $("#totalPoint").text();
-		 	var totalPayment = $("#totalPayment").text();
-		 	var preOrderTotalPrice = $("#preOrderTotalPrice").text();
-		 	console.log(discountCoupon + ", " + discountPoint);
-	 	$.ajax({
-	 	    url: "paymentPro",  // 요청을 보낼 URL
-	 	    type: "POST",  // 요청 방식(GET, POST 등)
-		    data: {  // 서버에 전달할 데이터
-		    	// 쿠폰할인 금액
-		        discountCoupon: discountCoupon,
-		        //  포인트할인 금액
-		        discountPoint: discountPoint,
-		        // 적립예정 포인트
-		        earnedPoints: earnedPoints,
-		        // 사용하고 남은 포인트
-		        nowPoint: nowPoint,
-		        // 적립포인트 + 사용하고 남은포인트
-		        totalPoint: totalPoint,
-		        // 최종 결제금액
-		        totalPayment: totalPayment,
-				// paymentVO객체에 넣기위한 결제금액에 선주문 포함유무
-				// 선주문 없음 : "선주문 없음" / 선주문 있음 : 0또는 보다크다
-		        pay_po_price_String: preOrderTotalPrice
+// 	 $("form").submit(function() {
+// 	 		var formData = $(this).serialize();
+// 	 		var discountCoupon = $("#discountCoupon").text();
+// 		 	var discountPoint = $("#discountPoint").text();
+// 		 	var earnedPoints = $("#earnedPoints").text();
+// 		 	var nowPoint = $("#nowPoint").text();
+// 		 	var totalPoint = $("#totalPoint").text();
+// 		 	var totalPayment = $("#totalPayment").text();
+// 		 	var preOrderTotalPrice = $("#preOrderTotalPrice").text();
+// 		 	console.log(discountCoupon + ", " + discountPoint);
+// 	 	$.ajax({
+// 	 	    url: "paymentPro",  // 요청을 보낼 URL
+// 	 	    type: "POST",  // 요청 방식(GET, POST 등)
+// 		    data: {  // 서버에 전달할 데이터
+// 		    	// 쿠폰할인 금액
+// 		        discountCoupon: discountCoupon,
+// 		        //  포인트할인 금액
+// 		        discountPoint: discountPoint,
+// 		        // 적립예정 포인트
+// 		        earnedPoints: earnedPoints,
+// 		        // 사용하고 남은 포인트
+// 		        nowPoint: nowPoint,
+// 		        // 적립포인트 + 사용하고 남은포인트
+// 		        totalPoint: totalPoint,
+// 		        // 최종 결제금액
+// 		        totalPayment: totalPayment,
+// 				// paymentVO객체에 넣기위한 결제금액에 선주문 포함유무
+// 				// 선주문 없음 : "선주문 없음" / 선주문 있음 : 0또는 보다크다
+// 		        pay_po_price_String: preOrderTotalPrice
+// 		        },
+// 	 	    success: function(response) {
+// 	 	        console.log(response + " - 파라미터 전달 성공");
+// 		    },
+// 	 	    error: function(error) {
+// 	 	    	console.log(error + " - 파라미터 전달 실패");	    
+// 	 	    }
+// 	 	});
+// 		 	return false;
+// 	 });
+	$("form").submit(function(e) {
+			
+			e.preventDefault();
+	
+		    var formData = new FormData(this);
+		    formData.append('discountCoupon', $("#discountCoupon").text());
+		    formData.append('discountPoint', $("#discountPoint").text());
+		    formData.append('earnedPoints', $("#earnedPoints").text());
+		    formData.append('nowPoint', $("#nowPoint").text());
+		    formData.append('totalPoint', $("#totalPoint").text());
+		    formData.append('totalPayment', $("#totalPayment").text());
+		    formData.append('preOrderTotalPrice', $("#preOrderTotalPrice").text());
+		
+		    $.ajax({
+		        url: "paymentPro",
+		        type: "POST",
+		        data: formData,
+		        contentType: false,
+		        processData: false,
+		        success: function(response) {
+		            console.log(response + " - 파라미터 전달 성공");
 		        },
-	 	    success: function(response) {
-	 	        console.log(response + " - 파라미터 전달 성공");
-		    },
-	 	    error: function(error) {
-	 	    	console.log(error + " - 파라미터 전달 실패");	    
-	 	    }
-	 		});
-		 	return false;
-	 	});
+		        error: function(error) {
+		            console.log(error + " - 파라미터 전달 실패");	    
+		        }
+		    });
+		
+		    return false;
+		});
 });
+
 </script>
 </head>
 <body>
@@ -126,14 +150,14 @@ $(function() {
 							<br>
 							<div>
 								<input type="radio" name="pay_method" value="1" id="kakaoPay">&nbsp;
-								<img src="${pageContext.request.contextPath }/resources/img/kakao_logo.png" width="15">
-								<span class="font_stlye"> 카카오페이 결제</span>
+								<img src="${pageContext.request.contextPath }/resources/img/kakao_logo.png" width="20">
+								<span class="font_stlye"> 카카오페이</span>
 							</div>
 							<br>
 							<div>
-								<input type="radio" name="pay_method" value="2" id="naverPay">
-								<img src="">
-								<span class="font_stlye"> 네이버페이 결제</span>
+								<input type="radio" name="pay_method" value="2" id="naverPay">&nbsp;
+								<img src="${pageContext.request.contextPath }/resources/img/naver_logo.png" width="20">
+								<span class="font_stlye"> 네이버페이</span>
 							</div>
 							<br>
 							<div>
@@ -403,6 +427,7 @@ $(function() {
 		</div>
 		<%--info페이지에 필요한 할인전 예약금액 --%>
 		<input type="hidden" value="${map.paymentInfo.totalPrice}" name="beforeDiscountTotalPrice"/>
+		<input type="hidden" value="${map.res.res_idx}" name="res_idx"/>
 	</form>
 	
 	<footer>

@@ -12,7 +12,7 @@ public class PaymentVO {
 	private String res_idx;
 	private String user_idx;
 	private int pay_method; 
-	private int pay_on_sit; // 선주문의 현장결제의 유무
+	private int pay_on_site; // 선주문의 현장결제의 유무
 	private int pay_per_price; //테이블 예약금
 	private int pay_po_price; //선주문금액이 옴
 	private Date pay_date;

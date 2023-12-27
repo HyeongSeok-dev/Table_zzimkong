@@ -66,15 +66,7 @@ public class PaymentController {
 		company = service.getCompany(res);
 		
 		// [예약정보중 선주문정보 조회]
-		// 1. List<Object> 객체로 받아보기 안됨
-		//List<PaymentInfo> preList = service.getPreOrder(res);
-		
-		
-		//2. PreOrderVO 객체로받아서 for문으로 불러왔는데 실패함
-//		List<PreOrderVO> preList = service.getPreOrder(res);
-//		List<MenuVO> menuList = service.getMenu(pre);
-		
-		// 3. PreOrderInfo객체를 생성해서 join문으로 메뉴테이블 정보까지 받아옴
+		// PreOrderInfo객체를 생성해서 join문으로 메뉴테이블 정보까지 받아옴
 		List<PreOrderInfo> poiList = service.getPreOrderInfo(res);
 		System.out.println(poiList);
 		// 각 메뉴의 가격과 갯수를 곱한 결과를 저장함
@@ -126,23 +118,12 @@ public class PaymentController {
 	//----------------------------------------------------------------------------------------------------
 	@ResponseBody
 	@PostMapping("paymentPro")
-	public ModelAndView paymentPro(HttpSession session, PaymentVO payment, ReservationVO res, Map<String, Object> map, 
-									@RequestParam("discountCoupon") String discountCoupon,
-									@RequestParam("discountPoint") String discountPoint,
-									@RequestParam("earnedPoints") String earnedPoints,
-									@RequestParam("nowPoint") String nowPoint,
-									@RequestParam("totalPoint") String totalPoint,
-									@RequestParam("totalPayment") String totalPayment,
-									@RequestParam("cardSelect") String cardSelect,
-									@RequestParam("pay_po_price_String") String pay_po_price_String
-									) {
+	public ModelAndView paymentPro(HttpSession session, PaymentVO payment, ReservationVO res,
+									PaymentInfo paymentInfo, Map<String, Object> map) {
 		
 		ModelAndView mav; 
 		System.out.println("paymentVO : " + payment);
-		System.out.println("discountCoupon : " + discountCoupon);
-		System.out.println("discountPoint : " + discountPoint);
-		System.out.println("earnedPoints : " + earnedPoints);
-		System.out.println("nowPoint : " + nowPoint);
+		System.out.println("PaymentInfo : " + paymentInfo);
 		//세션에 저장된 아이디로 회원정보확인 하기 위해 일단 세션에 임의의 값 넣음
 		session.setAttribute("sId", "user2");
 		session.setAttribute("sIdx", "2");
@@ -170,7 +151,7 @@ public class PaymentController {
 //		System.out.println("month : " + month);
 //		System.out.println("day : " + day);
 		// 무작위 번호앞에 년월일 붙여서 결제번호생성
-		String payNum = year +( month + (day + UUID.randomUUID().toString().substring(0,7)))  ;
+		String payNum = "P" + year +( month + (day + UUID.randomUUID().toString().substring(0,7)));
 		System.out.println("payNum : " + payNum);
 		
 		
@@ -178,23 +159,30 @@ public class PaymentController {
 		// payment의 외래키가 user_idx여서 세션에서 불러옴
 		int sIdx = Integer.parseInt((String)session.getAttribute("sIdx"));
 		// 천단위 쉼표제거 후 형변환뒤 payment객체에 넣어줌
-		System.out.println("pay_po_price_String 변환전 : " + pay_po_price_String);
+		System.out.println("pay_po_price_String 변환전 : " + paymentInfo.getPreOrderTotalPrice());
 		int pay_po_price; //현장에서 결제
 		// controller에서만 판별하기 위한 pay_on_sit =1 : 선주문없음 pay_on_sit = 2 : 선주문있음 
-		if(pay_po_price_String.equals("선주문 없음")) {
+		if(paymentInfo.getPreOrderTotalPrice().equals("선주문 없음")) {
 			pay_po_price = 0;
-			payment.setPay_on_sit(1); // 선주문 없음
-		} else if(pay_po_price_String.equals("0")) {
+			payment.setPay_on_site(1); // 선주문 없음
+		} else if(paymentInfo.getPreOrderTotalPrice().equals("0")) {
 			pay_po_price = 0;
-			payment.setPay_on_sit(2); // 선주문있는데 현장에서 결제함
+			payment.setPay_on_site(2); // 선주문있는데 현장에서 결제함
 		} else {
-			pay_po_price = Integer.parseInt(pay_po_price_String.replace(",", "").trim());
-			payment.setPay_on_sit(3); // 선주문있는데 선결제함
+			pay_po_price = Integer.parseInt(paymentInfo.getPreOrderTotalPrice().replace(",", "").trim());
+			payment.setPay_on_site(3); // 선주문있는데 선결제함
 		}
 		payment.setPay_po_price(pay_po_price); 
 		System.out.println(pay_po_price);
 		System.out.println(payment);
+		System.out.println(res);
 		
+		//2. paymentInfo 에서 discountPoint 와 earnedPoints가 String 타입이기 때문에 형변환을 하고 넣어줘야함
+		int discountPoint = Integer.parseInt("-"+paymentInfo.getDiscountPoint().replace(",", "").trim());
+		int earnedPoints = Integer.parseInt(paymentInfo.getEarnedPoints().replace(",", "").trim());
+		System.out.println(discountPoint + ", " + earnedPoints);
+		
+		//1.의 insert
 		int insertPayment = service.paymentSuccess(res,sIdx,payNum,payment); //res의 res_table_price와pay_per_price같음
 		if(insertPayment > 0) {
 			// 1-1. 3번 성공시 예약테이블에서 결제완료상태로 표시 변경 update (res_pay_status = 1)
@@ -206,28 +194,35 @@ public class PaymentController {
 				return mav;
 			}
 			
-			// 2. 사용한 포인트 insert (point_category = 4)
-			int insertSubUsedPoint = service.subUsedPoint(res, discountPoint);
-			if(insertSubUsedPoint == 0) {
-				map.put("msg", "포인트 사용정보 변경을 실패했습니다!");
+			// 2. 사용한 포인트 insert (point_category = 4) //discountPoint(paymentInfo 객체에서 int로 변환)
+			if(discountPoint < 0) {
 				
-				mav = new ModelAndView("fail_back", "map", map);
-				return mav; 
+				int insertSubUsedPoint = service.subUsedPoint(sIdx, discountPoint);
+				if(insertSubUsedPoint == 0) {
+					map.put("msg", "포인트 사용정보 변경을 실패했습니다!");
+					
+					mav = new ModelAndView("fail_back", "map", map);
+					return mav; 
+				}
 			}
 			
-			// 3. 결제로 인한 적립 포인트 insert  (point_category = 1)
-			int insertAddPoint = service.addPoint(res, earnedPoints);
-			if(insertSubUsedPoint == 0) {
-				map.put("msg", "포인트 적립에 실패했습니다!");
+			// 3. 결제로 인한 적립 포인트 insert  (point_category = 1) //earnedPoints(paymentInfo 객체에서 int로 변환)
+			if(earnedPoints > 0) {
 				
-				mav = new ModelAndView("fail_back", "map", map);
-				return mav;
+				int insertAddPoint = service.addPoint(sIdx, earnedPoints);
+				if(insertAddPoint == 0) {
+					map.put("msg", "포인트 적립에 실패했습니다!");
+					
+					mav = new ModelAndView("fail_back", "map", map);
+					return mav;
+				}
 			}
 			
-			mav = new ModelAndView("redirect:/payment/Info?", "map", map);
-			System.out.println(mav);
+//			mav = new ModelAndView("redirect:/payment/info");
+			mav = new ModelAndView();
+			mav.setViewName("redirect:/payment/info");
 			return mav;
-			
+		
 		} else {
 			map.put("msg", "결제에 실패했습니다!");
 			
@@ -237,11 +232,10 @@ public class PaymentController {
 	}
 	//---------------------------------------------------------------------------------------------------------------
 	@GetMapping("payment/info")
-	public ModelAndView payment_info(HttpSession session, Map<String, Object> map) {
+	public ModelAndView payment_info(HttpSession session, Map<String, Object> map, PaymentInfo paymentinfo) {
 		
 		ModelAndView mav; 
-		//세션에 저장된 아이디로 회원정보확인 하기 위해 일단 세션에 임의의 값 넣음
-		session.setAttribute("sId", "user2");
+		System.out.println(paymentinfo);
 		
 		// 세션에 로그인이 안되어있다면 접근금지
 		if(session.getAttribute("sId") == null) {
@@ -249,9 +243,12 @@ public class PaymentController {
 			map.put("msg", "접근권한이 없습니다!");
 			map.put("targetURL", "login");
 			
-			mav = new ModelAndView("forword", "map", map);
+			mav = new ModelAndView("forward", "map", map);
 			return mav;
 		}
+		
+		
+		
 		
 		
 		

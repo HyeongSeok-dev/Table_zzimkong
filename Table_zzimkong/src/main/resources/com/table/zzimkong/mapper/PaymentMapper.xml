@@ -42,12 +42,12 @@
 			, #{sIdx}
 			, #{payment.pay_method}
 			, #{res.res_table_price}
-			, #{res.pay_table_price}
+			, #{payment.pay_po_price}
 			, now()
 			, #{payment.pay_card_co}
-			, #{payment.per_Info_consent}
+			, #{payment.per_info_consent}
 			, 1 -- pay_status
-			, #{payment.pay_po_site}
+			, #{payment.pay_on_site}
 			
 		)
 	</insert>
@@ -57,7 +57,7 @@
 		INTO point
 		VALUES (
 			null
-			, #{res.user_idx}
+			, #{sIdx}
 			, #{discountPoint}
 			, 4
 			, null
@@ -71,7 +71,7 @@
 		INTO point
 		VALUES (
 			null
-			, #{res.user_idx}
+			, #{sIdx}
 			, #{earnedPoints}
 			, 1
 			, null
