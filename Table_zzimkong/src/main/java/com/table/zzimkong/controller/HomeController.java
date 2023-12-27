@@ -8,9 +8,9 @@ import java.time.format.DateTimeFormatter;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 
-import com.table.zzimkong.vo.SearchVO;
+import com.table.zzimkong.vo.*;
 
 /**
  * Handles requests for the application home page.
@@ -19,7 +19,7 @@ import com.table.zzimkong.vo.SearchVO;
 public class HomeController {
 
 	@GetMapping("/")
-	public String main(Model model, SearchVO search) {
+	public String main(Model model, SearchVO search, MemberVO member) {
 	        search.setPersons(2);
 	        
 	        LocalDateTime defaultTime = LocalDateTime.now().plusHours(2);
@@ -56,9 +56,23 @@ public class HomeController {
 	        model.addAttribute("search", search);
 	        
 	        System.out.println(search);
-	    
+	      
+	        model.addAttribute("member", member);
 	    return "main";
 	}
+	
+	//음식종류 카테고리 누르면 종류별로 이동=======================================================
+	@GetMapping("foodCategory")
+	public String foodCategory(Model model) {
+		
+		//페이징 처리를 위한변수
+		int listLimit = 10;
+		//int startRow = (pageNum -1) * listLimit;
+		
+		//List<BoardVO> boardList = servocie.
+		
+		return "product/product_list";
+	}//foodCategory
 	
 	@GetMapping("ceo/sale")
 	public String ceo_sale() {

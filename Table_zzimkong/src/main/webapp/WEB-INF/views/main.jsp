@@ -90,9 +90,10 @@
 												<%--로그인후 마이페이지/로그아웃 --%>
 													<li class="dropdown">
 													    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-													    <img src="${pageContext.request.contextPath}/resources/img/top_user.png" style="width: 25px; height: 25px;"></a>
+		      										    <input type="text" id="u_nick" name=nickname class="input_text" value="${member.user_nick}님"  >
+<%-- 													    <img src="${pageContext.request.contextPath}/resources/img/top_user.png" style="width: 25px; height: 25px;"> --%>
+													    </a>
 													    <ul class="dropdown-menu">
-<%-- 													        <li>${member.user_nick} 님</li> --%>
 													        <li><a href="${pageContext.request.contextPath}/my/list">마이페이지</a></li>
 													        <li><a href="${pageContext.request.contextPath}/MemberLogout">로그아웃</a></li>
 													    </ul>
@@ -131,27 +132,31 @@
 							
 	
 	<!-- 카테고리 버튼 -->
-	<div id="foodBtn">
-			<button type="button">
-				<span>한식</span>
-			</button>		
-			
-			<button type="button">
-				<span>양식</span>
-			</button>		
-			
-			<button type="button">
-				<span>중식</span>
-			</button>		
-			
-			<button type="button">
-				<span>일식</span>
-			</button>		
-							
-			<button type="button">
-				<span>채식</span>
-			</button>		
-	</div>
+	<form action="foodCategory">
+		<div id="foodBtn">
+						
+					<button type="button" value="korea">
+						<span>한식</span>
+					</button>		
+					
+					<button type="button" value="western">
+						<span>양식</span>
+					</button>		
+					
+					<button type="button" value="china">
+						<span>중식</span>
+					</button>		
+					
+					<button type="button" value="japan">
+						<span>일식</span>
+					</button>		
+									
+					<button type="button" value="vegetarian">
+						<span>채식</span>
+					</button>		
+		
+		</div>
+	</form>
 	
 	<div id="foodBtn2">
 			<button type="button">
