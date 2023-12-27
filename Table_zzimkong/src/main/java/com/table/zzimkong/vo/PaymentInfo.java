@@ -27,6 +27,7 @@ public class PaymentInfo {
 	private String nowPoint;
 	private String totalPayment;
 	private String preOrderTotalPrice; //선주문 결제 금액
+	private String payMethod;
 	
 	// 결제를 위한정보
 	public PaymentInfo(String menuTotalPrice, String totalPrice, String totalPoint, String res_table_price) {
@@ -34,5 +35,13 @@ public class PaymentInfo {
 		this.totalPrice = totalPrice;
 		this.totalPoint = totalPoint;
 		this.res_table_price = res_table_price;
+	}
+	
+	public PaymentInfo(String menuTotalPrice, String totalPrice, String totalPoint, String res_table_price, String payMethod) {
+		this.menuTotalPrice = menuTotalPrice;
+		this.totalPrice = totalPrice;
+		this.totalPoint = totalPoint;
+		this.res_table_price = res_table_price;
+		this.payMethod = payMethod;
 	}
 }

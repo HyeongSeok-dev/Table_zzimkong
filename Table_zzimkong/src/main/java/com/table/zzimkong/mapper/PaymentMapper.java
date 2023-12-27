@@ -26,6 +26,8 @@ public interface PaymentMapper {
 	CompanyVO selectResCom(ReservationVO res);
 
 	List<PreOrderInfo> selectPreOrder(ReservationVO res);
+	
+	//---------------------------------------------------------------
 
 	int insertSubUsedPoint(@Param("sIdx") int sIdx, @Param("discountPoint") int discountPoint);
 
@@ -36,6 +38,12 @@ public interface PaymentMapper {
 
 	int updateReservationStatus(ReservationVO res);
 
+	//---------------------------------------------------------------
+	
 	MemberVO selectMember(String sId);
+
+	ReservationVO selectResultRes(MemberVO member);
+
+	PaymentVO selectPayment(String payNum);
 
 }

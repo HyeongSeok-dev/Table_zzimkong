@@ -61,5 +61,14 @@ public class PaymentService {
 		return mapper.selectMember(sId);
 	}
 
+	public ReservationVO getResultRes(MemberVO member) {
+		return mapper.selectResultRes(member);
+	}
+
+	public PaymentVO getPayment(String payNum) {
+		// TODO Auto-generated method stub
+		return mapper.selectPayment(payNum);
+	}
+
 	
 }

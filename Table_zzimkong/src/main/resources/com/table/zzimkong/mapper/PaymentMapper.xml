@@ -41,7 +41,7 @@
 			, #{res.res_idx}
 			, #{sIdx}
 			, #{payment.pay_method}
-			, #{res.res_table_price}
+			, #{payment.pay_per_price}
 			, #{payment.pay_po_price}
 			, now()
 			, #{payment.pay_card_co}
@@ -88,4 +88,19 @@
 	</update>
 	
 	<!-- [ payment_info ] -->
+	<select id="selectMember" resultType="member">
+		SELECT *
+		FROM user
+		WHERE user_id = #{sId}
+	</select>
+	<select id="selectResultRes" resultType="res">
+		SELECT * 
+		FROM reservation
+		WHERE user_idx = #{user_idx}
+	</select>
+	<select id="selectPayment" resultType="payment">
+		SELECT * 
+		FROM payment
+		WHERE pay_num = '${payNum}' 
+	</select>
 </mapper>

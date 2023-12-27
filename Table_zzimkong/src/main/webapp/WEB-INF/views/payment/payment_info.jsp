@@ -30,41 +30,41 @@
 							<img src="${pageContext.request.contextPath }/resources/img/payment_화살표.png" width="20">
 							<span>예약정보</span>
 						</span>
-						<span class="res_num1">${res.res_num}</span>
+						<span class="res_num1">${map.res.res_num}</span>
 					</div>
 					<hr>
 					<div>
 						<div class="reservation_div">
 							<span class="res_info">업체명</span>
 							<span class="res_address">
-								<span class="res_name">${com.com_name}</span>&nbsp;
-								${com.com_address}
+								<span class="res_name">${map.com.com_name}</span>&nbsp;
+								${map.com.com_address}
 							</span>
 						</div>
 						
 						<div class="reservation_div">
 							<span class="res_info">예약 날짜</span>
-							<span class="res_date">${res.res_now}</span>
+							<span class="res_date">${map.res.res_date}</span>
 						</div>
 						<div class="reservation_div">
 							<span class="res_info">시간</span>
-							<span class="res_date">${res.res_date }</span>
+							<span class="res_date">${map.res.res_time }</span>
 						</div>
 						<div class="reservation_div">
 							<span class="res_info">방문자 이름</span>
-							<span class="other_name">${res.res_name }</span>
+							<span class="other_name">${map.res.res_name}</span>
 						</div>
 						<div class="reservation_div">
 							<span class="res_info">휴대폰 번호</span>
-							<span class="other_phone">${res.res_phone }</span>
+							<span class="other_phone">${map.res.res_phone }</span>
 						</div>
 						<div class="reservation_div">
 							<span class="res_info">인원수</span>
-							<span class="res_per">${res.res_person }명</span>
+							<span class="res_per">${map.res.res_person }명</span>
 						</div>
 						<div class="reservation_div">
 							<span class="res_info">고객요청사항</span>
-							<span class="request">${res.res_request }</span>
+							<span class="request">${map.res.res_request }</span>
 						</div>
 					</div>
 				</section>
@@ -74,36 +74,37 @@
 					<hr>
 					<div>
 						<span class="pay_info">결제번호</span>
-						<span class="res_num2">${payment.pay_num }</span>
+						<span class="res_num2">${map.payment.pay_num }</span>
 					</div>
 					<div>
 						<span class="pay_info">이 름</span>
-						<span class="other_name">${member.user_name }</span>
+						<span class="other_name">${map.member.user_name }</span>
 					</div>
 					<div>
 						<span class="pay_info">결제일시</span>
-						<span class="pay_date">${payment.pay_date }</span>
+						<span class="pay_date">${map.payment.pay_date }</span>
 					</div>
 					<div>
 						<span class="pay_info">결제수단</span>
-						<span class="pay_method">${payment.pay_method }</span>
+						<span class="pay_method">${map.paymentInfo.payMethod }</span>
 					</div>
 						<hr>
 					<div>
 						<span class="pay_info">할인전 금액</span>
-						<span class="pay_money">${beforDiscountPrice }</span>
+						<span class="pay_money">${map.paymentInfo.totalPrice } 원</span>
 					</div>
 					<div id="payPriceInfo">
 						<span class="pay_info"> </span>
 						<span class="detail_price">
 							<div class="info_price">
 								<span class="menu_name">예약금</span>
-								<span class="count">${res_person }명</span>
-								<span class="price">${res_table_price }원</span>
+								<span class="count">${map.res.res_person } 명</span>
+								<span class="price">${map.paymentInfo.res_table_price } 원</span>
 							</div>
+							<!-- 선주문결제금 -->
 							<c:choose>
-								<c:when test="${payment.pay_po_price} == 0">
-								
+								<c:when test="${map.paymentInfo.menuTotalPrice eq '0'}">
+									<!-- 선주문없을 떄도 확인해보기 널스트링인지 0인지 -->
 								</c:when>
 								<c:otherwise>
 <!-- 									<div class="info_price"> -->
@@ -121,16 +122,14 @@
 <!-- 										<span class="count">1개</span> -->
 <!-- 										<span class="price">55,000원</span> -->
 <!-- 									</div> -->
-									<c:forEach var="po" items="${preOrder }">
+									<c:forEach var="preOrder" items="${map.poi }">
 										<div class="info_price">
-											<span class="menu_name">${po.menu_name}</span>
+											<span class="menu_name">${preOrder.menu_name}</span>
 											<span class="count">
-												<span>${po.pre_num}</span>
-												개
+												${preOrder.pre_num}	개
 											</span>
 											<span class="price">
-												<span>${po.eachMenuTotalPrice}</span>
-												 원
+												${preOrder.eachMenuTotalPrice} 원
 											</span>
 										</div>
 								 	</c:forEach>
@@ -141,15 +140,15 @@
 					</div>
 					<div id="payPointInfo">
 						<span class="pay_info">사용 포인트</span>
-						<span class="pay_point">${discountPoint}원</span>
+						<span class="pay_point">${map.dPoint} 원</span>
 					</div>
 					<div id="pointsEarned">
 						<span class="pay_info_point">적립 포인트</span>
-						<span class="pay_point_earn">${earnedPoint}원</span>
+						<span class="pay_point_earn">${map.ePoint} 원</span>
 					</div>
 					<div>
 						<span class="pay_info">총 결제금액</span>
-						<span class="total_money">${totalPayment }원</span>
+						<span class="total_money">${map.ftp} 원</span>
 					</div>
 				</section>
 				<button type="submit" class="checked" onclick="location.href='/'">확인</button>

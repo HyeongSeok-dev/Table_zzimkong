@@ -194,7 +194,7 @@ public class PaymentController {
 				return mav;
 			}
 			
-			// 2. 사용한 포인트 insert (point_category = 4) //discountPoint(paymentInfo 객체에서 int로 변환)
+			// 1-2. 사용한 포인트 insert (point_category = 4) //discountPoint(paymentInfo 객체에서 int로 변환)
 			if(discountPoint < 0) {
 				
 				int insertSubUsedPoint = service.subUsedPoint(sIdx, discountPoint);
@@ -206,7 +206,7 @@ public class PaymentController {
 				}
 			}
 			
-			// 3. 결제로 인한 적립 포인트 insert  (point_category = 1) //earnedPoints(paymentInfo 객체에서 int로 변환)
+			// 1-3. 결제로 인한 적립 포인트 insert  (point_category = 1) //earnedPoints(paymentInfo 객체에서 int로 변환)
 			if(earnedPoints > 0) {
 				
 				int insertAddPoint = service.addPoint(sIdx, earnedPoints);
@@ -218,13 +218,13 @@ public class PaymentController {
 				}
 			}
 			
-//			mav = new ModelAndView("redirect:/payment/info");
 			mav = new ModelAndView();
 			mav.setViewName("redirect:/payment/info?res_num=" + res.getRes_num()
 			+ "&discountPoint=" + paymentInfo.getDiscountPoint() 
 			+ "&earnedPoints=" + paymentInfo.getEarnedPoints()
-			+ "&totalPayment=" + paymentInfo.getTotalPayment()
-					);
+			+ "&finalTotalPayment=" + paymentInfo.getTotalPayment()
+			+ "&payNum=" + payNum
+			);
 			return mav;
 		
 		} else {
@@ -237,14 +237,17 @@ public class PaymentController {
 	//---------------------------------------------------------------------------------------------------------------
 	@GetMapping("payment/info")
 	public ModelAndView payment_info(HttpSession session, Map<String, Object> map
-//			,@RequestParam(defaultValue = "") String res_num,  @RequestParam(defaultValue = "0")int discountPoint
-//			,@RequestParam(defaultValue = "0")int earnedPoints, @RequestParam(defaultValue = "") String totalPoint
+			,@RequestParam(defaultValue = "") String res_num,  @RequestParam(defaultValue = "0")int discountPoint
+			,@RequestParam(defaultValue = "0")int earnedPoints, @RequestParam(defaultValue = "") String finalTotalPayment
+			,@RequestParam(defaultValue = "0")String payNum
 			) {
-		
+		session.setAttribute("sId", "user02");
+		res_num = "";
+		discountPoint = 0;
+		earnedPoints = 1234;
+		finalTotalPayment = "1,000,000";
+		payNum = "P2023122763675ca";
 		ModelAndView mav; 
-		//세션에 저장된 아이디로 회원정보확인 하기 위해 일단 세션에 임의의 값 넣음
-		session.setAttribute("sId", "user2");
-		
 		// 세션에 로그인이 안되어있다면 접근금지
 		if(session.getAttribute("sId") == null) {
 			
@@ -254,26 +257,41 @@ public class PaymentController {
 			mav = new ModelAndView("forword", "map", map);
 			return mav;
 		}
+		
 		String sId = (String)session.getAttribute("sId");
-		// 1. 회원정보 조회
+		// 1. 회원, 예약, 결제, 사업장정보 조회
 		MemberVO member = service.getMember(sId);
+		ReservationVO res = service.getResultRes(member);
+		CompanyVO company = service.getCompany(res);
+		PaymentVO payment = service.getPayment(payNum);
+		System.out.println(payment.getPay_method());
+		// 결제수단 넣기
+		String payMethod = "";
+		switch (payment.getPay_method()) {
+		case 1:
+			payMethod = "카카오페이";
+			break;
+		case 2:
+			payMethod = "네이버페이";
+			break;
+		case 3:
+			payMethod = "카드 결제";
+			break;
+		case 4:
+			payMethod = "무통장 입금";
+			break;
+		case 5:
+			payMethod = "휴대폰 결제";
+			break;
+		}
 		
-		ReservationVO res;
-		CompanyVO company;
-		
-		String res_num = "dd";
-		//[ 예약정보조회 ]
-		res = service.getReservation(res_num);
-		테이블 예약금액에 천단위 쉼표줌
+		//테이블 예약금액에 천단위 쉼표줌
 		NumberFormat numberFormat = NumberFormat.getInstance();
 		String res_table_price = numberFormat.format(res.getRes_table_price());
-		// [예약정보중 사업장정보 조회]
-		company = service.getCompany(res);
+		
 		
 		// [예약정보중 선주문정보 조회]
 		// PreOrderInfo객체를 생성해서 join문으로 메뉴테이블 정보까지 받아옴
-		List<PreOrderInfo> poiList = service.getPreOrderInfo(res);
-		System.out.println(poiList);
 		List<PreOrderInfo> poiList = service.getPreOrderInfo(res);
 		System.out.println(poiList);
 		// 각 메뉴의 가격과 갯수를 곱한 결과를 저장함
@@ -281,27 +299,28 @@ public class PaymentController {
 		int eachMenuTotalPriceInt = 0;
 		int menuTotalPriceInt = 0;
 		for(PreOrderInfo preOrderInfo : poiList) {
-			System.out.println("preOrderInfo : " + preOrderInfo);
 			// [선주문정보와 메뉴정보를 이용해서 결제할 가격 구하기 ] 
 			// [선주문 정보중 메뉴정보 조회]
 			// 1. 개수를 곱한 메뉴가격 
-			System.out.println(" Integer.parseInt(preOrderInfo.getMenu_price()) : " + Integer.parseInt(preOrderInfo.getMenu_price()));
-			System.out.println("preOrderInfo.getPre_num() : " + preOrderInfo.getPre_num());
 			eachMenuTotalPriceInt = (Integer.parseInt(preOrderInfo.getMenu_price()) * preOrderInfo.getPre_num());
 			menuTotalPriceInt += eachMenuTotalPriceInt;
 			String eachMenuTotalPrice = numberFormat.format(eachMenuTotalPriceInt);
 			preOrderInfo.setEachMenuTotalPrice(eachMenuTotalPrice);
 			count++;
-			System.out.println("eachMenuTotalPriceInt : " + eachMenuTotalPriceInt);
-			System.out.println("count : " + count);
+		
+//			System.out.println("preOrderInfo : " + preOrderInfo);
+//			System.out.println(" Integer.parseInt(preOrderInfo.getMenu_price()) : " + Integer.parseInt(preOrderInfo.getMenu_price()));
+//			System.out.println("preOrderInfo.getPre_num() : " + preOrderInfo.getPre_num());
+//			System.out.println("count : " + count);
+//			System.out.println("eachMenuTotalPriceInt : " + eachMenuTotalPriceInt);
 		}
 		
 		// 2. 선주문한 총 가격
-		System.out.println("menuTotalPriceInt : " + menuTotalPriceInt);
 		// 3. paymentInfo 객체로 넣기전에 정수인 수에 천단위로 쉼표를 넣어서 문자열타입으로 만듬
 		String totalPrice = numberFormat.format(res.getRes_table_price() + menuTotalPriceInt);
 		String menuTotalPrice = numberFormat.format(menuTotalPriceInt);
-		System.out.println(poiList);
+//		System.out.println("menuTotalPriceInt : " + menuTotalPriceInt);
+//		System.out.println(poiList);
 		//--------------------------------------------------------------------
 		//[ 사용가능 포인트 조회 ]
 		// 예약정보에서 회원을 확인하기 위한 정보
@@ -311,23 +330,25 @@ public class PaymentController {
 		
 		//--------------------------------------------------------------------
 		// [ PaymentInfo 객체에 문자열 타입으로 파라미터 전달]
-		PaymentInfo paymentInfo = new PaymentInfo(menuTotalPrice,totalPrice,totalPoint,res_table_price);
+		PaymentInfo paymentInfo = new PaymentInfo(menuTotalPrice,totalPrice,totalPoint,res_table_price,payMethod);
 		// 예약조회, 포인트조회,사업장정보조회,선주문조회 
+		
+		// int타입 포인트에 천단위 쉼표넣고 String타입으로 변환
+		String finalDiscountPoint = numberFormat.format(discountPoint);
+		String finalEarnedPoints = numberFormat.format(earnedPoints);
+		System.out.println("finalDiscountPoint" + finalDiscountPoint);
+		
 		map.put("res", res);
 		map.put("paymentInfo", paymentInfo);
 		map.put("com", company);
+		map.put("payment", payment);
 		map.put("poi", poiList);
+		map.put("dPoint", finalDiscountPoint);
+		map.put("ePoint", finalEarnedPoints);
+		map.put("ftp", finalTotalPayment);
 
-		mav = new ModelAndView("payment/payment", "map", map);
-		System.out.println(mav);
-		return mav;
-		
-		
-		
-		
-		
-		
 		mav = new ModelAndView("payment/payment_info", "map", map);
+		System.out.println(mav);
 		return mav;
 	}
 }
