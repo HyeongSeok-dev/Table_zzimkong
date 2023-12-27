@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.table.zzimkong.service.ProductService;
 import com.table.zzimkong.vo.CompanyVO;
@@ -62,9 +61,9 @@ public class ProductController {
 	}
 
 	@RequestMapping("product/list")
-	public String product_list(Model model, SearchVO search, HttpSession session) {
+	public String product_list(Model model, HttpSession session) {
 		
-		search = (SearchVO)session.getAttribute("search");
+		SearchVO search = (SearchVO)session.getAttribute("search");
 		
 		if(search == null) {
 			model.addAttribute("msg","잘못된 접근입니다!");
@@ -91,15 +90,36 @@ public class ProductController {
 	}
 	
 	@PostMapping("product/detail")
-	public String product_detail(Model model, SearchVO search, HttpSession session, CompanyVO company) {
+	public String product_detail(Model model, HttpSession session, CompanyVO company) {
 		
+		SearchVO search = (SearchVO)session.getAttribute("search");
+		System.out.println("디테일에서 받음 " + search);
+		System.out.println("디테일에서 받음 " + company);
 		if(search == null) {
 			model.addAttribute("msg","잘못된 접근입니다!");
 			return "fail_back";
 		}
-		search = (SearchVO)session.getAttribute("search");
-		System.out.println("디테일에서 받음" + search);
-		System.out.println("디테일에서 받음" +company);
+		
+		if(!company.getSelectedTime().equals("null")) {
+			search.setTime(company.getSelectedTime());
+			LocalTime localTime = LocalTime.parse(search.getTime());
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("h:mm");
+			if (localTime.isBefore(LocalTime.NOON)) {
+		        search.setDisplayTime("오전 " + localTime.format(formatter));
+		    } else {
+		        search.setDisplayTime("오후 " + localTime.format(formatter));
+		    }
+			session.setAttribute("search", search);
+		}
+		
+		System.out.println("변경된 시간" + search.getTime());
+		int remainingPeople = service.getReservationInfo(search, company.getCom_id());
+		if(remainingPeople - search.getPersons() <0) {
+			model.addAttribute("msg"," 예약인원이 초과되었습니다!");
+			return "fail_back";
+		}
+		System.out.println("디테일에서 받고 시간변경 " + search);
+		
 		CompanyVO dbCompany = service.getCompany(company);
 		List<MenuVO> menuList = service.getMenuList(company);
 		
@@ -148,7 +168,7 @@ public class ProductController {
 	}
 	
 	@RequestMapping("product/detailPro")
-	public ResponseEntity<String> detail_pro(@RequestBody Map<String, Object> map, HttpSession session, ReservationVO res, MenuVO menu, Model model) {
+	public ResponseEntity<Object> detail_pro(@RequestBody Map<String, Object> map, HttpSession session, ReservationVO res, MenuVO menu, Model model) {
 		System.out.println(map);
 		SearchVO search = (SearchVO)session.getAttribute("search");
 		System.out.println(search);
@@ -158,6 +178,14 @@ public class ProductController {
 		res.setRes_time(search.getTime());
 		res.setRes_date(search.getDate());
 		
+		int remainingPeople = service.getReservationInfo(search, res.getCom_id());
+		if(remainingPeople - search.getPersons() <0) {
+			Map<String, Object> response = new HashMap<>();
+	        response.put("error", true);
+	        response.put("message", "예약 인원이 초과되었습니다!");
+	        return ResponseEntity.badRequest().body(response);
+			
+		}
 		List<MenuVO> menuList = new ArrayList<MenuVO>();
 		menuList = (List<MenuVO>) map.get("menus");
 

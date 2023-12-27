@@ -63,12 +63,16 @@ $(document).ready(function() {
 			success: function(response) {
 				// 성공적으로 데이터를 받으면 실행할 코드
 				console.log("Response: ", response);
-				window.location.href = contextRoot + response;
+				if(response.error) {
+			        alert(response.message); // Show the error message to the user
+			    } else {
+			        window.location.href = contextRoot + response; // Redirect to the reservation page
+			    }
 			},
 			error: function(error) {
 				// 에러가 발생했을 때 실행할 코드
 				console.log("Error: ", error);
-				window.location.href = contextRoot + "/reservation";
+//				window.location.href = contextRoot + "/reservation";
 			}
 		});
 	});

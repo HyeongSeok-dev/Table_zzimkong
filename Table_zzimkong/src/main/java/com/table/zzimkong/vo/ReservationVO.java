@@ -24,4 +24,5 @@ public class ReservationVO {
 	private int pre_idx;
 	
 	
+	
 }

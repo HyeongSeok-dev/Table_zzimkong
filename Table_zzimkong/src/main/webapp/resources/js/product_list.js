@@ -13,12 +13,15 @@ function createTimeButtons($container, baseTime, increment, count) {
         let time = i === 0 ? base : base.add(increment, 'minutes');
         let formattedTime = time.format("HH:mm");
         let remainingPeople = getRemainingPeople($container, i + 1); // 인덱스에 1을 더하여 1부터 시작하도록
-
+		
         if (remainingPeople >= $container.data('persons')) {
             $("<button/>", {
                 text: formattedTime,
                 class: "time-button",
-                click: function() { reserve(formattedTime); }
+                click: function() { 
+					$('#selectedTime').val(formattedTime); 
+					$button.closest('form').submit();
+				}
             }).appendTo($container);
         }
     }
@@ -26,10 +29,6 @@ function createTimeButtons($container, baseTime, increment, count) {
 
 function getRemainingPeople($container, index) {
     return parseInt($container.data('remaining' + index));
-}
-
-function reserve(time) {
-    console.log("Reserve at: " + time);
 }
 
 function submitForm(element) {

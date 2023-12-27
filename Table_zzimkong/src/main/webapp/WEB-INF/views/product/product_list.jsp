@@ -62,7 +62,7 @@
 										<input type="hidden" name="remaining_people" value="${company.remaining_people}">
 										<input type="hidden" name="avg_score" value="${company.avg_score}">
 										<input type="hidden" name="review_count" value="${company.review_count}">
-										
+										<input type="hidden" id="selectedTime" name="selectedTime" value="null">
 									</div>
 								</div>
 							</div>

@@ -31,5 +31,10 @@ public class ProductService {
 		// TODO Auto-generated method stub
 		return mapper.selectCompany(company);
 	}
+
+	public int getReservationInfo(SearchVO search, int comId) {
+		// TODO Auto-generated method stub
+		return mapper.selectReservationInfo(search, comId);
+	}
 	
 }

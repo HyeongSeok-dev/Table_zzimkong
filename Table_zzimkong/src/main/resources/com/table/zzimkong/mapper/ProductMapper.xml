@@ -23,7 +23,7 @@
 		    SELECT 
 		        review.com_id, 
 		        count(*) AS review_count,
-		        AVG(review_score) AS avg_score
+		        ROUND(AVG(review_score)/2, 1) AS avg_score
 		    FROM 
 		        review
 		    GROUP BY 
@@ -187,6 +187,13 @@
 	        WHERE com_id = #{com_id}
 	</select>
 	
+	<select id="selectReservationInfo" resultType="int">
+		SELECT c.com_max_people - IFNULL(SUM(r.res_person), 0) AS remaining_people
+		FROM company c
+		LEFT JOIN reservation r ON r.com_id = c.com_id AND r.res_date = #{search.date} AND r.res_time = #{search.time}
+		WHERE c.com_id = #{com_id}
+		GROUP BY c.com_id;
+	</select>
 	
 	
 </mapper>
