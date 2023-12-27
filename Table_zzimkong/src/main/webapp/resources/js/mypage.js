@@ -1,3 +1,33 @@
+//$(document).ready(function() {
+//	$("#u_nick").blur(function(){
+//			
+//		//닉네임 입력값 가져오기
+//		let user_nick = $("#u_nick").val();
+//		
+//		$.ajax({
+//			url: "MemberCheckDupNick",
+//			data: {
+//				user_nick : user_nick
+//			},
+//			dataType: "json",
+//			success : function(checkDuplicateResult){
+//				if(checkDuplicateResult ){ //중복
+//					$("#checkNickResult").html("이미 사용중인 닉네임");
+//					$("#checkNickResult").css("color", "red");
+//					isDuplicateNick = true;
+//				}else{ //중복X
+//					$("#checkNickResult").html("사용 가능한 닉네임");
+//					$("#checkNickResult").css("color", "blue");
+//					isDuplicateNick = false;
+//				}
+//			} //success
+//		}); //ajax
+//		
+//	}); //닉네임 중복확인
+//
+//	
+//	}); // document.ready 끝
+
 window.onload = function() {
 	// 회원정보 수정 - 이메일
 	document.modifyForm.emailDomain.onchange = function() {

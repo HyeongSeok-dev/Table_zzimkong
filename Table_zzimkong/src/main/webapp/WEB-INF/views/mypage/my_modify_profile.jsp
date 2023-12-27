@@ -21,7 +21,7 @@
 	<main>
 		<jsp:include page="../inc/my_sidebar.jsp" />
 	<div class="wrapper">
-		<form action="loginPro" method="post" name="modifyForm">
+		<form action="MyModifyPro" method="post" name="modifyForm">
 			<div class="title">
 			<span class= "mypg">
 				<h1>회원정보 변경</h1>

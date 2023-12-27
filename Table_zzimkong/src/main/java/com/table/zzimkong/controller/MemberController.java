@@ -187,10 +187,10 @@ public class MemberController {
 		MemberVO dbMember = service.getMember(member);
 		System.out.println(dbMember);
 		
-	//	if(dbMember.getUser_status() == 3) {
-	//		model.addAttribute("msg", "탈퇴한 회원입니다!");
-	//		return "fail_back";
-	//	}
+		if(dbMember.getUser_status() == 3) {
+			model.addAttribute("msg", "탈퇴한 회원입니다!");
+			return "fail_back";
+		}
 		
 	//	BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		

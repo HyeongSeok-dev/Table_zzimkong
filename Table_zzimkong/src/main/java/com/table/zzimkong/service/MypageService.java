@@ -16,5 +16,11 @@ public class MypageService {
 	public MemberVO getMember(MemberVO member) {
 		return mapper.selectMember(member);
 	}
+	
+	// 회원정보 수정 요청
+	public int modifyMember(MemberVO member, String newPasswd) {
+		// TODO Auto-generated method stub
+		return mapper.updateMember(member, newPasswd);
+	}
 
 }
