@@ -105,14 +105,14 @@
 					<tr>
 						<th>광고신청 유무</th>
 						<td colspan="2">
-							<select name="adRegister">
+							<select name="adRegister" id="adRegister">
 								<option name="application" value="신청">신청</option>
 								<option name="unapplied" value="미신청">미신청</option>
 							</select>
 						</td>
 						<th>광고 단계</th>
 						<td colspan="2">
-							<select name="adLevel">
+							<select name="adLevel" id="adLevel">
 								<option value="0단계">0단계</option>
 								<option value="1단계">1단계</option>
 								<option value="2단계">2단계</option>

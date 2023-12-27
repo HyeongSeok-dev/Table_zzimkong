@@ -32,11 +32,11 @@
 						<th>사업자번호</th>
 						<td colspan="1">1</td>
 						<th>상호명</th>
-						<td colspan="3"><input type="text" value="" name="comName"></td>
+						<td colspan="3"><input type="text" value="" name="comName" readonly></td>
 					</tr>
 					<tr>
-						<th>광고상태</th>
-						<td colspan="1"><input type="text" value="" name="adStatus"></td>
+						<th>현재 광고상태</th>
+						<td colspan="1"><input type="text" value="신규등록" name="adStatus" id="adStatus"></td>
 						<th>광고등급</th>
 						<td colspan="3">
 							<select id="company_state" onchange="company_shut_down()" name="adStatusLevel">

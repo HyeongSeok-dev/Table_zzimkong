@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,14 +29,6 @@
 		window.open('${pageContext.request.contextPath }/ceo/company/modify','','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
 	}
 	
-	function comAdRegistration() {
-		/* 팝업창 중앙 정렬 */
-		var popupW = 950;
-		var popupH = 700;
-		var left = Math.ceil((window.screen.width - popupW)/2);
-		var top = Math.ceil((window.screen.height - popupH)/2);
-		window.open('${pageContext.request.contextPath }/ceo/company/ad','','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
-	}
 	function comView() {
 		/* 팝업창 중앙 정렬 */
 		var popupW = 950;
@@ -70,36 +63,39 @@
 						<th>영업시간</th>
 						<th>등록일자</th>
 						<th>업체상태</th>
-						<th colspan="2">광고등급</th>
+						<th>광고등급</th>
 					</tr>
-					<tr>
-						<td>1</td>
-						<td><a onclick="comView()">칸다소바</a></td>
-						<td>09:00~23:30</td>
-						<td>2023/12/25</td>
-						<td>영업중지</td>
-						<td>
-							0단계
-						</td>
-						<td>
-							<button type="button" class="button_olive" onclick="comAdRegistration()">광고등록</button>
-						</td>
+					<tr class="tr_hover" onclick="comView()">
+						<td><%-- 번호 --%></td>
+						<td><%-- 상호명--%></td>
+						<td><%-- 영업시간--%></td>
+						<td><%-- 등록일자--%></td>
+						<td><%-- 업체상태--%></td>
+<%-- 						<c:choose> --%>
+<!-- 							<when test=""> -->
+								<td>
+									광고없음(0단계)
+								</td>
+<!-- 							</when> -->
+<%-- 							<c:otherwise> --%>
+<!-- 								<td> -->
+<!-- 									<%-- 광고단계--%> -->
+<!-- 								</td> -->
+<!-- 								<td> -->
+<!-- 									<%-- --%> -->
+<!-- 								</td> -->
+<%-- 							</c:otherwise> --%>
+<%-- 						</c:choose> --%>
 					</tr>
-					<tr>
-						<td>2</td>
-						<td><a onclick="comView()">아오모리</a></td>
-						<td>11:00~21:30</td>
-						<td>2023/12/24</td>
-						<td>영업중지</td>
+					<tr class="tr_hover" onclick="comView()">
+						<td><%-- 번호 --%></td>
+						<td><%-- 상호명--%></td>
+						<td><%-- 영업시간--%></td>
+						<td><%-- 등록일자--%></td>
+						<td><%-- 업체상태--%></td>
 						<td>
-							1단계
+							<%-- 광고단계--%>
 						</td>
-						<td>
-							광고중
-						</td>
-						<!-- <td>
-							<button type="button" class="button_olive" onclick="comAdRegistration()">광고등록</button>
-						</td> -->
 					</tr>
 				</table>
 			</div>	

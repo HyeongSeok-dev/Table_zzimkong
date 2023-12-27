@@ -231,3 +231,10 @@ input[type="date"] {
 	width: 90%;
 }
 
+.tr_hover:hover {
+	background-color:  #f1f1f1;
+}
+
+#adStatus, .modify_info {
+	text-align: center;
+}
