@@ -12,13 +12,22 @@
 <script src="${pageContext.request.contextPath }/resources/js/payment.js"></script>
 <script type="text/javascript"> 
 $(function() {
-	 	var discountCoupon = $("#discountCoupon").text();
-	 	var discountPoint = $("#discountPoint").text();
-	 	var earnedPoints = $("#earnedPoints").text();
-	 	var nowPoint = $("#nowPoint").text();
-	 	var totalPoint = $("#totalPoint").text();
-	 	var totalPayment = $("#totalPayment").text();
-	 	var preOrderTotalPrice = $("#preOrderTotalPrice").text();
+// 	 	var discountCoupon = $("#discountCoupon").text();
+// 	 	var discountPoint = $("#discountPoint").text();
+// 	 	var earnedPoints = $("#earnedPoints").text();
+// 	 	var nowPoint = $("#nowPoint").text();
+// 	 	var totalPoint = $("#totalPoint").text();
+// 	 	var totalPayment = $("#totalPayment").text();
+// 	 	var preOrderTotalPrice = $("#preOrderTotalPrice").text();
+	 	$("form").submit(function() {
+	 		var discountCoupon = $("#discountCoupon").text();
+		 	var discountPoint = $("#discountPoint").text();
+		 	var earnedPoints = $("#earnedPoints").text();
+		 	var nowPoint = $("#nowPoint").text();
+		 	var totalPoint = $("#totalPoint").text();
+		 	var totalPayment = $("#totalPayment").text();
+		 	var preOrderTotalPrice = $("#preOrderTotalPrice").text();
+		 	console.log(discountCoupon + ", " + discountPoint);
 	 	$.ajax({
 	 	    url: "paymentPro",  // 요청을 보낼 URL
 	 	    type: "POST",  // 요청 방식(GET, POST 등)
@@ -46,6 +55,8 @@ $(function() {
 	 	    	console.log(error + " - 파라미터 전달 실패");	    
 	 	    }
 	 		});
+		 	return false;
+	 	});
 });
 </script>
 </head>
@@ -109,12 +120,24 @@ $(function() {
 						<h2>결제수단</h2>
 						<div class="choice_pay">
 							<div>
-								<input type="radio" name="pay_on_sit" value="2" id="onSitePayment"><span class="font_stlye">메뉴만 현장결제</span>
+								<input type="radio" name="pay_on_sit" value="2" id="onSitePayment"><span class="font_stlye"> 메뉴만 현장결제</span>
 								<span class="pay_on_sit">* 선택시 노쇼방지 예약금만 결제 됩니다.</span>
 							</div>	
 							<br>
 							<div>
-								<input type="radio" name="pay_method" value="3" id="creditCardPayment"><span class="font_stlye">카드결제</span>
+								<input type="radio" name="pay_method" value="1" id="kakaoPay">&nbsp;
+								<img src="${pageContext.request.contextPath }/resources/img/kakao_logo.png" width="15">
+								<span class="font_stlye"> 카카오페이 결제</span>
+							</div>
+							<br>
+							<div>
+								<input type="radio" name="pay_method" value="2" id="naverPay">
+								<img src="">
+								<span class="font_stlye"> 네이버페이 결제</span>
+							</div>
+							<br>
+							<div>
+								<input type="radio" name="pay_method" value="3" id="creditCardPayment"><span class="font_stlye"> 카드결제</span>
 								<select class="select" id="cardSelect" name="pay_card_co">
 									<option value="">카드사를 선택해 주세요</option>
 									<option value="삼성">삼성</option>
@@ -131,7 +154,7 @@ $(function() {
 							</div>
 							<br>
 							<div>
-								<input type="radio" name="pay_method" value="4" id="accountPayment"><span class="font_stlye">무통장입금</span>
+								<input type="radio" name="pay_method" value="4" id="accountPayment"><span class="font_stlye"> 무통장입금</span>
 								<span class="pm_acc_comment">20분 이내 입금되지 않으면 예약은 자동 취소됩니다.</span>
 								<br>
 								<select class="select_b" id="bankSelect" name="bankSelect">
@@ -155,7 +178,7 @@ $(function() {
 							</div>
 							<br>
 							<div>	
-								<input type="radio" name="pay_method" value="5" id="mobilePhonePayment"><span class="font_stlye">휴대폰결제</span>
+								<input type="radio" name="pay_method" value="5" id="mobilePhonePayment"><span class="font_stlye"> 휴대폰결제</span>
 							</div>
 						</div>
 					</section>
