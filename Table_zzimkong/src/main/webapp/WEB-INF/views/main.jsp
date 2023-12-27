@@ -89,8 +89,8 @@
 												<c:otherwise>
 												<%--로그인후 마이페이지/로그아웃 --%>
 													<li class="dropdown">
-													    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-		      										    <input type="text" class="input_text" value="${member.user_nick}">
+													    <a href="main" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+		      										    <input type="text" class="input_text" value="${sessionScope.sNick}님">
 <%-- 													    <img src="${pageContext.request.contextPath}/resources/img/top_user.png" style="width: 25px; height: 25px;"> --%>
 													    </a>
 													    <ul class="dropdown-menu">

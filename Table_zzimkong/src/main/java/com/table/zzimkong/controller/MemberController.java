@@ -207,6 +207,8 @@ public class MemberController {
 		} else { // 로그인 성공
 		// 세션 객체에 로그인 성공한 아이디를 "sId" 속성으로 추가
 		session.setAttribute("sId", member.getUser_id());
+		//메인닉네임표시
+		session.setAttribute("sNick", dbMember.getUser_nick());
 		//  user_idx가 외래키여서 session에 sIdx 넣었음
 		session.setAttribute("sIdx", dbMember.getUser_idx());	
 		// 메인페이지로 리다이렉트

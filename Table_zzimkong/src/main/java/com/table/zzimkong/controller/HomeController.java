@@ -6,6 +6,8 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +21,7 @@ import com.table.zzimkong.vo.*;
 public class HomeController {
 
 	@GetMapping("/")
-	public String main(Model model, SearchVO search, MemberVO member) {
+	public String main(Model model, SearchVO search, MemberVO member, HttpSession session) {
 	        search.setPersons(2);
 	        
 	        LocalDateTime defaultTime = LocalDateTime.now().plusHours(2);
@@ -58,6 +60,7 @@ public class HomeController {
 	        System.out.println(search);
 	      
 	        model.addAttribute("member", member);
+       
 	        
 	    return "main";
 	}
