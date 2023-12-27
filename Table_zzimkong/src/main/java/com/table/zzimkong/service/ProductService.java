@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.table.zzimkong.mapper.ProductMapper;
 import com.table.zzimkong.vo.CompanyVO;
 import com.table.zzimkong.vo.MenuVO;
+import com.table.zzimkong.vo.ReservationVO;
 import com.table.zzimkong.vo.SearchVO;
 
 
@@ -35,6 +36,11 @@ public class ProductService {
 	public int getReservationInfo(SearchVO search, int comId) {
 		// TODO Auto-generated method stub
 		return mapper.selectReservationInfo(search, comId);
+	}
+
+	public ReservationVO getVisitedPeople(int user_idx) {
+		// TODO Auto-generated method stub
+		return mapper.selectVisitedPeople(user_idx);
 	}
 	
 }

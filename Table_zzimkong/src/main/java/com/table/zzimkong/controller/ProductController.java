@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.table.zzimkong.service.ProductService;
 import com.table.zzimkong.vo.CompanyVO;
+import com.table.zzimkong.vo.MemberVO;
 import com.table.zzimkong.vo.MenuVO;
 import com.table.zzimkong.vo.ReservationVO;
 import com.table.zzimkong.vo.SearchVO;
@@ -90,9 +91,10 @@ public class ProductController {
 	}
 	
 	@PostMapping("product/detail")
-	public String product_detail(Model model, HttpSession session, CompanyVO company) {
+	public String product_detail(Model model, HttpSession session, CompanyVO company, ReservationVO res) {
 		
 		SearchVO search = (SearchVO)session.getAttribute("search");
+		
 		System.out.println("디테일에서 받음 " + search);
 		System.out.println("디테일에서 받음 " + company);
 		if(search == null) {
@@ -123,6 +125,27 @@ public class ProductController {
 		CompanyVO dbCompany = service.getCompany(company);
 		List<MenuVO> menuList = service.getMenuList(company);
 		
+		LocalTime openTime = LocalTime.parse(dbCompany.getCom_open_time());
+		LocalTime closeTime = LocalTime.parse(dbCompany.getCom_close_time());
+		if(LocalTime.now().isAfter(openTime) && LocalTime.now().isBefore(closeTime)) {
+			model.addAttribute("isOnBusiness", true);
+		}else {
+			model.addAttribute("isOnBusiness", false);
+		}
+		
+		if(session.getAttribute("sIdx") == null) {
+			model.addAttribute("isvisited", false);
+		}else {
+			int user_idx = (int)session.getAttribute("sIdx");
+			res = service.getVisitedPeople(user_idx);
+			if(res == null) {
+				model.addAttribute("isvisited", false);
+			}else {
+				model.addAttribute("isvisited", true);
+			}
+		}
+		
+		System.out.println(res);
 		String tagMood ="";
 		String tagFacilities ="";
 		
@@ -168,7 +191,7 @@ public class ProductController {
 	}
 	
 	@RequestMapping("product/detailPro")
-	public ResponseEntity<Object> detail_pro(@RequestBody Map<String, Object> map, HttpSession session, ReservationVO res, MenuVO menu, Model model) {
+	public ResponseEntity<?> detail_pro(@RequestBody Map<String, Object> map, HttpSession session, ReservationVO res, MenuVO menu, Model model) {
 		System.out.println(map);
 		SearchVO search = (SearchVO)session.getAttribute("search");
 		System.out.println(search);
@@ -194,8 +217,8 @@ public class ProductController {
 		
 		session.setAttribute("res", res);
 	    session.setAttribute("menuList", menuList);
-		
-		return ResponseEntity.ok("/reservation");
+	    search.setRedirectURL("/reservation");
+		return ResponseEntity.ok(search);
 	}
 	
 	

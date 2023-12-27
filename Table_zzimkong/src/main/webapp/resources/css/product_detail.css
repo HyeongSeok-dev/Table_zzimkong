@@ -431,7 +431,8 @@ iframe {
 	padding: 5px 10px;
 	border-radius: 16px;
 	margin-top: 8px;
-	width: 65px
+	justify-content: center;
+	width: 75px
 }
 
 .menu_name_sub, .menu_discribe_sub, .menu_price_sub {
@@ -467,6 +468,9 @@ iframe {
 	border: 1px solid #ced4da;
 	border-radius: 4px;
 	cursor: pointer;
+	order: 3
+}
+.order_amount{
 	order: 2
 }
 
@@ -1050,4 +1054,11 @@ span.similar_recom_title {
 	margin-bottom: 20px;
 	margin-left: 3px;
 	margin-top: 0
+}
+
+.onBusiness{
+	color: #2775FF;
+}
+.offBusiness{
+	color: red;
 }

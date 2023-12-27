@@ -20,7 +20,7 @@
 				<div class="search_input_wrapper">
 					<div class="search_input">
 						<input class="search_input_text" type="text" id="mainSearchBar"
-							placeholder="지역 또는 레스토랑" name="context" value="${context}">
+							placeholder="지역 또는 레스토랑" name="context" value="${search.context}">
 						<i class="material-icons search_icon">&#xe8b6;</i>
 					</div>
 				</div>

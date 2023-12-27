@@ -38,7 +38,8 @@
 			<p class="grade">
 				<span class="point">${company_info.review_count}명의 평가 <strong
 					id="lbl_review_point"> ${company_info.avg_score} </strong>
-				</span><span id="lbl_review_star" class="star"> </span>
+				</span>
+				<span class="star"> <i style="width: ${company_info.avg_score *20}%"></i></span>
 			</p>
 		</div>
 		<div class="favor-pic-appra">
@@ -46,9 +47,11 @@
 				<span> 즐겨찾기 </span>
 			</div>
 			<div>
-				<button class="appra Profile__Evaluation">
-					<span> 평가하기 </span>
-				</button>
+				<c:if test="${isvisited}">
+					<a href="review?com_id=${company.com_id}"><button class="appra Profile__Evaluation">
+						<span> 평가하기 </span>
+					</button></a>
+				</c:if>
 			</div>
 		</div>
 	</div>
@@ -75,8 +78,8 @@
 				<p class="tit style-DPgUI" id="style-DPgUI">영업시간</p>
 				<div id="style-2KZWl" class="style-2KZWl">
 					<p id="style-gRfXa" class="style-gRfXa">◷</p>
-					<p id="style-3S1oF" class="style-3S1oF">영업시간과 현재시간 비교 영업중 /
-						영업종료 표시</p>
+					<p id="style-3S1oF" class="style-3S1oF"><c:choose><c:when test="${isOnBusiness}"><span class="onBusiness">영업중</span></c:when> 
+					<c:otherwise><span class="offBusiness">영업종료</span></c:otherwise></c:choose> </p> 
 				</div>
 				<ul class="list">
 					<li>
@@ -102,7 +105,7 @@
 								<div class="menu_price_sub">${menu.menu_price}원</div>
 								<input type="checkbox" id="menu_${menu.menu_idx}" name="menu_idx" class="menu_check" value="${menu.menu_idx}">
 								<label for="menu_${menu.menu_idx}" class="menu_button">선주문</label>
-								<input type="number" min="1" max="10" name="order_amount" value="1">
+								<input type="number" min="1" max="10" name="order_amount" value="1" class="order_amount">
 							</div>
 						</div>
 	
