@@ -46,7 +46,7 @@ h1 {
 
 
 input[type="text"] {
-    width: 100%;
+    width: 90%;
     padding: 12px 20px;
     margin: 0px;
     box-sizing: border-box;
@@ -133,7 +133,7 @@ input[type="text"] {
 }
 
 /* 리뷰 카테고리 CSS */
-#report_category {
+#review_category {
     width: 150px; /* 너비 설정 */
     height: 30px; /* 높이 설정 */
     border: none; /* 테두리 제거 */

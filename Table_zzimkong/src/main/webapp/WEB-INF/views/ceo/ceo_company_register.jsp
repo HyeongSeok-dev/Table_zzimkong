@@ -8,9 +8,9 @@
 <%-- 본문 css --%>
 <link href="${pageContext.request.contextPath }/resources/css/ceo_article.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
-<script type="text/javascript">
-	
-</script>
+<script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/ceo_company.js"></script>
+
 </head>
 <body>
 	<section class="ceo_popup_sec">
@@ -53,7 +53,7 @@
 					<tr>
 						<th>영업시작시간</th>
 						<td colspan="2">
-							<select class="hour" name="openHour">
+							<select class="hour" name="openHour" id="openHour">
 							    <!-- 0시부터 23시까지 -->
 							    <option value="">시</option>
 							    <script type="text/javascript">
@@ -63,7 +63,7 @@
 							    </script>
 							</select>
 							:
-							<select class="minute" name="openMin">
+							<select class="minute" name="openMin" id="openMin">
 								<!-- 0분부터 59분까지 -->
 							    <option value="">분</option>
 							    <script type="text/javascript">
@@ -98,9 +98,9 @@
 					</tr>	
 					<tr>
 						<th>시간당 최대 인원</th>
-						<td colspan="2"><input name="perHourMaxTable" type="text" value="10명"></td>
-						<th>건당 최대 인원</th>
-						<td colspan="2"><input name="perResMaxPerson" type="text" value="20명"></td>
+						<td colspan="2"><input name="perHourMaxPerson" id="hMax" type="text" value=""> 명</td>
+						<th>예약 최대 인원</th>
+						<td colspan="2"><input name="perResMaxPerson" id="rMax" type="text" value=""> 명</td>
 					</tr>
 					<tr>
 						<th>광고신청 유무</th>

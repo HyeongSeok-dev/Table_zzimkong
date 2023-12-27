@@ -11,41 +11,42 @@
 <script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/payment.js"></script>
 <script type="text/javascript"> 
- 	var discountCoupon = $("#discountCoupon").text();
- 	var discountPoint = $("#discountPoint").text();
- 	var earnedPoints = $("#earnedPoints").text();
- 	var nowPoint = $("#nowPoint").text();
- 	var totalPoint = $("#totalPoint").text();
- 	var totalPayment = $("#totalPayment").text();
- 	var preOrderTotalPrice = $("#preOrderTotalPrice").text();
-
- 	$.ajax({
- 	    url: "paymentPro",  // 요청을 보낼 URL
- 	    type: "POST",  // 요청 방식(GET, POST 등)
-	    data: {  // 서버에 전달할 데이터
-	    	// 쿠폰할인 금액
-	        discountCoupon: discountCoupon,
-	        //  포인트할인 금액
-	        discountPoint: discountPoint,
-	        // 적립예정 포인트
-	        earnedPoints: earnedPoints,
-	        // 사용하고 남은 포인트
-	        nowPoint: nowPoint,
-	        // 적립포인트 + 사용하고 남은포인트
-	        totalPoint: totalPoint,
-	        // 최종 결제금액
-	        totalPayment: totalPayment,
-			// paymentVO객체에 넣기위한 결제금액에 선주문 포함유무
-			// 선주문 없음 : "선주문 없음" / 선주문 있음 : 0또는 보다크다
-	        pay_po_price_String: preOrderTotalPrice
-	        },
- 	    success: function(response) {
- 	        console.log(response + " - 파라미터 전달 성공");
-	    },
- 	    error: function(error) {
- 	    	console.log(error + " - 파라미터 전달 실패");	    
- 	    }
- 		});
+$(function() {
+	 	var discountCoupon = $("#discountCoupon").text();
+	 	var discountPoint = $("#discountPoint").text();
+	 	var earnedPoints = $("#earnedPoints").text();
+	 	var nowPoint = $("#nowPoint").text();
+	 	var totalPoint = $("#totalPoint").text();
+	 	var totalPayment = $("#totalPayment").text();
+	 	var preOrderTotalPrice = $("#preOrderTotalPrice").text();
+	 	$.ajax({
+	 	    url: "paymentPro",  // 요청을 보낼 URL
+	 	    type: "POST",  // 요청 방식(GET, POST 등)
+		    data: {  // 서버에 전달할 데이터
+		    	// 쿠폰할인 금액
+		        discountCoupon: discountCoupon,
+		        //  포인트할인 금액
+		        discountPoint: discountPoint,
+		        // 적립예정 포인트
+		        earnedPoints: earnedPoints,
+		        // 사용하고 남은 포인트
+		        nowPoint: nowPoint,
+		        // 적립포인트 + 사용하고 남은포인트
+		        totalPoint: totalPoint,
+		        // 최종 결제금액
+		        totalPayment: totalPayment,
+				// paymentVO객체에 넣기위한 결제금액에 선주문 포함유무
+				// 선주문 없음 : "선주문 없음" / 선주문 있음 : 0또는 보다크다
+		        pay_po_price_String: preOrderTotalPrice
+		        },
+	 	    success: function(response) {
+	 	        console.log(response + " - 파라미터 전달 성공");
+		    },
+	 	    error: function(error) {
+	 	    	console.log(error + " - 파라미터 전달 실패");	    
+	 	    }
+	 		});
+});
 </script>
 </head>
 <body>
@@ -379,7 +380,6 @@
 		</div>
 		<%--info페이지에 필요한 할인전 예약금액 --%>
 		<input type="hidden" value="${map.paymentInfo.totalPrice}" name="beforeDiscountTotalPrice"/>
-		
 	</form>
 	
 	<footer>
