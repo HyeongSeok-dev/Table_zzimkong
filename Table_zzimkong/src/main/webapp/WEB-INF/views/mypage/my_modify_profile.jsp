@@ -21,7 +21,7 @@
 	<main>
 		<jsp:include page="../inc/my_sidebar.jsp" />
 	<div class="wrapper">
-		<form action="" method="post" name="modifyForm">
+		<form action="loginPro" method="post" name="modifyForm">
 			<div class="title">
 			<span class= "mypg">
 				<h1>회원정보 변경</h1>
@@ -54,7 +54,7 @@
 					<tr>
 						<th>닉네임</th>
 						<td>
-							<input type="text" name=nickname class="input_text" value="${member.user_nick}" placeholder="닉네임은 6자 이내로">
+							<input type="text" id="u_nick" name=nickname class="input_text" value="${member.user_nick}" placeholder="2 ~ 6자리 닉네임">
 							<span id= "checkNickResult"></span>
 						</td>
 					</tr>
@@ -79,9 +79,14 @@
 						<th>비밀번호</th>
 						<td>
 						 	<div>
-	                     	<input type="password" id="txtPassword" class="passwd_text" placeholder="현재 비밀번호"><br><br>
-	                     	<input type="password" id="txtPassword" class="passwd_text2" placeholder="새 비밀번호 (영문, 숫자, 특수문자 조합 8~16자리)"><br>
-	                     	<input type="password" id="txtPassword2" class="passwd_text2" placeholder="비밀번호 확인"><br>
+						 	<%-- 현재 비밀번호 --%>
+	                     	<input type="password" id="txtPassword" name="passwd" class="passwd_text" placeholder="현재 비밀번호"><br><br>
+	                     	<%-- 새 비밀번호 --%>
+	                     	<input type="password" id="txtPassword2" name="passwd1" class="passwd_text2" placeholder="새 비밀번호 (영어 대소문자, 숫자, 특수문자 조합 8 ~ 16자리)">
+	                     	<div id="checkPasswdResult"></div><br>
+	                     	<%-- 새 비밀번호 확인 --%>
+	                     	<input type="password" id="txtPassword3" name="passwd2" class="passwd_text2" placeholder="비밀번호 확인">
+	                     	<div id="checkPasswd2Result"></div><br>
 	                     </div>
 						</td>
 					</tr>

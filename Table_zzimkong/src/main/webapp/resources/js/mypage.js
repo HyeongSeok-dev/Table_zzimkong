@@ -1,5 +1,5 @@
 window.onload = function() {
-	/* 회원정보 수정 - 이메일 */
+	// 회원정보 수정 - 이메일
 	document.modifyForm.emailDomain.onchange = function() {
 		console.log(document.modifyForm.emailDomain.value);
 		document.modifyForm.email2.value = document.modifyForm.emailDomain.value;
@@ -13,35 +13,53 @@ window.onload = function() {
 	    }
 	};
 	
-	/* 닉네임 중복확인 */
+	// 닉네임 변경
 	document.modifyForm.nickname.onblur = function() {
-		let nick = document.modifyForm.nickname.value; // 입력받은 닉네임값 저장
+		let nick = document.modifyForm.nickname.value; // 입력받은 닉네임 값 저장
 		
-		if(nick.length <= 6) {
+		if(nick.length >=2 && nick.length <= 6) {
 			document.querySelector("#checkNickResult").innerText = "사용 가능";
 			document.querySelector("#checkNickResult").style.color = "#3FAFFC";
 		} else {
-		     	document.querySelector("#checkNickResult").innerText = "6글자 내";
+		     	document.querySelector("#checkNickResult").innerText = "2 ~ 6자리의 닉네임을 입력해주세요.";
 		     	document.querySelector("#checkNickResult").style.color = "red";
 		    }
 	
 	};
 	
-//	/* 새비밀번호 */
-//	document.modifyForm.passwd.onkeyup = function() {
-//		let passwd = document.joinForm.passwd.value;
-//};
+	// 비밀번호확인 입력란에 키를 누를때마다 비밀번호와 같은지 체크하기
+	document.modifyForm.passwd2.onkeyup = function() {
+		let isSamePasswd = false;
+		let passwd = document.modifyForm.passwd1.value;
+		let passwd2 = document.modifyForm.passwd2.value;
+		
+		// 비밀번호와 비밀번호확인 입력 내용이 같으면 "비밀번호 일치"(파란색) 표시,
+		// 아니면, "비밀번호 불일치"(빨간색) 표시
+	    if(passwd == passwd2) { // 일치
+	     	document.querySelector("#checkPasswd2Result").innerText = "비밀번호 일치";
+	     	document.querySelector("#checkPasswd2Result").style.color = "#3FAFFC";
+	     	// 일치 여부를 저장하는 변수 isSamePasswd 값을 true 로 변경
+	     	isSamePasswd = true;
+	    } else { // 불일치
+	     	document.querySelector("#checkPasswd2Result").innerText = "비밀번호 불일치";
+	     	document.querySelector("#checkPasswd2Result").style.color = "red";
+	     	// 일치 여부를 저장하는 변수 isSamePasswd 값을 true 로 변경
+	     	isSamePasswd = false;
+	    }
+		
+	};
+		
+} // window.onload 끝
 
-	}
-	
-	/* 예약 취소 모달창 my_list.jsp */
+/* 예약 취소 모달창 my_list.jsp */
 	function cancelReservation(){
-			confirm("예약을 취소하시겠습니까?");
-			if(true) {
-				alert("예약이 취소되었습니다.");
-			}
+		confirm("예약을 취소하시겠습니까?");
+		if(true) {
+			alert("예약이 취소되었습니다.");
 		}
-
+	} // cancelReservation 끝
+	
+	
 document.addEventListener('DOMContentLoaded', function() {
 
     /* 북마크 추가/삭제 */
@@ -53,9 +71,8 @@ document.addEventListener('DOMContentLoaded', function() {
             // SVG 아이콘 내부 색상 변경 로직을 여기에 추가할 수 있습니다.
         });
     });
-
-		
-	/* 최근 본 매장 슬라이드 */
+    
+    /* 최근 본 매장 슬라이드 */
 	const carousel = document.querySelector(".carousel"),
 	firstImg = carousel.querySelectorAll("img")[0],
 	arrowIcons = document.querySelectorAll(".wrapper i");
@@ -131,17 +148,8 @@ document.addEventListener('DOMContentLoaded', function() {
 	carousel.addEventListener("touchend", dragStop);
 	
 	
-	/* 회원정보 수정 - 이메일 */
-	document.modifyForm.emailDomain.onchange = function() {
-		document.modifyForm.email2.value = document.modifyForm.emailDomain.value;
-		if(document.modifyForm.emailDomain.value == "") { // 직접 입력 선택시
-			document.modifyForm.email2.fucus(); // 포커스 요청
-			document.modifyForm.email2.readOnly = false; // // 입력창 잠금 해제(readonly 아님!)
-			document.modifyForm.email2.style.background = "";
-		} else { // 도메인 선택시
-			document.modifyForm.email2.readOnly = true; // 입력창 잠금 해제
-			document.modifyForm.email2.style.background = "lightgray";
-		}
-	};
 	
-	});
+}); // document.addEventListener 끝  
+	
+	
+
