@@ -18,7 +18,9 @@
  	<jsp:include page="../inc/top2.jsp"></jsp:include>
  </header>
  <form action="reservationPro" name="reservation"  method="post">
- <input type="hidden" name="res_idx" value="${res.res_idx}" />
+ <input type="hidden" name="com_id" value="${map.com.com_id}" />
+ <input type="hidden" name="user_idx" value="${res.user_idx}" />
+<%--  <input type="hidden" name="res_idx" value="${res.res_idx}" /> --%>
 <!-- 	<action="" name="reservation" onsubmit="return validateForm()"> -->
 	<div class="out_block">
 		<!-- 찜버튼 박스 -->
@@ -58,22 +60,27 @@
 						<div class="info">
 							<span class="info_title">식당이름</span>
 							<span class="info_content">${map.com.com_name}</span>
+							<input type="hidden" name="com_name" value="${map.com.com_name}">
 						</div>
 						<div class="info">
 							<span class="info_title">예약 날짜</span>
-							<span class="info_content">${map.res.res_date}</span>
+							<span class="info_content">${res.res_date}</span>
+							<input type="hidden" name="res_date" value="${res.res_date}">
 						</div>
 						<div class="info">
 							<span class="info_title">예약 시간</span>
 							<span class="info_content">${res.res_time}</span>
+							<input type="hidden" name="res_time" value="${res.res_time}">
 						</div>
 						<div class="info">
 							<span class="info_title">인원</span>
-							<span class="info_content">${res.res_person}명</span>
+							<span class="info_content" >${res.res_person}명</span>
+							<input type="hidden" name="res_person" value="${res.res_person}">
 						</div>
 						<div class="info">
 							<span class="info_title">예약 금액</span>
-							<span class="info_content"><b>${res.res_table_price}</b>원</span>
+							<span class="info_content" ><b>${res.res_table_price}</b>원</span>
+							<input type="hidden" name="res_table_price" value="${res.res_table_price}">
 						</div>
 						<div class="info" id="menu_price">
 							<span class="info_title">주문한 메뉴 금액</span>
@@ -82,22 +89,27 @@
 						<div class="info">
 							<span class="info_title"> </span>
 							<span class="info_content" id="menu_content">
-							<c:forEach var="preOrder" items="${map.poi }">
+							<c:forEach var="menu" items="${map.menu}">
 								<div class="info_price">
-									<span class="menu_name">마르게리따 피자</span>
-									<span class="count">1개</span>
-									<span class="price">18,000원</span>
+									<span class="menu_name">${menu.menu_name}</span>
+									<span class="count">${menu.order_amount}</span>
+									<span class="price">${menu.menu_price}</span>
 								</div>
-								<div class="info_price">
-									<span class="menu_name">뇨끼파스타</span>
-									<span class="count">1개</span>
-									<span class="price">24,000원</span>
-								</div>
-								<div class="info_price">
-									<span class="menu_name">안심스테이크</span>
-									<span class="count">1개</span>
-									<span class="price">55,000원</span>
+<!-- 								<div class="info_price"> -->
+<!-- 									<span class="menu_name">마르게리따 피자</span> -->
+<!-- 									<span class="count">1개</span> -->
+<!-- 									<span class="price">18,000원</span> -->
 <!-- 								</div> -->
+<!-- 								<div class="info_price"> -->
+<!-- 									<span class="menu_name">뇨끼파스타</span> -->
+<!-- 									<span class="count">1개</span> -->
+<!-- 									<span class="price">24,000원</span> -->
+<!-- 								</div> -->
+<!-- 								<div class="info_price"> -->
+<!-- 									<span class="menu_name">안심스테이크</span> -->
+<!-- 									<span class="count">1개</span> -->
+<!-- 									<span class="price">55,000원</span> -->
+<!-- <!-- 								</div> --> 
 							</c:forEach>
 							</span>
 						</div>
@@ -153,7 +165,7 @@
 			<div class="section_box">
 				<section class="sec04">
 					<h2>고객 요청사항</h2>
-					<textarea placeholder="요청하실 내용을 입력해주세요."></textarea>
+					<textarea placeholder="요청하실 내용을 입력해주세요." name="res_request"></textarea>
 					
 				</section>
 			</div>

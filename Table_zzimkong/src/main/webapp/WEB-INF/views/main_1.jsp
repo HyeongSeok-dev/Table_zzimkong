@@ -32,6 +32,7 @@
 	window.jQuery
 			|| document
 					.write('<script src="${pageContext.request.contextPath}/resources/js/vendor/jquery-1.10.2.min.js"><\/script>')
+					
 </script>
 <script src="${pageContext.request.contextPath }/resources/js/vendor/modernizr-2.6.2.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/jquery.nav.js"></script>
@@ -43,7 +44,6 @@
 </head>
 
 <body>
-	
 	<!-- Header start (메인탑)============================== -->
 	<nav id="navigation">
 		<div class="container_header_width">
@@ -77,33 +77,62 @@
 											<c:choose>
 												<c:when test="${empty sessionScope.sId }"> <%-- 미 로그인 시 --%>
 													<%--로그인 --%>
-													<li><a href="${pageContext.request.contextPath}/login">
-													<img src="${pageContext.request.contextPath}/resources/img/top_user.png"
-													style="width: 25px; height: 25px;"></a></li>
+													<li class="dropdown"><a href="${pageContext.request.contextPath}/login">
+<%-- 													<img src="${pageContext.request.contextPath}/resources/img/top_user.png" style="width: 25px; height: 25px;"> --%>
+													로그인</a></li>
 													<%--고객센터 --%>
-													<li><a href="${pageContext.request.contextPath}/member/cs/faq">
-													<img  src="${pageContext.request.contextPath}/resources/img/top_headset.png"
-													style="width: 25px; height: 25px;"></a></li>
+													<li class="dropdown"><a href="${pageContext.request.contextPath}/member/cs/faq">
+<%-- 													<img  src="${pageContext.request.contextPath}/resources/img/top_headset.png" style="width: 25px; height: 25px;"> --%>
+													고객센터</a></li>
 												</c:when>
+												
+												
+												<%--업주회원 로그인시 --%>
+												<c:when test="${sessionScope.sStatus eq 2}"> 
+													<li class="dropdown">
+													    <a href="main" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+<%-- 		      										    <input type="text" class="input_text" value="${sessionScope.sNick}&nbsp;님" style="width: 100px;"> --%>
+		      										    <span>${sessionScope.sName}&nbsp;님</span>
+<%-- 													    <img src="${pageContext.request.contextPath}/resources/img/top_user.png" style="width: 25px; height: 25px;"> --%>
+													    </a>
+													    <ul class="dropdown-menu">
+													        <li><a href="${pageContext.request.contextPath}/ceo/sale">업주페이지</a></li>
+													        <li><a href="${pageContext.request.contextPath}/my/list">마이페이지</a></li>
+													        <li><a href="${pageContext.request.contextPath}/MemberLogout">로그아웃</a></li>
+													    </ul>
+													</li>
+													<%--알림 --%>
+													<li class="dropdown"><a href="${pageContext.request.contextPath}/#">
+<%-- 													<img src="${pageContext.request.contextPath}/resources/img/top_bell.png" style="width: 25px; height: 25px;"> --%>
+													알림</a></li>
+													<%--고객센터 --%>
+													<li class="dropdown"><a href="${pageContext.request.contextPath}/member/cs/faq">
+<%-- 													<img  src="${pageContext.request.contextPath}/resources/img/top_headset.png" style="width: 25px; height: 25px;"> --%>
+													고객센터</a></li>
+												</c:when>
+												
 												
 												<c:otherwise>
 												<%--로그인후 마이페이지/로그아웃 --%>
 													<li class="dropdown">
-													    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-													    <img src="${pageContext.request.contextPath}/resources/img/top_user.png" style="width: 25px; height: 25px;"></a>
+													    <a href="main" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+<%-- 		      										    <input type="text" class="input_text" value="${sessionScope.sNick}&nbsp;님" style="width: 100px;"> --%>
+		      										    <span>${sessionScope.sNick}&nbsp;님</span>
+<%-- 													    <img src="${pageContext.request.contextPath}/resources/img/top_user.png" style="width: 25px; height: 25px;"> --%>
+													    </a>
 													    <ul class="dropdown-menu">
 													        <li><a href="${pageContext.request.contextPath}/my/list">마이페이지</a></li>
 													        <li><a href="${pageContext.request.contextPath}/MemberLogout">로그아웃</a></li>
 													    </ul>
 													</li>
 													<%--알림 --%>
-													<li><a href="${pageContext.request.contextPath}/#">
-													<img src="${pageContext.request.contextPath}/resources/img/top_bell.png"
-													style="width: 25px; height: 25px;"></a></li>
+													<li class="dropdown"><a href="${pageContext.request.contextPath}/#">
+<%-- 													<img src="${pageContext.request.contextPath}/resources/img/top_bell.png" style="width: 25px; height: 25px;"> --%>
+													알림</a></li>
 													<%--고객센터 --%>
-													<li><a href="${pageContext.request.contextPath}/member/cs/faq">
-													<img  src="${pageContext.request.contextPath}/resources/img/top_headset.png"
-													style="width: 25px; height: 25px;"></a></li>
+													<li class="dropdown"><a href="${pageContext.request.contextPath}/member/cs/faq">
+<%-- 													<img  src="${pageContext.request.contextPath}/resources/img/top_headset.png" style="width: 25px; height: 25px;"> --%>
+													고객센터</a></li>
 												</c:otherwise>
 											</c:choose>
 										</ul>
@@ -130,51 +159,55 @@
 							
 	
 	<!-- 카테고리 버튼 -->
-	<div id="foodBtn">
-			<button type="button">
-				<span>한식</span>
-			</button>		
-			
-			<button type="button">
-				<span>양식</span>
-			</button>		
-			
-			<button type="button">
-				<span>중식</span>
-			</button>		
-			
-			<button type="button">
-				<span>일식</span>
-			</button>		
-							
-			<button type="button">
-				<span>채식</span>
-			</button>		
-	</div>
+	<form action="Category">
+		<div id="foodBtn">
+						
+					<button type="button" value="한식" name="category" >
+						<span>한식</span>
+					</button>		
+					
+					<button type="button" value="패밀리레스토랑" name="category" >
+						<span>양식</span>
+					</button>		
+					
+					<button type="button" value="중식" name="category" >
+						<span>중식</span>
+					</button>		
+					
+					<button type="button" value="일식" name="category">
+						<span>일식</span>
+					</button>		
+									
+					<button type="button" value="채식" class="foodThemeCategory">
+						<span>채식</span>
+					</button>		
+		
+		</div>
 	
 	<div id="foodBtn2">
-			<button type="button">
+			<button type="button" value="신년예약"  class="foodThemeCategory">
 				<span>신년<br>예약</span>
 				<%--신년지나면 '찜콩추천' 카테고리 --%>
 			</button>		
 			
-			<button type="button">
+			<button type="button" value="육마카세"  class="foodThemeCategory">
 				<span>육마<br>카세</span>
 			</button>		
 			
-			<button type="button">
+			<button type="button" value="호텔다이닝"  class="foodThemeCategory">
 				<span>호텔 <br>다이닝</span>
 			</button>		
 			
-			<button type="button">
+			<button type="button" value="애견동반"  class="foodThemeCategory">
 				<span>애견<br>동반</span>
 			</button>		
 			
-			<button type="button">
+			<button type="button" value="혼밥"  class="foodThemeCategory">
 				<span>혼밥</span>
 			</button>		
 	</div>				
 						
+	</form>
 	
 	<!--Slider start============================== -->
 	<section id="slider">
@@ -237,7 +270,78 @@
 	</section><!-- slider close -->
 
 		
+	 <button><a href="ceo/sale">ceo/sale</a></button>
+	 <button><a href="ceo/black">ceo/black</a></button>
+	 <button><a href="ceo/black/register">ceo/black/register</a></button>
+	 <button><a href="ceo/company/list">ceo/company/list</a></button>
+	 <button><a href="ceo/company/register">ceo/company/register</a></button>
+	 <button><a href="ceo/company/modify">ceo/company/modify</a></button>
+	 <button><a href="ceo/company/ad">ceo/company/ad</a></button>
+	 <button><a href="ceo/menu/list">ceo/menu/list</a></button>
+	 <button><a href="ceo/menu/modify">ceo/menu/modify</a></button>
+	 <button><a href="ceo/menu/register">ceo/menu/register</a></button>
+	 <button><a href="ceo/reservation">ceo/reservation</a></button>
+	 <button><a href="ceo/reservation/detail">ceo/reservation/detail</a></button>
+	 <button><a href="ceo/cs/faq">ceo/cs/faq</a></button>
+	 <button><a href="ceo/cs/notice">ceo/cs/notice</a></button>
+	 <button><a href="ceo/cs/qna/modify">ceo/cs/qna/modify</a></button>
+	 <button><a href="ceo/cs/qna/register">ceo/cs/qna/register</a></button>
+	 <button><a href="ceo/cs/qna">ceo/cs/qna</a></button>
+	 <hr>
+	 
+	 <button><a href="payment/info">payment/info</a></button>
+	 <button><a href="payment">payment</a></button>
+	  <hr>
+	 <button><a href="product/detail">product/detail</a></button>
+	 <button><a href="product/list">product/list</a></button>
+	  <hr>
+	 <button><a href="admin/main">admin/main</a></button>
+	 <button><a href="admin/user">admin/user</a></button>
+	 <button><a href="admin/company">admin/company</a></button>
+	 <button><a href="admin/company/info">admin/company/info</a></button>
+	 <button><a href="admin/review">admin/review</a></button>
+	 <button><a href="admin/review/detail">admin/review/detail</a></button>
+	 <button><a href="admin/cs/notice">admin/cs/notice</a></button>
+	 <button><a href="admin/cs/faq">admin/cs/faq</a></button>
+	 <button><a href="admin/cs/qna">admin/cs/qna</a></button>
+	 <hr>
+	 <button><a href="join/join">join</a></button>
+	 <button><a href="join/ceo">join/ceo</a></button>
+	 <button><a href="join/choice">join/choice</a></button>
+ 	 <button><a href="join/complete">join/complete</a></button>
+ 	 <button><a href="join/agree">join/agree</a></button>
+	 <button><a href="login">login</a></button>
+	 <hr>
+	 <button><a href="login/find/id">login/find/id</a></button>
+	 <button><a href="login/find/passwd">login/find/passwd</a></button>
+	 <hr>
+	 <button><a href="my/list">my/list</a></button>
+	 <button><a href="my/review">my/review</a></button>
+	 <button><a href="my/report/shop">my/report/shop</a></button>
+	 <button><a href="my/report/reason">my/report/reason</a></button>
+	 <button><a href="my/modify/profile">my/modify/profile</a></button>
+	 <button><a href="my/unregister">my/unregister</a></button>
+	 <button><a href="my/complet">my/complet</a></button>
+	 <hr>
+	 <button><a href="review/detail">review/detail</a></button>
+	 <button><a href="review/write">review/write</a></button>
+	 <button><a href="review/complete">review/complete</a></button>
+	 <button><a href="review/report">review/report</a></button>
+	 <button><a href="review/comment">review/comment</a></button>
+	 <hr>
+	 <button><a href="reservation">reservation</a></button>
+	<hr>
+	<button><a href="member/cs/faq">member/cs/faq</a></button>
+	<button><a href="member/cs/faq/view">member/cs/faq/view</a></button>
+	<button><a href="member/cs/notice">member/cs/notice</a></button>
+	<button><a href="member/cs/notice/view">member/cs/notice/view</a></button>
+	<button><a href="member/cs/qna">member/cs/qna</a></button>
+	<button><a href="member/cs/qna/register">member/cs/qna/register</a></button>
+	<button><a href="member/cs/qna/view">member/cs/qna/view</a></button>
+	<button><a href="member/cs/qna/modify">member/cs/qna/modify</a></button>
+	<br>
 	
+	   
 	
 	<!--footer-bottom  start ============================= -->
 	<footer>

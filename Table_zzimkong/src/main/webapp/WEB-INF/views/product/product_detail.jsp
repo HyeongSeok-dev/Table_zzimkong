@@ -125,6 +125,11 @@
 			</div>
 		</div>
 		<p class="gap20"></p>
+		<div class="button_wrapper">
+			<button id="reservation-confirm-button"
+				class="confirm-button" type="button">선주문없이 바로 예약하기</button>
+		</div>
+		<p class="gap20"></p>
 		<section class="similar_section" id="similar-rest-section">
 			<div class="similar_rest_head">
 				<div class="title-container">
@@ -133,33 +138,13 @@
 				</div>
 				<div class="sort-option-set">
 					<div class="sort-option-div sort-option-selected"
-						data-sort-value="rest_near">현재 식당 근처</div>
+						data-sort-value="near">현재 식당 근처</div>
 					<div class="sort-option-div" data-sort-value="score">점수가 높은</div>
 					<div class="sort-option-div" data-sort-value="sim">가장 유사한</div>
 				</div>
 			</div>
 			<div class="similar_content style-oS3aX" id="similar-contents">
 				<!-- 식당 목록이 동적으로 표시될 곳 -->
-				<div class="similar_rest_card">
-					<div class="similar_rest_box">
-						<div class="similar_rest_distance">
-							<img class="similar_rest_distance_img"
-								src="${pageContext.request.contextPath}/resources/img/products_location_img.png"
-								alt="추천 식당 거리 표시 아이콘"> <span
-								class="similar_rest_distance_number"> 125m</span>
-						</div>
-						<img class="similar_rest_img"
-							src="${pageContext.request.contextPath}/resources/img/list_com.jpg">
-						<div class="similar_rest_average">
-							<img class="similar_rest_average_img"
-								src="${pageContext.request.contextPath}/resources/img/products_similar_star.png"
-								alt=""> <span class="similar_rest_average_number">
-								4.6</span>
-							<!--  별점 가져오는곳 -->
-						</div>
-					</div>
-					<span class="similar_rest_title">가나다라<br></span>
-				</div>
 			</div>
 		</section>
 		<p class="gap20"></p>
@@ -217,10 +202,6 @@
 
 		<!-- 리뷰페이지 들어갈 공간 -->
 		<p class="gap20"></p>
-		<div class="button_wrapper">
-			<button id="reservation-confirm-button"
-				class="confirm-button" type="button">선주문없이 바로 예약하기</button>
-		</div>
 	</form>
 	<jsp:include page="../inc/bottom.jsp"></jsp:include>
 </body>

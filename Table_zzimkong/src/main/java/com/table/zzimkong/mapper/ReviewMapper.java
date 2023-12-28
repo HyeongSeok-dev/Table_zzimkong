@@ -33,6 +33,15 @@ public interface ReviewMapper {
 	// 리뷰 삭제
 	int removeReview(ReviewVO review);
 
+	// 리뷰 수정 시 파일 삭제
+	int updateReviewFile(ReviewVO review);
+
+	// 리뷰 수정 업데이트
+	int updateReview(ReviewVO review);
+
+	// 리뷰 내용 가져오기
+	ReviewVO getReview(int reviewNum);
+
 
 	//-------------------------------------------------------------
 	// 이런 점이 좋았어요

@@ -42,5 +42,10 @@ public class ProductService {
 		// TODO Auto-generated method stub
 		return mapper.selectVisitedPeople(user_idx);
 	}
+
+	public List<CompanyVO> getsimilarCompanyList(String sort, CompanyVO company, List<String> tagList) {
+		// TODO Auto-generated method stub
+		return mapper.selectSimilarCompanyList(sort, company, tagList);
+	}
 	
 }

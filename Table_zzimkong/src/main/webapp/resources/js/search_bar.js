@@ -251,10 +251,35 @@ $(document).ready(function() {
 		sendFormDataToNextPage();
 	});
 	
-	//메인(테마카테고리)
+	//메인(테마카테고리)=================================================================
 	$(".foodThemeCategory").click(function() {
-		sendFormDataToNextPage();
+		formData['context'] = $(this).val();
+		formData['sort'] = $("select[name='sort']").val();
+		
+		$.ajax({
+			url: contextRoot + '/product/searchResult',
+			type: 'POST',
+			contentType: 'application/json',
+			dataType: 'json',
+			data: JSON.stringify(formData),
+			success: function(response) {
+				// 성공적으로 데이터를 받으면 실행할 코드
+				console.log("Response: ", response);
+				// product/list 페이지로 리디렉션
+				window.location.href = contextRoot + response.redirectURL;
+			},
+			error: function(error) {
+				// 에러가 발생했을 때 실행할 코드
+				console.log("Error: ", error);
+			}
+		});
 	});
+	//메인(카테고리)=================================================================
+	 $("button[name='category']").click(function() {
+        formData['category'] = $(this).val();
+        sendFormDataToNextPage();
+    });
+
 	
 });
 

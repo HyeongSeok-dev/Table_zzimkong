@@ -1,7 +1,6 @@
 package com.table.zzimkong.vo;
 
 import java.sql.Date;
-import java.sql.Time;
 
 import lombok.Data;
 
@@ -21,7 +20,7 @@ public class ReservationVO {
 	private Date res_now;
 	private int res_pay_status;
 	private String res_request;
-	private int pre_idx;
+
 	
 	
 	
