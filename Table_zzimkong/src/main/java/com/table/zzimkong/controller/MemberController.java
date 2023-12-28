@@ -197,10 +197,10 @@ public class MemberController {
 			return "fail_back";
 		}
 		
-//		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		
-//		if(dbMember == null || !passwordEncoder.matches(member.getUser_passwd(), dbMember.getUser_passwd())) {
-		if(dbMember == null || !dbMember.getUser_passwd().equals(member.getUser_passwd())) {
+		if(dbMember == null || !passwordEncoder.matches(member.getUser_passwd(), dbMember.getUser_passwd())) {
+//		if(dbMember == null || !dbMember.getUser_passwd().equals(member.getUser_passwd())) {
 		// 로그인 실패 처리
 		model.addAttribute("msg", "로그인 실패!");
 		return "fail_back";
