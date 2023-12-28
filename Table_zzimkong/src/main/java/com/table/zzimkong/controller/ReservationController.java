@@ -110,6 +110,8 @@ public class ReservationController {
         
         
         int insertCount = service.registResvation(res);
+        
+     
         map.put("res", res);
         map.put("com", com);
 //        List<MenuVO> menuList = new ArrayList<MenuVO>();
