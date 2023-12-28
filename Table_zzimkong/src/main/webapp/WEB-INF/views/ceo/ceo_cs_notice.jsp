@@ -44,12 +44,15 @@
 		        <div class="container">
 		            <div class="search-window">
 		                <form action="">
-		                    <div class="search-wrap">
-		                        <label for="search" class="blind">공지사항 내용 검색</label>
-		                        <input id="search" type="search" name="searchFAQ" placeholder="검색어를 입력해주세요." value="">
-		                        <button type="submit" class="btn btn-dark">검색</button>
-		                        
-		                    </div>
+		                    <div class="search_and_date">
+				       	        <span class="date_input_wrap"></span>
+			                    <div class="search-wrap">
+			                        <label for="search" class="blind">자주묻는 질문 검색</label>
+			                        <input id="search" type="search" name="searchFAQ" placeholder="검색어를 입력해주세요.">
+			                        <button type="submit" class="btn btn-dark">검색</button>
+			                    </div>
+		                   		<span></span>
+		                   </div> 
 		                </form>
 		            </div>
 		        </div>
