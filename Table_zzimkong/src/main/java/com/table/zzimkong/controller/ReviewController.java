@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -94,14 +95,15 @@ public class ReviewController {
 	// [ 리뷰 작성 ]
 	// "detail" 서블릿 요청에 대한 리뷰 글쓰기 폼 표시
 	@GetMapping("review/write")
-	public String reviewWriteForm() {
+	public String reviewWriteForm(HttpSession session, Model model) {
 		// 세션 아이디 없을 경우 "로그인이 필요합니다" 처리를 위해 "forward.jsp" 페이지 포워딩
 		// 일단 sId 보류(231222)
-//		if (session.getAttribute("sId") == null) {
-//			model.addAttribute("msg", "로그인이 필요합니다");
-//			model.addAttribute("targetURL", "login");
-//			return "forward";
-//		}
+		String sId = (String) session.getAttribute("sId");
+		if (sId == null){
+			model.addAttribute("msg", "로그인이 필요합니다");
+			model.addAttribute("targetURL", "login");
+			return "forward";
+		}
 
 		return "review/review_write";
 	}
@@ -109,13 +111,16 @@ public class ReviewController {
 	// "ReviewWritePro" 서블릿 요청에 대한 글쓰기 비즈니스 로직 처리
 	@PostMapping("review/reviewWritePro")
 	public String reviewWritePro(ReviewVO review, HttpSession session, Model model) {
-//		if (session.getAttribute("sId") == null) {
-//			model.addAttribute("msg", "로그인이 필요합니다");
-//			// targetURL 속성명으로 로그인 폼 페이지 서블릿 주소 저장
-//			model.addAttribute("targetURL", "login");
-//			return "forward";
-//		}
+		// 세션에서 user_id 가져오기
+		String userId = (String) session.getAttribute("sId");
+		if (userId == null) {
+			model.addAttribute("msg", "로그인이 필요합니다");
+			// targetURL 속성명으로 로그인 폼 페이지 서블릿 주소 저장
+			model.addAttribute("targetURL", "login");
+			return "forward";
+		}
 		
+		review.setUser_id(userId);
 		System.out.println("reviewVO값: " + review);
 			
 //		System.out.println(review.getA().toString());
@@ -203,51 +208,163 @@ public class ReviewController {
 
 	
 	// ===================================================================
-	// [ 리뷰 수정 ] (진행중)
+	// [ 리뷰 수정 ] 
 	@GetMapping("review/modify")
-	public String review_modify(
-							ReviewVO review
-//							,HttpSession session 
-							,Model model 
-							,@RequestParam("review_num") int reviewNum) {
-
+	public String review_modify(ReviewVO review,
+								@RequestParam("review_num") int reviewNum, 
+								Model model,
+								HttpSession session
+								) {
+		// 글 삭제와 권한 판별 동일(세션 아이디 없을 경우 처리)
+		String sId = (String) session.getAttribute("sId");
+		if (sId == null)  {
+			model.addAttribute("msg","로그인이 필요합니다!");
+			model.addAttribute("targetURL","login");
+			return "forward";
+		}
 		
-		// 세션아이디 
-//			String sId = (String) session.getAttribute("sId");						
-//			if(sId == null) {
-//				model.addAttribute("msg","로그인이 필요합니다!");
-//				model.addAttribute("targetURL", "login");
-//				return "forward";
-//			}
+		// ReviewService - getRivews() 메서드 재사용하여 게시물 1개 정보 조회
+		// => 별도의 새로운 ReviewVO타입 변수 선언 없이 기존 ReviewVO 타입 변수(review) 재사용
+		// ~> 조회수는 필요없는거 같아서 생략(231227)
 		
-		// 값 가져오기
-//		review = service.getReview(reviewNum);
-		review = service.getReivew(reviewNum);
-		
-		if(review != null) {
-			model.addAttribute("review",review);
-		} else {
+		// 조회된 게시물의 작성자가 세션아이디와 다를 경우 "잘못된 접근입니다" 처리
+		// 관리자는 자신의 게시물이 아니더라도 수정가능(세션아이디가 관리자가 아닐 경우 추가!)
+		review = service.getReview(reviewNum);
+		if(review == null || !sId.equals(review.getUser_id()) && !sId.equals("admin")){
+			model.addAttribute("msg","잘못된 접근입니다!");
 			return "fail_back";
 		}
-		// BoardService - getBoard() 메서드 재사용하여 게시물 1개 정보 조회
-		// => 조회수가 증가되지 않도록 두번째 파라미터값 false 전달
-		// => 별도의 새로운 BoardVO 타입 변수 선언 없이 기존 BoardVO 타입 변수(board) 재사용
-//		review = service.getReivew(review.getReview_num(), false);
-		
-		// 조회된 게시물의 작성자(board_name)와 세션 아이디가 다를 경우 "잘못된 접근입니다" 처리
-		// => 단, 관리자는 자신의 게시물이 아니더라도 수정 가능해야하므로
-		//    세션아이디가 관리자가 아닐 경우라는 조건도 추가
-//		if(review == null || !sId.equals(review.getReview_num()) && !sId.equals("admin")) {
-//			model.addAttribute("msg", "잘못된 접근입니다");
-//			return "fail_back";
-//		}
-		
-//		model.addAttribute("review", review);
-		
+			model.addAttribute("review",review);
 		
 		return "review/review_modify";
+	}
+								
+	// 파일 삭제 AJAX 요청에 대한 응답 데이터 생성 및 전송을 위해 @ResponseBody 지정
+	@ResponseBody
+	@PostMapping("review/ReviewDeleteFile")
+	public String deleteFile(ReviewVO review
+							,HttpSession session
+							) {
+		
+		// ReviewService - removeBoardFile() 메서드 호출하여 지정된 파일명 삭제 요청
+		// => 파라미터 : ReviewVO 객체   리턴타입 : int(removeCount)
+		int removeCount = service.removeReviewFile(review);
+		
+		try {
+			if(removeCount > 0) { // 레코드의 파일명 삭제(수정) 성공 시
+				// 서버에 업로드 된 실제 파일 삭제
+				String uploadDir = "/resources/upload"; // 가상의 경로(이클립스 프로젝트 상에 생성한 경로)
+				String saveDir = session.getServletContext().getRealPath(uploadDir);
+				
+				
+				// 파일명이 널스트링이 아닐 경우에만 삭제 작업 수행
+				if(!review.getReview_img_1().equals("")) {
+					Path path = Paths.get(saveDir + "/" + review.getReview_img_1());
+					Files.deleteIfExists(path);
+					
+					// 예외가 발생하지 않을 경우 정상적으로 파일 삭제가 완료 => true 리턴
+					return "true";
+				} 
+			
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+		// DB 파일명 삭제 실패 또는 서버 업로드 파일 삭제 실패 등의 문제 발생 시 "false" 리턴
+		return "false";
+	}
+	
+	// "ReviewModifyPro" 서블릿 요청에 대한 글 수정 요청 비즈니스 로직 처리
+	@PostMapping("review/ReviewModifyPro")
+	public String modifyPro(
+			ReviewVO review,
+			@RequestParam("review_num") int reviewNum, // 선생님은 페이지번호 였지만 난 reviewNum으로
+			HttpSession session, Model model ) {
+			// 세션 아이디에 따른 차단 처리
+				String sId = (String)session.getAttribute("sId");
+				if(sId == null) {
+					model.addAttribute("msg", "로그인이 필요합니다");
+					// targetURL 속성명으로 로그인 폼 페이지 서블릿 주소 저장
+					model.addAttribute("targetURL", "login");
+					return "forward";
+				} else if(!sId.equals(review.getUser_id()) && !sId.equals("admin")) {
+					model.addAttribute("msg", "잘못된 접근입니다");
+					return "fail_back";
+				}
+		// -------------------------------------------------------------------
+		// [ 수정 과정에서 파일 업로드 처리 ]
+		String uploadDir = "/resources/upload"; // 가상의 경로(이클립스 프로젝트 상에 생성한 경로)
+		String saveDir = session.getServletContext().getRealPath(uploadDir); // 또는 
+		
+		String subDir = "";
+		LocalDate now = LocalDate.now();
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+		subDir = now.format(dtf);
+		
+		saveDir += File.separator + subDir;
+		
+		try {
+			Path path = Paths.get(saveDir); // 파라미터로 업로드 경로 전달
+			Files.createDirectories(path); // 파라미터로 Path객체 전달
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println(review);
+		
+		// BoardVO 객체에 전달(저장)된 실제 파일 정보가 관리되는 MultipartFile 타입 객체 꺼내기
+		// => 단, 수정하지 않은 파일(새로 업로드 항목으로 추가된 파일이 아닌 기존 파일)은
+		//    input 태그를 적용받지 않으므로 파일이 전달되지 않음 => 따라서, null 값이 전달됨
+		MultipartFile mFile1 = review.getFile1();
+		
+		review.setReview_img_1("");
+		
+		// 파일이 존재할 경우 ReviewVO객체에 서브 디렉토리명(subDir)과 함께 파일명 저장
+		String fileName1 = "";
+		
+		if(mFile1 != null && mFile1.getOriginalFilename().equals("")) {
+			System.out.println("원본파일명1 : " + mFile1.getOriginalFilename());
+			fileName1 = UUID.randomUUID().toString().substring(0,8) + "_" + mFile1.getOriginalFilename();
+			review.setReview_img_1(subDir + "/" + fileName1);
+		}
+		
+		System.out.println("실제 업로드 파일명1 : " + review.getReview_img_1());
+		// 현재 업로드 될 파일들은 서버 임시 디렉토리에 보관중이며 최종 이동 처리 수행 필요
+
+		// ----------------------------------------------------------------------------------
+		// ReviewwService - modifyReview() 메서드 호출하여 글 수정 작업 요청
+		// => 파라미터 : ReviewVO 객체   리턴타입 : int(updateCount)
+		int updateCount = service.modifyReview(review);
+		
+		// DB작업 요청 처리 결과 판별
+		if(updateCount > 0) {
+			try {
+				if(!review.getReview_img_1().equals("")) {
+					mFile1.transferTo(new File(saveDir, fileName1));
+				}
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+	        return "redirect:/zzimkong/review/detail?review_num=" + review.getReview_num();
+			
+		} else {
+			model.addAttribute("msg","리뷰 수정 실패!");
+			return "fail_back";
+		}
 		
 	}
+	
+	
+	
+	
+	
+	
 	// ===================================================================
 	// [ 리뷰 삭제 ]
 	@PostMapping("/zzimkong/review/delete")
@@ -265,7 +382,7 @@ public class ReviewController {
 //		if(sId == null) {
 //			model.addAttribute("msg", "로그인이 필요합니다");
 //			// targetURL 속성명으로 로그인 폼 페이지 서블릿 주소 저장
-//			model.addAttribute("targetURL", "MemberLoginForm");
+//			model.addAttribute("targetURL", "login");
 //			return "forward";
 //		}
 		

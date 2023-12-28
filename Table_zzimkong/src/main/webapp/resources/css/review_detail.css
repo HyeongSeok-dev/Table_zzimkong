@@ -1160,7 +1160,7 @@ h1 {
     cursor: pointer;
 }
 /*  =============================================================  */
-.reviewer_name {
+.reviewer_info>.reviewer_name {
     display: block;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -1171,6 +1171,7 @@ h1 {
     margin-right: 10px; /* 오른쪽 여백 추가 */
     font-size: 1.3em;
 	margin-left: 12px;
+	margin-top: -7px;
 }
 
 .reviewer_order {
@@ -1185,15 +1186,15 @@ h1 {
     padding-bottom: 10px;
 }
 
-.reviewer_info {
-    display: block;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    margin-top: 2px;
-    color: #939396;
-    line-height: 1.5rem;
-}
+/* .reviewer_info { */
+/*     display: block; */
+/*     overflow: hidden; */
+/*     text-overflow: ellipsis; */
+/*     white-space: nowrap; */
+/*     margin-top: 2px; */
+/*     color: #939396; */
+/*     line-height: 1.5rem; */
+/* } */
 
 .follow-button {
     display: inline-block;
@@ -1223,9 +1224,10 @@ h1 {
 }
 
 .score1{
-	margin-left:15px;
+	margin-left:15px; 
 	font-size:1.2em;
 	margin-bottom:10px;
+	margin-top: 10px;
 }
 
 .score1>img{
@@ -1391,5 +1393,31 @@ h1 {
 	color:#888;
 	font-size:1.12em;
 }
+/*  =============================================================  */
+/* 수정버튼 수정 */
+.review_modify {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #f0f0f0;
+    color: #333;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+ 
+}
+/*  =============================================================  */
+.review-action-buttons {
+    display: flex;
+    justify-content: flex-start; /* 왼쪽 정렬 */
+    align-items: center;
+}
 
+.review_delete, .review_modify, .review_report_btn {
+    margin-right: 5px; /* 버튼 사이 간격 조정 */
+    /* 추가적인 스타일링 */
+}
 
+/* 마지막 버튼은 margin-right가 필요 없으므로, 클래스를 추가하거나 last-child 선택자를 사용합니다. */
+.review_report_btn {
+    margin-right: 0; /* 마지막 버튼 오른쪽 여백 제거 */
+}

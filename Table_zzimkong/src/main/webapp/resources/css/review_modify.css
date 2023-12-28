@@ -1,0 +1,392 @@
+@charset "UTF-8";
+/* ============================================================== */
+/* 별점 */
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+       .review_rate { display: inline-block;
+       		   border: 0;
+       		   margin-right: 15px;}
+.review_rate > input {display: none;}
+.review_rate > label {float: right;
+					  color: #ddd}
+.review_rate > label:before {display: inline-block;
+					  font-size: 2rem;
+					  padding: .3rem .2rem;
+					  margin: 0;
+					  cursor: pointer;
+					  font-family: FontAwesome;
+					  content: "\f005 ";}
+.review_rate .half:before {content: "\f089 "; 
+					position: absolute;
+					padding-right: 0;}
+.review_rate input:checked ~ label, 
+.review_rate label:hover,
+.review_rate label:hover ~ label { color: gold!important;} 
+.review_rate input:checked + 
+.review_rate label:hover,
+.review_rate input input:checked ~ label:hover,
+.review_rate input:checked ~ 
+.review_rate label:hover ~ label,  
+.review_rate label:hover ~ input:checked ~ label { color: gold!important;}
+
+.starpoint_wrap {
+  display: flex;
+  justify-content: center; /* 가로축에서 중앙 정렬 */
+}
+
+.rating {
+   position: relative;
+   width: 180px;
+   background: transparent;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   gap: .3em;
+   padding: 5px;
+   overflow: hidden;
+   border-radius: 20px;
+}
+
+.rating__result {
+   position: absolute;
+   top: 0;
+   left: 0;
+   transform: translateY(-10px) translateX(-5px);
+   z-index: -9;
+   font: 3em Arial, Helvetica, sans-serif;
+   color: #ebebeb8e;
+   pointer-events: none;
+}
+
+.rating__star {
+   font-size: 1.3em;
+   cursor: pointer;
+   color: #dabd18b2;
+   transition: filter linear .3s;
+}
+
+.rating__star:hover {
+   filter: drop-shadow(1px 1px 4px gold);
+}
+
+/* ============================================================== */
+/* 리뷰 이런 점이 좋았어요 키워드 */
+
+.keyword-category h3 {
+  text-align: center; /* 중앙 정렬 */
+}
+
+.like_btn, .keyword_btn, .photo_btn {
+  border-radius: 10px; /* 모서리 둥글게 */
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.restaurant_info {
+  margin-bottom: 20px;
+  }
+  
+.restaurant_info p {
+  font-size: 14px;
+}
+
+.separator {
+  border-bottom: 1px solid lightgray;
+  margin-bottom: 20px;
+}
+
+.review_section h2, .review_section p {
+  text-align: center; /* 중앙 정렬 */
+}
+
+/* ============================================================== */
+/* 좋아요 버튼 */
+.like_section_text {
+  margin-bottom:20px;	
+}
+
+.like_section {
+  margin-top: -25px;	
+  margin-bottom: 20px;
+}
+
+.like_section p {
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: center; 
+  
+}
+
+.like_button {
+    font-size: 20px;
+    color: lightgrey;
+    border: 1px solid lightgrey; 
+    padding: 10px 15px;
+    background-color: white;
+    cursor: pointer;
+    transition: color 0.3s ease, background-color 0.3s ease, fill 0.3s ease; 
+    border-radius: 10px;
+}
+
+#heart {
+    height: 20px;
+    width: 20px;
+    fill: lightgrey; 
+    stroke: lightgrey;
+}
+
+.like_button.active {
+    color: black;  
+} 
+
+.like_button {
+  font-weight: bold;
+}
+
+.like_button.active #heart {
+    fill: #3FAFFC; 
+    stroke: #3FAFFC; 
+}
+
+/* ============================================================== */
+.keyword_section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; 
+}
+
+.keyword_category {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: center;
+}
+
+.keyword_category>h3{
+	text-align: center;
+}
+
+.keyword_btn {
+  width: 150px;
+  height: 40px; 
+  margin-bottom: 7px; 
+  background-color: white;
+  border: 1px solid lightgray;
+  color: black!important;
+  padding: 15px;
+  cursor: pointer;
+  transition-duration: 0.4s;
+  text-align: center; 
+  font-size: 13px;
+  line-height: 5px; 
+ 
+}
+
+.keyword-btn:hover {
+/*   background-color: lightgray; */
+}
+
+.keyword-btn:last-child {
+/*   margin-top: auto; 마지막 버튼을 하단에 정렬 */
+}
+.review_input_section {
+/*   position: relative; */
+/*   margin-top: 20px; */
+}
+
+/* ============================================================== */
+/* 사진 추가 버튼 */
+.photo_btn {
+    padding: 10px !important;
+    border: 1px solid grey!important; 
+    background-color: white!important; 
+    cursor: pointer!important;
+    display: inline-block!important; 
+    margin: 10px!important; 
+    font-size: 16px!important; 
+    color: grey!important; 
+}
+
+/* 카메라 아이콘 스타일 */
+.photo_btn .fas {
+    margin-right: 5px; 
+}
+
+/* 이미지 프리뷰 컨테이너 스타일 */
+.preview_container {
+    position: relative;
+    display: inline-block;
+}
+
+/* 이미지 프리뷰 스타일 */
+#imagePreview {
+    display: block;
+    max-width: 200px; 
+    max-height: 200px;
+}
+.remove_btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #3FAFFC;
+    color: white;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50%;
+    z-index: 10; 
+    margin-top: 2px;
+    margin-right:603px;
+}
+/* ============================================================== */
+/* 사진 업로드 프리뷰 */
+#previewContainer {
+    position: relative;
+    display: inline-block;
+}
+/* 사진 지우는 X아이콘 */
+#removeImage {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: red;
+    color: white;
+    border: none;
+}
+/* ============================================================== */
+.photo_box{
+	text-align: center;
+}
+
+/* ============================================================== */
+/* 리뷰 글쓰기 */
+.review_textarea {
+  width: 100%;
+  height: 200px;
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid lightgray;
+  resize: none; 
+  font-size:17px!important;
+}
+
+/* ============================================================== */
+/* 팝업 스타일 */
+#popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    z-index: 1000;
+}
+ /* ============================================================== */
+ /* 등록 버튼 */
+.register_button {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background-color: #3FAFFC;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    margin-right: -20px;
+    margin-bottom: -5px;
+   	font-size: 16px;
+}
+
+.review_input_section {
+  position: relative;
+  margin-top: 20px;
+}
+.review_wrapper {
+  position: relative;
+}
+
+.caution_link {
+  display: block;
+  padding: 10px 0;
+}
+ /* ============================================================== */
+/* 좋아요 반영 후 토스트 메세지 */
+.toast-message {
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: black;
+  color: white;
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+  font-size: 17px;
+  border-radius: 10px;
+}
+
+.toast-message.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2s;
+  animation: fadein 0.5s, fadeout 0.5s 2s;
+}
+
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0;} 
+  to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {bottom: 30px; opacity: 1;} 
+  to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+
+ /* ============================================================== */
+ /* 이런 점이 좋았어요 체크박스 버튼으로 변경 */
+.hidden_checkbox {
+    display: none!important;
+}
+
+.keyword_category>label {
+    font-size: 20px;
+    color: black; 
+    border: 1px solid lightgrey; 
+    padding: 10px 15px;
+    background-color: white; 
+    cursor: pointer;
+    transition: color 0.3s ease, background-color 0.3s ease, fill 0.3s ease; 
+    border-radius: 10px;
+}
+ /* ============================================================== */
+ /* 가게이름 하이퍼링크 */
+a {
+    text-decoration: none; 
+    color: inherit;
+}
+
+a:hover {
+		color: #3FAFFC;}
+ /* ============================================================== */
+	.file>img {
+	width:250px;
+	height: auto;
+	text-align:center;
+	}
+ /* ============================================================== */
