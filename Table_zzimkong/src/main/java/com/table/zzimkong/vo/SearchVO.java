@@ -25,4 +25,5 @@ public class SearchVO {
 	private String sort;
 	private String requestURL;
 	private String redirectURL;
+	private String similarSort;
 }

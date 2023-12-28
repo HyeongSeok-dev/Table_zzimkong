@@ -201,4 +201,53 @@
 		WHERE user_idx = #{user_idx}
 	</select>
 	
+	<select id="selectSimilarCompanyList" resultType="company">
+	    SELECT c.*, avg_score
+	    FROM company c
+	    CROSS JOIN (
+		    SELECT com_search_tag 
+		    FROM company 
+		    WHERE com_id = #{company.com_id}
+		) as ref
+	    LEFT JOIN (
+	        SELECT com_id, AVG(review_score) AS avg_score
+	        FROM review
+	        GROUP BY com_id
+	    ) r ON c.com_id = r.com_id
+	    <where>
+	        c.com_id != #{company.com_id}
+	        <if test="sort == 'near'">
+	            AND c.com_gugun = #{company.com_gugun}
+	        </if>
+	        <if test="sort == 'score'">
+	            AND c.com_id IN (
+	                SELECT com_id
+	                FROM review
+	                GROUP BY com_id
+	                ORDER BY AVG(review_score) DESC
+	            )
+	        </if>
+	        <if test="sort == 'sim'">
+	            AND (
+	                <foreach item="tag" collection="tagList" open="(" separator="AND" close=")">
+	                    c.${tag} = true
+	                </foreach>
+	            
+	        </if>
+	        
+	        <if test="sort == 'sim'">
+	       
+	            OR EXISTS (
+				        SELECT 1
+				        FROM company c2
+				        WHERE c2.com_id = #{company.com_id}
+				        AND FIND_IN_SET(SUBSTRING_INDEX(SUBSTRING_INDEX(ref.com_search_tag, ',',10), ',', -1), c.com_search_tag) > 0
+				    )
+				)
+	        </if>
+	        
+	    </where>
+	    LIMIT 5
+	</select>
+	
 </mapper>

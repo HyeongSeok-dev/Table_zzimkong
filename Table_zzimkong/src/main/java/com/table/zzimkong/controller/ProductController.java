@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.table.zzimkong.service.ProductService;
 import com.table.zzimkong.vo.CompanyVO;
@@ -221,5 +222,54 @@ public class ProductController {
 		return ResponseEntity.ok(search);
 	}
 	
+	@PostMapping("product/similarList")
+	public ResponseEntity<?> similarList(@RequestBody Map<String, Object> map, CompanyVO company) {
+		String sort = (String) map.get("similarSort");
+	    int com_id = Integer.parseInt((String)map.get("com_id"));
+		company.setCom_id(com_id);
+	    company = service.getCompany(company);
+	    List<String> tagList = new ArrayList<>();
+	    
+	    if(company.isCom_tag_date()) {
+	        tagList.add("com_tag_date");
+	    }
+	    if(company.isCom_tag_family()) {
+	        tagList.add("com_tag_family");
+	    }
+	    if(company.isCom_tag_party()) {
+	        tagList.add("com_tag_party");
+	    }
+	    if(company.isCom_tag_quiet()) {
+	        tagList.add("com_tag_quiet");
+	    }
+	    if(company.isCom_tag_park()) {
+	        tagList.add("com_tag_park");
+	    }
+	    if(company.isCom_tag_kids()) {
+	        tagList.add("com_tag_kids");
+	    }
+	    if(company.isCom_tag_disabled()) {
+	        tagList.add("com_tag_disabled");
+	    }
+	    if(company.isCom_tag_pet()) {
+	        tagList.add("com_tag_pet");
+	    }
+//	    if(company.isCom_tag_hall()) {
+//	        tagList.add("com_tag_hall");
+//	    }
+//	    if(company.isCom_tag_room()) {
+//	        tagList.add("com_tag_room");
+//	    }
+//	    if(company.isCom_tag_terrace()) {
+//	        tagList.add("com_tag_terrace");
+//	    }
+//	    if(company.isCom_tag_window()) {
+//	        tagList.add("com_tag_window");
+//	    }
+//		
+		List<CompanyVO> companyList = service.getsimilarCompanyList(sort, company, tagList);
+		
+		return ResponseEntity.ok(companyList);
+	}
 	
 }
