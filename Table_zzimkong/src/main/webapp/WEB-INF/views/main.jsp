@@ -92,7 +92,7 @@
 													<li class="dropdown">
 													    <a href="main" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 <%-- 		      										    <input type="text" class="input_text" value="${sessionScope.sNick}&nbsp;님" style="width: 100px;"> --%>
-		      										    <span>${sessionScope.sName}&nbsp;님</span>
+		      										    <span>${sessionScope.sName}&nbsp;업주님</span>
 <%-- 													    <img src="${pageContext.request.contextPath}/resources/img/top_user.png" style="width: 25px; height: 25px;"> --%>
 													    </a>
 													    <ul class="dropdown-menu">
