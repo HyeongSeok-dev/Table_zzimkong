@@ -66,5 +66,6 @@ public class CompanyVO {
 	private String menu_describe;
 	private String menu_img ;
 	private String selectedTime;
+	/**/
 }
 
