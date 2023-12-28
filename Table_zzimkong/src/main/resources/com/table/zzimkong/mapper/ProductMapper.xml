@@ -219,14 +219,6 @@
 	        <if test="sort == 'near'">
 	            AND c.com_gugun = #{company.com_gugun}
 	        </if>
-	        <if test="sort == 'score'">
-	            AND c.com_id IN (
-	                SELECT com_id
-	                FROM review
-	                GROUP BY com_id
-	                ORDER BY AVG(review_score) DESC
-	            )
-	        </if>
 	        <if test="sort == 'sim'">
 	            AND (
 	                <foreach item="tag" collection="tagList" open="(" separator="AND" close=")">
@@ -247,6 +239,10 @@
 	        </if>
 	        
 	    </where>
+	    
+	    <if test="sort == 'score'">
+	    ORDER BY avg_score DESC
+	    </if>
 	    LIMIT 5
 	</select>
 	

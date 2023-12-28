@@ -138,8 +138,8 @@ public class ProductController {
 			model.addAttribute("isvisited", false);
 		}else {
 			int user_idx = (int)session.getAttribute("sIdx");
-			res = service.getVisitedPeople(user_idx);
-			if(res == null) {
+			List<ReservationVO>resList = service.getVisitedPeople(user_idx);
+			if(resList == null) {
 				model.addAttribute("isvisited", false);
 			}else {
 				model.addAttribute("isvisited", true);

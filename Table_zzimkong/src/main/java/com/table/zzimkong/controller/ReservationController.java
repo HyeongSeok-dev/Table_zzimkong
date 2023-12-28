@@ -49,7 +49,7 @@ public class ReservationController {
 	    
 	    
 	    //[가게 ]
-	    int sIdx = (Integer)session.getAttribute("sIdx");
+	    int sIdx = (int)session.getAttribute("sIdx");
 	    res.setUser_idx(sIdx);
 	    System.out.println(sIdx);
 	    
