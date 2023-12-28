@@ -38,9 +38,14 @@ public class ProductService {
 		return mapper.selectReservationInfo(search, comId);
 	}
 
-	public ReservationVO getVisitedPeople(int user_idx) {
+	public List<ReservationVO> getVisitedPeople(int user_idx) {
 		// TODO Auto-generated method stub
 		return mapper.selectVisitedPeople(user_idx);
+	}
+
+	public List<CompanyVO> getsimilarCompanyList(String sort, CompanyVO company, List<String> tagList) {
+		// TODO Auto-generated method stub
+		return mapper.selectSimilarCompanyList(sort, company, tagList);
 	}
 	
 }

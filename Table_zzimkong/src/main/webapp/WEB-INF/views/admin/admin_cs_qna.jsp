@@ -40,7 +40,8 @@
 		        </span>
 		        <span>
 					<button type="button" id="buttonNotice" onclick="location.href='notice'">공지사항 관리</button>	
-					<button type="button" id="buttonFaq" onclick="location.href='faq'">자주묻는 질문 관리</button>	
+					<button type="button" id="buttonFaq" onclick="location.href='faq'">자주묻는 질문 관리</button>
+					<button type="button" id="buttonQna" onclick="location.href='qna'">1:1 문의 관리</button>	
 		    	</span>
 		    </div>
 		

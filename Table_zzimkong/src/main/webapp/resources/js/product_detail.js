@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	var contextRoot = window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2));
-
-	fetchRestaurants('rest_near');
+	
+	fetchRestaurants('near');
 
 	$('input[name="menu"]').each(function() {
 		$(this).change(function() {
@@ -78,36 +78,46 @@ $(document).ready(function() {
 });
 
 function fetchRestaurants(sortValue) {
+	var fetchData = { similarSort: sortValue, com_id: $('#com_id').val() }
+	var contextPath = "/zzimkong/";
 	$.ajax({
-		url: '/getRestaurants',
-		data: { sort: sortValue },
-		type: 'GET',
+		url: 'similarList',	
+		type: 'POST',
+		contentType: 'application/json',
 		dataType: 'json',
-		success: function(restaurants) {
+		data: JSON.stringify(fetchData),
+		success: function(response) {
 			var similarContents = $('#similar-contents');
 			similarContents.html('');
-
-			$.each(restaurants, function(i, restaurant) {
-				similarContents.append(`
+			
+			 response.forEach(function(restaurant) {
+                var restaurantHtml = `
                     <div class="similar_rest_card">
                         <div class="similar_rest_box">
-                            <img class="similar_rest_distance_img"
-                                src="${pageContext.request.contextPath}/resources/img/products_location_img.png"
-                                alt="추천 식당 거리 표시 아이콘"> <span
-                                class="similar_rest_distance_number"> </span>
+                            <div class="similar_rest_distance">
+                                <img class="similar_rest_distance_img"
+                                    src="` + contextPath + `/resources/img/products_location_img.png"
+                                    alt="추천 식당 거리 표시 아이콘"> <span
+                                    class="similar_rest_distance_number">${restaurant.distance}m</span>
+                            </div>
+                            <img class="similar_rest_img"
+                                 src="` + contextPath + `/resources/upload/${restaurant.com_img}">
+                            <div class="similar_rest_average">
+                                <img class="similar_rest_average_img"
+                                     src="` + contextPath + `/resources/img/products_similar_star.png"
+                                    alt=""> <span class="similar_rest_average_number">
+                                    ${restaurant.avg_score}</span>
+                            </div>
                         </div>
-                        <img class="similar_rest_img" src="">
-                        <div class="similar_rest_average">
-                            <img class="similar_rest_average_img"
-                                src="${pageContext.request.contextPath}/resources/img/products_similar_star.png" alt=""> <span
-                                class="similar_rest_average_number"> </span> 
-                        </div>
+                        <span class="similar_rest_title">${restaurant.com_name}<br></span>
                     </div>
-                    <span class="similar_rest_title">가나다라<br></span>
-                </div>
-                `);
-			});
-		},
+                `;
+                similarContents.append(restaurantHtml);
+            });
+        },
+         error: function(error) {
+            console.error("에러 ", error);
+        }
 	});
 }
 

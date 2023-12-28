@@ -65,52 +65,6 @@ public class HomeController {
 	    return "main";
 	}
 	
-	
-	@GetMapping("ceo/sale")
-	public String ceo_sale() {
-		return "ceo/ceo_sale";
-	}
-
-	@GetMapping("ceo/black")
-	public String ceo_black() {
-		return "ceo/ceo_black";
-	}
-	
-	@GetMapping("ceo/black/register")
-	public String ceo_black_register() {
-		return "ceo/ceo_black_register";
-	}
-	
-	@GetMapping("ceo/menu/list")
-	public String ceo_menu_list() {
-		return "ceo/ceo_menu_list";
-	}
-	
-	@GetMapping("ceo/menu/modify")
-	public String ceo_menu_modify() {
-		return "ceo/ceo_menu_modify";
-	}
-	
-	@GetMapping("ceo/menu/register")
-	public String ceo_menu_register() {
-		return "ceo/ceo_menu_register";
-	}
-	
-	@GetMapping("ceo/reservation")
-	public String ceo_reservation() {
-		return "ceo/ceo_reservation";
-	}
-	
-	@GetMapping("ceo/reservation/detail")
-	public String ceo_reservation_detail() {
-		return "ceo/ceo_reservation_detail";
-	}
-	
-	@GetMapping("ceo/reservation/info")
-	public String ceo_reservation_info() {
-		return "ceo/ceo_reservation_info";
-	}
-	
 	@GetMapping("my/list")
 	public String my_list() {
 		return "mypage/my_list";
@@ -205,6 +159,11 @@ public class HomeController {
 	@GetMapping("top2/searchbar")
 	public String top2_search_bar() {
 		return "inc/top2_search_bar";
+	}
+	
+	@GetMapping("main_1")
+	public String main_1() {
+		return "main_1";
 	}
 
 
