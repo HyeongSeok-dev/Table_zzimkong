@@ -35,26 +35,30 @@ public class ReservationService {
 //	public String getResComName(CompanyVO com) {
 //		return mapper.selectComName(com);
 //	}
-
+	//[가게이름]
 	public CompanyVO getCompany(ReservationVO res) {
 		return mapper.selectComName(res);
 	}
-
-	public ReservationVO getReservation(ReservationVO res) {
-		return mapper.selectResInfo(res);
-	}
-
-	public List<PreOrderInfo> getPreInfo(ReservationVO res) {
-		return mapper.selectPreOrder(res);
-	}
-
+//
+//	public ReservationVO getReservation(ReservationVO res) {
+//		return mapper.selectResInfo(res);
+//	}
+//
+//	public List<PreOrderInfo> getPreInfo(ReservationVO res) {
+//		return mapper.selectPreOrder(res);
+//	}
+//
+	//[예약자 정보]
 	public MemberVO getUserInfo(ReservationVO res) {
 		return mapper.selectUserInfo(res);
 	}
-
+	
+	//[예약정보 저장]
 	public int registResvation(ReservationVO res) {
-		return mapper.updateResInfo(res);
+		return mapper.insertResInfo(res);
 	}
+
+
 
 //	public ReservationVO getreservation(ReservationVO res) {
 //		return mapper.selectReservation(res);
