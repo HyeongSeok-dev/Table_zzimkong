@@ -22,5 +22,10 @@ public class MypageService {
 		// TODO Auto-generated method stub
 		return mapper.updateMember(member, newPasswd);
 	}
+	
+	// 닉네임 중복확인
+	public MemberVO getUserNick(MemberVO member) {
+		return mapper.selectUserNick(member);
+	}
 
 }

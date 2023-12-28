@@ -35,17 +35,31 @@ public class MypageController {
 		// MemberService - getMember() 메서드 호출하여 회원 상세정보 조회 요청
 		// => 파라미터 : MemberVO 객체 리턴타입 : MemberVO(dbMember)
 		MemberVO dbMember = service.getMember(member);
-		System.out.println(dbMember);
 	
 		// 조회 결과 Model 객체에 저장
 		model.addAttribute("member", dbMember);
-		
+		System.out.println(dbMember);
 		
 		
 		// 회원정보 조회 페이지 포워딩
 		return "mypage/my_modify_profile";
-
+		
 	}
+	
+	// 닉네임 중복확인에 대한 비지니스 로직 처리---------------------
+	@ResponseBody
+	@GetMapping("my/modify/MemberCheckDupNick")
+	public String checkDupNick(MemberVO member) {
+		System.out.println(member);
+		MemberVO dbMember = service.getUserNick(member);
+		
+		if(dbMember == null) {
+			return "false";
+		}else {
+			return "true";
+		}
+	} //MemberCheckDupNick()
+	
 	
 	//	[ 회원정보 수정 ]
 	// "MyModifyPro" 서블릿 요청에 대한 회원 정보 수정 비즈니스 로직 처리
@@ -99,9 +113,9 @@ public class MypageController {
 		if(updateCount > 0) { // 성공 시
 			// 관리자가 다른 회원 정보 수정 시 MemberInfo 서블릿 주소에 아이디 파라미터 결합
 			if(!sId.equals("admin") || (sId.equals("admin") && (member.getUser_id() == null || member.getUser_id().equals("")))) {
-				return "redirect:/MemberInfo";
+				return "redirect:/my_modify_profile";
 			} else {
-				return "redirect:/MemberInfo?id=" + member.getUser_id();
+				return "redirect://my_modify_profile?id=" + member.getUser_id();
 			}
 		} else { // 실패 시
 			model.addAttribute("msg", "회원정보 수정 실패!");

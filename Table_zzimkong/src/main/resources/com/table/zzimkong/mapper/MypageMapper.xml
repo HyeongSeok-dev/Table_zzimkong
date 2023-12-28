@@ -13,6 +13,13 @@
 	WHERE user_id = #{user_id}
 	</select>
 	
+	<!-- 닉네임 중복확인 -->
+	<select id="selectUserNick"  resultType="member">
+	SELECT *
+	FROM user
+	WHERE user_nick = #{user_nick}
+	</select>
+	
 	<!-- 회원정보 수정 - UPDATE -->
 	<!-- @Param 어노테이션을 통해 파라미터 이름을 지정했으므로 #{파라미터명.xxx} 형식으로 객체 접근 -->
 	<!-- 단, 새 패스워드(newPasswd)는 null 또는 널스트링이 아닐 경우에만 변경 -->

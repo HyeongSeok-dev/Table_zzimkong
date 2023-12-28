@@ -1,32 +1,35 @@
-//$(document).ready(function() {
-//	$("#u_nick").blur(function(){
-//			
-//		//닉네임 입력값 가져오기
-//		let user_nick = $("#u_nick").val();
-//		
-//		$.ajax({
-//			url: "MemberCheckDupNick",
-//			data: {
-//				user_nick : user_nick
-//			},
-//			dataType: "json",
-//			success : function(checkDuplicateResult){
-//				if(checkDuplicateResult ){ //중복
-//					$("#checkNickResult").html("이미 사용중인 닉네임");
-//					$("#checkNickResult").css("color", "red");
-//					isDuplicateNick = true;
-//				}else{ //중복X
-//					$("#checkNickResult").html("사용 가능한 닉네임");
-//					$("#checkNickResult").css("color", "blue");
-//					isDuplicateNick = false;
-//				}
-//			} //success
-//		}); //ajax
-//		
-//	}); //닉네임 중복확인
-//
-//	
-//	}); // document.ready 끝
+$(document).ready(function() {
+	
+	
+	$("#u_nick").blur(function(){
+	let isDuplicateNick = false; //닉네임 중복 여부 저장할 변수
+			
+		//닉네임 입력값 가져오기
+		let user_nick = $("#u_nick").val();
+		
+		$.ajax({
+			url: "MemberCheckDupNick",
+			data: {
+				user_nick : user_nick
+			},
+			dataType: "json",
+			success : function(checkDuplicateResult){
+				if(checkDuplicateResult ){ //중복
+					$("#checkNickResult").html("이미 사용중인 닉네임");
+					$("#checkNickResult").css("color", "red");
+					isDuplicateNick = true;
+				}else{ //중복X
+					$("#checkNickResult").html("사용 가능한 닉네임");
+					$("#checkNickResult").css("color", "blue");
+					isDuplicateNick = false;
+				}
+			} //success
+		}); //ajax
+		
+	}); //닉네임 중복확인
+
+	
+	}); // document.ready 끝
 
 window.onload = function() {
 	// 회원정보 수정 - 이메일
@@ -44,18 +47,18 @@ window.onload = function() {
 	};
 	
 	// 닉네임 변경
-	document.modifyForm.nickname.onblur = function() {
-		let nick = document.modifyForm.nickname.value; // 입력받은 닉네임 값 저장
-		
-		if(nick.length >=2 && nick.length <= 6) {
-			document.querySelector("#checkNickResult").innerText = "사용 가능";
-			document.querySelector("#checkNickResult").style.color = "#3FAFFC";
-		} else {
-		     	document.querySelector("#checkNickResult").innerText = "2 ~ 6자리의 닉네임을 입력해주세요.";
-		     	document.querySelector("#checkNickResult").style.color = "red";
-		    }
-	
-	};
+//	document.modifyForm.nickname.onblur = function() {
+//		let nick = document.modifyForm.nickname.value; // 입력받은 닉네임 값 저장
+//		
+//		if(nick.length >=2 && nick.length <= 6) {
+//			document.querySelector("#checkNickResult").innerText = "사용 가능";
+//			document.querySelector("#checkNickResult").style.color = "#3FAFFC";
+//		} else {
+//		     	document.querySelector("#checkNickResult").innerText = "2 ~ 6자리의 닉네임을 입력해주세요.";
+//		     	document.querySelector("#checkNickResult").style.color = "red";
+//		    }
+//	
+//	};
 	
 	// 비밀번호확인 입력란에 키를 누를때마다 비밀번호와 같은지 체크하기
 	document.modifyForm.passwd2.onkeyup = function() {
