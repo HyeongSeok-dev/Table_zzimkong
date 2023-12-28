@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- CSS -->
 <link href="${pageContext.request.contextPath}/resources/css/review_write.css" rel="stylesheet">
-<%-- <link href="${pageContext.request.contextPath}/resources/css/global.css" rel="stylesheet"> --%>
+<link href="${pageContext.request.contextPath}/resources/css/global.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
 <!-- Js -->
 <script src="${pageContext.request.contextPath}/resources/js/review_write.js"></script>
@@ -20,13 +20,9 @@
 	<article id="reviewWriteForm">
 	<div class="container">
 		<div class="restaurant_info">
-<!-- 			 <a href="detail?com_id=1"><h1>음식점 이름</h1></a> -->
 			 <a href="redetail?com_id=1"><h1>칸다소바 부전점</h1></a>
 			 <a href="redetail?com_id=1"><h1>${com_id}</h1></a>
-			 <!--            ~~~~~~~~~ : 나중에 ${com_id}로 고쳐서 값 받아오기 -->
-<!-- 			 <input type="submit" value="음식점 이름" onclick="location.href=detail"> -->
 			<p>몇번째 방문</p>
-<!-- 			<p>먹은 메뉴</p> -->
 		</div>
 		<form action="reviewWritePro" name="reviewWriteForm" method="POST" enctype="multipart/form-data">
 		<div class="separator"></div>

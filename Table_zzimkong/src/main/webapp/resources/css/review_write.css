@@ -2,7 +2,6 @@
 /* ============================================================== */
 /* 폰트 개별 조정 */
 
-
 /* ============================================================== */
 /* 별점 수정*/
 @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
@@ -123,6 +122,8 @@
     cursor: pointer;
     transition: color 0.3s ease, background-color 0.3s ease, fill 0.3s ease; 
     border-radius: 10px;
+    width: 150px;
+    margin: 5px;
 }
 
 /* ============================================================== */
@@ -238,7 +239,7 @@
   cursor: pointer;
   transition-duration: 0.4s;
   text-align: center; 
-  font-size: 13px;
+  font-size: 14px;
   line-height: 5px; 
  
 }
@@ -247,14 +248,15 @@
 /* ============================================================== */
 /* 사진 추가 버튼 */
 .photo_btn {
-    padding: 10px !important;
+    padding: 15px!important;
     border: 1px solid grey!important; 
     background-color: white!important; 
     cursor: pointer!important;
     display: inline-block!important; 
     margin: 10px!important; 
-    font-size: 16px!important; 
-    color: grey!important; 
+    font-size: 17px!important; 
+    color: grey!important;
+    margin-bottom: 10px; 
 }
 
 /* 카메라 아이콘 스타일 */
@@ -306,7 +308,6 @@
 .photo_box{
 	text-align: center;
 }
-
 /* ============================================================== */
 /* 리뷰 글쓰기 */
 .review_textarea {
@@ -316,7 +317,7 @@
   padding: 10px;
   border: 1px solid lightgray;
   resize: none; 
-  text-size:17px!important;
+  font-size:17px!important;
 }
 
 /* ============================================================== */
@@ -414,5 +415,9 @@ a {
 
 a:hover {
 		color: #3FAFFC;
-	
 }
+ /* ============================================================== */
+.image_wrapper>img {
+	align-items: center;
+}
+
