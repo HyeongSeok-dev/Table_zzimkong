@@ -17,6 +17,7 @@
 </script>
 </head>
 <body class="info_window">
+	
 	<section>
 		<h3>자주묻는질문</h3>
 		<br><br>

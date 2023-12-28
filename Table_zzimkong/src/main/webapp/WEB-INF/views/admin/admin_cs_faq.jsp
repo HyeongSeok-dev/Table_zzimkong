@@ -39,9 +39,9 @@
 		            <h3>고객센터 - 자주묻는 질문</h3>
 		        </span>
 		        <span>
-					<button type="button" id="buttonNotice" onclick="location.href='notice'">공지사항 관리</button>	
+					<button type="button" id="buttonNotice" onclick="location.href='notice'">공지사항 관리</button>
+					<button type="button" id="buttonFaq" onclick="location.href='faq'">자주묻는 질문 관리</button>	
 					<button type="button" id="buttonQna" onclick="location.href='qna'">1 : 1문의 관리</button>	
-					<button type="button" id="buttonRegister" onclick="faqRegisterForm()">새글작성</button>
 		    	</span>
 		    </div>
 		
@@ -50,12 +50,15 @@
 		        <div class="container">
 		            <div class="search-window">
 		                <form action="">
-		                    <div class="search-wrap">
-		                        <label for="search" class="blind">자주묻는 질문 검색</label>
-		                        <input id="search" type="search" name="" placeholder="검색어를 입력해주세요." value="">
-		                        <button type="submit" class="btn btn-dark">검색</button>
-		                        
-		                    </div>
+			                <div class="search_and_date">
+				                <div class="date_input_wrap"></div>
+			                    <div class="search-wrap">
+			                        <label for="search" class="blind">자주묻는 질문 검색</label>
+			                        <input id="search" type="search" name="" placeholder="검색어를 입력해주세요." value="">
+			                        <button type="submit" class="btn btn-dark">검색</button>
+			                    </div>
+			                	<button type="button" id="buttonRegister" onclick="faqRegisterForm()">새글작성</button>
+				              </div>  
 		                </form>
 		            </div>
 		        </div>

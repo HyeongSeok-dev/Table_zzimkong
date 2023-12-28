@@ -35,16 +35,15 @@
 	<section class="notice">
 	  <div class="text">
 	  		<div class="header_div01">
-		        <span><h1>사업자 고객센터</h1></span>
 	   		</div>
 		  	<div class="page-title">
 		        <span class="container">
 		            <h3>공지사항 관리</h3>
 		        </span>
 		        <span>
-					<button type="button" id="buttonQna" onclick="location.href='qna'">1:1 문의 관리</button>	
+		        	<button type="button" id="buttonNotice" onclick="location.href='notice'">공지사항 관리</button>
 					<button type="button" id="buttonFaq" onclick="location.href='faq'">자주묻는 질문 관리</button>	
-		    		<button type="button" id="buttonRegister" onclick="noticeRegisterForm()">새글작성</button>
+					<button type="button" id="buttonQna" onclick="location.href='qna'">1:1 문의 관리</button>	
 		    	</span>
 		    </div>
 		
@@ -68,6 +67,7 @@
 			                        <input id="search" type="search" name="" placeholder="검색어를 입력해주세요." value="">
 			                        <button type="submit" class="btn btn-dark">검색</button>
 			                    </span>
+			                    <button type="button" id="buttonRegister" onclick="noticeRegisterForm()">새글작성</button>
 		                   </div>
 		                </form>
 		            </div>

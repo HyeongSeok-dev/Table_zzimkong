@@ -21,9 +21,9 @@
 </script>
 </head>
 <body>
-	<%-- <header>
-		<jsp:include page="../inc/ceo_top.jsp"/>
-	</header> --%>
+	<header>
+		<jsp:include page="../inc/top2.jsp"></jsp:include>
+	</header>
 	<section class="notice">
 	  <div class="text">
 	      <h3>고객센터</h3>
@@ -32,6 +32,7 @@
 			     	 <h3>공지사항</h3>
 		        </span>
 		        <span>
+		    	    <button type="button" id="buttonNotice" onclick="location.href='${pageContext.request.contextPath }/member/cs/notice'">공지사항</button>
 					<button type="button" id="buttonFaq" onclick="location.href='${pageContext.request.contextPath }/member/cs/faq'">자주묻는 질문</button>	
 					<button type="button" onclick="location.href='${pageContext.request.contextPath }/member/cs/qna'" id="buttonQna">1 : 1 문의</button>	
 		    	</span>
@@ -42,12 +43,15 @@
 		        <div class="container">
 		            <div class="search-window">
 		                <form action="">
-		                    <div class="search-wrap">
-		                        <label for="search" class="blind">공지사항 내용 검색</label>
-		                        <input id="search" type="search" name="" placeholder="검색어를 입력해주세요." value="">
-		                        <button type="submit" class="btn btn-dark">검색</button>
-		                        
-		                    </div>
+		               		<div class="search_and_date">
+			                	<span class="date_input_wrap"></span>
+			                    <span class="search-wrap">
+			                        <label for="search" class="blind">공지사항 내용 검색</label>
+			                        <input id="search" type="search" name="" placeholder="검색어를 입력해주세요." value="">
+			                        <button type="submit" class="btn btn-dark">검색</button>
+			                    </span>
+			                    <span></span>
+			                </div>
 		                </form>
 		            </div>
 		        </div>
@@ -91,8 +95,8 @@
 		    </div>
 		</div>
 	</section>
-<!-- 	<footer> -->
-<%-- 		<jsp:include page="bottom.jsp"></jsp:include> --%>
-<!-- 	</footer> -->
+	<footer>
+		<jsp:include page="../inc/bottom.jsp"></jsp:include>
+	</footer> 
 </body>
 </html>

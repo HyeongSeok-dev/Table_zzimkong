@@ -31,9 +31,9 @@
  
 </head>
 <body>
-	<%-- <header>
-		<jsp:include page="../inc/ceo_top.jsp"/>
-	</header> --%>
+	<header>
+		<jsp:include page="../inc/top2.jsp"></jsp:include>
+	</header>
 	<section class="notice">
 	  <div class="text">
          <h3>고객센터</h3>
@@ -44,7 +44,7 @@
 		        <span>
 					<button type="button" id="buttonNotice" onclick="location.href='${pageContext.request.contextPath }/member/cs/notice'">공지사항</button>	
 					<button type="button" id="buttonFaq" onclick="location.href='${pageContext.request.contextPath }/member/cs/faq'">자주묻는 질문</button>	
-					<button type="button" id="buttonRegister" onclick="popupResister()">문의하기</button>	
+					<button type="button" id="buttonQna" onclick="location.href='${pageContext.request.contextPath }/member/cs/qna'">1 : 1 문의</button>
 		    	</span>
 		    </div>
 		
@@ -68,6 +68,7 @@
 			                        <input id="search" type="search" name="searchNotice" placeholder="검색어를 입력해주세요." value="">
 			                        <button type="submit" class="btn btn-dark">검색</button>
 			                    </span>
+			                    <button type="button" id="buttonRegister" onclick="popupResister()">문의하기</button>
 		                   </div>
 		                </form>
 		            </div>
@@ -115,8 +116,8 @@
 		   </div> 
 		</div>
 	</section>
-<!-- 	<footer> -->
-<%-- 		<jsp:include page="bottom.jsp"></jsp:include> --%>
-<!-- 	</footer> -->
+	<footer>
+		<jsp:include page="../inc/bottom.jsp"></jsp:include>
+	</footer> 
 </body>
 </html>

@@ -44,8 +44,8 @@
 		        </span>
 		        <span>
 					<button type="button" id="buttonNotice" onclick="location.href='${pageContext.request.contextPath }/ceo/cs/notice'">공지사항</button>	
-					<button type="button" id="buttonFnq" onclick="location.href='${pageContext.request.contextPath }/ceo/cs/faq'">자주묻는 질문</button>	
-					<button type="button" id="buttonRegister" onclick="qnaRegisterForm()">문의하기</button>	
+					<button type="button" id="buttonFnq" onclick="location.href='${pageContext.request.contextPath }/ceo/cs/faq'">자주묻는 질문</button>
+					<button type="button" id="buttonQna" onclick="location.href='${pageContext.request.contextPath }/ceo/cs/qna'">1 : 1문의</button>	
 		    	</span>
 		    </div>
 		
@@ -69,6 +69,7 @@
 			                        <input id="search" type="search" name="searchNotice" placeholder="검색어를 입력해주세요." value="">
 			                        <button type="submit" class="btn btn-dark">검색</button>
 			                    </span>
+			                    <button type="button" id="buttonRegister" onclick="qnaRegisterForm()">문의하기</button>	
 		                   </div>
 		                </form>
 		            </div>
@@ -81,7 +82,16 @@
 				        <thead>
 				        <tr>
 				            <th scope="col" class="th-num">번호</th>
-				            <th scope="col" class="th-category">유형</th>
+				           <th scope="col" class="th-category">
+				            	<select name="ceoCategory" style="border: none; background-color: rgb(244, 250, 255); font-weight: bold; text-align: center; font-size: 15px; color: #333;">
+				            		<option value="">유형선택</option>
+				            		<option value="예약관리">예약관리</option>
+				            		<option value="메뉴관리">메뉴관리</option>
+				            		<option value="광고">광고</option>
+				            		<option value="블랙회원관리">블랙회원관리</option>
+				            		<option value="업체관리">업체관리</option>
+				            	</select>
+				            </th>
 				            <th scope="col" class="th-title">제목</th>
 				            <th scope="col" class="th-date">등록일</th>
 				        </tr>

@@ -34,7 +34,8 @@
 		            <h3>자주묻는 질문</h3>
 		        </span>
 		        <span>
-					<button type="button" id="buttonNotice" onclick="location.href='${pageContext.request.contextPath }/ceo/cs/notice'">공지사항</button>	
+					<button type="button" id="buttonNotice" onclick="location.href='${pageContext.request.contextPath }/ceo/cs/notice'">공지사항</button>
+					<button type="button" id="buttonFaq" onclick="location.href='${pageContext.request.contextPath }/ceo/cs/faq'">자주묻는 질문</button>	
 					<button type="button" id="buttonQna" onclick="location.href='${pageContext.request.contextPath }/ceo/cs/qna'">1 : 1문의</button>	
 		    	</span>
 	   		</div>
@@ -61,7 +62,7 @@
 				        <thead>
 				        <tr>
 				            <th scope="col" class="th-num">번호</th>
-				            <th scope="col" class="th-num">
+				            <th scope="col" class="th-category">
 				            	<select name="ceoCategory" style="border: none; background-color: rgb(244, 250, 255); font-weight: bold; text-align: center; font-size: 15px; color: #333;">
 				            		<option value="">유형선택</option>
 				            		<option value="예약관리">예약관리</option>

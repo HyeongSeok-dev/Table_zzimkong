@@ -45,7 +45,7 @@ table {
 	#board-search .search-window .search-wrap {
 	  position: relative;
 	/*   padding-right: 124px; */
-	  margin: 0 auto;
+	  margin: 0;
 	  width: 80%;
 	  max-width: 564px;
 	}
@@ -225,12 +225,13 @@ table {
 	.search_and_date {
 		display: flex;
 		align-items: center;
+		justify-content: space-evenly;
 	}
 	
 	.date_input_wrap {
     float: left;
-    margin-left: 100px;
-    width: 300px;
+/*     margin-left: 100px; */
+/*     width: 300px; */
 	}
 	
 	.date_input_wrap .datepicker {
