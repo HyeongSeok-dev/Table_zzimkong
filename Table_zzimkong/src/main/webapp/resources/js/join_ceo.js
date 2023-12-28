@@ -11,7 +11,7 @@ $(document).ready(function() {
 }
 
 	
-	
+	let isId = false; //아이디가 양식에 맞지않을 경우
 	let isDuplicateId = false; //아이디 중복 여부 저장할 변수
 	let isSamePasswd = false; //패스워드 일치 여부 저장할 변수
 	
@@ -96,6 +96,12 @@ $(document).ready(function() {
 			return false;		
 		}
 		
+		//아이디가 양식에 맞지 않을 경우
+	    if(isId){
+			alert("아이디가 양식에 맞지 않습니다.");
+			return false;		
+		}
+		
 		//닉네임 중복일 경우
 	    if(isDuplicateNick){
 			alert("닉네임 중복입니다.");
@@ -177,6 +183,7 @@ $(document).ready(function() {
 		if(!regex.exec(user_id)) { //입력값 검증 실패시
 			$("#checkIdResult").html("영문자, 숫자 조합 8~16자리 필수(한글, 특수문자 사용불가)");
 			$("#checkIdResult").css("color", "red");
+			isId = true;
 		}else{ //입력값 검증 성공시
 			$.ajax({
 				url: "MemberCheckDupId",
@@ -193,6 +200,7 @@ $(document).ready(function() {
 						$("#checkIdResult").html("사용 가능한 아이디");
 						$("#checkIdResult").css("color", "blue");
 						isDuplicateId = false;
+						isId = false;
 					}
 				} //success
 			}); //ajax

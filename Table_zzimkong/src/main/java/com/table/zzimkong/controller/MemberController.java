@@ -111,6 +111,19 @@ public class MemberController {
 		}
 	} //MemberCheckDupNick()
 	
+	//MemberCheckDupEmail(이메일 중복확인)에 대한 비지니스 로직 처리===============================
+//	@ResponseBody
+//	@GetMapping("join/MemberCheckDupEmail")
+//	public String checkDupEmail(MemberVO member) {
+//		MemberVO dbMember = service.getMember(member);
+//		
+//		if(dbMember == null) {
+//			return "false";
+//		}else {
+//			return "true";
+//		}
+//	} 
+	
 	//업주회원=================================================================
 
 		@PostMapping("join/MemberJoinCeoPro")

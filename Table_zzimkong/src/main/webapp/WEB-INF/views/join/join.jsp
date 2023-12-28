@@ -66,8 +66,9 @@
 		                <option value="daum.net">daum.net</option>
 		                <option value="yahoo.com">yahoo.com</option>
 		                <option value="yahoo.com">직접입력</option>
-		             </select>	              
+		             </select>	 
 		           </div>
+   				   <span id="checkEmailResult"></span><br>
               <br>
               <!-- 전화번호 -->
               <div id="phoneBox">

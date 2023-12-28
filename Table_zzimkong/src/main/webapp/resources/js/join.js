@@ -11,10 +11,13 @@ $(document).ready(function() {
     document.getElementById("com_birth").max = today;
 	}
 
-	
+
+//	let isPasswd = false; //비밀번호 양식검사
+	let isId = false; //아이디 양식검사
 	let isDuplicateId = false; //아이디 중복 여부 저장할 변수
 	let isDuplicateNick = false; //닉네임 중복 여부 저장할 변수
 	let isSamePasswd = false; //패스워드 일치 여부 저장할 변수
+//	let isEmail = false; //이메일 중복확인
 	
 	//입력 널스트링이면 "입력하세요" 출력후 focus=======================
 	$("#joinBtn").click(function() {
@@ -90,10 +93,22 @@ $(document).ready(function() {
 			alert("비밀번호가 불일치 합니다.");
 			return false;		
 		}
+		
+		//비밀번호가 양식에 맞지 않을 경우
+//	    if(!isPasswd){
+//			alert("비밀번호가 양식에 맞지 않습니다.");
+//			return false;		
+//		}
 	
 		//아이디 중복일 경우
 	    if(isDuplicateId){
 			alert("아이디 중복입니다.");
+			return false;		
+		}
+		
+		//아이디가 양식에 맞지 않을 경우
+	    if(isId){
+			alert("아이디가 양식에 맞지 않습니다.");
 			return false;		
 		}
 		
@@ -102,6 +117,12 @@ $(document).ready(function() {
 			alert("닉네임 중복입니다.");
 			return false;		
 		}
+		
+		//이메일 중복일 경우
+//	    if(isEmail){
+//			alert("이메일 중복입니다.");
+//			return false;		
+//		}
 	   
 	}); 
 	
@@ -177,6 +198,7 @@ $(document).ready(function() {
 		if(!regex.exec(user_id)) { //입력값 검증 실패시
 			$("#checkIdResult").html("영문자, 숫자 조합 8~16자리 필수(한글, 특수문자 사용불가)");
 			$("#checkIdResult").css("color", "red");
+			isId = true; 
 		}else{ //입력값 검증 성공시
 			$.ajax({
 				url: "MemberCheckDupId",
@@ -193,6 +215,7 @@ $(document).ready(function() {
 						$("#checkIdResult").html("사용 가능한 아이디");
 						$("#checkIdResult").css("color", "blue");
 						isDuplicateId = false;
+						isId = false;
 					}
 				} //success
 			}); //ajax
@@ -242,6 +265,32 @@ $(document).ready(function() {
 			}); //ajax
 			
 		}); //닉네임 중복확인
+		
+	//이메일 중복확인==========================================
+//		$("#u_email").blur(function(){
+//			
+//			let user_email = $("#u_email").val();
+//			
+//			$.ajax({
+//				url: "MemberCheckDupEmail",
+//				data: {
+//					user_email : user_email
+//				},
+//				dataType: "json",
+//				success : function(checkDuplicateResult){
+//					if(checkDuplicateResult ){ //중복
+//						$("#checkEmailResult").html("이미 사용중인 이메일");
+//						$("#checkEmailResult").css("color", "red");
+//						isEmail = true;
+//					}else{ //중복X
+//						$("#checkEmailResult").html("사용 가능한 이메일");
+//						$("#checkEmailResult").css("color", "blue");
+//						isEmail = false;
+//					}
+//				} //success
+//			}); //ajax
+//			
+//		}); 
 
 	
 	
