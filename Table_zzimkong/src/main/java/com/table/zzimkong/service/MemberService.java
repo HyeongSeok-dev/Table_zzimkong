@@ -31,6 +31,11 @@ public class MemberService {
 		return mapper.updateWithdrawMember(member);
 	}
 
+	//업주회원가입
+	public int registCeoMember(MemberVO member) {
+		return mapper.insertCeoMember(member);
+	}
+
 	
 	
 	

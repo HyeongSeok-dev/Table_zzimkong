@@ -102,7 +102,6 @@ public class MemberController {
 	@ResponseBody
 	@GetMapping("join/MemberCheckDupNick")
 	public String checkDupNick(MemberVO member) {
-		System.out.println(member);
 		MemberVO dbMember = service.getMember(member);
 		
 		if(dbMember == null) {
@@ -116,10 +115,14 @@ public class MemberController {
 
 		@PostMapping("join/MemberJoinCeoPro")
 		public String joinCeoPro(MemberVO member, Model model) {
-				
-				System.out.println(member);
 			
-				int insertCount = service.registMember(member);
+				//암호화
+				BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+				String securePasswd = passwordEncoder.encode(member.getUser_passwd());
+				member.setUser_passwd(securePasswd);
+					
+			
+				int insertCount = service.registCeoMember(member);
 				if(insertCount > 0) { // 성공				
 					return "redirect:/join/complete";
 				} else { // 실패
@@ -127,6 +130,7 @@ public class MemberController {
 					model.addAttribute("msg", "회원 가입 실패!");
 					return "fail_back";
 				}
+				
 				
 			}//joinCeoPro()
 		
@@ -188,7 +192,8 @@ public class MemberController {
 	
 	@PostMapping("loginPro") 
 	public String longinPro(MemberVO member, HttpSession session, Model model) {
-	//	System.out.println(member);
+		System.out.println(member);
+		
 		MemberVO dbMember = service.getMember(member);
 		System.out.println(dbMember);
 		
@@ -209,6 +214,10 @@ public class MemberController {
 		session.setAttribute("sId", member.getUser_id());
 		//메인닉네임표시
 		session.setAttribute("sNick", dbMember.getUser_nick());
+		//메인화면 회원상태 구별을 위한 세션
+		session.setAttribute("sStatus", dbMember.getUser_status());
+		//메인 업주화면 이름 표시를위한 세션
+		session.setAttribute("sName", dbMember.getUser_name());
 		//  user_idx가 외래키여서 session에 sIdx 넣었음
 		session.setAttribute("sIdx", dbMember.getUser_idx());	
 		// 메인페이지로 리다이렉트
