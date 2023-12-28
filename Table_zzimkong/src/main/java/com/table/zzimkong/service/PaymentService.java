@@ -25,7 +25,13 @@ public class PaymentService {
 		return mapper.selectResForPay(res);
 	}
 	
-	public int getPoint(ReservationVO res) {
+	//방법1
+//	public int getPoint(ReservationVO res) {
+//		
+//		return mapper.selectPoint(res);
+//	}
+	//방법2
+	public String getPoint(ReservationVO res) {
 		
 		return mapper.selectPoint(res);
 	}
