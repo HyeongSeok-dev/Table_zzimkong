@@ -11,8 +11,8 @@ $(document).ready(function() {
     document.getElementById("com_birth").max = today;
 	}
 
-
-//	let isPasswd = false; //비밀번호 양식검사
+	let Pone = false; //전화번호 양식 검사
+	let isPasswd = false; //비밀번호 안전도 검사
 	let isId = false; //아이디 양식검사
 	let isDuplicateId = false; //아이디 중복 여부 저장할 변수
 	let isDuplicateNick = false; //닉네임 중복 여부 저장할 변수
@@ -94,12 +94,12 @@ $(document).ready(function() {
 			return false;		
 		}
 		
-		//비밀번호가 양식에 맞지 않을 경우
-//	    if(!isPasswd){
-//			alert("비밀번호가 양식에 맞지 않습니다.");
-//			return false;		
-//		}
-	
+		//비밀번호 안전도가 맞지 않을 경우
+	    if(!isPasswd){
+			alert("사용할수 없는 비밀번호 입니다.");
+			return false;		
+		}
+		
 		//아이디 중복일 경우
 	    if(isDuplicateId){
 			alert("아이디 중복입니다.");
@@ -115,6 +115,12 @@ $(document).ready(function() {
 		//닉네임 중복일 경우
 	    if(isDuplicateNick){
 			alert("닉네임 중복입니다.");
+			return false;		
+		}
+		
+		//전화번호 양식 맞지 않을경우
+	    if(Pone){
+			alert("전화번호가 양식에 맞지 않습니다.");
 			return false;		
 		}
 		
@@ -176,6 +182,13 @@ $(document).ready(function() {
 				case 2 : msg = "위험"; color = "orange"; break;
 				case 1 : case 0 :  msg = "사용불가능한 비밀번호"; color = "red"; 
 			}
+			
+			if(count >= 2){ //안전,보통,위험 (사용가능)
+				isPasswd = true;
+			}else{ //사용불가능한 비밀번호
+				isPasswd = false;
+			}	
+				
 		}
 		
 		$("#checkPasswdResult").html(msg);
@@ -232,9 +245,11 @@ $(document).ready(function() {
 		if (!regex.test(user_phone)) {
 		    $("#checkPhoneResult").html("전화번호는 11자리 숫자여야 합니다. (' - ' 를 빼고 입력)");
 			$("#checkPhoneResult").css("color", "red");
+			Pone = true;
 		}else{
 		    $("#checkPhoneResult").html("사용가능한 전화번호입니다. 인증해주세요");
 			$("#checkPhoneResult").css("color", "blue");
+			Pone = false;
 		}
 
 	}); 
