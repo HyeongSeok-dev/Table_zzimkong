@@ -1,5 +1,7 @@
 package com.table.zzimkong.vo;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Data;
 
 @Data
@@ -11,5 +13,6 @@ public class MenuVO {
 	private String menu_describe;
 	private String menu_img;
 	private int order_amount;
+	private MultipartFile mFile;
 	
 }

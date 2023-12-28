@@ -10,7 +10,7 @@ $(function(){
                     <input type="text" name="menuList[${menuCount}].menu_name" class="menuName" placeholder="메뉴 이름" required>
                     <input type="number" name="menuList[${menuCount}].menu_price" class="menuPrice" placeholder="메뉴 가격" required>
                     <textarea name="menuList[${menuCount}].menu_describe" class="menuDesc" placeholder="메뉴 설명" required></textarea>
-                    <input type="file" name="menuImages[${menuCount}].menu_img" class="menuImage" accept="image/*">
+                    <input type="file" name="menuImages" class="menuImage" accept="image/*">
                 </div>
                 <div class="previewContainer">
                     <img class="previewImage" src="" alt="이미지 미리보기">

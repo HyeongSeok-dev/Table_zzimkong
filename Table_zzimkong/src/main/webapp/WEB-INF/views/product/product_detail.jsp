@@ -112,7 +112,7 @@
 						<div class="menu_contents">
 							<div class="menu_box">
 								<img class="menu_img"
-									src="${pageContext.request.contextPath}/resources/img/${menu.menu_img}">
+									src="${pageContext.request.contextPath}/resources/upload/${menu.menu_img}">
 							</div>
 							<div class=menu_section>
 								<!-- menu_section 내부 내용은 동일 -->

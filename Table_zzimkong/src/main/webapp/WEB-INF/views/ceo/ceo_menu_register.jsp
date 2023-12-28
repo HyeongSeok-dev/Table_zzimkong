@@ -16,17 +16,15 @@
 	<div class="text">
 			<h3>메뉴 등록</h3>
 		<div class="article">
-			<form id="menuForm" method="post" action="registerPro" class="section_box">
+			<form id="menuForm" method="post" action="registerPro" enctype="multipart/form-data" class="section_box">
 				<div id="menuContainer">
-					<input type="hidden" name="menu_idx" value="1">
-					<input type="hidden" name="com_id" value="1">
+					<input type="hidden" name="com_id" value="${param.com_id}">
 					<div class="menuRow">
 						<div class="menuInput">
 							<input type="text" name="menuList[0].menu_name" class="menuName" placeholder="메뉴 이름" required> 
 							<input type="number" name="menuList[0].menu_price" class="menuPrice" placeholder="메뉴 가격" required>
 							<textarea name="menuList[0].menu_describe" class="menuDesc" placeholder="메뉴 설명" required></textarea>
-							<input type="file" name="menuImages[0].menu_img" class="menuImage"
-								>
+							<input type="file" name="menuImages" class="menuImage" accept="image/*">
 						</div>
 						<div class="previewContainer">
 							<img class="previewImage" src="" alt="이미지 미리보기">

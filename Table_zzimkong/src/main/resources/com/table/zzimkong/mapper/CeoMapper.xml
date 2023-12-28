@@ -9,8 +9,32 @@
 	<insert id="insertMenu">
 		insert into menu (menu_idx, com_id, menu_name, menu_price, menu_describe, menu_img)
 		values 
-		<foreach collection="menuList.menuList" item="menu" separator=",">
-			(null,#{com_id} ,#{menu.menu_name}, #{menu.menu_price}, #{menu.menu_describe},'default')
-		</foreach>
+			(null,#{com_id} ,#{menu.menu_name}, #{menu.menu_price}, #{menu.menu_describe}, #{menu.menu_img})
 	</insert>
+	
+	<select id="selectMycompanyList" resultType="company">
+		SELECT *
+		FROM company
+		WHERE user_idx = #{sIdx}
+	</select>
+	
+	<select id="selectMenu" resultType="menu">
+		SELECT * 
+		FROM menu
+		WHERE menu_idx = #{menu_idx}
+	</select>
+	
+	<update id="updateMenu">
+		UPDATE menu
+		SET menu_name = #{menu_name}
+		, menu_price = #{menu_price}
+		, menu_describe = #{menu_describe}
+		, menu_img = #{menu_img}
+		WHERE menu_idx = #{menu_idx}
+	</update>
+	
+	<delete id="deleteMenu">
+		DELETE FROM menu
+		WHERE menu_idx = #{menu_idx}
+	</delete>
 </mapper>
