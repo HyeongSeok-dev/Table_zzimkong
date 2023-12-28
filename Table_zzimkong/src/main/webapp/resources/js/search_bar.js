@@ -253,12 +253,7 @@ $(document).ready(function() {
 	
 	//메인(테마카테고리)=================================================================
 	$(".foodThemeCategory").click(function() {
-		sendCategoryPage();
-	});
-	
-	function sendCategoryPage() {
-		
-		formData['context'] = $('.foodThemeCategory').val();
+		formData['context'] = $(this).val();
 		formData['sort'] = $("select[name='sort']").val();
 		
 		$.ajax({
@@ -278,11 +273,11 @@ $(document).ready(function() {
 				console.log("Error: ", error);
 			}
 		});
-	} //sendCategoryPage
-	
+	});
 	//메인(카테고리)=================================================================
-	 $("select[name='category']").click(function() {
+	 $("button[name='category']").click(function() {
         formData['category'] = $(this).val();
+        sendFormDataToNextPage();
     });
 
 	

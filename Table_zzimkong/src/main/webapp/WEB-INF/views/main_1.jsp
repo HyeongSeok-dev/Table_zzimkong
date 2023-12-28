@@ -40,14 +40,8 @@
 <script src="${pageContext.request.contextPath }/resources/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/plugins.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/wow.min.js"></script>
-<script src="${pageContext.request.contextPath }/resources/js/main_1.js"></script>
-
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
+<script src="${pageContext.request.contextPath }/resources/js/main.js"></script>
 </head>
-
 
 <body>
 	<!-- Header start (메인탑)============================== -->
@@ -216,53 +210,139 @@
 	</form>
 	
 	<!--Slider start============================== -->
+	<section id="slider">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="block wow fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
+						<div class="title">
+							<h3><span class="seleted_location">${search.location}</span> <span>위생순</span></h3>
+						</div>
+						<div id="owl-example1" class="owl-carousel">
+						
 						<%-- 상세페이지로 가는 이미지 --%>
-								<div id="carouselExample" class="carousel slide" data-ride="carousel">
-    <div class="carousel-inner">
-        <div class="carousel-item active"> <!-- 첫 번째 슬라이드 -->
-            <div class="row">
-                <div class="col">
-                    <img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/list_com.jpg">
-                </div>
-                <div class="col">
-                    <img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_restaurant2.jpg">
-                </div>
-                <div class="col">
-                    <img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_restaurant3.jpg">
-                </div>
-                <div class="col">
-                    <img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_restaurant4.jpg">
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item"> <!-- 두 번째 슬라이드 -->
-            <div class="row">
-                <div class="col">
-                    <img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_restaurant5.jpg">
-                </div>
-                <div class="col">
-                    <img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_restaurant6.jpg">
-                </div>
-                <div class="col">
-                    <img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_restaurant7.jpg">
-                </div>
-                <div class="col">
-                    <img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_restaurant8.jpg">
-                </div>
-            </div>
-        </div>
-    </div>
-    <a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">이전</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExample" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">다음</span>
-    </a>
-</div>
+							<div class="owl_example1_items_images">
+								<a href="${pageContext.request.contextPath}/product/detail">
+									<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/list_com.jpg" >
+								</a>
+							</div>
+							<div class="owl_example1_items_images">
+								<a href="">
+									<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_restaurant2.jpg" >
+								</a>
+							</div>
+							<div  class="owl_example1_items_images">
+								<a href="">
+								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_restaurant3.jpg" >
+								</a>
+							</div>
+							<div  class="owl_example1_items_images">
+								<a href="">
+								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_restaurant4.jpg" >
+								</a>
+							</div>
+							<div  class="owl_example1_items_images">
+								<a href="">
+								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_restaurant5.jpg" >
+								</a>
+							</div>
+							<div  class="owl_example1_items_images">
+								<a href="">
+								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_restaurant6.jpg" >
+								</a>
+							</div>
+							<div  class="owl_example1_items_images">
+								<a href="">
+								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_restaurant7.jpg">
+								</a>
+							</div>
+							<div  class="owl_example1_items_images">
+								<a href="">
+								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_restaurant8.jpg">
+								</a>
+							</div>
 
- 
+						</div>
+					</div>
+				</div><!-- .col-md-12 close -->
+			</div><!-- .row close -->
+		</div><!-- .container close -->
+	</section><!-- slider close -->
+
+		
+	 <button><a href="ceo/sale">ceo/sale</a></button>
+	 <button><a href="ceo/black">ceo/black</a></button>
+	 <button><a href="ceo/black/register">ceo/black/register</a></button>
+	 <button><a href="ceo/company/list">ceo/company/list</a></button>
+	 <button><a href="ceo/company/register">ceo/company/register</a></button>
+	 <button><a href="ceo/company/modify">ceo/company/modify</a></button>
+	 <button><a href="ceo/company/ad">ceo/company/ad</a></button>
+	 <button><a href="ceo/menu/list">ceo/menu/list</a></button>
+	 <button><a href="ceo/menu/modify">ceo/menu/modify</a></button>
+	 <button><a href="ceo/menu/register">ceo/menu/register</a></button>
+	 <button><a href="ceo/reservation">ceo/reservation</a></button>
+	 <button><a href="ceo/reservation/detail">ceo/reservation/detail</a></button>
+	 <button><a href="ceo/cs/faq">ceo/cs/faq</a></button>
+	 <button><a href="ceo/cs/notice">ceo/cs/notice</a></button>
+	 <button><a href="ceo/cs/qna/modify">ceo/cs/qna/modify</a></button>
+	 <button><a href="ceo/cs/qna/register">ceo/cs/qna/register</a></button>
+	 <button><a href="ceo/cs/qna">ceo/cs/qna</a></button>
+	 <hr>
+	 
+	 <button><a href="payment/info">payment/info</a></button>
+	 <button><a href="payment">payment</a></button>
+	  <hr>
+	 <button><a href="product/detail">product/detail</a></button>
+	 <button><a href="product/list">product/list</a></button>
+	  <hr>
+	 <button><a href="admin/main">admin/main</a></button>
+	 <button><a href="admin/user">admin/user</a></button>
+	 <button><a href="admin/company">admin/company</a></button>
+	 <button><a href="admin/company/info">admin/company/info</a></button>
+	 <button><a href="admin/review">admin/review</a></button>
+	 <button><a href="admin/review/detail">admin/review/detail</a></button>
+	 <button><a href="admin/cs/notice">admin/cs/notice</a></button>
+	 <button><a href="admin/cs/faq">admin/cs/faq</a></button>
+	 <button><a href="admin/cs/qna">admin/cs/qna</a></button>
+	 <hr>
+	 <button><a href="join/join">join</a></button>
+	 <button><a href="join/ceo">join/ceo</a></button>
+	 <button><a href="join/choice">join/choice</a></button>
+ 	 <button><a href="join/complete">join/complete</a></button>
+ 	 <button><a href="join/agree">join/agree</a></button>
+	 <button><a href="login">login</a></button>
+	 <hr>
+	 <button><a href="login/find/id">login/find/id</a></button>
+	 <button><a href="login/find/passwd">login/find/passwd</a></button>
+	 <hr>
+	 <button><a href="my/list">my/list</a></button>
+	 <button><a href="my/review">my/review</a></button>
+	 <button><a href="my/report/shop">my/report/shop</a></button>
+	 <button><a href="my/report/reason">my/report/reason</a></button>
+	 <button><a href="my/modify/profile">my/modify/profile</a></button>
+	 <button><a href="my/unregister">my/unregister</a></button>
+	 <button><a href="my/complet">my/complet</a></button>
+	 <hr>
+	 <button><a href="review/detail">review/detail</a></button>
+	 <button><a href="review/write">review/write</a></button>
+	 <button><a href="review/complete">review/complete</a></button>
+	 <button><a href="review/report">review/report</a></button>
+	 <button><a href="review/comment">review/comment</a></button>
+	 <hr>
+	 <button><a href="reservation">reservation</a></button>
+	<hr>
+	<button><a href="member/cs/faq">member/cs/faq</a></button>
+	<button><a href="member/cs/faq/view">member/cs/faq/view</a></button>
+	<button><a href="member/cs/notice">member/cs/notice</a></button>
+	<button><a href="member/cs/notice/view">member/cs/notice/view</a></button>
+	<button><a href="member/cs/qna">member/cs/qna</a></button>
+	<button><a href="member/cs/qna/register">member/cs/qna/register</a></button>
+	<button><a href="member/cs/qna/view">member/cs/qna/view</a></button>
+	<button><a href="member/cs/qna/modify">member/cs/qna/modify</a></button>
+	<br>
+	
+	   
+	
 	<!--footer-bottom  start ============================= -->
 	<footer>
 		<jsp:include page="inc/bottom_main.jsp"/>
