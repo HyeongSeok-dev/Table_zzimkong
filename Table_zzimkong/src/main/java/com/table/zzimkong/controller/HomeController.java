@@ -206,6 +206,11 @@ public class HomeController {
 	public String top2_search_bar() {
 		return "inc/top2_search_bar";
 	}
+	
+	@GetMapping("main_1")
+	public String main_1() {
+		return "main_1";
+	}
 
 
 	@GetMapping("fail_back")
