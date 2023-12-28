@@ -1,5 +1,9 @@
 package com.table.zzimkong.controller;
 
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.table.zzimkong.service.CeoService;
 import com.table.zzimkong.vo.MenuList;
@@ -87,9 +92,22 @@ public class CeoController {
 	}
 	
 	@GetMapping("ceo/company/register")
-	public String ceo_company_register() {
+	public ModelAndView ceo_company_register(HttpSession session, Map<String,Object> map) {
+		ModelAndView mav;
+//		if(session.getAttribute("sId") == null) {
+//			
+//			map.put("msg", "접근권한이 없습니다!");
+//			map.put("targetURL", "login");
+//			
+//			mav = new ModelAndView("forward", "map", map);
+//			return mav;
+//		}
 		
-		return "ceo/ceo_company_register";
+		// 1.등록
+		
+		
+		mav = new ModelAndView("ceo/ceo_company_register", "map", map);
+		return mav;
 	}
 	
 	@GetMapping("ceo/company/modify")

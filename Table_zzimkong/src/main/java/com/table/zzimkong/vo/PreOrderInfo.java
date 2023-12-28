@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class PreOrderInfo {
+		private int pre_idx;
 		private int pre_num;
 		private int menu_idx;
 		private String menu_name;

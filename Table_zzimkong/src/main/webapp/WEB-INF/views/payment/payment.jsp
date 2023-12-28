@@ -286,7 +286,7 @@
 						 <%-- param--%> <input type="hidden" value="${map.res.res_table_price}" name="pay_per_price"/>
 									</div>
 									<c:choose>
-										<c:when test="${empty map.res.pre_idx}">
+										<c:when test="${empty map.poi.pre_idx}">
 											<div>
 												<span class="detail">메뉴 선결제금액</span>
 												<span class="detail_price">

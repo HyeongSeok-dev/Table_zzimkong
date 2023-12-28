@@ -45,8 +45,9 @@ public class PaymentController {
 								 ReservationVO res, CompanyVO company) {
 		ModelAndView mav; 
 		//세션에 저장된 아이디로 회원정보확인 하기 위해 일단 세션에 임의의 값 넣음
-		session.setAttribute("sId", "user02");
-		
+		//session.setAttribute("sId", "user02");
+		res = (ReservationVO)map.get("res");
+		System.out.println(res);
 		// 세션에 로그인이 안되어있다면 접근금지
 		if(session.getAttribute("sId") == null) {
 			
@@ -60,7 +61,7 @@ public class PaymentController {
 		// 나중에 예약완성되면 확인하기
 //		res = ((ReservationVO)session.getAttribute("res")
 //		session.setAttribute("res", null);
-		res.setRes_num("R0002");
+		//res.setRes_num("R0002");
 		
 		
 		//[ 예약정보조회 ]

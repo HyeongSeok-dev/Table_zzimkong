@@ -67,5 +67,10 @@ public class CompanyVO {
 	private String menu_img ;
 	private String selectedTime;
 	/**/
+//	ceo_register.jsp 에서 가지고갈 정보들
+	private int openHour;
+	private int openMin;
+	private int closeHour;
+	private int closeMin;
 }
 
