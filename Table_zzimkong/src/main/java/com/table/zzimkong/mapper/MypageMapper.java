@@ -1,5 +1,7 @@
 package com.table.zzimkong.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.*;
 
 import com.table.zzimkong.vo.*;
@@ -16,4 +18,9 @@ public interface MypageMapper {
 	
 	// 닉네임 중복확인
 	MemberVO selectUserNick(MemberVO member);
+	
+	// 예약 내역 조회
+	List<ReservationVO> selectResList(int sIdx);
+
+//	CompanyVO selectCom(ReservationVO res);
 }

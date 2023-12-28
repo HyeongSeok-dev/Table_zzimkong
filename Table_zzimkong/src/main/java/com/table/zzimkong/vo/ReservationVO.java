@@ -1,6 +1,7 @@
 package com.table.zzimkong.vo;
 
 import java.sql.Date;
+import java.sql.Time;
 
 import lombok.Data;
 
@@ -20,8 +21,10 @@ public class ReservationVO {
 	private Date res_now;
 	private int res_pay_status;
 	private String res_request;
-
+	private int pre_idx;
 	
 	
+	// 마이페이지에서 불러올 가게명 JOIN을 위한 멤버변수
+	private String com_name;
 	
 }

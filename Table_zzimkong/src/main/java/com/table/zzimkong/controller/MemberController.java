@@ -111,19 +111,6 @@ public class MemberController {
 		}
 	} //MemberCheckDupNick()
 	
-	//MemberCheckDupEmail(이메일 중복확인)에 대한 비지니스 로직 처리===============================
-//	@ResponseBody
-//	@GetMapping("join/MemberCheckDupEmail")
-//	public String checkDupEmail(MemberVO member) {
-//		MemberVO dbMember = service.getMember(member);
-//		
-//		if(dbMember == null) {
-//			return "false";
-//		}else {
-//			return "true";
-//		}
-//	} 
-	
 	//업주회원=================================================================
 
 		@PostMapping("join/MemberJoinCeoPro")
@@ -217,6 +204,9 @@ public class MemberController {
 		
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		
+		
+		
+		
 		if(dbMember == null || !passwordEncoder.matches(member.getUser_passwd(), dbMember.getUser_passwd())) {
 //		if(dbMember == null || !dbMember.getUser_passwd().equals(member.getUser_passwd())) {
 		// 로그인 실패 처리
@@ -236,6 +226,9 @@ public class MemberController {
 		// 메인페이지로 리다이렉트
 		return "redirect:/";
 		}
+		
+		
+		
 		
 	}
 		

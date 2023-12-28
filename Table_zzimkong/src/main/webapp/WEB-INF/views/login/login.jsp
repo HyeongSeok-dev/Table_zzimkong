@@ -26,10 +26,10 @@
 		      <div class="loginBox">
 		        <form action="loginPro" id="loginForm" method="post">
 		          <!-- ID입력 텍스트박스 -->
-		          <input type="text" id="userId" name="user_id" class="inputTxt inpBig" placeholder="아이디">
+		          <input type="text" id="userId" name="user_id" class="inputTxt inpBig" placeholder="아이디" required="required">
 		          <!-- 비밀번호 입력 텍스트박스 -->
 		          <input type="password" id="passwd" name="user_passwd" class="inputTxt inpBig" style="text-align: left;"
-		           placeholder="비밀번호 (영문, 숫자, 특수문자 조합 8~16자리)">
+		           placeholder="비밀번호 (영문, 숫자, 특수문자 조합 8~16자리)" required="required">
 		           <!-- ID기억하기 체크박스 -->
 		           <div class="check" align="left">
 					    <input type="checkbox"  id="remember-id">

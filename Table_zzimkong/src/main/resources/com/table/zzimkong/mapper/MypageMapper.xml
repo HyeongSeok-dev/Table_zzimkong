@@ -2,8 +2,6 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
-
 <mapper namespace="com.table.zzimkong.mapper.MypageMapper">
 
 	<!-- 회원정보 조회 - SELECT -->
@@ -13,7 +11,7 @@
 	WHERE user_id = #{user_id}
 	</select>
 	
-	<!-- 닉네임 중복확인 -->
+	<!-- 닉네임 중복확인 - SELECT -->
 	<select id="selectUserNick"  resultType="member">
 	SELECT *
 	FROM user
@@ -39,4 +37,21 @@
 		WHERE
 			user_id = #{member.user_id}
 	</update>
+	
+	<!-- 예약내역 조회 - SELECT -->
+	<select id="selectResList">
+		SELECT *
+		FROM reservation, company
+		WHERE user_idx = #{sIdx} AND #{com_id} 
+		ORDER BY res_idx DESC;
+	</select>
+	
+	<!-- 회사명 조회 - SELECT -->
+<!-- 	<select id="selectCom"> -->
+<!-- 		SELECT com_name -->
+<!-- 		FROM company -->
+<!-- 		WHERE com_id = #{com_id} -->
+<!-- 	</select> -->
+
+
 </mapper>

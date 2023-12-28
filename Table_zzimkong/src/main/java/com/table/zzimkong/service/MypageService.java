@@ -1,5 +1,7 @@
 package com.table.zzimkong.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 
@@ -27,5 +29,16 @@ public class MypageService {
 	public MemberVO getUserNick(MemberVO member) {
 		return mapper.selectUserNick(member);
 	}
+	
+	// 예약 내역 목록
+	public List<ReservationVO> getResList(int sIdx) {
+		// TODO Auto-generated method stub
+		return mapper.selectResList(sIdx);
+	}
+
+//	public CompanyVO getComName(ReservationVO res) {
+		// TODO Auto-generated method stub
+//		return mapper.selectCom(res);
+//	}
 
 }

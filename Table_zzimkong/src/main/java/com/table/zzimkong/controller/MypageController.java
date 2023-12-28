@@ -1,5 +1,7 @@
 package com.table.zzimkong.controller;
 
+import java.util.List;
+
 import javax.servlet.http.*;
 
 import org.springframework.beans.factory.annotation.*;
@@ -122,6 +124,28 @@ public class MypageController {
 			return "fail_back";
 		}
 
+	}
+	
+	// [ 나의 예약 내역 목록 조회 ]
+	
+	@GetMapping("my/list")
+	public String my_list(HttpSession session, Model model, HttpServletResponse response) {
+		
+		// MypageService - getResList() 메서드 호출하여 회원 목록 조회 요청
+		int sIdx = (int)session.getAttribute("sIdx");
+		List<ReservationVO> resList = service.getResList(sIdx);
+		System.out.println("예약목록 = " + resList);
+		
+		// 가게 이름 검색
+//		for(ReservationVO res:resList) {
+//			CompanyVO com = service.getComName(res);
+//		}
+		
+		
+		// Model 객체에 회원 목록 조회 결과 저장
+		model.addAttribute("resList", resList);
+		
+		return "mypage/my_list";
 	}
 	
 	
