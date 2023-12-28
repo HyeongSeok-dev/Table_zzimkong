@@ -13,8 +13,8 @@ body {
 	overflow: auto;
 	overflow-y: visible;
 	overflow-x: hidden;
-	width: 70%;
-	margin: 0 auto
+/* 	width: 70%; */ /* 이거 디테일 페이지 오류잡기위한것 */
+/* 	margin: 0 auto */
 }
 
 * {
