@@ -120,6 +120,12 @@ img[alt="logo2"] {
 /* 	right: 10px; */
 	width: 700px;
 }
+.top_search_button2 {
+	position: relative;
+	bottom: 15px;
+	right: 10px;
+	width: 300px;
+}
 .li {
 	list-style: none;
 	margin-right : 10px;

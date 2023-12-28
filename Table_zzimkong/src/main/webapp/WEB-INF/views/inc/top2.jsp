@@ -22,7 +22,7 @@
 				<img alt="logo2" id="logo2" src="${pageContext.request.contextPath }/resources/img/logo3_2.png">
 			</a>
 		</div>
-		<div class="top_search_button">
+		<div class="top_search_button2">
 		
 		</div>
 		<div class="top_menu">
