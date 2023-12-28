@@ -7,8 +7,8 @@
 <mapper namespace="com.table.zzimkong.mapper.ProductMapper">
 
 	<select id="selectCompanyList" resultType="company">
-		SELECT c.com_id, c.user_idx, com_name, com_category, com_ceo, com_address, com_tel, com_gugun, com_lat, 
-	    com_lng, com_open_time, com_close_time, com_break_time, com_img, com_max_people, com_tag_date, 
+		SELECT c.com_id, c.user_idx, com_name, com_category, com_ceo, com_address, com_tel, com_gugun, 
+		com_open_time, com_close_time, com_break_time, com_img, com_max_people, com_tag_date, 
 	    com_tag_family, com_tag_party, com_tag_quiet, com_tag_park,  com_tag_kids,   com_tag_disabled, 
 	    com_tag_pet, com_tag_hall, com_tag_room, com_tag_terrace, com_tag_window, com_hyg_rank, com_hyg_start_date, 
 	    com_status, com_ad_grade, com_search_tag, com_reg_date, review_count, 
@@ -204,11 +204,6 @@
 	<select id="selectSimilarCompanyList" resultType="company">
 	    SELECT c.*, avg_score
 	    FROM company c
-	    CROSS JOIN (
-		    SELECT com_search_tag 
-		    FROM company 
-		    WHERE com_id = #{company.com_id}
-		) as ref
 	    LEFT JOIN (
 	        SELECT com_id, AVG(review_score) AS avg_score
 	        FROM review
@@ -233,7 +228,11 @@
 				        SELECT 1
 				        FROM company c2
 				        WHERE c2.com_id = #{company.com_id}
-				        AND FIND_IN_SET(SUBSTRING_INDEX(SUBSTRING_INDEX(ref.com_search_tag, ',',10), ',', -1), c.com_search_tag) > 0
+				        AND (
+				            <foreach item="individualTag" collection="individualTags" separator=" OR ">
+				                c.com_search_tag LIKE CONCAT('%', #{individualTag}, '%')
+				            </foreach>
+				        )
 				    )
 				)
 	        </if>

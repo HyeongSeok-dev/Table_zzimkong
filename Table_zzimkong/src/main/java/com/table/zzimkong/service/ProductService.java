@@ -43,9 +43,9 @@ public class ProductService {
 		return mapper.selectVisitedPeople(user_idx);
 	}
 
-	public List<CompanyVO> getsimilarCompanyList(String sort, CompanyVO company, List<String> tagList) {
+	public List<CompanyVO> getsimilarCompanyList(String sort, CompanyVO company, List<String> tagList, List<String> individualTags) {
 		// TODO Auto-generated method stub
-		return mapper.selectSimilarCompanyList(sort, company, tagList);
+		return mapper.selectSimilarCompanyList(sort, company, tagList, individualTags);
 	}
 	
 }

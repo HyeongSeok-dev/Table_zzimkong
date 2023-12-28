@@ -4,9 +4,12 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -229,7 +232,6 @@ public class ProductController {
 		company.setCom_id(com_id);
 	    company = service.getCompany(company);
 	    List<String> tagList = new ArrayList<>();
-	    
 	    if(company.isCom_tag_date()) {
 	        tagList.add("com_tag_date");
 	    }
@@ -254,20 +256,22 @@ public class ProductController {
 	    if(company.isCom_tag_pet()) {
 	        tagList.add("com_tag_pet");
 	    }
-//	    if(company.isCom_tag_hall()) {
-//	        tagList.add("com_tag_hall");
-//	    }
-//	    if(company.isCom_tag_room()) {
-//	        tagList.add("com_tag_room");
-//	    }
-//	    if(company.isCom_tag_terrace()) {
-//	        tagList.add("com_tag_terrace");
-//	    }
-//	    if(company.isCom_tag_window()) {
-//	        tagList.add("com_tag_window");
-//	    }
-//		
-		List<CompanyVO> companyList = service.getsimilarCompanyList(sort, company, tagList);
+	    
+		String[] tagsArray = company.getCom_search_tag().split("#");
+		
+		// 분리된 태그를 리스트로 변환하고 중복 및 빈 문자열 제거
+		Set<String> tagsSet = new HashSet<>(Arrays.asList(tagsArray));
+		tagsSet.remove("");  // 빈 문자열 제거
+		
+		// 다시 리스트로 변환
+		List<String> individualTags = new ArrayList<>(tagsSet);
+		
+		// 결과 출력 (디버깅용)
+		for (String tag : individualTags) {
+		    System.out.println(tag);
+		}
+	 
+		List<CompanyVO> companyList = service.getsimilarCompanyList(sort, company, tagList, individualTags);
 		
 		return ResponseEntity.ok(companyList);
 	}

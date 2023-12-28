@@ -23,5 +23,5 @@ public interface ProductMapper {
 
 	List<ReservationVO> selectVisitedPeople(int user_idx);
 
-	List<CompanyVO> selectSimilarCompanyList(@Param("sort") String sort, @Param("company")CompanyVO company, @Param("tagList")List<String> tagList);
+	List<CompanyVO> selectSimilarCompanyList(@Param("sort") String sort, @Param("company")CompanyVO company, @Param("tagList")List<String> tagList,@Param("individualTags") List<String> individualTags);
 }
