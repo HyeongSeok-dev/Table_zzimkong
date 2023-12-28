@@ -75,7 +75,7 @@
 	    ORDER BY review_update DESC;
 	</select>
 	
-	<!-- 리뷰 수정 -->
+	<!-- 리뷰 수정 뷰페이지-->
 	<select id="modifyReview" parameterType="int" resultType="review">
 	    SELECT * 
 	    FROM review
@@ -103,9 +103,64 @@
 	</update>
 	
 	<!-- 리뷰 수정(UPDATE) -->
-	<update id="updateReview">
-	
-	</update>
+<update id="updateReview" parameterType="com.table.zzimkong.vo.ReviewVO">
+    UPDATE review
+    SET
+        <if test="user_id != null"> user_id = #{user_id}</if>
+        <if test="review_content != null">, review_content = #{review_content}</if>
+        <if test="review_score != null">, review_score = #{review_score}</if>
+        <if test="review_mood_interior != null">, review_mood_interior = #{review_mood_interior}</if>
+        <if test="review_mood_alone != null">, review_mood_alone = #{review_mood_alone}</if>
+        <if test="review_mood_large != null">, review_mood_large = #{review_mood_large}</if>
+        <if test="review_mood_meeting != null">, review_mood_meeting = #{review_mood_meeting}</if>
+        <if test="review_mood_view != null">, review_mood_view = #{review_mood_view}</if>
+        <if test="review_food_big != null">, review_food_big = #{review_food_big}</if>
+        <if test="review_food_deli != null">, review_food_deli = #{review_food_deli}</if>
+        <if test="review_food_cheap != null">, review_food_cheap = #{review_food_cheap}</if>
+        <if test="review_food_fresh != null">, review_food_fresh = #{review_food_fresh}</if>
+        <if test="review_food_healthy != null">, review_food_healthy = #{review_food_healthy}</if>
+        <if test="review_etc_kind != null">, review_etc_kind = #{review_etc_kind}</if>
+        <if test="review_etc_parking != null">, review_etc_parking = #{review_etc_parking}</if>
+        <if test="review_etc_toilet != null">, review_etc_toilet = #{review_etc_toilet}</if>
+        <if test="review_etc_fast != null">, review_etc_fast = #{review_etc_fast}</if>
+        <if test="review_etc_child != null">, review_etc_child = #{review_etc_child}</if>
+        <if test="review_no_keyword != null">, review_no_keyword = #{review_no_keyword}</if>
+        <if test="review_img_1 != null">, review_img_1 = #{review_img_1}</if>
+        <if test="review_like != null">, review_like = #{review_like}</if>
+    WHERE review_num = #{review_num}
+</update>
+
+
+
+<!-- 	 리뷰 수정(UPDATE) --> 
+<!-- <update id="updateReview" parameterType="com.table.zzimkong.vo.ReviewVO"> -->
+<!--     UPDATE review -->
+<!--     <set> -->
+<!--         <if test="user_id != null"> user_id = #{user_id} </if>, -->
+<!--         <if test="review_content != null"> review_content = #{review_content}, </if> -->
+<!--         <if test="review_score != null"> review_score = #{review_score}, </if> -->
+<!--         <if test="review_mood_interior != null"> review_mood_interior = #{review_mood_interior}, </if> -->
+<!--         <if test="review_mood_alone != null"> review_mood_alone = #{review_mood_alone}, </if> -->
+<!--         <if test="review_mood_large != null"> review_mood_large = #{review_mood_large}, </if> -->
+<!--         <if test="review_mood_meeting != null"> review_mood_meeting = #{review_mood_meeting}, </if> -->
+<!--         <if test="review_mood_view != null"> review_mood_view = #{review_mood_view}, </if> -->
+<!--         <if test="review_food_big != null"> review_food_big = #{review_food_big}, </if> -->
+<!--         <if test="review_food_deli != null"> review_food_deli = #{review_food_deli}, </if> -->
+<!--         <if test="review_food_cheap != null"> review_food_cheap = #{review_food_cheap}, </if> -->
+<!--         <if test="review_food_fresh != null"> review_food_fresh = #{review_food_fresh}, </if> -->
+<!--         <if test="review_food_healthy != null"> review_food_healthy = #{review_food_healthy}, </if> -->
+<!--         <if test="review_etc_kind != null"> review_etc_kind = #{review_etc_kind}, </if> -->
+<!--         <if test="review_etc_parking != null"> review_etc_parking = #{review_etc_parking}, </if> -->
+<!--         <if test="review_etc_toilet != null"> review_etc_toilet = #{review_etc_toilet}, </if> -->
+<!--         <if test="review_etc_fast != null"> review_etc_fast = #{review_etc_fast}, </if> -->
+<!--         <if test="review_etc_child != null"> review_etc_child = #{review_etc_child}, </if> -->
+<!--         <if test="review_no_keyword != null"> review_no_keyword = #{review_no_keyword}, </if> -->
+<!--         <if test="review_img_1 != null"> review_img_1 = #{review_img_1}, </if> -->
+<!--         <if test="review_like != null"> review_like = #{review_like}, </if> -->
+<!--     </set> -->
+<!--     WHERE review_num = #{review_num} -->
+<!-- </update> -->
+
 	
 	
 	<!-- 리뷰 내용 가져오기 -->

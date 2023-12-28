@@ -52,8 +52,7 @@ public class ReviewVO {
 	private int review_status;
 	
 	private String com_name;
-	
-	
+
 	
 	
 }

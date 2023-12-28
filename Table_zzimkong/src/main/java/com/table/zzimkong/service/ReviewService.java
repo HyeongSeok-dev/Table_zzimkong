@@ -74,6 +74,9 @@ public class ReviewService {
 		return mapper.getReview(reviewNum);
 	}
 
+	
+	
+	
 	//-------------------------------------------------------------
 	// 이런 점이 좋았어요
 //	public Map<String, Integer> getKeywordsCounts(int comId) {

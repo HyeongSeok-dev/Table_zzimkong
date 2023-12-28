@@ -278,10 +278,11 @@ public class ReviewController {
 	}
 	
 	// "ReviewModifyPro" 서블릿 요청에 대한 글 수정 요청 비즈니스 로직 처리
-	@PostMapping("review/ReviewModifyPro")
+	@PostMapping("/zzimkong/review/ReviewModifyPro")
 	public String modifyPro(
 			ReviewVO review,
-			@RequestParam("review_num") int reviewNum, // 선생님은 페이지번호 였지만 난 reviewNum으로
+			@RequestParam("review_num") int reviewNum,// 선생님은 페이지번호 였지만 난 reviewNum으로
+			@RequestParam("com_id") int comId,
 			HttpSession session, Model model ) {
 			// 세션 아이디에 따른 차단 처리
 				String sId = (String)session.getAttribute("sId");
@@ -351,7 +352,7 @@ public class ReviewController {
 				e.printStackTrace();
 			}
 			
-	        return "redirect:/zzimkong/review/detail?review_num=" + review.getReview_num();
+	        return "redirect:/review/redetail?com_id=" + comId;
 			
 		} else {
 			model.addAttribute("msg","리뷰 수정 실패!");

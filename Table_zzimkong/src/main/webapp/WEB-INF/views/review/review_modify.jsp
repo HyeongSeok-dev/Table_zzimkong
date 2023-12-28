@@ -64,7 +64,11 @@
 			<p>몇번째 방문</p>
 <!-- 			<p>먹은 메뉴</p> -->
 		</div>
-		<form action="reviewModifyPro" name="reviewModifyForm" method="POST" enctype="multipart/form-data">
+		<form action="${pageContext.request.contextPath}/zzimkong/review/ReviewModifyPro" method="POST" enctype="multipart/form-data">
+<!-- 		<form action="ReviewModifyPro" name="reviewModifyForm" method="POST" enctype="multipart/form-data"> -->
+	    <input type="hidden" name="review_num" value="${review.review_num}"> <!-- 231228 추가 -->
+	    <input type="hidden" name="com_id" value="${review.com_id}">    <!-- 231228 추가 -->
+	    <input type="hidden" name="user_id" value="${sId}">  <!-- 231228 추가 -->
 		<div class="separator"></div>
 		<div class="review_rate_1" style="text-align: center;">
 		<fieldset class="review_rate">
@@ -108,78 +112,151 @@
 			<div class="keyword_section">
 				<div class="keyword_category">
 			<h3>음식/가격</h3>		
-						<!-- ===================================================================== -->
-						<input type="checkbox" id="review_food_big_checkbox" onclick="updateCheckboxValue(this);"${review.review_food_big == 1 ? 'checked' : ''}>
+							<!-- ===================================================================== -->
+						<input type="checkbox" id="review_food_big_checkbox" ${review.review_food_big == 1 ? 'checked' : ''}>
 						<label for="review_food_big_checkbox" class="checkbox_label">양이 많아요</label>
 						<input type="hidden" name="review_food_big" value="${review.review_food_big}">
 						<!-- ===================================================================== -->
-						<input type="checkbox" id="review_food_deli_checkbox" onclick="updateCheckboxValue(this);"${review.review_food_deli == 1 ? 'checked' : ''}>
+						<input type="checkbox" id="review_food_deli_checkbox" ${review.review_food_deli == 1 ? 'checked' : ''}>
 						<label for="review_food_deli_checkbox" class="checkbox_label">음식이 맛있어요</label>
 						<input type="hidden" name="review_food_deli" value="${review.review_food_deli}">
 
-						<input type="checkbox" id="review_food_cheap_checkbox" onclick="updateCheckboxValue(this);" ${review.review_food_cheap == 1 ? 'checked' : ''}>
+						<input type="checkbox" id="review_food_cheap_checkbox"${review.review_food_cheap == 1 ? 'checked' : ''}>
 						<label for="review_food_cheap_checkbox" class="checkbox_label">가성비가 좋아요</label>
-						<input type="hidden" id="review_food_cheap" value="${review.review_food_cheap}">
-
-						<input type="checkbox" id="review_food_fresh_checkbox" onclick="updateCheckboxValue(this);" ${review.review_food_fresh == 1 ? 'checked' : ''}>
+						<input type="hidden" name="review_food_cheap" value="${review.review_food_cheap}">
+						<!-- ===================================================================== -->
+						<input type="checkbox" id="review_food_fresh_checkbox"${review.review_food_fresh == 1 ? 'checked' : ''}>
 						<label for="review_food_fresh_checkbox" id="review_food_fresh" class="checkbox_label">재료가 신선해요</label>
-						<input type="hidden" id="review_food_fresh" value="${review.review_food_fresh}">
-
-						<input type="checkbox" id="review_food_healthy_checkbox" onclick="updateCheckboxValue(this);" ${review.review_food_healthy == 1 ? 'checked' : ''}>
+						<input type="hidden" name="review_food_fresh" value="${review.review_food_fresh}">
+						
+						<input type="checkbox" id="review_food_healthy_checkbox"${review.review_food_healthy == 1 ? 'checked' : ''}>
 						<label for="review_food_healthy_checkbox" id="review_food_healthy" class="checkbox_label">건강한 맛이에요</label>
-						<input type="hidden" id="review_food_healthy" value="${review.review_food_healthy}">
+						<input type="hidden" name="review_food_healthy" value="${review.review_food_healthy}">
 				</div>
 				<div class="keyword_category">
 					<h3>분위기</h3>
-						<input type="checkbox" id="review_mood_interior_checkbox" onclick="updateCheckboxValue(this);" ${review.review_mood_interior == 1 ? 'checked' : ''}>
+						<input type="checkbox" id="review_mood_interior_checkbox"${review.review_mood_interior == 1 ? 'checked' : ''}>
 						<label for="review_mood_interior_checkbox" id="review_mood_interior" class="checkbox_label">인테리어가 멋져요</label>
-						<input type="hidden" id="review_mood_interior" value="${review.review_mood_interior}">
+						<input type="hidden" name="review_mood_interior" value="${review.review_mood_interior}">
 
-						<input type="checkbox" id="review_mood_alone_checkbox" onclick="updateCheckboxValue(this);" ${review.review_mood_alone == 1 ? 'checked' : ''}>
+						<input type="checkbox" id="review_mood_alone_checkbox"${review.review_mood_alone == 1 ? 'checked' : ''}>
 						<label for="review_mood_alone_checkbox" id="review_mood_alone" class="checkbox_label">혼밥하기 좋아요</label>
-						<input type="hidden" id="review_mood_alone" value="${review.review_mood_alone}">
+						<input type="hidden" name="review_mood_alone" value="${review.review_mood_alone}">
 
-						<input type="checkbox" id="review_mood_large_checkbox" onclick="updateCheckboxValue(this);" ${review.review_mood_large == 1 ? 'checked' : ''}>
+						<input type="checkbox" id="review_mood_large_checkbox"${review.review_mood_large == 1 ? 'checked' : ''}>
 						<label for="review_mood_large_checkbox" id="review_mood_large" class="checkbox_label">매장이 넓어요</label>
-						<input type="hidden" id="review_mood_large" value="${review.review_mood_large}">
+						<input type="hidden" name="review_mood_large" value="${review.review_mood_large}">
 
-						<input type="checkbox" id="review_mood_meeting_checkbox" onclick="updateCheckboxValue(this);" ${review.review_mood_meeting == 1 ? 'checked' : ''}>
+						<input type="checkbox" id="review_mood_meeting_checkbox"${review.review_mood_meeting == 1 ? 'checked' : ''}>
 						<label for="review_mood_meeting_checkbox" id="review_mood_meeting" class="checkbox_label">단체모임 하기 좋아요</label>
-						<input type="hidden" id="review_mood_meeting" value="${review.review_mood_meeting}">
+						<input type="hidden" name="review_mood_meeting" value="${review.review_mood_meeting}">
 
-						<input type="checkbox" id="review_mood_view_checkbox" onclick="updateCheckboxValue(this);" ${review.review_mood_view == 1 ? 'checked' : ''}>
+						<input type="checkbox" id="review_mood_view_checkbox"${review.review_mood_view == 1 ? 'checked' : ''}>
 						<label for="review_mood_view_checkbox" id="review_mood_view" class="checkbox_label">뷰가 좋아요</label>
-						<input type="hidden" id="review_mood_view" value="${review.review_mood_view}">
+						<input type="hidden" name="review_mood_view" value="${review.review_mood_view}">
 				</div>
 				
 				<div class="keyword_category">
 					<h3>편의 시설/기타</h3>
-						<input type="checkbox" id="review_etc_kind_checkbox" onclick="updateCheckboxValue(this);" ${review.review_etc_kind == 1 ? 'checked' : ''}>
+						<input type="checkbox" id="review_etc_kind_checkbox"${review.review_etc_kind == 1 ? 'checked' : ''}>
 						<label for="review_etc_kind_checkbox" id="review_etc_kind" class="checkbox_label">친절해요</label>
-						<input type="hidden" id="review_etc_kind" value="${review.review_etc_kind}">
+						<input type="hidden" name="review_etc_kind" value="${review.review_etc_kind}">
 
-						<input type="checkbox" id="review_etc_parking_checkbox" onclick="updateCheckboxValue(this);" ${review.review_etc_parking == 1 ? 'checked' : ''}>
+						<input type="checkbox" id="review_etc_parking_checkbox"${review.review_etc_parking == 1 ? 'checked' : ''}>
 						<label for="review_etc_parking_checkbox" id="review_etc_parking" class="checkbox_label">주차하기 편해요</label>
-						<input type="hidden" id="review_etc_parking" value="${review.review_etc_parking}">
+						<input type="hidden" name="review_etc_parking" value="${review.review_etc_parking}">
 
-						<input type="checkbox" id="review_etc_toilet_checkbox" onclick="updateCheckboxValue(this);" ${review.review_etc_toilet == 1 ? 'checked' : ''}>
+						<input type="checkbox" id="review_etc_toilet_checkbox"${review.review_etc_toilet == 1 ? 'checked' : ''}>
 						<label for="review_etc_toilet_checkbox" id="review_etc_toilet" class="checkbox_label">화장실이 깨끗해요</label>
-						<input type="hidden" id="review_etc_toilet" value="${review.review_etc_toilet}">
+						<input type="hidden" name="review_etc_toilet" value="${review.review_etc_toilet}">
 
-						<input type="checkbox" id="review_etc_fast_checkbox" onclick="updateCheckboxValue(this);" ${review.review_etc_fast == 1 ? 'checked' : ''}>
+						<input type="checkbox" id="review_etc_fast_checkbox"${review.review_etc_fast == 1 ? 'checked' : ''}>
 						<label for="review_etc_fast_checkbox" id="review_etc_fast" class="checkbox_label">음식이 빨리 나와요</label>
-						<input type="hidden" id="review_etc_fast" value="${review.review_etc_fast}">
+						<input type="hidden" name="review_etc_fast" value="${review.review_etc_fast}">
 
-						<input type="checkbox" id="review_etc_child_checkbox" onclick="updateCheckboxValue(this);" ${review.review_etc_child == 1 ? 'checked' : ''}>
+						<input type="checkbox" id="review_etc_child_checkbox"${review.review_etc_child == 1 ? 'checked' : ''}>
 						<label for="review_etc_child_checkbox" id="review_etc_child" class="checkbox_label">아이와 가기 좋아요</label>
-						<input type="hidden" id="review_etc_child" value="${review.review_etc_child}">
+						<input type="hidden" name="review_etc_child" value="${review.review_etc_child}">
 				</div>
 				<div class="keyword_category">
 					<h3>&nbsp;&nbsp;&nbsp;&nbsp;</h3>
-						<input type="checkbox" id="review_no_keyword_checkbox" onclick="updateCheckboxValue(this);" ${review.review_no_keyword == 1 ? 'checked' : ''}>
+						<input type="checkbox" id="review_no_keyword_checkbox"${review.review_no_keyword == 1 ? 'checked' : ''}>
 						<label for="review_no_keyword_checkbox" id="review_no_keyword" class="checkbox_label">선택할 키워드가 없어요</label>
-						<input type="hidden" id="review_no_keyword" value="${review.review_no_keyword}">
+						<input type="hidden" name="review_no_keyword" value="${review.review_no_keyword}">
 				</div>
+			
+<!-- 						===================================================================== -->
+<%-- 						<input type="checkbox" id="review_food_big_checkbox" onclick="updateCheckboxValue(this);"${review.review_food_big == 1 ? 'checked' : ''}> --%>
+<!-- 						<label for="review_food_big_checkbox" class="checkbox_label">양이 많아요</label> -->
+<%-- 						<input type="hidden" name="review_food_big" value="${review.review_food_big}"> --%>
+<!-- 						===================================================================== -->
+<%-- 						<input type="checkbox" id="review_food_deli_checkbox" onclick="updateCheckboxValue(this);"${review.review_food_deli == 1 ? 'checked' : ''}> --%>
+<!-- 						<label for="review_food_deli_checkbox" class="checkbox_label">음식이 맛있어요</label> -->
+<%-- 						<input type="hidden" name="review_food_deli" value="${review.review_food_deli}"> --%>
+
+<%-- 						<input type="checkbox" id="review_food_cheap_checkbox" onclick="updateCheckboxValue(this);" ${review.review_food_cheap == 1 ? 'checked' : ''}> --%>
+<!-- 						<label for="review_food_cheap_checkbox" class="checkbox_label">가성비가 좋아요</label> -->
+<%-- 						<input type="hidden" id="review_food_cheap" value="${review.review_food_cheap}"> --%>
+
+<%-- 						<input type="checkbox" id="review_food_fresh_checkbox" onclick="updateCheckboxValue(this);" ${review.review_food_fresh == 1 ? 'checked' : ''}> --%>
+<!-- 						<label for="review_food_fresh_checkbox" id="review_food_fresh" class="checkbox_label">재료가 신선해요</label> -->
+<%-- 						<input type="hidden" id="review_food_fresh" value="${review.review_food_fresh}"> --%>
+
+<%-- 						<input type="checkbox" id="review_food_healthy_checkbox" onclick="updateCheckboxValue(this);" ${review.review_food_healthy == 1 ? 'checked' : ''}> --%>
+<!-- 						<label for="review_food_healthy_checkbox" id="review_food_healthy" class="checkbox_label">건강한 맛이에요</label> -->
+<%-- 						<input type="hidden" id="review_food_healthy" value="${review.review_food_healthy}"> --%>
+<!-- 				</div> -->
+<!-- 				<div class="keyword_category"> -->
+<!-- 					<h3>분위기</h3> -->
+<%-- 						<input type="checkbox" id="review_mood_interior_checkbox" onclick="updateCheckboxValue(this);" ${review.review_mood_interior == 1 ? 'checked' : ''}> --%>
+<!-- 						<label for="review_mood_interior_checkbox" id="review_mood_interior" class="checkbox_label">인테리어가 멋져요</label> -->
+<%-- 						<input type="hidden" id="review_mood_interior" value="${review.review_mood_interior}"> --%>
+
+<%-- 						<input type="checkbox" id="review_mood_alone_checkbox" onclick="updateCheckboxValue(this);" ${review.review_mood_alone == 1 ? 'checked' : ''}> --%>
+<!-- 						<label for="review_mood_alone_checkbox" id="review_mood_alone" class="checkbox_label">혼밥하기 좋아요</label> -->
+<%-- 						<input type="hidden" id="review_mood_alone" value="${review.review_mood_alone}"> --%>
+
+<%-- 						<input type="checkbox" id="review_mood_large_checkbox" onclick="updateCheckboxValue(this);" ${review.review_mood_large == 1 ? 'checked' : ''}> --%>
+<!-- 						<label for="review_mood_large_checkbox" id="review_mood_large" class="checkbox_label">매장이 넓어요</label> -->
+<%-- 						<input type="hidden" id="review_mood_large" value="${review.review_mood_large}"> --%>
+
+<%-- 						<input type="checkbox" id="review_mood_meeting_checkbox" onclick="updateCheckboxValue(this);" ${review.review_mood_meeting == 1 ? 'checked' : ''}> --%>
+<!-- 						<label for="review_mood_meeting_checkbox" id="review_mood_meeting" class="checkbox_label">단체모임 하기 좋아요</label> -->
+<%-- 						<input type="hidden" id="review_mood_meeting" value="${review.review_mood_meeting}"> --%>
+
+<%-- 						<input type="checkbox" id="review_mood_view_checkbox" onclick="updateCheckboxValue(this);" ${review.review_mood_view == 1 ? 'checked' : ''}> --%>
+<!-- 						<label for="review_mood_view_checkbox" id="review_mood_view" class="checkbox_label">뷰가 좋아요</label> -->
+<%-- 						<input type="hidden" id="review_mood_view" value="${review.review_mood_view}"> --%>
+<!-- 				</div> -->
+				
+<!-- 				<div class="keyword_category"> -->
+<!-- 					<h3>편의 시설/기타</h3> -->
+<%-- 						<input type="checkbox" id="review_etc_kind_checkbox" onclick="updateCheckboxValue(this);" ${review.review_etc_kind == 1 ? 'checked' : ''}> --%>
+<!-- 						<label for="review_etc_kind_checkbox" id="review_etc_kind" class="checkbox_label">친절해요</label> -->
+<%-- 						<input type="hidden" id="review_etc_kind" value="${review.review_etc_kind}"> --%>
+
+<%-- 						<input type="checkbox" id="review_etc_parking_checkbox" onclick="updateCheckboxValue(this);" ${review.review_etc_parking == 1 ? 'checked' : ''}> --%>
+<!-- 						<label for="review_etc_parking_checkbox" id="review_etc_parking" class="checkbox_label">주차하기 편해요</label> -->
+<%-- 						<input type="hidden" id="review_etc_parking" value="${review.review_etc_parking}"> --%>
+
+<%-- 						<input type="checkbox" id="review_etc_toilet_checkbox" onclick="updateCheckboxValue(this);" ${review.review_etc_toilet == 1 ? 'checked' : ''}> --%>
+<!-- 						<label for="review_etc_toilet_checkbox" id="review_etc_toilet" class="checkbox_label">화장실이 깨끗해요</label> -->
+<%-- 						<input type="hidden" id="review_etc_toilet" value="${review.review_etc_toilet}"> --%>
+
+<%-- 						<input type="checkbox" id="review_etc_fast_checkbox" onclick="updateCheckboxValue(this);" ${review.review_etc_fast == 1 ? 'checked' : ''}> --%>
+<!-- 						<label for="review_etc_fast_checkbox" id="review_etc_fast" class="checkbox_label">음식이 빨리 나와요</label> -->
+<%-- 						<input type="hidden" id="review_etc_fast" value="${review.review_etc_fast}"> --%>
+
+<%-- 						<input type="checkbox" id="review_etc_child_checkbox" onclick="updateCheckboxValue(this);" ${review.review_etc_child == 1 ? 'checked' : ''}> --%>
+<!-- 						<label for="review_etc_child_checkbox" id="review_etc_child" class="checkbox_label">아이와 가기 좋아요</label> -->
+<%-- 						<input type="hidden" id="review_etc_child" value="${review.review_etc_child}"> --%>
+<!-- 				</div> -->
+<!-- 				<div class="keyword_category"> -->
+<!-- 					<h3>&nbsp;&nbsp;&nbsp;&nbsp;</h3> -->
+<%-- 						<input type="checkbox" id="review_no_keyword_checkbox" onclick="updateCheckboxValue(this);" ${review.review_no_keyword == 1 ? 'checked' : ''}> --%>
+<!-- 						<label for="review_no_keyword_checkbox" id="review_no_keyword" class="checkbox_label">선택할 키워드가 없어요</label> -->
+<%-- 						<input type="hidden" id="review_no_keyword" value="${review.review_no_keyword}"> --%>
+<!-- 				</div> -->
 				<div class="separator"></div>
 			</div>
 		</div>
@@ -229,9 +306,9 @@
 			<div class="review_input_section">
 			<button class="register_button" onclick="location.href='${pageContext.request.contextPath}/review/complete'">수정하기</button>
 			</section>
+				</form>
 			</div>
 		</div>
-	</form>
 	</div>
 	<!-- ===================================================================== -->
 	<!-- 팝업 창 -->
