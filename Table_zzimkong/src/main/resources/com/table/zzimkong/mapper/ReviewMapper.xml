@@ -11,7 +11,7 @@
 	INTO review
 	VALUES (
 	#{review_num}
-	,'user02'
+	,#{user_id}
 	,1
 	,0
 	,1
@@ -87,7 +87,36 @@
 		DELETE FROM review
 		WHERE review_num = #{review_num}
 	</delete>
-
+	
+<!-- 		  Board_file1 = DB컬럼명 = review_img_1 -->
+<!-- 		 file1 = file1 (= form태그내의 name속성값과 동일) -->
+<!-- 		 fileName1 = fileName1 -->
+		
+	
+	<!-- 일치하는 레코드 내의 파일명 삭제(널스트링으로 값 수정) - UPDATE -->
+	<update id="updateReviewFile">
+		UPDATE review
+		SET 
+			review_img_1 = CASE WHEN review_img_1 = #{review_img_1} THEN '' ELSE review_img_1 END
+		WHERE
+			review_num = #{review_num}	
+	</update>
+	
+	<!-- 리뷰 수정(UPDATE) -->
+	<update id="updateReview">
+	
+	</update>
+	
+	
+	<!-- 리뷰 내용 가져오기 -->
+	<select id="getReview" parameterType="int" resultType="review">
+		SELECT *
+		FROM review
+		WHERE review_num = #{review_num}
+	</select>
+	
+	
+	
 	<!-- 이런 점이 좋았어요 -->
 <!-- 	<select id="getKeywordCounts" parameterType="int" resultType="map">
 	    SELECT 'review_mood_interior' AS keyword, COUNT(*) AS count

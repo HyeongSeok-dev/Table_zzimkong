@@ -82,7 +82,7 @@
 					</div>
 					<div>
 						<span class="pay_info">결제일시</span>
-						<span class="pay_date">${map.payment.pay_date }</span>
+						<span class="pay_date">${map.paymentInfo.paymentDate}</span>
 					</div>
 					<div>
 						<span class="pay_info">결제수단</span>

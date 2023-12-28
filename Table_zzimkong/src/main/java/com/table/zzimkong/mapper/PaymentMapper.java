@@ -21,7 +21,11 @@ public interface PaymentMapper {
 
 	ReservationVO selectResForPay(ReservationVO res);
 
-	int selectPoint(ReservationVO res);
+	//방법1
+//	int selectPoint(ReservationVO res);
+	
+	//방법2
+	String selectPoint(ReservationVO res);
 
 	CompanyVO selectResCom(ReservationVO res);
 

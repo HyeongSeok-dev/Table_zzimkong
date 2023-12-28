@@ -55,6 +55,24 @@ public class ReviewService {
 
 		return mapper.removeReview(review);
 	}
+	
+	// 리뷰 수정 시 파일 삭제
+	public int removeReviewFile(ReviewVO review) {
+
+		return mapper.updateReviewFile(review);
+	}
+	
+	// 리뷰 수정 요청
+	public int modifyReview(ReviewVO review) {
+
+		return mapper.updateReview(review);
+	}
+	
+	// 리뷰 내용 가져오기
+	public ReviewVO getReview(int reviewNum) {
+		
+		return mapper.getReview(reviewNum);
+	}
 
 	//-------------------------------------------------------------
 	// 이런 점이 좋았어요

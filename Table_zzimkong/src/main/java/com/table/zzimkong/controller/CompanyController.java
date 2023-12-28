@@ -18,6 +18,8 @@ public class CompanyController {
 	
 	@GetMapping("ceo/company/register")
 	public String ceo_company_register() {
+		
+		
 		return "ceo/ceo_company_register";
 	}
 	

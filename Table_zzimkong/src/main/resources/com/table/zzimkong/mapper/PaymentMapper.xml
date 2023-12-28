@@ -12,8 +12,18 @@
 		 <!-- 혹시 res_idx가 파라미터로 넘어오면 수정해야함 -->
 	</select>
 	
-	<select id="selectPoint" resultType="int">
+	<!-- 방법1 -->
+	<!-- <select id="selectPoint" resultType="int">
 		SELECT sum(point_value) 
+		FROM point
+		WHERE point_status != 2
+		GROUP BY user_idx 
+		HAVING user_idx = #{user_idx}
+	</select> -->
+
+	<!-- 방법2 -->
+	<select id="selectPoint" resultType="String">
+		SELECT cast(sum(point_value) AS CHAR)
 		FROM point
 		WHERE point_status != 2
 		GROUP BY user_idx 

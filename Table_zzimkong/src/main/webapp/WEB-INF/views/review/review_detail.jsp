@@ -196,31 +196,27 @@
 	<br>
 	<br>
 	<br>
-	<h2 class="review_photo_subject">사진/영상리뷰</h2>
-	<div class="carousel">
-		<div class="carousel-inner">
-			<img src="${pageContext.request.contextPath}/resources/img/soba.jpeg" alt="이미지 1"> 
-			<img src="${pageContext.request.contextPath}/resources/img/soba.jpeg" alt="이미지 1"> 
-			<img src="${pageContext.request.contextPath}/resources/img/soba.jpeg" alt="이미지 1"> 
-			<img src="${pageContext.request.contextPath}/resources/img/soba.jpeg" alt="이미지 1"> 
-			<img src="${pageContext.request.contextPath}/resources/img/soba.jpeg" alt="이미지 1"> 
-			<img src="${pageContext.request.contextPath}/resources/img/soba.jpeg" alt="이미지 1"> 
-			<img src="${pageContext.request.contextPath}/resources/img/soba.jpeg" alt="이미지 1"> 
-			<img src="${pageContext.request.contextPath}/resources/img/soba.jpeg" alt="이미지 1"> 
-			<img src="${pageContext.request.contextPath}/resources/img/soba.jpeg" alt="이미지 1"> 
-			<img src="${pageContext.request.contextPath}/resources/img/soba.jpeg" alt="이미지 1"> 
-			<img src="${pageContext.request.contextPath}/resources/img/soba.jpeg" alt="이미지 1"> 
-			<img src="${pageContext.request.contextPath}/resources/img/soba.jpeg" alt="이미지 1"> 
-			<img src="${pageContext.request.contextPath}/resources/img/soba.jpeg" alt="이미지 1"> 
-			<img src="${pageContext.request.contextPath}/resources/img/soba.jpeg" alt="이미지 1"> 
-			<img src="${pageContext.request.contextPath}/resources/img/soba.jpeg" alt="이미지 1"> 
-			<img src="${pageContext.request.contextPath}/resources/img/soba.jpeg" alt="이미지 1"> 
-			<img src="${pageContext.request.contextPath}/resources/img/soba.jpeg" alt="이미지 1"> 
-			<img src="${pageContext.request.contextPath}/resources/img/soba.jpeg" alt="이미지 1"> 
+		<!-- 사진/영상리뷰 제목 -->
+		<h2 class="review_photo_subject">사진/영상리뷰</h2>
+		<!-- 이미지 슬라이더 컨테이너 -->
+		<div class="carousel">
+		    <div class="carousel-inner">
+		        <!-- 리뷰 객체 리스트를 반복 처리 -->
+		        <c:forEach items="${reviews}" var="review" varStatus="status">
+		            <!-- review_img_1 필드에 이미지가 존재하면 표시 -->
+		            <c:if test="${not empty review.review_img_1}">
+		                <img src="${pageContext.request.contextPath}/resources/upload/${review.review_img_1}" alt="Review Image ${status.index + 1}" />
+		            </c:if>
+		        </c:forEach>
+		    </div>
+		    <!-- 이전 이미지로 이동하는 버튼 -->
+		    <div class="carousel-prev">&#10094;</div>
+		    <!-- 다음 이미지로 이동하는 버튼 -->
+		    <div class="carousel-next">&#10095;</div>
 		</div>
-		<div class="carousel-prev">&#10094;</div>
-		<div class="carousel-next">&#10095;</div>
-	</div>
+
+
+	<!-- ================================================================================================= -->
 	<div class="separator"></div>
 	<div class="review_main_subject">
 		<h2 class="review_subject">
@@ -263,15 +259,16 @@
 					</div>
 				</a>	 
 					<!-- 사용자가 썼던 리뷰를 볼 수 있는 창 연결 -->
-				 <a href="마이페이지 프로필 연결" target="_blank" role="button" class="review_details">
-						<div class="reviewer_name">${review.user_id}</div><br>
-						<div class="review_real_score">
-						<div class="score1">
-							<img src="${pageContext.request.contextPath}/resources/img/review_star.png">
-							<fmt:formatNumber value="${review.review_score / 2}" type="number" maxFractionDigits="1"/>
-						</div>
-						</div>
-					</a>
+<!-- 				 <a href="마이페이지 프로필 연결" target="_blank" role="button" class="review_details"> -->
+			<div class="reviewer_info">
+			    <div class="reviewer_name">${review.user_id}</div>
+			    <div class="score1">
+			        <img src="${pageContext.request.contextPath}/resources/img/review_star.png">
+			        <fmt:formatNumber value="${review.review_score / 2}" type="number" maxFractionDigits="1"/>
+			    </div>
+			</div>
+<!-- 						</div> -->
+<!-- 					</a> -->
 			</div>
 			<div class="reviewer_info"></div>
 			<div class="review_photos">
@@ -297,14 +294,26 @@
 		<br>
 			<div class="review-actions">
 				<div class="review-action2">
-					<form action="${pageContext.request.contextPath}/zzimkong/review/delete" method="POST">
-					    <input type="hidden" name="review_num" value="${review.review_num}">
-					    <input type="submit" class="review_delete" value="삭제" onclick="return confirm('리뷰를 삭제하시겠습니까?');">
-						<a href="/review/modify?review_num=${review.review_num}">		
-						<button class="review_modify">수정</button></a>
-						<a href="${pageContext.request.contextPath}/review/report" class="review_report_btn" role="button">리뷰 신고하기</a>
+<%-- 					<form action="${pageContext.request.contextPath}/zzimkong/review/delete" method="POST"> --%>
+<%-- 					    <input type="hidden" name="review_num" value="${review.review_num}"> --%>
+<!-- 					    <input type="submit" class="review_delete" value="삭제" onclick="return confirm('리뷰를 삭제하시겠습니까?');"> -->
+<!-- 							</form>	 -->
+<%-- 						<a href="modify?review_num=${review.review_num}">		 --%>
+<!-- 						<button class="review_modify">수정</button></a> -->
+<%-- <%-- 						<a href="${pageContext.request.contextPath}/review/modify?review_num=${review.review_num}" class="review_modify">수정</a> --%> 
+<%-- 						<a href="${pageContext.request.contextPath}/review/report" class="review_report_btn" role="button">리뷰 신고하기</a> --%>
+						<div class="review-action-buttons">
+    <form action="${pageContext.request.contextPath}/zzimkong/review/delete" method="POST">
+        <input type="hidden" name="review_num" value="${review.review_num}">
+        <input type="submit" class="review_delete" value="삭제" onclick="return confirm('리뷰를 삭제하시겠습니까?');">
+    </form>
+    <a href="modify?review_num=${review.review_num}">
+        <button class="review_modify">수정</button>
+    </a>
+    <a href="${pageContext.request.contextPath}/review/report" class="review_report_btn" role="button">리뷰 신고하기</a>
+</div>
+						
 						<span class="comment-icon" onclick="showCommentForm()"></span><br><br>
-					</form>								
             <div class="review_date">
                 <fmt:formatDate value="${review.review_update}" pattern="yy. MM. dd (E)" /> 작성
             </div>

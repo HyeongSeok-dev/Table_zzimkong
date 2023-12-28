@@ -3,7 +3,9 @@ package com.table.zzimkong.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -54,6 +56,10 @@ public class PaymentController {
 			mav = new ModelAndView("forword", "map", map);
 			return mav;
 		}
+		// session에 들어간  reservationVO 불러오기
+		// 나중에 예약완성되면 확인하기
+//		res = ((ReservationVO)session.getAttribute("res")
+//		session.setAttribute("res", null);
 		res.setRes_num("R0002");
 		
 		
@@ -97,16 +103,19 @@ public class PaymentController {
 		System.out.println(poiList);
 		//--------------------------------------------------------------------
 		//[ 사용가능 포인트 조회 ]
-		// 예약정보에서 회원을 확인하기 위한 정보
-		// 포인트조회
-		int dbPoint = service.getPoint(res);
-		String totalPoint = "";
-		if(dbPoint > 0) {
-			totalPoint = numberFormat.format(dbPoint);
-		} else {
-			totalPoint = "0";
-		}
+		// 방법1. 회원가입하면 기본 포인트 주고 가지고올 때  int로 가지고옴 (null나올수 없음)
+		// 처음 가입한 사람이 결제하면 오류생김(포인트내역이 없어서 null이 나옴)
+//		int dbPoint = service.getPoint(res);
+//		String totalPoint = numberFormat.format(dbPoint);
 		
+		// 방법2. 디비에서 가지고 올 때 String 타입으로 가지고 와서 변환해줌
+		String dbPoint = service.getPoint(res);
+		String totalPoint = "";
+		if(dbPoint.equals(null)) {
+			totalPoint = "0";
+		} else {
+			totalPoint = numberFormat.format(Integer.parseInt(dbPoint));
+		}
 		//--------------------------------------------------------------------
 		// [ PaymentInfo 객체에 문자열 타입으로 파라미터 전달]
 		PaymentInfo paymentInfo = new PaymentInfo(menuTotalPrice,totalPrice,totalPoint,res_table_price);
@@ -269,6 +278,7 @@ public class PaymentController {
 		CompanyVO company = service.getCompany(res);
 		PaymentVO payment = service.getPayment(payNum);
 		System.out.println(payment.getPay_method());
+		System.out.println("예약자 이름" + res.getRes_name());
 		// 결제수단 넣기
 		String payMethod = "";
 		switch (payment.getPay_method()) {
@@ -325,24 +335,27 @@ public class PaymentController {
 		String menuTotalPrice = numberFormat.format(menuTotalPriceInt);
 //		System.out.println("menuTotalPriceInt : " + menuTotalPriceInt);
 //		System.out.println(poiList);
+		
 		//--------------------------------------------------------------------
-		//[ 사용가능 포인트 조회 ]
-		// 예약정보에서 회원을 확인하기 위한 정보
-		// 포인트조회
-		int dbPoint = service.getPoint(res);
-		String totalPoint = numberFormat.format(dbPoint);
+		// [날짜 형식 변환해서 뷰페이지 보내기]
+		Date getPaymentDate = payment.getPay_date();
+		String pattern = "yyyy/MM/dd(E) HH:mm:ss";
+		SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+		String paymentDate = sdf.format(getPaymentDate);
+		System.out.println("날짜 변환 완료 : " + paymentDate);
 		
 		//--------------------------------------------------------------------
 		// [ PaymentInfo 객체에 문자열 타입으로 파라미터 전달]
-		PaymentInfo paymentInfo = new PaymentInfo(menuTotalPrice,totalPrice,totalPoint,res_table_price,payMethod);
+		PaymentInfo paymentInfo = new PaymentInfo(menuTotalPrice,totalPrice,paymentDate,res_table_price,payMethod);
 		// 예약조회, 포인트조회,사업장정보조회,선주문조회 
 		
 		// int타입 포인트에 천단위 쉼표넣고 String타입으로 변환
 		String finalDiscountPoint = numberFormat.format(discountPoint);
 		String finalEarnedPoints = numberFormat.format(earnedPoints);
-		System.out.println("finalDiscountPoint" + finalDiscountPoint);
+//		System.out.println("finalDiscountPoint" + finalDiscountPoint);
 		
 		map.put("res", res);
+		map.put("member", member);
 		map.put("paymentInfo", paymentInfo);
 		map.put("com", company);
 		map.put("payment", payment);
