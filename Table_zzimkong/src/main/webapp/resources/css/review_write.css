@@ -1,5 +1,9 @@
 @charset "UTF-8";
 /* ============================================================== */
+/* 폰트 개별 조정 */
+
+
+/* ============================================================== */
 /* 별점 수정*/
 @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
        .review_rate { display: inline-block;
@@ -66,6 +70,59 @@
 
 .rating__star:hover {
    filter: drop-shadow(1px 1px 4px gold);
+}
+
+/* ============================================================== */
+/* 체크박스와 레이블(231228) */
+#review_food_big_checkbox, 
+#review_food_deli_checkbox,
+#review_food_cheap_checkbox,
+#review_food_fresh_checkbox,
+#review_food_healthy_checkbox,
+#review_mood_interior_checkbox,
+#review_mood_alone_checkbox,
+#review_mood_large_checkbox,
+#review_mood_meeting_checkbox,
+#review_mood_view_checkbox,
+#review_etc_kind_checkbox,
+#review_etc_parking_checkbox,
+#review_etc_toilet_checkbox,
+#review_etc_fast_checkbox,
+#review_etc_child_checkbox,
+#review_no_keyword_checkbox { 
+	display: none; }
+	
+#review_food_big_checkbox:checked + .checkbox_label, 
+#review_food_deli_checkbox:checked + .checkbox_label,
+#review_food_cheap_checkbox:checked + .checkbox_label, 
+#review_food_fresh_checkbox:checked + .checkbox_label, 
+#review_food_healthy_checkbox:checked + .checkbox_label, 
+#review_mood_interior_checkbox:checked + .checkbox_label, 
+#review_mood_alone_checkbox:checked + .checkbox_label, 
+#review_mood_large_checkbox:checked + .checkbox_label, 
+#review_mood_meeting_checkbox:checked + .checkbox_label, 
+#review_mood_view_checkbox:checked + .checkbox_label, 
+#review_etc_kind_checkbox:checked + .checkbox_label, 
+#review_etc_parking_checkbox:checked + .checkbox_label, 
+#review_etc_toilet_checkbox:checked + .checkbox_label, 
+#review_etc_fast_checkbox:checked + .checkbox_label, 
+#review_etc_child_checkbox:checked + .checkbox_label, 
+#review_no_keyword_checkbox:checked + .checkbox_label 
+{
+	background-color: #3FAFFC;
+	color: white; 
+}
+
+ /* 이런 점이 좋았어요 체크박스 버튼으로 변경 */
+.keyword_category>label {
+    font-size: 15px;
+/*     color: black;  */
+    border: 1px solid lightgrey; 
+    padding: 10px 15px;
+    background-color: #fff; 
+    cursor: pointer;
+    transition: color 0.3s ease, background-color 0.3s ease, fill 0.3s ease; 
+    border-radius: 10px;
 }
 
 /* ============================================================== */
@@ -186,17 +243,6 @@
  
 }
 
-.keyword-btn:hover {
-/*   background-color: lightgray; */
-}
-
-.keyword-btn:last-child {
-/*   margin-top: auto; 마지막 버튼을 하단에 정렬 */
-}
-.review_input_section {
-/*   position: relative; */
-/*   margin-top: 20px; */
-}
 
 /* ============================================================== */
 /* 사진 추가 버튼 */
@@ -359,22 +405,6 @@
   to {bottom: 0; opacity: 0;}
 }
 
- /* ============================================================== */
- /* 이런 점이 좋았어요 체크박스 버튼으로 변경 */
-.hidden_checkbox {
-    display: none!important;
-}
-
-.keyword_category>label {
-    font-size: 20px;
-    color: black; 
-    border: 1px solid lightgrey; 
-    padding: 10px 15px;
-    background-color: white; 
-    cursor: pointer;
-    transition: color 0.3s ease, background-color 0.3s ease, fill 0.3s ease; 
-    border-radius: 10px;
-}
  /* ============================================================== */
  /* 가게이름 하이퍼링크 */
 a {

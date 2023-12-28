@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- CSS -->
 <link href="${pageContext.request.contextPath}/resources/css/review_write.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/resources/css/global.css" rel="stylesheet">
+<%-- <link href="${pageContext.request.contextPath}/resources/css/global.css" rel="stylesheet"> --%>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
 <!-- Js -->
 <script src="${pageContext.request.contextPath}/resources/js/review_write.js"></script>
@@ -72,77 +72,75 @@
 			<div class="keyword_section">
 				<div class="keyword_category">
 					<h3>음식/가격</h3>		
-				        <input type="checkbox" id="review_food_big" onclick="updateCheckboxValue(this);">
-						<input type="hidden" id="review_food_big" name="review_food_big" value="0">
-						<label for="review_food_big" id="review_food_big">양이 많아요</label>
-
-						<input type="checkbox" id="review_food_deli" onclick="updateCheckboxValue(this);">
+						<input type="checkbox" id="review_food_big_checkbox" onclick="updateCheckboxValue(this);">
+						<label for="review_food_big_checkbox" class="checkbox_label">양이 많아요</label>
+						<input type="hidden" name="review_food_big" value="0">
+						
+						<input type="checkbox" id="review_food_deli_checkbox" onclick="updateCheckboxValue(this);">
+				        <label for="review_food_deli_checkbox" class="checkbox_label">음식이 맛있어요</label>
 				        <input type="hidden" name="review_food_deli" value="0">
-				        <label for="review_food_deli">음식이 맛있어요</label>
 				        
-						<input type="checkbox" id="review_food_cheap" onclick="updateCheckboxValue(this);">
+						<input type="checkbox" id="review_food_cheap_checkbox" onclick="updateCheckboxValue(this);">
+				        <label for="review_food_cheap_checkbox" class="checkbox_label">가성비가 좋아요</label>
 				        <input type="hidden" name="review_food_cheap" value="0">
-				        <label for="review_food_cheap">가성비가 좋아요</label>
 				        
-						<input type="checkbox" id="review_food_fresh" onclick="updateCheckboxValue(this);">
+						<input type="checkbox" id="review_food_fresh_checkbox" onclick="updateCheckboxValue(this);">
+				        <label for="review_food_fresh_checkbox" class="checkbox_label">재료가 신선해요</label>
 				        <input type="hidden" name="review_food_fresh" value="0">
-				        <label for="review_food_fresh">재료가 신선해요</label>
 				        
-						<input type="checkbox" id="review_food_healthy" onclick="updateCheckboxValue(this);">
+						<input type="checkbox" id="review_food_healthy_checkbox" onclick="updateCheckboxValue(this);">
+				        <label for="review_food_healthy_checkbox" class="checkbox_label">건강한 맛이에요</label>
 				        <input type="hidden" name="review_food_healthy" value="0">
-				        <label for="review_food_healthy">건강한 맛이에요</label>
 				</div>
-				
 				<div class="keyword_category">
 					<h3>분위기</h3>
-						<input type="checkbox" id="review_mood_interior" onclick="updateCheckboxValue(this);">
+						<input type="checkbox" id="review_mood_interior_checkbox" onclick="updateCheckboxValue(this);">
+				        <label for="review_mood_interior_checkbox" class="checkbox_label">인테리어가 멋져요</label>
 				        <input type="hidden" name="review_mood_interior" value="0">
-				        <label for="review_mood_interior">인테리어가 멋져요</label>
 				        
-						<input type="checkbox" id="review_mood_alone" onclick="updateCheckboxValue(this);">
+						<input type="checkbox" id="review_mood_alone_checkbox" onclick="updateCheckboxValue(this);">
+				        <label for="review_mood_alone_checkbox" class="checkbox_label">혼밥하기 좋아요</label>
 				        <input type="hidden" name="review_mood_alone" value="0">
-				        <label for="review_mood_alone">혼밥하기 좋아요</label>
 				        
-						<input type="checkbox" id="review_mood_large" onclick="updateCheckboxValue(this);">
+						<input type="checkbox" id="review_mood_large_checkbox" onclick="updateCheckboxValue(this);">
+				        <label for="review_mood_large_checkbox" class="checkbox_label">매장이 넓어요</label>
 				        <input type="hidden" name="review_mood_large" value="0">
-				        <label for="review_mood_large">매장이 넓어요</label>
 				        
-						<input type="checkbox" id="review_mood_meeting" onclick="updateCheckboxValue(this);">
+						<input type="checkbox" id="review_mood_meeting_checkbox" onclick="updateCheckboxValue(this);">
+				        <label for="review_mood_meeting_checkbox" class="checkbox_label">단체모임 하기 좋아요</label>
 				        <input type="hidden" name="review_mood_meeting" value="0">
-				        <label for="review_mood_meeting">단체모임 하기 좋아요</label>
 				        
-						<input type="checkbox" id="review_mood_view" onclick="updateCheckboxValue(this);">
+						<input type="checkbox" id="review_mood_view_checkbox" onclick="updateCheckboxValue(this);">
+				        <label for="review_mood_view_checkbox" class="checkbox_label">뷰가 좋아요</label>
 				        <input type="hidden" name="review_mood_view" value="0">
-				        <label for="review_mood_view">뷰가 좋아요</label>
 				</div>
-				
 				<div class="keyword_category">
 					<h3>편의 시설/기타</h3>
-						<input type="checkbox" id="review_etc_kind" onclick="updateCheckboxValue(this);">
+						<input type="checkbox" id="review_etc_kind_checkbox" onclick="updateCheckboxValue(this);">
+				        <label for="review_etc_kind_checkbox" class="checkbox_label">친절해요</label>
 				        <input type="hidden" name="review_etc_kind" value="0">
-				        <label for="review_etc_kind">친절해요</label>
 				        
-						<input type="checkbox" id="review_etc_parking" onclick="updateCheckboxValue(this);">
+						<input type="checkbox" id="review_etc_parking_checkbox" onclick="updateCheckboxValue(this);">
+				        <label for="review_etc_parking_checkbox" class="checkbox_label">주차하기 편해요</label>
 				        <input type="hidden" name="review_etc_parking" value="0">
-				        <label for="review_etc_parking">주차하기 편해요</label>
 				        
-						<input type="checkbox" id="review_etc_toilet" onclick="updateCheckboxValue(this);">
+						<input type="checkbox" id="review_etc_toilet_checkbox" onclick="updateCheckboxValue(this);">
+				        <label for="review_etc_toilet_checkbox" class="checkbox_label">화장실이 깨끗해요</label>
 				        <input type="hidden" name="review_etc_toilet" value="0">
-				        <label for="review_etc_toilet">화장실이 깨끗해요</label>
 				        
-						<input type="checkbox" id="review_etc_fast" onclick="updateCheckboxValue(this);">
+						<input type="checkbox" id="review_etc_fast_checkbox" onclick="updateCheckboxValue(this);">
+				        <label for="review_etc_fast_checkbox" class="checkbox_label">음식이 빨리 나와요</label>
 				        <input type="hidden" name="review_etc_fast" value="0">
-				        <label for="review_etc_fast">음식이 빨리 나와요</label>
 				        
-						<input type="checkbox" id="review_etc_child" onclick="updateCheckboxValue(this);">
+						<input type="checkbox" id="review_etc_child_checkbox" onclick="updateCheckboxValue(this);">
+				        <label for="review_etc_child_checkbox" class="checkbox_label">아이와 가기 좋아요</label>
 				        <input type="hidden" name="review_etc_child" value="0">
-				        <label for="review_etc_child">아이와 가기 좋아요</label>
 				</div>
 				<div class="keyword_category">
 					<h3>&nbsp;&nbsp;&nbsp;&nbsp;</h3>
-				        <input type="checkbox" id="review_no_keyword" onclick="toggleKeywords(this);">
+				        <input type="checkbox" id="review_no_keyword_checkbox" onclick="toggleKeywords(this);">
+				        <label for="review_no_keyword_checkbox" class="checkbox_label">선택할 키워드가 없어요</label>
 				        <input type="hidden" name="review_no_keyword" value="0">
-				        <label for="review_no_keyword">선택할 키워드가 없어요</label>
 				</div>
 				<div class="separator"></div>
 			</div>

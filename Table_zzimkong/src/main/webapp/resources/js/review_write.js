@@ -8,22 +8,46 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('photoInput').addEventListener('change', handleImagePreview);
 	// ==================================================================================
 	// 체크박스 숨기기
-    function toggleLabelColor(checkbox) {
-        var label = document.querySelector('label[for="' + checkbox.id + '"]');
-        if (checkbox.checked) {
-            label.classList.add('active');
-        } else {
-            label.classList.remove('active');
-        }
-    }
+//    function toggleLabelColor(checkbox) {
+//        var label = document.querySelector('label[for="' + checkbox.id + '"]');
+//        if (checkbox.checked) {
+//            label.classList.add('active');
+//        } else {
+//            label.classList.remove('active');
+//        }
+//    }
+//
+//    var checkboxes = document.querySelectorAll('.hidden_checkbox');
+//    checkboxes.forEach(function(checkbox) {
+//        checkbox.addEventListener('change', function() {
+//            toggleLabelColor(checkbox);
+//            updateCheckboxValue(checkbox); 
+//        });
+//    });
+    	//----------------------------
+function updateCheckboxValue(checkbox) {
+  var hiddenInput = document.getElementsByName(checkbox.id.replace("_checkbox", ""))[0];
+  hiddenInput.value = checkbox.checked ? "1" : "0";
 
-    var checkboxes = document.querySelectorAll('.hidden_checkbox');
-    checkboxes.forEach(function(checkbox) {
-        checkbox.addEventListener('change', function() {
-            toggleLabelColor(checkbox);
-            updateCheckboxValue(checkbox); 
-        });
-    });
+  var label = document.querySelector('label[for="' + checkbox.id + '"]');
+  if (checkbox.checked) {
+    label.classList.add('active');
+  } else {
+    label.classList.remove('active');
+  }
+}
+
+// 모든 체크박스에 대한 이벤트 리스너 설정
+var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+checkboxes.forEach(function(checkbox) {
+  checkbox.addEventListener('change', function() {
+    updateCheckboxValue(this);
+  });
+});
+
+
+
+
     	//----------------------------
 	// 팝업 열기
 	window.openPopup = function() {
@@ -54,22 +78,22 @@ document.addEventListener('DOMContentLoaded', function() {
     
 });
 	// ==================================================================================
-	// 체크박스 선택 시 value 0 -> 1로 변경
-	function updateCheckboxValue(checkbox) {
-	    var hiddenInput = document.getElementsByName(checkbox.id)[0];
-	    hiddenInput.value = checkbox.checked ? 1 : 0;
-	}
-	
-	function toggleKeywords(checkbox) {
-	    var keywordCheckboxes = document.querySelectorAll('.keyword_category input[type="checkbox"]');
-	    keywordCheckboxes.forEach(function(item) {
-	        if (item !== checkbox) {
-	            item.checked = false;
-	            item.disabled = checkbox.checked;
-	            document.getElementsByName(item.id)[0].value = '0';
-	        }
-	    });
-	}
+	// 체크박스 선택 시 value 0 -> 1로 변경(방금바꿈)
+//	function updateCheckboxValue(checkbox) {
+//	    var hiddenInput = document.getElementsByName(checkbox.id)[0];
+//	    hiddenInput.value = checkbox.checked ? 1 : 0;
+//	}
+//	
+//	function toggleKeywords(checkbox) {
+//	    var keywordCheckboxes = document.querySelectorAll('.keyword_category input[type="checkbox"]');
+//	    keywordCheckboxes.forEach(function(item) {
+//	        if (item !== checkbox) {
+//	            item.checked = false;
+//	            item.disabled = checkbox.checked;
+//	            document.getElementsByName(item.id)[0].value = '0';
+//	        }
+//	    });
+//	}
 
 	// ==================================================================================
 	// 이미지 프리뷰 및 제거 

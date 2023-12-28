@@ -69,15 +69,15 @@
 		<div class="review_rate_1" style="text-align: center;">
 		<fieldset class="review_rate">
 			 <input type="radio" id="rating10" name="review_score" value="10" ${review.review_score == 10 ? 'checked' : ''}><label for="rating10" title="5점"></label>
-			 <input type="radio" id="rating9" name="review_score" value="9" ${review.review_score == 9 ? 'checked' : ''}><label for="rating9" title="4.5점"></label>
+			 <input type="radio" id="rating9" name="review_score" value="9" ${review.review_score == 9 ? 'checked' : ''}><label class="half" for="rating9" title="4.5점"></label>
 			 <input type="radio" id="rating8" name="review_score" value="8" ${review.review_score == 8 ? 'checked' : ''}><label for="rating8" title="4점"></label>
-			 <input type="radio" id="rating7" name="review_score" value="7" ${review.review_score == 7 ? 'checked' : ''}><label for="rating7" title="3.5점"></label>
+			 <input type="radio" id="rating7" name="review_score" value="7" ${review.review_score == 7 ? 'checked' : ''}><label class="half" for="rating7" title="3.5점"></label>
 			 <input type="radio" id="rating6" name="review_score" value="6" ${review.review_score == 6 ? 'checked' : ''}><label for="rating6" title="3점"></label>
-			 <input type="radio" id="rating5" name="review_score" value="5" ${review.review_score == 5 ? 'checked' : ''}><label for="rating5" title="2.5점"></label>
+			 <input type="radio" id="rating5" name="review_score" value="5" ${review.review_score == 5 ? 'checked' : ''}><label class="half" for="rating5" title="2.5점"></label>
 			 <input type="radio" id="rating4" name="review_score" value="4" ${review.review_score == 4 ? 'checked' : ''}><label for="rating4" title="2점"></label>
-			 <input type="radio" id="rating3" name="review_score" value="3" ${review.review_score == 3 ? 'checked' : ''}><label for="rating3" title="1.5점"></label>
+			 <input type="radio" id="rating3" name="review_score" value="3" ${review.review_score == 3 ? 'checked' : ''}><label class="half" for="rating3" title="1.5점"></label>
 			 <input type="radio" id="rating2" name="review_score" value="2" ${review.review_score == 2 ? 'checked' : ''}><label for="rating2" title="1점"></label>
-			 <input type="radio" id="rating1" name="review_score" value="1" ${review.review_score == 1 ? 'checked' : ''}><label for="rating1" title="0.5점"></label>
+			 <input type="radio" id="rating1" name="review_score" value="1" ${review.review_score == 1 ? 'checked' : ''}><label class="half" for="rating1" title="0.5점"></label>
         </fieldset>
 		</div>
 		<br>
@@ -107,7 +107,7 @@
 			<p>이 장소에 어울리는 키워드를 골라주세요.</p>
 			<div class="keyword_section">
 				<div class="keyword_category">
-					<h3>음식/가격</h3>		
+			<h3>음식/가격</h3>		
 						<input type="checkbox" id="review_food_big" onclick="updateCheckboxValue(this);" ${review.review_food_big == 1 ? 'checked' : ''}>
 						<input type="hidden" id="review_food_big" name="review_food_big" value="${review.review_food_big}">
 						<label for="review_food_big" id="review_food_big">양이 많아요</label>

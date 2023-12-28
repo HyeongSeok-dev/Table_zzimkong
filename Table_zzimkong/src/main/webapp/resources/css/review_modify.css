@@ -20,13 +20,13 @@
 					padding-right: 0;}
 .review_rate input:checked ~ label, 
 .review_rate label:hover,
-.review_rate label:hover ~ label { color: gold!important;} 
+.review_rate label:hover ~ label { color: gold !important;} 
 .review_rate input:checked + 
 .review_rate label:hover,
 .review_rate input input:checked ~ label:hover,
 .review_rate input:checked ~ 
 .review_rate label:hover ~ label,  
-.review_rate label:hover ~ input:checked ~ label { color: gold!important;}
+.review_rate label:hover ~ input:checked ~ label { color: gold !important;}
 
 .starpoint_wrap {
   display: flex;
@@ -70,6 +70,15 @@
 
 /* ============================================================== */
 /* 리뷰 이런 점이 좋았어요 키워드 */
+#review_food_big {
+	display:none;
+}
+
+#review_food_big:checked+label {
+	background-color: blue;
+}
+
+
 
 .keyword-category h3 {
   text-align: center; /* 중앙 정렬 */
