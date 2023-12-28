@@ -23,7 +23,7 @@
 		, now()
 		, #{user_phone}
 		, 1
-		, 1
+		, null
 		, 1
 		, #{user_category}
 		)
@@ -47,7 +47,7 @@
 		, now()
 		, #{user_phone}
 		, 1
-		, 1
+		, null
 		, 2
 		, #{user_category}
 		)
