@@ -193,8 +193,11 @@ public class MemberController {
 	@PostMapping("loginPro") 
 	public String longinPro(MemberVO member, HttpSession session, Model model) {
 		System.out.println(member);
-		
 		MemberVO dbMember = service.getMember(member);
+		if(dbMember == null) {
+			model.addAttribute("msg", "존재안하는 회원.");
+		    return "fail_back";
+		}
 		System.out.println(dbMember);
 		
 		if(dbMember.getUser_status() == 3) {

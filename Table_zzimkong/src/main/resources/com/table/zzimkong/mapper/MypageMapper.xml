@@ -41,8 +41,8 @@
 	<!-- 예약내역 조회 - SELECT -->
 	<select id="selectResList">
 		SELECT *
-		FROM reservation, company
-		WHERE user_idx = #{sIdx} AND #{com_id} ;
+		FROM reservation as  r, company as c
+		WHERE r.user_idx = #{sIdx} AND #{c.com_id} ;
 <!-- 		ORDER BY res_idx DESC; -->
 	</select>
 	
