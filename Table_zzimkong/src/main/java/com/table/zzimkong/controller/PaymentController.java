@@ -113,7 +113,7 @@ public class PaymentController {
 		// 방법2. 디비에서 가지고 올 때 String 타입으로 가지고 와서 변환해줌
 		String dbPoint = service.getPoint(res);
 		String totalPoint = "";
-		if(dbPoint.equals(null)) {
+		if(dbPoint.equals(null) || Integer.parseInt(dbPoint) < 0) {
 			totalPoint = "0";
 		} else {
 			totalPoint = numberFormat.format(Integer.parseInt(dbPoint));
@@ -177,17 +177,17 @@ public class PaymentController {
 		// payment의 외래키가 user_idx여서 세션에서 불러옴
 		int sIdx = Integer.parseInt((String)session.getAttribute("sIdx"));
 		// 천단위 쉼표제거 후 형변환뒤 payment객체에 넣어줌
-		System.out.println("pay_po_price_String 변환전 : " + paymentInfo.getPreOrderTotalPrice());
+		System.out.println("pay_po_price_String 변환전 : " + paymentInfo.getPreOrderTotalPrice().trim());
 		int pay_po_price; //현장에서 결제
 		// controller에서만 판별하기 위한 pay_on_sit =1 : 선주문없음 pay_on_sit = 2 : 선주문있음 
-		if(paymentInfo.getPreOrderTotalPrice().equals("선주문 없음")) {
+		if(paymentInfo.getPreOrderTotalPrice().trim().equals("선주문 없음")) {
 			pay_po_price = 0;
 			payment.setPay_on_site(1); // 선주문 없음
-		} else if(paymentInfo.getPreOrderTotalPrice().equals("0")) {
+		} else if(paymentInfo.getPreOrderTotalPrice().trim().equals("0")) {
 			pay_po_price = 0;
 			payment.setPay_on_site(2); // 선주문있는데 현장에서 결제함
 		} else {
-			pay_po_price = Integer.parseInt(paymentInfo.getPreOrderTotalPrice().replace(",", "").trim());
+			pay_po_price = Integer.parseInt(paymentInfo.getPreOrderTotalPrice().trim().replace(",", ""));
 			payment.setPay_on_site(3); // 선주문있는데 선결제함
 		}
 		payment.setPay_po_price(pay_po_price); 
@@ -260,11 +260,7 @@ public class PaymentController {
 			,@RequestParam(defaultValue = "0")String payNum
 			) {
 		session.setAttribute("sId", "user02");
-//		res_num = "";
-//		discountPoint = "0";
-//		earnedPoints = 1234;
-//		finalTotalPayment = "1,000,000";
-//		payNum = "P2023122763675ca";
+
 		ModelAndView mav; 
 		// 세션에 로그인이 안되어있다면 접근금지
 		if(session.getAttribute("sId") == null) {

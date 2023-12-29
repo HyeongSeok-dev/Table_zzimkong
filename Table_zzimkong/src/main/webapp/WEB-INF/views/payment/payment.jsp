@@ -9,9 +9,10 @@
 <link href="${pageContext.request.contextPath }/resources/css/payment.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet" type="text/css">
 <script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
-<!-- <script src="https://cdn.iamport.kr/v1/iamport.js"></script> -->
+<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+<script src="https://cdn.portone.io/v2/browser-sdk.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/payment.js"></script>
-<%-- <script src="${pageContext.request.contextPath }/resources/js/payment_API.js"></script> --%>
+<script src="${pageContext.request.contextPath }/resources/js/payment_API.js"></script>
 <script type="text/javascript"> 
 </script>
 
@@ -82,31 +83,31 @@
 							<br>
 							<div>
 								<input type="radio" name="pay_method" value="1" id="kakaoPay">&nbsp;
-								<img src="${pageContext.request.contextPath }/resources/img/kakao_logo.png" width="20">
-								<span class="font_stlye"> 카카오페이</span>
+								<img src="${pageContext.request.contextPath }/resources/img/kakaoPay_png.png" width="65" id="kakao">
+								<span class="font_stlye"> </span>
 							</div>
 							<br>
 							<div>
 								<input type="radio" name="pay_method" value="2" id="naverPay">&nbsp;
-								<img src="${pageContext.request.contextPath }/resources/img/naver_logo.png" width="20">
-								<span class="font_stlye"> 네이버페이</span>
+								<img src="${pageContext.request.contextPath }/resources/img/naverPay_png.png" width="65" id = "naver">
+								<span class="font_stlye"> </span>
 							</div>
 							<br>
 							<div>
 								<input type="radio" name="pay_method" value="3" id="creditCardPayment"><span class="font_stlye"> 카드결제</span>
-								<select class="select" id="cardSelect" name="pay_card_co">
-									<option value="">카드사를 선택해 주세요</option>
-									<option value="삼성">삼성</option>
-									<option value="신한">신한</option>
-									<option value="현대">현대</option>
-									<option value="국민">국민</option>
-									<option value="비씨">비씨</option>
-									<option value="롯데">롯데</option>
-									<option value="우리">우리</option>
-									<option value="하나">하나</option>
-									<option value="농협">농협</option>
-									<option value="씨티">씨티</option>
-								</select>
+<!-- 								<select class="select" id="cardSelect" name="pay_card_co"> -->
+<!-- 									<option value="">카드사를 선택해 주세요</option> -->
+<!-- 									<option value="삼성">삼성</option> -->
+<!-- 									<option value="신한">신한</option> -->
+<!-- 									<option value="현대">현대</option> -->
+<!-- 									<option value="국민">국민</option> -->
+<!-- 									<option value="비씨">비씨</option> -->
+<!-- 									<option value="롯데">롯데</option> -->
+<!-- 									<option value="우리">우리</option> -->
+<!-- 									<option value="하나">하나</option> -->
+<!-- 									<option value="농협">농협</option> -->
+<!-- 									<option value="씨티">씨티</option> -->
+<!-- 								</select> -->
 							</div>
 							<br>
 							<div>
@@ -191,6 +192,7 @@
 					</section>
 					<div class="div_submit">
 						<button type="submit" class="pay_button">결제</button> 
+						<button type="button" class="pay_button" id="api">API 결제</button> 
 					</div>
 				</div>
 				<div class="div_right_box">

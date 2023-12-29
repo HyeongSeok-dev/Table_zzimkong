@@ -42,6 +42,20 @@ $(function() {
 		$("#totalPoint").text((parseInt(earnedPoints) + parseInt($("#nowPoint").text().trim().replace(/,/g, ''))).toLocaleString());                                                                          
 	}
 	
+	//라디오 버튼 해제시 select 초기화
+	$('input[name="pay_method"]').click(function() {
+	  if($('input[name="pay_method"]:checked').val() != 3) {
+	    // 체크박스가 해제되었을 때의 동작을 여기에 작성합니다.
+	    console.log('Checkbox has been unchecked!');
+	    $("#cardSelect").val("");
+	  }
+	  if($('input[name="pay_method"]:checked').val() != 4) {
+	    // 체크박스가 해제되었을 때의 동작을 여기에 작성합니다.
+	    console.log('Checkbox has been unchecked!');
+	    $("#bankSelect").val("");
+	    $(".account").val("");
+	  }
+	});		
 	// 전체선택 체크박스
 	$("#checkAllAgree").on("change", function() { 
 		
@@ -67,7 +81,7 @@ $(function() {
 						break
 			case "기업": $(".account").val("666-1234-12345");
 						break
-			case "시티": $(".account").val("777-1234-12345");
+			case "씨티": $(".account").val("777-1234-12345");
 						break
 			case "SC": $(".account").val("888-1234-12345");
 						break
@@ -198,7 +212,7 @@ $(function() {
 	});
 	
 	// 필수선택이 비어있을 때 안내문
-	$("form").submit(function(e) {
+	$("form").submit(function() {
 		
 		if($('input[name="pay_method"]:checked').length == 0) { 
 			
@@ -239,27 +253,14 @@ $(function() {
 				return false;
 		}				
 		
-		e.preventDefault();
-	
-	    var formData = new FormData(this);
-	    formData.append('discountPoint', $("#discountPoint").text());
-	    formData.append('earnedPoints', $("#earnedPoints").text());
-	    formData.append('totalPayment', $("#totalPayment").text());
-	    formData.append('preOrderTotalPrice', $("#preOrderTotalPrice").text());
-	
-	    $.ajax({
-	        url: "paymentPro",
-	        type: "POST",
-	        data: formData,
-	        contentType: false,
-	        processData: false,
-	        success: function(response) {
-	            console.log(response + " - 파라미터 전달 성공");
-	        },
-	        error: function(error) {
-	            console.log(error + " - 파라미터 전달 실패");	    
-	        }
-	    });
+//		 var discountPoint = $("#discountPoint").text();
+//	     var earnedPoints = $("#earnedPoints").text();
+//	     var totalPayment = $("#totalPayment").text();
+//	     var preOrderTotalPrice = $("#preOrderTotalPrice").text();
+//         $(this).append("<input type='hidden' name='discountPoint' value='" + discountPoint + "' />");
+//         $(this).append("<input type='hidden' name='earnedPoints' value='" + earnedPoints + "' />");
+//         $(this).append("<input type='hidden' name='totalPayment' value='" + totalPayment + "' />");
+//         $(this).append("<input type='hidden' name='preOrderTotalPrice' value='" + preOrderTotalPrice + "' />");
 		
 		return true;
 	}); //submit버튼

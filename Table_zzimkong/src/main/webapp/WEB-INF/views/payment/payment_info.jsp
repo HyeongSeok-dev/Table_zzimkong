@@ -23,7 +23,7 @@
 			</div>
 		<!-- dd -->
 		<div class="center">
-			<form action="paymentPro" class="check_payment" name="checkInfo">
+			<div class="check_payment">
 				<section class="reservation">
 					<div class="res_num">
 						<span class="res_info_detail">
@@ -151,8 +151,8 @@
 						<span class="total_money">${map.ftp} 원</span>
 					</div>
 				</section>
-				<button type="submit" class="checked" onclick="location.href='/'">확인</button>
-			</form>
+				<button type="button" class="checked" onclick="location.href='../'">확인</button>
+			</div>
 		</div>
 	</div>
 </body>
