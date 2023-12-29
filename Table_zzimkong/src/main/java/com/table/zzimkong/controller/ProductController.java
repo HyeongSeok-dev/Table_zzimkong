@@ -37,32 +37,31 @@ public class ProductController {
 	private ProductService service;
 
 	@RequestMapping("/product/searchResult")
-	public ResponseEntity<?> search_result(@RequestBody SearchVO searchInfo, HttpSession session) {
+	public ResponseEntity<?> search_result(@RequestBody SearchVO search, HttpSession session) {
 
-		LocalDate localDate = LocalDate.parse(searchInfo.getDate());
-		LocalTime localTime = LocalTime.parse(searchInfo.getTime());
+		LocalDate localDate = LocalDate.parse(search.getDate());
+		LocalTime localTime = LocalTime.parse(search.getTime());
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("h:mm");
 		
 		if (LocalDate.now().equals(localDate)) {
-	        searchInfo.setDisplayDate("오늘");
+			search.setDisplayDate("오늘");
 	    } else if (LocalDate.now().plusDays(1).equals(localDate)) {
-	        searchInfo.setDisplayDate("내일");
+	    	search.setDisplayDate("내일");
 	    } else {
-	        searchInfo.setDisplayDate(localDate.toString());
+	    	search.setDisplayDate(localDate.toString());
 	    }
 
 		if (localTime.isBefore(LocalTime.NOON)) {
-	        searchInfo.setDisplayTime("오전 " + localTime.format(formatter));
+			search.setDisplayTime("오전 " + localTime.format(formatter));
 	    } else {
-	        searchInfo.setDisplayTime("오후 " + localTime.format(formatter));
+	    	search.setDisplayTime("오후 " + localTime.format(formatter));
 	    }
 
-		session.setAttribute("search", searchInfo);
-		searchInfo.setRedirectURL("/product/list");
+		session.setAttribute("search", search);
+		System.out.println("서치 세션 최초 등록" + search);
+		search.setRedirectURL("/product/list");
 
-		System.out.println(searchInfo.toString());
-		
-		return ResponseEntity.ok(searchInfo);
+		return ResponseEntity.ok(search);
 	}
 
 	@RequestMapping("product/list")
@@ -86,8 +85,7 @@ public class ProductController {
 		
 		int listCount = companyList.size();
 
-		
-		model.addAttribute("search", search);
+		session.setAttribute("search", search);
 		model.addAttribute("listCount", listCount);
 		model.addAttribute("companyList", companyList);
 		
@@ -95,14 +93,13 @@ public class ProductController {
 	}
 	
 	@PostMapping("product/detail")
-	public String product_detail(Model model, HttpSession session, CompanyVO company, ReservationVO res) {
+	public String product_detail(Model model, HttpSession session, CompanyVO company, ReservationVO res, SearchVO search) {
+		System.out.println("디테일전" + search);
+		search = (SearchVO)session.getAttribute("search");
+		System.out.println("디테일후" + search);
 		
-		SearchVO search = (SearchVO)session.getAttribute("search");
-		
-		System.out.println("디테일에서 받음 " + search);
-		System.out.println("디테일에서 받음 " + company);
 		if(search == null) {
-			model.addAttribute("msg","잘못된 접근입니다!");
+			model.addAttribute("msg","서치가 없어졌어요");
 			return "fail_back";
 		}
 		

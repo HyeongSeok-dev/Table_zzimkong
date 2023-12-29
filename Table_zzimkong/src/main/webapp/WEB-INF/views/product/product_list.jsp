@@ -51,7 +51,7 @@
 												<div class="restaurant-distance">${company.distance}m</div>
 											</div>
 											<div class="restaurant-category">${company.com_category}</div>
-											<div class="restaurant-price-range">${company.min_price} ~ ${company.max_price}</div>
+											<div class="restaurant-price-range">${company.min_price}원 ~ ${company.max_price}원</div>
 											<div class="restaurant-tag">${company.com_search_tag}</div>
 										</div>
 										<div class="reservation-time" data-start-time="${search.time}" data-persons="${search.persons}" data-remaining1="${company.remaining_people}"

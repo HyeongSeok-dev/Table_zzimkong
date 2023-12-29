@@ -68,26 +68,71 @@ body {
 }
 
 .restaurant-list {
-	display: flex;
-	flex-direction: column;
-	width: 100%;
-	height: auto;
-	border-bottom: .67px solid #0000001c;
+    /* 간격 */
+    padding: 20px; /* 주변 여백 추가 */
+    margin-bottom: 20px; /* 요소 간 간격 추가 */
+    border-bottom: 1px solid #e0e0e0; /* 구분선 추가 */
+
+    /* 타이포그래피 */
+    color: #333; /* 읽기 쉬운 색상 */
+    line-height: 1.6; /* 줄 간격 조정 */
+
+
+    /* 호버 효과 */
+    transition: background-color 0.3s; /* 부드러운 색상 전환 */
 }
 
+.restaurant-list:hover {
+    background-color: #f0f0f0; /* 호버시 배경색 변경 */
+}
+
+.restaurant-list h2 {
+    margin: 10px 0; /* 제목 간격 조정 */
+    font-size: 1.5em; /* 제목 크기 조정 */
+}
+
+.restaurant-list p {
+    margin-bottom: 10px; /* 문단 간격 조정 */
+}
 .restaurant-card {
 	display: flex;
 	padding: 8px;
 	overflow: hidden;
-	border-bottom: 1px solid;
 }
 .restaurant-details {
+    /* 간격 */
+    padding: 5px; /* 내부 여백 */
+    border-radius: 8px; /* 모서리 둥글게 */
+
 	display: flex;
 	flex-direction: column;
-	padding: 0 0 15.21px;
 	flex-grow: 1;
+    /* 색상 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
 }
 
+.restaurant-details h3 {
+    color: #d64a34; /* 제목 색상 */
+    margin-bottom: 10px; /* 제목 아래 여백 */
+}
+
+.restaurant-details p {
+    line-height: 1.6; /* 줄 간격 */
+    margin-bottom: 10px; /* 문단 간격 */
+}
+
+.restaurant-details a {
+    color: #007bff; /* 링크 색상 */
+    text-decoration: none; /* 밑줄 제거 */
+}
+
+.restaurant-details a:hover {
+    text-decoration: underline; /* 호버시 밑줄 */
+}
+.com_pic{
+	border-radius: 5px;
+	box-sizing: border-box;
+}
 .restaurant-img {
 	width: 300px;
 	height: 100%;
@@ -99,9 +144,49 @@ body {
 }
 
 .restaurant-info {
-	display: flex;
-	flex-direction: column;
-	padding: 0 0 0px;
+    /* 레이아웃 및 간격 */
+    padding: 10px; /* 넉넉한 내부 여백 */
+    margin: 10px 0; /* 위아래 여백 */
+
+    /* 타이포그래피 */
+    font-size: 1.1rem; /* 큼직한 글자 크기 */
+    color: #333333; /* 가독성 높은 색상 */
+    line-height: 1.6;
+}
+
+.restaurant-info h2, .restaurant-info h3 {
+    margin-top: 0;
+    margin-bottom: 20px; /* 제목 아래 여백 */
+    color: #d64a34; /* 제목 색상 */
+    font-size: 1.5rem; /* 제목 크기 */
+}
+
+.restaurant-info p {
+    margin-bottom: 15px; /* 문단 간격 */
+}
+
+/* 링크 스타일 */
+.restaurant-info a {
+    color: #007bff;
+    text-decoration: none; /* 밑줄 제거 */
+}
+
+.restaurant-info a:hover {
+    text-decoration: underline; /* 호버시 밑줄 */
+}
+
+/* 강조 텍스트 스타일 */
+.restaurant-info strong {
+    color: #000000;
+    font-weight: bold;
+}
+
+.reservation-time {
+
+    /* 타이포그래피 */
+    font-size: 1.1rem; /* 글자 크기 */
+    color: #333; /* 가독성 높은 색상 */
+    line-height: 1.6;
 }
 
 .restaurant-name,
@@ -151,22 +236,29 @@ body {
 .restaurant-price-range{
 	font-size: 15px;
 }
-.reservation-time {
-	display: flex;
-	margin-top: 10px; /* 필요에 따라 상단 마진을 조정하여 간격을 둘 수 있습니다 */
+/* time-button 스타일링 */
+.time-button {
+    padding: 10px 15px; /* 넉넉한 내부 여백 */
+    font-size: 1.3rem; /* 큼직한 글자 크기 */
+    text-align: center; /* 텍스트 중앙 정렬 */
+    margin: 10px; /* 주변 여백 */
+    background-color: #ffffff; /* 배경색 */
+    border: 1px solid #ddd; /* 테두리 */
+    border-radius: 6px; /* 모서리 둥글게 */
+    cursor: pointer; /* 클릭 가능한 것으로 표시 */
+    transition: all 0.3s ease; /* 부드러운 전환 효과 */
+    display: inline-block; /* 버튼을 옆으로 나열 */
+    min-width: 80px; /* 최소 너비 설정 */
 }
 
-.time-slot {
-	display: inline-flex;
-	width: 50px;
-	height : auto;
-	align-items: center;
-	justify-content: center;
-	padding: 10px 18px;
-	border-radius: 40px;
-	margin-right: 10px;
-	font-family: "IBM Plex Sans", Helvetica;
-	font-weight: 700;
-	text-align: center;
-	font-size: 14px;
+.time-button:hover {
+    background-color: #e9e9e9; /* 호버시 배경색 변경 */
+    transform: scale(1.05); /* 호버 시 약간 커지는 효과 */
+}
+
+/* 선택된 시간 버튼 스타일 (active or selected 상태를 가정) */
+.time-button.active, .time-button.selected {
+    background-color: #d64a34; /* 선택된 시간 배경색 */
+    color: white; /* 선택된 시간 글자색 */
+    border-color: #d64a34; /* 선택된 시간 테두리색 */
 }

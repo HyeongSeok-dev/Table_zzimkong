@@ -3,11 +3,9 @@ $(document).ready(function() {
 	
 	fetchRestaurants('near');
 
-	$('input[name="menu"]').each(function() {
+	$('input[name="menu_idx"]').each(function() {
 		$(this).change(function() {
-			var isAnyCheckboxChecked = $('input[name="menu"]').is(':checked');
-
-			if (isAnyCheckboxChecked) {
+			if ($('input[name="menu_idx"]').is(':checked')) {
 				$('#reservation-confirm-button').text('선택한 메뉴와 예약하기');
 			} else {
 				$('#reservation-confirm-button').text('선주문없이 바로 예약하기');
@@ -101,7 +99,7 @@ function fetchRestaurants(sortValue) {
                                     class="similar_rest_distance_number">${restaurant.distance}m</span>
                             </div>
                             <img class="similar_rest_img"
-                                 src="` + contextPath + `/resources/upload/${restaurant.com_img}">
+                                 src="` + contextPath + `/resources/img/${restaurant.com_img}">
                             <div class="similar_rest_average">
                                 <img class="similar_rest_average_img"
                                      src="` + contextPath + `/resources/img/products_similar_star.png"
