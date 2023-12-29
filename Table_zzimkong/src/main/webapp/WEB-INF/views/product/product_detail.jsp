@@ -104,7 +104,7 @@
 							<div class="menu_button_wrapper">
 								<div class="menu_price_sub">${menu.menu_price}원</div>
 								<input type="checkbox" id="menu_${menu.menu_idx}" name="menu_idx" class="menu_check" value="${menu.menu_idx}">
-								<label for="menu_${menu.menu_idx}" class="menu_button">선주문</label>
+								<label for="menu_${menu.menu_idx}" class="menu_button">선택</label>
 								<input type="number" min="1" max="10" name="order_amount" value="1" class="order_amount">
 							</div>
 						</div>
