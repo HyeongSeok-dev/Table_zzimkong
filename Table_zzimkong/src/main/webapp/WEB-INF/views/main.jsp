@@ -88,7 +88,7 @@
 												
 												
 												<%--업주회원 로그인시 --%>
-												<c:when test="${sessionScope.sStatus eq 2}"> 
+												<c:when test="${sessionScope.sCategory eq 2}"> 
 													<li class="dropdown">
 													    <a href="main" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 <%-- 		      										    <input type="text" class="input_text" value="${sessionScope.sNick}&nbsp;님" style="width: 100px;"> --%>

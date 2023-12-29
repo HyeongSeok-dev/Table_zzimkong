@@ -224,7 +224,7 @@ public class MemberController {
 		    //메인닉네임표시
 		    session.setAttribute("sNick", dbMember.getUser_nick());
 		    //메인화면 회원상태 구별을 위한 세션
-		    session.setAttribute("sStatus", dbMember.getUser_status());
+		    session.setAttribute("sCategory", dbMember.getUser_category());
 		    //메인 업주화면 이름 표시를위한 세션
 		    session.setAttribute("sName", dbMember.getUser_name());
 		    //  user_idx가 외래키여서 session에 sIdx 넣었음

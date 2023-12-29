@@ -70,7 +70,7 @@ $(document).ready(function() {
 	});
 	//Initiat WOW JS
 	new WOW().init();
-	
+
 
 
 
