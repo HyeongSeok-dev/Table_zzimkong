@@ -9,9 +9,9 @@
 <link href="${pageContext.request.contextPath }/resources/css/payment.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet" type="text/css">
 <script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
-<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+<!-- <script src="https://cdn.iamport.kr/v1/iamport.js"></script> -->
 <script src="${pageContext.request.contextPath }/resources/js/payment.js"></script>
-<script src="${pageContext.request.contextPath }/resources/js/payment_API.js"></script>
+<%-- <script src="${pageContext.request.contextPath }/resources/js/payment_API.js"></script> --%>
 <script type="text/javascript"> 
 </script>
 
@@ -20,7 +20,7 @@
  	<header>
 		<jsp:include page="../inc/top2.jsp"></jsp:include>
 	</header>
-	<form action="paymentPro" name="payForm" method="post">
+	<form action="paymentPro" name="payForm" method="POST">
 		<div class="div_outter">
 			<div class="div_form_header">
 				<span><h1>결제</h1></span>
@@ -260,7 +260,7 @@
 						 <%-- param--%> <input type="hidden" value="${map.res.res_table_price}" name="pay_per_price"/>
 									</div>
 									<c:choose>
-										<c:when test="${empty map.poi.pre_idx}">
+										<c:when test="${empty map.poi[0].pre_idx}">
 											<div>
 												<span class="detail">메뉴 선결제금액</span>
 												<span class="detail_price">

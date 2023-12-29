@@ -45,9 +45,9 @@ public class PaymentController {
 								 ReservationVO res, CompanyVO company) {
 		ModelAndView mav; 
 		//세션에 저장된 아이디로 회원정보확인 하기 위해 일단 세션에 임의의 값 넣음
-		//session.setAttribute("sId", "user02");
-		res = (ReservationVO)map.get("res");
-		System.out.println(res);
+		session.setAttribute("sId", "user02");
+//		res = (ReservationVO)map.get("res");
+//		System.out.println(res);
 		// 세션에 로그인이 안되어있다면 접근금지
 		if(session.getAttribute("sId") == null) {
 			
@@ -61,11 +61,12 @@ public class PaymentController {
 		// 나중에 예약완성되면 확인하기
 //		res = ((ReservationVO)session.getAttribute("res")
 //		session.setAttribute("res", null);
-		//res.setRes_num("R0002");
+		res.setRes_num("R0002");
 		
 		
 		//[ 예약정보조회 ]
 		res = service.getReservation(res);
+		System.out.println(res);
 		//테이블 예약금액에 천단위 쉼표줌
 		NumberFormat numberFormat = NumberFormat.getInstance();
 		String res_table_price = numberFormat.format(res.getRes_table_price());
@@ -120,6 +121,9 @@ public class PaymentController {
 		//--------------------------------------------------------------------
 		// [ PaymentInfo 객체에 문자열 타입으로 파라미터 전달]
 		PaymentInfo paymentInfo = new PaymentInfo(menuTotalPrice,totalPrice,totalPoint,res_table_price);
+		System.out.println(paymentInfo);
+		System.out.println(poiList);
+		System.out.println(res);
 		// 예약조회, 포인트조회,사업장정보조회,선주문조회 
 		map.put("res", res);
 		map.put("paymentInfo", paymentInfo);
@@ -233,7 +237,7 @@ public class PaymentController {
 			}
 			
 			mav = new ModelAndView();
-			mav.setViewName("redirect:/info?res_num=" + res.getRes_num()
+			mav.setViewName("redirect:/payment/info?res_num=" + res.getRes_num()
 			+ "&discountPoint=" + paymentInfo.getDiscountPoint() 
 			+ "&earnedPoints=" + paymentInfo.getEarnedPoints()
 			+ "&finalTotalPayment=" + paymentInfo.getTotalPayment()
@@ -251,16 +255,16 @@ public class PaymentController {
 	//---------------------------------------------------------------------------------------------------------------
 	@GetMapping("payment/info")
 	public ModelAndView payment_info(HttpSession session, Map<String, Object> map
-			,@RequestParam(defaultValue = "") String res_num,  @RequestParam(defaultValue = "0")int discountPoint
-			,@RequestParam(defaultValue = "0")int earnedPoints, @RequestParam(defaultValue = "") String finalTotalPayment
+			,@RequestParam(defaultValue = "") String res_num,  @RequestParam(defaultValue = "")String discountPoint
+			,@RequestParam(defaultValue = "")String earnedPoints, @RequestParam(defaultValue = "") String finalTotalPayment
 			,@RequestParam(defaultValue = "0")String payNum
 			) {
 		session.setAttribute("sId", "user02");
-		res_num = "";
-		discountPoint = 0;
-		earnedPoints = 1234;
-		finalTotalPayment = "1,000,000";
-		payNum = "P2023122763675ca";
+//		res_num = "";
+//		discountPoint = "0";
+//		earnedPoints = 1234;
+//		finalTotalPayment = "1,000,000";
+//		payNum = "P2023122763675ca";
 		ModelAndView mav; 
 		// 세션에 로그인이 안되어있다면 접근금지
 		if(session.getAttribute("sId") == null) {
@@ -351,8 +355,9 @@ public class PaymentController {
 		// 예약조회, 포인트조회,사업장정보조회,선주문조회 
 		
 		// int타입 포인트에 천단위 쉼표넣고 String타입으로 변환
-		String finalDiscountPoint = numberFormat.format(discountPoint);
-		String finalEarnedPoints = numberFormat.format(earnedPoints);
+		//고쳐야함!!!!
+//		String finalDiscountPoint = numberFormat.format(discountPoint);
+//		String finalEarnedPoints = numberFormat.format(earnedPoints);
 //		System.out.println("finalDiscountPoint" + finalDiscountPoint);
 		
 		map.put("res", res);
@@ -361,8 +366,8 @@ public class PaymentController {
 		map.put("com", company);
 		map.put("payment", payment);
 		map.put("poi", poiList);
-		map.put("dPoint", finalDiscountPoint);
-		map.put("ePoint", finalEarnedPoints);
+		map.put("dPoint", discountPoint);
+		map.put("ePoint", earnedPoints);
 		map.put("ftp", finalTotalPayment);
 
 		mav = new ModelAndView("payment/payment_info", "map", map);
