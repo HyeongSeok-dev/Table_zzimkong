@@ -8,25 +8,7 @@
 <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/resources/css/admin_cs.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/admin_top.css">
-<script type="text/javascript">
-	function noticeRegisterForm() {
-		/* 팝업창 중앙 정렬 */
-		var popupW = 950;
-		var popupH = 700;
-		var left = Math.ceil((window.screen.width - popupW)/2);
-		var top = Math.ceil((window.screen.height - popupH)/2);
-		window.open('${pageContext.request.contextPath }/admin/cs/notice/register','','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
-	}
-	function noticeModifyForm() {
-		/* 팝업창 중앙 정렬 */
-		var popupW = 950;
-		var popupH = 700;
-		var left = Math.ceil((window.screen.width - popupW)/2);
-		var top = Math.ceil((window.screen.height - popupH)/2);
-		window.open('${pageContext.request.contextPath }/admin/cs/notice/modify','','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
-	}
-</script>
+<script src="${pageContext.request.contextPath}/resources/js/admin_script.js"></script>
 </head>
 <body>
 	<header>

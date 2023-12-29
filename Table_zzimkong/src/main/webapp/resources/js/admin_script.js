@@ -9,16 +9,19 @@ function user_withdraw(user_idx) {
     }
 }
 
-	
+
 // admin_report.jsp
-function report_declaration() {
+function report_declaration(report_num) {
 	/* 팝업창 중앙 정렬 */
 	var popupW = 750;
 	var popupH = 650;
 	var left = Math.ceil((window.screen.width - popupW)/2);
 	var top = Math.ceil((window.screen.height - popupH)/2);
-	window.open('report/detail','','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
-//	window.open("admin_report_declaration.jsp", "_blank", "width=400px, height=300px");
+	
+	/* 각 신고정보로 이동하기 위한 주소 */
+	var url = "report/detail?report_num=" + report_num;
+	
+	window.open(url,'','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
 };
 
 
@@ -46,7 +49,6 @@ function company_info_open(com_id) {
 }
 
 function company_approve(com_id) {
-	console.log("com_id : " + com_id);
 	var result = confirm("입점 승인합니다.");
     if(result) { // 확인을 눌렀을 경우
         document.getElementById('com_id').value = com_id;
@@ -79,3 +81,124 @@ function company_shut_down() {
         }
 	}
 }
+
+
+// 고객센터
+// admin_cs_notice.jsp
+function noticeRegisterForm() {
+	/* 팝업창 중앙 정렬 */
+	var popupW = 950;
+	var popupH = 700;
+	var left = Math.ceil((window.screen.width - popupW)/2);
+	var top = Math.ceil((window.screen.height - popupH)/2);
+	window.open('notice/register','','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
+}
+function noticeModifyForm() {
+	/* 팝업창 중앙 정렬 */
+	var popupW = 950;
+	var popupH = 700;
+	var left = Math.ceil((window.screen.width - popupW)/2);
+	var top = Math.ceil((window.screen.height - popupH)/2);
+	window.open('notice/modify','','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
+}
+
+
+// 카테고리 필터
+// 1) 회원 관리 - 회원 구분, 회원 상태
+document.addEventListener("DOMContentLoaded", function(){
+    const memberCategorySelect = document.querySelector('#memberCategory');
+    const memberStatusCategorySelect = document.querySelector('#memberStatusCategory');
+    const memberItems = document.querySelectorAll('.member_item');
+    const memberStatusItems = document.querySelectorAll('.member_status_item');
+
+    function filterMembers() {
+        const currentCategory = memberCategorySelect.value;
+        const currentStatusCategory = memberStatusCategorySelect.value;
+        
+        for (let i = 0; i < memberItems.length; i++) {
+            const trElement = memberItems[i].closest('tr');
+            const memberStatus = trElement.querySelector('.member_status_item');
+
+            if ((currentCategory === 'member_all' || memberItems[i].dataset.category === currentCategory)
+                && (currentStatusCategory === 'member_status_all' || memberStatus.dataset.category === currentStatusCategory)) {
+                trElement.style.display = '';
+            } else {
+                trElement.style.display = 'none';
+            }
+        }
+    }
+
+    if (memberCategorySelect) {
+        memberCategorySelect.addEventListener('change', filterMembers);
+    }
+
+    if (memberStatusCategorySelect) {
+        memberStatusCategorySelect.addEventListener('change', filterMembers);
+    }
+});
+
+// 2) 업체 관리 - 광고 등급, 업체 상태
+document.addEventListener("DOMContentLoaded", function(){
+    const adGradeCategorySelect = document.querySelector('#adGradeCategory');
+    const companyStatusCategorySelect = document.querySelector('#companyStatusCategory');
+    const adGradeItems = document.querySelectorAll('.ad_grade_item');
+    const companyStatusItems = document.querySelectorAll('.company_status_item');
+
+    function filterCompanys() {
+        const currentAdCategory = adGradeCategorySelect.value;
+        const currentComStatusCategory = companyStatusCategorySelect.value;
+        
+        for (let i = 0; i < adGradeItems.length; i++) {
+            const trElement = adGradeItems[i].closest('tr');
+            const companyStatus = trElement.querySelector('.company_status_item');
+
+            if ((currentAdCategory === 'ad_grade_all' || adGradeItems[i].dataset.category === currentAdCategory)
+                && (currentComStatusCategory === 'company_status_all' || companyStatus.dataset.category === currentComStatusCategory)) {
+                trElement.style.display = '';
+            } else {
+                trElement.style.display = 'none';
+            }
+        }
+    }
+
+    if (adGradeCategorySelect) {
+        adGradeCategorySelect.addEventListener('change', filterCompanys);
+    }
+
+    if (companyStatusCategorySelect) {
+        companyStatusCategorySelect.addEventListener('change', filterCompanys);
+    }
+});
+
+// 3) 신고 관리 - 신고 구분, 처리 상태
+document.addEventListener("DOMContentLoaded", function(){
+    const reportCategorySelect = document.querySelector('#reportCategory');
+    const reportStatusCategorySelect = document.querySelector('#reportStatusCategory');
+    const reportItems = document.querySelectorAll('.report_item');
+    const reportStatusItems = document.querySelectorAll('.report_status_item');
+
+    function filterReports() {
+        const currentReportCategory = reportCategorySelect.value;
+        const currentReportStatusCategory = reportStatusCategorySelect.value;
+        
+        for (let i = 0; i < reportItems.length; i++) {
+            const trElement = reportItems[i].closest('tr');
+            const reportStatus = trElement.querySelector('.report_status_item');
+
+            if ((currentReportCategory === 'report_all' || reportItems[i].dataset.category === currentReportCategory)
+                && (currentReportStatusCategory === 'report_status_all' || reportStatus.dataset.category === currentReportStatusCategory)) {
+                trElement.style.display = '';
+            } else {
+                trElement.style.display = 'none';
+            }
+        }
+    }
+
+    if (reportCategorySelect) {
+        reportCategorySelect.addEventListener('change', filterReports);
+    }
+
+    if (reportStatusCategorySelect) {
+        reportStatusCategorySelect.addEventListener('change', filterReports);
+    }
+});

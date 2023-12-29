@@ -44,10 +44,27 @@ select {
     background: #eff7fe;
     color: #333;
     padding: 5px;
-    border-radius: 5px;
+    border-radius: 10px;
     border-color: #eff7fe;
 }
 
+select.search_select {
+    width: 60%;
+    height: 35px;
+    background: #eff7fe;
+    color: #333;
+    padding: 5px;
+    margin: 0px;
+    margin-right: 5px;
+    border-radius: 10px;
+    border-color: #eff7fe;
+   	text-align: center;
+}
+
+/* 검색창 */
+#search {
+	width: 100% !important;
+}
 	
 /* 버튼 CSS */
 /* button[type="button"], button[type="submit"], button[type="reset"] { */
@@ -111,15 +128,17 @@ select {
 }
 
 
-/* 신고, 회원 카테고리 CSS */
-#report_category, #member_category {
-    width: 100%; /* 너비 설정 */
-    height: 30px; /* 높이 설정 */
-    border: none; /* 테두리 제거 */
-    padding: 0px; /* 안쪽 여백 설정 */
-    border-radius: 5px; /* 테두리 둥글게 */
-    background-color:  rgb(244, 250, 255); /* 배경색 설정 */
-    font-size: 15px; /* 글꼴 크기 설정 */
+/* 회원관리, 업체관리, 신고관리 카테고리 필터 */
+#memberCategory, #memberStatusCategory, 
+#adGradeCategory, #companyStatusCategory, 
+#reportCategory, #reportStatusCategory {
+    width: 100%;
+    height: 30px;
+    border: none;
+    padding: 0px;
+    border-radius: 5px;
+    background-color:  rgb(244, 250, 255);
+    font-size: 15px;
     font-weight: bold;
     text-align: center;
     
@@ -127,21 +146,27 @@ select {
     margin-right: -100px; 
 }
 
+th {	
+	/* global.css : padding: 15px; */
+	padding: 15px 10px !important;
+}
+
 td> select {
 	width: 93%;
 }
 
+/* tr태그 커서 효과 */
+.tr_hover:hover {
+    background-color:  #f1f1f1;
+}
+
+
 /* 검색창 CSS */
 #board-search {
 	float: right;
-	/* 검색창 너비 */
-	width: 20%;
- /* 	margin-bottom: 20px; */
+	width: 30%; /* 검색창 너비 */
 }
 
-/* .float_after { */
-/* 	clear: both; */
-/* } */
 
 .material-icons {
 	font-family: 'Material Icons';
@@ -176,6 +201,12 @@ td> select {
 	max-width: 564px;
 	border: none;
 }
+
+/* 드롭다운과 검색창을 나란히 */
+.search-wrap {
+    display: flex;
+}
+
  #board-search .search-window .search-wrap input {
 	font-size: 14px;
 	padding: 7px 14px;

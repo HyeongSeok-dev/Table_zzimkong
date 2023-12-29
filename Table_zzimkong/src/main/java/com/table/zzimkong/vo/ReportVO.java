@@ -17,5 +17,7 @@ public class ReportVO {
     private String user_phone;
     private int report_category;
     private int report_status;
+    
+    private ReviewVO review;
 }
 

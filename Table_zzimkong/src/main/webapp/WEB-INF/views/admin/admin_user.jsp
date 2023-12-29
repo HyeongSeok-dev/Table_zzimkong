@@ -21,25 +21,20 @@
 	<section class="article">
         <div class="text">
         
-        	<%-- 검색창 --%>
-	        <div id="board-search">
-	        	<div class="container">
-		            <div class="search-window">
-		                <form action="">
-		                    <div class="search-wrap">
-	
-<!-- 			                   	 <select id="search_"> -->
-<!-- 								    <option value="member_all" selected>회원구분</option> -->
-<!-- 								    <option value="member_admin">관리자</option> -->
-<!-- 								    <option value="member_user">일반회원</option> -->
-<!-- 								    <option value="member_ceo">업주회원</option> -->
-<!-- 			                   	 </select> -->
+			<%-- 검색창 --%>
+			<div id="board-search">
+				<div class="container">
+					<div class="search-window">
+						<form action="/zzimkong/admin/user">
+							<div class="search-wrap">
+								<select name="searchMemberType" class="search_select">
+									<option value="member_all" <c:if test="${param.searchMemberType eq 'member_all'}">selected</c:if>>아이디&닉네임</option>
+									<option value="member_id" <c:if test="${param.searchMemberType eq 'member_id'}">selected</c:if>>아이디</option>
+									<option value="member_nick" <c:if test="${param.searchMemberType eq 'member_nick'}">selected</c:if>>닉네임</option>
+								</select>
 								
-								
-		                        <input id="search" type="search" name="" placeholder="검색어를 입력해주세요." value="">
-								<button type="submit" class="btn btn-dark">
-									<i class="material-icons search_icon">&#xe8b6;</i>
-								</button>
+		                        <input id="search" type="search" name="searchMemberKeyword" placeholder="검색어를 입력해주세요." value="${param.searchMemberKeyword}">
+								<button type="submit" class="btn btn-dark"><i class="material-icons search_icon">&#xe8b6;</i></button>
 		                    </div>
 		                </form>
 		            </div>
@@ -53,10 +48,10 @@
 				<table border="1">
 					<tr>
 						<th>회원번호</th>
+						<%-- 카테고리 필터 : 회원 구분 --%>
 						<th>
-							<select id="member_category">
+							<select id="memberCategory">
 							    <option value="member_all" selected>회원구분</option>
-							    <option value="member_admin">관리자</option>
 							    <option value="member_user">일반회원</option>
 							    <option value="member_ceo">업주회원</option>
 							</select>
@@ -65,7 +60,15 @@
 						<th>닉네임</th>
 						<th>포인트</th>
 						<th>가입일자</th>
-						<th>회원상태</th>
+						<%-- 카테고리 필터 : 회원 상태 --%>
+						<th>
+							<select id="memberStatusCategory">
+							    <option value="member_status_all" selected>회원상태</option>
+							    <option value="member_status_1">정상</option>
+							    <option value="member_status_2">휴면/정지</option>
+							    <option value="member_status_3">탈퇴</option>
+							</select>
+						</th>
 						<th>탈퇴</th>	
 					</tr>
 					<%-- 아래로 회원 목록 출력 --%>
@@ -75,16 +78,16 @@
 							<%-- 회원 구분 --%>
 							<c:choose>
 								<c:when test="${member.user_category eq 1}">
-									<td>일반회원</td>
+									<td class="member_item" data-category="member_user">일반회원</td>
 								</c:when>
 								<c:when test="${member.user_category eq 2}">
-									<td>업주회원</td>
+									<td class="member_item" data-category="member_ceo">업주회원</td>
 								</c:when>
 								<c:when test="${member.user_category eq 3}">
-									<td>관리자</td>
+									<td class="member_item" data-category="member_admin" style="color:blue;">관리자</td>
 								</c:when>
 								<c:otherwise>
-									<td style="color:red;">알수없음</td>
+									<td class="member_item" data-category="member_unknown" style="color:red;">알수없음</td>
 								</c:otherwise>
 							</c:choose>
 							<td>${member.user_id}</td>
@@ -97,16 +100,16 @@
 							<%-- 회원 상태 --%>
 							<c:choose>
 								<c:when test="${member.user_status eq 1}">
-									<td>정상</td>
+									<td class="member_status_item" data-category="member_status_1">정상</td>
 								</c:when>
 								<c:when test="${member.user_status eq 2}">
-									<td>휴면/정지</td>
+									<td class="member_status_item" data-category="member_status_2">휴면/정지</td>
 								</c:when>
 								<c:when test="${member.user_status eq 3}">
-									<td>탈퇴</td>
+									<td class="member_status_item" data-category="member_status_3">탈퇴</td>
 								</c:when>
 								<c:otherwise>
-									<td style="color:red;">알수없음</td>
+									<td class="member_status_item" data-category="member_status_unknown" style="color:red;">알수없음</td>
 								</c:otherwise>
 							</c:choose>
 							<%-- 회원 탈퇴 --%>

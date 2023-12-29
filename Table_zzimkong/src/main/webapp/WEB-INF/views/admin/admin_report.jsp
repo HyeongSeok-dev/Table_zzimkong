@@ -23,31 +23,40 @@
 			<table border="1">
 				<tr>
 					<th>신고번호</th>
+					<%-- 카테고리 필터 : 신고 구분 --%>
 					<th>
-						<select id="report_category">
-						    <option value="report_all">모든 카테고리</option>
-						    <option value="report_review">리뷰신고</option>
+						<select id="reportCategory">
+						    <option value="report_all" selected>신고구분</option>
 						    <option value="report_company">업체신고</option>
+						    <option value="report_review">리뷰신고</option>
 						</select>
 					</th>
 					<th>신고사유</th>
 					<th>신고자</th>
-					<th>처리상태</th>
+					<%-- 카테고리 필터 : 처리 상태 --%>
+					<th>
+						<select id="reportStatusCategory">
+						    <option value="report_status_all" selected>처리상태</option>
+						    <option value="report_status_1">접수</option>
+						    <option value="report_status_2">승인</option>
+						    <option value="report_status_3">반려</option>
+						</select>
+					</th>
 				</tr>
 				<%-- 아래로 리뷰 신고 목록 출력 --%>
 				<c:forEach var="report" items="#{reportList}">
-					<tr>
-						<td onclick="report_declaration()">${report.report_num}</td>
+					<tr onclick="report_declaration('${report.report_num}')" class="tr_hover">
+						<td>${report.report_num}</td>
 						<%-- 신고 구분 --%>
 						<c:choose>
 							<c:when test="${report.report_category eq 1}">
-								<td class="report_review">리뷰신고</td>
+								<td class="report_item" data-category="report_company">업체신고</td>
 							</c:when>
 							<c:when test="${report.report_category eq 2}">
-								<td class="report_review">업체신고</td>
+								<td class="report_item" data-category="report_review">리뷰신고</td>
 							</c:when>
 							<c:otherwise>
-								<td class="report_review" style="color:red;">알수없음</td>
+								<td class="report_item" data-category="report_unknown" style="color:red;">알수없음</td>
 							</c:otherwise>
 						</c:choose>
 						<%-- 신고 사유 --%>
@@ -75,19 +84,24 @@
 							</c:otherwise>
 						</c:choose>
 						<td>${report.user_id}</td>
+<!-- 						<td> -->
+<%-- 							${report.user_id} --%>
+<%-- 							<c:if test="${report.report_person eq 1}">(일반사용자)</c:if> --%>
+<%-- 							<c:if test="${report.report_person eq 2}">(레스토랑 관계자)</c:if> --%>
+<!-- 						</td> -->
 						<%-- 신고 상태 --%>
 						<c:choose>
 							<c:when test="${report.report_status eq 1}">
-								<td>접수</td>
+								<td class="report_status_item" data-category="report_status_1">접수</td>
 							</c:when>
 							<c:when test="${report.report_status eq 2}">
-								<td>승인</td>
+								<td class="report_status_item" data-category="report_status_2">승인</td>
 							</c:when>
 							<c:when test="${report.report_status eq 3}">
-								<td>반려</td>
+								<td class="report_status_item" data-category="report_status_3">반려</td>
 							</c:when>
 							<c:otherwise>
-								<td style="color:red;">알수없음</td>
+								<td class="report_status_item" data-category="report_status_unknown" style="color:red;">알수없음</td>
 							</c:otherwise>
 						</c:choose>
 					</tr>
