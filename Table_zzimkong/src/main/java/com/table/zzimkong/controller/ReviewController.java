@@ -59,7 +59,7 @@ public class ReviewController {
 		List<ReviewVO> reviews = service.getAllReviews(comId);
 		model.addAttribute("reviews",reviews);
 
-		// 이런 점이 좋았어요 차트
+		// 이런 점이 좋았어요 차트 수정!
         List<ReviewCountVO> reviewCounts = service.getReviewCountsByComId(comId);
         String reviewCountsJson = new Gson().toJson(reviewCounts);
         model.addAttribute("reviewCountsJson", reviewCountsJson);		
