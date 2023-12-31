@@ -1,5 +1,13 @@
 @charset "UTF-8";
 
+.chart-container {
+    position: relative;
+    height: 120vh;
+    width: 1100px;
+    margin: 0 auto; /* 중앙 정렬 */
+    font-family:'Pretendard-Regular', sans-serif;
+}
+
 .review_select_chart_fill {
     background-color: #3FAFFC; /* 또는 원하는 그라데이션 또는 색상 */
     height: 100%;
@@ -209,8 +217,17 @@ strong {
 }
 
 .review_write_button {
-	margin-right: 10px;
+	margin-right: 1px;
 	font-size: 16px;
+    cursor: pointer;
+    border: 1px solid lightgray;
+    padding: 14px;
+    border-radius: 10px;
+}
+
+.review_write_button:hover {
+	background-color: #3FAFFC;
+	color:#fff;
 }
 
 /*  =============================================================  */

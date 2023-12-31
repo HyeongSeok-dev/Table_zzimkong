@@ -16,17 +16,18 @@
 <script src="${pageContext.request.contextPath}/resources/js/review_detail.js"></script>
 <!-- Chart.js CDN 추가 -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
+<!-- datalabels 플러그인 -->
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+<script type="text/javascript">
 document.addEventListener('DOMContentLoaded', function() {
     var reviewCountsJson = '${reviewCountsJson}'.replace(/&quot;/g, '"');
     var reviewCounts = JSON.parse(reviewCountsJson)[0]; // 첫 번째 객체만 사용
-    console.log(reviewCounts);
 
     var labels = [
-        "인테리어", "혼밥", "대형 매장", "단체 모임", "경치", 
-        "큰 음식 양", "맛있는 음식", "가성비", "신선한 재료", 
-        "건강한 음식", "친절한 서비스", "주차 편의", "깨끗한 화장실", 
-        "빠른 서비스", "아이와 함께", "특별한 키워드 없음"
+        "인테리어가 멋져요", "혼밥하기 좋아요", "매장이 넓어요", "단체 모임 하기 좋아요", "뷰가 좋아요", 
+        "양이 많아요", "음식이 맛있어요", "가성비가 좋아요", "재료가 신선해요", 
+        "건강한 맛이에요", "친절해요", "주차하기 편해요", "화장실이 깨끗해요", 
+        "음식이 빨리 나와요", "아이와 가기 좋아요", "선택할 키워드가 없어요"
     ];
     
     var data = [
@@ -38,27 +39,108 @@ document.addEventListener('DOMContentLoaded', function() {
         reviewCounts.review_no_keyword
     ];
 
+    // 데이터 내림차순 정렬 + 라벨 정렬
+    var sortedIndices = data.map((value, index) => ({ value, index }))
+                            .sort((a, b) => b.value - a.value)
+                            .map(data => data.index);
+    
+    var sortedLabels = sortedIndices.map(index => labels[index]);
+    var sortedData = sortedIndices.map(index => data[index]);
+
+    // 순위별로 색상을 지정합니다.
+    var backgroundColors = sortedData.map((value, index) => {
+        if (index === 0) return '#add8e6'; // 1위 
+        if (index < 5) return '#C8E4F7'; // 2 ~ 5위
+        return '#C8E4F7'; // 나머지
+    });
+
     var ctx = document.getElementById('reviewChart').getContext('2d');
     new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: labels,
+            labels: sortedLabels,
             datasets: [{
-                label: '리뷰 카운트',
-                data: data,
-                backgroundColor: 'rgba(0, 123, 255, 0.5)',
+                label: '좋아요 수',
+                data: sortedData,
+                backgroundColor: backgroundColors, // 위에서 정의한 색상 배열을 사용
                 borderColor: 'rgba(0, 123, 255, 1)',
-                borderWidth: 1
+                borderWidth: 0,
+                
             }]
         },
         options: {
-            scales: {
-                y: {
-                    beginAtZero: true
+            indexAxis: 'y',
+            plugins: {
+                datalabels: {
+                    color: '#000',
+                    anchor: 'end', // 데이터 레이블을 막대의 끝에 위치.
+                    align: 'end', // 데이터 레이블을 막대의 오른쪽 끝에 정렬.
+                    // 여기에 formatter를 추가하여 각 라벨에 해당하는 값을 표시.
+                    offset: -30, // 라벨을 막대 바깥으로 10px 이동.
+                   	font: {
+                   		size: 18,
+                   		family: 'Pretendard-Regular',
+                   	},
+                    formatter: function(value, context) {
+                        // 막대 위에 라벨의 이름을 표시.
+                        return value;
+                    }
                 }
+            },
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    grid:{ // 뒤에 선 지우기
+                    	display: false,
+            			drawBorder: false,
+                    }
+                    // 여기에 적절한 최대값 설정을 추가합니다.
+                },
+                y: {
+//                     beginAtZero: true
+                    barThickness: 24,
+                   ticks: {
+                	   font: {
+                		   size: 18,
+                		   family: 'Pretendard-Regular',
+                	   }
+                   },
+                   grid: {
+//                 	   display: false,
+//                    	   drawBorder: false,
+                   }
+                    // 막대 두께 설정
+                }
+            },
+            maintainAspectRatio: false,
+            layout: {
+                backgroundColor: 'transparent' // 차트 배경을 투명하게 설정
             }
-        }
+        },
+        // Chart.js 3.x 이상 =>  plugins 배열 대신 options.plugins를 사용.
+        plugins: [ChartDataLabels]
     });
+//     // 차트 데이터를 업데이트하는 함수
+//     function updateChartData(chart, showAll) {
+//         if (showAll) {
+//             chart.data.labels = labels; // 전체 라벨 사용
+//             chart.data.datasets[0].data = data; // 전체 데이터 사용
+//         } else {
+//             chart.data.labels = labels.slice(0, 5); // 상위 5개 라벨만 사용
+//             chart.data.datasets[0].data = data.slice(0, 5); // 상위 5개 데이터만 사용
+//         }
+//         chart.update();
+//     }
+
+//     // 처음에는 상위 5개 항목만 표시
+//     updateChartData(myChart, false);
+
+//     // "더보기" 버튼 클릭 이벤트 핸들러
+//     document.getElementById('showMoreButton').addEventListener('click', function() {
+//         var isExpanded = this.textContent === '더보기';
+//         updateChartData(myChart, isExpanded);
+//         this.textContent = isExpanded ? "간략히" : "더보기";
+//     });
 });
 </script>
 	<!-- ================================================================================================= -->
@@ -81,7 +163,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		</div>
 	</div>
 	<!-- ================================================================================================= -->
-	<!-- ================================================================================================= -->
 	<br>
 	<br>
 	<br>
@@ -93,161 +174,14 @@ document.addEventListener('DOMContentLoaded', function() {
 			</svg>
 		</h2>
 		<div class="review_write_button">
-		    <a href="write?com_id="${review.review_num}><i class="fas fa-pencil-alt"></i> 리뷰쓰기</a>
+		    <a href="write?com_id="${review.review_num}><i class="fas fa-pencil-alt"></i> &nbsp;리뷰쓰기</a>
 		</div>
 	</div>
 	<!-- ======================================================================================== -->
-<div class="chart-container" style="position: relative; height:40vh; width:80vw">
+<div class="chart-container">
     <canvas id="reviewChart"></canvas>
 </div>
 	<!-- ======================================================================================== -->
-	<!-- 
-	<div class="review_select">
-		<ul class="review_select_list">
-			<li class="rv_sl_1">
-				<div class="review_select_chart_1"></div>
-				<div class="review_select_chart_1_1">
-					<img src="${pageContext.request.contextPath}/resources/img/review_interior.png" alt="" width="22" height="22" data-grid-lazy="false"> 
-					<span class="review_select_chart_content">&nbsp;&nbsp;"(분위기) 인테리어가 멋져요"</span> 
-					<span class="review_select_chart_count"> <span class="review_blind">이 키워드를 선택한 인원</span>126 
-				</div>
-			</li>
-			<li class="rv_sl_1">
-				<div class="review_select_chart_2"></div>
-				<div class="review_select_chart_1_1">
-					<img src="${pageContext.request.contextPath}/resources/img/review_alone.png" alt="" width="22" height="22" data-grid-lazy="false">
-					<span class="review_select_chart_content">&nbsp;&nbsp;"(분위기) 혼밥하기 좋아요"</span>
-					<span class="review_select_chart_count">
-					<span class="review_blind">이 키워드를 선택한 인원</span>126</span>
-				</div>
-			</li>
-			<li class="rv_sl_1">
-				<div class="review_select_chart_3"></div>
-				<div class="review_select_chart_1_1">
-					<img src="${pageContext.request.contextPath}/resources/img/review_big.png" alt="" width="22" height="22" data-grid-lazy="false">
-					<span class="review_select_chart_content">&nbsp;&nbsp;"(분위기) 매장이 넓어요"</span>
-					<span class="review_select_chart_count">
-					<span class="review_blind">이 키워드를 선택한 인원</span>126</span>
-				</div>
-			</li>
-			<li class="rv_sl_1">
-				<div class="review_select_chart_4"></div>
-				<div class="review_select_chart_1_1">
-					<img src="${pageContext.request.contextPath}/resources/img/review_many.png" alt="" width="22" height="22" data-grid-lazy="false">
-					<span class="review_select_chart_content">&nbsp;&nbsp;"(분위기) 단체모임 하기 좋아요"</span>
-					<span class="review_select_chart_count">
-					<span class="review_blind">이 키워드를 선택한 인원</span>126</span>
-				</div>
-			</li>
-			<li class="rv_sl_1">
-				<div class="review_select_chart_5"></div>
-				<div class="review_select_chart_1_1">
-					<img src="${pageContext.request.contextPath}/resources/img/review_view.png" alt="" width="22" height="22" data-grid-lazy="false">
-					<span class="review_select_chart_content">&nbsp;&nbsp;"(분위기) 뷰가 좋아요"</span>
-					<span class="review_select_chart_count">
-					<span class="review_blind">이 키워드를 선택한 인원</span>126</span>
-				</div>
-			</li>
-			<li class="rv_sl_1">
-				<div class="review_select_chart_6"></div>
-				<div class="review_select_chart_1_1">
-					<img src="${pageContext.request.contextPath}/resources/img/review_rice.png" alt="" width="22" height="22" data-grid-lazy="false"> 
-					<span class="review_select_chart_content">&nbsp;&nbsp;"(음식/가격) 양이 많아요"</span>
-					<span class="review_select_chart_count">
-					<span class="review_blind">이 키워드를 선택한 인원</span>126</span>
-				</div>
-			</li>
-			<li class="rv_sl_1">
-				<div class="review_select_chart_7"></div>
-				<div class="review_select_chart_1_1">
-					<img src="${pageContext.request.contextPath}/resources/img/review_deli.png" alt="" width="22" height="22" data-grid-lazy="false"> 
-					<span class="review_select_chart_content">&nbsp;&nbsp;"(음식/가격)음식이 맛있어요"</span>
-					<span class="review_select_chart_count">
-					<span class="review_blind">이 키워드를 선택한 인원</span>126</span>
-				</div>
-			</li>
-			<li class="rv_sl_1">
-				<div class="review_select_chart_8"></div>
-				<div class="review_select_chart_1_1">
-					<img src="${pageContext.request.contextPath}/resources/img/review_money.png" alt="" width="22" height="22" data-grid-lazy="false"> 
-					<span class="review_select_chart_content">&nbsp;&nbsp;"(음식/가격)가성비가 좋아요"</span>
-					<span class="review_select_chart_count">
-					<span class="review_blind">이 키워드를 선택한 인원</span>126</span>
-				</div>
-			</li>
-			<li class="rv_sl_1">
-				<div class="review_select_chart_9"></div>
-				<div class="review_select_chart_1_1">
-					<img src="${pageContext.request.contextPath}/resources/img/review_fresh.png" alt="" width="22" height="22" data-grid-lazy="false"> 
-					<span class="review_select_chart_content">&nbsp;&nbsp;"(음식/가격)재료가 신선해요"</span>
-					<span class="review_select_chart_count">
-					<span class="review_blind">이 키워드를 선택한 인원</span>126</span>
-				</div>
-			</li>
-			<li class="rv_sl_1">
-				<div class="review_select_chart_10"></div>
-				<div class="review_select_chart_1_1">
-					<img src="${pageContext.request.contextPath}/resources/img/review_nice.png" alt="" width="22" height="22" data-grid-lazy="false"> 
-					<span class="review_select_chart_content">&nbsp;&nbsp;"(음식/가격)메뉴가 알차요"</span>
-					<span class="review_select_chart_count">
-					<span class="review_blind">이 키워드를 선택한 인원</span>126</span>
-				</div>
-			</li>
-			<li class="rv_sl_1">
-				<div class="review_select_chart_11"></div>
-				<div class="review_select_chart_1_1">
-					<img src="${pageContext.request.contextPath}/resources/img/review_kind.png" alt="" width="22" height="22" data-grid-lazy="false"> 
-					<span class="review_select_chart_content">&nbsp;&nbsp;"(편의시설/기타)친절해요"</span>
-					<span class="review_select_chart_count">
-					<span class="review_blind">이 키워드를 선택한 인원</span>126</span>
-				</div>
-			</li>
-			<li class="rv_sl_1">
-				<div class="review_select_chart_12"></div>
-				<div class="review_select_chart_1_1">
-					<img src="${pageContext.request.contextPath}/resources/img/review_toilet.png" alt="" width="22" height="22" data-grid-lazy="false"> 
-					<span class="review_select_chart_content">&nbsp;&nbsp;"(편의시설/기타)화장실이 깨끗해요"</span>
-					<span class="review_select_chart_count">
-					<span class="review_blind">이 키워드를 선택한 인원</span>126</span>
-				</div>
-			</li>
-			<li class="rv_sl_1">
-				<div class="review_select_chart_13"></div>
-				<div class="review_select_chart_1_1">
-					<img src="${pageContext.request.contextPath}/resources/img/review_hurry.png" alt="" width="22" height="22" data-grid-lazy="false"> 
-					<span class="review_select_chart_content">&nbsp;&nbsp;"(편의시설/기타)음식이 빨리나와요"</span>
-					<span class="review_select_chart_count">
-					<span class="review_blind">이 키워드를 선택한 인원</span>126</span>
-				</div>
-			</li>
-			<li class="rv_sl_1">
-				<div class="review_select_chart_14"></div>
-				<div class="review_select_chart_1_1">
-					<img src="${pageContext.request.contextPath}/resources/img/review_child.png" alt="" width="22" height="22" data-grid-lazy="false"> 
-					<span class="review_select_chart_content">&nbsp;&nbsp;"(편의시설/기타)아이와 가기 좋아요"</span>
-					<span class="review_select_chart_count">
-					<span class="review_blind">이 키워드를 선택한 인원</span>126</span>
-				</div>
-			</li>
-			<li class="rv_sl_1">
-				<div class="review_select_chart_15"></div>
-				<div class="review_select_chart_1_1">
-					<img src="${pageContext.request.contextPath}/resources/img/review_couch.png" alt="" width="22" height="22" data-grid-lazy="false"> 
-					<span class="review_select_chart_content">&nbsp;&nbsp;"(편의시설/기타)좌석이 편해요"</span>
-					<span class="review_select_chart_count">
-					<span class="review_blind">이 키워드를 선택한 인원</span>126</span>
-				</div>
-			</li>
-		</ul>
-		<a href="#" target="_self" role="button" class="more-button"> <svg
-				xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 8"
-				class="svg-icon" aria-hidden="true">
-        <path
-					d="M7.5 8c-.2 0-.5-.1-.7-.3l-6.5-6C-.1 1.3-.1.7.2.3c.4-.4 1-.4 1.4-.1l5.8 5.4L13.2.2c.4-.4 1-.3 1.4.1.4.4.3 1-.1 1.4L8 7.7c0 .2-.3.3-.5.3z"></path>
-    </svg> <span class="blind_text">더보기</span>
-		</a>
-	</div>
-	-->
 	<br>
 	<br>
 	<br>

@@ -40,6 +40,8 @@ public class ReviewController {
 	@Autowired
 	private ReviewService service;
 	
+	// ===================================================================
+	// [ 리뷰 상세 페이지 ]
 	@GetMapping("review/redetail")
 	public String review_detail(@RequestParam("com_id") int comId, Model model){		
 		
@@ -247,8 +249,6 @@ public class ReviewController {
 			e.printStackTrace();
 		}
 		
-		
-		
 		// DB 파일명 삭제 실패 또는 서버 업로드 파일 삭제 실패 등의 문제 발생 시 "false" 리턴
 		return "false";
 	}
@@ -336,11 +336,6 @@ public class ReviewController {
 		}
 		
 	}
-	
-	
-	
-	
-	
 	
 	// ===================================================================
 	// [ 리뷰 삭제 ]

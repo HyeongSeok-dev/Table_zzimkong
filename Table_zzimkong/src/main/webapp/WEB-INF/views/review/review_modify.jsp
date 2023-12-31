@@ -17,29 +17,6 @@
 <script src="${pageContext.request.contextPath}/resources/js/review_modify.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
 <script type="text/javascript">
-// function deleteFile(review_num, review_img_1, index) {
-//     if(confirm("삭제하시겠습니까?")) {
-//         $.ajax({
-//             url: "ReviewDeleteFile", 
-//             type: "POST",
-//             data: {
-//                 "review_num" : review_num,
-//                 "review_img_1" : review_img_1
-//             },
-//             success: function(result) {
-//                 console.log("파일 삭제 요청 결과 : " + result + ", " + typeof(result));
-//                 if(result == "true") {
-//                     // 사진 추가 버튼과 파일 입력 요소 표시
-//                     $("#fileItemArea" + index).html('<input type="file" name="file' + index + '" />');
-//                     // 이미지 프리뷰 제거
-//                     removePreviewForIndex(index);
-//                 } else if(result == "false") {
-//                     console.log("파일 삭제 실패!");
-//                 }
-//             }
-//         });
-//     }
-// }
 function deleteFile(review_num, review_img_1) {
     if (confirm("삭제하시겠습니까?")) {
         $.ajax({
@@ -50,26 +27,21 @@ function deleteFile(review_num, review_img_1) {
                 "review_img_1": review_img_1
             },
             success: function(result) {
-                console.log("파일 삭제 요청 결과 : " + result);
                 if (result == "true") {
-                    // 새로운 파일 입력 요소와 사진 추가 버튼 HTML 생성
+                    // 기존 프리뷰 및 입력 요소 제거
+                    $("#fileItemArea" + review_img_1).empty();
+
+                    // 새로운 파일 입력 요소 HTML 생성
                     var newFileInputHtml = `
-                        <div class="photo_box">
-                            <div class="file" id="fileItemArea${review_img_1}">
-                                <input type="file" id="photoInput${review_img_1}" name="file${review_img_1}" accept="image/*" style="display:none;"/>
-                                <button type="button" id="photoBtn${review_img_1}" class="photo_btn">
-                                    <i class="fas fa-camera"></i> 사진 추가
-                                </button>
-                                <div class="preview_container" id="previewContainer${review_img_1}" style="display: none;">
-                                    <div class="image_wrapper">
-                                        <img id="imagePreview${review_img_1}" src="#" alt="Image Preview"/>
-                                        <div class="remove_btn" onclick="removePreview('${review_img_1}')">X</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>                    
-                    // 기존 요소 제거 및 새 요소 삽입
-                    $("#fileItemArea" + review_img_1).replaceWith(newFileInputHtml);
+                        <input type="file" id="photoInput${review_img_1}" name="file${review_img_1}" accept="image/*" />
+                        <button type="button" id="photoBtn${review_img_1}" class="photo_btn">
+                            <i class="fas fa-camera"></i> 사진 추가
+                        </button>
+                        <div class="preview_container" id="previewContainer${review_img_1}" style="display: none;"></div>
+                    `;
+
+                    // 새 요소 삽입
+                    $("#fileItemArea" + review_img_1).html(newFileInputHtml);
 
                     // 새 요소에 대한 이벤트 리스너 설정
                     bindNewFileInputEvents(review_img_1);
@@ -81,15 +53,15 @@ function deleteFile(review_num, review_img_1) {
     }
 }
 
-function bindNewFileInputEvents(review_img_1) {
+function bindNewFileInputEvents(review_img_id) {
     // '사진 추가' 버튼에 이벤트 리스너 설정
-    $("#photoBtn" + review_img_1).on('click', function() {
-        $("#photoInput" + review_img_1).click();
+    $("#photoBtn" + review_img_id).on('click', function() {
+        $("#photoInput" + review_img_id).click();
     });
 
     // 파일 입력 필드에 이벤트 리스너 설정
-    $("#photoInput" + review_img_1).on('change', function(event) {
-        handleImagePreview(event, review_img_1);
+    $("#photoInput" + review_img_id).on('change', function(event) {
+        handleImagePreview(event, review_img_id);
     });
 }
 
