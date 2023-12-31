@@ -90,12 +90,12 @@ window.onload = function() {
 				case 4 : msg = "안전"; color = "green"; break;
 				case 3 : msg = "보통"; color = "yellow"; break;
 				case 2 : msg = "위험"; color = "orange"; break;
-				case 1 : case 0 :  msg = "사용불가능한 비밀번호"; color = "red"; 
+				case 1 : case 0 :  msg = "사용 불가능한 비밀번호"; color = "red"; 
 			}
 			
 			if(count >= 2){ //안전,보통,위험 (사용가능)
 				isPasswd = true;
-			}else{ //사용불가능한 비밀번호
+			}else{ //사용 불가능한 비밀번호
 				isPasswd = false;
 			}	
 				

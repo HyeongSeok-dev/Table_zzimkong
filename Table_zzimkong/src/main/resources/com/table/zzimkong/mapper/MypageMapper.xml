@@ -24,16 +24,13 @@
 	<update id="updateMember">
 		UPDATE member
 		SET
-			user_name = #{member.user_name}
-			, user_birth = #{member.user_birth}
-			, user_nick = #{member.user_nick}
-			
+			user_nick = #{member.user_nick}
+			, user_email = CONCAT(#{member.user_email1}, '@', #{member.user_email2}) -- user_email1, user_email2 문자열 결합
 			<!-- 새 패스워드(newPasswd) 존재 여부에 따라 변경 여부 결정 -->
 			<!-- 주의! 비교에 사용될 파라미터는 #{} 제외하고 표현 -->
 			<if test="newPasswd != null and !newPasswd.equals('')">
 				, user_passwd = #{newPasswd}  -- 새 패스워드 존재할 경우 기존 패스워드 변경
 			</if>
-			, user_email = CONCAT(#{member.email1}, '@', #{member.email2}) -- email1, email2 문자열 결합
 		WHERE
 			user_id = #{member.user_id}
 	</update>

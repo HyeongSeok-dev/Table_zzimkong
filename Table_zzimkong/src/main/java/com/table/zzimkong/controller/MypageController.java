@@ -70,19 +70,19 @@ public class MypageController {
 	public String modifyPro(MemberVO member, String newPasswd, HttpSession session, Model model) {
 		// 세션 아이디가 없을 경우 "fail_back" 페이지를 통해 "잘못된 접근입니다" 출력 처리
 		String sId = (String) session.getAttribute("sId");
-//		if (sId == null) {
-//			model.addAttribute("msg", "잘못된 접근입니다");
-//			return "fail_back";
-//		}
+		if (sId == null) {
+			model.addAttribute("msg", "잘못된 접근입니다");
+			return "fail_back";
+		}
 		
-//		System.out.println("전달받은 Member : " + member);
+		System.out.println("전달받은 Member : " + member);
 		
 		// 만약, 현재 세션이 관리자가 아니거나
 		// 관리자이면서 id 파라미터가 없을 경우(null 또는 널스트링)
 		// MemberVO 객체의 id 값을 세션 아이디로 교체(덮어쓰기)
-//		if(!sId.equals("admin") || (sId.equals("admin") && (member.getUser_id() == null || member.getUser_id().equals("")))) {
-//			member.setUser_id(sId);
-//		} 
+		if(!sId.equals("admin") || (sId.equals("admin") && (member.getUser_id() == null || member.getUser_id().equals("")))) {
+			member.setUser_id(sId);
+		} 
 
 		// MemberService - getMember() 메서드 호출하여 회원 정보 조회 요청(패스워드 비교용)
 		// => 파라미터 : MemberVO 객체 리턴타입 : MemberVO(dbMember)
@@ -113,11 +113,12 @@ public class MypageController {
 		// => 실패 시 "fail_back" 페이지 포워딩 처리("회원정보 수정 실패!")
 		// => 성공 시 "MemberInfo" 서블릿 리다이렉트
 		if(updateCount > 0) { // 성공 시
+//			 session.setAttribute("msg", "회원정보를 수정하였습니다.");
 			// 관리자가 다른 회원 정보 수정 시 MemberInfo 서블릿 주소에 아이디 파라미터 결합
 			if(!sId.equals("admin") || (sId.equals("admin") && (member.getUser_id() == null || member.getUser_id().equals("")))) {
-				return "redirect:/my_modify_profile";
+				return "redirect:/my/modify/profile";
 			} else {
-				return "redirect://my_modify_profile?id=" + member.getUser_id();
+				return "redirect:/my/modify/profile?id=" + member.getUser_id();
 			}
 		} else { // 실패 시
 			model.addAttribute("msg", "회원정보 수정 실패!");
