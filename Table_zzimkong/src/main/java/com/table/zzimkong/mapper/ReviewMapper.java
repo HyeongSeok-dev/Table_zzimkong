@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.table.zzimkong.vo.ReviewCountVO;
 import com.table.zzimkong.vo.ReviewVO;
 
 @Mapper
@@ -42,10 +43,9 @@ public interface ReviewMapper {
 	// 리뷰 내용 가져오기
 	ReviewVO getReview(int reviewNum);
 
+	// 이런 점이 좋았어요 
+	List<ReviewCountVO> countReviewsByComId(int comId);
 
-	//-------------------------------------------------------------
-	// 이런 점이 좋았어요
-//	Map<String, Integer> getKeywordCounts(int comId);
-
+//	List<ReviewCountVO> countReviewsByComId(int comId);
 
 }

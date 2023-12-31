@@ -50,9 +50,26 @@ public class ReviewVO {
 	// => 멤버변수명은 form 태그 내의 파일의 name 속성값과 동일해야함
 	private MultipartFile file1;
 	private int review_status;
-	
 	private String com_name;
-
+	// ------------------------------------------------------------------------------------
+	private int moodInteriorCount;
+	private int moodAloneCount;
+	private int moodLargeCount;
+	private int moodMeetingCount;
+	private int moodViewCount;
+	private int moodBigCount;
+	private int moodDeliCount;
+	private int moodCheapCount;
+	private int moodFreshCount;
+	private int moodHealthyCount;
+	private int moodKindCount;
+	private int moodParkingCount;
+	private int moodToiletCount;
+	private int moodFastCount;
+	private int moodChildCount;
+	private int moodNoKeywordCount;
+	
+	
 	
 	
 }

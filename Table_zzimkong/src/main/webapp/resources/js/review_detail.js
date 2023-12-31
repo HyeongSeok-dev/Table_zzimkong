@@ -1,15 +1,39 @@
 document.addEventListener('DOMContentLoaded', function() {
-	// ===================================================================
-	// 이런 점이 좋았어요 차트
-	document.querySelectorAll('.review_select_chart_1_1').forEach(function(element) {
-
-		var percentage = parseInt(element.getAttribute('data-percentage'), 10);
-		var fillDiv = document.createElement('div');
-		fillDiv.classList.add('review_select_chart_fill');
-		fillDiv.style.width = percentage + '20%';
-		//	element.querySelector('.review_select_chart_1').appendChild(fillDiv);
-
-	});
+    // 요소가 존재하는지 확인
+//    let reviewCountsDataElement = document.getElementById('reviewCountsData');
+//    if (reviewCountsDataElement) {
+//        let reviewCountsJson = reviewCountsDataElement.getAttribute('data-review-counts');
+//        let reviewCounts = JSON.parse(reviewCountsJson);
+//
+//        // 데이터 정렬 및 차트 데이터 준비
+//        let sortedData = Object.entries(reviewCounts).sort((a, b) => b[1] - a[1]);
+//        let labels = sortedData.map(item => item[0]);
+//        let data = sortedData.map(item => item[1]);
+//        
+//        // 차트 생성
+//        let ctx = document.getElementById('reviewChart').getContext('2d');
+//        let myChart = new Chart(ctx, {
+//            type: 'bar',
+//            data: {
+//                labels: labels, // 수정된 부분
+//                datasets: [{
+//                    label: '리뷰 카운트',
+//                    data: data, // 수정된 부분
+//                    backgroundColor: 'rgba(0, 123, 255, 0.5)',
+//                    borderColor: 'rgba(0, 123, 255, 1)',
+//                    borderWidth: 1
+//                }]
+//            },
+//            options: {
+//                scales: {
+//                    y: {
+//                        beginAtZero: true
+//                    }
+//                }
+//            }
+//        }); // 여기에 중괄호와 괄호를 닫아줍니다.
+//    }
+//    
 	// ===================================================================
 	// 댓글 아이콘 팝업
 	 var commentIcons = document.querySelectorAll('.fa-comment');
@@ -25,28 +49,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-	// ===================================================================
-	// 더보기 버튼 기능
-	var moreButton = document.querySelector('.more-button');
-	var hiddenItems = document.querySelectorAll('.review_select_list .rv_sl_1:nth-child(n+6)');
-	var svgIcon = moreButton.querySelector('.svg-icon');
-	var buttonText = moreButton.querySelector('.blind-text');
-
-	moreButton.addEventListener('click', function(event) {
-		event.preventDefault();
-
-		hiddenItems.forEach(function(item) {
-			item.style.display = (item.style.display === 'none' || item.style.display === '') ? 'block' : 'none';
-		});
-
-		if (buttonText.textContent.trim() === '더보기') {
-			buttonText.textContent = '접기';
-			svgIcon.style.transform = 'rotate(180deg)'; // 아이콘 뒤집기
-		} else {
-			buttonText.textContent = '더보기';
-			svgIcon.style.transform = 'rotate(0deg)'; // 원래 아이콘
-		}
-	});
 
 	// ===================================================================
 	// 하트 아이콘(좋아요)
@@ -101,34 +103,15 @@ document.addEventListener('DOMContentLoaded', function() {
 	});
 
 	// ===================================================================
-	// 삭제 버튼 팝업
 	var deleteButtons = document.querySelectorAll('.review_delete');
-	deleteButtons.forEach(function(deleteButton) {
-		deleteButton.addEventListener('click', function(event) {
-			// 팝업창을 표시
-			deleteConfirmationPopup.style.display = 'block';
+deleteButtons.forEach(function(deleteButton) {
+    deleteButton.addEventListener('click', function(event) {
+        // 팝업창을 표시
+        deleteConfirmationPopup.style.display = 'block';
 
-			// 기본 이벤트 방지 (링크 이동 등)
-			event.preventDefault();
-			
-		});
+        // 기본 이벤트 방지 (링크 이동 등)
+        event.preventDefault();
+    });
+}); // 여기에 중괄호를 닫습니다.
 
-	});
-	// ===================================================================
-	// 리뷰 이미지 팝업
-    var img = document.querySelector('.clickable-image');
-    var popup = document.getElementById('image-popup');
-    var popupImg = document.getElementById('popup-img');
-    var closeSpan = document.querySelector('.close-popup');
-
-    img.onclick = function(){
-        popup.style.display = "block";
-        popupImg.src = this.src;
-    }
-
-    closeSpan.onclick = function() { 
-        popup.style.display = "none";
-    }
-		
-
-	});
+}); // 이것은 document.addEventListener의 끝을 나타냅니다.

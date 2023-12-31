@@ -12,5 +12,6 @@
 		<typeAlias type="com.table.zzimkong.vo.PreOrderInfo"  alias="poi"/>
 		<typeAlias type="com.table.zzimkong.vo.MenuVO"  alias="menu"/>
 		<typeAlias type="com.table.zzimkong.vo.ReviewVO"  alias="review"/>
+		<typeAlias type="com.table.zzimkong.vo.ReviewCountVO"  alias="reviewcount"/>
 	</typeAliases>
 </configuration>
