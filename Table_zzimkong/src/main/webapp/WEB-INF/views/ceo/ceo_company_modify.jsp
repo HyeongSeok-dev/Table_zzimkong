@@ -37,15 +37,13 @@
 			<form action="modifyPro" method="post" enctype="multipart/form-data">
 				<table>
 					<tr>
-						<th rowspan="2">사진등록</th>
-						<td colspan="2" rowspan="2"> 
-							<div id="img">
-								<img src="">
-							</div>
+						<th rowspan="4">사진등록</th>
+						<td colspan="2" rowspan="4"> 
+							<div id="img"><img src="" id="com_img_div"></div>
 							<hr>
 							<div class="file_div">
-							<input type="file" id="file">
-							<div id="onlyone">*사진은 최대 한장만 등록해주세요</div>
+							<input type="file" id="file" name="com_img">
+							<div id="onlyone">*사진은 최대 한장만 등록 가능합니다.</div>
 							</div>
 						</td>
 						<th>상호명</th>
@@ -58,8 +56,10 @@
 					<tr>
 						<th>전화번호</th>
 						<td colspan="2"><input type="text" id="com_tel" name="com_tel" value="${com.com_tel }"></td>
+					</tr>
+					<tr>
 						<th>시간당 최대 인원</th>
-						<td colspan="2" style="font-size: 18px;"><input name="perHourMaxPerson" id="hMax" type="text" value="${com.com_max_people }"> &nbsp;명</td>
+						<td colspan="2" style="font-size: 18px;"><input name="perHourMaxPerson" id="hMax" type="text" value="${com.com_max_people }"> 명</td>
 					</tr>
 					<tr>
 						<th>영업 시작시간</th>

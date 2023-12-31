@@ -20,6 +20,14 @@ $(function() {
  
 	});
 	
+	$('#file').change(function() {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            var img = $('<img>').attr('src', e.target.result).css('max-width', '290px').css('max-height', '200px');
+            $('#img').empty().append(img);
+        }
+        reader.readAsDataURL(this.files[0]);
+    });
 		
 	$(".button_olive").submit(function(){
 		if($("#com_tel").val() == "") {

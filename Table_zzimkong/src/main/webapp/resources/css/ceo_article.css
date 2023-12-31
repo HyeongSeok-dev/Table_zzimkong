@@ -233,6 +233,10 @@ input[type="date"] {
 	table-layout: auto;
 }
 
+.file_div {
+	
+}
+
 #csQnaRegiTitle {
 	width: 90%;
 }
@@ -268,7 +272,8 @@ td>div {
 	font-size: 10px;
 }
 #img {
-	height: 50px;
+	height: 210px;
+	width: 300px;
 }
 
 .file_div {

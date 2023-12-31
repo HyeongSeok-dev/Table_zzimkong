@@ -24,6 +24,16 @@ $(function() {
  
 	});
 	
+	//사진 미리보기
+    $('#file').change(function() {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            var img = $('<img>').attr('src', e.target.result).css('max-width', '290px').css('max-height', '200px');
+            $('#img').empty().append(img);
+        }
+        reader.readAsDataURL(this.files[0]);
+    });
+	
 	$("#comNumBtn").on("click", function(){
 		if($("#com_num_register").val() == "") {
 			alert("사업자 등록 번호를 입력해 주세요.");

@@ -1,16 +1,4 @@
 $(function() {
-	if($("#com_status").text().trim() == "폐점승인대기") {
-		console.log("gfff");
-		$("#status_4").html("<h1>폐점승인 대기중 입니다.</h1>");
-		$("#status_4").css("color", "red");
-		$("#adRegister").click(function(event) {
-			event.preventDefault();
-		});
-		$(".button_olive").click(function(event) {
-			event.preventDefault();
-		});
-		$("#company_state2").prop("disabled", true);
-	}
 	
 	$("#company_state2").on("change", function(){
 		

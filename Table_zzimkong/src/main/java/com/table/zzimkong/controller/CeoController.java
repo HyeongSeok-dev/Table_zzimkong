@@ -447,18 +447,13 @@ public class CeoController {
 		company.setEndHour(company.getCom_breakEnd_time().split(":")[0]);
 		company.setEndMin(company.getCom_breakEnd_time().split(":")[1]);
 		
-		
-		
 		model.addAttribute("com",company);
 		return "ceo/ceo_company_modify";
 	}
 	
 	@PostMapping("ceo/company/modifyPro")
 	public String company_modifyPro(HttpSession session, Model model, @RequestParam(defaultValue = "")String com_num) {
-		
-		
-		
-		
+
 		return "ceo/ceo_company_modify";
 	}
 	

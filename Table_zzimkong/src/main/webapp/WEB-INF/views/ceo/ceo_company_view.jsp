@@ -55,7 +55,7 @@
 										영업중지
 								</c:when>
 								<c:when test="${com.com_status eq '4'}">
-										폐점승인대기
+										폐점
 								</c:when>
 							</c:choose>
 						</td>

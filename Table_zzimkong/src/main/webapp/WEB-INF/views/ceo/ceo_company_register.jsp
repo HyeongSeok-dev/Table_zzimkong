@@ -42,9 +42,9 @@ $(function () {
 						</td>
 					</tr>
 					<tr>
-						<th rowspan="2">사진등록</th>
-						<td colspan="2" rowspan="2"> 
-							<div id="img"></div>
+						<th rowspan="4">사진등록</th>
+						<td colspan="2" rowspan="4"> 
+							<div id="img"><img src="" id="com_img_div"></div>
 							<hr>
 							<div class="file_div">
 							<input type="file" id="file" name="com_img">
@@ -61,6 +61,8 @@ $(function () {
 					<tr>
 						<th>업태</th>
 						<td colspan="2"><input type="text" name=com_category id="com_category" value="" readonly="readonly"></td>
+					</tr>
+					<tr>
 						<th>전화번호</th>
 						<td colspan="2"><input type="text" name="com_tel" id="com_tel" value=""></td>
 					</tr>

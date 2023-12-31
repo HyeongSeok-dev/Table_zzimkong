@@ -101,9 +101,9 @@
 								<c:when test="${com.com_status eq '3'}">
 										영업중지
 								</c:when>
-								<c:otherwise>
+								<c:when test="${com.com_status eq '4'}">
 										폐점
-								</c:otherwise>
+								</c:when>
 							</c:choose>
 							</td>
 						</tr>
