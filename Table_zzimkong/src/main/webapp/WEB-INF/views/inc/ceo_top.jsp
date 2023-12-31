@@ -54,13 +54,13 @@
 	    </li>
 	    <li>
 		    <div class="com_top_logout">
-		    	<span class="top_name">이형석님</span>
+		    	<span class="top_name">${sessionScope.sName}&nbsp;업주님</span>
 				<span class="headerRi">
-				    <a href="">
+<!-- 				    <a href=""> -->
 				      <span>
-				        로그아웃
+				       <a href="${pageContext.request.contextPath}/MemberLogout">로그아웃</a>
 				      </span>
-				    </a>
+<!-- 				    </a> -->
 				</span>
 			</div>	
 	    </li>

@@ -116,9 +116,7 @@
 												<%--로그인후 마이페이지/로그아웃 --%>
 													<li class="dropdown">
 													    <a href="main" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-<%-- 		      										    <input type="text" class="input_text" value="${sessionScope.sNick}&nbsp;님" style="width: 100px;"> --%>
 		      										    <span>${sessionScope.sNick}&nbsp;님</span>
-<%-- 													    <img src="${pageContext.request.contextPath}/resources/img/top_user.png" style="width: 25px; height: 25px;"> --%>
 													    </a>
 													    <ul class="dropdown-menu">
 													        <li><a href="${pageContext.request.contextPath}/my/list">마이페이지</a></li>
@@ -127,11 +125,9 @@
 													</li>
 													<%--알림 --%>
 													<li class="dropdown"><a href="${pageContext.request.contextPath}/#">
-<%-- 													<img src="${pageContext.request.contextPath}/resources/img/top_bell.png" style="width: 25px; height: 25px;"> --%>
 													알림</a></li>
 													<%--고객센터 --%>
 													<li class="dropdown"><a href="${pageContext.request.contextPath}/member/cs/faq">
-<%-- 													<img  src="${pageContext.request.contextPath}/resources/img/top_headset.png" style="width: 25px; height: 25px;"> --%>
 													고객센터</a></li>
 												</c:otherwise>
 											</c:choose>
@@ -221,46 +217,53 @@
 						<div id="owl-example1" class="owl-carousel">
 						
 						<%-- 상세페이지로 가는 이미지 --%>
-							<div class="owl_example1_items_images">
-								<a href="${pageContext.request.contextPath}/product/detail">
-									<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/list_com.jpg" >
-								</a>
-							</div>
-							<div class="owl_example1_items_images">
-								<a href="">
-									<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_restaurant2.jpg" >
-								</a>
-							</div>
-							<div  class="owl_example1_items_images">
-								<a href="">
-								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_restaurant3.jpg" >
-								</a>
-							</div>
-							<div  class="owl_example1_items_images">
-								<a href="">
-								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_restaurant4.jpg" >
-								</a>
-							</div>
-							<div  class="owl_example1_items_images">
-								<a href="">
-								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_restaurant5.jpg" >
-								</a>
-							</div>
-							<div  class="owl_example1_items_images">
-								<a href="">
-								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_restaurant6.jpg" >
-								</a>
-							</div>
-							<div  class="owl_example1_items_images">
-								<a href="">
-								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_restaurant7.jpg">
-								</a>
-							</div>
-							<div  class="owl_example1_items_images">
-								<a href="">
-								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_restaurant8.jpg">
-								</a>
-							</div>
+						<%--위생순--%>
+						<div class="sort-option-div" data-sort-value="hygiene">
+					 		<c:forEach var="" items="${mainList }">
+												 		
+					 		</c:forEach>
+						</div>
+						<%------------------------------------------------------------------------------------ --%>
+<!-- 							<div class="owl_example1_items_images"> -->
+<%-- 								<a href="${pageContext.request.contextPath}/product/detail"> --%>
+<%-- 									<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/list_com.jpg" > --%>
+<!-- 								</a> -->
+<!-- 							</div> -->
+<!-- 							<div class="owl_example1_items_images"> -->
+<!-- 								<a href=""> -->
+<%-- 									<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_restaurant2.jpg" > --%>
+<!-- 								</a> -->
+<!-- 							</div> -->
+<!-- 							<div  class="owl_example1_items_images"> -->
+<!-- 								<a href=""> -->
+<%-- 								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_restaurant3.jpg" > --%>
+<!-- 								</a> -->
+<!-- 							</div> -->
+<!-- 							<div  class="owl_example1_items_images"> -->
+<!-- 								<a href=""> -->
+<%-- 								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_restaurant4.jpg" > --%>
+<!-- 								</a> -->
+<!-- 							</div> -->
+<!-- 							<div  class="owl_example1_items_images"> -->
+<!-- 								<a href=""> -->
+<%-- 								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_restaurant5.jpg" > --%>
+<!-- 								</a> -->
+<!-- 							</div> -->
+<!-- 							<div  class="owl_example1_items_images"> -->
+<!-- 								<a href=""> -->
+<%-- 								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_restaurant6.jpg" > --%>
+<!-- 								</a> -->
+<!-- 							</div> -->
+<!-- 							<div  class="owl_example1_items_images"> -->
+<!-- 								<a href=""> -->
+<%-- 								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_restaurant7.jpg"> --%>
+<!-- 								</a> -->
+<!-- 							</div> -->
+<!-- 							<div  class="owl_example1_items_images"> -->
+<!-- 								<a href=""> -->
+<%-- 								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_restaurant8.jpg"> --%>
+<!-- 								</a> -->
+<!-- 							</div> -->
 
 						</div>
 					</div>
@@ -304,13 +307,6 @@
 	 <button><a href="admin/cs/notice">admin/cs/notice</a></button>
 	 <button><a href="admin/cs/faq">admin/cs/faq</a></button>
 	 <button><a href="admin/cs/qna">admin/cs/qna</a></button>
-	 <hr>
-	 <button><a href="join/join">join</a></button>
-	 <button><a href="join/ceo">join/ceo</a></button>
-	 <button><a href="join/choice">join/choice</a></button>
- 	 <button><a href="join/complete">join/complete</a></button>
- 	 <button><a href="join/agree">join/agree</a></button>
-	 <button><a href="login">login</a></button>
 	 <hr>
 	 <button><a href="login/find/id">login/find/id</a></button>
 	 <button><a href="login/find/passwd">login/find/passwd</a></button>

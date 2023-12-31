@@ -5,13 +5,16 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import com.table.zzimkong.service.*;
 import com.table.zzimkong.vo.*;
 
 /**
@@ -19,6 +22,9 @@ import com.table.zzimkong.vo.*;
  */
 @Controller
 public class HomeController {
+	
+	@Autowired
+	private HomeService service;
 
 	@GetMapping("/")
 	public String main(Model model, SearchVO search, MemberVO member, HttpSession session) {
@@ -63,7 +69,11 @@ public class HomeController {
        
 	        
 	    return "main";
-	}
+	    
+		//메인화면에 카테고리별로 정보 뿌리기==================================
+		//List<CompanyVO>mainList = service.getMenuList();
+		
+		}
 	
 	
 	@GetMapping("my/review")
