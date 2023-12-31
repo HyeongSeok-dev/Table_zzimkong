@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.table.zzimkong.mapper.ReviewMapper;
+import com.table.zzimkong.vo.ReviewCountVO;
 import com.table.zzimkong.vo.ReviewVO;
 
 @Service
@@ -73,8 +74,24 @@ public class ReviewService {
 		
 		return mapper.getReview(reviewNum);
 	}
+	// =========================================================================
+	// 리뷰 별점 차트
+//	public List<ReviewVO> getReviewCountsByComId(int comId) {
+//
+//		return mapper.countReviewsByComId(comId);
+//	}
+	// =========================================================================
+	// 이런 점이 좋았어요
+//	public List<ReviewCountVO> getReviewCountsByComId(int comId) {
+//
+//		return mapper.countReviewsByComId(comId);
+//	}
+//	
 
-	
+	public List<ReviewCountVO> getReviewCountsByComId(int comId) {
+
+		return mapper.countReviewsByComId(comId);
+	}
 	
 	
 	//-------------------------------------------------------------

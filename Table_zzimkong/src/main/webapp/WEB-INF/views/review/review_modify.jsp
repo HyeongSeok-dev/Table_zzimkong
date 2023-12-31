@@ -17,37 +17,82 @@
 <script src="${pageContext.request.contextPath}/resources/js/review_modify.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
 <script type="text/javascript">
-	function deleteFile(review_num, review_img_1) {
-// 		alert(board_num + ", " + board_file + ", " + index); // 1, 2023/12/20/093ec3dc_daumlogo.png
-		if(confirm("삭제하시겠습니까?")) {
-			// 파일 삭제 작업을 AJAX 로 처리하기 - POST
-			// BoardDeleteFile 서블릿 요청(파라미터 : 글번호, 파일명)
-			$.ajax({
-				url: "ReviewDeleteFile", 
-				type: "POST",
-				data: {
-					"review_num" : review_num,
-					// 전달받은 파일명을 컬럼 구별없이 검색하기 위해 board_file1 으로 지정(board_file2, board_file3 도 무관)
-					"review_img_1" : review_img_1
-				},
-				success: function(result) {
-					console.log("파일 삭제 요청 결과 : " + result + ", " + typeof(result));
-					
-					// 삭제 성공/실패 여부 판별(result 값 문자열 : "true"/"false" 판별)
-					if(result == "true") { // 삭제 성공 시
-						// 기존 파일 다운로드 링크 요소를 제거하고
-						// 파일 업로드를 위한 파일 선택 요소 표시 => html() 활용
-						// => ID 선택자 "fileItemAreaX" 인 요소 지정(X 는 index 값 활용)
-						// => 표시할 태그 요소 : <input type="file" name="file1" />
-						//    => name 속성값도 index 값을 활용하여 각 파일마다 다른 name 값 사용
-						$("#fileItemArea" + index).html('<input type="file" name="file' + index + '" />');
-					} else if(result == "false") {
-						console.log("파일 삭제 실패!");
-					}
-				}
-			});
-		}
-	}
+// function deleteFile(review_num, review_img_1, index) {
+//     if(confirm("삭제하시겠습니까?")) {
+//         $.ajax({
+//             url: "ReviewDeleteFile", 
+//             type: "POST",
+//             data: {
+//                 "review_num" : review_num,
+//                 "review_img_1" : review_img_1
+//             },
+//             success: function(result) {
+//                 console.log("파일 삭제 요청 결과 : " + result + ", " + typeof(result));
+//                 if(result == "true") {
+//                     // 사진 추가 버튼과 파일 입력 요소 표시
+//                     $("#fileItemArea" + index).html('<input type="file" name="file' + index + '" />');
+//                     // 이미지 프리뷰 제거
+//                     removePreviewForIndex(index);
+//                 } else if(result == "false") {
+//                     console.log("파일 삭제 실패!");
+//                 }
+//             }
+//         });
+//     }
+// }
+function deleteFile(review_num, review_img_1) {
+    if (confirm("삭제하시겠습니까?")) {
+        $.ajax({
+            url: "ReviewDeleteFile",
+            type: "POST",
+            data: {
+                "review_num": review_num,
+                "review_img_1": review_img_1
+            },
+            success: function(result) {
+                console.log("파일 삭제 요청 결과 : " + result);
+                if (result == "true") {
+                    // 새로운 파일 입력 요소와 사진 추가 버튼 HTML 생성
+                    var newFileInputHtml = `
+                        <div class="photo_box">
+                            <div class="file" id="fileItemArea${review_img_1}">
+                                <input type="file" id="photoInput${review_img_1}" name="file${review_img_1}" accept="image/*" style="display:none;"/>
+                                <button type="button" id="photoBtn${review_img_1}" class="photo_btn">
+                                    <i class="fas fa-camera"></i> 사진 추가
+                                </button>
+                                <div class="preview_container" id="previewContainer${review_img_1}" style="display: none;">
+                                    <div class="image_wrapper">
+                                        <img id="imagePreview${review_img_1}" src="#" alt="Image Preview"/>
+                                        <div class="remove_btn" onclick="removePreview('${review_img_1}')">X</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                    
+                    // 기존 요소 제거 및 새 요소 삽입
+                    $("#fileItemArea" + review_img_1).replaceWith(newFileInputHtml);
+
+                    // 새 요소에 대한 이벤트 리스너 설정
+                    bindNewFileInputEvents(review_img_1);
+                } else {
+                    console.log("파일 삭제 실패!");
+                }
+            }
+        });
+    }
+}
+
+function bindNewFileInputEvents(review_img_1) {
+    // '사진 추가' 버튼에 이벤트 리스너 설정
+    $("#photoBtn" + review_img_1).on('click', function() {
+        $("#photoInput" + review_img_1).click();
+    });
+
+    // 파일 입력 필드에 이벤트 리스너 설정
+    $("#photoInput" + review_img_1).on('change', function(event) {
+        handleImagePreview(event, review_img_1);
+    });
+}
+
 </script>
 <title>리뷰 수정 페이지</title>
 <!-- 수정 -->
@@ -184,79 +229,6 @@
 						<label for="review_no_keyword_checkbox" id="review_no_keyword" class="checkbox_label">선택할 키워드가 없어요</label>
 						<input type="hidden" name="review_no_keyword" value="${review.review_no_keyword}">
 				</div>
-			
-<!-- 						===================================================================== -->
-<%-- 						<input type="checkbox" id="review_food_big_checkbox" onclick="updateCheckboxValue(this);"${review.review_food_big == 1 ? 'checked' : ''}> --%>
-<!-- 						<label for="review_food_big_checkbox" class="checkbox_label">양이 많아요</label> -->
-<%-- 						<input type="hidden" name="review_food_big" value="${review.review_food_big}"> --%>
-<!-- 						===================================================================== -->
-<%-- 						<input type="checkbox" id="review_food_deli_checkbox" onclick="updateCheckboxValue(this);"${review.review_food_deli == 1 ? 'checked' : ''}> --%>
-<!-- 						<label for="review_food_deli_checkbox" class="checkbox_label">음식이 맛있어요</label> -->
-<%-- 						<input type="hidden" name="review_food_deli" value="${review.review_food_deli}"> --%>
-
-<%-- 						<input type="checkbox" id="review_food_cheap_checkbox" onclick="updateCheckboxValue(this);" ${review.review_food_cheap == 1 ? 'checked' : ''}> --%>
-<!-- 						<label for="review_food_cheap_checkbox" class="checkbox_label">가성비가 좋아요</label> -->
-<%-- 						<input type="hidden" id="review_food_cheap" value="${review.review_food_cheap}"> --%>
-
-<%-- 						<input type="checkbox" id="review_food_fresh_checkbox" onclick="updateCheckboxValue(this);" ${review.review_food_fresh == 1 ? 'checked' : ''}> --%>
-<!-- 						<label for="review_food_fresh_checkbox" id="review_food_fresh" class="checkbox_label">재료가 신선해요</label> -->
-<%-- 						<input type="hidden" id="review_food_fresh" value="${review.review_food_fresh}"> --%>
-
-<%-- 						<input type="checkbox" id="review_food_healthy_checkbox" onclick="updateCheckboxValue(this);" ${review.review_food_healthy == 1 ? 'checked' : ''}> --%>
-<!-- 						<label for="review_food_healthy_checkbox" id="review_food_healthy" class="checkbox_label">건강한 맛이에요</label> -->
-<%-- 						<input type="hidden" id="review_food_healthy" value="${review.review_food_healthy}"> --%>
-<!-- 				</div> -->
-<!-- 				<div class="keyword_category"> -->
-<!-- 					<h3>분위기</h3> -->
-<%-- 						<input type="checkbox" id="review_mood_interior_checkbox" onclick="updateCheckboxValue(this);" ${review.review_mood_interior == 1 ? 'checked' : ''}> --%>
-<!-- 						<label for="review_mood_interior_checkbox" id="review_mood_interior" class="checkbox_label">인테리어가 멋져요</label> -->
-<%-- 						<input type="hidden" id="review_mood_interior" value="${review.review_mood_interior}"> --%>
-
-<%-- 						<input type="checkbox" id="review_mood_alone_checkbox" onclick="updateCheckboxValue(this);" ${review.review_mood_alone == 1 ? 'checked' : ''}> --%>
-<!-- 						<label for="review_mood_alone_checkbox" id="review_mood_alone" class="checkbox_label">혼밥하기 좋아요</label> -->
-<%-- 						<input type="hidden" id="review_mood_alone" value="${review.review_mood_alone}"> --%>
-
-<%-- 						<input type="checkbox" id="review_mood_large_checkbox" onclick="updateCheckboxValue(this);" ${review.review_mood_large == 1 ? 'checked' : ''}> --%>
-<!-- 						<label for="review_mood_large_checkbox" id="review_mood_large" class="checkbox_label">매장이 넓어요</label> -->
-<%-- 						<input type="hidden" id="review_mood_large" value="${review.review_mood_large}"> --%>
-
-<%-- 						<input type="checkbox" id="review_mood_meeting_checkbox" onclick="updateCheckboxValue(this);" ${review.review_mood_meeting == 1 ? 'checked' : ''}> --%>
-<!-- 						<label for="review_mood_meeting_checkbox" id="review_mood_meeting" class="checkbox_label">단체모임 하기 좋아요</label> -->
-<%-- 						<input type="hidden" id="review_mood_meeting" value="${review.review_mood_meeting}"> --%>
-
-<%-- 						<input type="checkbox" id="review_mood_view_checkbox" onclick="updateCheckboxValue(this);" ${review.review_mood_view == 1 ? 'checked' : ''}> --%>
-<!-- 						<label for="review_mood_view_checkbox" id="review_mood_view" class="checkbox_label">뷰가 좋아요</label> -->
-<%-- 						<input type="hidden" id="review_mood_view" value="${review.review_mood_view}"> --%>
-<!-- 				</div> -->
-				
-<!-- 				<div class="keyword_category"> -->
-<!-- 					<h3>편의 시설/기타</h3> -->
-<%-- 						<input type="checkbox" id="review_etc_kind_checkbox" onclick="updateCheckboxValue(this);" ${review.review_etc_kind == 1 ? 'checked' : ''}> --%>
-<!-- 						<label for="review_etc_kind_checkbox" id="review_etc_kind" class="checkbox_label">친절해요</label> -->
-<%-- 						<input type="hidden" id="review_etc_kind" value="${review.review_etc_kind}"> --%>
-
-<%-- 						<input type="checkbox" id="review_etc_parking_checkbox" onclick="updateCheckboxValue(this);" ${review.review_etc_parking == 1 ? 'checked' : ''}> --%>
-<!-- 						<label for="review_etc_parking_checkbox" id="review_etc_parking" class="checkbox_label">주차하기 편해요</label> -->
-<%-- 						<input type="hidden" id="review_etc_parking" value="${review.review_etc_parking}"> --%>
-
-<%-- 						<input type="checkbox" id="review_etc_toilet_checkbox" onclick="updateCheckboxValue(this);" ${review.review_etc_toilet == 1 ? 'checked' : ''}> --%>
-<!-- 						<label for="review_etc_toilet_checkbox" id="review_etc_toilet" class="checkbox_label">화장실이 깨끗해요</label> -->
-<%-- 						<input type="hidden" id="review_etc_toilet" value="${review.review_etc_toilet}"> --%>
-
-<%-- 						<input type="checkbox" id="review_etc_fast_checkbox" onclick="updateCheckboxValue(this);" ${review.review_etc_fast == 1 ? 'checked' : ''}> --%>
-<!-- 						<label for="review_etc_fast_checkbox" id="review_etc_fast" class="checkbox_label">음식이 빨리 나와요</label> -->
-<%-- 						<input type="hidden" id="review_etc_fast" value="${review.review_etc_fast}"> --%>
-
-<%-- 						<input type="checkbox" id="review_etc_child_checkbox" onclick="updateCheckboxValue(this);" ${review.review_etc_child == 1 ? 'checked' : ''}> --%>
-<!-- 						<label for="review_etc_child_checkbox" id="review_etc_child" class="checkbox_label">아이와 가기 좋아요</label> -->
-<%-- 						<input type="hidden" id="review_etc_child" value="${review.review_etc_child}"> --%>
-<!-- 				</div> -->
-<!-- 				<div class="keyword_category"> -->
-<!-- 					<h3>&nbsp;&nbsp;&nbsp;&nbsp;</h3> -->
-<%-- 						<input type="checkbox" id="review_no_keyword_checkbox" onclick="updateCheckboxValue(this);" ${review.review_no_keyword == 1 ? 'checked' : ''}> --%>
-<!-- 						<label for="review_no_keyword_checkbox" id="review_no_keyword" class="checkbox_label">선택할 키워드가 없어요</label> -->
-<%-- 						<input type="hidden" id="review_no_keyword" value="${review.review_no_keyword}"> --%>
-<!-- 				</div> -->
 				<div class="separator"></div>
 			</div>
 		</div>
@@ -278,24 +250,23 @@
 			                </div>
 			            </c:when>
 			            <c:otherwise>
-			                <input type="file" name="file1" />
+						    <div class="photo_box">
+							    <div class="file" id="fileItemArea1">
+							        <input type="file" id="photoInput" name="file1" accept="image/*" style="display:none;"/>
+							        <button type="button" id="photoBtn" class="photo_btn">
+							            <i class="fas fa-camera"></i> 사진 추가
+							        </button>
+							        <div class="preview_container" id="previewContainer" style="display: none;">
+							            <div class="image_wrapper">
+							                <img id="imagePreview" src="#" alt="Image Preview"/>
+							                <div class="remove_btn" onclick="removePreview()">X</div>
+							            </div>
+							        </div>
+							    </div>
+							</div>
 			            </c:otherwise>
 			        </c:choose>
 			    </div>
-			</div>
-			<!-- ===================================================================== -->
-			<div class="add_photo">
-		    <input type="file" id="photoInput" name="file1" accept="image/*" style="display: none;"/>
-		       <button type="button" id="photoBtn" class="photo_btn">
-     			   <i class="fas fa-camera"></i> 사진 추가
-   				 </button>
-			<div class="preview_container" id="previewContainer" style="display: none;">
-			    <div class="image_wrapper">
-			        <img id="imagePreview" src="#" alt="Image Preview"/>
-			        <div class="remove_btn" onclick="removePreview()">X</div>
-			    </div>
-			</div>
-			</div>
 			</div>
 			<!-- ===================================================================== -->
 			<!-- 리뷰 텍스트 박스 -->

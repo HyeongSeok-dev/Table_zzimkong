@@ -22,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,7 +30,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.google.gson.Gson;
 import com.table.zzimkong.service.ReviewService;
+import com.table.zzimkong.vo.ReviewCountVO;
 import com.table.zzimkong.vo.ReviewVO;
 
 @Controller
@@ -56,38 +59,11 @@ public class ReviewController {
 		List<ReviewVO> reviews = service.getAllReviews(comId);
 		model.addAttribute("reviews",reviews);
 
-		//-------------------------------------------------------------
-		// 이런 점이 좋았어요 출력 및 나열하기
-//		Map<String,Integer> keywordCounts = service.getKeywordsCounts(comId);
-//	    keywordCounts = keywordCounts.entrySet().stream()
-//	        .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
-//	        .collect(Collectors.toMap(
-//	            Map.Entry::getKey, 
-//	            Map.Entry::getValue, 
-//	            (e1, e2) -> e1, 
-//	            LinkedHashMap::new));
-//		
-//		model.addAttribute("keywordCounts",keywordCounts);
-//		
-//		
-//		Map<String, String> keywordLabels = new HashMap<>();
-//		keywordLabels.put("review_mood_interior", "(분위기) 인테리어가 멋져요");
-//		keywordLabels.put("review_mood_alone", "(분위기) 혼밥하기 좋아요");
-//		keywordLabels.put("review_mood_large", "(분위기) 매장이 넓어요");
-//		keywordLabels.put("review_mood_meeting", "(분위기) 단체모임 하기 좋아요");
-//		keywordLabels.put("review_mood_view", "(분위기) 뷰가 좋아요");
-//		keywordLabels.put("review_food_big", "(음식/가격) 양이 많아요");
-//		keywordLabels.put("review_food_deli", "(음식/가격) 음식이 맛있어요");
-//		keywordLabels.put("review_food_cheap", "(음식/가격) 가성비가 좋아요");
-//		keywordLabels.put("review_food_fresh", "(음식/가격) 재료가 신선해요");
-//		keywordLabels.put("review_food_healthy", "(음식/가격)  건강한 맛이에요");
-//		keywordLabels.put("review_etc_kind", "(편의시설/기타) 친절해요");
-//		keywordLabels.put("review_etc_parking", "(편의시설/기타) 주차하기 편해요");
-//		keywordLabels.put("review_etc_toilet", "(편의시설/기타) 화장실이 깨끗해요");
-//		keywordLabels.put("review_etc_fast", "(편의시설/기타) 음식이 빨리나와요");
-//		keywordLabels.put("review_etc_child", "(편의시설/기타) 아이와 가기 좋아요");
-//		model.addAttribute("keywordLabels",keywordLabels);
-		//-------------------------------------------------------------
+		// 이런 점이 좋았어요 차트 수정!
+        List<ReviewCountVO> reviewCounts = service.getReviewCountsByComId(comId);
+        String reviewCountsJson = new Gson().toJson(reviewCounts);
+        model.addAttribute("reviewCountsJson", reviewCountsJson);		
+		
 
 		return "review/review_detail";
 	}
@@ -101,7 +77,7 @@ public class ReviewController {
 		String sId = (String) session.getAttribute("sId");
 		if (sId == null){
 			model.addAttribute("msg", "로그인이 필요합니다");
-			model.addAttribute("targetURL", "login");
+			model.addAttribute("targetURL", "/zzimkong/login");
 			return "forward";
 		}
 
@@ -116,7 +92,7 @@ public class ReviewController {
 		if (userId == null) {
 			model.addAttribute("msg", "로그인이 필요합니다");
 			// targetURL 속성명으로 로그인 폼 페이지 서블릿 주소 저장
-			model.addAttribute("targetURL", "login");
+			model.addAttribute("targetURL", "/zzimkong/login");
 			return "forward";
 		}
 		
@@ -289,7 +265,7 @@ public class ReviewController {
 				if(sId == null) {
 					model.addAttribute("msg", "로그인이 필요합니다");
 					// targetURL 속성명으로 로그인 폼 페이지 서블릿 주소 저장
-					model.addAttribute("targetURL", "login");
+					model.addAttribute("targetURL", "/zzimkong/login");
 					return "forward";
 				} else if(!sId.equals(review.getUser_id()) && !sId.equals("admin")) {
 					model.addAttribute("msg", "잘못된 접근입니다");
@@ -326,7 +302,7 @@ public class ReviewController {
 		// 파일이 존재할 경우 ReviewVO객체에 서브 디렉토리명(subDir)과 함께 파일명 저장
 		String fileName1 = "";
 		
-		if(mFile1 != null && mFile1.getOriginalFilename().equals("")) {
+		if(mFile1 != null && !mFile1.getOriginalFilename().equals("")) {
 			System.out.println("원본파일명1 : " + mFile1.getOriginalFilename());
 			fileName1 = UUID.randomUUID().toString().substring(0,8) + "_" + mFile1.getOriginalFilename();
 			review.setReview_img_1(subDir + "/" + fileName1);
@@ -379,23 +355,26 @@ public class ReviewController {
 		
 		// 게시물 삭제 권한 확인
 		// 세션 아이디 없을 경우 처리
-//		String sId = (String)session.getAttribute("sId");
-//		if(sId == null) {
-//			model.addAttribute("msg", "로그인이 필요합니다");
-//			// targetURL 속성명으로 로그인 폼 페이지 서블릿 주소 저장
-//			model.addAttribute("targetURL", "login");
-//			return "forward";
-//		}
+		// ---------------------------------------------------
+		String sId = (String)session.getAttribute("sId");
+		if(sId == null) {
+			model.addAttribute("msg", "로그인이 필요합니다");
+			// targetURL 속성명으로 로그인 폼 페이지 서블릿 주소 저장
+			model.addAttribute("targetURL", "/zzimkong/login");
+			return "forward";
+		}
+		// ---------------------------------------------------
 		
 		// ReviewService - getReview() 메서드 재사용
 		ReviewVO dbReview = service.getReivew(review.getReview_num());
 //		int comId = review.getCom_id();
 	    String referer = request.getHeader("Referer");		
-		
-//		if(dbBoard == null || !sId.equals(dbReview.getUser_name()) && !sId.equals("admin")) {
-//			model.addAttribute("msg", "잘못된 접근입니다");
-//			return "fail_back";
-//		}
+		// ---------------------------------------------------
+		if(dbReview == null || !sId.equals(dbReview.getUser_id()) && !sId.equals("admin")) {
+			model.addAttribute("msg", "잘못된 접근입니다");
+			return "fail_back";
+		}
+		// ---------------------------------------------------
 		
 		// ReviewService - removeReview() 메서드 호출하여 글 삭제 작업 요청
 		// => 파라미터 : ReviewVO 객체(글번호 저장 필수)   리턴타입 : int(deleteCount)		
@@ -434,7 +413,7 @@ public class ReviewController {
 		}
 		
 	}
-
+	 
 	@GetMapping("complete")
 	public String review_complete() {
 		return "review/review_complete";

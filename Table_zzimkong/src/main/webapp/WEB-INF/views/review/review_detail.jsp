@@ -14,6 +14,54 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <!-- Js -->
 <script src="${pageContext.request.contextPath}/resources/js/review_detail.js"></script>
+<!-- Chart.js CDN 추가 -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var reviewCountsJson = '${reviewCountsJson}'.replace(/&quot;/g, '"');
+    var reviewCounts = JSON.parse(reviewCountsJson)[0]; // 첫 번째 객체만 사용
+    console.log(reviewCounts);
+
+    var labels = [
+        "인테리어", "혼밥", "대형 매장", "단체 모임", "경치", 
+        "큰 음식 양", "맛있는 음식", "가성비", "신선한 재료", 
+        "건강한 음식", "친절한 서비스", "주차 편의", "깨끗한 화장실", 
+        "빠른 서비스", "아이와 함께", "특별한 키워드 없음"
+    ];
+    
+    var data = [
+        reviewCounts.review_mood_interior, reviewCounts.review_mood_alone, reviewCounts.review_mood_large, 
+        reviewCounts.review_mood_meeting, reviewCounts.review_mood_view, reviewCounts.review_food_big, 
+        reviewCounts.review_food_deli, reviewCounts.review_food_cheap, reviewCounts.review_food_fresh, 
+        reviewCounts.review_food_healthy, reviewCounts.review_etc_kind, reviewCounts.review_etc_parking, 
+        reviewCounts.review_etc_toilet, reviewCounts.review_etc_fast, reviewCounts.review_etc_child, 
+        reviewCounts.review_no_keyword
+    ];
+
+    var ctx = document.getElementById('reviewChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: '리뷰 카운트',
+                data: data,
+                backgroundColor: 'rgba(0, 123, 255, 0.5)',
+                borderColor: 'rgba(0, 123, 255, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+});
+</script>
+	<!-- ================================================================================================= -->
 </head>
 <body>
 	<div class="restaurant_name">
@@ -32,6 +80,8 @@
 			<strong>${reviewAverage}</strong>
 		</div>
 	</div>
+	<!-- ================================================================================================= -->
+	<!-- ================================================================================================= -->
 	<br>
 	<br>
 	<br>
@@ -46,6 +96,12 @@
 		    <a href="write?com_id="${review.review_num}><i class="fas fa-pencil-alt"></i> 리뷰쓰기</a>
 		</div>
 	</div>
+	<!-- ======================================================================================== -->
+<div class="chart-container" style="position: relative; height:40vh; width:80vw">
+    <canvas id="reviewChart"></canvas>
+</div>
+	<!-- ======================================================================================== -->
+	<!-- 
 	<div class="review_select">
 		<ul class="review_select_list">
 			<li class="rv_sl_1">
@@ -191,6 +247,7 @@
     </svg> <span class="blind_text">더보기</span>
 		</a>
 	</div>
+	-->
 	<br>
 	<br>
 	<br>
@@ -267,8 +324,7 @@
 			        <fmt:formatNumber value="${review.review_score / 2}" type="number" maxFractionDigits="1"/>
 			    </div>
 			</div>
-<!-- 						</div> -->
-<!-- 					</a> -->
+
 			</div>
 			<div class="reviewer_info"></div>
 			<div class="review_photos">
@@ -294,25 +350,16 @@
 		<br>
 			<div class="review-actions">
 				<div class="review-action2">
-<%-- 					<form action="${pageContext.request.contextPath}/zzimkong/review/delete" method="POST"> --%>
-<%-- 					    <input type="hidden" name="review_num" value="${review.review_num}"> --%>
-<!-- 					    <input type="submit" class="review_delete" value="삭제" onclick="return confirm('리뷰를 삭제하시겠습니까?');"> -->
-<!-- 							</form>	 -->
-<%-- 						<a href="modify?review_num=${review.review_num}">		 --%>
-<!-- 						<button class="review_modify">수정</button></a> -->
-<%-- <%-- 						<a href="${pageContext.request.contextPath}/review/modify?review_num=${review.review_num}" class="review_modify">수정</a> --%> 
-<%-- 						<a href="${pageContext.request.contextPath}/review/report" class="review_report_btn" role="button">리뷰 신고하기</a> --%>
 						<div class="review-action-buttons">
-    <form action="${pageContext.request.contextPath}/zzimkong/review/delete" method="POST">
-        <input type="hidden" name="review_num" value="${review.review_num}">
-        <input type="submit" class="review_delete" value="삭제" onclick="return confirm('리뷰를 삭제하시겠습니까?');">
-    </form>
-    <a href="modify?review_num=${review.review_num}">
-        <button class="review_modify">수정</button>
-    </a>
-    <a href="${pageContext.request.contextPath}/review/report" class="review_report_btn" role="button">리뷰 신고하기</a>
-</div>
-						
+						    <form action="${pageContext.request.contextPath}/zzimkong/review/delete" method="POST">
+						        <input type="hidden" name="review_num" value="${review.review_num}">
+						        <input type="submit" class="review_delete" value="삭제" onclick="return confirm('리뷰를 삭제하시겠습니까?');">
+						    </form>
+						    <a href="modify?review_num=${review.review_num}">
+						        <button class="review_modify">수정</button>
+						    </a>
+						    <a href="${pageContext.request.contextPath}/review/report" class="review_report_btn" role="button">리뷰 신고하기</a>
+						</div>
 						<span class="comment-icon" onclick="showCommentForm()"></span><br><br>
             <div class="review_date">
                 <fmt:formatDate value="${review.review_update}" pattern="yy. MM. dd (E)" /> 작성
