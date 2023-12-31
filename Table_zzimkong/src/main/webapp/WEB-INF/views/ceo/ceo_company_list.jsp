@@ -67,9 +67,9 @@
 						<th>광고등급</th>
 						<th>영업상태</th>
 					</tr>
-					<c:forEach var="com" items="${myCompanyList }">
+					<c:forEach var="com" items="${myCompanyList }" varStatus="status">
 						<tr class="tr_hover">
-							<div id="com_num" style="display:none">${com.com_num }</div>
+							<div class="com_num" style="display:none">${com.com_num }</div>
 							<td>${com.com_name }</td>
 							<td>${com.operatingTime }</td>
 							<td>${com.breakTime }</td>

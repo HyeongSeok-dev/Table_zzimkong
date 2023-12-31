@@ -10,7 +10,7 @@
 <link href="${pageContext.request.contextPath }/resources/css/ceo_article.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
 <script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
-<script src="${pageContext.request.contextPath }/resources/js/ceo_company.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/ceo_company_register.js"></script>
 <script type="text/javascript">
 $(function () {
 	$('#keyword').keyup(function() {
@@ -36,7 +36,7 @@ $(function () {
 						<th>사업자등록번호</th>
 						<td colspan="5">
 							<div>
-								<input type="search" name="com_num" placeholder="사업자등록번호를 입력해 주세요." id="comNumText">
+								<input type="text" name="com_num" id="com_num_register" placeholder="사업자등록번호를 입력해 주세요." id="comNumText">
 								<button type="button" class="button_olive" id="comNumBtn">번호찾기</button>
 							</div>	
 						</td>
@@ -48,26 +48,26 @@ $(function () {
 							<hr>
 							<div class="file_div">
 							<input type="file" id="file" name="com_img">
-							<div id="onlyone">*사진은 최대 한장만 올려주세요</div>
+							<div id="onlyone">*사진은 최대 한장만 등록 가능합니다.</div>
 							</div>
 						</td>
 						<th>상호명</th>
-						<td colspan="2"><input type="text" name="com_name" value="" readonly="readonly"></td>
+						<td colspan="2"><input type="text" name="com_name" id="com_name" value="" readonly="readonly"></td>
 					</tr>
 					<tr>
 						<th>대표자명</th>
-						<td colspan="2"><input type="text" name="user_name" value="" readonly="readonly"></td>
+						<td colspan="2"><input type="text" name="user_name" id="user_name" value="" readonly="readonly"></td>
 					</tr>
 					<tr>
 						<th>업태</th>
-						<td colspan="2"><input type="text" name=com_category value="" readonly="readonly"></td>
+						<td colspan="2"><input type="text" name=com_category id="com_category" value="" readonly="readonly"></td>
 						<th>전화번호</th>
-						<td colspan="2"><input type="text" name="com_tel" value=""></td>
+						<td colspan="2"><input type="text" name="com_tel" id="com_tel" value=""></td>
 					</tr>
 					<tr>
 						<th>주소</th>
 						<td colspan="5">
-						<input type="text" name="com_address" maxlength="5" size="50" value="" readonly="readonly"></td>
+						<input type="text" name="com_address" id="com_address" maxlength="5" size="50" value="" readonly="readonly"></td>
 					</tr>
 					<tr>
 						<th>영업 시작시간</th><!-- 자바스크립트로 데이터 합치기 -->
@@ -90,7 +90,7 @@ $(function () {
 						</td>
 						<th>영업 종료시간</th>
 						<td colspan="2">
-							<select class="hour" name="closeHour">
+							<select class="hour" name="closeHour" id="closeHour">
 							    <!-- 0시부터 23시까지 -->
 							    <option value="">시</option>
 							    <c:forEach var="i" begin="0" end="23">
@@ -98,7 +98,7 @@ $(function () {
 							    </c:forEach>
 							</select>
 							:
-							<select class="minute" name="closeMin">
+							<select class="minute" name="closeMin" id="closeMin">
 								<!-- 0분부터 59분까지 -->
 							    <option value="">분</option>
 								<c:forEach var="i" begin="0" end="59">
@@ -151,6 +151,7 @@ $(function () {
 						<th>광고신청</th>
 						<td colspan="2">
 							<select name="adRegister" id="adRegister">
+								<option name="application" value="">광고선택</option>
 								<option name="application" value="신청">신청</option>
 								<option name="unapplied" value="미신청">미신청</option>
 							</select>
@@ -166,7 +167,7 @@ $(function () {
 					<tr>
 						<th>카테고리</th>
 						<td colspan="4" style="font-size: 18px;">
-							<div>
+							<div id="checkbox">
 								<input type="checkbox" value="데이트" name="com_tag_date" class="category">&nbsp;데이트&nbsp; 
 								<input type="checkbox" value="가족모임" name="com_tag_family" class="category">&nbsp;가족모임 &nbsp;
 								<input type="checkbox" value="단체회식" name="com_tag_party" class="category">&nbsp;단체회식 &nbsp;
@@ -187,7 +188,7 @@ $(function () {
 					<tr>
 						<th >검색키워드</th>
 						<td colspan="4">
-							<input type="text" id="keyword" value="" placeholder="사업장이 검색될 키워드를 입력해주세요">
+							<input type="text" id="keyword" name="com_search_tag" value="" placeholder="사업장이 검색될 키워드를 입력해주세요">
 							<br>
 							<div id="com_search_tag"> </div>
 						</td>

@@ -11,34 +11,16 @@
 <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
 <script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/ceo_company_view.js"></script>
-<script type="text/javascript">
-	function comAdRegistration() {
-		/* 팝업창 중앙 정렬 */
-		var popupW = 950;
-		var popupH = 700;
-		var left = Math.ceil((window.screen.width - popupW)/2);
-		var top = Math.ceil((window.screen.height - popupH)/2);
-		window.open('${pageContext.request.contextPath }/ceo/company/ad','','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
-	}
-	function modifyAndCloseRegister() {
-		/* 팝업창 중앙 정렬 */
-		var popupW = 950;
-		var popupH = 700;
-		var left = Math.ceil((window.screen.width - popupW)/2);
-		var top = Math.ceil((window.screen.height - popupH)/2);
-		window.open('${pageContext.request.contextPath }/ceo/company/modify','','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
-	}
-</script>
 </head>
 <body>
 	<section class="ceo_popup_sec">
 		<div class="text_inner">
 			<div class="header_div01">
 				<span><h3>사업장 정보</h3></span>
+				<span id="status_4"></span>
 			</div>
 		</div>
 		<div class="text_inner">
-			<form action="" method="post" name="comInfoModify">
 				<table>
 					<tr>
 						<th rowspan="2">사진</th>
@@ -73,7 +55,7 @@
 										영업중지
 								</c:when>
 								<c:when test="${com.com_status eq '4'}">
-										폐점
+										폐점승인대기
 								</c:when>
 							</c:choose>
 						</td>
@@ -98,7 +80,22 @@
 						<th>시간당 최대 인원</th>
 						<td>${com.com_max_people }</td>
 						<th colspan="2">광고등급</th>
-						<td>${com.com_ad_grade }</td>
+						<td>
+							<c:choose>
+									<c:when test="${com.com_ad_grade eq '1'}">
+											광고없음(0단계)
+									</c:when>
+									<c:when test="${com.com_ad_grade eq '2'}">
+											1단계
+									</c:when>
+									<c:when test="${com.com_ad_grade eq '3'}">
+											2단계
+									</c:when>
+									<c:otherwise>
+											3단계
+									</c:otherwise>
+						    </c:choose>
+					    </td>
 					</tr>
 					<tr>
 						<th>영업시간</th>
@@ -114,12 +111,18 @@
 						<th>검색키워드</th>
 						<td colspan="4">${com.com_search_tag}</td>
 					</tr>
-
 				</table>
 				<br><br>
-				<button type="button" class="button_olive" onclick="comAdRegistration()">광고등록</button>
-				<button type="button" class="button_olive" onclick="modifyAndCloseRegister()">수정/폐점신청</button>
-			</form>
+				<span id="span_button">
+					<form action="ad">
+						<input type="hidden" name="com_num" value="${com.com_num }">				
+						<button type="submit" id="adRegister" class="button_olive">광고등록</button>
+					</form>
+					<form action="modify">
+						<input type="hidden" name="com_num" value="${com.com_num }">				
+						<button type="submit" class="button_olive">수정/폐점신청</button>
+					</form>
+				</span>
 		</div>
 	</section>
 </body>
