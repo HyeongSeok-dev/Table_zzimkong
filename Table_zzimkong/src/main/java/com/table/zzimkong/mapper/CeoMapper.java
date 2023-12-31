@@ -27,5 +27,10 @@ public interface CeoMapper {
 	CompanyVO selectEachCompany(String com_num);
 
 	int updateComStatus(CompanyVO company);
+
+	int updateAdGrade(CompanyVO company);
+
+	int updateStatusClose(String com_num);
+
 	
 }

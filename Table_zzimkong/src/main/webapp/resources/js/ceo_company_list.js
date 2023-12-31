@@ -9,22 +9,27 @@ $(function() {
 //		window.open('view','','width='+950+',height='+700+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no');	
 //	}
 	
-	$("tr").on("click", function(){
-		var left = Math.ceil((window.screen.width - 950)/2);
-		var top = Math.ceil((window.screen.height - 700)/2);
-		var pop = window.open('','','width='+950+',height='+700+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no');
-		$.ajax({
-			data: {
-				com_num : $("#com_num").text()
-			},
-			success: function(data) {
-				console.log("파라미터 전송 성공");
-				pop.location.href = "view?com_num=" + $("#com_num").text();
-			},
-			error: function(e) {
-				console.log("파라미터 전송 실패");
-			}
+ for(var i = 0; i < $(".tr_hover").length; i++) {
+	(function(index) {
+		console.log(index);
+		$(".tr_hover").eq(index).on("click", function(){
+			var left = Math.ceil((window.screen.width - 950)/2);
+			var top = Math.ceil((window.screen.height - 700)/2);
+			var pop = window.open('','','width='+950+',height='+700+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no');
+			$.ajax({
+				data: {
+					com_num : $(".com_num").eq(index).text()
+				},
+				success: function(data) {
+					console.log("파라미터 전송 성공");
+					pop.location.href = "view?com_num=" + $(".com_num").eq(index).text();
+				},
+				error: function(e) {
+					console.log("파라미터 전송 실패");
+				}
+			});
 		});
-	});
+	})(i)
+}
 	
 }); //jquery문 전체

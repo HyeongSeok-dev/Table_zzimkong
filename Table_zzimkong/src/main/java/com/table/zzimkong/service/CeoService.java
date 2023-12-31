@@ -56,5 +56,20 @@ public class CeoService {
 		// TODO Auto-generated method stub
 		return mapper.updateComStatus(company);
 	}
+
+	public int registAd(CompanyVO company) {
+		// TODO Auto-generated method stub
+		return mapper.updateAdGrade(company);
+	}
+
+	public CompanyVO getCompanyAdInfo(String com_num) {
+		// TODO Auto-generated method stub
+		return mapper.selectEachCompany(com_num);
+	}
+
+	public int closeRegist(String com_num) {
+		// TODO Auto-generated method stub
+		return mapper.updateStatusClose(com_num);
+	}
 	
 }

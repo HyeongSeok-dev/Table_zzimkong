@@ -51,8 +51,17 @@ input[type="text"] {
     margin: 0px;
     box-sizing: border-box;
     border: none;
-    background-color: #f8f8f8;
     font-size: 12px;
+}
+
+#com_num_register {
+	width: 85%;
+    padding: 12px 20px;
+    margin: 0px;
+    box-sizing: border-box;
+    border: none;
+    background-color: #f8f8f8;
+    font-size: 14px;
 }
 
 
@@ -246,10 +255,17 @@ input[type="date"] {
 td>div {
 	margin: 2px;
 }
+
+#span_button {
+	display: flex;
+	justify-content: center;
+}
+
 #onlyone {
 	text-align: left;
 	margin-top: 10px;
 	color: #bb5b67;
+	font-size: 10px;
 }
 #img {
 	height: 50px;

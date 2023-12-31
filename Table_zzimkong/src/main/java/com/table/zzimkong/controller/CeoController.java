@@ -424,13 +424,105 @@ public class CeoController {
 	}
 
 	@GetMapping("ceo/company/modify")
-	public String ceo_company_modify() {
+	public String ceo_company_modify(HttpSession session, Model model, @RequestParam(defaultValue = "")String com_num) {
+		String sId = (String)session.getAttribute("sId");
+//		if(session.getAttribute("sId") == null) {
+//			
+//			model.addAttribute("msg", "접근권한이 없습니다!");
+//			model.addAttribute("targetURL", "login");
+//			
+//			return "forward";
+//		}
+//		System.out.println(company.getCom_num());
+		CompanyVO company = service.getEachCompany(com_num);
+		
+		System.out.println();
+		
+		company.setOpenHour(company.getCom_open_time().split(":")[0]);
+		company.setOpenMin(company.getCom_open_time().split(":")[1]);
+		company.setCloseHour(company.getCom_close_time().split(":")[0]);
+		company.setCloseMin(company.getCom_close_time().split(":")[1]);
+		company.setStartHour(company.getCom_breakStart_time().split(":")[0]);
+		company.setStartMin(company.getCom_breakStart_time().split(":")[1]);
+		company.setEndHour(company.getCom_breakEnd_time().split(":")[0]);
+		company.setEndMin(company.getCom_breakEnd_time().split(":")[1]);
+		
+		
+		
+		model.addAttribute("com",company);
 		return "ceo/ceo_company_modify";
 	}
 	
+	@PostMapping("ceo/company/modifyPro")
+	public String company_modifyPro(HttpSession session, Model model, @RequestParam(defaultValue = "")String com_num) {
+		
+		
+		
+		
+		return "ceo/ceo_company_modify";
+	}
+	
+	@PostMapping("ceo/company/closeRegist")
+	public String company_closeRegist(HttpSession session, Model model, @RequestParam(defaultValue = "")String com_num) {
+		String sId = (String)session.getAttribute("sId");
+//		if(session.getAttribute("sId") == null) {
+//			
+//			model.addAttribute("msg", "접근권한이 없습니다!");
+//			model.addAttribute("targetURL", "login");
+//			
+//			return "forward";
+//		}
+		
+		
+		int updateStatusClose = service.closeRegist(com_num);
+		
+		
+		if(updateStatusClose < 0) {
+			model.addAttribute("msg", "폐점 신청 실패!");
+			return "fail_back";
+		} else {
+			System.out.println("com num: " + com_num);
+			return "redirect:view?com_num=" + com_num;
+		}
+	}
+	
 	@GetMapping("ceo/company/ad")
-	public String ceo_company_ad() {
+	public String ceo_company_ad(HttpSession session, Model model, @RequestParam(defaultValue = "")String com_num) {
+		String sId = (String)session.getAttribute("sId");
+//		if(session.getAttribute("sId") == null) {
+//			
+//			model.addAttribute("msg", "접근권한이 없습니다!");
+//			model.addAttribute("targetURL", "login");
+//			
+//			return "forward";
+//		}
+//		System.out.println(company.getCom_num());
+		CompanyVO company = service.getEachCompany(com_num);
+		
+		model.addAttribute("com",company);
+		
 		return "ceo/ceo_company_ad";
+	}
+	
+	@PostMapping("ceo/company/payAdPro")
+	public String payAd(CompanyVO company, Model model, HttpSession session) {
+		String sId = (String)session.getAttribute("sId");
+//		if(session.getAttribute("sId") == null) {
+//			
+//			model.addAttribute("msg", "접근권한이 없습니다!");
+//			model.addAttribute("targetURL", "login");
+//			
+//			return "forward";
+//		}
+		
+		int updateAdGrade = service.registAd(company);
+		
+		if(updateAdGrade < 0) {
+			model.addAttribute("msg", "광고 등록 실패!");
+			return "fail_back";
+		} else {
+			return "redirect:view?com_num=" + company.getCom_num();
+		}
 	}
 	
 	

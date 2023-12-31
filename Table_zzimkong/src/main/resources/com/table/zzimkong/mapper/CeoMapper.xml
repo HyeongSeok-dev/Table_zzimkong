@@ -70,7 +70,7 @@
 			,#{com.com_tag_window}
 			,null
 			,null
-			,#{com.com_status}
+			,2 -- 신청후 승인대기
 			,#{com.com_ad_grade}
 			,#{com_search_tag}
 			,current_timestamp()
@@ -86,7 +86,16 @@
 		SET com_status = #{com_status}
 		WHERE com_num = #{com_num};
 	</update>
-	
+	<update id="updateAdGrade">
+		UPDATE company
+		SET com_ad_grade = #{com_ad_grade}
+		WHERE com_num = #{com_num};
+	</update>
+	<update id="updateStatusClose">
+		UPDATE company
+		SET com_status = 4
+		WHERE com_num = #{com_num};
+	</update>
 	
 	
 	
