@@ -20,14 +20,14 @@
         <div class="common-mypage__sc-1loaj4c-1 hvkAAt">
         	<img id="profile" src="${pageContext.request.contextPath}/resources/img/profile.png">
             <strong>${member.user_nick}</strong>
-            <a href="${pageC
-            ontext.request.contextPath }/my/modify/profile">회원정보변경</a>
+            <a href="${pageContext.request.contextPath }/my/modify/profile">회원정보변경</a>
         </div>
      </div>
      <div class="common-mypage__sc-1m1vyak-0 fJZyji">
       <a href="${pageContext.request.contextPath }/my/point" >
          <em>포인트 &gt;</em>
          <strong>1,150</strong>
+        </a>
       <a href="${pageContext.request.contextPath }/my/coupon" >
          <em>나의 쿠폰 &gt;</em>
          <strong>5개</strong>

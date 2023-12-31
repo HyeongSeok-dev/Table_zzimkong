@@ -7,6 +7,7 @@
 		<title>로그인</title>
 		<link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
 		<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/login.css">
+		<script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
 		<script src="${pageContext.request.contextPath }/resources/js/login.js"></script>
 	
 	
@@ -26,14 +27,14 @@
 		      <div class="loginBox">
 		        <form action="loginPro" id="loginForm" method="post">
 		          <!-- ID입력 텍스트박스 -->
-		          <input type="text" id="userId" name="user_id" class="inputTxt inpBig" placeholder="아이디" required>
+		           <input type="text" id="userId" name="user_id" class="inputTxt inpBig" placeholder="아이디" required>
 		          <!-- 비밀번호 입력 텍스트박스 -->
 		          <input type="password" id="passwd" name="user_passwd" class="inputTxt inpBig" style="text-align: left;"
 		           placeholder="비밀번호 (영문, 숫자, 특수문자 조합 8~16자리)" required>
-		           <!-- ID기억하기 체크박스 -->
+		           <!-- ID 저장하기 체크박스 -->
 		           <div class="check" align="left">
-					    <input type="checkbox"  id="remember-id">
-					    <label for="remember-id">ID기억하기</label>
+					    <input type="checkbox" class="save_id" name="checkId" id="saveId">
+					    <label for="saveId">ID 저장하기</label>
 					</div>
 		          <button type="submit" class="btnLogin btnB" id="loginBtn">
 		            <span>
