@@ -59,6 +59,52 @@ window.onload = function() {
 //		    }
 //	
 //	};
+
+	//비밀번호검증===============================
+	$("#txtPassword2").keyup(function(){
+		let passwd = $("#txtPassword2").val();
+		let msg = "";
+		let color = "";
+		
+		//비밀번호 길이 검증
+		// 대소문자, 숫자 ,특수문자(!@#$%)를 포함하여 8~16 입력
+		let lengthRegex = /^[A-Za-z0-9!@#$%]{8,16}$/;
+		
+		if(!lengthRegex.exec(passwd)){ //길이체크
+			msg = "영어 대소문자, 숫자, 특수문자 조합 8~16자리";
+			color = "red";
+		}else{
+			let engUpperRegex = /[A-Z]/; //대문자
+			let engLowerRegex = /[a-z]/; //소문자
+			let numRegex = /[\d]/; //숫자
+			let specRegex = /[!@#$%]/; //특수문자
+			
+			let count = 0;
+			
+			if(engUpperRegex.exec(passwd)){count++;}
+			if(engLowerRegex.exec(passwd)){count++;}
+			if(numRegex.exec(passwd)){count++;}
+			if(specRegex.exec(passwd)){count++;}
+			
+			switch(count){
+				case 4 : msg = "안전"; color = "green"; break;
+				case 3 : msg = "보통"; color = "yellow"; break;
+				case 2 : msg = "위험"; color = "orange"; break;
+				case 1 : case 0 :  msg = "사용불가능한 비밀번호"; color = "red"; 
+			}
+			
+			if(count >= 2){ //안전,보통,위험 (사용가능)
+				isPasswd = true;
+			}else{ //사용불가능한 비밀번호
+				isPasswd = false;
+			}	
+				
+		}
+		
+		$("#checkPasswdResult").html(msg);
+		$("#checkPasswdResult").css("color", color);
+		
+	}); //비밀번호검증
 	
 	// 비밀번호확인 입력란에 키를 누를때마다 비밀번호와 같은지 체크하기
 	document.modifyForm.passwd2.onkeyup = function() {

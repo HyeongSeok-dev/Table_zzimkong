@@ -195,7 +195,7 @@ public class MemberController {
 		System.out.println(member);
 		MemberVO dbMember = service.getMember(member);
 		if(dbMember == null) {
-			model.addAttribute("msg", "존재안하는 회원.");
+			model.addAttribute("msg", "존재하지 않는 회원입니다.");
 		    return "fail_back";
 		}
 		System.out.println(dbMember);
@@ -216,8 +216,9 @@ public class MemberController {
 		    return "fail_back";
 		} else if(!passwordEncoder.matches(member.getUser_passwd(), dbMember.getUser_passwd())) {
 		    // 비밀번호 일치하지 않음 처리
-		    model.addAttribute("msg", "비밀번호가 일치하지 않습니다z.");
+		    model.addAttribute("msg", "비밀번호가 일치하지 않습니다.");
 		    return "fail_back";
+		    
 		} else { // 로그인 성공
 		    // 세션 객체에 로그인 성공한 아이디를 "sId" 속성으로 추가
 		    session.setAttribute("sId", member.getUser_id());
