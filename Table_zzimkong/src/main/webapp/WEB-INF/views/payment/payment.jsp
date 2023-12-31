@@ -14,8 +14,15 @@
 <script src="${pageContext.request.contextPath }/resources/js/payment.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/payment_API.js"></script>
 <script type="text/javascript"> 
+	function paymentAgreeView() {
+			/* 팝업창 중앙 정렬 */
+			var popupW = 950;
+			var popupH = 700;
+			var left = Math.ceil((window.screen.width - popupW)/2);
+			var top = Math.ceil((window.screen.height - popupH)/2);
+			window.open('${pageContext.request.contextPath }/payment/agree','','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
+		}
 </script>
-
 </head>
 <body>
  	<header>
@@ -150,7 +157,7 @@
 									 서비스약관에 동의 합니다.
 								</span>
 							</span>
-							<span><a href="#" class="info-content">보기</a></span>
+							<span></span>
 							</div>
 							<div class="agree_main">
 								<span>
@@ -161,21 +168,22 @@
 									</span>
 								</span>
 								<span>
-									<a href="#" class="info-content">보기</a>
+									<a onclick="paymentAgreeView()" class="info-content agree">보기</a>
 								</span>
 							</div>	
-							<div class="agree_main">
-								<span>
-									<input type="checkbox" id="revocationAgree" name="agreement" class="agree">
-									<span class="each_agree">
-										<span class="agree_font">[필수]</span> 
-										취소 및 환불규정 동의 합니다.
-									</span>
-								</span>
-								<span>
-									<a href="#" class="info-content">보기</a>
-								</span>
-							</div>
+							<!-- 예약에 있어서 주석 -->
+<!-- 							<div class="agree_main"> -->
+<!-- 								<span> -->
+<!-- 									<input type="checkbox" id="revocationAgree" name="agreement" class="agree"> -->
+<!-- 									<span class="each_agree"> -->
+<!-- 										<span class="agree_font">[필수]</span>  -->
+<!-- 										취소 및 환불규정 동의 합니다. -->
+<!-- 									</span> -->
+<!-- 								</span> -->
+<!-- 								<span> -->
+<!-- 									<a href="#" class="info-content">보기</a> -->
+<!-- 								</span> -->
+<!-- 							</div> -->
 							<div class="agree_main">
 								<span>
 									<input type="checkbox" name="per_info_consent" class="agree">
@@ -185,7 +193,7 @@
 									</span>
 								</span>
 								<span>
-									<a href="#" class="info-content">보기</a>
+									<a onclick="paymentAgreeView()" class="info-content agree">보기</a>
 								</span>
 							</div>
 						</div>

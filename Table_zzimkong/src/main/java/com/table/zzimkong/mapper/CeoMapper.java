@@ -21,5 +21,11 @@ public interface CeoMapper {
 	int updateMenu(MenuVO menu);
 
 	int deleteMenu(MenuVO menu);
+
+	int insertCompanyInfo(@Param("com") CompanyVO company,@Param("sId") String sId);
+
+	CompanyVO selectEachCompany(String com_num);
+
+	int updateComStatus(CompanyVO company);
 	
 }

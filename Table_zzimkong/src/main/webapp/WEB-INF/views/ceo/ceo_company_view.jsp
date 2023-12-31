@@ -1,13 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>사업장 상세 정보</title>
 <%-- 본문 css --%>
 <link href="${pageContext.request.contextPath }/resources/css/ceo_article.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
+<script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/ceo_company_view.js"></script>
 <script type="text/javascript">
 	function comAdRegistration() {
 		/* 팝업창 중앙 정렬 */
@@ -38,56 +41,80 @@
 			<form action="" method="post" name="comInfoModify">
 				<table>
 					<tr>
-						<th colspan="2">번호</th>
-						<td colspan="1"></td>
-						<th colspan="1">사업자등록번호</th>
-						<td colspan="1"></td>
+						<th rowspan="2">사진</th>
+						<td rowspan="2"><!--<img src="${com.com_img }">  --></td>
+						<th colspan="2">등록일자</th>
+						<td>${com.com_reg_date }</td>
+					</tr>
+					<tr>	
+						<th colspan="2">사업자등록번호</th>
+						<td id="com_num">${com.com_num }</td>
 					</tr>
 					<tr>
-						<th colspan="2">상호명</th>
-						<td colspan="1"></td>
-						<th colspan="1">업태</th>
-						<td colspan="1"></td>
-					</tr>
-					<tr>
+						<th>상호명</th>
+						<td>${com.com_name }</td>
 						<th colspan="2">대표자명</th>
-						<td colspan="1"></td>
-						<th colspan="1">전화번호</th>
-						<td colspan="1"></td>
+						<td>${com.com_ceo }</td>
 					</tr>
 					<tr>
-						<th colspan="2">주소</th>
-						<td colspan="3"></td>
-					</tr>
-					<tr>		    
-						<th colspan="2">업체상태</th>
-						<td colspan="1"></td>
-						<th colspan="1">업체상태변경</th>
-						<td colspan="1"></td>
-					</tr>	
-					<tr>
-						<th colspan="2">시간당 최대 인원</th>
-						<td colspan="1"></td>
-						<th colspan="1">광고등급</th>
-						<td colspan="2">
-							
+						<th>업태</th>
+						<td>${com.com_category }</td>
+						<th rowspan="2">업체상태</th>
+						<th>현재상태</th>
+						<td id="com_status">
+							<c:choose>
+								<c:when test="${com.com_status eq '1'}">
+										정상영업
+								</c:when>
+								<c:when test="${com.com_status eq '2'}">
+										승인대기
+								</c:when>
+								<c:when test="${com.com_status eq '3'}">
+										영업중지
+								</c:when>
+								<c:when test="${com.com_status eq '4'}">
+										폐점
+								</c:when>
+							</c:choose>
 						</td>
 					</tr>
 					<tr>
-						<th colspan="2">건당 최대 인원</th>
-						<td colspan="1"></td>
-						<th colspan="1">등록일자</th>
-						<td colspan="2"></td>
+						<th>전화번호</th>
+						<td>${com.com_tel }</td>
+						<th>상태변경</th>
+						<td>
+							<select id="company_state2">
+								<option value="">상태변경</option>
+								<option value="영업중지">영업중지</option>
+								<option value="정상영업">정상영업</option>
+							</select>
+						</td>
 					</tr>
 					<tr>
-						<th rowspan="2" colspan="1">영업시간</th>
-						<th colspan="1">영업시작시간</th>
-						<td colspan="3"></td>
-					</tr>	
-					<tr>	
-						<th colspan="1">영업종료시간</th>
-						<td colspan="3"></td>
+						<th>주소</th>
+						<td colspan="4">${com.com_address }</td>
 					</tr>
+					<tr>
+						<th>시간당 최대 인원</th>
+						<td>${com.com_max_people }</td>
+						<th colspan="2">광고등급</th>
+						<td>${com.com_ad_grade }</td>
+					</tr>
+					<tr>
+						<th>영업시간</th>
+						<td>${com.operatingTime }</td>
+						<th colspan="2">브레이크타임</th>
+						<td>${com.breakTime }</td>
+					</tr>	
+					<tr>
+						<th>카테고리</th>
+						<td colspan="4">${com.com_category }</td>
+					</tr> 
+					<tr>
+						<th>검색키워드</th>
+						<td colspan="4">${com.com_search_tag}</td>
+					</tr>
+
 				</table>
 				<br><br>
 				<button type="button" class="button_olive" onclick="comAdRegistration()">광고등록</button>

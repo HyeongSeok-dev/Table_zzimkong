@@ -238,3 +238,30 @@ input[type="date"] {
 #adStatus, .modify_info {
 	text-align: center;
 }
+
+.category {
+	margin: 10px;
+}
+
+td>div {
+	margin: 2px;
+}
+#onlyone {
+	text-align: left;
+	margin-top: 10px;
+	color: #bb5b67;
+}
+#img {
+	height: 50px;
+}
+
+.file_div {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: flex-start;
+}
+
+.ceo_bottom {
+/* 	height: 40px; */
+}

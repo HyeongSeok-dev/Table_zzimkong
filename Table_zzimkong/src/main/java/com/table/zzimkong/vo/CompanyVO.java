@@ -24,6 +24,8 @@ public class CompanyVO {
     private String com_open_time;
     private String com_close_time;
     private String com_break_time;
+    private String com_breakStart_time;
+    private String com_breakEnd_time;
     private int com_num;
     
     private MultipartFile file;
@@ -68,9 +70,15 @@ public class CompanyVO {
 	private String selectedTime;
 	/**/
 //	ceo_register.jsp 에서 가지고갈 정보들
-	private int openHour;
-	private int openMin;
-	private int closeHour;
-	private int closeMin;
+	private String openHour;
+	private String openMin;
+	private String closeHour;
+	private String closeMin;
+	private String startHour;
+	private String startMin;
+	private String endHour;
+	private String endMin;
+	private String operatingTime;
+	private String breakTime;
 }
 

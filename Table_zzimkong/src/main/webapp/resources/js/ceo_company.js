@@ -26,4 +26,8 @@ $(function() {
  
 	});
 	
+	$("#comNumBtn").on("click", function(){
+		
+	});
+	
 }); //jquery문 전체

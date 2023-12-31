@@ -253,15 +253,15 @@ $(function() {
 				return false;
 		}				
 		
-//		 var discountPoint = $("#discountPoint").text();
-//	     var earnedPoints = $("#earnedPoints").text();
-//	     var totalPayment = $("#totalPayment").text();
-//	     var preOrderTotalPrice = $("#preOrderTotalPrice").text();
-//         $(this).append("<input type='hidden' name='discountPoint' value='" + discountPoint + "' />");
-//         $(this).append("<input type='hidden' name='earnedPoints' value='" + earnedPoints + "' />");
-//         $(this).append("<input type='hidden' name='totalPayment' value='" + totalPayment + "' />");
-//         $(this).append("<input type='hidden' name='preOrderTotalPrice' value='" + preOrderTotalPrice + "' />");
-		
+		//div나 span태그의 값을 넘김
+		 var discountPoint = $("#discountPoint").text();
+	     var earnedPoints = $("#earnedPoints").text();
+	     var totalPayment = $("#totalPayment").text();
+	     var preOrderTotalPrice = $("#preOrderTotalPrice").text();
+         $(this).append("<input type='hidden' name='discountPoint' value='" + discountPoint + "' />");
+         $(this).append("<input type='hidden' name='earnedPoints' value='" + earnedPoints + "' />");
+         $(this).append("<input type='hidden' name='totalPayment' value='" + totalPayment + "' />");
+         $(this).append("<input type='hidden' name='preOrderTotalPrice' value='" + preOrderTotalPrice + "' />");
 		return true;
 	}); //submit버튼
 	

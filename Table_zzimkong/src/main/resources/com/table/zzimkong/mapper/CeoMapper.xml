@@ -37,4 +37,91 @@
 		DELETE FROM menu
 		WHERE menu_idx = #{menu_idx}
 	</delete>
+	
+	<insert id="insertCompanyInfo">
+		INSERT INTO company
+		VALUES (
+			null
+			,#{sId}
+			,#{com.com_name}
+			,#{com.com_category}
+			,#{com.com_ceo}
+			,#{com.com_address}
+			,#{com.com_tel}
+			,#{com.com_gugun}
+			,#{com.com_open_time}
+			,#{com.com_close_time}
+			,#{com.com_breakStart_time}
+			,#{com.com_breakEnd_time}
+			,#{com.com_num}
+			,#{com.com_img}
+			,#{com.com_max_people}
+			,#{com.com_tag_date}
+			,#{com.com_tag_family}
+			,#{com.com_tag_party}
+			,#{com.com_tag_quiet}
+			,#{com.com_tag_park}
+			,#{com.com_tag_kids}
+			,#{com.com_tag_disabled}
+			,#{com.com_tag_pet}
+			,#{com.com_tag_hall}
+			,#{com.com_tag_room}
+			,#{com.com_tag_terrace}
+			,#{com.com_tag_window}
+			,null
+			,null
+			,#{com.com_status}
+			,#{com.com_ad_grade}
+			,#{com_search_tag}
+			,current_timestamp()
+		)
+	</insert>
+	<select id="selectEachCompany" resultType="company">
+		SELECT *
+		FROM company
+		WHERE com_num = #{com_num}
+	</select>
+	<update id="updateComStatus">
+		UPDATE company
+		SET com_status = #{com_status}
+		WHERE com_num = #{com_num};
+	</update>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </mapper>

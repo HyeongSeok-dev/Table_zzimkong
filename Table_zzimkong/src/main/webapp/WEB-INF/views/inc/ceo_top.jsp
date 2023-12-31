@@ -16,7 +16,7 @@
 <!-- </div> -->
 	<div class="header_all">
 	<div class="headerMenu1">
-		<a href="${pageContext.request.contextPath }/ceo/sale">
+		<a href="${pageContext.request.contextPath }">
 			<img alt="logo1" src="${pageContext.request.contextPath }/resources/img/logo4_1.png" width="50px">
 		</a>
 	</div>
