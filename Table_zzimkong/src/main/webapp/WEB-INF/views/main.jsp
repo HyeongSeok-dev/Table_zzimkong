@@ -219,8 +219,8 @@
 						<%-- 상세페이지로 가는 이미지 --%>
 						<%--위생순--%>
 						<div class="sort-option-div" data-sort-value="hygiene">
-					 		<c:forEach var="" items="${mainList }">
-												 		
+					 		<c:forEach var="" items="${recommendList }">
+									
 					 		</c:forEach>
 						</div>
 						<%------------------------------------------------------------------------------------ --%>

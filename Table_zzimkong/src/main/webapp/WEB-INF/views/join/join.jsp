@@ -5,6 +5,8 @@
   <head>
   
   <script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
+  <!-- 전화번호 인증api를 위한 sdk설치 -->
+	<script src="https://cdn.portone.io/v2/browser-sdk.js"></script>
   
     <meta charset="UTF-8">
     <title>일반회원 가입</title>

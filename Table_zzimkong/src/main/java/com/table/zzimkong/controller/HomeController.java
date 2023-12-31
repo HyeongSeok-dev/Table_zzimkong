@@ -24,7 +24,7 @@ import com.table.zzimkong.vo.*;
 public class HomeController {
 	
 	@Autowired
-	private HomeService service;
+	private ProductService service;
 
 	@GetMapping("/")
 	public String main(Model model, SearchVO search, MemberVO member, HttpSession session) {
@@ -66,14 +66,22 @@ public class HomeController {
 	        System.out.println(search);
 	      
 	        model.addAttribute("member", member);
+	        
        
+	        //메인화면에 카테고리별로 정보 뿌리기==================================
+	        
+	        search = (SearchVO)session.getAttribute("search");
+	        
+	        List<CompanyVO>recommendList = service.getRecommendList(search);
+	        model.addAttribute("recommendList", recommendList);
+	        
+	        //==============================================================
 	        
 	    return "main";
 	    
-		//메인화면에 카테고리별로 정보 뿌리기==================================
-		//List<CompanyVO>mainList = service.getMenuList();
+	}
+	
 		
-		}
 	
 	
 	@GetMapping("my/review")

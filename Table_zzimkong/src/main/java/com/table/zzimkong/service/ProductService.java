@@ -47,5 +47,10 @@ public class ProductService {
 		// TODO Auto-generated method stub
 		return mapper.selectSimilarCompanyList(sort, company, tagList, individualTags);
 	}
+
+	//메인 화면에 추천 뿌리기====================================
+	public List<CompanyVO> getRecommendList(SearchVO search) {
+		return mapper.selectRecommendList(search);
+	}
 	
 }
