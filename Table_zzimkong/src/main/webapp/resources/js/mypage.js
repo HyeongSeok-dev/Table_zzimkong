@@ -60,6 +60,12 @@ window.onload = function() {
 //	
 //	};
 
+//	$("#modifyBtn").click(function(){
+//		var 
+//		
+//		});
+	
+
 	//비밀번호검증===============================
 	$("#txtPassword2").keyup(function(){
 		let passwd = $("#txtPassword2").val();
@@ -138,7 +144,7 @@ window.onload = function() {
 	
 	    if(newPasswd == confirmPasswd && newPasswd.length > 0 && confirmPasswd.length > 0) { // 새 비밀번호와 확인란 일치
 	        if(currentPasswd == newPasswd) { // 기존 비밀번호와 새 비밀번호 일치
-	            document.querySelector("#checkPasswd2Result").innerText = "새 비밀번호가 기존 비밀번호와 동일합니다.";
+	            document.querySelector("#checkPasswd2Result").innerText = "새 비밀번호가 현재 비밀번호에 입력한 것과 동일합니다.";
 	            document.querySelector("#checkPasswd2Result").style.color = "red";
 	        } else { // 기존 비밀번호와 새 비밀번호 불일치
 	            document.querySelector("#checkPasswd2Result").innerText = "비밀번호 일치";

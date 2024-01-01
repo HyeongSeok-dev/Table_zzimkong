@@ -16,6 +16,13 @@
 	src="${pageContext.request.contextPath}/resources/js/mypage.js">
 </script>
 <body>
+	<!-- 회원정보수정이 되었을 경우 alert 창이 뜨게 -->
+	<% if (session.getAttribute("msg") != null) { %>
+        <script>
+            alert('<%=session.getAttribute("msg")%>');
+        </script>
+    <% session.removeAttribute("msg"); %>
+    <% } %>
 	<header>
 		<jsp:include page="../inc/top2_search_bar.jsp"/>
 	</header>
@@ -95,7 +102,7 @@
 				
             <a id="btnDeactivate" href="${pageContext.request.contextPath }/my/unregister" class="btn_out">회원탈퇴하기</a> 
             <div class = "click_button">
-            		<button type="submit" >수정하기</button>
+            		<button type="submit" id="modifyBtn">수정하기</button>
 			</div>
 		</form>
 	</div>		

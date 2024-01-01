@@ -94,9 +94,11 @@ public class MypageController {
 		if(!sId.equals("admin") || (sId.equals("admin") && (mypage.getUser_id() == null || mypage.getUser_id().equals("")))) {
 			// 이 때, 동일한 조건에서 패스워드 검증도 추가로 수행
 			// => 관리자가 다른 회원의 정보를 수정할 경우에는 패스워드 검증 수행 생략됨
-			if (!passwordEncoder.matches(mypage.getUser_passwd(), dbMypage.getUser_passwd())) {
-				model.addAttribute("msg", "수정 권한이 없습니다! - 패스워드 불일치");
-				return "fail_back";
+			if (mypage.getUser_passwd() != null && !mypage.getUser_passwd().equals("")) { // 이 부분 추가해서 닉네임이나 이메일주소만 변경해도 정보수정 가능하게 함
+				if (!passwordEncoder.matches(mypage.getUser_passwd(), dbMypage.getUser_passwd())) {
+					model.addAttribute("msg", "현재 비밀번호가 틀렸습니다.");
+					return "fail_back";
+				}
 			}
 		}
 		
@@ -115,7 +117,7 @@ public class MypageController {
 		// => 실패 시 "fail_back" 페이지 포워딩 처리("회원정보 수정 실패!")
 		// => 성공 시 "MypageInfo" 서블릿 리다이렉트
 		if(updateCount > 0) { // 성공 시
-//			 session.setAttribute("msg", "회원정보를 수정하였습니다.");
+			 session.setAttribute("msg", "회원정보 수정이 완료되었습니다.");
 			// 관리자가 다른 회원 정보 수정 시 MypageInfo 서블릿 주소에 아이디 파라미터 결합
 			if(!sId.equals("admin") || (sId.equals("admin") && (mypage.getUser_id() == null || mypage.getUser_id().equals("")))) {
 				return "redirect:/my/modify/profile";
