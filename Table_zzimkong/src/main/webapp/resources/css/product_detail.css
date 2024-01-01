@@ -393,7 +393,8 @@ iframe {
 
 .menu_card {
 	display: flex;
-	justify-content: space-between
+	justify-content: space-between;
+	padding: 10px;
 }
 
 .menu_info {
@@ -403,18 +404,22 @@ iframe {
 
 .menu_contents {
 	width: 65%;
-	order: 1
+	order: 1;
+	padding-left: 100px; 
 }
 
 .menu_box {
 	margin: 0 auto;
-	text-align: left;
+	width: 350px;
+	height: auto;
+	text-align: center;
+	justify-content: center;
 	display: inline-block
 }
 
 .menu_img {
 	width: 100%;
-	height: auto
+	height: auto;
 }
 
 .menu_section {

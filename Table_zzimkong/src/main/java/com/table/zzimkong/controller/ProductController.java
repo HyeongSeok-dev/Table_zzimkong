@@ -92,7 +92,7 @@ public class ProductController {
 		return "product/product_list";
 	}
 	
-	@PostMapping("product/detail")
+	@RequestMapping("product/detail")
 	public String product_detail(Model model, HttpSession session, CompanyVO company, ReservationVO res, SearchVO search) {
 		System.out.println("디테일전" + search);
 		search = (SearchVO)session.getAttribute("search");
@@ -103,7 +103,7 @@ public class ProductController {
 			return "fail_back";
 		}
 		
-		if(!company.getSelectedTime().equals("null")) {
+		if(!company.getSelectedTime().equals("")) {
 			search.setTime(company.getSelectedTime());
 			LocalTime localTime = LocalTime.parse(search.getTime());
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("h:mm");
@@ -254,19 +254,23 @@ public class ProductController {
 	        tagList.add("com_tag_pet");
 	    }
 	    
-		String[] tagsArray = company.getCom_search_tag().split("#");
-		
-		// 분리된 태그를 리스트로 변환하고 중복 및 빈 문자열 제거
-		Set<String> tagsSet = new HashSet<>(Arrays.asList(tagsArray));
-		tagsSet.remove("");  // 빈 문자열 제거
-		
-		// 다시 리스트로 변환
-		List<String> individualTags = new ArrayList<>(tagsSet);
-		
-		// 결과 출력 (디버깅용)
-		for (String tag : individualTags) {
-		    System.out.println(tag);
-		}
+	    List<String> individualTags = null;
+	    if(company.getCom_search_tag() != null) {
+		    	
+			String[] tagsArray = company.getCom_search_tag().split("#");
+			
+			// 분리된 태그를 리스트로 변환하고 중복 및 빈 문자열 제거
+			Set<String> tagsSet = new HashSet<>(Arrays.asList(tagsArray));
+			tagsSet.remove("");  // 빈 문자열 제거
+			
+			// 다시 리스트로 변환
+			individualTags = new ArrayList<>(tagsSet);
+			
+			// 결과 출력 (디버깅용)
+			for (String tag : individualTags) {
+			    System.out.println(tag);
+			}
+	    }
 	 
 		List<CompanyVO> companyList = service.getsimilarCompanyList(sort, company, tagList, individualTags);
 		

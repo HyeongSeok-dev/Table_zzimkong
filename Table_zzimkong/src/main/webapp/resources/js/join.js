@@ -1,26 +1,5 @@
 $(document).ready(function() {
 	
-	//휴대폰 본인인증하기=======================================
-		
-//		var IMP = window.IMP;
-//		IMP.init("{imp22106057}");
-//		
-//		IMP.certification({
-//			pg:'PG사코드.{CPID}',
-//			merchant_uid: "ORD20180131-0000011",
-//			popup : false
-//			},function(rsp){ //callback
-//			if(rsp.success){
-//				alert("인증이 완료되었습니다.");
-//				return flase;
-//			}else{
-//				alert("인증을 실패하였습니다.");
-//				return true;
-//			}
-//		});
-	
-	//=======================================================
-	
 	//생일 선택시 오늘이후 날짜 선택 막아놓음
 	window.onload = function() {
     var today = new Date();

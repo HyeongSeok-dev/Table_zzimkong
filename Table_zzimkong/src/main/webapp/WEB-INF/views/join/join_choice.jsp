@@ -5,11 +5,19 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
+
+  <script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
+
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/join_choice.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/global.css">
 	<link href="${pageContext.request.contextPath }/resources/css/all_css.css" rel="stylesheet" type="text/css">
 
 	<script src="${pageContext.request.contextPath }/resources/js/join_choice.js"></script>
+	<!-- 카카오 연동을 위한 스크립트 -->
+<!-- 	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script> -->
+<%-- <script src="https://t1.kakaocdn.net/kakao_js_sdk/${VERSION}/kakao.min.js" --%>
+<%--   integrity="${INTEGRITY_VALUE}" crossorigin="anonymous"></script> --%>
+	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 	
 </head>
 	<body>
@@ -27,16 +35,20 @@
 						<!-- 일반 회원가입 버튼 -->
 						<div class="innerBox1">
 							<div>
-								<button type="button" class="joinFormBtn" onclick="join_u()">
+								<button type="button" class="joinFormBtn" id="join_u">
 									일반 회원가입
 								</button>
 								<br>
 								<!-- 아이디 연동 가입 -->
-								<button type="button" class="joinFormBtn" id="kakao">
 									<!-- 카카오 -->
-									<img src="${pageContext.request.contextPath }/resources/img/kakao_logo.png" alt="카카오 로고">
-									카카오
-								</button>
+									<a id="kakao" href="javascript:loginWithKakao()">
+									  <img src="https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" width="222"
+									    alt="카카오 로그인 버튼" />
+									</a>
+<!-- 								<button type="button" class="joinFormBtn" id="kakao"> -->
+<%-- 									<img src="${pageContext.request.contextPath }/resources/img/kakao_logo.png" alt="카카오 로고"> --%>
+<!-- 									카카오 -->
+<!-- 								</button> -->
 								<br>
 								<!-- 네이버 -->
 								<button type="button" class="joinFormBtn" id="naver">
@@ -54,7 +66,7 @@
 						<h2>업체 회원</h2>
 						<div class="innerBox2">
 							<!-- 업체 회원가입 버튼 -->
-							<button type="button" class="joinFormBtn" onclick="join_c()">
+							<button type="button" class="joinFormBtn" id="join_c">
 								<span>업체 회원가입</span>
 							</button>
 						</div>

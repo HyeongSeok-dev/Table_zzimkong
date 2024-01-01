@@ -18,6 +18,24 @@
 		var top = Math.ceil((window.screen.height - popupH)/2);
 		window.open('${pageContext.request.contextPath }/ceo/cs/faq/view','','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
 	}
+	
+	/* 마우스 오버시 한줄 색변경*/
+// 	$(document).ready(function() {
+//   $("#hover td, #hover th").hover(function() {
+//     var index = $(this).index();
+//     $("#hover tr").each(function() {
+//       $(this).find('td').eq(index).addClass('highlight');
+//       $(this).find('th').eq(index).addClass('highlight');
+//     });
+//   }, function() {
+//     var index = $(this).index();
+//     $("#hover tr").each(function() {
+//       $(this).find('td').eq(index).removeClass('highlight');
+//       $(this).find('th').eq(index).removeClass('highlight');
+//     });
+//   });
+// });
+
 </script>
 </head>
 <body>
@@ -80,7 +98,7 @@
 				        </tr>
 				        </thead>
 				        <tbody>
-				        <tr>
+				        <tr >
 				            <td>3</td>
 				            <th class="cs_th">
 				              	업체관리
