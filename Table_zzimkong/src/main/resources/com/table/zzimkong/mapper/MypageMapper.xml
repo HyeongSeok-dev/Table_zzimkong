@@ -29,7 +29,7 @@
 			<!-- 새 패스워드(newPasswd) 존재 여부에 따라 변경 여부 결정 -->
 			<!-- 주의! 비교에 사용될 파라미터는 #{} 제외하고 표현 -->
 			<if test="newPasswd != null and !newPasswd.equals('')">
-				, user_passwd = #{newPasswd}  -- 새 패스워드 존재할 경우 기존 패스워드 변경
+				, user_passwd = #{user_passwd1}  -- 새 패스워드 존재할 경우 기존 패스워드 변경
 			</if>
 		WHERE
 			user_id = #{member.user_id}

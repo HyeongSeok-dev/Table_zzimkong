@@ -81,12 +81,12 @@
 						<td>
 						 	<div>
 						 	<%-- 현재 비밀번호 --%>
-	                     	<input type="password" id="txtPassword" name="passwd" class="passwd_text" placeholder="현재 비밀번호"><br><br>
+	                     	<input type="password" id="txtPassword" name="user_passwd" class="passwd_text" placeholder="현재 비밀번호"><br><br>
 	                     	<%-- 새 비밀번호 --%>
-	                     	<input type="password" id="txtPassword2" name="passwd1" class="passwd_text2" placeholder="새 비밀번호 (영어 대소문자, 숫자, 특수문자 조합 8 ~ 16자리)">
+	                     	<input type="password" id="txtPassword2" name="user_passwd1" class="passwd_text2" placeholder="새 비밀번호 (영어 대소문자, 숫자, 특수문자 조합 8 ~ 16자리)">
 	                     	<div id="checkPasswdResult"></div><br>
 	                     	<%-- 새 비밀번호 확인 --%>
-	                     	<input type="password" id="txtPassword3" name="passwd2" class="passwd_text2" placeholder="비밀번호 확인">
+	                     	<input type="password" id="txtPassword3" name="user_passwd2" class="passwd_text2" placeholder="비밀번호 확인">
 	                     	<div id="checkPasswd2Result"></div><br>
 	                     </div>
 						</td>
@@ -95,7 +95,7 @@
 				
             <a id="btnDeactivate" href="${pageContext.request.contextPath }/my/unregister" class="btn_out">회원탈퇴하기</a> 
             <div class = "click_button">
-            		<button type="button" >수정하기</button>
+            		<button type="submit" >수정하기</button>
 			</div>
 		</form>
 	</div>		

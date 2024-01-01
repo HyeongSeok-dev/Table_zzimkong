@@ -66,8 +66,8 @@ public class MypageController {
 	//	[ 회원정보 수정 ]
 	// "MyModifyPro" 서블릿 요청에 대한 회원 정보 수정 비즈니스 로직 처리
 	// => 추가로 전달되는 새 패스워드(newPasswd) 값을 전달받을 파라미터 변수 1개 추가(Map 사용 가능)
-	@PostMapping("MyModifyPro")
-	public String modifyPro(MemberVO member, String newPasswd, HttpSession session, Model model) {
+	@PostMapping("my/modify/MyModifyPro")
+	public String modifyPro(MemberVO member, String user_passwd1, HttpSession session, Model model) {
 		// 세션 아이디가 없을 경우 "fail_back" 페이지를 통해 "잘못된 접근입니다" 출력 처리
 		String sId = (String) session.getAttribute("sId");
 		if (sId == null) {
@@ -101,13 +101,14 @@ public class MypageController {
 		}
 		
 		// 새 패스워드를 입력받았을 경우 BCryptPasswordEncoder 클래스를 활용하여 암호화 처리
-		if (newPasswd != null && !newPasswd.equals("")) {
-			newPasswd = passwordEncoder.encode(newPasswd);
+		if (user_passwd1 != null && !user_passwd1.equals("")) {
+			user_passwd1 = passwordEncoder.encode(user_passwd1);
+			member.setUser_passwd(user_passwd1);
 		}
 
 		// MemberService - modifyMember() 메서드 호출하여 회원 정보 수정 요청
 		// => 파라미터 : MemberVO 객체, 새 패스워드(newPasswd) 리턴타입 : int(updateCount)
-		int updateCount = service.modifyMember(member, newPasswd);
+		int updateCount = service.modifyMember(member, user_passwd1);
 
 		// 회원 정보 수정 요청 결과 판별
 		// => 실패 시 "fail_back" 페이지 포워딩 처리("회원정보 수정 실패!")

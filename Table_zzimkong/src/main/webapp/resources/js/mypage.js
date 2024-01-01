@@ -107,26 +107,48 @@ window.onload = function() {
 	}); //비밀번호검증
 	
 	// 비밀번호확인 입력란에 키를 누를때마다 비밀번호와 같은지 체크하기
-	document.modifyForm.passwd2.onkeyup = function() {
-		let isSamePasswd = false;
-		let passwd = document.modifyForm.passwd1.value;
-		let passwd2 = document.modifyForm.passwd2.value;
-		
-		// 비밀번호와 비밀번호확인 입력 내용이 같으면 "비밀번호 일치"(파란색) 표시,
-		// 아니면, "비밀번호 불일치"(빨간색) 표시
-	    if(passwd == passwd2) { // 일치
-	     	document.querySelector("#checkPasswd2Result").innerText = "비밀번호 일치";
-	     	document.querySelector("#checkPasswd2Result").style.color = "#3FAFFC";
-	     	// 일치 여부를 저장하는 변수 isSamePasswd 값을 true 로 변경
-	     	isSamePasswd = true;
-	    } else { // 불일치
-	     	document.querySelector("#checkPasswd2Result").innerText = "비밀번호 불일치";
-	     	document.querySelector("#checkPasswd2Result").style.color = "red";
-	     	// 일치 여부를 저장하는 변수 isSamePasswd 값을 true 로 변경
-	     	isSamePasswd = false;
+//	document.modifyForm.user_passwd2.onkeyup = function() {
+//		let isSamePasswd = false;
+//		let passwd = document.modifyForm.user_passwd1.value;
+//		let passwd2 = document.modifyForm.user_passwd2.value;
+//		
+//		// 비밀번호와 비밀번호확인 입력 내용이 같으면 "비밀번호 일치"(파란색) 표시,
+//		// 아니면, "비밀번호 불일치"(빨간색) 표시
+//	    if(passwd == passwd2) { // 일치
+//	     	document.querySelector("#checkPasswd2Result").innerText = "비밀번호 일치";
+//	     	document.querySelector("#checkPasswd2Result").style.color = "#3FAFFC";
+//	     	// 일치 여부를 저장하는 변수 isSamePasswd 값을 true 로 변경
+//	     	isSamePasswd = true;
+//	    } else { // 불일치
+//	     	document.querySelector("#checkPasswd2Result").innerText = "비밀번호 불일치";
+//	     	document.querySelector("#checkPasswd2Result").style.color = "red";
+//	     	// 일치 여부를 저장하는 변수 isSamePasswd 값을 true 로 변경
+//	     	isSamePasswd = false;
+//	    }
+//		
+//	};
+
+	document.modifyForm.user_passwd1.onkeyup = checkPassword;
+	document.modifyForm.user_passwd2.onkeyup = checkPassword;
+	
+	function checkPassword() {
+	    let currentPasswd = document.modifyForm.user_passwd.value;
+	    let newPasswd = document.modifyForm.user_passwd1.value;
+	    let confirmPasswd = document.modifyForm.user_passwd2.value;
+	
+	    if(newPasswd == confirmPasswd && newPasswd.length > 0 && confirmPasswd.length > 0) { // 새 비밀번호와 확인란 일치
+	        if(currentPasswd == newPasswd) { // 기존 비밀번호와 새 비밀번호 일치
+	            document.querySelector("#checkPasswd2Result").innerText = "새 비밀번호가 기존 비밀번호와 동일합니다.";
+	            document.querySelector("#checkPasswd2Result").style.color = "red";
+	        } else { // 기존 비밀번호와 새 비밀번호 불일치
+	            document.querySelector("#checkPasswd2Result").innerText = "비밀번호 일치";
+	            document.querySelector("#checkPasswd2Result").style.color = "#3FAFFC";
+	        }
+	    } else { // 새 비밀번호와 확인란 불일치
+	        document.querySelector("#checkPasswd2Result").innerText = "비밀번호 불일치";
+	        document.querySelector("#checkPasswd2Result").style.color = "red";
 	    }
-		
-	};
+	}
 		
 } // window.onload 끝
 
