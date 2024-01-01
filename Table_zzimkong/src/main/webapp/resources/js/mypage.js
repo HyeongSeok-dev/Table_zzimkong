@@ -35,13 +35,13 @@ window.onload = function() {
 	// 회원정보 수정 - 이메일
 	document.modifyForm.emailDomain.onchange = function() {
 		console.log(document.modifyForm.emailDomain.value);
-		document.modifyForm.email2.value = document.modifyForm.emailDomain.value;
+		document.modifyForm.user_email2.value = document.modifyForm.emailDomain.value;
 	  if(document.modifyForm.emailDomain.value == "") { // 직접 입력 선택 시
-	    	document.modifyForm.email2.focus(); // 포커스 요청
-	    	document.modifyForm.email2.readOnly = false; // 입력창 잠금 해제(readonly 아님!)
-	    	document.modifyForm.email2.style.background = "";
+	    	document.modifyForm.user_email2.focus(); // 포커스 요청
+	    	document.modifyForm.user_email2.readOnly = false; // 입력창 잠금 해제(readonly 아님!)
+	    	document.modifyForm.user_email2.style.background = "";
 	    } else { // 도메인 선택 시
-	    	document.modifyForm.email2.readOnly = true; // 입력창 잠금 해제
+	    	document.modifyForm.user_email2.readOnly = true; // 입력창 잠금 해제
 //	    	document.modifyForm.email2.value = "";
 	    }
 	};

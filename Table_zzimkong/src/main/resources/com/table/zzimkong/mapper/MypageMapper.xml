@@ -5,14 +5,14 @@
 <mapper namespace="com.table.zzimkong.mapper.MypageMapper">
 
 	<!-- 회원정보 조회 - SELECT -->
-	<select id="selectMember"  resultType="member">
+	<select id="selectMypage"  resultType="mypage">
 	SELECT *
 	FROM user
 	WHERE user_id = #{user_id}
 	</select>
 	
 	<!-- 닉네임 중복확인 - SELECT -->
-	<select id="selectUserNick"  resultType="member">
+	<select id="selectUserNick"  resultType="mypage">
 	SELECT *
 	FROM user
 	WHERE user_nick = #{user_nick}
@@ -21,7 +21,7 @@
 	<!-- 회원정보 수정 - UPDATE -->
 	<!-- @Param 어노테이션을 통해 파라미터 이름을 지정했으므로 #{파라미터명.xxx} 형식으로 객체 접근 -->
 	<!-- 단, 새 패스워드(newPasswd)는 null 또는 널스트링이 아닐 경우에만 변경 -->
-	<update id="updateMember">
+	<update id="updateMypage">
 		UPDATE user
 		SET
 			user_nick = #{member.user_nick}
