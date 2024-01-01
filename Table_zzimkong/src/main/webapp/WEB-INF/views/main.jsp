@@ -212,15 +212,17 @@
 				<div class="col-md-12">
 					<div class="block wow fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
 						<div class="title">
-							<h3><span class="seleted_location">${search.location}</span> <span>위생순</span></h3>
+							<h3><span class="seleted_location">${search.location}</span> <span>추천순</span></h3>
 						</div>
 						<div id="owl-example1" class="owl-carousel">
-						
 						<%-- 상세페이지로 가는 이미지 --%>
-						<%--위생순--%>
+						<%--추천순(광고등급순)--%>
 						<div class="sort-option-div" data-sort-value="hygiene">
 					 		<c:forEach var="recommand" items="${recommendList }">
-									
+								<div class="owl_example1_items_images">
+									${recommand.memu_img}
+									${recommand.com_name}
+								</div>					 		
 					 		</c:forEach>
 						</div>
 						<%------------------------------------------------------------------------------------ --%>

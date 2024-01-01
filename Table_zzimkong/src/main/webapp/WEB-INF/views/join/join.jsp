@@ -13,6 +13,7 @@
     <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/join.css">
     <script src="${pageContext.request.contextPath }/resources/js/join.js"></script>
+    <script src="${pageContext.request.contextPath }/resources/js/Phone_API.js"></script>
     
 
   </head>
@@ -53,7 +54,7 @@
               <span id="checkNickResult"></span>
               <br><br>
               <!-- 이름 -->
-              <input type="text" id="u_name" name="user_name" class="inputTxt inpBig" placeholder="이름" maxlength="16" autocomplete="false">
+              <input type="text" id="u_name" name="user_name" class="inputTxt inpBig" placeholder="이름" maxlength="16" autocomplete="false" pattern="[가-힣]*">
               <!-- 생년월일 --><span class="bday">생년월일</span>
               <input type="date" id="com_birth" name="user_birth" class="inputTxt inpBig" maxlength="16" autocomplete="false">
            	  <br><br><br>
@@ -75,7 +76,7 @@
               <!-- 전화번호 -->
               <div id="phoneBox">
 				  <input type="text" id="u_phone" name="user_phone" class="inputTxt inpBig" placeholder="전화번호 (' - ' 를 빼고 입력)" onkeydown="eventObj.loginByEnterKey(event)" maxlength="100">
-				  <button type="button" class="inputTxt inpBig">인증하기</button>
+				  <button type="button" class="inputTxt inpBig" id="api">인증하기</button>
 				  <span id="checkPhoneResult"></span><br>
 			  </div>
 		       <br>   

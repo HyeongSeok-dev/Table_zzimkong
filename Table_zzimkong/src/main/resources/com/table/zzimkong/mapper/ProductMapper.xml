@@ -246,6 +246,7 @@
 	</select>
 	
 	<!-- 메인화면=============================================== -->
+	<!-- 추천순 -->
 	<select id="selectRecommendList" resultType="company">
 		SELECT c.com_id, c.user_idx, com_name, com_category, com_ceo, com_address, com_tel, com_gugun, 
 		com_open_time, com_close_time, com_breakStart_time, com_breakEnd_time, com_img, com_max_people, com_tag_date, 
@@ -400,13 +401,168 @@
         </where>
         GROUP BY c.com_id
         
-        ORDER BY com_ad_grade
+        ORDER BY com_ad_grade DESC
 		
 	</select>
 	
 	
-	<select id="selectReviewList">
-        	ORDER BY review_count DESC
+	<!-- 별점순 -->
+	<select id="selectRecommendList" resultType="company">
+		SELECT c.com_id, c.user_idx, com_name, com_category, com_ceo, com_address, com_tel, com_gugun, 
+		com_open_time, com_close_time, com_breakStart_time, com_breakEnd_time, com_img, com_max_people, com_tag_date, 
+	    com_tag_family, com_tag_party, com_tag_quiet, com_tag_park,  com_tag_kids,   com_tag_disabled, 
+	    com_tag_pet, com_tag_hall, com_tag_room, com_tag_terrace, com_tag_window, com_hyg_rank, com_hyg_start_date, 
+	    com_status, com_ad_grade, com_search_tag, com_reg_date, review_count, 
+	    (com_max_people - IFNULL(res.total_reserved, 0)) as remaining_people,
+	    (com_max_people - IFNULL(res2.total_reserved, 0)) as remaining_people2,
+	    (com_max_people - IFNULL(res3.total_reserved, 0)) as remaining_people3,
+	    (com_max_people - IFNULL(res4.total_reserved, 0)) as remaining_people4,
+	    min_price, max_price, avg_score
+		FROM company as c
+		LEFT JOIN menu as m ON c.com_id = m.com_id
+		LEFT JOIN (
+		    SELECT 
+		        review.com_id, 
+		        count(*) AS review_count,
+		        ROUND(AVG(review_score)/2, 1) AS avg_score
+		    FROM 
+		        review
+		    GROUP BY 
+		        review.com_id
+		    ) review ON c.com_id = review.com_id
+		LEFT JOIN (
+		    SELECT 
+		        res.com_id, 
+		        IFNULL(SUM(res_person), 0) AS total_reserved
+		    FROM 
+		        reservation res
+		    WHERE 
+		        res_date = #{date} AND res_time = #{time}
+		    GROUP BY 
+		        res.com_id
+		    ) res ON c.com_id = res.com_id
+		LEFT JOIN (
+	        SELECT res.com_id, IFNULL(SUM(res_person), 0) AS total_reserved
+	        FROM reservation res
+	        WHERE res_date = #{date} AND res_time = DATE_ADD(#{time}, INTERVAL 30 MINUTE)
+	        GROUP BY res.com_id
+		) res2 ON c.com_id = res2.com_id
+		LEFT JOIN (
+		    SELECT res.com_id, IFNULL(SUM(res_person), 0) AS total_reserved
+		    FROM reservation res
+		    WHERE res_date = #{date} AND res_time = DATE_ADD(#{time}, INTERVAL 60 MINUTE)
+		    GROUP BY res.com_id
+		) res3 ON c.com_id = res3.com_id
+		LEFT JOIN (
+		    SELECT res.com_id, IFNULL(SUM(res_person), 0) AS total_reserved
+		    FROM reservation res
+		    WHERE res_date = #{date} AND res_time = DATE_ADD(#{time}, INTERVAL 90 MINUTE)
+		    GROUP BY res.com_id
+		) res4 ON c.com_id = res4.com_id
+		LEFT JOIN (
+            SELECT 
+                com_id, 
+                MIN(menu_price) AS min_price, 
+                MAX(menu_price) AS max_price
+            FROM 
+                menu
+            GROUP BY 
+                com_id
+        ) menu ON c.com_id = menu.com_id
+		 <where>
+            <if test="context != null and !context.equals('')">
+                AND com_name LIKE CONCAT('%', #{context}, '%')
+                OR com_search_tag LIKE CONCAT('%', #{context}, '%')
+            </if>
+            
+            <if test="location != null and location.endsWith('전체')">
+                AND com_gugun LIKE CONCAT('%', #{location.substring(0, location.length() - 3)}, '%')
+            </if>
+            
+            <if test="location != null and !location.endsWith('전체')">
+                AND com_gugun = #{location}
+            </if>
+            
+            <if test="category != null">
+                AND com_category = #{category}
+            </if>
+            
+            <if test="time != null">
+		        AND com_open_time <![CDATA[ <= ]]> #{time} AND com_close_time <![CDATA[ > ]]> #{time}
+		        AND NOT (
+		           com_breakStart_time <![CDATA[ <= ]]> #{time} 
+		           AND com_breakEnd_time <![CDATA[ > ]]> #{time}
+		        )
+		    </if>
+		 	<if test="mood != null">
+		        <choose>
+		            <when test="mood.equals('데이트')">
+		                AND com_tag_date = TRUE
+		            </when>
+		            <when test="mood.equals('가족모임')">
+		                AND com_tag_family = TRUE
+		            </when>
+		            <when test="mood.equals('단체회식')">
+		                AND com_tag_party = TRUE
+		            </when>
+		            <when test="mood.equals('조용한')">
+		                AND com_tag_quiet = TRUE
+		            </when>
+		        </choose>
+		    </if>
+		
+		    <if test="facilities != null">
+		        <choose>
+		            <when test="facilities.equals('주차가능')">
+		                AND com_tag_park = TRUE
+		            </when>
+		            <when test="facilities.equals('노키즈존')">
+		                AND com_tag_kids = TRUE
+		            </when>
+		            <when test="facilities.equals('장애인_편의시설')">
+		                AND com_tag_disabled = TRUE
+		            </when>
+		            <when test="facilities.equals('반려동물_동반')">
+		                AND com_tag_pet = TRUE
+		            </when>
+		        </choose>
+		    </if>
+		
+		    <if test="tableType != null">
+		        <choose>
+		            <when test="tableType.equals('홀')">
+		                AND com_tag_hall = TRUE
+		            </when>
+		            <when test="tableType.equals('룸')">
+		                AND com_tag_room = TRUE
+		            </when>
+		            <when test="tableType.equals('테라스')">
+		                AND com_tag_terrace = TRUE
+		            </when>
+		            <when test="tableType.equals('창가자리')">
+		                AND com_tag_window = TRUE
+		            </when>
+		        </choose>
+		    </if>
+		
+		    <if test="hygiene != null">
+		        AND com_hyg_rank = #{hygiene}
+		        AND com_hyg_start_date >= DATE_SUB(NOW(), INTERVAL 2 YEAR)
+		    </if>
+		    
+            <if test="minPrice != null">
+                AND menu.min_price <![CDATA[ >= ]]> #{minPrice}
+            </if>
+            
+            <if test="maxPrice != null">
+                AND menu.max_price <![CDATA[ <= ]]> #{maxPrice}
+            </if>
+		        AND com_status = 1	
+        </where>
+        GROUP BY c.com_id
+        
+        ORDER BY review_count DESC
+		
 	</select>
 	
 	<!-- ====================================================== -->
