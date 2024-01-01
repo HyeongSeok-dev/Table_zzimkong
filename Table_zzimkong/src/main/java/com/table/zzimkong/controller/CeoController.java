@@ -225,7 +225,7 @@ public class CeoController {
 		return "popup_close";
 	}
 	
-	@PostMapping("ceo/reservation")
+	@GetMapping("ceo/reservation")
 	public String ceo_reservation(HttpSession session, Model model, CompanyVO company, ReservationVO res) {
 
 		int sIdx = (int)session.getAttribute("sIdx");
@@ -390,7 +390,7 @@ public class CeoController {
 	
 	@ResponseBody
 	@GetMapping("ceo/company/companyStatusChange")
-	public String comStatusChange(@RequestParam(defaultValue = "") String com_status, @RequestParam(defaultValue = "0") int com_num) {
+	public String comStatusChange(@RequestParam(defaultValue = "") String com_status, @RequestParam(defaultValue = "0") String com_num) {
 ////		System.out.println(member.getId());
 //
 //		// MemberService - getMember() 메서드 호출하여 아이디 조회(기존 메서드 재사용)

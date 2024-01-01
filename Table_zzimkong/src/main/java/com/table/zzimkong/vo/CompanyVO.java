@@ -19,14 +19,12 @@ public class CompanyVO {
     private String com_address;
     private String com_tel;
     private String com_gugun;
-    private String com_lat;
-    private String com_lng;
     private String com_open_time;
     private String com_close_time;
     private String com_break_time;
     private String com_breakStart_time;
     private String com_breakEnd_time;
-    private int com_num;
+    private String com_num;
     
     private MultipartFile file;
     private String com_img;
