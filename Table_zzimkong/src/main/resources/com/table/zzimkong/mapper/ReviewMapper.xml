@@ -103,32 +103,32 @@
 	</update>
 	
 	<!-- 리뷰 수정(UPDATE) -->
-<update id="updateReview" parameterType="com.table.zzimkong.vo.ReviewVO">
-    UPDATE review
-    SET
-        <if test="user_id != null"> user_id = #{user_id}</if>
-        <if test="review_content != null">, review_content = #{review_content}</if>
-        <if test="review_score != null">, review_score = #{review_score}</if>
-        <if test="review_mood_interior != null">, review_mood_interior = #{review_mood_interior}</if>
-        <if test="review_mood_alone != null">, review_mood_alone = #{review_mood_alone}</if>
-        <if test="review_mood_large != null">, review_mood_large = #{review_mood_large}</if>
-        <if test="review_mood_meeting != null">, review_mood_meeting = #{review_mood_meeting}</if>
-        <if test="review_mood_view != null">, review_mood_view = #{review_mood_view}</if>
-        <if test="review_food_big != null">, review_food_big = #{review_food_big}</if>
-        <if test="review_food_deli != null">, review_food_deli = #{review_food_deli}</if>
-        <if test="review_food_cheap != null">, review_food_cheap = #{review_food_cheap}</if>
-        <if test="review_food_fresh != null">, review_food_fresh = #{review_food_fresh}</if>
-        <if test="review_food_healthy != null">, review_food_healthy = #{review_food_healthy}</if>
-        <if test="review_etc_kind != null">, review_etc_kind = #{review_etc_kind}</if>
-        <if test="review_etc_parking != null">, review_etc_parking = #{review_etc_parking}</if>
-        <if test="review_etc_toilet != null">, review_etc_toilet = #{review_etc_toilet}</if>
-        <if test="review_etc_fast != null">, review_etc_fast = #{review_etc_fast}</if>
-        <if test="review_etc_child != null">, review_etc_child = #{review_etc_child}</if>
-        <if test="review_no_keyword != null">, review_no_keyword = #{review_no_keyword}</if>
-        <if test="review_img_1 != null">, review_img_1 = #{review_img_1}</if>
-        <if test="review_like != null">, review_like = #{review_like}</if>
-    WHERE review_num = #{review_num}
-</update>
+	<update id="updateReview" parameterType="com.table.zzimkong.vo.ReviewVO">
+	    UPDATE review
+	    SET
+	        <if test="user_id != null"> user_id = #{user_id}</if>
+	        <if test="review_content != null">, review_content = #{review_content}</if>
+	        <if test="review_score != null">, review_score = #{review_score}</if>
+	        <if test="review_mood_interior != null">, review_mood_interior = #{review_mood_interior}</if>
+	        <if test="review_mood_alone != null">, review_mood_alone = #{review_mood_alone}</if>
+	        <if test="review_mood_large != null">, review_mood_large = #{review_mood_large}</if>
+	        <if test="review_mood_meeting != null">, review_mood_meeting = #{review_mood_meeting}</if>
+	        <if test="review_mood_view != null">, review_mood_view = #{review_mood_view}</if>
+	        <if test="review_food_big != null">, review_food_big = #{review_food_big}</if>
+	        <if test="review_food_deli != null">, review_food_deli = #{review_food_deli}</if>
+	        <if test="review_food_cheap != null">, review_food_cheap = #{review_food_cheap}</if>
+	        <if test="review_food_fresh != null">, review_food_fresh = #{review_food_fresh}</if>
+	        <if test="review_food_healthy != null">, review_food_healthy = #{review_food_healthy}</if>
+	        <if test="review_etc_kind != null">, review_etc_kind = #{review_etc_kind}</if>
+	        <if test="review_etc_parking != null">, review_etc_parking = #{review_etc_parking}</if>
+	        <if test="review_etc_toilet != null">, review_etc_toilet = #{review_etc_toilet}</if>
+	        <if test="review_etc_fast != null">, review_etc_fast = #{review_etc_fast}</if>
+	        <if test="review_etc_child != null">, review_etc_child = #{review_etc_child}</if>
+	        <if test="review_no_keyword != null">, review_no_keyword = #{review_no_keyword}</if>
+	        <if test="review_img_1 != null">, review_img_1 = #{review_img_1}</if>
+	        <if test="review_like != null">, review_like = #{review_like}</if>
+	    WHERE review_num = #{review_num}
+	</update>
 	
 	<!-- 리뷰 내용 가져오기 -->
 	<select id="getReview" parameterType="int" resultType="review">
@@ -138,25 +138,8 @@
 	</select>
 
 	<!-- 이런 점이 좋았어요 -->
-<select id="countReviewsByComId" resultType="reviewcount">
+	<select id="countReviewsByComId" resultType="reviewcount">
 	    SELECT
-<!-- 	        com_id, -->
-<!-- 	        SUM(review_mood_interior) as moodInteriorCount, -->
-<!-- 	        SUM(review_mood_alone) as moodAloneCount, -->
-<!-- 	        SUM(review_mood_large) as moodLargeCount, -->
-<!-- 	        SUM(review_mood_meeting) as moodMeetingCount, -->
-<!-- 	        SUM(review_mood_view) as moodViewCount, -->
-<!-- 	        SUM(review_food_big) as moodBigCount, -->
-<!-- 	        SUM(review_food_deli) as moodDeliCount, -->
-<!-- 	        SUM(review_food_cheap) as moodCheapCount, -->
-<!-- 	        SUM(review_food_fresh) as moodFreshCount, -->
-<!-- 	        SUM(review_food_healthy) as moodHealthyCount, -->
-<!-- 	        SUM(review_etc_kind) as moodKindCount, -->
-<!-- 	        SUM(review_etc_parking) as moodParkingCount, -->
-<!-- 	        SUM(review_etc_toilet) as moodToiletCount, -->
-<!-- 	        SUM(review_etc_fast) as moodFastCount, -->
-<!-- 	        SUM(review_etc_child) as moodChildCount, -->
-<!-- 	        SUM(review_no_keyword) as moodNoKeywordCount -->
 	        com_id,
 	        SUM(review_mood_interior) as review_mood_interior,
 	        SUM(review_mood_alone) as review_mood_alone,
@@ -179,95 +162,57 @@
 	    GROUP BY com_id
 	</select>
 
-	<!-- ======================================================================= -->	
-	<!-- 리뷰 차트 -->
-<!-- 		<select id="countReviewsByComId" resultType="ReviewVO"> -->
-<!-- 		    SELECT -->
-<!-- 		        com_id, -->
-<!-- 		        SUM(review_mood_interior) as moodInteriorCount, -->
-<!-- 		        SUM(review_mood_alone) as moodAloneCount, -->
-<!-- 		        SUM(review_mood_large) as moodLargeCount, -->
-<!-- 		        SUM(review_mood_meeting) as moodMeetingCount, -->
-<!-- 		        SUM(review_mood_view) as moodViewCount, -->
-<!-- 		        SUM(review_food_big) as moodBigCount, -->
-<!-- 		        SUM(review_food_deli) as moodDeliCount, -->
-<!-- 		        SUM(review_food_cheap) as moodCheapCount, -->
-<!-- 		        SUM(review_food_fresh) as moodFreshCount, -->
-<!-- 		        SUM(review_food_healthy) as moodHealthyCount, -->
-<!-- 		        SUM(review_etc_kind) as moodKindCount, -->
-<!-- 		        SUM(review_etc_parking) as moodParkingCount, -->
-<!-- 		        SUM(review_etc_toilet) as moodToiletCount, -->
-<!-- 		        SUM(review_etc_fast) as moodFastCount, -->
-<!-- 		        SUM(review_etc_child) as moodChildCount -->
-<!-- 		        SUM(review_no_keyword) as moodNoKeywordCount -->
-<!-- 		    FROM review -->
-<!-- 		    WHERE com_id = #{comId} -->
-<!-- 		    GROUP BY com_id -->
-<!-- 		</select> -->
-	<!-- ======================================================================= -->	
-	<!-- 이런 점이 좋았어요 -->
-<!-- 	<select id="getKeywordCounts" parameterType="int" resultType="map">
-	    SELECT 'review_mood_interior' AS keyword, COUNT(*) AS count
-    	FROM review
-    	WHERE com_id = #{comId} AND review_mood_interior = 1
-	    UNION
-	    SELECT 'review_mood_alone', COUNT(*)
-	    FROM review
-	    WHERE com_id = #{comId} AND review_mood_alone = 1
-	    UNION
-	    SELECT 'review_mood_large', COUNT(*)
-	    FROM review
-	    WHERE com_id = #{comId} AND review_mood_large = 1
-	    UNION
-	    SELECT 'review_mood_meeting', COUNT(*)
-	    FROM review
-	    WHERE com_id = #{comId} AND review_mood_meeting = 1
-	    UNION
-	    SELECT 'review_mood_view', COUNT(*)
-	    FROM review
-	    WHERE com_id = #{comId} AND review_mood_view = 1
-	    UNION
-	    SELECT 'review_food_big', COUNT(*)
-	    FROM review
-	    WHERE com_id = #{comId} AND review_food_big = 1
-	    UNION
-	    SELECT 'review_food_deli', COUNT(*)
-	    FROM review
-	    WHERE com_id = #{comId} AND review_food_deli = 1
-	    UNION
-	    SELECT 'review_food_cheap', COUNT(*)
-	    FROM review
-	    WHERE com_id = #{comId} AND review_food_cheap = 1
-	    UNION
-	    SELECT 'review_food_fresh', COUNT(*)
-	    FROM review
-	    WHERE com_id = #{comId} AND review_food_fresh = 1
-	    UNION
-	    SELECT 'review_food_healthy', COUNT(*)
-	    FROM review
-	    WHERE com_id = #{comId} AND review_food_healthy = 1
-	    UNION
-	    SELECT 'review_etc_kind', COUNT(*)
-	    FROM review
-	    WHERE com_id = #{comId} AND review_etc_kind = 1
-	    UNION
-	    SELECT 'review_etc_parking', COUNT(*)
-	    FROM review
-	    WHERE com_id = #{comId} AND review_etc_parking = 1
-	    UNION
-	    SELECT 'review_etc_toilet', COUNT(*)
-	    FROM review
-	    WHERE com_id = #{comId} AND review_etc_toilet = 1
-	    UNION
-	    SELECT 'review_etc_fast', COUNT(*)
-	    FROM review
-	    WHERE com_id = #{comId} AND review_etc_fast = 1
-	    UNION
-	    SELECT 'review_etc_child', COUNT(*)
-	    FROM review
-	    WHERE com_id = #{comId} AND review_etc_child = 1
-	</select> -->
+	<!-- 리뷰 정렬 -->
+	<select id="selectReviewsByNewest" parameterType="int" resultType="review">
+    	SELECT * 
+    	FROM review 
+    	WHERE com_id = #{com_id} 
+    	ORDER BY review_date DESC
+	</select>
+	
+	<select id="selectReviewsByHighestScore" parameterType="int" resultType="review">
+	    SELECT * 
+	    FROM review 
+	    WHERE com_id = #{com_id} 
+	    ORDER BY review_score DESC
+	</select>
 
+	<select id="selectReviewsByLowestScore" parameterType="int" resultType="review">
+	    SELECT * 
+	    FROM review 
+	    WHERE com_id = #{com_id} 
+	    ORDER BY review_score ASC
+	</select>
+	
+	<!-- 메뉴 불러오기 -->
+	<select id="selectMenuByComId" resultType="reviewmenu">
+		SELECT menu_name
+		FROM menu
+		WHERE com_id = #{com_id}
+	</select>
+	
+	
+<select id="getSortedReviews" resultType="review">
+    SELECT * FROM review
+    WHERE com_id = #{comId}
+    <choose>
+        <when test="sortType.equals('newest')">
+            ORDER BY review_update DESC
+        </when>
+        <when test="sortType.equals('highest')">
+            ORDER BY review_score DESC, review_update DESC
+        </when>
+        <when test="sortType.equals('lowest')">
+            ORDER BY review_score ASC, review_update DESC
+        </when>
+        <when test="sortType.equals('likes')">
+            ORDER BY likes_count DESC, review_update DESC
+        </when>
+    </choose>
+</select>
 
-
+	
+	
 </mapper>
+	
+	

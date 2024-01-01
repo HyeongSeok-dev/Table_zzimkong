@@ -3,11 +3,14 @@ package com.table.zzimkong.service;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.table.zzimkong.mapper.ReviewMapper;
+import com.table.zzimkong.vo.MenuVO;
 import com.table.zzimkong.vo.ReviewCountVO;
+import com.table.zzimkong.vo.ReviewMenuVO;
 import com.table.zzimkong.vo.ReviewVO;
 
 @Service
@@ -81,8 +84,62 @@ public class ReviewService {
 
 		return mapper.countReviewsByComId(comId);
 	}
+
+
 	
+	// =========================================================================
+	// 리뷰 정렬
+	public List<ReviewVO> getReviewsSortedByNewest(int comId) {
 
+		return mapper.selectReviewsByNewest(comId);
+	}
 
+	public List<ReviewVO> getReviewsSortedByScore(int comId, boolean isHighest) {
+
+	    return isHighest ? mapper.selectReviewsByHighestScore(comId) : 
+	    				   mapper.selectReviewsByLowestScore(comId);
+	}
+
+	// =========================================================================
+	// 메뉴 불러오기 
+	public List<ReviewMenuVO> getMenuByComId(int comId) {
+
+		return mapper.selectMenuByComId(comId);
+	}
+	
+	public List<ReviewVO> getSortedReviews(@Param("comId") int comId, 
+            @Param("sortType") String sortType) {
+		// TODO Auto-generated method stub
+		return mapper.getSortedReviews(comId, sortType);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+//	public List<ReviewVO> getReviewsSortedByDate(int comId) {
+//
+//		return mapper.selectReviewsSortedByDate(comId);
+//	}
+//
+//	public List<ReviewVO> getReviewsSortedByScoreDesc(int comId) {
+//	    return mapper.selectReviewsSortedByScoreDesc(comId);
+//	}
+//
+//	public List<ReviewVO> getReviewsSortedByScoreAsc(int comId) {
+//	    return mapper.selectReviewsSortedByScoreAsc(comId);
+//	}
+//
 
 }

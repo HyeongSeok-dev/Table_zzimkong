@@ -4,8 +4,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
+import com.table.zzimkong.vo.MenuVO;
 import com.table.zzimkong.vo.ReviewCountVO;
+import com.table.zzimkong.vo.ReviewMenuVO;
 import com.table.zzimkong.vo.ReviewVO;
 
 @Mapper
@@ -27,8 +30,6 @@ public interface ReviewMapper {
 	List<ReviewVO> allReviewList(int comId);
 
 	// 리뷰 수정
-//	ReviewVO modifyReview(int review_num, boolean b);
-
 	ReviewVO modifyReview(int reviewNum);
 
 	// 리뷰 삭제
@@ -46,6 +47,20 @@ public interface ReviewMapper {
 	// 이런 점이 좋았어요 
 	List<ReviewCountVO> countReviewsByComId(int comId);
 
-//	List<ReviewCountVO> countReviewsByComId(int comId);
+	int selectBoardListCount(@Param("searchType") String searchType, @Param("searchKeyword") String searchKeyword);
+
+	// 리뷰 정렬 
+	List<ReviewVO> selectReviewsByNewest(int comId);
+
+	List<ReviewVO> selectReviewsByHighestScore(int comId);
+
+	List<ReviewVO> selectReviewsByLowestScore(int comId);
+
+	// 메뉴 불러오기 
+	List<ReviewMenuVO> selectMenuByComId(int comId);
+
+	List<ReviewVO> getSortedReviews(@Param("comId")int comId,@Param("sortType") String sortType);
+	
+	
 
 }

@@ -850,6 +850,7 @@ svg {
     display: flex!important;
     align-items: center;
     justify-content: space-around;
+    margin-left:5px;
 }
 
 .review_delete, .review_modify, .review_report_btn {
@@ -956,6 +957,7 @@ h1 {
 .review_content {
   margin-bottom: 10px;
   font-size: 1.4em;
+  margin-left:18px;
 }
 
 .star-rating {
@@ -1004,7 +1006,7 @@ h1 {
 
 .review-actions {
   align-self: flex-start;
-  margin-top: auto;
+  margin-top: 31px;
   marging-bottom:10px;
 }
 
@@ -1186,8 +1188,8 @@ h1 {
     letter-spacing: -0.2px;
     margin-right: 10px; /* 오른쪽 여백 추가 */
     font-size: 1.3em;
-	margin-left: 12px;
-	margin-top: -7px;
+	margin-left: 49px;
+	margin-top: -37px;
 }
 
 .reviewer_order {
@@ -1197,7 +1199,7 @@ h1 {
     white-space: nowrap;
     color: #222225;
     letter-spacing: -0.2px;
-    margin-left: 938px;
+    margin-left: 816px;
     font-size: 16px;
     padding-bottom: 10px;
 }
@@ -1240,7 +1242,7 @@ h1 {
 }
 
 .score1{
-	margin-left:15px; 
+	margin-left:48px; 
 	font-size:1.2em;
 	margin-bottom:10px;
 	margin-top: 10px;
@@ -1260,12 +1262,13 @@ h1 {
     display: flex;
 /*    justify-content: space-between;*/
 	margin-bottom:22px;
+	margin-left:19px;
 }
 
 .review_photos img {
     max-width: 170px;
     height: auto;
-    margin-left: 2px;
+/*     margin-left: 2px; */
 
 }
 
@@ -1286,6 +1289,14 @@ h1 {
   text-align: right;
 }
 /*  =============================================================  */
+/* 리뷰 액션 버튼 컨테이너 스타일 수정 */
+/* .review-actions .review-action-buttons { */
+/*     display: flex; Flexbox를 사용하여 아이템들을 한 줄로 정렬 */
+/*     align-items: center; 세로 중앙 정렬 */
+/*     justify-content: space-around; 버튼 사이에 공간을 균등하게 배분 */
+/* } */
+
+/*  =============================================================  */
 /* 리뷰 버튼(삭제/수정/신고) */
 .review-actions button  {
   background-color: lightgray !important; /* 버튼 배경색 */
@@ -1304,7 +1315,7 @@ h1 {
 }
 
 .review-action1{
-	margin-left: -8px;
+	margin-left: 12px;
 	margin-bottom: -5px;
 }
 
@@ -1352,6 +1363,7 @@ h1 {
   transition-duration: 0.4s; /* 부드러운 전환 효과 */
   border-radius: 9px; /* 버튼 모서리 둥글게 */
   text-align: right;
+  margin-top: 16px;
 }
 .review_report_btn{
   background-color: lightgray !important; /* 버튼 배경색 */
@@ -1367,6 +1379,7 @@ h1 {
   transition-duration: 0.4s; /* 부드러운 전환 효과 */
   border-radius: 9px; /* 버튼 모서리 둥글게 */
   text-align: right;
+  margin-left: 5px;
 }
 /*  =============================================================  */
 /* 댓글창 팝업 */
@@ -1401,13 +1414,14 @@ h1 {
 }
 /*  =============================================================  */
 .profile_image {
-	margin-top:-20px;
+	margin-top:5px;
 }
 /*  =============================================================  */
 .review_date {
 	margin-left:960px;
 	color:#888;
 	font-size:1.12em;
+	margin-bottom: 10px;
 }
 /*  =============================================================  */
 /* 수정버튼 수정 */
@@ -1426,6 +1440,7 @@ h1 {
     display: flex;
     justify-content: flex-start; /* 왼쪽 정렬 */
     align-items: center;
+/*     margin-left: -15px; */
 }
 
 .review_delete, .review_modify, .review_report_btn {
@@ -1433,7 +1448,20 @@ h1 {
     /* 추가적인 스타일링 */
 }
 
-/* 마지막 버튼은 margin-right가 필요 없으므로, 클래스를 추가하거나 last-child 선택자를 사용합니다. */
+/* 마지막 버튼은 margin-right가 필요 없으므로, 클래스를 추가하거나 last-child 선택자를 사용. */
 .review_report_btn {
     margin-right: 0; /* 마지막 버튼 오른쪽 여백 제거 */
 }
+/*  =============================================================  */
+#review_newest:hover,
+#review_highest:hover,
+#review_lowest:hover,
+#review_likes_order:hover {
+    color: #3FAFFC;
+}
+
+.active {
+    color: #3FAFFC; /* 클릭된 링크의 색상 */
+	font-weight: 600;
+}
+

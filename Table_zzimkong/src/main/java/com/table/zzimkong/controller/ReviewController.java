@@ -32,8 +32,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.Gson;
 import com.table.zzimkong.service.ReviewService;
+import com.table.zzimkong.vo.MenuVO;
 import com.table.zzimkong.vo.ReviewCountVO;
+import com.table.zzimkong.vo.ReviewMenuVO;
 import com.table.zzimkong.vo.ReviewVO;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
 
 @Controller
 public class ReviewController {
@@ -43,8 +49,9 @@ public class ReviewController {
 	// ===================================================================
 	// [ 리뷰 상세 페이지 ]
 	@GetMapping("review/redetail")
-	public String review_detail(@RequestParam("com_id") int comId, Model model){		
-		
+	public String review_detail(@RequestParam("com_id") int comId, 
+								@RequestParam(value = "sortType", required = false, defaultValue = "newest") String sortType,
+								Model model) {		
 		// 업체 이름 불러오기
 		String comName = service.getCompanyName(comId);
 		model.addAttribute("comName",comName);
@@ -61,14 +68,51 @@ public class ReviewController {
 		List<ReviewVO> reviews = service.getAllReviews(comId);
 		model.addAttribute("reviews",reviews);
 
-		// 이런 점이 좋았어요 차트 수정!
+		// 이런 점이 좋았어요 차트 수정
         List<ReviewCountVO> reviewCounts = service.getReviewCountsByComId(comId);
         String reviewCountsJson = new Gson().toJson(reviewCounts);
         model.addAttribute("reviewCountsJson", reviewCountsJson);		
 		
+        model.addAttribute("reviews", reviews);
+        
+        // 식당에 따라 메뉴 이름 불러오기
+        List<ReviewMenuVO> menus = service.getMenuByComId(comId);
+        model.addAttribute("menus",menus);
+        
+        // 리뷰 정렬 처리
+//        List<ReviewVO> reviews = service.getAllReviews(comId);
+        if (!sortType.equals("newest")) { // "newest"가 아닌 다른 정렬이 선택된 경우
+            switch (sortType) {
+                case "highest":
+                    reviews = service.getReviewsSortedByScore(comId, true);
+                    break;
+                case "lowest":
+                    reviews = service.getReviewsSortedByScore(comId, false);
+                    break;
+                case "newest": // '최신순' 정렬 추가
+                default:
+                    reviews = service.getAllReviews(comId);
+                    break;		
+            }
+        }
 
+        model.addAttribute("reviews", reviews); 
+        
+        
+        
+        
+        
 		return "review/review_detail";
 	}
+	// ===================================================================
+	@GetMapping("/review/redetail/sortedReviews")
+    @ResponseBody // AJAX 요청에 JSON 데이터로 응답하기 위해 사용
+    public List<ReviewVO> getSortedReviews(@RequestParam("comId") int comId, 
+                                           @RequestParam("sortType") String sortType) {
+        // ReviewService를 통해 정렬된 리뷰 목록을 가져오는 로직
+        List<ReviewVO> sortedReviews = service.getSortedReviews(comId, sortType);
+        return service.getSortedReviews(comId, sortType);
+    }
 	// ===================================================================
 	// [ 리뷰 작성 ]
 	// "detail" 서블릿 요청에 대한 리뷰 글쓰기 폼 표시
