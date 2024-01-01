@@ -253,7 +253,7 @@ public class CeoController {
 	
 	@GetMapping("ceo/reservation/info")	
 	public String ceo_reservation_info() {
-//		res = service.get
+		res = service.getResDetailInfo
 		return "ceo/ceo_reservation_info";
 	}
 	
