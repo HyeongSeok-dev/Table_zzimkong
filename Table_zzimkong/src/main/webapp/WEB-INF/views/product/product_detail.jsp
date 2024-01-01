@@ -23,7 +23,7 @@
 	<div class="s-list pic-grade">
 		<div class="com_pic_wrapper">
 			<img
-				src="${pageContext.request.contextPath}/resources/img/${company.com_img}"
+				src="${pageContext.request.contextPath}/resources/upload/${company.com_img}"
 				class="com_pic">
 		</div>
 		<div class="tit-point">

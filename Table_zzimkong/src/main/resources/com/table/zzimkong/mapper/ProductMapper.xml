@@ -205,38 +205,38 @@
 	    SELECT c.*, avg_score
 	    FROM company c
 	    LEFT JOIN (
-	        SELECT com_id, AVG(review_score) AS avg_score
+	        SELECT com_id, ROUND(AVG(review_score)/2, 1) AS avg_score
 	        FROM review
 	        GROUP BY com_id
 	    ) r ON c.com_id = r.com_id
 	    <where>
-	        c.com_id != #{company.com_id}
-	        <if test="sort == 'near'">
-	            AND c.com_gugun = #{company.com_gugun}
-	        </if>
-	        <if test="sort == 'sim'">
-	            AND (
-	                <foreach item="tag" collection="tagList" open="(" separator="AND" close=")">
-	                    c.${tag} = true
-	                </foreach>
-	            
-	        </if>
+			        c.com_id != #{company.com_id}
+		    <if test="sort == 'near'">
+		        AND c.com_gugun = #{company.com_gugun}
+		    </if>
+		    <if test="sort == 'sim'">
+		        AND c.com_category = #{company.com_category} 
+		        AND (
+		            <foreach item="tag" collection="tagList" open="(" separator="AND" close=")">
+		                c.${tag} = true
+		            </foreach>
+		        )
+		    </if>
 	        
-	        <if test="sort == 'sim'">
+	        <if test="sort == 'sim' and individualTags != null">
 	       
 	            OR EXISTS (
 				        SELECT 1
 				        FROM company c2
 				        WHERE c2.com_id = #{company.com_id}
 				        AND (
-				            <foreach item="individualTag" collection="individualTags" separator=" OR ">
+				            <foreach item="individualTag" collection="individualTags" separator=" AND ">
 				                c.com_search_tag LIKE CONCAT('%', #{individualTag}, '%')
 				            </foreach>
 				        )
 				    )
-				)
 	        </if>
-	        
+	        AND com_status = 1	
 	    </where>
 	    
 	    <if test="sort == 'score'">

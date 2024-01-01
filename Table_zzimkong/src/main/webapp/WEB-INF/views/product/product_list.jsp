@@ -9,6 +9,7 @@
 	<link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://momentjs.com/downloads/moment.min.js"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0b71f7bc975653acc7be99d324066bee&libraries=services"></script>
 	<script src="${pageContext.request.contextPath }/resources/js/product_list.js"></script>
 	
 </head>
@@ -42,7 +43,7 @@
 							<div class="restaurant-list" onclick="submitForm(this);">
 								<div class="restaurant-card">
 									<div class="restaurant-img">
-										<img src="${pageContext.request.contextPath}/resources/img/${company.com_img}" class="com_pic">
+										<img src="${pageContext.request.contextPath}/resources/upload/${company.com_img}" class="com_pic">
 									</div>
 									<div class="restaurant-details">
 										<div class="restaurant-info">
@@ -62,7 +63,9 @@
 										<input type="hidden" name="remaining_people" value="${company.remaining_people}">
 										<input type="hidden" name="avg_score" value="${company.avg_score}">
 										<input type="hidden" name="review_count" value="${company.review_count}">
-										<input type="hidden" id="selectedTime" name="selectedTime" value="null">
+										<input type="hidden" id="selectedTime" name="selectedTime" value="">
+										<input type="hidden" id="storeAddress" name="storeAddress" value="${company.com_address}">
+										
 									</div>
 								</div>
 							</div>

@@ -90,6 +90,7 @@ function fetchRestaurants(sortValue) {
 			
 			 response.forEach(function(restaurant) {
                 var restaurantHtml = `
+                <a href="detail?com_id=${restaurant.com_id}"&selectedTime=>
                     <div class="similar_rest_card">
                         <div class="similar_rest_box">
                             <div class="similar_rest_distance">
@@ -99,7 +100,7 @@ function fetchRestaurants(sortValue) {
                                     class="similar_rest_distance_number">${restaurant.distance}m</span>
                             </div>
                             <img class="similar_rest_img"
-                                 src="` + contextPath + `/resources/img/${restaurant.com_img}">
+                                 src="` + contextPath + `/resources/upload/${restaurant.com_img}">
                             <div class="similar_rest_average">
                                 <img class="similar_rest_average_img"
                                      src="` + contextPath + `/resources/img/products_similar_star.png"
@@ -109,6 +110,7 @@ function fetchRestaurants(sortValue) {
                         </div>
                         <span class="similar_rest_title">${restaurant.com_name}<br></span>
                     </div>
+                    </a>
                 `;
                 similarContents.append(restaurantHtml);
             });
