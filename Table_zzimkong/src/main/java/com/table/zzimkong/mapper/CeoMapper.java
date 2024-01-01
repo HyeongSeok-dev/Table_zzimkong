@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import com.table.zzimkong.vo.CompanyVO;
 import com.table.zzimkong.vo.MenuList;
 import com.table.zzimkong.vo.MenuVO;
+import com.table.zzimkong.vo.ReservationVO;
 
 @Mapper
 public interface CeoMapper {
@@ -31,6 +32,11 @@ public interface CeoMapper {
 	int updateAdGrade(CompanyVO company);
 
 	int updateStatusClose(String com_num);
+
+	List<CompanyVO> selectCeoList(int sIdx);
+
+	List<ReservationVO> selectResInfo(CompanyVO company);
+	
 
 	
 }

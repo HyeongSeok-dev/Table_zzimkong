@@ -15,3 +15,42 @@ function newInfo() {
   
   window.open(url, name, specs);
 }
+
+$(document).ready(function() {
+	var initialCompanyId = $('#storeList option:first').val();
+    fetchCompanyData(initialCompanyId); 
+
+    // 셀렉트 박스가 변경될 때마다 AJAX 요청
+    $('#storeList').change(function() {
+        var selectedCompanyId = $(this).val();
+        
+    $.ajax({
+        url: 'ceo/reservation', // API 경로를 적절히 변경하세요.
+        type: 'GET',
+		contentType: 'application/json',
+		dataType: 'json',
+		data: JSON.stringify(fetchData),
+        success: function(response) {
+			var reservationTable = $('#reservationTable');
+            reservationTable.find("tr:gt(0)").remove();
+            response.forEach(function(menu, index) {
+               var row = `<tr>
+                    <td>${res.res_num}</td>
+                    <td>${res.res_date}</td>
+                    <td>${res.res_time}원</td>
+                    <td>${menu.menu_describe}</td>
+                  	<td>
+						<button type="button" value="예약 상세 정보" onclick="newInfo()">예약 상세정보</button>
+					</td>
+                </tr>`;
+                reservationTable.append(row);
+            });
+        },
+        error: function(error) {
+            // 에러가 발생했을 때 실행할 코드
+            console.error("Error fetching data: ", error);
+        }
+    });
+    });	
+	
+});

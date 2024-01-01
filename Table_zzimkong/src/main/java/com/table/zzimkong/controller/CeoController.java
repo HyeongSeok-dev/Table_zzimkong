@@ -1,6 +1,5 @@
 package com.table.zzimkong.controller;
 
-import java.util.Map;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -9,6 +8,7 @@ import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
@@ -23,15 +23,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.google.protobuf.TextFormatParseInfoTree;
 import com.table.zzimkong.service.CeoService;
 import com.table.zzimkong.service.ProductService;
 import com.table.zzimkong.vo.CompanyVO;
 import com.table.zzimkong.vo.MenuList;
 import com.table.zzimkong.vo.MenuVO;
+import com.table.zzimkong.vo.ReservationVO;
 
 @Controller
 public class CeoController {
@@ -227,7 +226,15 @@ public class CeoController {
 	}
 	
 	@GetMapping("ceo/reservation")
-	public String ceo_reservation() {
+	public String ceo_reservation(HttpSession session, Model model, CompanyVO company, ReservationVO res) {
+
+		int sIdx = (int)session.getAttribute("sIdx");
+		List<CompanyVO> storeList = service.getComList(sIdx);
+		model.addAttribute("storeList", storeList);
+		
+		List<ReservationVO> comResList = service.getResInfoList(company);
+		System.out.println("예약값" + comResList);
+		model.addAttribute("comResList", comResList);
 		return "ceo/ceo_reservation";
 	}
 	

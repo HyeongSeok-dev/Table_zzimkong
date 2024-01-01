@@ -9,6 +9,7 @@ import com.table.zzimkong.mapper.CeoMapper;
 import com.table.zzimkong.vo.CompanyVO;
 import com.table.zzimkong.vo.MenuList;
 import com.table.zzimkong.vo.MenuVO;
+import com.table.zzimkong.vo.ReservationVO;
 
 
 @Service
@@ -71,5 +72,15 @@ public class CeoService {
 		// TODO Auto-generated method stub
 		return mapper.updateStatusClose(com_num);
 	}
+
+	public List<CompanyVO> getComList(int sIdx) {
+		return mapper.selectCeoList(sIdx);
+	}
+
+
+	public List<ReservationVO> getResInfoList(CompanyVO company) {
+		return mapper.selectResInfo(company);
+	}
+
 	
 }

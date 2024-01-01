@@ -97,8 +97,16 @@
 		WHERE com_num = #{com_num};
 	</update>
 	
+	<select id="selectCeoList" resultType="company">
+		SELECT * FROM company WHERE user_idx = #{sIdx}
+	</select>
 	
-	
+	<select id="selectResInfo" resultType="company">
+		SELECT *
+		FROM reservation
+		WHERE com_id = #{com_id}
+	</select>
+
 	
 	
 	
