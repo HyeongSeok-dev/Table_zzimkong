@@ -14,6 +14,7 @@
 	rel="stylesheet">
 <script
 	src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0b71f7bc975653acc7be99d324066bee&libraries=services"></script>
 <script src="${pageContext.request.contextPath }/resources/js/product_detail.js"></script>
 </head>
 <body>
@@ -60,9 +61,10 @@
 		<ul class="list">
 			<li class="locat">
 				<div>${company.com_address}</div> <br> <span class="Profile__Detail__Distance">
-					현재 위치에서 <strong> ${company_info.distance}m </strong>
+					현재 위치에서 <strong class="restaurant-distance"> ${company_info.distance}m </strong>
+					<input type="hidden" name="storeAddress" value="${company.com_address}">
 			</span>
-				<button onclick="mapPopup('${company.com_id}')" class="Move__Map__Button">지도보기</button>
+				<button onclick="mapPopup('${company.com_address}')" class="Move__Map__Button">지도보기</button>
 			</li>
 			<li class="tel">${company.com_tel}</li>
 			<li class="tag">${tag_mood}</li>
