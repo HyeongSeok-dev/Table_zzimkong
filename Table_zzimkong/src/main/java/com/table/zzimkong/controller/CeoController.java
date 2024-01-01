@@ -226,11 +226,7 @@ public class CeoController {
 		return "popup_close";
 	}
 	
-<<<<<<< HEAD
-	@GetMapping("ceo/reservation")
-=======
 	@RequestMapping("ceo/reservation")
->>>>>>> stash
 	public String ceo_reservation(HttpSession session, Model model, CompanyVO company, ReservationVO res) {
 //		int sId = (int)session.getAttribute("sId");
 		int sIdx = (Integer)session.getAttribute("sIdx");
@@ -257,7 +253,7 @@ public class CeoController {
 	
 	@GetMapping("ceo/reservation/info")	
 	public String ceo_reservation_info() {
-		res = service.get
+//		res = service.get
 		return "ceo/ceo_reservation_info";
 	}
 	
