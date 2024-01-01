@@ -20,20 +20,24 @@ $(document).ready(function() {
 	var initialCompanyId = $('#storeList option:first').val();
     fetchCompanyData(initialCompanyId); 
 
-    // 셀렉트 박스가 변경될 때마다 AJAX 요청
     $('#storeList').change(function() {
         var selectedCompanyId = $(this).val();
-        
+        fetchCompanyData(selectedCompanyId); 
+    });
+});	
+
+function fetchCompanyData(companyId) {
+	var fetchData ={com_id: companyId}
     $.ajax({
         url: 'ceo/reservation', // API 경로를 적절히 변경하세요.
-        type: 'GET',
+        type: 'POST',
 		contentType: 'application/json',
 		dataType: 'json',
 		data: JSON.stringify(fetchData),
         success: function(response) {
 			var reservationTable = $('#reservationTable');
             reservationTable.find("tr:gt(0)").remove();
-            response.forEach(function(menu, index) {
+            response.forEach(function(menu) {
                var row = `<tr>
                     <td>${res.res_num}</td>
                     <td>${res.res_date}</td>
@@ -51,6 +55,5 @@ $(document).ready(function() {
             console.error("Error fetching data: ", error);
         }
     });
-    });	
+}
 	
-});

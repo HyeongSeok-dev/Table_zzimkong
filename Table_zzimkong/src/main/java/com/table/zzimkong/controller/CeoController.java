@@ -225,7 +225,7 @@ public class CeoController {
 		return "popup_close";
 	}
 	
-	@GetMapping("ceo/reservation")
+	@PostMapping("ceo/reservation")
 	public String ceo_reservation(HttpSession session, Model model, CompanyVO company, ReservationVO res) {
 
 		int sIdx = (int)session.getAttribute("sIdx");

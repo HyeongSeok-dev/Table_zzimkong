@@ -12,8 +12,8 @@ s<!DOCTYPE html>
 <%--탑css --%>
 <link href="${pageContext.request.contextPath }/resources/css/ceo_top.css" rel="stylesheet">
 <%-- 팝업창 js --%>
-<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/ceo_detail.js"></script>
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/ceo_detail.js"></script>
 </head>
 <body>
 	<header>
