@@ -218,9 +218,9 @@
 						<%-- 상세페이지로 가는 이미지 --%>
 						<%--추천순(광고등급순)--%>
 						<div class="sort-option-div" data-sort-value="hygiene">
-					 		<c:forEach var="recommand" items="${recommendList }">
+					 		<c:forEach var="recommand" items="${recommendList}">
 								<div class="owl_example1_items_images">
-									${recommand.memu_img}
+									${recommand.com_img}
 									${recommand.com_name}
 								</div>					 		
 					 		</c:forEach>
