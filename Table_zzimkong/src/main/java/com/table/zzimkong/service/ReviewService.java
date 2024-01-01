@@ -85,10 +85,9 @@ public class ReviewService {
 		return mapper.countReviewsByComId(comId);
 	}
 
-
 	
 	// =========================================================================
-	// 리뷰 정렬
+	// 리뷰 정렬(최신순/별점높은순/별점낮은순 - 사진/영상 리뷰만 보기)
 	public List<ReviewVO> getReviewsSortedByNewest(int comId) {
 
 		return mapper.selectReviewsByNewest(comId);
@@ -100,6 +99,15 @@ public class ReviewService {
 	    				   mapper.selectReviewsByLowestScore(comId);
 	}
 
+	
+	public List<ReviewVO> getSortedReviews(@Param("comId") int comId, 
+            @Param("sortType") String sortType,
+            @Param("photoOnly") boolean photoOnly) {
+
+		return mapper.getSortedReviews(comId, sortType,photoOnly);
+	}
+
+		
 	// =========================================================================
 	// 메뉴 불러오기 
 	public List<ReviewMenuVO> getMenuByComId(int comId) {
@@ -107,39 +115,6 @@ public class ReviewService {
 		return mapper.selectMenuByComId(comId);
 	}
 	
-	public List<ReviewVO> getSortedReviews(@Param("comId") int comId, 
-            @Param("sortType") String sortType) {
-		// TODO Auto-generated method stub
-		return mapper.getSortedReviews(comId, sortType);
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-//	public List<ReviewVO> getReviewsSortedByDate(int comId) {
-//
-//		return mapper.selectReviewsSortedByDate(comId);
-//	}
-//
-//	public List<ReviewVO> getReviewsSortedByScoreDesc(int comId) {
-//	    return mapper.selectReviewsSortedByScoreDesc(comId);
-//	}
-//
-//	public List<ReviewVO> getReviewsSortedByScoreAsc(int comId) {
-//	    return mapper.selectReviewsSortedByScoreAsc(comId);
-//	}
-//
+	// =========================================================================
 
 }

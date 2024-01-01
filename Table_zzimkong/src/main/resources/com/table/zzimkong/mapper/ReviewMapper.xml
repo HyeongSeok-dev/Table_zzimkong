@@ -192,26 +192,32 @@
 	</select>
 	
 	
-<select id="getSortedReviews" resultType="review">
-    SELECT * FROM review
-    WHERE com_id = #{comId}
-    <choose>
-        <when test="sortType.equals('newest')">
-            ORDER BY review_update DESC
-        </when>
-        <when test="sortType.equals('highest')">
-            ORDER BY review_score DESC, review_update DESC
-        </when>
-        <when test="sortType.equals('lowest')">
-            ORDER BY review_score ASC, review_update DESC
-        </when>
-        <when test="sortType.equals('likes')">
-            ORDER BY likes_count DESC, review_update DESC
-        </when>
-    </choose>
-</select>
+	<!-- 리뷰 정렬(최신순|별점높은순|별점낮은순 ~ 사진/영상 리뷰만 보기) -->
+	<select id="getSortedReviews" resultType="review">
+	    SELECT * FROM review
+	    WHERE com_id = #{comId}
+	    <if test="photoOnly">
+	        AND review_img_1 IS NOT NULL
+	    </if>
+	    <choose>
+	        <when test="sortType == 'newest'">
+	            ORDER BY review_update DESC
+	        </when>
+	        <when test="sortType == 'highest'">
+	            ORDER BY review_score DESC, review_update DESC
+	        </when>
+	        <when test="sortType == 'lowest'">
+	            ORDER BY review_score ASC, review_update DESC
+	        </when>
+	        <when test="sortType == 'likes'">
+	            ORDER BY likes_count DESC, review_update DESC
+	        </when>
+	        <otherwise>
+	            ORDER BY review_update DESC
+	        </otherwise>
+	    </choose>
+	</select>
 
-	
 	
 </mapper>
 	

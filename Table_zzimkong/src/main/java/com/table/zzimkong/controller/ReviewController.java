@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -40,7 +41,6 @@ import com.table.zzimkong.vo.ReviewVO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-
 @Controller
 public class ReviewController {
 	@Autowired
@@ -51,6 +51,7 @@ public class ReviewController {
 	@GetMapping("review/redetail")
 	public String review_detail(@RequestParam("com_id") int comId, 
 								@RequestParam(value = "sortType", required = false, defaultValue = "newest") String sortType,
+	                            @RequestParam(value = "photoOnly", required = false, defaultValue = "false") boolean photoOnly,
 								Model model) {		
 		// 업체 이름 불러오기
 		String comName = service.getCompanyName(comId);
@@ -80,8 +81,14 @@ public class ReviewController {
         model.addAttribute("menus",menus);
         
         // 리뷰 정렬 처리
-//        List<ReviewVO> reviews = service.getAllReviews(comId);
-        if (!sortType.equals("newest")) { // "newest"가 아닌 다른 정렬이 선택된 경우
+        
+        // photoOnly 파라미터에 따라 사진이 있는 리뷰만 필터링
+//        List<ReviewVO> reviews; // => 위에서 선언됨
+        if(photoOnly) {
+        	// 사진이 있는 리뷰만 가져옴
+            reviews = service.getSortedReviews(comId, sortType,photoOnly);
+        } else {
+            // sortType에 따라 리뷰 정렬
             switch (sortType) {
                 case "highest":
                     reviews = service.getReviewsSortedByScore(comId, true);
@@ -89,30 +96,30 @@ public class ReviewController {
                 case "lowest":
                     reviews = service.getReviewsSortedByScore(comId, false);
                     break;
-                case "newest": // '최신순' 정렬 추가
+                case "newest": 
                 default:
-                    reviews = service.getAllReviews(comId);
-                    break;		
+                    reviews = service.getAllReviews(comId); // 기본적으로 모든 리뷰 가져옴
+                    break;      
             }
         }
 
-        model.addAttribute("reviews", reviews); 
-        
-        
+        model.addAttribute("reviews", reviews);
+	        
         
         
         
 		return "review/review_detail";
 	}
 	// ===================================================================
-	@GetMapping("/review/redetail/sortedReviews")
-    @ResponseBody // AJAX 요청에 JSON 데이터로 응답하기 위해 사용
+    // AJAX 요청 처리: 정렬된 리뷰 목록 반환
+    @GetMapping("/review/redetail/sortedReviews")
+    @ResponseBody
     public List<ReviewVO> getSortedReviews(@RequestParam("comId") int comId, 
-                                           @RequestParam("sortType") String sortType) {
-        // ReviewService를 통해 정렬된 리뷰 목록을 가져오는 로직
-        List<ReviewVO> sortedReviews = service.getSortedReviews(comId, sortType);
-        return service.getSortedReviews(comId, sortType);
+                                           @RequestParam("sortType") String sortType,
+                                           @RequestParam(value = "photoOnly", defaultValue = "false") boolean photoOnly) {
+        return service.getSortedReviews(comId, sortType, photoOnly);
     }
+
 	// ===================================================================
 	// [ 리뷰 작성 ]
 	// "detail" 서블릿 요청에 대한 리뷰 글쓰기 폼 표시

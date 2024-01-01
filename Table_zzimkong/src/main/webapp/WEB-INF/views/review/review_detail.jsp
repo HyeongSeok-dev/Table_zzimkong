@@ -24,7 +24,6 @@
 <!-- 변수 선언 -->
 var contextPath = "${pageContext.request.contextPath}";
 <!-- ============================================================ -->
-
 document.addEventListener('DOMContentLoaded', function() {
     var reviewCountsJson = '${reviewCountsJson}'.replace(/&quot;/g, '"');
     var reviewCounts = JSON.parse(reviewCountsJson)[0]; // 첫 번째 객체만 사용
@@ -160,37 +159,40 @@ document.addEventListener('DOMContentLoaded', function() {
 	    console.log(comId); // 결과 확인
 
 	}
-	
 	<!-- ================================================================================================= -->
 	function formatDate(dateString) {
     var options = { year: '2-digit', month: '2-digit', day: '2-digit', weekday: 'short' };
     return new Intl.DateTimeFormat('ko-KR', options).format(new Date(dateString));
 }
 	
-	function sortReviews(sortType) {
-		console.log("Sorting reviews by: >>>>>>>>>>>>>>>>>>>>> " + sortType); //  함수 호출 확인
+	function sortReviews(sortType, photoOnly) { // photoOnly 매개변수 추가
+	    console.log("Sorting reviews by: >>>>>>>>>>>>>>> ", sortType, ", Photo only: ", photoOnly);
 	    var comId = getParameterByName('com_id'); // com_id 값을 가져옴
 
 	    $.ajax({
-    url: '/zzimkong/review/redetail/sortedReviews', // 컨텍스트 경로를 포함한 전체 경로
+  			url: '/zzimkong/review/redetail/sortedReviews', // 컨텍스트 경로를 포함한 전체 경로
 			type: 'GET',
 	        data: {
 	            comId: comId, // comId 변수 값 정의
-	            sortType: sortType // 'newest', 'highest', 'lowest', 'likes' 등
+	            sortType: sortType, // 'newest', 'highest', 'lowest', 'likes' 등
+	            photoOnly: photoOnly // 사진 리뷰만 필터링을 위한 매개변수 전송
 	        },
 	        dataType: 'json', // 서버로부터 JSON 형태의 응답을 기대
 	        success: function(response) {
 	            // response 형식이 JSON이고, reviews 배열을 포함하는지 확인 필요
-	          	console.log("Response received: >>>>>>>>>>>>>>> ", response);
+  				console.log("Response received: >>>>>>>>>>>>>", response);
 	            var reviews = response;
 	            var reviewsContainer = $('#reviewsContainer');
 //	            var reviewUpdate = review.review_update;
 //       			console.log('Review update date:', reviewUpdate); // 여기에서 날짜 확인
 
-
 	            reviewsContainer.empty(); // 기존 리뷰 목록을 비움
 
 	reviews.forEach(function(review) {
+        // photoOnly가 true일 때, 이미지가 없는 리뷰는 건너뜀
+        if (photoOnly && !review.review_img_1) {
+            return;
+        }
 //    console.log(review.review_update); // 날짜 값 확인	
 //    var formattedDate = formatDate(review.review_update); // 날짜 포맷팅
     var formattedDate = formatDate(review.review_update); // 서버로부터 받은 review_update 값을 형식화
@@ -274,7 +276,24 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 	
 $(document).ready(function() {
+    var photoOnly = $('#photoReviewCheckbox').is(':checked');
     sortReviews('newest'); // 페이지 로드 시 최신순 정렬을 기본값으로 설정
+    
+    // 체크박스 상태 변경 감지
+ 		 $('#photoReviewCheckbox').change(function() {
+            photoOnly = $(this).is(':checked');
+            var sortType = $('.sort-link.active').data('sort-type') || 'newest';
+            sortReviews(sortType, photoOnly);
+        });
+    // 정렬 링크 클릭 이벤트
+    $('.sort-link').click(function(event) {
+        event.preventDefault();
+        $('.sort-link').removeClass('active');
+        $(this).addClass('active');
+        var sortType = $(this).data('sort-type');
+        sortReviews(sortType, photoOnly);
+    });
+});
     
       // 리뷰 컨테이너 내에서 댓글 및 하트 아이콘에 대한 이벤트 위임
     $('#reviewsContainer').on('click', '.fa-comment, .fa-heart', function() {
@@ -302,8 +321,6 @@ $(document).ready(function() {
             });
         });
     
-
-});
 	// ===================================================================
 document.addEventListener('DOMContentLoaded', function() {
 
@@ -392,18 +409,18 @@ document.addEventListener('DOMContentLoaded', function() {
 	});
 
 	// ===================================================================
-	var deleteButtons = document.querySelectorAll('.review_delete');
-deleteButtons.forEach(function(deleteButton) {
-    deleteButton.addEventListener('click', function(event) {
-        // 팝업창을 표시
-        deleteConfirmationPopup.style.display = 'block';
-
-        // 기본 이벤트 방지 (링크 이동 등)
-        event.preventDefault();
-    });
-}); 
-
-}); //document.addEventListener의 끝
+		var deleteButtons = document.querySelectorAll('.review_delete');
+	deleteButtons.forEach(function(deleteButton) {
+	    deleteButton.addEventListener('click', function(event) {
+	        // 팝업창을 표시
+	        deleteConfirmationPopup.style.display = 'block';
+	
+	        // 기본 이벤트 방지 (링크 이동 등)
+	        event.preventDefault();
+	    });
+	}); 
+	
+	}); //document.addEventListener의 끝
 
 </script>
 	<!-- ================================================================================================= -->
@@ -465,16 +482,16 @@ deleteButtons.forEach(function(deleteButton) {
 		    <div class="carousel-next">&#10095;</div>
 		</div>
 
-
 	<!-- ================================================================================================= -->
 	<div class="separator"></div>
 	<div class="review_main_subject">
 		<h2 class="review_subject">
 			리뷰&nbsp;<span class="review_subject_count">${reviewCount}</span>
 		</h2>
-		<label class="checkbox-container"><input type="checkbox"><span
-			class="checkmark"></span>사진/영상 리뷰만 
-	</label>
+		<label class="checkbox-container">
+		    <input type="checkbox" id="photoReviewCheckbox">
+		    <span class="checkmark"></span>사진/영상 리뷰만 
+		</label>
 	</div>
 	</div>
 	<div class="menu_select">
@@ -514,73 +531,9 @@ deleteButtons.forEach(function(deleteButton) {
 	<div class="separator"></div>
 <!-- 	<!-- ========================================================================================= --> 
 	<div class="reviews_container" id="reviewsContainer">
-<%-- 	<c:forEach items="${reviews}" var="review"> --%>
-<!-- 	<ul class="review_list"> -->
-<!-- 		<li class="review_list1"> -->
-<!-- 			<div class="reviewer"> -->
-<!-- 			<div class="reviewer_photo"> -->
-<!-- 				<a href="사용자 사진 크게보기" target="_blank" role="button" class="profile_link"> -->
-<!-- 					<div class="profile_image"> -->
-<%-- 						<img src="${pageContext.request.contextPath}/resources/img/profile.png" alt="프로필" width="38" height="38"> --%>
-<!-- 					</div> -->
-<!-- 				</a>	  -->
-<!-- <!-- 					사용자가 썼던 리뷰를 볼 수 있는 창 연결 --> 
-<!-- <!-- 				 <a href="마이페이지 프로필 연결" target="_blank" role="button" class="review_details"> --> 
-<!-- 			<div class="reviewer_info"> -->
-<%-- 			    <div class="reviewer_name">${review.user_id}</div> --%>
-<!-- 			    <div class="score1"> -->
-<%-- 			        <img src="${pageContext.request.contextPath}/resources/img/review_star.png"> --%>
-<%-- 			        <fmt:formatNumber value="${review.review_score / 2}" type="number" maxFractionDigits="1"/> --%>
-<!-- 			    </div> -->
-<!-- 			</div> -->
 
-<!-- 			</div> -->
-<!-- 			<div class="reviewer_info"></div> -->
-<!-- 			<div class="review_photos"> -->
-<%-- 	        	<c:if test="${not empty review.review_img_1}"> --%>
-<%-- 					<img src="${pageContext.request.contextPath}/resources/upload/${review.review_img_1}" alt="Review Image" /> --%>
-<!-- 					<div id="image-popup" class="image-popup" style="display: none;"> -->
-<!-- 					    <span class="close-popup">&times;</span> -->
-<!-- 					    <img id="popup-img" class="popup-content"> -->
-<!-- 					</div> -->
-<%-- 	        	</c:if> --%>
-<!-- 			</div> -->
-<%-- 			<p class="review_content">${review.review_content}</p> --%>
-<!-- 			<div class="review-actions"> -->
-<!-- 					<div class="review-action1"> -->
-<!-- 						<i class="far fa-comment" id="commentIcon" style="cursor: pointer;"></i> -->
-<!-- <!-- 						댓글 아이콘 --> 
-<!-- 						<i class="far fa-heart" id="heartIcon" style="cursor: pointer;"></i> -->
-<!-- <!-- 						하트 아이콘 --> 
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
-<!-- 		<br> -->
-<!-- 			<div class="review-actions"> -->
-<!-- 				<div class="review-action2"> -->
-<!-- 						<div class="review-action-buttons"> -->
-<%-- 						    <form action="${pageContext.request.contextPath}/zzimkong/review/delete" method="POST"> --%>
-<%-- 						        <input type="hidden" name="review_num" value="${review.review_num}"> --%>
-<!-- 						        <input type="submit" class="review_delete" value="삭제" onclick="return confirm('리뷰를 삭제하시겠습니까?');"> -->
-<!-- 						    </form> -->
-<%-- 						    <a href="modify?review_num=${review.review_num}"> --%>
-<!-- 						        <button class="review_modify">수정</button> -->
-<!-- 						    </a> -->
-<%-- 						    <a href="${pageContext.request.contextPath}/review/report" class="review_report_btn" role="button">리뷰 신고하기</a> --%>
-<!-- 						</div> -->
-<!-- 						<span class="comment-icon" onclick="showCommentForm()"></span><br><br> -->
-<!--             <div class="review_date"> -->
-<%--                 <fmt:formatDate value="${review.review_update}" pattern="yy. MM. dd (E)" /> 작성 --%>
-<!--             </div> -->
-<!-- 			   </div> -->
-<!-- 			</div> -->
-<!-- 		</li> -->
-<!-- 	</ul> -->
 	</div>
-<!-- 	<br> -->
-<!-- 	<div class="separator"></div> -->
-<%-- 	</c:forEach> --%>
+
 	<!-- ========================================================================================= -->
 	<br><br><br><br><br><br><br><br><br><br>
 	<footer>
