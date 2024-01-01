@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -225,13 +226,24 @@ public class CeoController {
 		return "popup_close";
 	}
 	
+<<<<<<< HEAD
 	@GetMapping("ceo/reservation")
+=======
+	@RequestMapping("ceo/reservation")
+>>>>>>> stash
 	public String ceo_reservation(HttpSession session, Model model, CompanyVO company, ReservationVO res) {
-
-		int sIdx = (int)session.getAttribute("sIdx");
+//		int sId = (int)session.getAttribute("sId");
+		int sIdx = (Integer)session.getAttribute("sIdx");
 		List<CompanyVO> storeList = service.getComList(sIdx);
 		model.addAttribute("storeList", storeList);
+		System.out.println("storeList" + storeList);
 		
+	    for (CompanyVO companyItem : storeList) {
+	        int com_id = companyItem.getCom_id();  // getCom_id() 메서드를 사용하여 com_id 값을 꺼냅니다.
+	        System.out.println("Company ID: " + com_id);  // 값 출력
+	        // 필요한 다른 값들도 이와 같은 방식으로 꺼낼 수 있습니다.
+	    }
+		 
 		List<ReservationVO> comResList = service.getResInfoList(company);
 		System.out.println("예약값" + comResList);
 		model.addAttribute("comResList", comResList);
@@ -245,6 +257,7 @@ public class CeoController {
 	
 	@GetMapping("ceo/reservation/info")	
 	public String ceo_reservation_info() {
+		res = service.get
 		return "ceo/ceo_reservation_info";
 	}
 	
