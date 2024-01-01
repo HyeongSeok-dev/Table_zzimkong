@@ -95,7 +95,7 @@ public class MypageController {
 			// 이 때, 동일한 조건에서 패스워드 검증도 추가로 수행
 			// => 관리자가 다른 회원의 정보를 수정할 경우에는 패스워드 검증 수행 생략됨
 			if (!passwordEncoder.matches(member.getUser_passwd(), dbMember.getUser_passwd())) {
-				model.addAttribute("msg", "수정 권한이 없습니다!");
+				model.addAttribute("msg", "수정 권한이 없습니다! - 패스워드 불일치");
 				return "fail_back";
 			}
 		}
@@ -105,7 +105,8 @@ public class MypageController {
 			user_passwd1 = passwordEncoder.encode(user_passwd1);
 			member.setUser_passwd(user_passwd1);
 		}
-
+		
+		System.out.println(member);
 		// MemberService - modifyMember() 메서드 호출하여 회원 정보 수정 요청
 		// => 파라미터 : MemberVO 객체, 새 패스워드(newPasswd) 리턴타입 : int(updateCount)
 		int updateCount = service.modifyMember(member, user_passwd1);

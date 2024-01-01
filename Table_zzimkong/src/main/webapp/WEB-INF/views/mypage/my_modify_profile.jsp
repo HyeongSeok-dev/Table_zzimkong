@@ -55,7 +55,7 @@
 					<tr>
 						<th>닉네임</th>
 						<td>
-							<input type="text" id="u_nick" name=nickname class="input_text" value="${member.user_nick}" placeholder="2 ~ 6자리 닉네임">
+							<input type="text" id="u_nick" name=user_nick class="input_text" value="${member.user_nick}" placeholder="2 ~ 6자리 닉네임">
 							<span id= "checkNickResult"></span>
 						</td>
 					</tr>
@@ -64,8 +64,8 @@
 						<td>
 							<%-- 이메일 주소 분리("@" 기준)하여 표시 --%>
 							<c:set var="arrEmail" value="${fn:split(member.user_email, '@')}" />
-							<input type="text" name="email1" class="email_text" value="${arrEmail[0]}"> @
-							<input type="text" name="email2" class="email_text" value="${arrEmail[1]}">
+							<input type="text" name="user_email1" class="email_text" value="${arrEmail[0]}"> @
+							<input type="text" name="user_email2" class="email_text" value="${arrEmail[1]}">
 	                    	<select class="email_domain" name="emailDomain">
 								<option value="">선택하세요</option>
 				                <option value="gmail.com">gmail.com</option>

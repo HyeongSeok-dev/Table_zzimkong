@@ -22,13 +22,13 @@
 	<!-- @Param 어노테이션을 통해 파라미터 이름을 지정했으므로 #{파라미터명.xxx} 형식으로 객체 접근 -->
 	<!-- 단, 새 패스워드(newPasswd)는 null 또는 널스트링이 아닐 경우에만 변경 -->
 	<update id="updateMember">
-		UPDATE member
+		UPDATE user
 		SET
 			user_nick = #{member.user_nick}
 			, user_email = CONCAT(#{member.user_email1}, '@', #{member.user_email2}) -- user_email1, user_email2 문자열 결합
 			<!-- 새 패스워드(newPasswd) 존재 여부에 따라 변경 여부 결정 -->
 			<!-- 주의! 비교에 사용될 파라미터는 #{} 제외하고 표현 -->
-			<if test="newPasswd != null and !newPasswd.equals('')">
+			<if test="user_passwd1 != null and !user_passwd1.equals('')">
 				, user_passwd = #{user_passwd1}  -- 새 패스워드 존재할 경우 기존 패스워드 변경
 			</if>
 		WHERE
