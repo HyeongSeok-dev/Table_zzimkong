@@ -1,12 +1,15 @@
 $(function() {
-	
-	/* [ register ] */
+	 console.log("test");
 	/* 텍스트 박스에 숫자만 입력 할 수 있음 */
 	$('#hMax').on('input', function () {
     	$(this).val($(this).val().replace(/[^0-9]/g, ''));
 	});
 	$('#com_tel').on('input', function () {
-    	$(this).val($(this).val().replace(/[^0-9]/g, ''));
+    	 var input = $(this).val().replace(/[^0-9]/g, '');
+    	if(input.length > 12) {
+	        input = input.substring(0, 12);
+	    }
+	    $(this).val(input);
 	});
 	
 	/* 광고 신청이 미신청 상태이면 광고 단계 0으로 바꿈*/
@@ -20,6 +23,23 @@ $(function() {
  
 	});
 	
+	$('#keyword').on('input', function() {
+	    var lines = $(this).val().split('\n');
+	    for (var i = 0; i < lines.length; i++) {
+	        if (lines[i].length > 0 && lines[i][0] != '#') {
+	            lines[i] = '#' + lines[i];
+	        }
+	    }
+	    $(this).val(lines.join('\n'));
+	    
+	});
+	
+	$('#keyword').on('keydown', function(e) {
+    if (e.which == 32) { 
+        e.preventDefault();
+        $(this).val($(this).val() + '#');
+    }
+	
 	$('#file').change(function() {
         var reader = new FileReader();
         reader.onload = function(e) {
@@ -29,7 +49,6 @@ $(function() {
         reader.readAsDataURL(this.files[0]);
     });
 		
-	$(".button_olive").on("click", function() {
 		$("#registerForm").submit(function(){
 			if($("#com_tel").val() == "") {
 				alert("전화번호를 입력해 주세요");
@@ -71,5 +90,5 @@ $(function() {
 			} 
 			return true;
 		});
-	});
+	}); 
 }); //jquery문 전체

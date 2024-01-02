@@ -42,7 +42,7 @@
 								<div id="img"><img src="${pageContext.request.contextPath}/resources/upload/${com.com_img }" style="width: 200px;"></div>
 								<hr>
 								<div class="file_div">
-								<input type="file" id="file" name="com_img" value="">
+								<input type="file" id="file" name="file">
 								<a href="${pageContext.request.contextPath}/resources/upload/${com.com_img }"></a>
 								<div id="onlyone">*사진은 최대 한장만 등록 가능합니다.</div>
 								</div>
@@ -142,20 +142,20 @@
 							<th>카테고리</th>
 							<td colspan="4" style="font-size: 18px;">
 								<div>
-									<input type="checkbox" value="데이트" name="category" class="category" <c:if test="${fn:contains(com.com_tag_date, true)}">checked</c:if>>&nbsp;데이트&nbsp; 
-									<input type="checkbox" value="가족모임" name="category" class="category" <c:if test="${fn:contains(com.com_tag_family, true)}">checked</c:if>>&nbsp;가족모임 &nbsp;
-									<input type="checkbox" value="단체회식" name="category" class="category" <c:if test="${fn:contains(com.com_tag_party, true)}">checked</c:if>>&nbsp;단체회식 &nbsp;
-									<input type="checkbox" value="조용한" name="category" class="category" <c:if test="${fn:contains(com.com_tag_quiet, true)}">checked</c:if>>&nbsp;조용한 &nbsp;
-									<input type="checkbox" value="주차가능" name="category" class="category" <c:if test="${fn:contains(com.com_tag_park, true)}">checked</c:if>>&nbsp;주차가능 &nbsp;
-									<input type="checkbox" value="노키즈존" name="category" class="category" <c:if test="${fn:contains(com.com_tag_kids, true)}">checked</c:if>>&nbsp;노키즈존 &nbsp;
+									<input type="checkbox" value="데이트" name="com_tag" class="category" <c:if test="${fn:contains(com.com_tag_date, true)}">checked</c:if>>&nbsp;데이트&nbsp; 
+									<input type="checkbox" value="가족모임" name="com_tag" class="category" <c:if test="${fn:contains(com.com_tag_family, true)}">checked</c:if>>&nbsp;가족모임 &nbsp;
+									<input type="checkbox" value="단체회식" name="com_tag" class="category" <c:if test="${fn:contains(com.com_tag_party, true)}">checked</c:if>>&nbsp;단체회식 &nbsp;
+									<input type="checkbox" value="조용한" name="com_tag" class="category" <c:if test="${fn:contains(com.com_tag_quiet, true)}">checked</c:if>>&nbsp;조용한 &nbsp;
+									<input type="checkbox" value="주차가능" name="com_tag" class="category" <c:if test="${fn:contains(com.com_tag_park, true)}">checked</c:if>>&nbsp;주차가능 &nbsp;
+									<input type="checkbox" value="노키즈존" name="com_tag" class="category" <c:if test="${fn:contains(com.com_tag_kids, true)}">checked</c:if>>&nbsp;노키즈존 &nbsp;
 								</div>	
 								<div>	
-									<input type="checkbox" value="장애인편의시설" name="category" class="category" <c:if test="${fn:contains(com.com_tag_disabled, true)}">checked</c:if>>&nbsp;장애인편의시설 &nbsp;
-									<input type="checkbox" value="반려동물" name="category" class="category" <c:if test="${fn:contains(com.com_tag_pet, true)}">checked</c:if>>&nbsp;반려동물 동반 &nbsp;
-									<input type="checkbox" value="홀" name="category" class="category" <c:if test="${fn:contains(com.com_tag_hall, true)}">checked</c:if>>&nbsp;홀 &nbsp;
-									<input type="checkbox" value="룸" name="category" class="category" <c:if test="${fn:contains(com.com_tag_room, true)}">checked</c:if>>&nbsp;룸 &nbsp;
-									<input type="checkbox" value="테라스" name="category" class="category" <c:if test="${fn:contains(com.com_tag_terrace, true)}">checked</c:if>>&nbsp;테라스 &nbsp;
-									<input type="checkbox" value="창가자리" name="category" class="category" <c:if test="${fn:contains(com.com_tag_window, true)}">checked</c:if>>&nbsp;창가자리 &nbsp;
+									<input type="checkbox" value="장애인편의시설" name="com_tag" class="category" <c:if test="${fn:contains(com.com_tag_disabled, true)}">checked</c:if>>&nbsp;장애인편의시설 &nbsp;
+									<input type="checkbox" value="반려동물" name="com_tag" class="category" <c:if test="${fn:contains(com.com_tag_pet, true)}">checked</c:if>>&nbsp;반려동물 동반 &nbsp;
+									<input type="checkbox" value="홀" name="com_tag" class="category" <c:if test="${fn:contains(com.com_tag_hall, true)}">checked</c:if>>&nbsp;홀 &nbsp;
+									<input type="checkbox" value="룸" name="com_tag" class="category" <c:if test="${fn:contains(com.com_tag_room, true)}">checked</c:if>>&nbsp;룸 &nbsp;
+									<input type="checkbox" value="테라스" name="com_tag" class="category" <c:if test="${fn:contains(com.com_tag_terrace, true)}">checked</c:if>>&nbsp;테라스 &nbsp;
+									<input type="checkbox" value="창가자리" name="com_tag" class="category" <c:if test="${fn:contains(com.com_tag_window, true)}">checked</c:if>>&nbsp;창가자리 &nbsp;
 								</div>
 							</td>
 						</tr>

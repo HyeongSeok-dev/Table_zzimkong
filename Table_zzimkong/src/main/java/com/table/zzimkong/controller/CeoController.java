@@ -282,98 +282,141 @@ public class CeoController {
 //		}
 
 		// [사업장 이미지 업로드]
-//		String uploadDir = "/resources/upload";
-//		String saveDir = session.getServletContext().getRealPath(uploadDir);
-//		String subDir = "";
-//		LocalDate now = LocalDate.now();
-//		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-//		subDir = now.format(dtf);
-//		saveDir += File.separator + subDir;
-//		
-//		try {
-//			Path path = Paths.get(saveDir); // 파라미터로 업로드 경로 전달
-//			Files.createDirectories(path); // 파라미터로 Path 객체 전달
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//		MultipartFile mFile = company.getFile();
-//		System.out.println("원본파일명1 : " + mFile.getOriginalFilename());
-//		
-//		company.setCom_img("");
-//		
-//		String imgName = UUID.randomUUID().toString().substring(0, 8) + "_" + mFile.getOriginalFilename();
-//		
-//		if(!mFile.getOriginalFilename().equals("")) {
-//			company.setCom_img(subDir + "/" + imgName);
-//		}
-//		System.out.println("실제 업로드 파일명 : " + company.getCom_img());
-//		
-//		// [영업시간/브레이크타임 시간분 합치기]
-//		company.setCom_open_time(company.getOpenHour() + " : " + company.getOpenMin());
-//		company.setCom_close_time(company.getCloseHour() + " : " + company.getCloseMin());
-//		company.setCom_breakStart_time(company.getStartHour() + " : " + company.getStartMin());
-//		company.setCom_breakEnd_time(company.getEndHour() + " : " + company.getEndMin());
+		String uploadDir = "/resources/upload";
+		String saveDir = session.getServletContext().getRealPath(uploadDir);
+		String subDir = "";
+		LocalDate now = LocalDate.now();
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+		subDir = now.format(dtf);
+		saveDir += File.separator + subDir;
+		
+		try {
+			Path path = Paths.get(saveDir); // 파라미터로 업로드 경로 전달
+			Files.createDirectories(path); // 파라미터로 Path 객체 전달
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		MultipartFile mFile = company.getFile();
+		System.out.println("원본파일명1 : " + mFile.getOriginalFilename());
+		
+		company.setCom_img("");
+		
+		String imgName = UUID.randomUUID().toString().substring(0, 8) + "_" + mFile.getOriginalFilename();
+		
+		if(!mFile.getOriginalFilename().equals("")) {
+			company.setCom_img(subDir + "/" + imgName);
+		}
+		System.out.println("실제 업로드 파일명 : " + company.getCom_img());
+		
+		// [영업시간/브레이크타임 시간분 합치기]
+		company.setCom_open_time(company.getOpenHour() + " : " + company.getOpenMin());
+		company.setCom_close_time(company.getCloseHour() + " : " + company.getCloseMin());
+		company.setCom_breakStart_time(company.getStartHour() + " : " + company.getStartMin());
+		company.setCom_breakEnd_time(company.getEndHour() + " : " + company.getEndMin());
 		
 		//카테고리 boolea으로 변경하기
-		switch (company.getCom_tag()) {
-		case "데이트": company.setCom_tag_date(true);
-		case "가족모임": company.setCom_tag_family(true);
-		case "단체회식": company.setCom_tag_party(true);
-		case "조용한": company.setCom_tag_quiet(true);
-		case "주차가능": company.setCom_tag_park(true);
-		case "노키즈존": company.setCom_tag_kids(true);
-		case "장애인편의시설": company.setCom_tag_disabled(true);
-		case "반려동물": company.setCom_tag_pet(true);
-		case "홀": company.setCom_tag_hall(true);
-		case "룸": company.setCom_tag_room(true);
-		case "테라스": company.setCom_tag_terrace(true);
-		case "창가자리": company.setCom_tag_window(true);
-			break;
+		
+		String[] tagArr = company.getCom_tag().split(",");
+		
+		for(int i = 0; i < tagArr.length; i++) {
+			String tag = tagArr[i];
+			switch (company.getCom_tag().contains(tag)) {
+			case "데이트":
+				company.setCom_tag_date(true);
+				break;
+			case "가족모임":
+				company.setCom_tag_family(true);
+				break;
+			case "단체회식":
+				company.setCom_tag_party(true);
+				break;
+			case "조용한":
+				company.setCom_tag_quiet(true);
+				break;
+			case "주차가능":
+				company.setCom_tag_park(true);
+				break;
+			case "노키즈존":
+				company.setCom_tag_kids(true);
+				break;
+			case "장애인편의시설":
+				company.setCom_tag_disabled(true);
+				break;
+			case "반려동물":
+				company.setCom_tag_pet(true);
+				break;
+			case "홀":
+				company.setCom_tag_hall(true);
+				break;
+			case "룸":
+				company.setCom_tag_room(true);
+				break;
+			case "테라스":
+				company.setCom_tag_terrace(true);
+				break;
+			case "창가자리":
+				company.setCom_tag_window(true);
+				break;
+			}
+		}
+		
+		if(company.getCom_tag().contains("데이트")) {
+			company.setCom_tag_date(true);
+		} else if(company.getCom_tag().contains("가족모임")) {
+			 company.setCom_tag_family(true);
+		} else if(company.getCom_tag().contains("단체회식")) {
+			 company.setCom_tag_party(true);
+		} else if(company.getCom_tag().contains("조용한")) {
+			 company.setCom_tag_quiet(true);
+		} else if(company.getCom_tag().contains("주차가능")) {
+			 company.setCom_tag_park(true);
+		} else if(company.getCom_tag().contains("노키즈존")) {
+			 company.setCom_tag_kids(true);
+		} else if(company.getCom_tag().contains("장애인편의시설")) {
+			 company.setCom_tag_disabled(true);
+		} else if(company.getCom_tag().contains("반려동물")) {
+			 company.setCom_tag_pet(true);
+		} else if(company.getCom_tag().contains("홀")) {
+		     company.setCom_tag_hall(true);
+		} else if(company.getCom_tag().contains("룸")) {
+			 company.setCom_tag_room(true);
+		} else if(company.getCom_tag().contains("테라스")) {
+			 company.setCom_tag_terrace(true);
+		} else if(company.getCom_tag().contains("창가자리")) {
+			 company.setCom_tag_window(true);
 		}
 		
 		//검색태그 공백제거하기
 		company.setCom_search_tag(company.getCom_search_tag().trim());
-		
-		//광고설정 int로 변경하기
-		if(company.getCom_ad_grade_str().equals("0단계")) {
-			company.setCom_ad_grade(0);
-		} else if(company.getCom_ad_grade_str().equals("0단계")) {
-			company.setCom_ad_grade(1);
-		} else if(company.getCom_ad_grade_str().equals("0단계")) {
-			company.setCom_ad_grade(2);
-		} else if(company.getCom_ad_grade_str().equals("0단계")) {
-			company.setCom_ad_grade(3);
-		}
-		
 		System.out.println(company.getCom_search_tag());
 		
 		// 1.등록
-//		int insertCompany = service.registCompany(company, sId);
+		int insertCompany = service.registCompany(company, sId);
 		
-//		if(insertCompany > 0) {
-//			
-//			try {
-//				// 업로드 된 파일들은 MultipartFile 객체에 의해 임시 디렉토리에 저장되며
-//				// 글쓰기 작업 성공 시 임시 디렉토리 -> 실제 디렉토리 이동 작업 필요
-//				// => MultipartFile 객체의 transferTo() 메서드를 호출하여 실제 위치로 이동(= 업로드)
-//				// => 파일이 선택되지 않은 경우(파일명이 널스트링) 이동이 불가능(예외 발생)하므로 제외
-//				// => transferTo() 메서드 파라미터로 java.io.File 타입 객체 전달
-//				if(!mFile.getOriginalFilename().equals("")) {
-//					mFile.transferTo(new File(saveDir, imgName));
-//				}
-//				
-//			} catch (IllegalStateException e) {
-//				e.printStackTrace();
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//			}
-//			
-//			return "redirect:/ceo/company/list";
-//			
-//		} else {
+		if(insertCompany > 0) {
+			
+			try {
+				// 업로드 된 파일들은 MultipartFile 객체에 의해 임시 디렉토리에 저장되며
+				// 글쓰기 작업 성공 시 임시 디렉토리 -> 실제 디렉토리 이동 작업 필요
+				// => MultipartFile 객체의 transferTo() 메서드를 호출하여 실제 위치로 이동(= 업로드)
+				// => 파일이 선택되지 않은 경우(파일명이 널스트링) 이동이 불가능(예외 발생)하므로 제외
+				// => transferTo() 메서드 파라미터로 java.io.File 타입 객체 전달
+				if(!mFile.getOriginalFilename().equals("")) {
+					mFile.transferTo(new File(saveDir, imgName));
+				}
+				
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+			return "redirect:/ceo/company/list";
+			
+		} else {
 			model.addAttribute("msg","사업장 등록 실패!");     
 			return "fail_back";
-//		}
+		}
 				
 				
 	}
@@ -508,7 +551,7 @@ public class CeoController {
 //			
 //			return "forward";
 //		}
-		
+		System.out.println("수정전 : " + company);
 		// [사업장 이미지 업로드]
 		String uploadDir = "/resources/upload";
 		String saveDir = session.getServletContext().getRealPath(uploadDir);
@@ -542,11 +585,87 @@ public class CeoController {
 		company.setCom_breakStart_time(company.getStartHour() + " : " + company.getStartMin());
 		company.setCom_breakEnd_time(company.getEndHour() + " : " + company.getEndMin());
 		
+		//카테고리 boolea으로 변경하기
+		switch (company.getCom_tag()) {
+		case "데이트": company.setCom_tag_date(true);
+		case "가족모임": company.setCom_tag_family(true);
+		case "단체회식": company.setCom_tag_party(true);
+		case "조용한": company.setCom_tag_quiet(true);
+		case "주차가능": company.setCom_tag_park(true);
+		case "노키즈존": company.setCom_tag_kids(true);
+		case "장애인편의시설": company.setCom_tag_disabled(true);
+		case "반려동물": company.setCom_tag_pet(true);
+		case "홀": company.setCom_tag_hall(true);
+		case "룸": company.setCom_tag_room(true);
+		case "테라스": company.setCom_tag_terrace(true);
+		case "창가자리": company.setCom_tag_window(true);
+			break;
+		}
+		
+		//검색태그 공백제거하기
+		company.setCom_search_tag(company.getCom_search_tag().trim());
+		
+		//광고설정 int로 변경하기
+		if(company.getCom_ad_grade_str().equals("0단계")) {
+			company.setCom_ad_grade(0);
+		} else if(company.getCom_ad_grade_str().equals("0단계")) {
+			company.setCom_ad_grade(1);
+		} else if(company.getCom_ad_grade_str().equals("0단계")) {
+			company.setCom_ad_grade(2);
+		} else if(company.getCom_ad_grade_str().equals("0단계")) {
+			company.setCom_ad_grade(3);
+		}
+		
+		//전화번호 '-' 주기
+		switch (company.getCom_tel().length()) {
+		case 8:
+			String tel = company.getCom_tel().substring(0,3) + "-" + company.getCom_tel().substring(4);
+			System.out.println(tel);
+			company.setCom_tel(tel);
+			break;
+		case 10:
+			tel = company.getCom_tel().substring(0,2) + "-" + company.getCom_tel().substring(3,5) + "-" + company.getCom_tel().substring(6);
+			System.out.println(tel);
+			company.setCom_tel(tel);
+			break;
+		case 11:
+			tel = company.getCom_tel().substring(0,2) + "-" + company.getCom_tel().substring(3,6) + "-" + company.getCom_tel().substring(7);
+			System.out.println(tel);
+			company.setCom_tel(tel);
+			break;
+		case 12:
+			tel = company.getCom_tel().substring(0,2) + "-" + company.getCom_tel().substring(3,6) + "-" + company.getCom_tel().substring(7);
+			System.out.println(tel);
+			company.setCom_tel(tel);
+			break;
+			
+		}
+		
+//		if(company.getCom_tel().length() == 8) {
+//			String tel = company.getCom_tel().substring(0,3) + "-" + company.getCom_tel().substring(4);
+//			System.out.println(tel);
+//			company.setCom_tel(tel);
+//		} else if(company.getCom_tel().length() == 10) {
+//			String tel = company.getCom_tel().substring(0,2) + "-" + company.getCom_tel().substring(3,5) + "-" + company.getCom_tel().substring(6);
+//			System.out.println(tel);
+//			company.setCom_tel(tel);
+//		} else if(company.getCom_tel().length() == 11) {
+//			String tel = company.getCom_tel().substring(0,2) + "-" + company.getCom_tel().substring(3,6) + "-" + company.getCom_tel().substring(7);
+//			System.out.println(tel);
+//			company.setCom_tel(tel);
+//		} else if(company.getCom_tel().length() == 12) {
+//			String tel = company.getCom_tel().substring(0,2) + "-" + company.getCom_tel().substring(3,6) + "-" + company.getCom_tel().substring(7);
+//			System.out.println(tel);
+//			company.setCom_tel(tel);
+//		}
+		
+		System.out.println("수정 후 : " + company);
+		
 		int updateCompany = service.companyModify(company);
 		
 		
 		if(updateCompany < 0) {
-			model.addAttribute("msg", "폐점 신청 실패!");
+			model.addAttribute("msg", "사업장 정보 수정 실패!");
 			return "fail_back";
 		} else {
 			

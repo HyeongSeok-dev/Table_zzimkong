@@ -66,8 +66,8 @@ public class CompanyVO {
 	private String menu_describe;
 	private String menu_img ;
 	private String selectedTime;
-	/**/
-//	ceo_register.jsp 에서 가지고갈 정보들
+
+	//	ceo_register.jsp 에서 가지고갈 정보들
     private String com_num_str;
 	private String openHour;
 	private String openMin;
@@ -81,7 +81,5 @@ public class CompanyVO {
 	private String breakTime;
 	
 	private String com_tag;
-    
-    private String com_ad_grade_str;
 }
 

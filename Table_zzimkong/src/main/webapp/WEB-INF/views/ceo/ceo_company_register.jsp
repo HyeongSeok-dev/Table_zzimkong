@@ -37,10 +37,10 @@ $(function () {
 						<td colspan="5">
 							<div class="div_display">
 								<div class="div_display div_align">
-									<input type="text" name="com_num_str" id="com_num_register" placeholder="사업자등록번호를 입력해 주세요." id="comNumText">
-									<button type="button" class="button_olive" id="comNumBtn">번호찾기</button>
+									<input type="text" name="com_num_str" id="com_num_register" placeholder="*사업자등록번호는 10자리로 '-'를 제외하고 정확하게 입력해주세요." id="comNumText">
+									<button type="button" class="button_olive" id="comNumBtn">조회하기</button>
 								</div>
-								<div id="guide">&nbsp;&nbsp;&nbsp;*사업자등록번호는 10자리로 '-'를 제외하고 정확하게 입력해주세요.</div>
+								<div id="guide">************여기에 중복확인 사용할거임</div>
 							</div>	
 						</td>
 					</tr>
@@ -50,7 +50,7 @@ $(function () {
 							<div id="img"><img src="" id="com_img_div"></div>
 							<hr>
 							<div class="div_display">
-							<input type="file" id="file" name="com_img">
+							<input type="file" id="file" name="file">
 							<div id="guide">*사진은 최대 한장만 등록 가능합니다.</div>
 							</div>
 						</td>
@@ -67,7 +67,7 @@ $(function () {
 					</tr>
 					<tr>
 						<th>전화번호</th>
-						<td colspan="2"><input type="text" name="com_tel" id="com_tel" value=""></td>
+						<td colspan="2"><input type="text" name="com_tel" id="com_tel" value="" placeholder="'-'를 제외하고 적어주세요"></td>
 					</tr>
 					<tr>
 						<th>주소</th>
@@ -161,12 +161,6 @@ $(function () {
 								<option name="unapplied" value="미신청">미신청</option>
 							</select>
 							-
-							<select name="com_ad_grade_str" id="adLevel">
-								<option value="0단계">0단계</option>
-								<option value="1단계">1단계</option>
-								<option value="2단계">2단계</option>
-								<option value="3단계">3단계</option>
-							</select>
 							<select name="com_ad_grade" id="adLevel">
 								<option value="0">0단계</option>
 								<option value="1">1단계</option>
@@ -200,7 +194,7 @@ $(function () {
 						<th >검색키워드</th>
 						<td colspan="4">
 							<div class="div_display">
-								<input type="text" id="keyword" name="com_search_tag" value="" placeholder="사업장이 검색될 키워드를 입력해주세요">
+								<input type="text" id="keyword" name="com_search_tag" value="" placeholder="사업장이 검색될 키워드를 입력하고 스페이스바를 눌러주세요">
 								<div id="guide">* 키워드를 입력하고 스페이스바를 누르면 자동으로 '#'가 붙습니다.</div>
 							</div>
 						</td>

@@ -6,8 +6,13 @@ $(function() {
     	$(this).val($(this).val().replace(/[^0-9]/g, ''));
 	});
 	$('#com_tel').on('input', function () {
-    	$(this).val($(this).val().replace(/[^0-9]/g, ''));
+    	 var input = $(this).val().replace(/[^0-9]/g, '');
+    	if(input.length > 12) {
+	        input = input.substring(0, 12);
+	    }
+	    $(this).val(input);
 	});
+	
 	$('#com_num_register').on('input', function () {
     var input = $(this).val().replace(/[^0-9]/g, '');
 	    if(input.length > 10) {
@@ -15,6 +20,7 @@ $(function() {
 	    }
 	    $(this).val(input);
 	});
+	
 	$('#keyword').on('input', function(e) {
 	    var lines = $(this).val().split('\n');
 	    for (var i = 0; i < lines.length; i++) {
@@ -27,9 +33,9 @@ $(function() {
 	});
 	
 	$('#keyword').on('keydown', function(e) {
-    if (e.which == 32) { // 32는 스페이스바의 키 코드입니다.
-        e.preventDefault(); // 스페이스바의 기본 동작을 취소합니다.
-        $(this).val($(this).val() + '#'); // 현재 입력 필드의 내용 뒤에 '#' 문자를 추가합니다.
+    if (e.which == 32) {
+        e.preventDefault();
+        $(this).val($(this).val() + '#'); 
     }
 });
 	
@@ -37,7 +43,7 @@ $(function() {
 	/* 광고 신청이 미신청 상태이면 광고 단계 0으로 바꿈*/
 	$("#adRegister").on("change", function() {
 		if($("#adRegister").val() === "미신청") {
-			$("#adLevel").val("0단계");
+			$("#adLevel").val("0");
 			$("#adLevel").prop('disabled', true);
 		} else if($("#adRegister").val() === "신청") {
 			$("#adLevel").prop('disabled', false);
