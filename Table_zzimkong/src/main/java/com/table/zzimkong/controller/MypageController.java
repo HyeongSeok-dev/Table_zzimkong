@@ -138,7 +138,7 @@ public class MypageController {
 		
 		// MypageService - getResList() 메서드 호출하여 회원 목록 조회 요청
 		
-		int sIdx = (int)session.getAttribute("sIdx");
+		int sIdx = Integer.parseInt((String)session.getAttribute("sIdx"));
 		List<ReservationVO> resList = service.getResList(sIdx);
 		System.out.println("예약목록 = " + resList);
 		

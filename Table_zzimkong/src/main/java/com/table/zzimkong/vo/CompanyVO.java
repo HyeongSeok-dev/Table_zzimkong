@@ -50,22 +50,22 @@ public class CompanyVO {
     private String com_search_tag;
     private Date com_reg_date;
     
-//	private int min_price;
-//	private int max_price;
-//	private int distance;
-//	private int review_count;
-//	private double avg_score;
+	private int min_price;
+	private int max_price;
+	private int distance;
+	private int review_count;
+	private double avg_score;
 	
-//	private int total_reserved;
-//	private int remaining_people;
-//	private int remaining_people2;
-//	private int remaining_people3;
-//	private int remaining_people4;
-//	private int menu_idx;
-//	private String menu_name;
-//	private String menu_describe;
-//	private String menu_img ;
-//	private String selectedTime;
+	private int total_reserved;
+	private int remaining_people;
+	private int remaining_people2;
+	private int remaining_people3;
+	private int remaining_people4;
+	private int menu_idx;
+	private String menu_name;
+	private String menu_describe;
+	private String menu_img ;
+	private String selectedTime;
 	/**/
 //	ceo_register.jsp 에서 가지고갈 정보들
     private String com_num_str;
