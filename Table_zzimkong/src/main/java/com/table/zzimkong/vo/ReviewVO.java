@@ -70,6 +70,19 @@ public class ReviewVO {
 	private int moodNoKeywordCount;
 	
 	private String menu_name;
+	private String user_email;
+	private String user_phone;
+
+	// ------------------------------------------------------------------------------------
+	// 신고 테이블
+//	private int report_num;
+	private int report_reason;
+	private int report_person;
+	private String report_content;
+	private boolean report_category;
+	private int report_status;
+	
+	
 	
 	
 	

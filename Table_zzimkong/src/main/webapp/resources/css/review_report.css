@@ -143,6 +143,10 @@ main {
     display: flex;
 } 
 
+.form-input {
+	font-size:15px!important;
+}
+
 .container { 
     padding: 0 30px;
 } 
@@ -473,7 +477,9 @@ h3 {
 } 
 
 .form_block_title { 
-    font-size: 17px!important;
+    font-size: 18px!important;
+    font-weight: 800;
+/*     color:#3FAFFC; */
 } 
 
 label { 
@@ -601,7 +607,7 @@ span {
 .label_checkbox .label  { 
     display: block; 
     margin-left: 8px; 
-    font-size: 14px; 
+    font-size: 16px; 
     line-height: 20px;
 } 
 
@@ -619,6 +625,7 @@ span {
 
 .checkbox-group .label_checkbox  { 
     padding: 12px 0;
+    font-size: 16px;
 } 
 
 .ml-30 { 

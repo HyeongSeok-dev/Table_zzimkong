@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import com.table.zzimkong.vo.MemberVO;
 import com.table.zzimkong.vo.MenuVO;
 import com.table.zzimkong.vo.ReviewCountVO;
 import com.table.zzimkong.vo.ReviewMenuVO;
@@ -65,6 +66,13 @@ public interface ReviewMapper {
 	
 	// 메뉴 불러오기 
 	List<String> selectReviewMenu(int comId);
+
+	
+	// 신고시 회원정보 불러오기 
+	MemberVO findUserById(String sId);
+
+	// 리뷰 신고
+	int insertReviewReport(ReviewVO review);
 
 
 

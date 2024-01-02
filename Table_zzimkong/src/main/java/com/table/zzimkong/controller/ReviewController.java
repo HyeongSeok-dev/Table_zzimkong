@@ -33,6 +33,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.Gson;
 import com.table.zzimkong.service.ReviewService;
+import com.table.zzimkong.vo.MemberVO;
 import com.table.zzimkong.vo.MenuVO;
 import com.table.zzimkong.vo.ReviewCountVO;
 import com.table.zzimkong.vo.ReviewMenuVO;
@@ -50,10 +51,21 @@ public class ReviewController {
 	// [ 리뷰 상세 페이지 ]
 	@GetMapping("review/redetail")
 	public String review_detail(@RequestParam("com_id") int comId, 
+//								@RequestParam("review_num") int reviewNum, 	
+//								@RequestParam("user_id") String userId, 
 								@RequestParam(value = "sortType", required = false, defaultValue = "newest") String sortType,
 	                            @RequestParam(value = "photoOnly", required = false, defaultValue = "false") boolean photoOnly,
 	                            @RequestParam(value = "menuName", required = false) String menuName,
-								Model model) {		
+								HttpSession session,
+	                            Model model) {		
+		
+		// 세션 값 저장해두기
+		String sId = (String) session.getAttribute("sId");
+		
+	    session.setAttribute("com_id", comId);
+//	    session.setAttribute("review_num", reviewNum);
+	    session.setAttribute("user_id", sId);
+	    		
 		// 업체 이름 불러오기
 		String comName = service.getCompanyName(comId);
 		model.addAttribute("comName",comName);
@@ -414,10 +426,8 @@ public class ReviewController {
 			return "forward";
 		}
 		// ---------------------------------------------------
-		
 		// ReviewService - getReview() 메서드 재사용
 		ReviewVO dbReview = service.getReivew(review.getReview_num());
-//		int comId = review.getCom_id();
 	    String referer = request.getHeader("Referer");		
 		// ---------------------------------------------------
 		if(dbReview == null || !sId.equals(dbReview.getUser_id()) && !sId.equals("admin")) {
@@ -425,7 +435,6 @@ public class ReviewController {
 			return "fail_back";
 		}
 		// ---------------------------------------------------
-		
 		// ReviewService - removeReview() 메서드 호출하여 글 삭제 작업 요청
 		// => 파라미터 : ReviewVO 객체(글번호 저장 필수)   리턴타입 : int(deleteCount)		
 		int deleteCount = service.removeReview(review);
@@ -463,16 +472,81 @@ public class ReviewController {
 		}
 		
 	}
-	 
+	
+	// ===================================================================
+	// [ 리뷰 신고 ]
+	@GetMapping("review/report")
+	public String reviewReportForm(HttpSession session, Model model,
+			@RequestParam("com_id") int comId,
+			@RequestParam("review_num") int reviewNum) {
+		
+	    // review_num과 com_id를 모델에 추가
+	    model.addAttribute("reviewNum", reviewNum);
+	    model.addAttribute("comId", comId);
+		
+		String userId = (String) session.getAttribute("user_id");
+		// 세션 아이디 없을 경우 "로그인이 필요합니다" 처리를 위해 "forward.jsp" 페이지 포워딩
+				String sId = (String) session.getAttribute("sId");
+				if (sId == null){
+					model.addAttribute("msg", "로그인이 필요합니다");
+					model.addAttribute("targetURL", "/zzimkong/login");
+					return "forward";
+				}
+
+				MemberVO member = service.getUserInfo(sId);	
+				model.addAttribute("member",member);
+				model.addAttribute("userId", userId);
+
+			    // 리뷰정보 가져와서 쓸 수 있음!(신고페이지에서)
+//			    ReviewVO review = service.getReview(reviewNum);
+//			    model.addAttribute("review", review);
+			
+				
+		return "review/review_report";
+	}
+		// "ReviewWritePro" 서블릿 요청에 대한 글쓰기 비즈니스 로직 처리
+		@PostMapping("review/reviewReportPro")
+		public String reviewReportPro(ReviewVO review, HttpSession session, Model model, 
+				@RequestParam("user_id") String userId) {
+			String sId = (String) session.getAttribute("sId");
+			// 세션에서 user_id 가져오기
+			if (sId == null) {
+				model.addAttribute("msg", "로그인이 필요합니다");
+				// targetURL 속성명으로 로그인 폼 페이지 서블릿 주소 저장
+				model.addAttribute("targetURL", "/zzimkong/login");
+				return "forward";
+			}
+			
+		    // ReviewVO 객체에 세션에서 가져온 user_id 값을 설정
+		    review.setUser_id(sId);
+		    // 나머지 필요한 정보 (com_id, report_num)를 세션에서 가져오기
+		    Integer comId = (Integer) session.getAttribute("com_id");
+
+			
+		// ----------------------------------------------------------------------
+		// ReviewService - registReviewReport() 메서드 호출하여 게시물 등록 작업 요청
+		// => 파라미터 : ReviewVO 객체   리턴타입 : int(insertCount)
+		int insertCount = service.registReviewReport(review);
+		
+		if(insertCount > 0) {
+			model.addAttribute("msg","신고가 정상적으로 처리되었습니다!");
+			model.addAttribute("targetURL","/zzimkong/review/redetail?com_id=" + comId);
+//			return "redirect:/review/redetail?com_id=" + comId;
+			return "forward";
+		
+			} else {
+		        model.addAttribute("msg", "신고 처리에 실패했습니다.");
+				model.addAttribute("targetURL","/zzimkong/review/report?review_num=" + review.getReview_num() 
+									+ "&com_id=" + review.getCom_id() + "&user_id=" + review.getUser_id());
+		        return "forward";
+			}
+		}
+		// ===================================================================
 	@GetMapping("complete")
 	public String review_complete() {
 		return "review/review_complete";
 	}
 
-	@GetMapping("report")
-	public String review_report() {
-		return "review/review_report";
-	}
 
 	@GetMapping("comment")
 	public String review_comment() {

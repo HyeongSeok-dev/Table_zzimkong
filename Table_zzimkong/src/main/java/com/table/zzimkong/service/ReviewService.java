@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.table.zzimkong.mapper.ReviewMapper;
+import com.table.zzimkong.vo.MemberVO;
 import com.table.zzimkong.vo.MenuVO;
 import com.table.zzimkong.vo.ReviewCountVO;
 import com.table.zzimkong.vo.ReviewMenuVO;
@@ -116,7 +117,19 @@ public class ReviewService {
 
 		return mapper.selectReviewMenu(comId);
 	}
-	
+
 	// =========================================================================
+	// [ 신고창에 회원정보 불러오기 (메일주소/폰번호) ] 
+	public MemberVO getUserInfo(String sId) {
+
+		return mapper.findUserById(sId);
+	}
+	
+	// [ 리뷰 신고 ]
+	public int registReviewReport(ReviewVO review) {
+
+		return mapper.insertReviewReport(review);
+	}
+	
 
 }

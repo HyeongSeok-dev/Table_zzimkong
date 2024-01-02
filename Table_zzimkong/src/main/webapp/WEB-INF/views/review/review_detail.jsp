@@ -246,8 +246,8 @@ document.addEventListener('DOMContentLoaded', function() {
 	        '</a>';
 	
 	    var reportButtonHtml = 
-	        '<a href="' + contextPath + '/review/report" class="review_report_btn" role="button">리뷰 신고하기</a>';
-	
+// 	        '<a href="' + contextPath + '/review/report" class="review_report_btn" role="button">리뷰 신고하기</a>';
+'<a href="' + contextPath + '/review/report?review_num=' + review.review_num + '&com_id=' + review.com_id + '&user_id=' + review.user_id + '" class="review_report_btn" role="button">리뷰 신고하기</a>';
 	    var imagePopupHtml = '';
 	    if (review.review_img_1) {
 	        imagePopupHtml = 

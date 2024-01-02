@@ -160,10 +160,10 @@ public class HomeController {
 		return "review/review_complete";
 	}
 	
-	@GetMapping("review/report")
-	public String review_report() {
-		return "review/review_report";
-	}
+//	@GetMapping("review/report")
+//	public String review_report() {
+//		return "review/review_report";
+//	}
 
 	@GetMapping("review/comment")
 	public String review_comment() {
