@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import com.table.zzimkong.vo.CompanyVO;
 import com.table.zzimkong.vo.MenuVO;
 import com.table.zzimkong.vo.ReservationVO;
+import com.table.zzimkong.vo.ReviewVO;
 import com.table.zzimkong.vo.SearchVO;
 
 @Mapper
@@ -30,4 +31,8 @@ public interface ProductMapper {
 	List<CompanyVO> selectRecommendList(SearchVO search);
 	//별점순
 	List<CompanyVO> selectReviewList(SearchVO search);
+
+	List<ReviewVO> selectReviewInfo(CompanyVO company);
+
+	ReviewVO selectReviewScore(CompanyVO company);
 }

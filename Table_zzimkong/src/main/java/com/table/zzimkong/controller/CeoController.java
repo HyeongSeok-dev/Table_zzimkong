@@ -254,7 +254,7 @@ public class CeoController {
 		return "ceo/ceo_reservation_info";
 	}
 	
-	// [company]--------------------------------------------------------------------------------------
+	// [company]=================================================================================
 	
 	@GetMapping("ceo/company/register")
 	public String companyRegisterForm(HttpSession session,Model model) {
@@ -314,17 +314,16 @@ public class CeoController {
 			company.setCom_img(subDir + "/" + imgName);
 		}
 		System.out.println("실제 업로드 파일명 : " + company.getCom_img());
-		
+		//----------------------------------------------------------------------------------------------
 		// [영업시간/브레이크타임 시간분 합치기]
 		company.setCom_open_time(company.getOpenHour() + " : " + company.getOpenMin());
 		company.setCom_close_time(company.getCloseHour() + " : " + company.getCloseMin());
 		company.setCom_breakStart_time(company.getStartHour() + " : " + company.getStartMin());
 		company.setCom_breakEnd_time(company.getEndHour() + " : " + company.getEndMin());
 		
+		//------------------------------------------------------------------------------------------------
 		//카테고리 boolea으로 변경하기
-		
 		String[] tagArr = company.getCom_tag().split(",");
-		
 		for(int i = 0; i < tagArr.length; i++) {
 			String tag = tagArr[i];
 			switch (tag) {
@@ -366,36 +365,60 @@ public class CeoController {
 				break;
 			}
 		}
-		
+		//-------------------------------------------------------------------------------------------
 		//전화번호 "-" 넣기
 		if(!company.getCom_tel().contains("-")) {
 			switch (company.getCom_tel().length()) {
 			case 8:
-				String tel = company.getCom_tel().substring(0,3) + "-" + company.getCom_tel().substring(4);
-				System.out.println(tel);
+				String tel = company.getCom_tel().substring(0,4) + "-" + company.getCom_tel().substring(4);
+				System.out.println(tel+company.getCom_tel().length());
 				company.setCom_tel(tel);
 				break;
 			case 10:
-				tel = company.getCom_tel().substring(0,2) + "-" + company.getCom_tel().substring(3,5) + "-" + company.getCom_tel().substring(6);
-				System.out.println(tel);
+				tel = company.getCom_tel().substring(0,3) + "-" + company.getCom_tel().substring(3,6) + "-" + company.getCom_tel().substring(6);
+				System.out.println(tel+company.getCom_tel().length());
 				company.setCom_tel(tel);
 				break;
 			case 11:
-				tel = company.getCom_tel().substring(0,2) + "-" + company.getCom_tel().substring(3,6) + "-" + company.getCom_tel().substring(7);
-				System.out.println(tel);
+				tel = company.getCom_tel().substring(0,3) + "-" + company.getCom_tel().substring(3,7) + "-" + company.getCom_tel().substring(7);
+				System.out.println(tel+company.getCom_tel().length());
 				company.setCom_tel(tel);
 				break;
 			case 12:
-				tel = company.getCom_tel().substring(0,2) + "-" + company.getCom_tel().substring(3,6) + "-" + company.getCom_tel().substring(7);
-				System.out.println(tel);
+				tel = company.getCom_tel().substring(0,4) + "-" + company.getCom_tel().substring(4,8) + "-" + company.getCom_tel().substring(8);
+				System.out.println(tel+company.getCom_tel().length());
 				company.setCom_tel(tel);
 				break;
 			}
 		}
-		
+		//------------------------------------------------------------------------------------------------------
 		//검색태그 공백제거하기
 		company.setCom_search_tag(company.getCom_search_tag().trim());
 		System.out.println(company.getCom_search_tag());
+		
+		//----------------------------------------------------------------------------------------------------
+		//주소 군구 추출해서 넣기
+		String[] addressArr = company.getCom_address().split(" ");
+		String si = "";
+		if(addressArr[0].contains("특별시")) {
+			si = addressArr[0].replace("특별시", "");
+		} else if(addressArr[0].contains("광역시")) {
+			si = addressArr[0].replace("광역시", "");
+		} else if(addressArr[1].endsWith("시")) {
+			si = addressArr[1].replace("시", "");
+		} else if(addressArr[1].endsWith("군")) {
+			si = addressArr[1].replace("군", "");
+		}
+		
+		String gugun = "";
+		if((addressArr[0].contains("특별시") || addressArr[0].contains("광역시")) && (addressArr[1].endsWith("구") || addressArr[1].endsWith("군"))) {
+			gugun = si + "_" + addressArr[1];
+		} else if((addressArr[1].endsWith("시")||addressArr[1].endsWith("군"))
+					&& (addressArr[2].endsWith("구") || addressArr[2].endsWith("동") || addressArr[2].endsWith("읍"))) {
+			gugun = si + "_" + addressArr[2];
+		} 
+		System.out.println("구군 : " +  gugun);
+		company.setCom_gugun(gugun);
 		
 		// 등록
 		int insertCompany = service.registCompany(company, sId);
@@ -403,11 +426,6 @@ public class CeoController {
 		if(insertCompany > 0) {
 			
 			try {
-				// 업로드 된 파일들은 MultipartFile 객체에 의해 임시 디렉토리에 저장되며
-				// 글쓰기 작업 성공 시 임시 디렉토리 -> 실제 디렉토리 이동 작업 필요
-				// => MultipartFile 객체의 transferTo() 메서드를 호출하여 실제 위치로 이동(= 업로드)
-				// => 파일이 선택되지 않은 경우(파일명이 널스트링) 이동이 불가능(예외 발생)하므로 제외
-				// => transferTo() 메서드 파라미터로 java.io.File 타입 객체 전달
 				if(!mFile.getOriginalFilename().equals("")) {
 					mFile.transferTo(new File(saveDir, imgName));
 				}
@@ -588,35 +606,46 @@ public class CeoController {
 		System.out.println("실제 업로드 파일명 : " + company.getCom_img());
 		
 		//시간정보 db 테이터로 수정함
-		company.setCom_open_time(company.getOpenHour() + " : " + company.getOpenMin());
-		company.setCom_close_time(company.getCloseHour() + " : " + company.getCloseMin());
-		company.setCom_breakStart_time(company.getStartHour() + " : " + company.getStartMin());
-		company.setCom_breakEnd_time(company.getEndHour() + " : " + company.getEndMin());
+		company.setCom_open_time(company.getOpenHour() + ":" + company.getOpenMin());
+		company.setCom_close_time(company.getCloseHour() + ":" + company.getCloseMin());
+		company.setCom_breakStart_time(company.getStartHour() + ":" + company.getStartMin());
+		company.setCom_breakEnd_time(company.getEndHour() + ":" + company.getEndMin());
 		
 		//카테고리 boolea으로 변경하기
 		if(company.getCom_tag().contains("데이트")) {
 			company.setCom_tag_date(true);
-		} else if(company.getCom_tag().contains("가족모임")) {
+		} 
+		if(company.getCom_tag().contains("가족모임")) {
 			 company.setCom_tag_family(true);
-		} else if(company.getCom_tag().contains("단체회식")) {
+		}
+		if(company.getCom_tag().contains("단체회식")) {
 			 company.setCom_tag_party(true);
-		} else if(company.getCom_tag().contains("조용한")) {
+		}
+		if(company.getCom_tag().contains("조용한")) {
 			 company.setCom_tag_quiet(true);
-		} else if(company.getCom_tag().contains("주차가능")) {
+		}
+		if(company.getCom_tag().contains("주차가능")) {
 			 company.setCom_tag_park(true);
-		} else if(company.getCom_tag().contains("노키즈존")) {
+		}
+		if(company.getCom_tag().contains("노키즈존")) {
 			 company.setCom_tag_kids(true);
-		} else if(company.getCom_tag().contains("장애인편의시설")) {
+		}
+		if(company.getCom_tag().contains("장애인편의시설")) {
 			 company.setCom_tag_disabled(true);
-		} else if(company.getCom_tag().contains("반려동물")) {
+		}
+		if(company.getCom_tag().contains("반려동물")) {
 			 company.setCom_tag_pet(true);
-		} else if(company.getCom_tag().contains("홀")) {
+		}
+		if(company.getCom_tag().contains("홀")) {
 		     company.setCom_tag_hall(true);
-		} else if(company.getCom_tag().contains("룸")) {
+		}
+		if(company.getCom_tag().contains("룸")) {
 			 company.setCom_tag_room(true);
-		} else if(company.getCom_tag().contains("테라스")) {
+		}
+		if(company.getCom_tag().contains("테라스")) {
 			 company.setCom_tag_terrace(true);
-		} else if(company.getCom_tag().contains("창가자리")) {
+		}
+		if(company.getCom_tag().contains("창가자리")) {
 			 company.setCom_tag_window(true);
 		}
 		
@@ -628,23 +657,23 @@ public class CeoController {
 		if(!company.getCom_tel().contains("-")) {
 			switch (company.getCom_tel().length()) {
 			case 8:
-				String tel = company.getCom_tel().substring(0,3) + "-" + company.getCom_tel().substring(4);
-				System.out.println(tel);
+				String tel = company.getCom_tel().substring(0,4) + "-" + company.getCom_tel().substring(4);
+				System.out.println(tel+company.getCom_tel().length());
 				company.setCom_tel(tel);
 				break;
 			case 10:
-				tel = company.getCom_tel().substring(0,2) + "-" + company.getCom_tel().substring(3,5) + "-" + company.getCom_tel().substring(6);
-				System.out.println(tel);
+				tel = company.getCom_tel().substring(0,3) + "-" + company.getCom_tel().substring(3,6) + "-" + company.getCom_tel().substring(6);
+				System.out.println(tel+company.getCom_tel().length());
 				company.setCom_tel(tel);
 				break;
 			case 11:
-				tel = company.getCom_tel().substring(0,2) + "-" + company.getCom_tel().substring(3,6) + "-" + company.getCom_tel().substring(7);
-				System.out.println(tel);
+				tel = company.getCom_tel().substring(0,3) + "-" + company.getCom_tel().substring(3,7) + "-" + company.getCom_tel().substring(7);
+				System.out.println(tel+company.getCom_tel().length());
 				company.setCom_tel(tel);
 				break;
 			case 12:
-				tel = company.getCom_tel().substring(0,2) + "-" + company.getCom_tel().substring(3,6) + "-" + company.getCom_tel().substring(7);
-				System.out.println(tel);
+				tel = company.getCom_tel().substring(0,4) + "-" + company.getCom_tel().substring(4,8) + "-" + company.getCom_tel().substring(8);
+				System.out.println(tel+company.getCom_tel().length());
 				company.setCom_tel(tel);
 				break;
 			}
@@ -677,7 +706,15 @@ public class CeoController {
 			model.addAttribute("msg", "사업장 정보 수정 실패!");
 			return "fail_back";
 		} else {
-			
+			try {
+				if(!mFile.getOriginalFilename().equals("")) {
+					mFile.transferTo(new File(saveDir, imgName));
+				}
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 			return "redirect:view?com_num=" + company.getCom_num();
 		}
 		

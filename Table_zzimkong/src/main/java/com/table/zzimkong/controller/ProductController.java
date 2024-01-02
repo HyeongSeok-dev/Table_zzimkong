@@ -28,6 +28,7 @@ import com.table.zzimkong.vo.CompanyVO;
 import com.table.zzimkong.vo.MemberVO;
 import com.table.zzimkong.vo.MenuVO;
 import com.table.zzimkong.vo.ReservationVO;
+import com.table.zzimkong.vo.ReviewVO;
 import com.table.zzimkong.vo.SearchVO;
 
 @Controller
@@ -102,18 +103,19 @@ public class ProductController {
 			model.addAttribute("msg","서치가 없어졌어요");
 			return "fail_back";
 		}
-		
-		if(!company.getSelectedTime().equals("")) {
-			search.setTime(company.getSelectedTime());
-			LocalTime localTime = LocalTime.parse(search.getTime());
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("h:mm");
-			if (localTime.isBefore(LocalTime.NOON)) {
-		        search.setDisplayTime("오전 " + localTime.format(formatter));
-		    } else {
-		        search.setDisplayTime("오후 " + localTime.format(formatter));
-		    }
-			session.setAttribute("search", search);
+		String selectTimeButton = company.getSelectedTime();
+		if(selectTimeButton == null || selectTimeButton.equals("")) {
+			selectTimeButton = search.getTime();
 		}
+		search.setTime(selectTimeButton);
+		LocalTime localTime = LocalTime.parse(search.getTime());
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("h:mm");
+		if (localTime.isBefore(LocalTime.NOON)) {
+	        search.setDisplayTime("오전 " + localTime.format(formatter));
+	    } else {
+	        search.setDisplayTime("오후 " + localTime.format(formatter));
+	    }
+		session.setAttribute("search", search);
 		
 		System.out.println("변경된 시간" + search.getTime());
 		int remainingPeople = service.getReservationInfo(search, company.getCom_id());
@@ -124,6 +126,8 @@ public class ProductController {
 		System.out.println("디테일에서 받고 시간변경 " + search);
 		
 		CompanyVO dbCompany = service.getCompany(company);
+		List<ReviewVO> reviews = service.getReviewInfo(company);
+		ReviewVO reviewScore = service.getReviewScore(company);
 		List<MenuVO> menuList = service.getMenuList(company);
 		
 		LocalTime openTime = LocalTime.parse(dbCompany.getCom_open_time());
@@ -178,9 +182,10 @@ public class ProductController {
 		
 		model.addAttribute("menuList", menuList);
 		model.addAttribute("company", dbCompany);
-		model.addAttribute("company_info", company);
 		model.addAttribute("tag_mood", tagMood);
 		model.addAttribute("tag_facilities", tagFacilities);
+		model.addAttribute("reviews", reviews);
+		model.addAttribute("review_score", reviewScore);
 		
 		return "product/product_detail";
 	}
@@ -191,8 +196,18 @@ public class ProductController {
 		return "product/product_map";
 	}
 	
+	
 	@RequestMapping("product/detailPro")
 	public ResponseEntity<?> detail_pro(@RequestBody Map<String, Object> map, HttpSession session, ReservationVO res, MenuVO menu, Model model) {
+		String sId = (String) session.getAttribute("sId");
+		if(sId == null) {
+		    Map<String, Object> response = new HashMap<>();
+		    response.put("error", true);
+		    response.put("message", "로그인이 필요합니다!");
+		    response.put("redirectURL", "../login");
+		    return ResponseEntity.badRequest().body(response);
+		}
+		
 		System.out.println(map);
 		SearchVO search = (SearchVO)session.getAttribute("search");
 		System.out.println(search);

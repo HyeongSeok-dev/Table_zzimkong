@@ -103,7 +103,7 @@
 						<tr>
 							<th>브레이크타임 시작시간</th>
 							<td colspan="2">
-								<select class="hour" name="openHour" id="openHour">
+								<select class="hour" name="startHour" id="openHour">
 								    <!-- 0시부터 23시까지 -->
 								    <option value="">시</option>
 								    <c:forEach var="i" begin="0" end="23">
@@ -111,7 +111,7 @@
 								    </c:forEach>
 								</select>
 								:
-								<select class="minute" name="openMin" id="openMin">
+								<select class="minute" name="startMin" id="openMin">
 									<!-- 0분부터 59분까지 -->
 								    <option value="">분</option>
 									<c:forEach var="i" begin="0" end="59">
@@ -121,7 +121,7 @@
 							</td>
 							<th>브레이크타임 종료시간</th>
 							<td colspan="2">
-								<select class="hour" name="closeHour">
+								<select class="hour" name="endHour">
 								    <!-- 0시부터 23시까지 -->
 								    <option value="">시</option>
 								    <c:forEach var="i" begin="0" end="23">
@@ -129,7 +129,7 @@
 								    </c:forEach>
 								</select>
 								:
-								<select class="minute" name="closeMin">
+								<select class="minute" name="endMin">
 									<!-- 0분부터 59분까지 -->
 								    <option value="">분</option>
 									<c:forEach var="i" begin="0" end="59">
@@ -162,16 +162,17 @@
 						<tr>
 							<th >검색키워드</th>
 							<td colspan="4">
-								<input type="text" id="keyword" value="${com.com_search_tag}" placeholder="사업장이 검색될 키워드를 입력해주세요">
+								<input type="text" name="com_search_tag" id="keyword" value="${com.com_search_tag}" placeholder="사업장이 검색될 키워드를 입력해주세요">
 								<br>
 								<div> </div>
 							</td>
 						</tr>
 					</table>
 					<br><br>
+					<input type="hidden" name="com_num" value="${com.com_num}">
 				</form>
 				<div class="text_inner_form1">
-					<button type="submit" class="button_olive">수정</button>
+					<button type="button" id="modifyButton" class="button_olive">수정</button>
 					<form action="closeRegist" method="post">
 						<input type="hidden" value="${com.com_num }" name="com_num">
 						<button type="submit" id="button_cancel">폐점 신청</button>
@@ -179,7 +180,6 @@
 						<button type="button" class="button_grey2" style="color: #3FAFFC; background-color: #fff; border: 1px solid #3FAFFC;" onclick="javascript:history.back()">나가기</button>
 				</div>
 			</div>
-		</div>
 	</section>
 </body>
 </html>

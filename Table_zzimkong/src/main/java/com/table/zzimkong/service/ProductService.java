@@ -9,6 +9,7 @@ import com.table.zzimkong.mapper.ProductMapper;
 import com.table.zzimkong.vo.CompanyVO;
 import com.table.zzimkong.vo.MenuVO;
 import com.table.zzimkong.vo.ReservationVO;
+import com.table.zzimkong.vo.ReviewVO;
 import com.table.zzimkong.vo.SearchVO;
 
 
@@ -56,6 +57,16 @@ public class ProductService {
 	//별점순
 	public List<CompanyVO> getReviewList(SearchVO search) {
 		return mapper.selectReviewList(search);
+	}
+
+	public List<ReviewVO> getReviewInfo(CompanyVO company) {
+		// TODO Auto-generated method stub
+		return mapper.selectReviewInfo(company);
+	}
+
+	public ReviewVO getReviewScore(CompanyVO company) {
+		// TODO Auto-generated method stub
+		return mapper.selectReviewScore(company);
 	}
 	
 }
