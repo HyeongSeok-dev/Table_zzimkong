@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.table.zzimkong.mapper.CeoMapper;
 import com.table.zzimkong.vo.CompanyVO;
+import com.table.zzimkong.vo.MemberVO;
 import com.table.zzimkong.vo.MenuList;
 import com.table.zzimkong.vo.MenuVO;
 import com.table.zzimkong.vo.ReservationVO;
@@ -88,6 +89,11 @@ public class CeoService {
 
 	public ReservationVO getResDetailInfo(ReservationVO res) {
 		return mapper.selectResDetailInfo(res);
+	}
+
+	public MemberVO getUserInfo(String sId) {
+		// TODO Auto-generated method stub
+		return mapper.selectUser(sId);
 	}
 
 	

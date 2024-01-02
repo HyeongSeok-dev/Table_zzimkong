@@ -44,6 +44,7 @@ public class PaymentController {
 	public String paymentAgree() {
 		return"payment/payment_agree";
 	}
+	
 	@GetMapping("payment")
 	public ModelAndView payment(HttpSession session, Map<String, Object> map,
 								 ReservationVO res, CompanyVO company) {

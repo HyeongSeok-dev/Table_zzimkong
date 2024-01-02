@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.table.zzimkong.vo.CompanyVO;
+import com.table.zzimkong.vo.MemberVO;
 import com.table.zzimkong.vo.MenuList;
 import com.table.zzimkong.vo.MenuVO;
 import com.table.zzimkong.vo.ReservationVO;
@@ -40,6 +41,8 @@ public interface CeoMapper {
 	ReservationVO selectResDetailInfo(ReservationVO res);
 	
 	int updateCompany(CompanyVO company);
+
+	MemberVO selectUser(String sId);
 
 	
 }

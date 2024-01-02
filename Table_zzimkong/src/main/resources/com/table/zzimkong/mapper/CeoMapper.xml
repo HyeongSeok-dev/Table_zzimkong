@@ -42,7 +42,7 @@
 		INSERT INTO company
 		VALUES (
 			null
-			,#{sId}
+			,#{com.user_idx}
 			,#{com.com_name}
 			,#{com.com_category}
 			,#{com.com_ceo}
@@ -72,7 +72,7 @@
 			,null
 			,2 -- 신청후 승인대기
 			,#{com.com_ad_grade}
-			,#{com_search_tag}
+			,#{com.com_search_tag}
 			,current_timestamp()
 		)
 	</insert>
@@ -127,7 +127,12 @@
 	<select id="selectCeoList" resultType="company">
 		SELECT * FROM company WHERE user_idx = #{sIdx}
 	</select>
+	<select id="selectUser" resultType="member">
+		SELECT * FROM user WHERE user_id = #{sId}
+	</select>
 	
+	
+	<!-- ceo_reservation -->
 	<select id="selectResInfo" resultType="company">
 		SELECT *
 		FROM reservation
