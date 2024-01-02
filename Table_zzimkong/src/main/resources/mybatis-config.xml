@@ -15,5 +15,7 @@
 		<typeAlias type="com.table.zzimkong.vo.ReviewCountVO"  alias="reviewcount"/>
 		<typeAlias type="com.table.zzimkong.vo.ReviewMenuVO"  alias="reviewmenu"/>
 		<typeAlias type="com.table.zzimkong.vo.MypageVO"  alias="mypage"/>
+		<typeAlias type="com.table.zzimkong.vo.ReportVO"  alias="report"/>
+		<typeAlias type="com.table.zzimkong.vo.CsVO"  alias="cs"/>
 	</typeAliases>
 </configuration>

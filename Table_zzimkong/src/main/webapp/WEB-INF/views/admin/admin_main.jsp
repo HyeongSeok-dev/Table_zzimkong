@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,8 +10,8 @@
 <link href="${pageContext.request.contextPath}/resources/css/admin_article.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-latest.min.js"></script> <%-- 항상 최신 jQuery 라이브러리를 불러오는 소스 --%>
 <script src="${pageContext.request.contextPath}/resources/js/admin_script.js"></script> <%-- 관리자 페이지의 모든 자바스크립트 --%>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script> <%-- Chart.js --%>
-<script src="${pageContext.request.contextPath}/resources/js/chart_script.js"></script> <%-- Chart.js --%>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script> <%-- Chart.js CDN --%>
+<script src="${pageContext.request.contextPath}/resources/js/chart_script.js"></script> <%-- Chart.js 커스텀 --%>
 </head>
 <body>
 	<header>
@@ -20,16 +21,17 @@
 	<section class="article">
 		<div class="text">
 			<h3>오늘 할 일</h3>
+			
 			<table border="1">
 				<tr>
 					<th>문의 답변 대기</th>
 					<th>입점 승인 대기</th>
-					<th>리뷰 처리 대기</th>
+					<th>신고 처리 대기</th>
 				</tr>
 				<tr>
-					<td>22건</td>
-					<td>24건</td>
-					<td>50건</td>
+					<td>${adminMain.countUnAnswerInquiry}건</td>
+					<td>${adminMain.countUnApproveCompany}건</td>
+					<td>${adminMain.countUnHandleReport}건</td>
 				</tr>
 			</table>
 			
@@ -41,12 +43,12 @@
 					<th>오늘 예약 수</th>
 				</tr>
 				<tr>
-					<td>22명</td>
-					<td>24명</td>
-					<td>50건</td>
+					<td>????명</td>
+					<td>${adminMain.countDayNewMember}명</td>
+					<td>${adminMain.countDayRes}건</td>
 				</tr>
+				
 			</table>
-			
 			<br>
 		
 
@@ -79,6 +81,7 @@
 			
 			
 			<h3>예약자 현황</h3>
+			
 			<button type="button" id="chart_time" onclick="myChart3()">시간별</button>
 			<button type="button" id="chart_date" onclick="myChart4()">날짜별</button>
 			

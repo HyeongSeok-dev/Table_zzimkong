@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.table.zzimkong.mapper.AdminMapper;
+import com.table.zzimkong.vo.AdminMainVO;
 import com.table.zzimkong.vo.CompanyVO;
+import com.table.zzimkong.vo.CsVO;
 import com.table.zzimkong.vo.MemberVO;
 import com.table.zzimkong.vo.ReportVO;
 
@@ -14,20 +16,35 @@ import com.table.zzimkong.vo.ReportVO;
 public class AdminService {
 	@Autowired
 	private AdminMapper mapper;
-	 
-	// 관리자 - 회원 목록 조회 요청, 검색 기능
-	public List<MemberVO> adminMemberList(String searchMemberType, String searchMemberKeyword) {
-		return mapper.selectAdminMemberList(searchMemberType, searchMemberKeyword);
+	
+	// 관리자 - 메인 : 데이터 뿌리기
+	public AdminMainVO adminMain() {
+		return mapper.selectAdminMain();
 	}
-
+	
+	// 관리자 - 회원 목록 조회 요청, 검색 기능, 페이지네이션
+	public List<MemberVO> adminMemberList(String searchMemberType, String searchMemberKeyword, String memberCategory, String memberStatusCategory, int startRow, int listLimit) {
+		return mapper.selectAdminMemberList(searchMemberType, searchMemberKeyword, memberCategory, memberStatusCategory, startRow, listLimit);
+	}
+	
+	// 관리자 - 회원 목록 전체 글 목록 갯수 조회 요청
+	public int adminMemberListCount(String searchMemberType, String searchMemberKeyword, String memberCategory, String memberStatusCategory) {
+		return mapper.selectAdminMemberListCount(searchMemberType, searchMemberKeyword, memberCategory, memberStatusCategory);
+	}
+	
 	// 관리자 - 회원 탈퇴 요청
 	public int adminMemberWithdraw(MemberVO member) {
 		return mapper.updateAdminMemberWithdraw(member);
 	}
 
-	// 관리자 - 업체 목록 조회 요청, 검색 기능
-	public List<CompanyVO> adminCompanyList(String searchCompanyType, String searchCompanyKeyword) {
-		return mapper.selectAdminCompanyList(searchCompanyType, searchCompanyKeyword);
+	// 관리자 - 업체 목록 조회 요청, 검색 기능, 페이지네이션
+	public List<CompanyVO> adminCompanyList(String searchCompanyType, String searchCompanyKeyword, int startRow, int listLimit) {
+		return mapper.selectAdminCompanyList(searchCompanyType, searchCompanyKeyword, startRow, listLimit);
+	}
+	
+	// 관리자 - 업체 목록 전체 글 목록 갯수 조회 요청
+	public int adminCompanyListCount(String searchCompanyType, String searchCompanyKeyword) {
+		return mapper.selectAdminCompanyListCount(searchCompanyType, searchCompanyKeyword);
 	}
 
 	// 관리자 - 업체 상세 정보 요청
@@ -45,14 +62,32 @@ public class AdminService {
 		return mapper.updateAdminCompanyApprove(company);
 	}
 
-	// 관리자 - 신고 목록 조회 요청
-	public List<ReportVO> adminReportList() {
-		return mapper.selectAdminReportList();
+	// 관리자 - 신고 목록 조회 요청, 페이지네이션
+	public List<ReportVO> adminReportList(int startRow, int listLimit) {
+		return mapper.selectAdminReportList(startRow, listLimit);
 	}
 
+	// 관리자 - 신고 목록 전체 글 목록 갯수 조회 요청
+	public int adminReportListCount() {
+		return mapper.selectAdminReportListCount();
+	}
+	
 	// 관리자 - 신고 상세 정보 요청
 	public ReportVO adminReportDetail(ReportVO report) {
 		return mapper.selectAdminReportDetail(report);
 	}
 
+	// 관리자 - 고객센터 : 각 카테고리별 목록 조회 요청
+	public List<CsVO> adminCsList(int csCategory) {
+		return mapper.selectAdminCsList(csCategory);
+	}
+
+	// 관리자 - 고객센터 : 공지사항, 자주묻는질문 새 글 등록
+	public int adminCsNoticeFaqRegister(CsVO cs) {
+		return mapper.insertAdminCsNoticeFaqRegister(cs);
+	}
+
+	
+	
+	
 }

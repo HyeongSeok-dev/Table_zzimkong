@@ -17,7 +17,7 @@
 	<section>
 		<h3>공지사항</h3>
 		<br><br>
-		<form action="" method="post" name="adminNotifyRegisterForm">
+		<form action="csNoticeModifyPro" method="POST" name="csNoticeModifyForm">
 			<table>
 				<tr>
 					<th>번호</th>

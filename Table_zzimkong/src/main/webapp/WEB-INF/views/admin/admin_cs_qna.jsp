@@ -27,6 +27,8 @@
 		window.open('${pageContext.request.contextPath }/admin/cs/qna/answer/view','','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
 	}
 </script>
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/admin_script.js"></script>
 </head>
 <body>
 	<header>

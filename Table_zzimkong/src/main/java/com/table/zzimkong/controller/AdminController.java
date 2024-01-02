@@ -1,10 +1,12 @@
 package com.table.zzimkong.controller;
 
+import java.io.Console;
 import java.io.IOException;
 import java.sql.Date;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -14,50 +16,100 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.table.zzimkong.service.AdminService;
+import com.table.zzimkong.vo.AdminMainVO;
 import com.table.zzimkong.vo.CompanyVO;
+import com.table.zzimkong.vo.CsVO;
 import com.table.zzimkong.vo.MemberVO;
+import com.table.zzimkong.vo.PageInfo;
 import com.table.zzimkong.vo.ReportVO;
 
 @Controller
 public class AdminController {
 	@Autowired
 	private AdminService service;
+
 	
 	// 공통 - 관리자 페이지 접근 권한 설정
-	public void isvalid(HttpSession session, Model model, HttpServletResponse response) {
+	//		+ boolean : "admin"이 아닐 경우 commit 방지
+	@GetMapping("adminAccessDented")
+	public String forward(Model model, HttpServletRequest request) {
+		model.addAttribute("msg", "잘못된 접근입니다.");
+		model.addAttribute("targetURL", request.getContextPath());
+		return "forward";
+	}
+	public boolean isvalid(HttpSession session, Model model, HttpServletResponse response) {
 		String sId = (String)session.getAttribute("sId");
 		
 		if (sId == null || !sId.equals("admin") ) {
 			try {
-				response.sendRedirect("/zzimkong/fail_back");
+				response.sendRedirect("/zzimkong/adminAccessDented");
+				return false;
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-	    } 
+	    }
+		return true;
 	}
+
 	
-	@GetMapping("admin/main") 
+	// 관리자 페이지 - 메인(답변해야할 문의 갯수, 입점을 승인해야할 가게 갯수, 처리해야할 신고 갯수,
+	// 						사이트 일일 방문자 수, 일일 가입자 수, 일일 예약 건수)
+	@GetMapping("admin/main")
 	public String adminMain(HttpSession session, Model model, HttpServletResponse response) {
 		// 관리자 페이지 접근 제한
-//		session.setAttribute("sId", "admin"); // 세션 아이디 - 차후 삭제 예정
-		isvalid(session, model, response);
+		if (!isvalid(session, model, response)) return null;
 		
-		return "admin/admin_main";
+		// 문의 답변 대기, 입점 승인 대기, 신고 처리 대기,
+		// 오늘 가입자 수, 오늘 예약 수
+		AdminMainVO adminMain = service.adminMain();
+        model.addAttribute("adminMain", adminMain);
+
+        return "admin/admin_main";
 	}
 	
-	// 관리자 페이지 - 회원 목록 조회, 검색 기능
+	// 관리자 페이지 - 회원 목록 조회, 검색 기능, 페이지네이션
 	@GetMapping("admin/user") 
 	public String memberList(
 			@RequestParam(defaultValue = "") String searchMemberType,
 			@RequestParam(defaultValue = "") String searchMemberKeyword,
+			@RequestParam(defaultValue = "") String memberCategory,
+			@RequestParam(defaultValue = "") String memberStatusCategory,
+			@RequestParam(defaultValue = "1") int pageNum,
 			HttpSession session, Model model, HttpServletResponse response) {
 		// 관리자 페이지 접근 제한
-		isvalid(session, model, response);
+		if (!isvalid(session, model, response)) return null;
 		
-		List<MemberVO> memberList = service.adminMemberList(searchMemberType, searchMemberKeyword);
+		System.out.println("memberCategory : " + memberCategory);
+		System.out.println("memberStatusCategory : " + memberStatusCategory);
+
+		// 검색된 회원 목록의 수
+		int listCount = service.adminMemberListCount(searchMemberType, searchMemberKeyword, memberCategory, memberStatusCategory);
+
+		// 페이지네이션
+		int listLimit = 10;	// 한 페이지에 출력될 글 수
+		int startRow = (pageNum - 1) * listLimit;
+
+		// 검색된 회원 목록의 수를 바탕으로 페이지네이션 생성
+		int pageListLimit = 5;
+		int maxPage = listCount / listLimit + (listCount % listLimit > 0 ? 1 : 0);
+		int startPage = (pageNum - 1) / pageListLimit * pageListLimit + 1;
+		int endPage = startPage + pageListLimit - 1;
+		if(endPage > maxPage) {
+			endPage = maxPage;
+		}
+
+		PageInfo pageInfo = new PageInfo(listCount, pageListLimit, maxPage, startPage, endPage);
+
+		List<MemberVO> memberList = service.adminMemberList(searchMemberType, searchMemberKeyword, memberCategory, memberStatusCategory, startRow, listLimit);
 		model.addAttribute("memberList", memberList);
+		model.addAttribute("pageInfo", pageInfo);
+		model.addAttribute("searchMemberType", searchMemberType);
+		model.addAttribute("searchMemberKeyword", searchMemberKeyword);
+		model.addAttribute("memberCategory", memberCategory);
+		model.addAttribute("memberStatusCategory", memberStatusCategory);
 		
 		return "admin/admin_user";
 	}
@@ -66,7 +118,7 @@ public class AdminController {
 	@PostMapping("admin/user/withdraw/Pro")
 	public String memberwithdrawPro(MemberVO member, HttpSession session, Model model, HttpServletResponse response) {
 		// 관리자 페이지 접근 제한
-		isvalid(session, model, response);
+		if (!isvalid(session, model, response)) return null;
 		
 		int updateCount = service.adminMemberWithdraw(member);
 
@@ -82,17 +134,39 @@ public class AdminController {
 		}
 	}
 	
-	// 관리자 페이지 - 업체 목록 조회, 검색 기능
+	// 관리자 페이지 - 업체 목록 조회, 검색 기능, 페이지네이션
 	@GetMapping("admin/company")
 	public String companyList(
 			@RequestParam(defaultValue = "") String searchCompanyType,
 			@RequestParam(defaultValue = "") String searchCompanyKeyword,
+			@RequestParam(defaultValue = "1") int pageNum,
 			HttpSession session, Model model, HttpServletResponse response) {
 		// 관리자 페이지 접근 제한
-		isvalid(session, model, response);
+		if (!isvalid(session, model, response)) return null;
 		
-		List<CompanyVO> companyList = service.adminCompanyList(searchCompanyType, searchCompanyKeyword);
+		// 검색된 업체 목록의 수
+		int listCount = service.adminCompanyListCount(searchCompanyType, searchCompanyKeyword);
+
+		// 페이지네이션
+		int listLimit = 10;
+		int startRow = (pageNum - 1) * listLimit;
+
+		// 검색된 업체 목록의 수를 바탕으로 페이지네이션 생성
+		int pageListLimit = 5;
+		int maxPage = listCount / listLimit + (listCount % listLimit > 0 ? 1 : 0);
+		int startPage = (pageNum - 1) / pageListLimit * pageListLimit + 1;
+		int endPage = startPage + pageListLimit - 1;
+		if(endPage > maxPage) {
+			endPage = maxPage;
+		}
+		
+		PageInfo pageInfo = new PageInfo(listCount, pageListLimit, maxPage, startPage, endPage);
+				
+		List<CompanyVO> companyList = service.adminCompanyList(searchCompanyType, searchCompanyKeyword, startRow, listLimit);
 		model.addAttribute("companyList", companyList);
+		model.addAttribute("pageInfo", pageInfo);
+		model.addAttribute("searchCompanyType", searchCompanyType);
+		model.addAttribute("searchCompanyKeyword", searchCompanyKeyword);
 		
 		return "admin/admin_company";
 	}
@@ -101,7 +175,7 @@ public class AdminController {
 	@GetMapping("admin/company/info")
 	public String companyInfo(CompanyVO company, HttpSession session, Model model, HttpServletResponse response) {
 		// 관리자 페이지 접근 제한
-		isvalid(session, model, response);
+		if (!isvalid(session, model, response)) return null;
 		
 		company = service.adminCompanyInfo(company);
 		model.addAttribute("company", company);
@@ -113,7 +187,7 @@ public class AdminController {
 	@PostMapping("admin/company/info/pro")
 	public String companyInfoModifyPro(CompanyVO company, HttpSession session, Model model, HttpServletResponse response) {
 		// 관리자 페이지 접근 제한
-		isvalid(session, model, response);
+		if (!isvalid(session, model, response)) return null;
 
 		int updateCount = service.adminCompanyInfoModify(company);
 
@@ -132,7 +206,7 @@ public class AdminController {
 	@PostMapping("admin/company/approve/Pro")
 	public String companyApprovePro(CompanyVO company, HttpSession session, Model model, HttpServletResponse response) {
 		// 관리자 페이지 접근 제한
-		isvalid(session, model, response);
+		if (!isvalid(session, model, response)) return null;
 		
 		int updateCount = service.adminCompanyApprove(company);
 		
@@ -144,14 +218,32 @@ public class AdminController {
 		}
 	}
 	
-	// 관리자 페이지 - 신고 목록 조회
+	// 관리자 페이지 - 신고 목록 조회, 페이지네이션
 	@GetMapping("admin/report")
-	public String reportList(HttpSession session, Model model, HttpServletResponse response) {
+	public String reportList(
+			@RequestParam(defaultValue = "1") int pageNum,
+			HttpSession session, Model model, HttpServletResponse response) {
 		// 관리자 페이지 접근 제한
-		isvalid(session, model, response);
+		if (!isvalid(session, model, response)) return null;
 
-		List<ReportVO> reportList = service.adminReportList();
+		// 페이지네이션
+		int listLimit = 10;
+		int startRow = (pageNum - 1) * listLimit;
+
+		int listCount = service.adminReportListCount();
+		int pageListLimit = 5;
+		int maxPage = listCount / listLimit + (listCount % listLimit > 0 ? 1 : 0);
+		int startPage = (pageNum - 1) / pageListLimit * pageListLimit + 1;
+		int endPage = startPage + pageListLimit - 1;
+		if(endPage > maxPage) {
+			endPage = maxPage;
+		}
+		
+		PageInfo pageInfo = new PageInfo(listCount, pageListLimit, maxPage, startPage, endPage);
+		
+		List<ReportVO> reportList = service.adminReportList(startRow, listLimit);
 		model.addAttribute("reportList", reportList);
+		model.addAttribute("pageInfo", pageInfo);
 		
 		return "admin/admin_report";
 	}
@@ -160,7 +252,7 @@ public class AdminController {
 	@GetMapping("admin/report/detail")
 	public String reportDetail(ReportVO report, HttpSession session, Model model, HttpServletResponse response) {
 		// 관리자 페이지 접근 제한
-		isvalid(session, model, response);
+		if (!isvalid(session, model, response)) return null;
 		
 		report = service.adminReportDetail(report);
 		model.addAttribute("report", report);
@@ -172,7 +264,7 @@ public class AdminController {
 //	@PostMapping("admin/report/detail/Blind/Pro")
 //	public String reportBlind(ReportVO report, HttpSession session, Model model, HttpServletResponse response) {
 //		// 관리자 페이지 접근 제한
-//		isvalid(session, model, response);
+//		if (!isvalid(session, model, response)) return null;
 //		
 //		int updateCount = service.adminReportBlind(report);
 //		
@@ -183,47 +275,109 @@ public class AdminController {
 //			return "fail_back";
 //		}
 //	}
-
 	
-	
-	
-	
-	
-	
-	
-	// 관리자 페이지 - 고객센터 : 공지사항 조회
-	@GetMapping("admin/cs/notice")
-	public String admin_cs_notice(HttpSession session, Model model, HttpServletResponse response) {
+	// 관리자 페이지 - 고객센터 : 공지사항 새 글 작성
+	@GetMapping("admin/cs/notice/register")
+	public String csNoticeRegister(HttpSession session, Model model, HttpServletResponse response) {
 		// 관리자 페이지 접근 제한
-		isvalid(session, model, response);
+		if (!isvalid(session, model, response)) return null;
 		
-		// CsVO 아직 없음..
-//		List<CsVO> adminCsList = service.adminCsList();
-//		model.addAttribute("csList", csList);
+		return "admin/admin_cs_notice_register";
+	}
+
+	// 관리자 페이지 - 고객센터 : 자주묻는질문 새 글 작성
+	@GetMapping("admin/cs/faq/register")
+	public String csFaqRegister(HttpSession session, Model model, HttpServletResponse response) {
+		// 관리자 페이지 접근 제한
+		if (!isvalid(session, model, response)) return null;
 				
+		return "admin/admin_cs_faq_register";
+	}
+	
+	// 관리자 페이지 - 고객센터 : 공지사항, 자주묻는질문 새 글 등록
+	@PostMapping("admin/cs/Register/pro")
+	public String csNoticeFaqRegisterPro(CsVO cs, HttpSession session, Model model, HttpServletResponse response) {
+		// 관리자 페이지 접근 제한
+		if (!isvalid(session, model, response)) return null;
+		
+		int insertCount = service.adminCsNoticeFaqRegister(cs);
+		String csRegisterUrl = "";
+		if(insertCount > 0) {
+			if(cs.getCs_board_category_sub() == 0) {		// 공지사항으로 작성할 경우
+				csRegisterUrl = "admin/cs/notice";
+			} else if(cs.getCs_board_category_sub() < 0) {	// 자주묻는질문으로 작성할 경우
+				csRegisterUrl = "admin/cs/faq";	
+			}
+			return "redirect:/" + csRegisterUrl;
+		} else {
+			model.addAttribute("msg", "글 등록 실패!");
+			return "fail_back";
+		}
+	}
+	
+	// 관리자 페이지 - 고객센터 : 공지사항 목록 조회
+	@GetMapping("admin/cs/notice")
+	public String csNotice(HttpSession session, Model model, HttpServletResponse response) {
+		// 관리자 페이지 접근 제한
+		if (!isvalid(session, model, response)) return null;
+		
+		List<CsVO> adminCsNoticeList = service.adminCsList(1);
+		model.addAttribute("adminCsNoticeList", adminCsNoticeList);
+		
 		return "admin/admin_cs_notice";
 	}
 	
+	// 관리자 페이지 - 고객센터 : 공지사항 글 수정 - 아직 안함
 	@GetMapping("admin/cs/notice/modify")
 	public String admin_cs_notice_modify(HttpSession session, Model model, HttpServletResponse response) {
 		// 관리자 페이지 접근 제한
-		isvalid(session, model, response);
-			
+		if (!isvalid(session, model, response)) return null;
+		
+		
 		return "admin/admin_cs_notice_modify";
 	}
-	
-	@GetMapping("admin/cs/notice/register")
-	public String admin_cs_notice_register(HttpSession session, Model model, HttpServletResponse response) {
+
+	// 관리자 페이지 - 고객센터 : 자주묻는질문 목록 조회
+	@GetMapping("admin/cs/faq")
+	public String admin_cs_faq(HttpSession session, Model model, HttpServletResponse response) {
 		// 관리자 페이지 접근 제한
-		isvalid(session, model, response);
-				
-		return "admin/admin_cs_notice_register";
+		if (!isvalid(session, model, response)) return null;
+		
+		List<CsVO> adminCsFaqList = service.adminCsList(2);
+		model.addAttribute("adminCsFaqList", adminCsFaqList);
+		
+		System.out.println("자주묻는질문 : " + adminCsFaqList);
+		
+		return "admin/admin_cs_faq";
 	}
 	
+	// ※ 고객센터 view 페이지는 CsController에서 담당
+	
+	
+	
+	
+
+	
+	
+	// 관리자 페이지 - 고객센터 : 자주묻는질문 글 수정
+	@GetMapping("admin/cs/faq/modify")
+	public String admin_cs_faq_modify(HttpSession session, Model model, HttpServletResponse response) {
+		// 관리자 페이지 접근 제한
+		if (!isvalid(session, model, response)) return null;
+				
+		return "admin/admin_cs_faq_modify";
+	}
+	
+	// 관리자 페이지 - 고객센터 : 1:1 문의 조회 - 했음
 	@GetMapping("admin/cs/qna")
 	public String admin_cs_qna(HttpSession session, Model model, HttpServletResponse response) {
 		// 관리자 페이지 접근 제한
-		isvalid(session, model, response);
+		if (!isvalid(session, model, response)) return null;
+		
+		List<CsVO> adminCsQnaList = service.adminCsList(3);
+		model.addAttribute("adminCsQnaList", adminCsQnaList);
+
+		System.out.println("1:1 문의 : " + adminCsQnaList);
 		
 		return "admin/admin_cs_qna";
 	}
@@ -231,7 +385,7 @@ public class AdminController {
 	@GetMapping("admin/cs/qna/answer/register")
 	public String admin_cs_qna_answer_register(HttpSession session, Model model, HttpServletResponse response) {
 		// 관리자 페이지 접근 제한
-		isvalid(session, model, response);
+		if (!isvalid(session, model, response)) return null;
 				
 		return "admin/admin_cs_qna_answer_register";
 	}
@@ -239,7 +393,7 @@ public class AdminController {
 	@GetMapping("admin/cs/qna/answer/view")
 	public String admin_cs_qna_answer_view(HttpSession session, Model model, HttpServletResponse response) {
 		// 관리자 페이지 접근 제한
-		isvalid(session, model, response);
+		if (!isvalid(session, model, response)) return null;
 				
 		return "admin/admin_cs_qna_answer_view";
 	}
@@ -247,7 +401,7 @@ public class AdminController {
 	@GetMapping("admin/cs/qna/answer/modify")
 	public String admin_cs_qna_answer_modify(HttpSession session, Model model, HttpServletResponse response) {
 		// 관리자 페이지 접근 제한
-		isvalid(session, model, response);
+		if (!isvalid(session, model, response)) return null;
 				
 		return "admin/admin_cs_qna_answer_modify";
 	}
@@ -255,33 +409,9 @@ public class AdminController {
 	@GetMapping("admin/cs/qna/question")
 	public String admin_cs_qna_question(HttpSession session, Model model, HttpServletResponse response) {
 		// 관리자 페이지 접근 제한
-		isvalid(session, model, response);
+		if (!isvalid(session, model, response)) return null;
 				
 		return "admin/admin_cs_qna_question";
-	}
-
-	@GetMapping("admin/cs/faq")
-	public String admin_cs_faq(HttpSession session, Model model, HttpServletResponse response) {
-		// 관리자 페이지 접근 제한
-		isvalid(session, model, response);
-				
-		return "admin/admin_cs_faq";
-	}
-	
-	@GetMapping("admin/cs/faq/register")
-	public String admin_cs_faq_register(HttpSession session, Model model, HttpServletResponse response) {
-		// 관리자 페이지 접근 제한
-		isvalid(session, model, response);
-				
-		return "admin/admin_cs_faq_register";
-	}
-	
-	@GetMapping("admin/cs/faq/modify")
-	public String admin_cs_faq_modify(HttpSession session, Model model, HttpServletResponse response) {
-		// 관리자 페이지 접근 제한
-		isvalid(session, model, response);
-				
-		return "admin/admin_cs_faq_modify";
 	}
 	
 }

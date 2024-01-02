@@ -21,10 +21,16 @@
 	        <result column="user_id" property="user_id"/>
 	    </association>
 	</resultMap>
-
-
-	<!-- 관리자 - 회원 목록 조회, 검색 기능 -->
-	<select id="selectAdminMemberList">
+	
+	
+	<!-- 관리자 - 메인 : 데이터 뿌리기 -->
+	<select id="selectAdminMain">
+		SELECT *
+		FROM admin_main;
+	</select>
+	
+	<!-- 관리자 - 회원 목록 조회, 검색 기능, 페이지네이션 -->
+	<select id="selectAdminMemberList" resultType="member">
 		SELECT u.*, SUM(p.point_value) AS total_point
 		FROM user u
 		LEFT JOIN point p
@@ -48,8 +54,117 @@
 				</otherwise>
 			</choose>
 		</if>
+		<if test="!memberCategory.equals('')">
+			AND
+			<choose>
+				<when test="memberCategory.equals('member_all')">
+					user_category = 1 OR user_category = 2
+				</when>
+				<when test="memberCategory.equals('member_user')">
+					user_category = 1
+				</when>
+				<when test="memberCategory.equals('member_ceo')">
+					user_category = 2
+				</when>
+				<otherwise>
+						1=1
+				</otherwise>
+			</choose>
+		</if>
+		<if test="!memberStatusCategory.equals('')">
+			AND
+			<choose>
+				<when test="memberStatusCategory.equals('member_status_all')">
+					user_status = 1 OR user_status = 2 OR user_status = 3
+				</when>
+				<when test="memberStatusCategory.equals('member_status_1')">
+					user_status = 1
+				</when>
+				<when test="memberStatusCategory.equals('member_status_2')">
+					user_status = 2
+				</when>
+				<when test="memberStatusCategory.equals('member_status_3')">
+					user_status = 3
+				</when>
+				<otherwise>
+						1=1
+				</otherwise>
+			</choose>
+		</if>
 		GROUP BY u.user_idx
 		ORDER BY u.user_idx DESC
+		LIMIT
+			#{startRow}
+			, #{listLimit}
+	</select>
+	
+	<!-- 관리자 - 회원 목록 전체 글 목록 갯수 조회 -->
+	<!--		+ 검색 결과에 따른 페이지네이션의 범위 조정 -->
+	<select id="selectAdminMemberListCount" resultType="int">
+		SELECT COUNT(*)
+		FROM (
+				SELECT u.user_idx
+				FROM user u
+				LEFT JOIN point p
+				ON u.user_idx = p.user_idx
+				WHERE user_id != 'admin'
+				<if test="!searchMemberType.equals('')">
+					AND
+					<choose>
+						<when test="searchMemberType.equals('member_all')">
+							user_id LIKE CONCAT('%',#{searchMemberKeyword},'%')
+							OR user_nick LIKE CONCAT('%',#{searchMemberKeyword},'%')
+						</when>
+						<when test="searchMemberType.equals('member_id')">
+							user_id LIKE CONCAT('%',#{searchMemberKeyword},'%')
+						</when>
+						<when test="searchMemberType.equals('member_nick')">
+							user_nick LIKE CONCAT('%',#{searchMemberKeyword},'%')
+						</when>
+						<otherwise>
+							1=1
+						</otherwise>
+					</choose>
+				</if>
+				<if test="!memberCategory.equals('')">
+				AND
+				<choose>
+					<when test="memberCategory.equals('member_all')">
+						user_category = 1 OR user_category = 2
+					</when>
+					<when test="memberCategory.equals('member_user')">
+						user_category = 1
+					</when>
+					<when test="memberCategory.equals('member_ceo')">
+						user_category = 2
+					</when>
+					<otherwise>
+							1=1
+					</otherwise>
+				</choose>
+				</if>
+				<if test="!memberStatusCategory.equals('')">
+					AND
+					<choose>
+						<when test="memberStatusCategory.equals('member_status_all')">
+							user_status = 1 OR user_status = 2 OR user_status = 3
+						</when>
+						<when test="memberStatusCategory.equals('member_status_1')">
+							user_status = 1
+						</when>
+						<when test="memberStatusCategory.equals('member_status_2')">
+							user_status = 2
+						</when>
+						<when test="memberStatusCategory.equals('member_status_3')">
+							user_status = 3
+						</when>
+						<otherwise>
+								1=1
+						</otherwise>
+					</choose>
+				</if>
+				GROUP BY u.user_idx
+			) AS subquery
 	</select>
 	
 	<!-- 관리자 - 회원 탈퇴 처리 -->
@@ -72,8 +187,8 @@
 <!-- 			, user_category = '' -->
 <!-- 			, point_value = '' -->
 	
-	<!-- 관리자 - 업체 목록 조회, 검색 기능 -->
-	<select id="selectAdminCompanyList">
+	<!-- 관리자 - 업체 목록 조회, 검색 기능, 페이지네이션 -->
+	<select id="selectAdminCompanyList" resultType="company">
 		SELECT *
 		FROM company
 		<if test="!searchCompanyType.equals('')">
@@ -94,6 +209,36 @@
 			</choose>
 		</if>
 		ORDER BY com_id DESC
+		LIMIT
+			#{startRow}
+			, #{listLimit}
+	</select>
+	
+	<!-- 관리자 - 업체 목록 전체 글 목록 갯수 조회 -->
+	<!--		+ 검색 결과에 따른 페이지네이션의 범위 조정 -->
+	<select id="selectAdminCompanyListCount" resultType="int">
+		SELECT COUNT(*)
+		FROM (
+				SELECT *
+				FROM company
+				<if test="!searchCompanyType.equals('')">
+					WHERE
+					<choose>
+						<when test="searchCompanyType.equals('company_num')">
+							com_id LIKE CONCAT('%',#{searchCompanyKeyword},'%')
+						</when>
+						<when test="searchCompanyType.equals('company_name')">
+							com_name LIKE CONCAT('%',#{searchCompanyKeyword},'%')
+						</when>
+						<when test="searchCompanyType.equals('company_ceo')">
+							com_ceo LIKE CONCAT('%',#{searchCompanyKeyword},'%')
+						</when>
+						<otherwise>
+							1=1
+						</otherwise>
+					</choose>
+				</if>
+			) AS subquery
 	</select>
 
 	<!-- 관리자 - 업체 상세 정보 -->
@@ -119,11 +264,20 @@
 		WHERE com_id = #{com_id}
 	</update>
 	
-	<!-- 관리자 - 신고 목록 조회 -->
-	<select id="selectAdminReportList">
+	<!-- 관리자 - 신고 목록 조회, 페이지네이션 -->
+	<select id="selectAdminReportList" resultType="report">
 		SELECT *
 		FROM report
 		ORDER BY report_num DESC
+		LIMIT
+			#{startRow}
+			, #{listLimit}
+	</select>
+	
+	<!-- 관리자 - 신고 목록 전체 글 목록 갯수 조회 -->
+	<select id="selectAdminReportListCount" resultType="int">
+		SELECT COUNT(*)
+		FROM report
 	</select>
 	
 	<!-- 관리자 - 신고 상세 정보 -->
@@ -134,4 +288,43 @@
 		ON rp.review_num = rv.review_num
 		WHERE report_num = #{report_num}
 	</select>
+	
+	<!-- 관리자 - 고객센터 : 각 카테고리별 목록 조회 -->
+	<select id="selectAdminCsList" parameterType="int" resultType="cs">
+		SELECT *
+		FROM cs_board
+		WHERE cs_board_category_main = #{csCategory}
+		ORDER BY cs_board_num DESC
+	</select>
+	
+	<!-- 관리자 - 고객센터 : 공지사항, 자주묻는질문 새 글 등록 -->
+	<insert id="insertAdminCsNoticeFaqRegister">
+		<selectKey keyProperty="cs_board_num" resultType="int" order="BEFORE">
+			SELECT IFNULL(MAX(cs_board_num), 0)
+			FROM cs_board
+		</selectKey>
+		INSERT
+		INTO cs_board
+		VALUES (
+			#{cs_board_num} + 1
+			, 'admin'
+			, #{cs_board_subject}
+			, #{cs_board_content}
+			<if test="#{cs_board_category_main.equals(3)}">
+			 , #{cs_board_re_ref}
+			 , #{cs_board_re_lev} + 1
+			 , #{cs_board_re_seq} + 1		
+			</if>
+			, 0 	-- cs_board_readcount
+			, now()	-- cs_board_date
+			, #{cs_board_category_user}
+			, #{cs_board_category_main}
+			, #{cs_board_category_sub}
+			, #{cs_board_img_1}
+			, #{cs_board_img_2}
+			, #{cs_board_img_3}
+			, #{cs_board_img_4}
+			, #{cs_board_img_5}
+		)
+	</insert>
 </mapper>
