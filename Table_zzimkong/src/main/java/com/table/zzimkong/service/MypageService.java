@@ -15,18 +15,18 @@ public class MypageService {
 	private MypageMapper mapper;
 	
 	// 회원정보 조회 요청
-	public MypageVO getMypage(MypageVO mypage) {
+	public MypageInfo getMypage(MypageInfo mypage) {
 		return mapper.selectMypage(mypage);
 	}
 	
 	// 회원정보 수정 요청
-	public int modifyMypage(MypageVO mypage, String newPasswd) {
+	public int modifyMypage(MypageInfo mypage, String newPasswd) {
 		// TODO Auto-generated method stub
 		return mapper.updateMypage(mypage, newPasswd);
 	}
 	
 	// 닉네임 중복확인
-	public MypageVO getUserNick(MypageVO mypage) {
+	public MypageInfo getUserNick(MypageInfo mypage) {
 		return mapper.selectUserNick(mypage);
 	}
 	

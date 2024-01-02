@@ -21,7 +21,7 @@ public class MypageController {
 	
 	// [ 회원정보 조회 ]
 	@GetMapping("my/modify/profile")
-	public String my_modify_profile(MypageVO mypage, HttpSession session, Model model) {
+	public String my_modify_profile(MypageInfo mypage, HttpSession session, Model model) {
 		String sId = (String) session.getAttribute("sId");
 		if(sId == null) {
 			model.addAttribute("msg", "잘못된 접근입니다.");
@@ -29,14 +29,14 @@ public class MypageController {
 		}
 		
 		// 현재 세션이 관리자가 아니거나 관리자이면서 id 파라미터가 없을 경우(null 또는 널스트링)
-		// MypageVO 객체의 id 값을 세션 아이디로 교체(덮어쓰기)
+		// MypageInfo 객체의 id 값을 세션 아이디로 교체(덮어쓰기)
 		if(!sId.equals("admin") || (sId.equals("admin") && (mypage.getUser_id() == null || mypage.getUser_id().equals("")))) {
 			mypage.setUser_id(sId);
 		}
 		
 		// MypageService - getMypage() 메서드 호출하여 회원 상세정보 조회 요청
-		// => 파라미터 : MypageVO 객체 리턴타입 : MypageVO(dbMypage)
-		MypageVO dbMypage = service.getMypage(mypage);
+		// => 파라미터 : MypageInfo 객체 리턴타입 : MypageInfo(dbMypage)
+		MypageInfo dbMypage = service.getMypage(mypage);
 	
 		// 조회 결과 Model 객체에 저장
 		model.addAttribute("mypage", dbMypage);
@@ -51,9 +51,9 @@ public class MypageController {
 	// 닉네임 중복확인에 대한 비지니스 로직 처리---------------------
 	@ResponseBody
 	@GetMapping("my/modify/MypageCheckDupNick")
-	public String checkDupNick(MypageVO mypage) {
+	public String checkDupNick(MypageInfo mypage) {
 		System.out.println(mypage);
-		MypageVO dbMypage = service.getUserNick(mypage);
+		MypageInfo dbMypage = service.getUserNick(mypage);
 		
 		if(dbMypage == null) {
 			return "false";
@@ -67,7 +67,7 @@ public class MypageController {
 	// "MyModifyPro" 서블릿 요청에 대한 회원 정보 수정 비즈니스 로직 처리
 	// => 추가로 전달되는 새 패스워드(newPasswd) 값을 전달받을 파라미터 변수 1개 추가(Map 사용 가능)
 	@PostMapping("my/modify/MyModifyPro")
-	public String modifyPro(MypageVO mypage, String user_passwd1, HttpSession session, Model model) {
+	public String modifyPro(MypageInfo mypage, String user_passwd1, HttpSession session, Model model) {
 		// 세션 아이디가 없을 경우 "fail_back" 페이지를 통해 "잘못된 접근입니다" 출력 처리
 		String sId = (String) session.getAttribute("sId");
 		if (sId == null) {
@@ -79,14 +79,14 @@ public class MypageController {
 		
 		// 만약, 현재 세션이 관리자가 아니거나
 		// 관리자이면서 id 파라미터가 없을 경우(null 또는 널스트링)
-		// MypageVO 객체의 id 값을 세션 아이디로 교체(덮어쓰기)
+		// MypageInfo 객체의 id 값을 세션 아이디로 교체(덮어쓰기)
 		if(!sId.equals("admin") || (sId.equals("admin") && (mypage.getUser_id() == null || mypage.getUser_id().equals("")))) {
 			mypage.setUser_id(sId);
 		} 
 
 		// MypageService - getMypage() 메서드 호출하여 회원 정보 조회 요청(패스워드 비교용)
-		// => 파라미터 : MypageVO 객체 리턴타입 : MypageVO(dbMypage)
-		MypageVO dbMypage = service.getMypage(mypage);
+		// => 파라미터 : MypageInfo 객체 리턴타입 : MypageInfo(dbMypage)
+		MypageInfo dbMypage = service.getMypage(mypage);
 		
 		// BCryptPasswordEncoder 클래스를 활용하여 입력받은 기존 패스워드와 DB 패스워드 비교
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -110,7 +110,7 @@ public class MypageController {
 		
 		System.out.println(mypage);
 		// MypageService - modifyMypage() 메서드 호출하여 회원 정보 수정 요청
-		// => 파라미터 : MypageVO 객체, 새 패스워드(newPasswd) 리턴타입 : int(updateCount)
+		// => 파라미터 : MypageInfo 객체, 새 패스워드(newPasswd) 리턴타입 : int(updateCount)
 		int updateCount = service.modifyMypage(mypage, user_passwd1);
 
 		// 회원 정보 수정 요청 결과 판별
@@ -134,12 +134,12 @@ public class MypageController {
 	// [ 나의 예약 내역 목록 조회 ]
 	
 	@GetMapping("my/list")
-	public String my_list(MypageVO mypage, HttpSession session, Model model, HttpServletResponse response) {
+	public String my_list(MypageInfo mypage, HttpSession session, Model model, HttpServletResponse response) {
 		
 		int sIdx = (int)session.getAttribute("sIdx");
 		String sId = (String)session.getAttribute("sId"); // 세션에 아이디값을 가져오는거
 		mypage.setUser_id(sId);//검색할 아이디를 마이페이지에 넣기 
-		MypageVO dbMypage = service.getMypage(mypage);
+		MypageInfo dbMypage = service.getMypage(mypage);
 		System.out.println(dbMypage);
 		// MypageService - getResList() 메서드 호출하여 회원 목록 조회 요청
 		
