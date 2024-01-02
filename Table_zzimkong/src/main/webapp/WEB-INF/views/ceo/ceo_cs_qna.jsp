@@ -122,6 +122,7 @@
 				                        <a href="#" onclick="faqViewForm()">${board.cs_board_subject}</a>
 				                    </th>
 				                    <td>${board.cs_board_date}</td>
+				                    
 				                </tr>
 				            </c:forEach>
 				        </tbody>
