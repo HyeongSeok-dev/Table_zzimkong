@@ -320,7 +320,7 @@ public class CeoController {
 		
 		for(int i = 0; i < tagArr.length; i++) {
 			String tag = tagArr[i];
-			switch (company.getCom_tag().contains(tag)) {
+			switch (tag) {
 			case "데이트":
 				company.setCom_tag_date(true);
 				break;
@@ -360,31 +360,31 @@ public class CeoController {
 			}
 		}
 		
-		if(company.getCom_tag().contains("데이트")) {
-			company.setCom_tag_date(true);
-		} else if(company.getCom_tag().contains("가족모임")) {
-			 company.setCom_tag_family(true);
-		} else if(company.getCom_tag().contains("단체회식")) {
-			 company.setCom_tag_party(true);
-		} else if(company.getCom_tag().contains("조용한")) {
-			 company.setCom_tag_quiet(true);
-		} else if(company.getCom_tag().contains("주차가능")) {
-			 company.setCom_tag_park(true);
-		} else if(company.getCom_tag().contains("노키즈존")) {
-			 company.setCom_tag_kids(true);
-		} else if(company.getCom_tag().contains("장애인편의시설")) {
-			 company.setCom_tag_disabled(true);
-		} else if(company.getCom_tag().contains("반려동물")) {
-			 company.setCom_tag_pet(true);
-		} else if(company.getCom_tag().contains("홀")) {
-		     company.setCom_tag_hall(true);
-		} else if(company.getCom_tag().contains("룸")) {
-			 company.setCom_tag_room(true);
-		} else if(company.getCom_tag().contains("테라스")) {
-			 company.setCom_tag_terrace(true);
-		} else if(company.getCom_tag().contains("창가자리")) {
-			 company.setCom_tag_window(true);
-		}
+//		if(company.getCom_tag().contains("데이트")) {
+//			company.setCom_tag_date(true);
+//		} else if(company.getCom_tag().contains("가족모임")) {
+//			 company.setCom_tag_family(true);
+//		} else if(company.getCom_tag().contains("단체회식")) {
+//			 company.setCom_tag_party(true);
+//		} else if(company.getCom_tag().contains("조용한")) {
+//			 company.setCom_tag_quiet(true);
+//		} else if(company.getCom_tag().contains("주차가능")) {
+//			 company.setCom_tag_park(true);
+//		} else if(company.getCom_tag().contains("노키즈존")) {
+//			 company.setCom_tag_kids(true);
+//		} else if(company.getCom_tag().contains("장애인편의시설")) {
+//			 company.setCom_tag_disabled(true);
+//		} else if(company.getCom_tag().contains("반려동물")) {
+//			 company.setCom_tag_pet(true);
+//		} else if(company.getCom_tag().contains("홀")) {
+//		     company.setCom_tag_hall(true);
+//		} else if(company.getCom_tag().contains("룸")) {
+//			 company.setCom_tag_room(true);
+//		} else if(company.getCom_tag().contains("테라스")) {
+//			 company.setCom_tag_terrace(true);
+//		} else if(company.getCom_tag().contains("창가자리")) {
+//			 company.setCom_tag_window(true);
+//		}
 		
 		//검색태그 공백제거하기
 		company.setCom_search_tag(company.getCom_search_tag().trim());
@@ -605,17 +605,7 @@ public class CeoController {
 		//검색태그 공백제거하기
 		company.setCom_search_tag(company.getCom_search_tag().trim());
 		
-		//광고설정 int로 변경하기
-		if(company.getCom_ad_grade_str().equals("0단계")) {
-			company.setCom_ad_grade(0);
-		} else if(company.getCom_ad_grade_str().equals("0단계")) {
-			company.setCom_ad_grade(1);
-		} else if(company.getCom_ad_grade_str().equals("0단계")) {
-			company.setCom_ad_grade(2);
-		} else if(company.getCom_ad_grade_str().equals("0단계")) {
-			company.setCom_ad_grade(3);
-		}
-		
+				
 		//전화번호 '-' 주기
 		switch (company.getCom_tel().length()) {
 		case 8:
