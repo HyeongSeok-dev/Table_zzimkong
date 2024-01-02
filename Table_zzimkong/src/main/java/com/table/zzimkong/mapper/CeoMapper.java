@@ -36,6 +36,8 @@ public interface CeoMapper {
 	List<CompanyVO> selectCeoList(int sIdx);
 
 	List<ReservationVO> selectResInfo(CompanyVO company);
+
+	ReservationVO selectResDetailInfo(ReservationVO res);
 	
 	int updateCompany(CompanyVO company);
 

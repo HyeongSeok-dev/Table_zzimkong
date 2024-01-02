@@ -42,9 +42,8 @@ function fetchCompanyData(companyId) {
                     <td>${res.res_num}</td>
                     <td>${res.res_date}</td>
                     <td>${res.res_time}원</td>
-                    <td>${menu.menu_describe}</td>
                   	<td>
-						<button type="button" value="예약 상세 정보" onclick="newInfo()">예약 상세정보</button>
+						<button type="button" value="예약 상세 정보" onclick="newInfo(${res.res_idx})">예약 상세정보</button>
 					</td>
                 </tr>`;
                 reservationTable.append(row);

@@ -33,6 +33,7 @@ s<!DOCTYPE html>
 								</c:forEach>
 							</c:if>
 						</select>
+						<input type="hidden" name="com_id" value="${company.com_id}" />
 					</span>	
 				</div>
 			</div>

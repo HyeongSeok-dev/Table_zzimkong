@@ -13,6 +13,7 @@
 <!-- <link href="side_bar.css" rel="stylesheet"> -->
 </head>
 <body>
+<input type="hidden" name="res_idx" value="${res.res_idx}" />
 	<section class="ceo_popup_sec">
 		<div class="text_inner">
 			<div class="header_div01">

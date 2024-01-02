@@ -234,11 +234,6 @@ public class CeoController {
 		model.addAttribute("storeList", storeList);
 		System.out.println("storeList" + storeList);
 		
-	    for (CompanyVO companyItem : storeList) {
-	        int com_id = companyItem.getCom_id();  // getCom_id() 메서드를 사용하여 com_id 값을 꺼냅니다.
-	        System.out.println("Company ID: " + com_id);  // 값 출력
-	        // 필요한 다른 값들도 이와 같은 방식으로 꺼낼 수 있습니다.
-	    }
 		 
 		List<ReservationVO> comResList = service.getResInfoList(company);
 		System.out.println("예약값" + comResList);
@@ -252,7 +247,9 @@ public class CeoController {
 	}
 	
 	@GetMapping("ceo/reservation/info")	
-	public String ceo_reservation_info() {
+	public String ceo_reservation_info(ReservationVO res, Model model) {
+		res = service.getResDetailInfo(res);
+		model.addAttribute("res", res);
 		return "ceo/ceo_reservation_info";
 	}
 	

@@ -134,7 +134,11 @@
 		WHERE com_id = #{com_id}
 	</select>
 
-	
+	<select id="selectResDetailInfo">
+		SELECT *
+		FROM reservation
+		WHERE res_idx = #{res_idx}
+	</select>
 	
 	
 	
