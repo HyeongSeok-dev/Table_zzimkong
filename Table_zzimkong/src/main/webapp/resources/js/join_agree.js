@@ -37,6 +37,6 @@ function next() {
   }
   
   //필수항목 다 체크시 페이지 이동
-  location.href = "choice";
+  location.href = "unregister";
 
 } //필수항목체크후 이동

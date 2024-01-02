@@ -10,23 +10,10 @@ $(document).ready(function() {
 	
 	
 	
-//		console.log(kakao.isInitialized());
-	
-	//	window.kakao.Auth.login({
-	//		scope: 'profile_nickname, profile_image',
-	//		susccess: function(authObj){
-	//			console.log(authObj);
-	//			window.kakao.API.request({
-	//				url: '/v2/user/me',
-	//				success: res => {
-	//					const kakao_account = res.kakao_account;
-	//					console.log(kakao_account);
-	//				}
-	//			});
-	//		}
-	//	});
+
 	}); //카카오로그인 버튼끝
-//========================================
+//===============================================================
+
 //일반 회원가입버튼 누르면 join.jsp로 이동
 $("#join_u").click(function() {
     window.location.href = "join";

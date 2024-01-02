@@ -60,6 +60,11 @@ public class MemberController {
 		return "mypage/my_complet";
 	}
 	
+	@GetMapping("join/unregister")
+	public String join_unregister() {
+		return "join/join_unregister";
+	}
+	
 	
 	//회원가입==========================================================
 	@PostMapping("join/MemberJoinPro")

@@ -309,6 +309,9 @@
 	<button><a href="member/cs/qna/register">member/cs/qna/register</a></button>
 	<button><a href="member/cs/qna/view">member/cs/qna/view</a></button>
 	<button><a href="member/cs/qna/modify">member/cs/qna/modify</a></button>
+	<hr>
+	<button><a href="join/unregister">join/unregister</a></button>
+	<button><a href="join/choice">join/choice</a></button>
 	<br>
 	
 	   

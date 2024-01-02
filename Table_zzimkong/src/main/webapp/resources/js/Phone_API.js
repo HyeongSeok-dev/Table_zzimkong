@@ -1,9 +1,8 @@
-//$(function() {
+$(document).ready(function() {
 //	
-//	
-//	$("#api").on("click",function() {
+	$("#api").click(function() {
 //	//휴대폰 본인인증하기=======================================
-//		console.log("버튼함수작동");
+		console.log("본인인증 함수작동");
 //		
 //		var IMP = window.IMP;
 //		IMP.init("{imp22106057}");
@@ -40,5 +39,5 @@
 //		});
 //	
 //
-//		}); //버튼
-//}); //jquery문 전체
+		}); //버튼
+}); //jquery문 전체
