@@ -75,8 +75,23 @@ $(function() {
 				  buyer_addr: "서울특별시 강남구 삼성동",
 				  buyer_postcode: "123-456",
 				  m_redirect_url: "{모바일에서 결제 완료 후 리디렉션 될 URL}"
-				}, function (rsp) { // callback 로직
-				  /* ...중략... */
+				}, function (rsp) { 
+					if (rsp.success) {   
+				      // axios로 HTTP 요청
+				      axios({
+				        url: "{서버의 결제 정보를 받는 endpoint}",
+				        method: "post",
+				        headers: { "Content-Type": "application/json" },
+				        data: {
+				          imp_uid: rsp.imp_uid,
+				          merchant_uid: rsp.merchant_uid
+				        }
+				      }).then((data) => {
+				        // 서버 결제 API 성공시 로직
+				      })
+				    } else {
+				      alert(`결제에 실패하였습니다. 에러 내용: ${rsp.error_msg}`);
+				    }
 				});
 			} else if($('input[type=radio][value="2"]').is(':checked')) { // 네이버페이
 				// V2방법, 네이버페이 연동
@@ -119,11 +134,25 @@ $(function() {
 				    buyer_postcode: "123-456",
 				  },
 				  function (rsp) {
-				    // callback 로직
-				    //* ...중략... *//
+				    if (rsp.success) {   
+				      // axios로 HTTP 요청
+				      axios({
+				        url: "{서버의 결제 정보를 받는 endpoint}",
+				        method: "post",
+				        headers: { "Content-Type": "application/json" },
+				        data: {
+				          imp_uid: rsp.imp_uid,
+				          merchant_uid: rsp.merchant_uid
+				        }
+				      }).then((data) => {
+				        // 서버 결제 API 성공시 로직
+				      })
+				    } else {
+				      alert(`결제에 실패하였습니다. 에러 내용: ${rsp.error_msg}`);
+				    }
 				  }
 				);
-			}
+			} //결제수단선택
 	}); //버튼
 	
 }); //jquery문 전체
