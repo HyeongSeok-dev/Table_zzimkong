@@ -26,7 +26,7 @@
 		<header id="header" class="opaque">
 			<div class="container">
 				<div class="header-left">
-					<a href="./review_detail.jsp" class="btn-back">뒤로</a>
+						<a href="${pageContext.request.contextPath}/review/redetail?com_id=${comId}" class="btn-back">뒤로</a>
 					<h1 class="page-title">리뷰 신고</h1>
 				</div>
 				<div class="header-right">
@@ -84,7 +84,6 @@
 						<h3 class="form_block_title">답변 받으실 휴대폰 번호</h3>
 						<br>
 						<div class="form_block_body">
-<!-- 							<input type="tel" class="form-input" placeholder="사용자 휴대폰 번호"> -->
 							<input type="text" class="form-input" name="user_email" value="${member.user_phone}">
 						</div>
 					</div>
@@ -93,7 +92,6 @@
 						<h3 class="form_block_title">답변 받으실 이메일 주소</h3>
 						<br>
 						<div class="form_block_body">
-<!-- 							<input type="tel" class="form-input" placeholder="사용자 이메일 주소"> -->
 							<input type="text" class="form-input" name="user_phone" value="${member.user_email}">
 						</div>
 					</div>
@@ -125,9 +123,8 @@
 			<hr class="space">
 		</main>
 		<div class="sticky_bottom_btns">
-			<button class="btn btn-lg btn_outline" id="cancelButton">취소</button>
+			<a href="${pageContext.request.contextPath}/review/redetail?com_id=${comId}" class="btn btn-lg btn-outline" id="cancelButton">취소</a>
 			<button class="btn btn-lg btn-red" id="reportButton" type="submit">신고하기</button>
-			
 		</div>
 	</div>
 </form>	

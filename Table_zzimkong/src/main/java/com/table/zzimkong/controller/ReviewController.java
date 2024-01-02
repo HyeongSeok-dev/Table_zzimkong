@@ -512,7 +512,6 @@ public class ReviewController {
 			// 세션에서 user_id 가져오기
 			if (sId == null) {
 				model.addAttribute("msg", "로그인이 필요합니다");
-				// targetURL 속성명으로 로그인 폼 페이지 서블릿 주소 저장
 				model.addAttribute("targetURL", "/zzimkong/login");
 				return "forward";
 			}
