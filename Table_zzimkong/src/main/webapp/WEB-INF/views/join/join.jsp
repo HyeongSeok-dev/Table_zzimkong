@@ -13,7 +13,6 @@
     <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/join.css">
     <script src="${pageContext.request.contextPath }/resources/js/join.js"></script>
-    <script src="${pageContext.request.contextPath }/resources/js/Phone_API.js"></script>
     
 
   </head>
