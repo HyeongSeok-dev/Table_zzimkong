@@ -15,4 +15,7 @@ public class MenuVO {
 	private int order_amount;
 	private MultipartFile mFile;
 	
+	private String menuTotalPrice;
+	private String totalPayPrice;
+	
 }
