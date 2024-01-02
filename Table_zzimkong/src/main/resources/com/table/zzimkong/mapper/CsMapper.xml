@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.table.zzimkong.mapper.CsMapper">
+
+	<select id="selectMember" resultType="member">
+		select * 
+		FROM user
+		WHERE user_idx = #{sIdx}
+	</select>
+	
+	<select id="selectBoard" resultType="cs">
+		SELECT * 
+		FROM cs_board
+		<where>
+			AND cs_board_category_user = #{member.user_category}
+			AND cs_board_category_main = #{category}
+			<if test="category == 3">
+				AND user_id = #{member.user_id}
+			</if>
+			<if test="board.searchFAQ != null and !board.searchFAQ.equals('') ">
+				AND cs_board_subject LIKE CONCAT('%', #{board.searchFAQ}, '%')
+			</if>
+			<if test="board.sdate != null and !board.sdate.equals('')">
+				AND cs_board_date BETWEEN #{board.sdate} AND #{board.edate}
+			</if>
+		</where>
+	</select>
+	
+</mapper>

@@ -1,6 +1,6 @@
 package com.table.zzimkong.vo;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 import lombok.Data;
 
@@ -14,7 +14,7 @@ public class CsVO {
 	private int cs_board_re_lev;
 	private int cs_board_re_seq;
 	private int cs_board_readcount;
-	private Date cs_board_date;
+	private LocalDate cs_board_date;
 	private int cs_board_category_user;
 	private int cs_board_category_main;
 	private int cs_board_category_sub;
@@ -24,5 +24,10 @@ public class CsVO {
 	private String cs_board_img_3;
 	private String cs_board_img_4;
 	private String cs_board_img_5;
+	
+	private String searchFAQ;
+	private String sdate;
+	private String edate;
+	
 }
 

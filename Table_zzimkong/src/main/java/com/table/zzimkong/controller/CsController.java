@@ -1,10 +1,17 @@
 package com.table.zzimkong.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.table.zzimkong.service.CsService;
+import com.table.zzimkong.vo.CsVO;
+import com.table.zzimkong.vo.MemberVO;
 
 @Controller
 public class CsController {
@@ -13,7 +20,24 @@ public class CsController {
 	private CsService service;
 
 	@GetMapping("ceo/cs/faq")
-	public String ceo_cs_faq() {
+	public String ceo_cs_faq(CsVO board, Model model, HttpSession session, MemberVO member) {
+		
+		if(session.getAttribute("sIdx") == null) {
+			model.addAttribute("msg", "잘못된 접근입니다.");
+			return "fail_back";
+		}
+		int sIdx = (int)session.getAttribute("sIdx");
+		
+		member = service.getmember(sIdx);
+		if(member.getUser_category() ==1) {
+			model.addAttribute("msg", "잘못된 접근입니다.");
+			return "fail_back";
+		}
+		int boardCategory = 1;
+		List<CsVO> boardList = service.getBoard(board, member, boardCategory);
+		
+		model.addAttribute("boardList", boardList);
+		
 		return "ceo/ceo_cs_faq";
 	}
 	
@@ -23,7 +47,25 @@ public class CsController {
 	}
 	
 	@GetMapping("ceo/cs/notice")
-	public String ceo_cs_notice() {
+	public String ceo_cs_notice(CsVO board, Model model, HttpSession session, MemberVO member) {
+		
+		if(session.getAttribute("sIdx") == null) {
+			model.addAttribute("msg", "잘못된 접근입니다.");
+			return "fail_back";
+		}
+		
+		int sIdx = (int)session.getAttribute("sIdx");
+		
+		member = service.getmember(sIdx);
+		if(member.getUser_category() ==1) {
+			model.addAttribute("msg", "잘못된 접근입니다.");
+			return "fail_back";
+		}
+		int boardCategory = 2;
+		List<CsVO> boardList = service.getBoard(board, member, boardCategory);
+		
+		model.addAttribute("boardList", boardList);
+		
 		return "ceo/ceo_cs_notice";
 	}
 	
@@ -48,9 +90,32 @@ public class CsController {
 	}
 	
 	@GetMapping("ceo/cs/qna")
-	public String ceo_cs_qna() {
+	public String ceo_cs_qna(CsVO board, Model model, HttpSession session, MemberVO member) {
+		
+		if(session.getAttribute("sIdx") == null) {
+			model.addAttribute("msg", "잘못된 접근입니다.");
+			return "fail_back";
+		}
+		
+		int sIdx = (int)session.getAttribute("sIdx");
+		
+		member = service.getmember(sIdx);
+		if(member.getUser_category() ==1) {
+			model.addAttribute("msg", "잘못된 접근입니다.");
+			return "fail_back";
+		}
+		int boardCategory = 3;
+		List<CsVO> boardList = service.getBoard(board, member, boardCategory);
+		
+		model.addAttribute("boardList", boardList);
 		return "ceo/ceo_cs_qna";
 	}
+	
+	
+	
+	
+	
+	
 	
 	@GetMapping("member/cs/faq")
 	public String member_cs_faq() {

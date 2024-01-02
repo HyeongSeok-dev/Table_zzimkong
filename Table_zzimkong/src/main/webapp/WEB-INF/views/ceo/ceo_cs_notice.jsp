@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -71,28 +72,23 @@
 				        </thead>
 				        <tbody>
 				        <tr>
-				            <td>3</td>
-				            <th class="cs_th">유형</th>
-				            <th class="cs_th">
-				              <a onclick="noticeViewForm()">[공지사항] 개인정보 처리방침 변경안내처리방침</a>
-				              <p>테스트</p>
-				            </th>
-				            <td>2017.07.13</td>
-				        </tr>
-				
-				        <tr>
-				            <td>2</td>
-				            <th class="cs_th">유형</th>
-				            <th class="cs_th"><a onclick="noticeViewForm()">[공지사항] 이용해주셔서 감사합니다</a></th>
-				            <td>2017.06.15</td>
-				        </tr>
-				
-				        <tr>
-				            <td>1</td>
-				            <th class="cs_th">유형</th>
-				            <th class="cs_th"><a onclick="noticeViewForm()">[공지사항] 이용해주셔서 감사합니다</a></th>
-				            <td>2017.06.15</td>
-				        </tr>
+				            <c:forEach var="board" items="${boardList}">
+				                <tr>
+				                    <td>${board.cs_board_num}</td>
+				                    <c:choose>
+				                    	<c:when test="${board.cs_board_category_sub eq '1'}">
+						                    <th class="cs_th">알림</th>
+				                    	</c:when>
+				                    	<c:when test="${board.cs_board_category_sub eq '2'}">
+						                    <th class="cs_th">이벤트</th>
+				                    	</c:when>
+				                    </c:choose>
+				                    <th class="cs_th">
+				                        <a href="#" onclick="faqViewForm()">${board.cs_board_subject}</a>
+				                    </th>
+				                    <td>${board.cs_board_date}</td>
+				                </tr>
+				            </c:forEach>
 				        </tbody>
 				    </table>
 				</div>
