@@ -211,16 +211,31 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="block wow fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
+						<%--추천순(광고등급순)--%>
 						<div class="title">
 							<h3><span class="seleted_location">${search.location}</span> <span>추천순</span></h3>
 						</div>
 						<%-- 상세페이지로 가는 이미지 --%>
-						<%--추천순(광고등급순)--%>
 						<div id="owl-example1" class="owl-carousel">
 						  <c:forEach var="recommand" items="${recommendList}">
 						    <div class="owl_example1_items_images">
 						      <img alt="" src="${pageContext.request.contextPath}/resources/upload/${recommand.com_img}"> <br>
 						      ${recommand.com_name}
+						    </div>                      
+						  </c:forEach>
+						</div>
+						
+						<%--별점순 --%>		
+						<br><br><br>				
+						<div class="title">
+							<h3><span class="seleted_location">${search.location}</span> <span>별점순</span></h3>
+						</div>
+						<%-- 상세페이지로 가는 이미지 --%>
+						<div id="owl-example2" class="owl-carousel">
+						  <c:forEach var="review" items="${reviewList}">
+						    <div class="owl_example1_items_images">
+						      <img alt="" src="${pageContext.request.contextPath}/resources/upload/${review.com_img}"> <br>
+						      ${review.com_name}
 						    </div>                      
 						  </c:forEach>
 						</div>

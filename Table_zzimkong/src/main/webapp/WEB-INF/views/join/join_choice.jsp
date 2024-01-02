@@ -42,7 +42,7 @@
 								<!-- 아이디 연동 가입 -->
 									<!-- 카카오 -->
 									<a id="kakao" href="javascript:loginWithKakao()">
-									  <img src="https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" width="222"
+									  <img src="${pageContext.request.contextPath }/resources/img/kakao_join.png" width="222"
 									    alt="카카오 로그인 버튼" />
 									</a>
 <!-- 								<button type="button" class="joinFormBtn" id="kakao"> -->

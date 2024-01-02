@@ -1,35 +1,29 @@
 $(document).ready(function() {
 	
-//  $("#owl-example1").owlCarousel({
-//    items: 4, // 한 화면에 보여줄 아이템 수 설정
-//    loop: true, // 무한 반복 설정
-//    margin: 10, // 아이템 간 간격 설정
-//    nav: true, // 이전/다음 버튼 사용 설정
-//    autoplay: true, // 자동 슬라이드 설정
-//    autoplayTimeout: 3000, // 자동 슬라이드 시간 설정 (3초)
-//    autoplayHoverPause: true // 마우스 오버시 자동 슬라이드 멈춤 설정
-//  });
+	//출력 10개로 제한
+    var limitItems = function(carouselId) {
+        var carousel = $(carouselId);
+        var items = carousel.children();
+
+        if (items.length > 10) {
+            items.slice(10).remove();
+        }
+
+        carousel.owlCarousel({
+            items: 4,
+            pagination: true,
+            paginationSpeed: 1000,
+            navigation: true,
+            navigationText: ["", "<i class='fa fa-angle-right'></i>"],
+            slideSpeed: 800,
+        });
+    };
+
+    limitItems("#owl-example1");
+    limitItems("#owl-example2");
+	 
 
 
-	$("#owl-example1").owlCarousel({
-		// Most important owl features
-		items: 4,
-		pagination: true,
-		paginationSpeed: 1000,
-		navigation: true,
-		navigationText: ["", "<i class='fa fa-angle-right'></i>"],
-		slideSpeed: 800,
-	});
-	
-	$("#owl-example2").owlCarousel({
-		// Most important owl features
-		items: 4,
-		pagination: true,
-		paginationSpeed: 1000,
-		navigation: true,
-		navigationText: ["", "<i class='fa fa-angle-right'></i>"],
-		slideSpeed: 800,
-	});
 	$("#owl-example3").owlCarousel({
 		// Most important owl features
 		items: 4,

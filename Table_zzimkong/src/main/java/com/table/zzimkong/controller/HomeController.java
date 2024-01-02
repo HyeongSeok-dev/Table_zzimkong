@@ -70,10 +70,17 @@ public class HomeController {
        
 	        //메인화면에 카테고리별로 정보 뿌리기==================================
 	        
+	        //추천순(광고순)
 	        search = (SearchVO)session.getAttribute("search");
 	        
 	        List<CompanyVO>recommendList = service.getRecommendList(search);
 	        model.addAttribute("recommendList", recommendList);
+	        
+	        //별점순
+	        search = (SearchVO)session.getAttribute("search");
+	        
+	        List<CompanyVO>reviewList = service.getReviewList(search);
+	        model.addAttribute("reviewList", reviewList);
 	        
 	        //==============================================================
 	        

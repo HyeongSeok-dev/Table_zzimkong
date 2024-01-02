@@ -49,8 +49,13 @@ public class ProductService {
 	}
 
 	//메인 화면에 추천 뿌리기====================================
+	//추천순(광고등급순)
 	public List<CompanyVO> getRecommendList(SearchVO search) {
 		return mapper.selectRecommendList(search);
+	}
+	//별점순
+	public List<CompanyVO> getReviewList(SearchVO search) {
+		return mapper.selectReviewList(search);
 	}
 	
 }
