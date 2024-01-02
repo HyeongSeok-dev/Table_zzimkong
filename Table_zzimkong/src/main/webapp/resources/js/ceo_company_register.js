@@ -5,6 +5,13 @@ $(function() {
 	$('#hMax').on('input', function () {
     	$(this).val($(this).val().replace(/[^0-9]/g, ''));
 	});
+	$('#openDate').on('input', function () {
+    	 var input = $(this).val().replace(/[^0-9]/g, '');
+    	if(input.length > 8) {
+	        input = input.substring(0, 8);
+	    }
+	    $(this).val(input);
+	});
 	$('#com_tel').on('input', function () {
     	 var input = $(this).val().replace(/[^0-9]/g, '');
     	if(input.length > 12) {
@@ -66,34 +73,54 @@ $(function() {
 			alert("사업자 등록 번호를 입력해 주세요.");
 		} else {
 			var data = {
-		    "b_no": [$("#com_num_register").val()] // 사업자번호 "xxxxxxx" 로 조회 시,
+			    "b_no": [$("#com_num_register").val()], // 사업자번호 "xxxxxxx" 로 조회 시,
+			    "start_dt" : [$("#openDate").val()],
+			    "p_nm" : [$("#user_name").val()],
 		   }; 
 		
 			$.ajax({
 				type: "POST",
-				url: "https://api.odcloud.kr/api/nts-businessman/v1/status?serviceKey=mtlt43WH%2BFWYUXqzevm8DYClYRQKrSpN2Ci%2BIL2Gd1mEnNh3mtqJU0lUAOl68D6iIUKyt4JPb4gz65d4NzarzA%3D%3D",
+				url: "https://api.odcloud.kr/api/nts-businessman/v1/validate?"
+				 + "serviceKey=mtlt43WH%2BFWYUXqzevm8DYClYRQKrSpN2Ci%2BIL2Gd1mEnNh3mtqJU0lUAOl68D6iIUKyt4JPb4gz65d4NzarzA%3D%3D"
+//				+ "serviceKey=mtlt43WH+FWYUXqzevm8DYClYRQKrSpN2Ci+IL2Gd1mEnNh3mtqJU0lUAOl68D6iIUKyt4JPb4gz65d4NzarzA=="
+				 ,
 				data:  JSON.stringify(data),
 				contentType: "application/json",
 	  			accept: "application/json",
 				dataType: "json",
 				accept: "application/json",
-				success: function(result) {
-					console.log(result);
-					let businessesResult = result.busunesses;
-					let com_num = businessesResult.b_no; // 사업자 등록번호
-					let user_name = businessesResult.p_nm; // 대표명
-					let com_name = businessesResult.b_nm; // 상호
-					let com_category = businessesResult.b_sector; //업태
-					let com_address = businessesResult.b_adr; //주소
+				success: function(businesses) {
+					console.log(businesses);
+					let com_num = businesses.b_no; // 사업자 등록번호
+					let ceo_name = businesses.p_nm; // 대표명
+					let com_name = businesses.b_nm; // 상호
+					let com_category = businesses.b_sector; //업태
+					let com_address = businesses.b_adr; //주소
+					console.log(ceo_name);
+					console.log(businesses.p_nm);
+					if(ceo_name === $("#user_name").val()){
+						$("#com_num").val(com_num);
+						$("#com_num").attr('readonly', true);
+						$("#com_name").val(com_name);
+						$("#com_category").val(com_category);
+						$("#com_category").attr('readonly', true);
+						$("#com_address").val(com_address);
+						$("#com_address").attr('readonly', true);
+						$("#guide").text("조회확인");
+						$("#guide").css("color","green");
+						
+					} else {
+						alert("조회하신 사업자등록번호의 대표자명이 회원님의 성함과 일치하지 않습니다."
+						+ "\n사업자등록번호를 다시한번 확인해 주세요!");
+						$("#guide").text("사업자등록번호를 다시 확인해주세요!");
+						$("#guide").css("color","#bb5b67");
+					}
 					
-					$("#com_num").val(com_num);
-					$("#user_name").val(user_name);
-					$("#com_name").val(com_name);
-					$("#com_category").val(com_category);
-					$("#com_category").val(com_address);
 				},
 				error: function(result) {
 					 console.log(result.responseText)
+					$("#guide").text("사업자등록번호를 다시 확인해주세요!");
+					$("#guide").css("color","#bb5b67");
 				}
 			});
 		}

@@ -11,16 +11,6 @@
 <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
 <script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/ceo_company_register.js"></script>
-<script type="text/javascript">
-$(function () {
-	$('#keyword').keyup(function() {
-        var inputVal = $(this).val();
-        if(inputVal && !inputVal.startsWith('#')) {
-            $(this).val('#' + inputVal);
-        }
-    });
-});
-</script>
 </head>
 <body>
 	<section class="ceo_popup_sec">
@@ -29,37 +19,43 @@ $(function () {
 				<span><h3>신규 입점 신청</h3></span>
 			</div>
 		</div>
+		<div class="guide_top" >* 는사업자등록번호 조회를 위한 입력 필수사항입니다. 입력 후 '조회하기'버튼을 눌러주세요.</div>
 		<div class="text_inner">
 			<form action="registPro" method="post" name="ceoComForm" enctype="multipart/form-data">
 				<table>
 					<tr>
-						<th>사업자등록번호</th>
+						<th>사업자등록번호<span class="*">*</span></th>
 						<td colspan="5">
 							<div class="div_display">
 								<div class="div_display div_align">
-									<input type="text" name="com_num_str" id="com_num_register" placeholder="*사업자등록번호는 10자리로 '-'를 제외하고 정확하게 입력해주세요." id="comNumText">
+									<input type="text" name="com_num_str" id="com_num_register" placeholder="사업자등록번호는 10자리로 '-'를 제외하고 정확하게 입력해주세요." id="comNumText">
 									<button type="button" class="button_olive" id="comNumBtn">조회하기</button>
 								</div>
-								<div id="guide">************여기에 중복확인 사용할거임</div>
+								<div class="guide" id="guide"></div>
 							</div>	
 						</td>
 					</tr>
 					<tr>
-						<th rowspan="4">사진등록</th>
-						<td colspan="2" rowspan="4"> 
+						<th rowspan="5">사진등록</th>
+						<td colspan="2" rowspan="5"> 
 							<div id="img"><img src="" id="com_img_div"></div>
 							<hr>
 							<div class="div_display">
 							<input type="file" id="file" name="file">
-							<div id="guide">*사진은 최대 한장만 등록 가능합니다.</div>
+							<div class="guide">사진은 최대 한장만 등록 가능합니다.</div>
 							</div>
+							<th>대표자명<span class="*">*</span></th>
+							<td colspan="2"><input type="text" name="user_name" id="user_name" value="홍길동" readonly="readonly"></td>
+	<%-- 						<td colspan="2"><input type="text" name="user_name" id="user_name" value="${member.user_name }" readonly="readonly"></td> --%>
 						</td>
-						<th>상호명</th>
-						<td colspan="2"><input type="text" name="com_name" id="com_name" value="" readonly="readonly"></td>
 					</tr>
 					<tr>
-						<th>대표자명</th>
-						<td colspan="2"><input type="text" name="user_name" id="user_name" value="" readonly="readonly"></td>
+						<th>개업일자<span class="*">*</span></th>
+						<td colspan="2"><input type="text" name="com_open_date" id="openDate" value="" placeholder="특수기호 없이 YYYYMMDD" style="font-size: 14px;"></td>
+					</tr>
+					<tr>
+						<th>상호명</th>
+						<td colspan="2"><input type="text" name="com_name" id="com_name"  value="" readonly="readonly"></td>
 					</tr>
 					<tr>
 						<th>업태</th>
@@ -195,7 +191,7 @@ $(function () {
 						<td colspan="4">
 							<div class="div_display">
 								<input type="text" id="keyword" name="com_search_tag" value="" placeholder="사업장이 검색될 키워드를 입력하고 스페이스바를 눌러주세요">
-								<div id="guide">* 키워드를 입력하고 스페이스바를 누르면 자동으로 '#'가 붙습니다.</div>
+								<div class="guide">키워드를 입력하고 스페이스바를 누르면 자동으로 '#'가 붙습니다.</div>
 							</div>
 						</td>
 					</tr>

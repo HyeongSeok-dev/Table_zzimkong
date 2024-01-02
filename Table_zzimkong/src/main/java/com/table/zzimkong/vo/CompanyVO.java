@@ -49,6 +49,7 @@ public class CompanyVO {
     private int com_ad_grade;
     private String com_search_tag;
     private Date com_reg_date;
+    private String com_open_date; 
     
 	private int min_price;
 	private int max_price;

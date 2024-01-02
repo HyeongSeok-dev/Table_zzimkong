@@ -257,7 +257,9 @@ public class CeoController {
 	// [company]--------------------------------------------------------------------------------------
 	
 	@GetMapping("ceo/company/register")
-	public String companyRegisterForm(HttpSession session) {
+	public String companyRegisterForm(HttpSession session,Model model) {
+//		session.setAttribute("sId", "ceo123456");
+		String sId = (String)session.getAttribute("sId");
 //		if(session.getAttribute("sId") == null) {
 //			
 //			map.put("msg", "접근권한이 없습니다!");
@@ -266,12 +268,14 @@ public class CeoController {
 //			mav = new ModelAndView("forward", "map", map);
 //			return mav;
 //		}
+		System.out.println(sId);
+		MemberVO dbmember = service.getUserInfo(sId);
+		model.addAttribute("member",dbmember);
 		return "ceo/ceo_company_register";
 	}
 	@PostMapping("ceo/company/registPro")
 	public String companyRegistPro(HttpSession session, Model model, CompanyVO company) {
 		
-		//컨트롤러 .js 주석풀고 테스트해야함!!!!!!!!!!!!!!!!!1
 		System.out.println("companyVO" + company);
 		String sId = (String)session.getAttribute("sId");
 //		if(session.getAttribute("sId") == null) {
@@ -281,11 +285,6 @@ public class CeoController {
 //			
 //			return "forward";
 //		}
-		//이것도 ajax로 실시간 반영하기
-//		MemberVO dbmember = service.getUserInfo(sId);
-//		
-//		if(dbmember.getUser_name() == company.getCom_ceo()) {}
-		
 		//user_idx 
 		company.setUser_idx(Integer.parseInt((String)session.getAttribute("sIdx")));
 		
