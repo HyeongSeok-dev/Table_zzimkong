@@ -43,7 +43,7 @@
 						<td style="width: 700px;">
 							<img src="${pageContext.request.contextPath}/resources/img/profile.png" width="100" height="100">
 							<p>프로필 사진으로 사용할 이미지를 등록해 주세요.</p>
-	                          <input type="file" name="fImage" class="hide"><br>
+	                          <input type="file" name="m_file" class="hide"><br>
 	                          <input type="checkbox" > 프로필 초기화
 						</td>
 					</tr>
@@ -62,7 +62,7 @@
 					<tr>
 						<th>닉네임</th>
 						<td>
-							<input type="text" id="u_nick" name=user_nick class="input_text" value="${mypage.user_nick}" placeholder="닉네임">
+							<input type="text" id="u_nick" name=user_nick class="input_text" value="${mypage.user_nick}" placeholder="변경할 닉네임">
 							<span id= "checkNickResult"></span>
 						</td>
 					</tr>

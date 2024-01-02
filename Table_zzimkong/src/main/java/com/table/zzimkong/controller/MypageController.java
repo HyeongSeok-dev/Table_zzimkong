@@ -1,6 +1,10 @@
 package com.table.zzimkong.controller;
 
-import java.util.List;
+import java.io.*;
+import java.nio.file.*;
+import java.time.*;
+import java.time.format.*;
+import java.util.*;
 
 import javax.servlet.http.*;
 
@@ -9,6 +13,7 @@ import org.springframework.security.crypto.bcrypt.*;
 import org.springframework.stereotype.*;
 import org.springframework.ui.*;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.*;
 
 import com.table.zzimkong.service.*;
 import com.table.zzimkong.vo.*;
@@ -40,7 +45,7 @@ public class MypageController {
 	
 		// 조회 결과 Model 객체에 저장
 		model.addAttribute("mypage", dbMypage);
-		System.out.println(dbMypage);
+		System.out.println("dbMypage : " + dbMypage);
 		
 		
 		// 회원정보 조회 페이지 포워딩
@@ -52,7 +57,7 @@ public class MypageController {
 	@ResponseBody
 	@GetMapping("my/modify/MypageCheckDupNick")
 	public String checkDupNick(MypageInfo mypage) {
-		System.out.println(mypage);
+		System.out.println("mypage1 : " + mypage);
 		MypageInfo dbMypage = service.getUserNick(mypage);
 		
 		if(dbMypage == null) {
@@ -83,7 +88,35 @@ public class MypageController {
 		if(!sId.equals("admin") || (sId.equals("admin") && (mypage.getUser_id() == null || mypage.getUser_id().equals("")))) {
 			mypage.setUser_id(sId);
 		} 
-
+		
+		// 프로필 사진 변경하기
+		String uploadDir = "/resources/upload";
+		String saveDir = session.getServletContext().getRealPath(uploadDir);
+		String subDir = "";
+		LocalDate now = LocalDate.now();
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+		subDir = now.format(dtf);
+		saveDir += File.separator + subDir;
+		
+		try {
+			Path path = Paths.get(saveDir); // 파라미터로 업로드 경로 전달
+			Files.createDirectories(path); // 파라미터로 Path 객체 전달
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		MultipartFile mFile = mypage.getM_file();
+		System.out.println("원본파일명 : " + mFile.getOriginalFilename());
+		
+		mypage.setUser_img("");
+		
+		String imgName = UUID.randomUUID().toString().substring(0, 8) + "_" + mFile.getOriginalFilename();
+		
+		if(!mFile.getOriginalFilename().equals("")) {
+			mypage.setUser_img(subDir + "/" + imgName);
+		}
+		System.out.println("실제 업로드 파일명 : " + mypage.getUser_img());
+		
 		// MypageService - getMypage() 메서드 호출하여 회원 정보 조회 요청(패스워드 비교용)
 		// => 파라미터 : MypageInfo 객체 리턴타입 : MypageInfo(dbMypage)
 		MypageInfo dbMypage = service.getMypage(mypage);
