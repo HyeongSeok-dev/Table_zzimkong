@@ -2,8 +2,10 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
-		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<!-- HikariCP 라이브러리 사용을 위한 설정(커넥션풀 설정) -->
@@ -49,6 +51,14 @@
 		<property name="mapperLocations"
 			value="classpath:/com/table/zzimkong/mapper/*Mapper.xml"></property>
 	</bean>
+	
+	<!-- >>>>>>>>>>>>>>>>>>>>> 트랜잭션 설정 추가 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+	<!-- 내부 property 태그에 2번에서 설정한 datasource 객체지정 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	<!--  tx:anotation-driven 태그를 통해 생성한 트랜잭션 관리 객체 지정 -->
+	<tx:annotation-driven transaction-manager="transactionManager"/>
 
 	<!-- 4. MyBatis 연동에 사용될 객체(클래스)들의 패키지 위치 지정(기본 루트 패키지 지정) -->
 	<mybatis-spring:scan
