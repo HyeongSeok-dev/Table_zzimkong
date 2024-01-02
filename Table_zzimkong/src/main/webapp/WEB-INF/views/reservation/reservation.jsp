@@ -78,7 +78,7 @@
 						</div>
 						<div class="info" id="menu_price">
 							<span class="info_title">주문한 메뉴 금액</span>
-							<span class="info_content"><b>107,000</b>원</span>
+							<span class="info_content"><b>${map.menuTotalPayPrice }</b>원</span>
 						</div>
 						<div class="info">
 							<span class="info_title"> </span>
@@ -89,28 +89,13 @@
 									<span class="count">${menu.order_amount}</span>
 									<span class="price">${menu.menu_price}</span>
 								</div>
-<!-- 								<div class="info_price"> -->
-<!-- 									<span class="menu_name">마르게리따 피자</span> -->
-<!-- 									<span class="count">1개</span> -->
-<!-- 									<span class="price">18,000원</span> -->
-<!-- 								</div> -->
-<!-- 								<div class="info_price"> -->
-<!-- 									<span class="menu_name">뇨끼파스타</span> -->
-<!-- 									<span class="count">1개</span> -->
-<!-- 									<span class="price">24,000원</span> -->
-<!-- 								</div> -->
-<!-- 								<div class="info_price"> -->
-<!-- 									<span class="menu_name">안심스테이크</span> -->
-<!-- 									<span class="count">1개</span> -->
-<!-- 									<span class="price">55,000원</span> -->
-<!-- <!-- 								</div> --> 
 							</c:forEach>
 							</span>
 						</div>
 						<hr>
 						<div class="info">
 							<span class="info_title">총 결제금액</span>
-							<span class="info_content"><b>127,000</b>원</span>
+							<span class="info_content"><b>${map.totalPayPrice }</b>원</span>
 						</div>
 					</div>
 				</section>

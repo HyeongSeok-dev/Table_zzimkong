@@ -58,6 +58,10 @@ public class ReservationService {
 		return mapper.insertResInfo(res);
 	}
 
+//	public int insertMenu(PreOrderVO pre) {
+//		return mapper.insertMenu(pre);
+//	}
+
 
 
 //	public ReservationVO getreservation(ReservationVO res) {
