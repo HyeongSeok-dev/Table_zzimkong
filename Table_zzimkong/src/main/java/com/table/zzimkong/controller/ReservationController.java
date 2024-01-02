@@ -1,6 +1,6 @@
 package com.table.zzimkong.controller;
 
-import java.util.ArrayList;
+import java.text.NumberFormat;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -12,6 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.table.zzimkong.service.ReservationService;
 import com.table.zzimkong.vo.CompanyVO;
 import com.table.zzimkong.vo.MemberVO;
@@ -28,16 +31,46 @@ public class ReservationController {
 	
 	@RequestMapping("reservation")
 	public ModelAndView reservation(HttpSession session, Map<String, Object> map,
-			ReservationVO res, PreOrderVO pre, MenuVO menu, CompanyVO com, MemberVO member) {
+			ReservationVO res, PreOrderVO pre, CompanyVO com, MemberVO member, MenuVO menu) throws JsonProcessingException {
 		
 		res = (ReservationVO) session.getAttribute("res");
-	    List<MenuVO> menuList = (List<MenuVO>) session.getAttribute("menuList");
+		NumberFormat numberFormat = NumberFormat.getInstance();
+		String res_table_price = numberFormat.format(res.getRes_table_price());
+	 // 세션에서 "menuList" 속성 가져오기
+	    Object obj = session.getAttribute("menuList");
+
+	    // ObjectMapper 인스턴스 생성
+	    ObjectMapper mapper = new ObjectMapper();
+
+	    // obj를 JSON 문자열로 변환
+	    String jsonStr = mapper.writeValueAsString(obj);
+
+	    // JSON 문자열을 List<MenuVO>로 변환
+	    List<MenuVO> menuList = mapper.readValue(jsonStr, new TypeReference<List<MenuVO>>(){});
+	    
+	    
+	    
 //	    session.setAttribute("res", null);
 //	    session.setAttribute("menuList", null);
-//        for (MenuVO menu : menuList) {
-//            int total_price = menu.getMenu_price() * menu.getOrder_amount();
-//            System.out.println(menu.getMenu_name() + "의 총 가격: " + total_price);
-//        }
+	    
+	    //메뉴가격 변수만들기~!
+	    int count = 0;
+	    int menuTotalPriceInt = 0;
+	    int totalPayPriceInt = 0;
+	    for(MenuVO menuP : menuList) {
+	    	menuTotalPriceInt = Integer.parseInt(menuP.getMenu_price()) * menuP.getOrder_amount();
+	        totalPayPriceInt += menuTotalPriceInt; // 메뉴의 총 가격을 총 결제 금액에 더함
+	        String menuTotalPrice = numberFormat.format(menuTotalPriceInt);
+	        menuP.setMenuTotalPrice(menuTotalPrice);
+	        count++;
+	    }
+	   
+	    String totalPayPrice = numberFormat.format(res.getRes_table_price() + totalPayPriceInt);
+	    String menuTotalPayPrice = numberFormat.format(totalPayPriceInt);
+	    System.out.println(totalPayPrice);
+	    
+	    map.put("menuTotalPayPrice", menuTotalPayPrice);
+	    map.put("totalPayPrice", totalPayPrice);
 	    map.put("com", com);
         map.put("res", res);
 	    map.put("menu", menuList);
@@ -65,7 +98,6 @@ public class ReservationController {
 		
 		
 		//[가게이름 조회]
-//		res.setCom_id(1);
         com = service.getCompany(res);
         System.out.println(com);
         map.put("com", com);
@@ -118,7 +150,7 @@ public class ReservationController {
 //        menuList = (List<MenuVO>) map.get("menus");
 //        session.setAttribute("res", res);
 //	    session.setAttribute("menuList", menuList);
-        mav = new ModelAndView("redirect:/payment", map);
+        mav = new ModelAndView("redirect:/payment?res_num="+res.getRes_num());
 		return mav;
 	}
 }
