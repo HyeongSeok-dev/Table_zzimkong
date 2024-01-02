@@ -39,10 +39,11 @@
 						<tr>
 							<th rowspan="4">사진등록</th>
 							<td colspan="2" rowspan="4"> 
-								<div id="img"><img src="" id="com_img_div"></div>
+								<div id="img"><img src="${pageContext.request.contextPath}/resources/upload/${com.com_img }" style="width: 200px;"></div>
 								<hr>
 								<div class="file_div">
-								<input type="file" id="file" name="com_img">
+								<input type="file" id="file" name="com_img" value="">
+								<a href="${pageContext.request.contextPath}/resources/upload/${com.com_img }"></a>
 								<div id="onlyone">*사진은 최대 한장만 등록 가능합니다.</div>
 								</div>
 							</td>

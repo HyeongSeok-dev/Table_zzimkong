@@ -23,7 +23,15 @@ $(function() {
 	        }
 	    }
 	    $(this).val(lines.join('\n'));
+	    
 	});
+	
+	$('#keyword').on('keydown', function(e) {
+    if (e.which == 32) { // 32는 스페이스바의 키 코드입니다.
+        e.preventDefault(); // 스페이스바의 기본 동작을 취소합니다.
+        $(this).val($(this).val() + '#'); // 현재 입력 필드의 내용 뒤에 '#' 문자를 추가합니다.
+    }
+});
 	
 	
 	/* 광고 신청이 미신청 상태이면 광고 단계 0으로 바꿈*/

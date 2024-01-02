@@ -86,5 +86,9 @@ public class CeoService {
 		return mapper.updateCompany(company);
 	}
 
+	public ReservationVO getResDetailInfo(ReservationVO res) {
+		return mapper.selectResDetailInfo(res);
+	}
+
 	
 }
