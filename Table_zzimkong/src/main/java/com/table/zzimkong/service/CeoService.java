@@ -73,6 +73,10 @@ public class CeoService {
 		return mapper.updateStatusClose(com_num);
 	}
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> stash
 	public List<CompanyVO> getComList(int sIdx) {
 		return mapper.selectCeoList(sIdx);
 	}

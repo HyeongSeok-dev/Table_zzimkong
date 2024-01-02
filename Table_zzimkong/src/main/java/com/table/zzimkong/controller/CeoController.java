@@ -283,9 +283,12 @@ public class CeoController {
 //			
 //			return "forward";
 //		}
+<<<<<<< HEAD
 		// 사업자번호 int로 변환
 		company.setCom_num((company.getCom_num_str()));
 		
+=======
+>>>>>>> stash
 		// [사업장 이미지 업로드]
 //		String uploadDir = "/resources/upload";
 //		String saveDir = session.getServletContext().getRealPath(uploadDir);
