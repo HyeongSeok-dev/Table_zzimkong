@@ -98,8 +98,7 @@
 	</update>
 	<update id="updateCompany">
 		UPDATE company
-		SET (
-			 com_tel = #{com_tel}
+		SET  com_tel = #{com_tel}
 			,com_open_time = #{com_open_time}
 			,com_close_time = #{com_close_time}
 			,com_breakStart_time = #{com_breakStart_time}
@@ -120,7 +119,6 @@
 			,com_tag_window = #{com_tag_window}
 			,com_ad_grade = #{com_ad_grade}
 			,com_search_tag = #{com_search_tag}
-		)
 		WHERE com_num = #{com_num};
 	</update>
 	
