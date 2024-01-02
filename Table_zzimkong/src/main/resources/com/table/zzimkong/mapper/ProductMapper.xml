@@ -245,6 +245,27 @@
 	    LIMIT 5
 	</select>
 	
+	<select id="selectReviewInfo" resultType="review">
+		SELECT *
+		FROM review
+		WHERE com_id = #{com_id}
+	</select>
+	
+	<select id="selectReviewScore" resultType="review">
+		SELECT
+		ROUND(AVG(review_score)/2, 1) AS avg_score,
+		count(*) AS reviewCount,
+		SUM(CASE WHEN review_score BETWEEN 0 AND 2 THEN 1 ELSE 0 END) AS 'oneStarCount',
+	    SUM(CASE WHEN review_score BETWEEN 3 AND 4 THEN 1 ELSE 0 END) AS 'twoStarCount',
+	    SUM(CASE WHEN review_score BETWEEN 5 AND 6 THEN 1 ELSE 0 END) AS 'threeStarCount',
+	    SUM(CASE WHEN review_score BETWEEN 7 AND 8 THEN 1 ELSE 0 END) AS 'fourStarCount',
+	    SUM(CASE WHEN review_score BETWEEN 9 AND 10 THEN 1 ELSE 0 END) AS 'fiveStarCount'
+		FROM review
+		WHERE com_id = #{com_id}
+		GROUP BY com_id
+	</select>
+	
+	
 	<!-- 메인화면=============================================== -->
 	<!-- 추천순 -->
 	<select id="selectRecommendList" resultType="company">

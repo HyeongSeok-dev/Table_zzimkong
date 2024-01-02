@@ -84,6 +84,13 @@ public class ReviewVO {
 	
 	
 	
+	private double avg_score;
+	private int reviewCount;
+	private int fiveStarCount;
+	private int fourStarCount;
+	private int threeStarCount;
+	private int twoStarCount;
+	private int oneStarCount;
 	
 	
 	

@@ -1,5 +1,4 @@
 @charset "UTF-8";
-
 body {
 	font-family: Apple SD Gothic Neo, Noto Sans KR, sans-serif;
 	letter-spacing: -.93px;
@@ -22,7 +21,8 @@ body {
 	padding: 0;
 	font-family: Apple SD Gothic Neo, Noto Sans KR, sans-serif;
 	letter-spacing: -.93px;
-	outline: 0
+	outline: 0;
+	box-sizing: border-box;
 }
 
 div {
@@ -209,6 +209,12 @@ a {
 	cursor: pointer
 }
 
+#reservation-confirm-button{
+	font-size: 1.2rem;
+	font-weight: bold;
+	padding: 10px;
+	
+}
 .confirm-button:hover {
 	color: #fbe122
 }
@@ -639,7 +645,6 @@ padding: 20px;
 	position: relative;
 	border-top: 1px solid #e6e6eb;
 	border-bottom: 1px solid #e6e6eb;
-	padding: 20px 240px 20px 0
 }
 .s-list.appraisal .grade-info .star-point {
 	margin-bottom: 5px;
@@ -650,7 +655,8 @@ padding: 20px;
 	top: 30px;
 	right: 0;
 	width: 200px;
-	font-size: 0
+	font-size: 0;
+	padding-left: 95px;
 }
 
 .s-list.appraisal .grade-info .star-point .point {
@@ -786,8 +792,41 @@ i {
 }
 
 .review_wrapper {
-    width: 70%;
-    overflow: auto;
+    width: 100%;
+    overflow-x: auto; /* 스크롤 가능하게 변경 */
+    white-space: nowrap;
+    position: relative;
+    padding: 10px 0;
+}
+
+.review_image {
+    display: inline-block; /* 이미지를 inline 요소로 설정 */
+    width: 20%; /* 한 줄에 5개의 이미지를 표시하려면 각각의 너비는 20%여야 함 */
+    padding: 10px; /* 이미지 간의 간격을 위한 패딩, 필요에 따라 조정 */
+    box-sizing: border-box; /* 패딩을 포함한 너비 계산 */
+}
+
+.review_image img {
+    width: 100%; /* 이미지를 div에 맞춰서 너비 100%로 설정 */
+    height: auto; /* 비율을 유지하며 높이 조정 */
+}
+
+.scroll-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    background: #fff; /* Adjust button style as needed */
+    border: 1px solid #ccc; /* Adjust button style as needed */
+    z-index: 10;
+}
+
+.scroll-btn.left {
+    left: 0;
+}
+
+.scroll-btn.right {
+    right: 0;
 }
 
 .app-graph {
@@ -860,6 +899,7 @@ span.similar_recom_title {
     align-items: stretch; /* 이 부분을 수정 */
     width: 100%;
     height: 100%;
+    padding: 10px;
 }
 
 .more_similar_button {
@@ -889,11 +929,11 @@ span.similar_recom_title {
 }
 
 .similar_content {
-	grid-template-columns: 152px 152px 152px 152px;
+	grid-template-columns: 152px 152px 152px 152px 152px;
 	padding: 20px 0;
 	box-sizing: border-box;
 	display: grid;
-	grid-template-rows: 228px
+	grid-template-rows: 228px;
 }
 
 .similar_section {
@@ -1066,4 +1106,85 @@ span.similar_recom_title {
 }
 .offBusiness{
 	color: red;
+}
+
+
+
+.wrapper2 {
+  display: flex;
+  width: 90%;
+  position: relative;
+}
+
+.wrapper2 i {
+  top: 50%;
+  height: 44px;
+  width: 44px;
+  color: #343F4F;
+  cursor: pointer;
+  font-size: 1.15rem;
+  position: absolute;
+  text-align: center;
+  line-height: 44px;
+  background: #fff;
+  border-radius: 50%;
+  transform: translateY(-50%);
+  transition: transform 0.1s linear;
+}
+
+.wrapper2 i:active {
+  transform: translateY(-50%) scale(0.9);
+}
+
+.wrapper2 i:hover {
+  background: skyblue;
+}
+
+.wrapper2 i:first-child {
+  left: -22px;
+  display: none;
+}
+
+.wrapper2 i:last-child {
+  right: -22px;
+}
+
+.wrapper2 .carousel {
+  font-size: 0px;
+  cursor: pointer;
+  overflow: hidden;
+  white-space: nowrap;
+  scroll-behavior: smooth;
+}
+
+.carousel.dragging {
+  cursor: grab;
+  scroll-behavior: auto;
+}
+
+.carousel.dragging img {
+  pointer-events: none;
+}
+
+.carousel img {
+  height: 320px;
+  object-fit: cover;
+  user-select: none;
+  width: 300px;
+  border-radius: 10%;
+  margin-right: 20px;
+}
+
+/* .carousel img:first-child { */
+/* } */
+
+@media screen and (max-width: 900px) {
+  .carousel img{
+    width: calc(100% / 2);
+  }
+}
+@media screen and (max-width: 550px) {
+  .carousel img{
+    width: 100%;
+  }
 }

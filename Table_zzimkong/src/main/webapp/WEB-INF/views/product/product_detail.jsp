@@ -16,6 +16,7 @@
 	src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0b71f7bc975653acc7be99d324066bee&libraries=services"></script>
 <script src="${pageContext.request.contextPath }/resources/js/product_detail.js"></script>
+
 </head>
 <body>
 <%-- 		<jsp:include page="../inc/top_ns.jsp"></jsp:include> --%>
@@ -153,52 +154,61 @@
 		<div class="s-list appraisal">
 			<div class="grade-info style-51Qop" id="style-51Qop">
 				<p class="title-and-score">
-					<span class="tit">(리뷰수) 건의 리뷰</span> <span id="lbl_star_point"
-						class="star-point"> <span class="point"> 총 별점 </span> <span
-						class="star"> <i style="width: 80%"></i>
-					</span>
+					<span class="tit">${review_score.reviewCount}건의 리뷰</span> <a href="../review/redetail?com_id=${company.com_id}">리뷰 더보기</a><span id="lbl_star_point"
+						class="star-point"> <span class="point"> 총 별점 </span> 
+						<span class="star"> 
+						    <i style="width: ${review_score.avg_score * 20}%"></i>
+						</span>
 					</span>
 				</p>
 				<div class="review-and-graph">
 					<div class="review_wrapper">
-						<jsp:include page="../inc/product_review.jsp"></jsp:include>
+<!-- 					    <button type="button" class="scroll-btn left">‹</button> -->
+					    <div class="review_container">
+					        <c:forEach var="review" items="${reviews}">
+					            <div class="review_image">
+					                <c:if test="${not empty review.review_img_1}">
+					                    <img src="${pageContext.request.contextPath}/resources/upload/${review.review_img_1}">
+					                </c:if>
+					            </div>
+					        </c:forEach>
+					    </div>
+<!-- 					    <button type="button" class="scroll-btn right">›</button> -->
 					</div>
 					<ul class="app-graph">
 						<li>
-							<p class="btxt">매우만족(8)</p>
+							<p class="btxt">매우만족(${review_score.fiveStarCount})</p>
 							<p class="graph">
-								<span style="width: 42%"> <!-- 총 별점중 비율 표시 -->
-								</span>
+								<span style="width: ${review_score.fiveStarCount * 100 / review_score.reviewCount}%"></span> <!-- 총 별점중 비율 표시 -->
 							</p>
 						</li>
 						<li>
-							<p class="btxt">만족(7)</p>
+							<p class="btxt">만족(${review_score.fourStarCount})</p>
 							<p class="graph">
-								<span style="width: 37%"></span>
+								<span style="width: ${review_score.fourStarCount * 100 / review_score.reviewCount}%"></span>
 							</p>
 						</li>
 						<li>
-							<p class="btxt">보통(3)</p>
+							<p class="btxt">보통(${review_score.threeStarCount})</p>
 							<p class="graph">
-								<span style="width: 16%"></span>
+								<span style="width: ${review_score.threeStarCount * 100 / review_score.reviewCount}%"></span>
 							</p>
 						</li>
 						<li>
-							<p class="btxt">불만(1)</p>
+							<p class="btxt">불만(${review_score.twoStarCount})</p>
 							<p class="graph">
-								<span style="width: 5%"></span>
+								<span style="width: ${review_score.twoStarCount * 100 / review_score.reviewCount}%"></span>
 							</p>
 						</li>
 						<li>
-							<p class="btxt">매우불만(0)</p>
+							<p class="btxt">매우불만(${review_score.oneStarCount})</p>
 							<p class="graph">
-								<span style="width: 0%"></span>
+								<span style="width: ${review_score.oneStarCount * 100 / review_score.reviewCount}%"></span>
 							</p>
 						</li>
 					</ul>
 				</div>
 			</div>
-				<button>리뷰 더보기</button>
 			<p class="gap20"></p>
 		</div>
 
