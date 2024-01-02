@@ -1,36 +1,6 @@
 $(document).ready(function() {
 	
 	
-	$("#u_nick").blur(function(){
-	let isDuplicateNick = false; //닉네임 중복 여부 저장할 변수
-			
-		//닉네임 입력값 가져오기
-		let user_nick = $("#u_nick").val();
-		
-		$.ajax({
-			url: "MemberCheckDupNick",
-			data: {
-				user_nick : user_nick
-			},
-			dataType: "json",
-			success : function(checkDuplicateResult){
-				if(checkDuplicateResult ){ //중복
-					$("#checkNickResult").html("이미 사용중인 닉네임");
-					$("#checkNickResult").css("color", "red");
-					isDuplicateNick = true;
-				}else{ //중복X
-					$("#checkNickResult").html("사용 가능한 닉네임");
-					$("#checkNickResult").css("color", "blue");
-					isDuplicateNick = false;
-				}
-			} //success
-		}); //ajax
-		
-	}); //닉네임 중복확인
-
-	
-	}); // document.ready 끝
-
 window.onload = function() {
 	// 회원정보 수정 - 이메일
 	document.modifyForm.emailDomain.onchange = function() {
@@ -45,72 +15,193 @@ window.onload = function() {
 //	    	document.modifyForm.email2.value = "";
 	    }
 	};
-	
-	// 닉네임 변경
-//	document.modifyForm.nickname.onblur = function() {
-//		let nick = document.modifyForm.nickname.value; // 입력받은 닉네임 값 저장
-//		
-//		if(nick.length >=2 && nick.length <= 6) {
-//			document.querySelector("#checkNickResult").innerText = "사용 가능";
-//			document.querySelector("#checkNickResult").style.color = "#3FAFFC";
-//		} else {
-//		     	document.querySelector("#checkNickResult").innerText = "2 ~ 6자리의 닉네임을 입력해주세요.";
-//		     	document.querySelector("#checkNickResult").style.color = "red";
-//		    }
-//	
-//	};
+} // window.onload 끝
 
 //	$("#modifyBtn").click(function(){
 //		var 
 //		
 //		});
+
+	// 닉네임 중복 확인	
+//	$("#u_nick").blur(function(){
+//			
+//		//닉네임 입력값 가져오기
+//		let user_nick = $("#u_nick").val();
+//		
+//		$.ajax({
+//			url: "MypageCheckDupNick",
+//			data: {
+//				user_nick : user_nick
+//			},
+//			dataType: "json",
+//			success : function(checkDuplicateResult){
+//				if(checkDuplicateResult ){ //중복
+//					$("#checkNickResult").html("이미 사용중인 닉네임");
+//					$("#checkNickResult").css("color", "red");
+//					isDuplicateNick = true;
+//				}else{ //중복X
+//					$("#checkNickResult").html("사용 가능한 닉네임");
+//					$("#checkNickResult").css("color", "blue");
+//					isDuplicateNick = false;
+//				}
+//			} //success
+//		}); //ajax
+//		
+//	}); //닉네임 중복확인
+
+	$("#modifyBtn").click(function(e){
+    if($("#u_nick").val() != "" && isDuplicateNick){
+        e.preventDefault(); //버튼의 기본 동작(폼 제출)을 막습니다.
+        alert("이미 존재하는 닉네임입니다.");
+	    }
+	});
+	let isDuplicateNick = false; //닉네임 중복 여부 저장할 변수
 	
+	$("#u_nick").blur(function(){
+	    //닉네임 입력값 가져오기
+	    let user_nick = $("#u_nick").val();
+	    
+	    $.ajax({
+	        url: "MypageCheckDupNick",
+	        data: {
+	            user_nick : user_nick
+	        },
+	        dataType: "json",
+	        success : function(checkDuplicateResult){
+	            if(checkDuplicateResult ){ //중복
+	                $("#checkNickResult").html("이미 사용중인 닉네임");
+	                $("#checkNickResult").css("color", "red");
+	                isDuplicateNick = true;
+	            }else{ //중복X
+	                $("#checkNickResult").html("사용 가능한 닉네임");
+	                $("#checkNickResult").css("color", "blue");
+	                isDuplicateNick = false;
+	            }
+	        } //success
+	    }); //ajax
+	    
+	}); //닉네임 중복확인
 
 	//비밀번호검증===============================
-	$("#txtPassword2").keyup(function(){
-		let passwd = $("#txtPassword2").val();
-		let msg = "";
-		let color = "";
-		
-		//비밀번호 길이 검증
-		// 대소문자, 숫자 ,특수문자(!@#$%)를 포함하여 8~16 입력
-		let lengthRegex = /^[A-Za-z0-9!@#$%]{8,16}$/;
-		
-		if(!lengthRegex.exec(passwd)){ //길이체크
-			msg = "영어 대소문자, 숫자, 특수문자 조합 8~16자리";
-			color = "red";
-		}else{
-			let engUpperRegex = /[A-Z]/; //대문자
-			let engLowerRegex = /[a-z]/; //소문자
-			let numRegex = /[\d]/; //숫자
-			let specRegex = /[!@#$%]/; //특수문자
-			
-			let count = 0;
-			
-			if(engUpperRegex.exec(passwd)){count++;}
-			if(engLowerRegex.exec(passwd)){count++;}
-			if(numRegex.exec(passwd)){count++;}
-			if(specRegex.exec(passwd)){count++;}
-			
-			switch(count){
-				case 4 : msg = "안전"; color = "green"; break;
-				case 3 : msg = "보통"; color = "yellow"; break;
-				case 2 : msg = "위험"; color = "orange"; break;
-				case 1 : case 0 :  msg = "사용 불가능한 비밀번호"; color = "red"; 
-			}
-			
-			if(count >= 2){ //안전,보통,위험 (사용가능)
-				isPasswd = true;
-			}else{ //사용 불가능한 비밀번호
-				isPasswd = false;
-			}	
-				
-		}
-		
-		$("#checkPasswdResult").html(msg);
-		$("#checkPasswdResult").css("color", color);
-		
-	}); //비밀번호검증
+	let isPasswd = true; // 비밀번호 유효성 검증 결과를 저장하는 변수. 기본값은 true로 설정
+
+    //비밀번호 검증 함수
+    function validatePassword(){
+        let passwd = $("#txtPassword2").val();
+
+        // 비밀번호 필드가 비어있지 않을 때만 검증 수행
+        if (passwd) {
+            let msg = "";
+            let color = "";
+            
+            //비밀번호 길이 검증
+            // 대소문자, 숫자 ,특수문자(!@#$%)를 포함하여 8~16 입력
+            let lengthRegex = /^[A-Za-z0-9!@#$%]{8,16}$/;
+            
+            if(!lengthRegex.exec(passwd)){ //길이체크
+                msg = "영어 대소문자, 숫자, 특수문자 조합 8~16자리";
+                color = "red";
+                isPasswd = false;
+            }else{
+                let engUpperRegex = /[A-Z]/; //대문자
+                let engLowerRegex = /[a-z]/; //소문자
+                let numRegex = /[\d]/; //숫자
+                let specRegex = /[!@#$%]/; //특수문자
+                
+                let count = 0;
+                
+                if(engUpperRegex.exec(passwd)){count++;}
+                if(engLowerRegex.exec(passwd)){count++;}
+                if(numRegex.exec(passwd)){count++;}
+                if(specRegex.exec(passwd)){count++;}
+                
+                switch(count){
+                    case 4 : msg = "안전"; color = "green"; break;
+                    case 3 : msg = "보통"; color = "yellow"; break;
+                    case 2 : msg = "위험"; color = "orange"; break;
+                    case 1 : case 0 :  msg = "사용 불가능한 비밀번호"; color = "red"; 
+                }
+                
+                if(count >= 2){ //안전,보통,위험 (사용가능)
+                    isPasswd = true;
+                }else{ //사용 불가능한 비밀번호
+                    isPasswd = false;
+                }   
+                    
+            }
+            
+            $("#checkPasswdResult").html(msg);
+            $("#checkPasswdResult").css("color", color);
+        }
+    }
+
+    //비밀번호 입력창에서 focus를 잃었을 때 비밀번호 검증
+    $("#txtPassword2").blur(validatePassword);
+
+    //폼 제출 시 비밀번호 검증
+    $("form").submit(function(e) {
+        validatePassword();
+        if (!isPasswd) {
+            alert('새 비밀번호를 다시 입력해주세요');
+            e.preventDefault(); // 폼 제출을 막음
+        }
+    });
+
+    //비밀번호 입력창에서 focus를 잃었을 때 비밀번호 검증
+    $("#txtPassword2").blur(validatePassword);
+
+    //폼 제출 시 비밀번호 검증
+    $("form").submit(function(e) {
+        validatePassword();
+        if (!isPasswd) {
+            alert('새 비밀번호를 다시 입력해주세요');
+            e.preventDefault(); // 폼 제출을 막음
+        }
+    });
+//	$("#txtPassword2").blur(function(){
+//		let passwd = $("#txtPassword2").val();
+//		let msg = "";
+//		let color = "";
+//		
+//		//비밀번호 길이 검증
+//		// 대소문자, 숫자 ,특수문자(!@#$%)를 포함하여 8~16 입력
+//		let lengthRegex = /^[A-Za-z0-9!@#$%]{8,16}$/;
+//		
+//		if(!lengthRegex.exec(passwd)){ //길이체크
+//			msg = "영어 대소문자, 숫자, 특수문자 조합 8~16자리";
+//			color = "red";
+//		}else{
+//			let engUpperRegex = /[A-Z]/; //대문자
+//			let engLowerRegex = /[a-z]/; //소문자
+//			let numRegex = /[\d]/; //숫자
+//			let specRegex = /[!@#$%]/; //특수문자
+//			
+//			let count = 0;
+//			
+//			if(engUpperRegex.exec(passwd)){count++;}
+//			if(engLowerRegex.exec(passwd)){count++;}
+//			if(numRegex.exec(passwd)){count++;}
+//			if(specRegex.exec(passwd)){count++;}
+//			
+//			switch(count){
+//				case 4 : msg = "안전"; color = "green"; break;
+//				case 3 : msg = "보통"; color = "yellow"; break;
+//				case 2 : msg = "위험"; color = "orange"; break;
+//				case 1 : case 0 :  msg = "사용 불가능한 비밀번호"; color = "red"; 
+//			}
+//			
+//			if(count >= 2){ //안전,보통,위험 (사용가능)
+//				isPasswd = true;
+//			}else{ //사용 불가능한 비밀번호
+//				isPasswd = false;
+//			}	
+//				
+//		}
+//		
+//		$("#checkPasswdResult").html(msg);
+//		$("#checkPasswdResult").css("color", color);
+//		
+//	}); //비밀번호검증
 	
 	// 비밀번호확인 입력란에 키를 누를때마다 비밀번호와 같은지 체크하기
 //	document.modifyForm.user_passwd2.onkeyup = function() {
@@ -156,7 +247,8 @@ window.onload = function() {
 	    }
 	}
 		
-} // window.onload 끝
+	
+	}); // document.ready 끝
 
 /* 예약 취소 모달창 my_list.jsp */
 	function cancelReservation(){

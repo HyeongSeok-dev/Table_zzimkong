@@ -62,7 +62,7 @@
 					<tr>
 						<th>닉네임</th>
 						<td>
-							<input type="text" id="u_nick" name=user_nick class="input_text" value="${mypage.user_nick}" placeholder="2 ~ 6자리 닉네임">
+							<input type="text" id="u_nick" name=user_nick class="input_text" value="${mypage.user_nick}" placeholder="닉네임">
 							<span id= "checkNickResult"></span>
 						</td>
 					</tr>
