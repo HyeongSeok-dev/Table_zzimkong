@@ -38,9 +38,6 @@ public interface CeoMapper {
 	List<ReservationVO> selectResInfo(CompanyVO company);
 	
 	int updateCompany(CompanyVO company);
-<<<<<<< HEAD
 
-=======
->>>>>>> stash
 	
 }
