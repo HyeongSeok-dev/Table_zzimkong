@@ -33,10 +33,14 @@ public interface CeoMapper {
 
 	int updateStatusClose(String com_num);
 
+<<<<<<< HEAD
 	List<CompanyVO> selectCeoList(int sIdx);
 
 	List<ReservationVO> selectResInfo(CompanyVO company);
 	
+=======
+	int updateCompany(CompanyVO company);
+>>>>>>> stash
 
 	
 }

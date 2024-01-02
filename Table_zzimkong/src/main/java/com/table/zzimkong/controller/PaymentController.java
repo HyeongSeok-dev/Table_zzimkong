@@ -355,7 +355,6 @@ public class PaymentController {
 		// 예약조회, 포인트조회,사업장정보조회,선주문조회 
 		
 		// int타입 포인트에 천단위 쉼표넣고 String타입으로 변환
-		//고쳐야함!!!!
 //		String finalDiscountPoint = numberFormat.format(discountPoint);
 //		String finalEarnedPoints = numberFormat.format(earnedPoints);
 //		System.out.println("finalDiscountPoint" + finalDiscountPoint);

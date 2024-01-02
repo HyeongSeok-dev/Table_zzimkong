@@ -96,6 +96,33 @@
 		SET com_status = 4
 		WHERE com_num = #{com_num};
 	</update>
+	<update id="updateCompany">
+		UPDATE company
+		SET (
+			 com_tel = #{com_tel}
+			,com_open_time = #{com_open_time}
+			,com_close_time = #{com_close_time}
+			,com_breakStart_time = #{com_breakStart_time}
+			,com_breakEnd_time = #{com_breakEnd_time}
+			,com_img = #{com_img}
+			,com_max_people = #{com_max_people}
+			,com_tag_date = #{com_tag_date}
+			,com_tag_family = #{com_tag_family}
+			,com_tag_party = #{com_tag_party}
+			,com_tag_quiet = #{com_tag_quiet}
+			,com_tag_park = #{com_tag_park}
+			,com_tag_kids = #{com_tag_kids}
+			,com_tag_disabled = #{com_tag_disabled}
+			,com_tag_pet = #{com_tag_pet}
+			,com_tag_hall = #{com_tag_hall}
+			,com_tag_room = #{com_tag_room}
+			,com_tag_terrace = #{com_tag_terrace}
+			,com_tag_window = #{com_tag_window}
+			,com_ad_grade = #{com_ad_grade}
+			,com_search_tag = #{com_search_tag}
+		)
+		WHERE com_num = #{com_num};
+	</update>
 	
 	<select id="selectCeoList" resultType="company">
 		SELECT * FROM company WHERE user_idx = #{sIdx}

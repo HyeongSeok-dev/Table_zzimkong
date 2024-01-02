@@ -30,14 +30,17 @@ $(function () {
 			</div>
 		</div>
 		<div class="text_inner">
-			<form action="registerPro" method="post" name="ceoComForm" enctype="multipart/form-data">
+			<form action="registPro" method="post" name="ceoComForm" enctype="multipart/form-data">
 				<table>
 					<tr>
 						<th>사업자등록번호</th>
 						<td colspan="5">
-							<div>
-								<input type="text" name="com_num" id="com_num_register" placeholder="사업자등록번호를 입력해 주세요." id="comNumText">
-								<button type="button" class="button_olive" id="comNumBtn">번호찾기</button>
+							<div class="div_display">
+								<div class="div_display div_align">
+									<input type="text" name="com_num_str" id="com_num_register" placeholder="사업자등록번호를 입력해 주세요." id="comNumText">
+									<button type="button" class="button_olive" id="comNumBtn">번호찾기</button>
+								</div>
+								<div id="guide">&nbsp;&nbsp;&nbsp;*사업자등록번호는 10자리로 '-'를 제외하고 정확하게 입력해주세요.</div>
 							</div>	
 						</td>
 					</tr>
@@ -46,9 +49,9 @@ $(function () {
 						<td colspan="2" rowspan="4"> 
 							<div id="img"><img src="" id="com_img_div"></div>
 							<hr>
-							<div class="file_div">
+							<div class="div_display">
 							<input type="file" id="file" name="com_img">
-							<div id="onlyone">*사진은 최대 한장만 등록 가능합니다.</div>
+							<div id="guide">*사진은 최대 한장만 등록 가능합니다.</div>
 							</div>
 						</td>
 						<th>상호명</th>
@@ -158,11 +161,17 @@ $(function () {
 								<option name="unapplied" value="미신청">미신청</option>
 							</select>
 							-
-							<select name="com_ad_grade" id="adLevel">
+							<select name="com_ad_grade_str" id="adLevel">
 								<option value="0단계">0단계</option>
 								<option value="1단계">1단계</option>
 								<option value="2단계">2단계</option>
 								<option value="3단계">3단계</option>
+							</select>
+							<select name="com_ad_grade" id="adLevel">
+								<option value="0">0단계</option>
+								<option value="1">1단계</option>
+								<option value="2">2단계</option>
+								<option value="3">3단계</option>
 							</select>
 						</td>
 					</tr>
@@ -170,29 +179,30 @@ $(function () {
 						<th>카테고리</th>
 						<td colspan="4" style="font-size: 18px;">
 							<div id="checkbox">
-								<input type="checkbox" value="데이트" name="com_tag_date" class="category">&nbsp;데이트&nbsp; 
-								<input type="checkbox" value="가족모임" name="com_tag_family" class="category">&nbsp;가족모임 &nbsp;
-								<input type="checkbox" value="단체회식" name="com_tag_party" class="category">&nbsp;단체회식 &nbsp;
-								<input type="checkbox" value="조용한" name="com_tag_quiet" class="category">&nbsp;조용한 &nbsp;
-								<input type="checkbox" value="주차가능" name="com_tag_park" class="category">&nbsp;주차가능 &nbsp;
-								<input type="checkbox" value="노키즈존" name="com_tag_kids" class="category">&nbsp;노키즈존 &nbsp;
+								<input type="checkbox" value="데이트" name="com_tag" class="category">&nbsp;데이트&nbsp; 
+								<input type="checkbox" value="가족모임" name="com_tag" class="category">&nbsp;가족모임 &nbsp;
+								<input type="checkbox" value="단체회식" name="com_tag" class="category">&nbsp;단체회식 &nbsp;
+								<input type="checkbox" value="조용한" name="com_tag" class="category">&nbsp;조용한 &nbsp;
+								<input type="checkbox" value="주차가능" name="com_tag" class="category">&nbsp;주차가능 &nbsp;
+								<input type="checkbox" value="노키즈존" name="com_tag" class="category">&nbsp;노키즈존 &nbsp;
 							</div>	
 							<div>	
-								<input type="checkbox" value="장애인편의시설" name="com_tag_disabled" class="category">&nbsp;장애인편의시설 &nbsp;
-								<input type="checkbox" value="반려동물" name="com_tag_pet" class="category">&nbsp;반려동물 동반 &nbsp;
-								<input type="checkbox" value="홀" name="com_tag_hall" class="category">&nbsp;홀 &nbsp;
-								<input type="checkbox" value="룸" name="com_tag_room" class="category">&nbsp;룸 &nbsp;
-								<input type="checkbox" value="테라스" name="com_tag_terrace" class="category">&nbsp;테라스 &nbsp;
-								<input type="checkbox" value="창가자리" name="com_tag_window" class="category">&nbsp;창가자리 &nbsp;
+								<input type="checkbox" value="장애인편의시설" name="com_tag" class="category">&nbsp;장애인편의시설 &nbsp;
+								<input type="checkbox" value="반려동물" name="com_tag" class="category">&nbsp;반려동물 동반 &nbsp;
+								<input type="checkbox" value="홀" name="com_tag" class="category">&nbsp;홀 &nbsp;
+								<input type="checkbox" value="룸" name="com_tag" class="category">&nbsp;룸 &nbsp;
+								<input type="checkbox" value="테라스" name="com_tag" class="category">&nbsp;테라스 &nbsp;
+								<input type="checkbox" value="창가자리" name="com_tag" class="category">&nbsp;창가자리 &nbsp;
 							</div>
 						</td>
 					</tr>
 					<tr>
 						<th >검색키워드</th>
 						<td colspan="4">
-							<input type="text" id="keyword" name="com_search_tag" value="" placeholder="사업장이 검색될 키워드를 입력해주세요">
-							<br>
-							<div id="com_search_tag"> </div>
+							<div class="div_display">
+								<input type="text" id="keyword" name="com_search_tag" value="" placeholder="사업장이 검색될 키워드를 입력해주세요">
+								<div id="guide">* 키워드는 공백없이 '#'을붙여주세요.</div>
+							</div>
 						</td>
 					</tr>
 				</table>

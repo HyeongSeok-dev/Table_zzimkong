@@ -34,7 +34,8 @@
 			</div>
 		</div>
 		<div class="text_inner">
-				<form action="modifyPro" method="post" enctype="multipart/form-data" id="registerForm">
+			<div class="text_inner_form1">
+				<form action="modifyPro" method="post" enctype="multipart/form-data">
 					<table>
 						<tr>
 							<th rowspan="4">사진등록</th>
@@ -168,15 +169,15 @@
 						</tr>
 					</table>
 					<br><br>
-				</form>
-				<div class="text_inner_form1">
 					<button type="submit" class="button_olive">수정</button>
-					<form action="closeRegist" method="post">
-						<input type="hidden" value="${com.com_num }" name="com_num">
-						<button type="submit" id="button_cancel">폐점 신청</button>
-					</form>
-						<button type="button" class="button_grey2" style="color: #3FAFFC; background-color: #fff; border: 1px solid #3FAFFC;" onclick="javascript:history.back()">나가기</button>
-				</div>
+				</form>
+			</div>
+			<div class="text_inner_form2">
+				<form action="closeRegist" method="post">
+					<input type="hidden" value="${com.com_num }" name="com_num">
+					<button type="submit" id="button_cancel">폐점 신청</button>
+				</form>
+					<button type="button" class="button_grey2" style="color: #3FAFFC; background-color: #fff; border: 1px solid #3FAFFC;" onclick="javascript:history.back()">나가기</button>
 			</div>
 		</div>
 	</section>

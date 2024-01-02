@@ -73,6 +73,7 @@ public class CeoService {
 		return mapper.updateStatusClose(com_num);
 	}
 
+<<<<<<< HEAD
 	public List<CompanyVO> getComList(int sIdx) {
 		return mapper.selectCeoList(sIdx);
 	}
@@ -80,6 +81,11 @@ public class CeoService {
 
 	public List<ReservationVO> getResInfoList(CompanyVO company) {
 		return mapper.selectResInfo(company);
+=======
+	public int companyModify(CompanyVO company) {
+		// TODO Auto-generated method stub
+		return mapper.updateCompany(company);
+>>>>>>> stash
 	}
 
 	

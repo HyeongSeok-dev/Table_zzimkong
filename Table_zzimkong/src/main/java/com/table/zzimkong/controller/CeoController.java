@@ -270,9 +270,11 @@ public class CeoController {
 //		}
 		return "ceo/ceo_company_register";
 	}
-	@GetMapping("ceo/company/registerPro")
-	public String companyRegisterPro(HttpSession session, Model model, CompanyVO company) {
+	@PostMapping("ceo/company/registPro")
+	public String companyRegistPro(HttpSession session, Model model, CompanyVO company) {
 		
+		//컨트롤러 .js 주석풀고 테스트해야함!!!!!!!!!!!!!!!!!1
+		System.out.println("companyVO" + company);
 		String sId = (String)session.getAttribute("sId");
 //		if(session.getAttribute("sId") == null) {
 //			
@@ -281,67 +283,102 @@ public class CeoController {
 //			
 //			return "forward";
 //		}
+		// 사업자번호 int로 변환
+		company.setCom_num(Integer.parseInt(company.getCom_num_str()));
 		
 		// [사업장 이미지 업로드]
-		String uploadDir = "/resources/upload";
-		String saveDir = session.getServletContext().getRealPath(uploadDir);
-		String subDir = "";
-		LocalDate now = LocalDate.now();
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-		subDir = now.format(dtf);
-		saveDir += File.separator + subDir;
+//		String uploadDir = "/resources/upload";
+//		String saveDir = session.getServletContext().getRealPath(uploadDir);
+//		String subDir = "";
+//		LocalDate now = LocalDate.now();
+//		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+//		subDir = now.format(dtf);
+//		saveDir += File.separator + subDir;
+//		
+//		try {
+//			Path path = Paths.get(saveDir); // 파라미터로 업로드 경로 전달
+//			Files.createDirectories(path); // 파라미터로 Path 객체 전달
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//		MultipartFile mFile = company.getFile();
+//		System.out.println("원본파일명1 : " + mFile.getOriginalFilename());
+//		
+//		company.setCom_img("");
+//		
+//		String imgName = UUID.randomUUID().toString().substring(0, 8) + "_" + mFile.getOriginalFilename();
+//		
+//		if(!mFile.getOriginalFilename().equals("")) {
+//			company.setCom_img(subDir + "/" + imgName);
+//		}
+//		System.out.println("실제 업로드 파일명 : " + company.getCom_img());
+//		
+//		// [영업시간/브레이크타임 시간분 합치기]
+//		company.setCom_open_time(company.getOpenHour() + " : " + company.getOpenMin());
+//		company.setCom_close_time(company.getCloseHour() + " : " + company.getCloseMin());
+//		company.setCom_breakStart_time(company.getStartHour() + " : " + company.getStartMin());
+//		company.setCom_breakEnd_time(company.getEndHour() + " : " + company.getEndMin());
 		
-		try {
-			Path path = Paths.get(saveDir); // 파라미터로 업로드 경로 전달
-			Files.createDirectories(path); // 파라미터로 Path 객체 전달
-		} catch (IOException e) {
-			e.printStackTrace();
+		//카테고리 boolea으로 변경하기
+		switch (company.getCom_tag()) {
+		case "데이트": company.setCom_tag_date(true);
+		case "가족모임": company.setCom_tag_family(true);
+		case "단체회식": company.setCom_tag_party(true);
+		case "조용한": company.setCom_tag_quiet(true);
+		case "주차가능": company.setCom_tag_park(true);
+		case "노키즈존": company.setCom_tag_kids(true);
+		case "장애인편의시설": company.setCom_tag_disabled(true);
+		case "반려동물": company.setCom_tag_pet(true);
+		case "홀": company.setCom_tag_hall(true);
+		case "룸": company.setCom_tag_room(true);
+		case "테라스": company.setCom_tag_terrace(true);
+		case "창가자리": company.setCom_tag_window(true);
+			break;
 		}
-		MultipartFile mFile = company.getFile();
-		System.out.println("원본파일명1 : " + mFile.getOriginalFilename());
 		
-		company.setCom_img("");
+		//검색태그 공백제거하기
+		company.setCom_search_tag(company.getCom_search_tag().trim());
 		
-		String imgName = UUID.randomUUID().toString().substring(0, 8) + "_" + mFile.getOriginalFilename();
-		
-		if(!mFile.getOriginalFilename().equals("")) {
-			company.setCom_img(subDir + "/" + imgName);
+		//광고설정 int로 변경하기
+		if(company.getCom_ad_grade_str().equals("0단계")) {
+			company.setCom_ad_grade(0);
+		} else if(company.getCom_ad_grade_str().equals("0단계")) {
+			company.setCom_ad_grade(1);
+		} else if(company.getCom_ad_grade_str().equals("0단계")) {
+			company.setCom_ad_grade(2);
+		} else if(company.getCom_ad_grade_str().equals("0단계")) {
+			company.setCom_ad_grade(3);
 		}
-		System.out.println("실제 업로드 파일명 : " + company.getCom_img());
 		
-		// [영업시간/브레이크타임 시간분 합치기]
-		company.setCom_open_time(company.getOpenHour() + " : " + company.getOpenMin());
-		company.setCom_close_time(company.getCloseHour() + " : " + company.getCloseMin());
-		company.setCom_breakStart_time(company.getStartHour() + " : " + company.getStartMin());
-		company.setCom_breakEnd_time(company.getEndHour() + " : " + company.getEndMin());
+		System.out.println(company.getCom_search_tag());
 		
 		// 1.등록
-		int insertCompany = service.registCompany(company, sId);
+//		int insertCompany = service.registCompany(company, sId);
 		
-		if(insertCompany > 0) {
-			
-			try {
-				// 업로드 된 파일들은 MultipartFile 객체에 의해 임시 디렉토리에 저장되며
-				// 글쓰기 작업 성공 시 임시 디렉토리 -> 실제 디렉토리 이동 작업 필요
-				// => MultipartFile 객체의 transferTo() 메서드를 호출하여 실제 위치로 이동(= 업로드)
-				// => 파일이 선택되지 않은 경우(파일명이 널스트링) 이동이 불가능(예외 발생)하므로 제외
-				// => transferTo() 메서드 파라미터로 java.io.File 타입 객체 전달
-				if(!mFile.getOriginalFilename().equals("")) {
-					mFile.transferTo(new File(saveDir, imgName));
-				}
-				
-			} catch (IllegalStateException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			
-			return "redirect:/ceo/company/list";
-			
-		} else {
+//		if(insertCompany > 0) {
+//			
+//			try {
+//				// 업로드 된 파일들은 MultipartFile 객체에 의해 임시 디렉토리에 저장되며
+//				// 글쓰기 작업 성공 시 임시 디렉토리 -> 실제 디렉토리 이동 작업 필요
+//				// => MultipartFile 객체의 transferTo() 메서드를 호출하여 실제 위치로 이동(= 업로드)
+//				// => 파일이 선택되지 않은 경우(파일명이 널스트링) 이동이 불가능(예외 발생)하므로 제외
+//				// => transferTo() 메서드 파라미터로 java.io.File 타입 객체 전달
+//				if(!mFile.getOriginalFilename().equals("")) {
+//					mFile.transferTo(new File(saveDir, imgName));
+//				}
+//				
+//			} catch (IllegalStateException e) {
+//				e.printStackTrace();
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			}
+//			
+//			return "redirect:/ceo/company/list";
+//			
+//		} else {
 			model.addAttribute("msg","사업장 등록 실패!");     
 			return "fail_back";
-		}
+//		}
 				
 				
 	}
@@ -467,9 +504,60 @@ public class CeoController {
 	}
 	
 	@PostMapping("ceo/company/modifyPro")
-	public String company_modifyPro(HttpSession session, Model model, @RequestParam(defaultValue = "")String com_num) {
-
-		return "ceo/ceo_company_modify";
+	public String company_modifyPro(HttpSession session, Model model, CompanyVO company) {
+		String sId = (String)session.getAttribute("sId");
+//		if(session.getAttribute("sId") == null) {
+//			
+//			model.addAttribute("msg", "접근권한이 없습니다!");
+//			model.addAttribute("targetURL", "login");
+//			
+//			return "forward";
+//		}
+		
+		// [사업장 이미지 업로드]
+		String uploadDir = "/resources/upload";
+		String saveDir = session.getServletContext().getRealPath(uploadDir);
+		String subDir = "";
+		LocalDate now = LocalDate.now();
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+		subDir = now.format(dtf);
+		saveDir += File.separator + subDir;
+		
+		try {
+			Path path = Paths.get(saveDir); // 파라미터로 업로드 경로 전달
+			Files.createDirectories(path); // 파라미터로 Path 객체 전달
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		MultipartFile mFile = company.getFile();
+		System.out.println("원본파일명1 : " + mFile.getOriginalFilename());
+		
+		company.setCom_img("");
+		
+		String imgName = UUID.randomUUID().toString().substring(0, 8) + "_" + mFile.getOriginalFilename();
+		
+		if(!mFile.getOriginalFilename().equals("")) {
+			company.setCom_img(subDir + "/" + imgName);
+		}
+		System.out.println("실제 업로드 파일명 : " + company.getCom_img());
+		
+		//시간정보 db 테이터로 수정함
+		company.setCom_open_time(company.getOpenHour() + " : " + company.getOpenMin());
+		company.setCom_close_time(company.getCloseHour() + " : " + company.getCloseMin());
+		company.setCom_breakStart_time(company.getStartHour() + " : " + company.getStartMin());
+		company.setCom_breakEnd_time(company.getEndHour() + " : " + company.getEndMin());
+		
+		int updateCompany = service.companyModify(company);
+		
+		
+		if(updateCompany < 0) {
+			model.addAttribute("msg", "폐점 신청 실패!");
+			return "fail_back";
+		} else {
+			
+			return "redirect:view?com_num=" + company.getCom_num();
+		}
+		
 	}
 	
 	@PostMapping("ceo/company/closeRegist")

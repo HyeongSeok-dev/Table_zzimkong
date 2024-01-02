@@ -233,8 +233,9 @@ input[type="date"] {
 	table-layout: auto;
 }
 
-.file_div {
-	
+.text_inner_form1 {
+	display: flex;
+	justify-content: center;
 }
 
 #csQnaRegiTitle {
@@ -265,7 +266,7 @@ td>div {
 	justify-content: center;
 }
 
-#onlyone {
+#guide {
 	text-align: left;
 	margin-top: 10px;
 	color: #bb5b67;
@@ -276,12 +277,19 @@ td>div {
 	width: 300px;
 }
 
-.file_div {
+.div_display {
+	width: 100%;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-end;
 	align-items: flex-start;
 }
+.div_display .div_align {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+    justify-content: center;
+	}
 
 .ceo_bottom {
 /* 	height: 40px; */
