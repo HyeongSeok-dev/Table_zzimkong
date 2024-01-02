@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.table.zzimkong.mapper.ReviewMapper;
 import com.table.zzimkong.vo.MenuVO;
@@ -100,19 +101,20 @@ public class ReviewService {
 	}
 
 	
-	public List<ReviewVO> getSortedReviews(@Param("comId") int comId, 
-            @Param("sortType") String sortType,
-            @Param("photoOnly") boolean photoOnly) {
+	public List<ReviewVO> getSortedReviews(int comId, 
+            String sortType,
+            boolean photoOnly,
+            String menuName) {
 
-		return mapper.getSortedReviews(comId, sortType,photoOnly);
+		return mapper.getSortedReviews(comId, sortType,photoOnly,menuName);
 	}
 
 		
 	// =========================================================================
 	// 메뉴 불러오기 
-	public List<ReviewMenuVO> getMenuByComId(int comId) {
+	public List<String> getMenuNamesByComId(int comId) {
 
-		return mapper.selectMenuByComId(comId);
+		return mapper.selectReviewMenu(comId);
 	}
 	
 	// =========================================================================

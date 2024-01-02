@@ -1,5 +1,39 @@
 @charset "UTF-8";
+/* ------------------------------------ */
+.menu_checkbox_container {
+    margin: 5px;
+    padding: 5px;
+    display: inline-block; /* 또는 필요에 따라 다른 디스플레이 속성을 사용할 수 있습니다 */
+}
 
+.checkbox_label {
+    margin-left: 3px;
+}
+
+.menu_checkbox {
+    display: none!important; /* 체크박스 숨기기 */
+}
+
+.menu_button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 2px;
+    background-color: #f0f0f0;
+/*     border: 0; */
+    border: 1px solid #dcdcdc;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.menu_button:hover {
+    background-color: #e0e0e0; /* 호버 효과 */
+}
+
+.menu_checkbox:checked + .menu_button {
+    background-color: #bcdff1; /* 선택된 상태의 스타일 */
+}
+
+/* ------------------------------------ */
 .chart-container {
     position: relative;
     height: 120vh;

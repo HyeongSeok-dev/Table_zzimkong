@@ -52,6 +52,7 @@ public class ReviewController {
 	public String review_detail(@RequestParam("com_id") int comId, 
 								@RequestParam(value = "sortType", required = false, defaultValue = "newest") String sortType,
 	                            @RequestParam(value = "photoOnly", required = false, defaultValue = "false") boolean photoOnly,
+	                            @RequestParam(value = "menuName", required = false) String menuName,
 								Model model) {		
 		// 업체 이름 불러오기
 		String comName = service.getCompanyName(comId);
@@ -73,12 +74,7 @@ public class ReviewController {
         List<ReviewCountVO> reviewCounts = service.getReviewCountsByComId(comId);
         String reviewCountsJson = new Gson().toJson(reviewCounts);
         model.addAttribute("reviewCountsJson", reviewCountsJson);		
-		
-        model.addAttribute("reviews", reviews);
-        
-        // 식당에 따라 메뉴 이름 불러오기
-        List<ReviewMenuVO> menus = service.getMenuByComId(comId);
-        model.addAttribute("menus",menus);
+		model.addAttribute("reviews", reviews);
         
         // 리뷰 정렬 처리
         
@@ -86,7 +82,7 @@ public class ReviewController {
 //        List<ReviewVO> reviews; // => 위에서 선언됨
         if(photoOnly) {
         	// 사진이 있는 리뷰만 가져옴
-            reviews = service.getSortedReviews(comId, sortType,photoOnly);
+        	reviews = service.getSortedReviews(comId, sortType, photoOnly, menuName);
         } else {
             // sortType에 따라 리뷰 정렬
             switch (sortType) {
@@ -105,22 +101,30 @@ public class ReviewController {
 
         model.addAttribute("reviews", reviews);
 	        
-        
-        
-        
 		return "review/review_detail";
 	}
 	// ===================================================================
-    // AJAX 요청 처리: 정렬된 리뷰 목록 반환
+    // [ AJAX 요청 처리: 정렬된 리뷰 목록 출력 ]
     @GetMapping("/review/redetail/sortedReviews")
     @ResponseBody
     public List<ReviewVO> getSortedReviews(@RequestParam("comId") int comId, 
                                            @RequestParam("sortType") String sortType,
-                                           @RequestParam(value = "photoOnly", defaultValue = "false") boolean photoOnly) {
-        return service.getSortedReviews(comId, sortType, photoOnly);
+                                           @RequestParam(value = "photoOnly", defaultValue = "false") boolean photoOnly,
+                                           @RequestParam(value = "menuName", required = false) String menuName) {
+        return service.getSortedReviews(comId, sortType, photoOnly,menuName);
     }
 
 	// ===================================================================
+    // [ 메뉴이름 가져오기 ]
+    @GetMapping("/review_menus")
+    @ResponseBody
+    public List<String> getMenuNames(@RequestParam("comId") int comId) {
+
+    	return service.getMenuNamesByComId(comId);
+    }
+
+    
+    // ===================================================================
 	// [ 리뷰 작성 ]
 	// "detail" 서블릿 요청에 대한 리뷰 글쓰기 폼 표시
 	@GetMapping("review/write")

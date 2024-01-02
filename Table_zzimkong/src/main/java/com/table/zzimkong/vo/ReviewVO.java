@@ -69,6 +69,8 @@ public class ReviewVO {
 	private int moodChildCount;
 	private int moodNoKeywordCount;
 	
+	private String menu_name;
+	
 	
 	
 	

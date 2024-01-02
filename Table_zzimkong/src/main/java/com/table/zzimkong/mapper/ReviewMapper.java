@@ -57,12 +57,14 @@ public interface ReviewMapper {
 	List<ReviewVO> selectReviewsByLowestScore(int comId);
 
 	// 사진/영상만 보기
-	List<ReviewVO> getSortedReviews(@Param("comId")int comId,@Param("sortType") String sortType,
-			@Param("photoOnly") boolean photoOnly);
+	List<ReviewVO> getSortedReviews(@Param("comId")int comId,
+			@Param("sortType") String sortType,
+			@Param("photoOnly") boolean photoOnly,
+			@Param("menuName") String menuName);
 
 	
 	// 메뉴 불러오기 
-	List<ReviewMenuVO> selectMenuByComId(int comId);
+	List<String> selectReviewMenu(int comId);
 
 
 
