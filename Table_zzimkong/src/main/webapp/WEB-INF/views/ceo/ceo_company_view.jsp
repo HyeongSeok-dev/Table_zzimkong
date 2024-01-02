@@ -20,11 +20,11 @@
 				<span id="status_4"></span>
 			</div>
 		</div>
-		<div class="text_inner">
+		<div class="text_inner_viewTable">
 				<table>
 					<tr>
-						<th rowspan="2">사진</th>
-						<td rowspan="2"><!--<img src="${com.com_img }">  --></td>
+						<th rowspan="4">사진</th>
+						<td rowspan="4"><img src="${pageContext.request.contextPath}/resources/upload/${com.com_img }" style="width: 200px;"></td>
 						<th colspan="2">등록일자</th>
 						<td>${com.com_reg_date }</td>
 					</tr>
@@ -33,8 +33,10 @@
 						<td id="com_num">${com.com_num }</td>
 					</tr>
 					<tr>
-						<th>상호명</th>
+						<th colspan="2">상호명</th>
 						<td>${com.com_name }</td>
+					</tr>
+					<tr>
 						<th colspan="2">대표자명</th>
 						<td>${com.com_ceo }</td>
 					</tr>

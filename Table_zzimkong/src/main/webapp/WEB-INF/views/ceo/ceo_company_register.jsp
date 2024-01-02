@@ -201,7 +201,7 @@ $(function () {
 						<td colspan="4">
 							<div class="div_display">
 								<input type="text" id="keyword" name="com_search_tag" value="" placeholder="사업장이 검색될 키워드를 입력해주세요">
-								<div id="guide">* 키워드는 공백없이 '#'을붙여주세요.</div>
+								<div id="guide">* 키워드를 입력하고 스페이스바를 누르면 자동으로 '#'가 붙습니다.</div>
 							</div>
 						</td>
 					</tr>

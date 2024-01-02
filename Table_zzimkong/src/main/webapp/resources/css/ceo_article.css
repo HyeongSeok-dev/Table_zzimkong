@@ -190,6 +190,10 @@ input[type="date"] {
 .text_inner {
 	margin-bottom: 50px;
 }
+.text_inner_viewTable{
+	margin-left: 10px;
+	margin-right: 10px;
+}
 
 
 .hour, .minute {
