@@ -29,10 +29,6 @@ px      68    160    252    344    436    528    620    712    */
   #slider .block h3 {
     text-align: left;
   }
-  #slider .block .owl-carousel img {
-    padding-right: 0px;
-    width: 95%;
-  }
   /*--
     blog Start
 --*/
@@ -195,12 +191,6 @@ px      68    160    252    */
   #slider .block .owl-carousel {
     padding-top: 30px;
     position: relative;
-  }
-  #slider .block .owl-carousel div img {
-    width: 100%;
-    height: 220px;
-    border-radius: 5px;
-    padding-right: 0px;
   }
   /*--
     about-us Start

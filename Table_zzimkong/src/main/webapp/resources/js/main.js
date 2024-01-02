@@ -1,4 +1,15 @@
 $(document).ready(function() {
+	
+//  $("#owl-example1").owlCarousel({
+//    items: 4, // 한 화면에 보여줄 아이템 수 설정
+//    loop: true, // 무한 반복 설정
+//    margin: 10, // 아이템 간 간격 설정
+//    nav: true, // 이전/다음 버튼 사용 설정
+//    autoplay: true, // 자동 슬라이드 설정
+//    autoplayTimeout: 3000, // 자동 슬라이드 시간 설정 (3초)
+//    autoplayHoverPause: true // 마우스 오버시 자동 슬라이드 멈춤 설정
+//  });
+
 
 	$("#owl-example1").owlCarousel({
 		// Most important owl features
@@ -75,4 +86,3 @@ $(document).ready(function() {
 
 
 });
-

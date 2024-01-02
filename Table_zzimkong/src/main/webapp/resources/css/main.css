@@ -39,14 +39,60 @@
    height: auto; /* 이미지 높이는 자동으로 조정하여 비율 유지 */
 }
 
+/* 슬라이드 */
 .owl_example1_items_images {
-	margin-right: 30px;
-	margin-bottom: 50px;
+  margin-right: 30px;
+  margin-bottom: 50px;
 }
-.owl_example1_items_images>a>img:hover {
-	transform: scale(1.1);
-    transition: transform 0.5s ease;
+
+/* .owl_example1_items_images img { */
+/*   max-width: 100%; */
+/*   height: auto; */
+/* } */
+#slider .block .owl-carousel div img {
+  width: 100%;
+  height: 220px;
+  border-radius: 5px;
+  padding-right: 0px;
+
 }
+
+#slider {
+  padding: 50px 0px;
+}
+#slider .block {
+  padding: 0px 40px;
+}
+#slider .block .title {
+  padding: 0px;
+}
+#slider .block .owl-carousel {
+  padding-top: 30px;
+  position: relative;
+  text-align: center;
+}
+#slider .block .owl-carousel img {
+  margin: 20px 10px;
+}
+#slider .block .owl-carousel .owl-pagination .active {
+  background: #3FAFFC;
+}
+#slider .block .owl-carousel .owl-pagination div {
+  background: #DADADA;
+  border-radius: 100%;
+  display: inline-block;
+  height: 10px;
+  margin-right: 5px;
+  width: 10px;
+}
+#slider .block .owl-carousel .owl-buttons {
+  position: absolute;
+  right: 0;
+  top: -40px;
+  font-size: 40px;
+  color: #AA9D84;
+}
+
 /*--
     Common Css
 --*/
@@ -287,45 +333,8 @@ nav .block .navbar-default .navbar-nav > .active > a:hover:before {
 /*     width: 100%; */
 /* } */
 
-/*--
-    slider Start
---*/
-#slider {
-  padding: 50px 0px;
-}
-#slider .block {
-  padding: 0px 40px;
-}
-#slider .block .title {
-  padding: 0px ;
-}
-#slider .block .owl-carousel {
-  padding-top: 30px;
-  position: relative;
-  text-align: center;
-}
-#slider .block .owl-carousel img {
-  margin: 20px 40px;
-}
-#slider .block .owl-carousel .owl-pagination .active {
-/*   background: #FF5333; */
-  background: #3FAFFC;
-}
-#slider .block .owl-carousel .owl-pagination div {
-  background: #DADADA;
-  border-radius: 100%;
-  display: inline-block;
-  height: 10px;
-  margin-right: 5px;
-  width: 10px;
-}
-#slider .block .owl-carousel .owl-buttons {
-  position: absolute;
-  right: 0;
-  top: -40px;
-  font-size: 40px;
-  color: #AA9D84;
-}
+
+
 
 
 /* ↓ 날렸던거 다시 추가 */

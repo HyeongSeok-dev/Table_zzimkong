@@ -214,60 +214,17 @@
 						<div class="title">
 							<h3><span class="seleted_location">${search.location}</span> <span>추천순</span></h3>
 						</div>
-						<div id="owl-example1" class="owl-carousel">
 						<%-- 상세페이지로 가는 이미지 --%>
 						<%--추천순(광고등급순)--%>
-						<div class="sort-option-div" data-sort-value="hygiene">
-					 		<c:forEach var="recommand" items="${recommendList}">
-								<div class="owl_example1_items_images">
-									${recommand.com_img}
-									${recommand.com_name}
-								</div>					 		
-					 		</c:forEach>
+						<div id="owl-example1" class="owl-carousel">
+						  <c:forEach var="recommand" items="${recommendList}">
+						    <div class="owl_example1_items_images">
+						      <img alt="" src="${pageContext.request.contextPath}/resources/upload/${recommand.com_img}"> <br>
+						      ${recommand.com_name}
+						    </div>                      
+						  </c:forEach>
 						</div>
-						<%------------------------------------------------------------------------------------ --%>
-<!-- 							<div class="owl_example1_items_images"> -->
-<%-- 								<a href="${pageContext.request.contextPath}/product/detail"> --%>
-<%-- 									<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/list_com.jpg" > --%>
-<!-- 								</a> -->
-<!-- 							</div> -->
-<!-- 							<div class="owl_example1_items_images"> -->
-<!-- 								<a href=""> -->
-<%-- 									<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_restaurant2.jpg" > --%>
-<!-- 								</a> -->
-<!-- 							</div> -->
-<!-- 							<div  class="owl_example1_items_images"> -->
-<!-- 								<a href=""> -->
-<%-- 								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_restaurant3.jpg" > --%>
-<!-- 								</a> -->
-<!-- 							</div> -->
-<!-- 							<div  class="owl_example1_items_images"> -->
-<!-- 								<a href=""> -->
-<%-- 								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_restaurant4.jpg" > --%>
-<!-- 								</a> -->
-<!-- 							</div> -->
-<!-- 							<div  class="owl_example1_items_images"> -->
-<!-- 								<a href=""> -->
-<%-- 								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_restaurant5.jpg" > --%>
-<!-- 								</a> -->
-<!-- 							</div> -->
-<!-- 							<div  class="owl_example1_items_images"> -->
-<!-- 								<a href=""> -->
-<%-- 								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_restaurant6.jpg" > --%>
-<!-- 								</a> -->
-<!-- 							</div> -->
-<!-- 							<div  class="owl_example1_items_images"> -->
-<!-- 								<a href=""> -->
-<%-- 								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_restaurant7.jpg"> --%>
-<!-- 								</a> -->
-<!-- 							</div> -->
-<!-- 							<div  class="owl_example1_items_images"> -->
-<!-- 								<a href=""> -->
-<%-- 								<img class="img-responsive" src="${pageContext.request.contextPath}/resources/img/main_restaurant8.jpg"> --%>
-<!-- 								</a> -->
-<!-- 							</div> -->
 
-						</div>
 					</div>
 				</div><!-- .col-md-12 close -->
 			</div><!-- .row close -->
