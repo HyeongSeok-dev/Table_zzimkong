@@ -5,7 +5,7 @@
   <head>
   
   <script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
-  <!-- 전화번호 인증api를 위한 sdk설치 -->
+    <!-- 전화번호 인증api를 위한 sdk설치 -->
 	<script src="https://cdn.portone.io/v2/browser-sdk.js"></script>
   
     <meta charset="UTF-8">
@@ -13,6 +13,8 @@
     <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/join.css">
     <script src="${pageContext.request.contextPath }/resources/js/join.js"></script>
+    <script src="${pageContext.request.contextPath }/resources/js/Phone_API.js"></script>
+    
     
 
   </head>
@@ -71,15 +73,15 @@
 		             </select>	 
 		           </div>
    				   <span id="checkEmailResult"></span><br>
-              <br>
-              <!-- 전화번호 -->
-<!--               <div id="phoneBox"> -->
-<!-- 				  <input type="text" id="u_phone" name="user_phone" class="inputTxt inpBig" placeholder="전화번호 (' - ' 를 빼고 입력)" onkeydown="eventObj.loginByEnterKey(event)" maxlength="100"> -->
-<!-- 				  <button type="button" class="inputTxt inpBig" id="api">인증하기</button> -->
-<!-- 				  <span id="checkPhoneResult"></span><br> -->
-<!-- 			  </div> -->
-<!-- 		       <br>    -->
-              <!-- 가입하기 버튼 -->
+<!--               <br> -->
+<!--               전화번호 -->
+              <div id="phoneBox">
+				  <input type="text" id="u_phone" name="user_phone" class="inputTxt inpBig" placeholder="전화번호 (' - ' 를 빼고 입력)" onkeydown="eventObj.loginByEnterKey(event)" maxlength="100">
+				  <button type="button" class="inputTxt inpBig" id="api">인증하기</button>
+				  <span id="checkPhoneResult"></span><br>
+			  </div>
+		       <br>   
+<!--               가입하기 버튼 -->
               <button type="submit" class="btnJoin btnB" id="joinBtn" >
                 <span>
                   가입하기
