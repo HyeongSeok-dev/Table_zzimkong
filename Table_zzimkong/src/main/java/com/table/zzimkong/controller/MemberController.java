@@ -274,16 +274,10 @@ public class MemberController {
 		return "login/login_find_id";
 	}
 	
+//	@ResponseBody
 //	@PostMapping("login/find/idPro")
-//	public String findId(@RequestParam("uEmail") String email, Model model) {
-//	    String foundId = //서비스를 통해 아이디를 찾는 로직 구현
-//	    if(foundId != null) {
-//	        model.addAttribute("foundId", foundId);
-//	        return "login/login_found_id"; // 아이디를 찾았을 때 보여줄 페이지
-//	    } else {
-//	        model.addAttribute("message", "해당 이메일로 가입된 아이디가 없습니다.");
-//	        return "login/login_find_id"; // 아이디를 찾지 못했을 때 보여줄 페이지
-//	    }
+//	public String findId(String uEmail,String uEmail2, Model model) {
+//		return "
 //	}
 		
 }//MemberController

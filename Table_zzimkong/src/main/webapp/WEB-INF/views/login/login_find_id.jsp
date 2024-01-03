@@ -27,7 +27,7 @@
 			        <div class="u_email" align="center" >
 		                <input type="text" id="uEmail" name="uEmail" placeholder="이메일" onkeydown="eventObj.loginByEnterKey(event)" maxlength="16" autocomplete="false">
 		                <span id="at">@</span>
-						<select id="uEmail2" name="uEmail">
+						<select id="uEmail2" name="uEmail2">
 			                <option value="">선택하세요</option>
 			                <option value="gmail.com">gmail.com</option>
 			                <option value="naver.com">naver.com</option>
