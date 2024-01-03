@@ -107,6 +107,7 @@
 					</li>
 				</ul>
 			</div>
+			
 			<p class="gap20"></p>
 			<div></div>
 			<div class="menu-info short">
