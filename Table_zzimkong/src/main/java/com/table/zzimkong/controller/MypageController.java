@@ -173,6 +173,8 @@ public class MypageController {
 		String sId = (String)session.getAttribute("sId"); // 세션에 아이디값을 가져오는거
 		mypage.setUser_id(sId);//검색할 아이디를 마이페이지에 넣기 
 		MypageInfo dbMypage = service.getMypage(mypage);
+		session.setAttribute("user_nick", dbMypage.getUser_nick());
+		
 		System.out.println(dbMypage);
 		// MypageService - getResList() 메서드 호출하여 회원 목록 조회 요청
 		
