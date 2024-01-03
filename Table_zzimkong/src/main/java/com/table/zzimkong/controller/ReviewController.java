@@ -264,7 +264,7 @@ public class ReviewController {
 		String sId = (String) session.getAttribute("sId");
 		if (sId == null)  {
 			model.addAttribute("msg","로그인이 필요합니다!");
-			model.addAttribute("targetURL","login");
+			model.addAttribute("targetURL","/zzimkong/login");
 			return "forward";
 		}
 		
