@@ -44,5 +44,5 @@ public interface CeoMapper {
 
 	List<ReservationVO> selectResInfo(int com_id);
 
-	
+	CompanyVO selectComNum(CompanyVO com);
 }

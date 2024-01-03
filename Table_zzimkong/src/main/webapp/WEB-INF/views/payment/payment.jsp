@@ -117,6 +117,10 @@
 <!-- 								</select> -->
 							</div>
 							<br>
+							<div>	
+								<input type="radio" name="pay_method" value="5" id="mobilePhonePayment"><span class="font_stlye"> 휴대폰결제</span>
+							</div>
+							<br>
 							<div>
 								<input type="radio" name="pay_method" value="4" id="accountPayment"><span class="font_stlye"> 무통장입금</span>
 								<span class="pm_acc_comment">20분 이내 입금되지 않으면 예약은 자동 취소됩니다.</span>
@@ -139,10 +143,6 @@
 									<option value="케이뱅크">케이뱅크</option>
 								</select>
 								<input type="text" placeholder="계좌번호" value="" class="account" name="accNum" readonly>
-							</div>
-							<br>
-							<div>	
-								<input type="radio" name="pay_method" value="5" id="mobilePhonePayment"><span class="font_stlye"> 휴대폰결제</span>
 							</div>
 						</div>
 					</section>

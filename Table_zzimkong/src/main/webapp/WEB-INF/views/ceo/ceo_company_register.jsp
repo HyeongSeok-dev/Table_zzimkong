@@ -28,7 +28,7 @@
 						<td colspan="5">
 							<div class="div_display">
 								<div class="div_display div_align">
-									<input type="text" name="com_num" id="com_num_register" placeholder="사업자등록번호는 10자리로 '-'를 제외하고 정확하게 입력해주세요." id="comNumText">
+									<input type="text" name="com_num" id="com_num_register" placeholder="사업자등록번호는 10자리로 '-'를 제외하고 정확하게 입력해주세요.">
 									<button type="button" class="button_olive" id="comNumBtn">조회하기</button>
 								</div>
 								<div class="guide" id="guide"></div>
@@ -51,8 +51,8 @@
 							</div>
 						</td>
 						<th>대표자명<span class="*">*</span></th>
-						<td colspan="2"><input type="text" name="com_ceo" id="user_name" value="홍길동" readonly="readonly"></td>
-<%-- 						<td colspan="2"><input type="text" name="com_ceo" id="user_name" value="${member.user_name }" readonly="readonly"></td> --%>
+<!-- 						<td colspan="2"><input type="text" name="com_ceo" id="user_name" value="홍길동" readonly="readonly"></td> -->
+						<td colspan="2"><input type="text" name="com_ceo" id="user_name" value="${member.user_name }" readonly="readonly"></td>
 					</tr>
 					<tr>
 						<th>개업일자<span class="*">*</span></th>

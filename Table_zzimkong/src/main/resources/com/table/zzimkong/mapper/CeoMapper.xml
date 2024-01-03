@@ -129,7 +129,9 @@
 	<select id="selectUser" resultType="member">
 		SELECT * FROM user WHERE user_id = #{sId}
 	</select>
-	
+	<select id="selectComNum" resultType="company">
+		SELECT com_num FROM company WHERE com_num = #{com_num}
+	</select>
 	
 	<!-- ceo_reservation -->
 	<select id="selectResInfo" resultType="res">

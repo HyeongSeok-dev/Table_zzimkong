@@ -97,5 +97,8 @@ public class CeoService {
 		return mapper.selectResInfo(com_id);
 	}
 
-	
+	public CompanyVO getComNum(CompanyVO com) {
+		// TODO Auto-generated method stub
+		return mapper.selectComNum(com);
+	}
 }

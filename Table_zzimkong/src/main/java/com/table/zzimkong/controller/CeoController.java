@@ -289,6 +289,29 @@ public class CeoController {
 		model.addAttribute("member",dbmember);
 		return "ceo/ceo_company_register";
 	}
+	
+	@ResponseBody
+	@GetMapping("ceo/company/ceoCheckDupComNum")
+	public String checkDupComNum(HttpSession session, Model model, CompanyVO com) {
+		String sId = (String)session.getAttribute("sId");
+//		if(session.getAttribute("sId") == null) {
+//			
+//			model.addAttribute("msg", "접근권한이 없습니다!");
+//			model.addAttribute("targetURL", "login");
+//			
+//			return "forward";
+//		}
+		System.out.println(com.getCom_num());
+		CompanyVO comNum = service.getComNum(com);
+		if(comNum == null) {
+			System.out.println("등록가능");
+			return"true";
+		} else {
+			return"false";
+		}
+		
+	}
+	
 	@PostMapping("ceo/company/registPro")
 	public String companyRegistPro(HttpSession session, Model model, CompanyVO company) {
 		
@@ -472,7 +495,7 @@ public class CeoController {
 //		
 //		return "forward";
 //	}
-		session.setAttribute("sIdx", 76);
+//		session.setAttribute("sIdx", 76);
 		int sIdx = (int)session.getAttribute("sIdx");
 		
 		System.out.println(sIdx);

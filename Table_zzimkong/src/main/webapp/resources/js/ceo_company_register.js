@@ -77,6 +77,37 @@ $(function() {
         reader.readAsDataURL(this.files[0]);
     });
 	
+	$("#com_num_register").on("keyup", function(){
+		if($("#com_num_register").val().length == 10) {
+			var com_num =  $("#com_num_register").val();
+			console.log(com_num);
+			$.ajax({
+				type: "get",
+				url: "ceoCheckDupComNum",
+				data : {
+					"com_num": com_num
+				},
+				dataType: "json",
+				success: function(CheckDupResult) {
+					
+					if(CheckDupResult) {
+						$("#com_num_register").css("border", "1px solid green");
+						$("#guide").text("아직 등록하지 않은 번호입니다. 조회버튼을 눌러 주세요.");
+						$("#guide").css("color","green");
+					} else {
+						$("#com_num_register").css("border", "1px solid #bb5b67");
+						$("#guide").text("이미 등록된 번호입니다.");
+						$("#guide").css("color","#bb5b67");
+					}
+				}	
+			});
+		} else {
+			$("#com_num_register").css("border", "1px solid #bb5b67");
+			$("#guide").text("사업자 등록번호는 10자리 입니다.");
+			$("#guide").css("color","#bb5b67");
+		}
+	});
+	
 	// 사업자 등록번호 조회하기 
 	$("#comNumBtn").on("click", function(){
 		if($("#com_num_register").val() == "") {
@@ -115,13 +146,12 @@ $(function() {
 				success: function(businesses) {
 					console.log(businesses);
 					let com_num = businesses.b_no; // 사업자 등록번호 
-					let ceo_name = businesses.p_nm; // 대표명 
+					let com_ceo = businesses.p_nm; // 대표명 
 					let com_name = businesses.b_nm; // 상호
 					let com_category = businesses.b_sector; //업태
 					let com_address = businesses.b_adr; //주소
-					console.log(ceo_name);
-					console.log(businesses.p_nm);
-					if(ceo_name === $("#user_name").val()){
+					
+					if(ceo_name === $("#user_name").val() || businesses.data.valid == "01"){
 						$("#com_num").val(com_num);
 						$("#com_num").attr('readonly', true);
 						$("#com_name").val(com_name);
@@ -150,61 +180,61 @@ $(function() {
 		
 	});// 조회버튼
 	
-//	$("form").submit(function(){
-//		if($("#com_num_register").val() == "") {
-//			alert("사업자 등록번호를 조회해 주세요");
-//			$('html, body').animate({
-//            scrollTop: $('body').offset().top
-//            }, 500);
-//            $("#com_num_register").focus();
-//			return false;
-//		} else if($("#com_tel").val() == "") {
-//			alert("전화번호를 입력해 주세요");
-//			$('html, body').animate({
-//            scrollTop: $('body').offset().top
-//            }, 500);
-//            $("#com_tel").focus();
-//			return false;
-//		} else if($("#file").val() == "") {
-//			alert("사업장의 사진을 등록해 주세요");
-//			$('html, body').animate({
-//            scrollTop: $('body').offset().top
-//            }, 500);
-//            $("#file").focus();
-//			return false;
-//		} else if($("#openHour").val() == "") {
-//			alert("영업 시작시간을 선택해 주세요.");
-//            $("#openHour").focus();
-//			return false;
-//		} else if($("#openMin").val() == "") {
-//			alert("영업 시작시간을 선택해 주세요.");
-//            $("#openMin").focus();
-//			return false;
-//		} else if($("#closeHour").val() == "") {
-//			alert("영업 종료시간을 선택해 주세요.");
-//            $("#closeHour").focus();
-//			return false;
-//		} else if($("#closeMin").val() == "") {
-//			alert("영업 종료시간을 선택해 주세요.");
-//			$("#closeMin").focus();
-//			return false;
-//		} else if($("#com_max_people").val() == "") {
-//			alert("예약 최대인원을 선택해 주세요.");
-//			$("#com_max_people").focus();
-//			return false;
-//		} else if($("#adRegister").val() == "") {
-//			alert("광고신청사항을 선택해 주세요.");
-//			$("#adRegister").focus();
-//			return false;
-//		} else if($("#adRegister").val() == "신청" && $("#adLevel").val() == "0단계") {
-//			alert("광고를 신청하셨습니다.\n 광고단계를 선택해 주세요.");
-//			 $('#adLevel').focus();
-//			return false;
-//		} else if($('input[type="checkbox"]:checked').length == 0) {
-//			alert("카테고리를 선택해 주세요");
-//			return false;
-//		} 
-//		return true;
-//	});
+	$("form").submit(function(){
+		if($("#com_num_register").val() == "" || $("#guide").text() != "조회확인") {
+			alert("사업자 등록번호를 조회해 주세요");
+			$('html, body').animate({
+            scrollTop: $('body').offset().top
+            }, 500);
+            $("#com_num_register").focus();
+			return false;
+		} else if($("#com_tel").val() == "") {
+			alert("전화번호를 입력해 주세요");
+			$('html, body').animate({
+            scrollTop: $('body').offset().top
+            }, 500);
+            $("#com_tel").focus();
+			return false;
+		} else if($("#file").val() == "") {
+			alert("사업장의 사진을 등록해 주세요");
+			$('html, body').animate({
+            scrollTop: $('body').offset().top
+            }, 500);
+            $("#file").focus();
+			return false;
+		} else if($("#openHour").val() == "") {
+			alert("영업 시작시간을 선택해 주세요.");
+            $("#openHour").focus();
+			return false;
+		} else if($("#openMin").val() == "") {
+			alert("영업 시작시간을 선택해 주세요.");
+            $("#openMin").focus();
+			return false;
+		} else if($("#closeHour").val() == "") {
+			alert("영업 종료시간을 선택해 주세요.");
+            $("#closeHour").focus();
+			return false;
+		} else if($("#closeMin").val() == "") {
+			alert("영업 종료시간을 선택해 주세요.");
+			$("#closeMin").focus();
+			return false;
+		} else if($("#com_max_people").val() == "") {
+			alert("예약 최대인원을 선택해 주세요.");
+			$("#com_max_people").focus();
+			return false;
+		} else if($("#adRegister").val() == "") {
+			alert("광고신청사항을 선택해 주세요.");
+			$("#adRegister").focus();
+			return false;
+		} else if($("#adRegister").val() == "신청" && $("#adLevel").val() == "0단계") {
+			alert("광고를 신청하셨습니다.\n 광고단계를 선택해 주세요.");
+			 $('#adLevel').focus();
+			return false;
+		} else if($('input[type="checkbox"]:checked').length == 0) {
+			alert("카테고리를 선택해 주세요");
+			return false;
+		} 
+		return true;
+	});
 	
 }); //jquery문 전체
