@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +19,14 @@
       <div class="common-mypage__sc-wme82i-0 bHZFGQ"></div>
       <div class="common-mypage__sc-1loaj4c-0 dZrJws">
         <div class="common-mypage__sc-1loaj4c-1 hvkAAt">
-        	<img id="profile" src="${pageContext.request.contextPath}/resources/img/profile.png">
+        <c:choose>
+        	<c:when test="${not empty sessionScope.imgName}">
+	        	<img id="profile" src="${pageContext.request.contextPath}/resources/upload/${sessionScope.imgName}">
+        	</c:when>
+        	<c:otherwise>
+	        	<img id="profile" src="${pageContext.request.contextPath}/resources/img/profile.png">
+        	</c:otherwise>
+        </c:choose>
             <strong>${sessionScope.user_nick}</strong>
             <a href="${pageContext.request.contextPath }/my/modify/profile">회원정보변경</a>
         </div>

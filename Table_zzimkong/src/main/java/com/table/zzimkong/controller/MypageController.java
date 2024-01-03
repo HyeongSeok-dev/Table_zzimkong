@@ -111,12 +111,14 @@ public class MypageController {
 		mypage.setUser_img("");
 		
 		String imgName = UUID.randomUUID().toString().substring(0, 8) + "_" + mFile.getOriginalFilename();
-		
+		System.out.println(imgName);
 		if(!mFile.getOriginalFilename().equals("")) {
 			mypage.setUser_img(subDir + "/" + imgName);
 		}
-		System.out.println("실제 업로드 파일명 : " + mypage.getUser_img());
 		
+		System.out.println("실제 업로드 파일명 : " + mypage.getUser_img());
+		session.setAttribute("imgName", mypage.getUser_img());
+		System.out.println(session.getAttribute("imgName"));
 		// MypageService - getMypage() 메서드 호출하여 회원 정보 조회 요청(패스워드 비교용)
 		// => 파라미터 : MypageInfo 객체 리턴타입 : MypageInfo(dbMypage)
 		MypageInfo dbMypage = service.getMypage(mypage);
@@ -151,7 +153,16 @@ public class MypageController {
 		// => 성공 시 "MypageInfo" 서블릿 리다이렉트
 		if(updateCount > 0) { // 성공 시
 			 session.setAttribute("msg", "회원정보 수정이 완료되었습니다.");
-			// 관리자가 다른 회원 정보 수정 시 MypageInfo 서블릿 주소에 아이디 파라미터 결합
+			try {
+				if(!mFile.getOriginalFilename().equals("")) {
+					mFile.transferTo(new File(saveDir, imgName));
+			}
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}	
+			 // 관리자가 다른 회원 정보 수정 시 MypageInfo 서블릿 주소에 아이디 파라미터 결합
 			if(!sId.equals("admin") || (sId.equals("admin") && (mypage.getUser_id() == null || mypage.getUser_id().equals("")))) {
 				return "redirect:/my/modify/profile";
 			} else {

@@ -41,8 +41,9 @@
 					<tr>
 						<th style="width: 300px;">프로필사진</th>
 						<td style="width: 700px;">
-							<div id="img"></div>
-<%-- 							<img src="${pageContext.request.contextPath}/resources/img/profile.png" width="100" height="100"> --%>
+							<div id="img">
+								<img src="${pageContext.request.contextPath}/resources/upload/${mypage.user_img}"width="300" height="300">
+							</div>
 							<p>프로필 사진으로 사용할 이미지를 등록해 주세요.</p>
 	                          <input type="file" id="file1" name="m_file" class="hide"><br>
 	                          <input type="checkbox" > 프로필 초기화
