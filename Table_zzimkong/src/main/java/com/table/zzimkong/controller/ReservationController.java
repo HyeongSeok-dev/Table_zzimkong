@@ -57,12 +57,17 @@ public class ReservationController {
 	    int count = 0;
 	    int menuTotalPriceInt = 0;
 	    int totalPayPriceInt = 0;
-	    for(MenuVO menuP : menuList) {
-	    	menuTotalPriceInt = Integer.parseInt(menuP.getMenu_price()) * menuP.getOrder_amount();
-	        totalPayPriceInt += menuTotalPriceInt; // 메뉴의 총 가격을 총 결제 금액에 더함
-	        String menuTotalPrice = numberFormat.format(menuTotalPriceInt);
-	        menuP.setMenuTotalPrice(menuTotalPrice);
-	        count++;
+	    if(menuList != null) {
+	    	for(MenuVO menuP : menuList) {
+	    		menuTotalPriceInt = Integer.parseInt(menuP.getMenu_price()) * menuP.getOrder_amount();
+	    		totalPayPriceInt += menuTotalPriceInt; // 메뉴의 총 가격을 총 결제 금액에 더함
+	    		String menuTotalPrice = numberFormat.format(menuTotalPriceInt);
+	    		menuP.setMenuTotalPrice(menuTotalPrice);
+	    		count++;
+	    		menuP.setMenu_price(numberFormat.format(Integer.parseInt(menuP.getMenu_price())));
+	    		System.out.println(menuP.getMenu_price());
+	    	}
+	    	map.put("menu", menuList);
 	    }
 	   
 	    String totalPayPrice = numberFormat.format(res.getRes_table_price() + totalPayPriceInt);
@@ -73,7 +78,6 @@ public class ReservationController {
 	    map.put("totalPayPrice", totalPayPrice);
 	    map.put("com", com);
         map.put("res", res);
-	    map.put("menu", menuList);
 	    
 	    
 	    System.out.println("업체정보" + com);
