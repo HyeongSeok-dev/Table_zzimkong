@@ -280,29 +280,30 @@
     position: absolute;
     top: 0;
     right: 0;
-/*     background-color: #3FAFFC; */
-    color: white;
     cursor: pointer;
-/*     padding: 5px; */
-    border-radius: 50%;
-    z-index: 10; 
-    margin-top: 2px;
-    margin-right:603px;
 }
 /* ============================================================== */
 /* 사진 업로드 프리뷰 */
 #previewContainer {
     position: relative;
     display: inline-block;
+    align-items: center;
 }
+
+.image_wrapper {
+  position: relative; /* 상대 위치 설정 */
+    display: inline-block; /* 블록 레벨 요소로 설정 */
+}
+
+
 /* 사진 지우는 X아이콘 */
 #removeImage {
-    position: absolute;
-    top: 0;
-    right: 0;
-    background-color: red;
-    color: white;
-    border: none;
+/*     position: absolute; */
+/*     top: 0; */
+/*     right: 0; */
+/*     background-color: red; */
+/*     color: white; */
+/*     border: none; */
 }
 /* ============================================================== */
 .photo_box{
@@ -318,6 +319,7 @@
   border: 1px solid lightgray;
   resize: none; 
   font-size:17px!important;
+  margin-bottom:5spx;
 }
 
 /* ============================================================== */
@@ -345,8 +347,10 @@
     border: none;
     border-radius: 10px;
     margin-right: -20px;
-    margin-bottom: -5px;
+    margin-bottom: -36px;
    	font-size: 16px;
+/*    	margin-top: -13px; */
+	cursor: pointer;
 }
 
 .review_input_section {
@@ -358,8 +362,10 @@
 }
 
 .caution_link {
-  display: block;
+  display: inline;
   padding: 10px 0;
+    margin-top: -9px;
+    margin-bottom: 20px; /* 버튼 아래쪽 여백 추가 */
 }
  /* ============================================================== */
 /* 좋아요 반영 후 토스트 메세지 */
