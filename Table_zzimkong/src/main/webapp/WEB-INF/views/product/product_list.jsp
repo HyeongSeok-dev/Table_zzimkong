@@ -55,6 +55,20 @@
 											<div class="restaurant-price-range">${company.min_price}원 ~ ${company.max_price}원</div>
 											<div class="restaurant-tag">${company.com_search_tag}</div>
 										</div>
+										
+										<div class="hyg_container">
+											<c:choose>
+												<c:when test="${company.com_hyg_rank eq '매우우수'}">
+													<img alt="" src="${pageContext.request.contextPath}/resources/img/hyg_excellent.png" class="hyg_img">
+												</c:when>
+												<c:when test="${company.com_hyg_rank eq '우수'}">
+													<img alt="" src="${pageContext.request.contextPath}/resources/img/hyg_very_good.png" class="hyg_img">
+												</c:when>
+												<c:when test="${company.com_hyg_rank eq '보통'}">
+													<img alt="" src="${pageContext.request.contextPath}/resources/img/hyg_good.png" class="hyg_img">
+												</c:when>
+											</c:choose>
+										</div>
 										<div class="reservation-time" data-start-time="${search.time}" data-persons="${search.persons}" data-remaining1="${company.remaining_people}"
 								             data-remaining2="${company.remaining_people2}" data-remaining3="${company.remaining_people3}" data-remaining4="${company.remaining_people4}" >
 										</div>

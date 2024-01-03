@@ -39,7 +39,7 @@ public class ProductController {
 
 	@RequestMapping("/product/searchResult")
 	public ResponseEntity<?> search_result(@RequestBody SearchVO search, HttpSession session) {
-
+		//검색결과 시간 형변환
 		LocalDate localDate = LocalDate.parse(search.getDate());
 		LocalTime localTime = LocalTime.parse(search.getTime());
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("h:mm");

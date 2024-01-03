@@ -106,11 +106,24 @@ body {
 
 	display: flex;
 	flex-direction: column;
+	 align-items: flex-start;
+	 position: relative;
 	flex-grow: 1;
     /* 색상 */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
 }
 
+.hyg_container {
+    position: absolute; /* position it absolutely within restaurant-details */
+    right: 1%; /* 10% from the right or adjust as per your design */
+    top: 50%; /* middle of the container */
+    transform: translateY(-50%); /* adjust exact middle alignment */
+    /* Add more styling as needed */
+}
+.hyg_img{
+	width: 85%;
+	height: auto;
+}
 .restaurant-details h3 {
     color: #d64a34; /* 제목 색상 */
     margin-bottom: 10px; /* 제목 아래 여백 */
@@ -214,6 +227,7 @@ body {
 }
 
 .restaurant-distance {
+	padding-left: 5px;
     font-size: 16px;
     line-height: 35px;
 }

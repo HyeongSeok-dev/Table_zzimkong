@@ -794,7 +794,6 @@ i {
 
 .review_wrapper {
     width: 100%;
-    overflow-x: auto; /* 스크롤 가능하게 변경 */
     white-space: nowrap;
     position: relative;
     padding: 10px 0;
@@ -1021,19 +1020,35 @@ span.similar_recom_title {
 } 
 
 
-
 .com_pic {
-	width: 600px;
-	height: 400px;
-	margin-top: -55px;
-	max-height: 100%;
-	object-fit: cover;
-	overflow: hidden;
+  width: 600px; /* or any size you prefer */
+  height: 400px; /* or any size you prefer */
+  object-fit: cover; /* keeps aspect ratio intact */
+  /* other styles... */
 }
 
+/* Modify .com_pic_wrapper */
 .com_pic_wrapper {
-	text-align: center;
-	overflow: hidden;
+  display: flex; /* New - to place children in a row */
+  align-items: flex-start; /* Align children at the start of the cross axis */
+  justify-content: center; /* Center children along the main axis */
+  gap: 20px; /* Optional: space between company picture and menu pictures */
+  margin-top: 20px; /* Adjust as per requirement */
+}
+
+/* New Container for Menu Pics */
+.menu_pic_wrapper {
+  display: flex; /* New - to align .menu_pic vertically */
+  flex-direction: column; /* stack children vertically */
+  gap: 10px; /* space between each menu_pic */
+}
+
+.menu_pic {
+  width: 190px; /* or any size you prefer */
+  height: 128px; /* maintain aspect ratio */
+  object-fit: cover; /* keeps aspect ratio intact */
+  overflow: hidden;
+  /* other styles... */
 }
 
 #style-3I3B9.style-3I3B9 {
@@ -1187,4 +1202,31 @@ span.similar_recom_title {
   .carousel img{
     width: 100%;
   }
+  
+}
+.more_reivew {
+	display: flex;
+	font-size: 1.2rem;
+	font-weight: bold;
+	text-align: center;
+	justify-content: center;
+}
+/* Ensure the parent container has relative positioning */
+.s-list.basic-info .list li.locat {
+    position: relative;
+}
+
+/* Adjust the positioning of .hyg_container */
+.hyg_container {
+    position: absolute;
+    top: 135%; /* or any other value */
+    right: 100px; /* Adjust this to move it left or right */
+    transform: translateY(-50%); /* Centers it vertically relative to its own height */
+    /* Use percentage values or 'em' for more responsiveness */
+}
+
+/* Optional: Adjust .hyg_img or other content inside .hyg_container for responsiveness */
+.hyg_img {
+    width: 100%; /* make the image responsive within the container */
+    max-width: 135px; /* or any other max size */
 }

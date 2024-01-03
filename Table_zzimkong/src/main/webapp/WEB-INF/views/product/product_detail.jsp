@@ -24,9 +24,13 @@
 	<p class="gap20"></p>
 	<div class="s-list pic-grade">
 		<div class="com_pic_wrapper">
-			<img
-				src="${pageContext.request.contextPath}/resources/upload/${company.com_img}"
-				class="com_pic">
+			<img src="${pageContext.request.contextPath}/resources/upload/${company.com_img}" class="com_pic">
+			<div class="menu_pic_wrapper">
+				<c:forEach var="img" items="${menuList}">
+				<img src="${pageContext.request.contextPath}/resources/upload/${img.menu_img}" class="menu_pic">
+				</c:forEach>
+			</div>
+			
 		</div>
 		<div class="tit-point">
 			<p class="tit"></p>
@@ -61,10 +65,23 @@
 	<div class="s-list basic-info">
 		<ul class="list">
 			<li class="locat">
-				<div>${company.com_address}</div> <br> <span class="Profile__Detail__Distance">
-					현재 위치에서 <strong class="restaurant-distance"> ${company_info.distance}m </strong>
+				<div>${company.com_address}</div> <br> 
+				<span class="Profile__Detail__Distance">현재 위치에서 <strong class="restaurant-distance"> ${company_info.distance}m </strong>
 					<input type="hidden" name="storeAddress" value="${company.com_address}">
 			</span>
+			<div class="hyg_container">
+					<c:choose>
+						<c:when test="${company.com_hyg_rank eq '매우우수'}">
+							<img alt="" src="${pageContext.request.contextPath}/resources/img/hyg_excellent.png" class="hyg_img">
+						</c:when>
+						<c:when test="${company.com_hyg_rank eq '우수'}">
+							<img alt="" src="${pageContext.request.contextPath}/resources/img/hyg_very_good.png" class="hyg_img">
+						</c:when>
+						<c:when test="${company.com_hyg_rank eq '보통'}">
+							<img alt="" src="${pageContext.request.contextPath}/resources/img/hyg_good.png" class="hyg_img">
+						</c:when>
+					</c:choose>
+				</div>
 				<button onclick="mapPopup('${company.com_address}', '${company.com_name}')" class="Move__Map__Button">지도보기</button>
 			</li>
 			<li class="tel">${company.com_tel}</li>
@@ -154,7 +171,7 @@
 		<div class="s-list appraisal">
 			<div class="grade-info style-51Qop" id="style-51Qop">
 				<p class="title-and-score">
-					<span class="tit">${review_score.reviewCount}건의 리뷰</span> <a href="../review/redetail?com_id=${company.com_id}">리뷰 더보기</a><span id="lbl_star_point"
+					<span class="tit">${review_score.reviewCount}건의 리뷰</span> <span id="lbl_star_point"
 						class="star-point"> <span class="point"> 총 별점 </span> 
 						<span class="star"> 
 						    <i style="width: ${review_score.avg_score * 20}%"></i>
@@ -163,17 +180,19 @@
 				</p>
 				<div class="review-and-graph">
 					<div class="review_wrapper">
-<!-- 					    <button type="button" class="scroll-btn left">‹</button> -->
 					    <div class="review_container">
-					        <c:forEach var="review" items="${reviews}">
-					            <div class="review_image">
-					                <c:if test="${not empty review.review_img_1}">
-					                    <img src="${pageContext.request.contextPath}/resources/upload/${review.review_img_1}">
-					                </c:if>
-					            </div>
-					        </c:forEach>
+					        <c:set var="imageCount" value="0" />
+							<c:forEach var="review" items="${reviews}">
+							    <c:if test="${not empty review.review_img_1}">
+							        <c:if test="${imageCount < 5}">
+							            <div class="review_image">
+							                <img src="${pageContext.request.contextPath}/resources/upload/${review.review_img_1}">
+							            </div>
+							            <c:set var="imageCount" value="${imageCount + 1}" />
+							        </c:if>
+							    </c:if>
+							</c:forEach>
 					    </div>
-<!-- 					    <button type="button" class="scroll-btn right">›</button> -->
 					</div>
 					<ul class="app-graph">
 						<li>
@@ -208,11 +227,11 @@
 						</li>
 					</ul>
 				</div>
+				<a class="more_reivew" href="../review/redetail?com_id=${company.com_id}">리뷰 더보기</a>
 			</div>
 			<p class="gap20"></p>
 		</div>
 
-		<!-- 리뷰페이지 들어갈 공간 -->
 		<p class="gap20"></p>
 	</form>
 	<jsp:include page="../inc/bottom.jsp"></jsp:include>

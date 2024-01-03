@@ -28,7 +28,8 @@ public class HomeController {
 
 	@GetMapping("/")
 	public String main(Model model, SearchVO search, MemberVO member, HttpSession session) {
-	        search.setPersons(2);
+			//기본 검색 디폴트 세팅 
+			search.setPersons(2);
 	        
 	        LocalDateTime defaultTime = LocalDateTime.now().plusHours(2);
 	        LocalDate date;
@@ -54,12 +55,14 @@ public class HomeController {
 	            time = defaultTime.format(DateTimeFormatter.ofPattern("HH:mm")); 
 	            search.setDisplayDate("오늘");
 	        }
+	        
 	        LocalTime localTime = LocalTime.parse(time, DateTimeFormatter.ofPattern("HH:mm"));
 	        displayTime = localTime.format(DateTimeFormatter.ofPattern("a h:mm"));
 	        search.setDate(date.toString());
 	        search.setTime(time);
 	        search.setDisplayTime(displayTime);
 	        search.setLocation("전국");
+	        search.setContext(null);
 	        
 	        model.addAttribute("search", search);
 	        
