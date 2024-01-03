@@ -32,6 +32,7 @@
 									<button type="button" class="button_olive" id="comNumBtn">조회하기</button>
 								</div>
 								<div class="guide" id="guide"></div>
+								</div>
 							</div>	
 						</td>
 					</tr>
@@ -41,13 +42,17 @@
 							<div id="img"><img src="" id="com_img_div"></div>
 							<hr>
 							<div class="div_display">
-							<input type="file" id="file" name="file">
-							<div class="guide">사진은 최대 한장만 등록 가능합니다.</div>
+								<input type="file" id="file" name="file" style="display: none;">
+								<div>
+									<button type="button" id="uploadFileBtn">파일 선택</button>
+									<span id="fileLabel">선택된 파일 없음</span>
+								</div>
+								<div class="guide">※사진은 최대 한장만 등록 가능합니다.</div>
 							</div>
-							<th>대표자명<span class="*">*</span></th>
-							<td colspan="2"><input type="text" name="user_name" id="user_name" value="홍길동" readonly="readonly"></td>
-	<%-- 						<td colspan="2"><input type="text" name="user_name" id="user_name" value="${member.user_name }" readonly="readonly"></td> --%>
 						</td>
+						<th>대표자명<span class="*">*</span></th>
+						<td colspan="2"><input type="text" name="user_name" id="user_name" value="홍길동" readonly="readonly"></td>
+<%-- 						<td colspan="2"><input type="text" name="user_name" id="user_name" value="${member.user_name }" readonly="readonly"></td> --%>
 					</tr>
 					<tr>
 						<th>개업일자<span class="*">*</span></th>
@@ -191,7 +196,7 @@
 						<td colspan="4">
 							<div class="div_display">
 								<input type="text" id="keyword" name="com_search_tag" value="" placeholder="사업장이 검색될 키워드를 입력하고 스페이스바를 눌러주세요">
-								<div class="guide">키워드를 입력하고 스페이스바를 누르면 자동으로 '#'가 붙습니다.</div>
+								<div class="guide">※키워드를 입력하고 스페이스바를 누르면 자동으로 '#'가 붙습니다.</div>
 							</div>
 						</td>
 					</tr>
