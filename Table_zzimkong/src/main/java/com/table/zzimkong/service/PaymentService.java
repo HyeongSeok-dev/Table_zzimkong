@@ -76,5 +76,4 @@ public class PaymentService {
 		return mapper.selectPayment(payNum);
 	}
 
-	
 }

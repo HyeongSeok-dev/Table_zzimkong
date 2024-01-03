@@ -77,14 +77,29 @@ $(function() {
         reader.readAsDataURL(this.files[0]);
     });
 	
+	// 사업자 등록번호 조회하기 
 	$("#comNumBtn").on("click", function(){
 		if($("#com_num_register").val() == "") {
 			alert("사업자 등록 번호를 입력해 주세요.");
+		} else if($("#openDate").val() == "") { 
+			alert("개업일자를 입력해 주세요.");
+			
 		} else {
 			var data = {
-			    "b_no": [$("#com_num_register").val()], // 사업자번호 "xxxxxxx" 로 조회 시,
-			    "start_dt" : [$("#openDate").val()],
-			    "p_nm" : [$("#user_name").val()],
+			    
+		   "businesses": [
+						    {
+						      "b_no": $("#com_num_register").val(), // 사업자번호 필수
+							  "start_dt" : $("#openDate").val(), // 개업일 필수
+							  "p_nm" : $("#user_name").val(), // 대표자명 필수
+						      "p_nm2": "",
+						      "b_nm": "",
+						      "corp_no": "",
+						      "b_sector": "",
+						      "b_type": "",
+						      "b_adr": ""
+						    }
+						  ]
 		   }; 
 		
 			$.ajax({
@@ -95,13 +110,12 @@ $(function() {
 				 ,
 				data:  JSON.stringify(data),
 				contentType: "application/json",
-	  			accept: "application/json",
 				dataType: "json",
 				accept: "application/json",
 				success: function(businesses) {
 					console.log(businesses);
-					let com_num = businesses.b_no; // 사업자 등록번호
-					let ceo_name = businesses.p_nm; // 대표명
+					let com_num = businesses.b_no; // 사업자 등록번호 
+					let ceo_name = businesses.p_nm; // 대표명 
 					let com_name = businesses.b_nm; // 상호
 					let com_category = businesses.b_sector; //업태
 					let com_address = businesses.b_adr; //주소

@@ -106,6 +106,7 @@ $(function() {
 			if($("#useablePoint").text() === "0") {
 				alert("사용가능한 포인트가 없습니다!");
 			} else {
+				if($().)
 				$(".point_to_use").val(useablePoint.toLocaleString()); //여기 내포인트 전액이 와야함
 				$("#useablePoint").text("0"); //사용가능 포인트가 0이된다
 			}

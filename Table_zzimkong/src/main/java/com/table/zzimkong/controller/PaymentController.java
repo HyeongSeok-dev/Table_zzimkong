@@ -1,21 +1,16 @@
 package com.table.zzimkong.controller;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,13 +20,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.table.zzimkong.service.PaymentService;
 import com.table.zzimkong.vo.CompanyVO;
 import com.table.zzimkong.vo.MemberVO;
-import com.table.zzimkong.vo.MenuList;
-import com.table.zzimkong.vo.MenuVO;
 import com.table.zzimkong.vo.PaymentInfo;
 import com.table.zzimkong.vo.PaymentVO;
-import com.table.zzimkong.vo.PointVO;
 import com.table.zzimkong.vo.PreOrderInfo;
-import com.table.zzimkong.vo.PreOrderVO;
 import com.table.zzimkong.vo.ReservationVO;
 
 @Controller
@@ -54,7 +45,8 @@ public class PaymentController {
 //		res = (ReservationVO)map.get("res");
 //		System.out.println(res);
 		// 세션에 로그인이 안되어있다면 접근금지
-		if(session.getAttribute("sId") == null) {
+		String sId = (String)session.getAttribute("sId");
+		if(sId == null) {
 			
 			map.put("msg", "접근권한이 없습니다!");
 			map.put("targetURL", "login");
@@ -68,16 +60,17 @@ public class PaymentController {
 //		session.setAttribute("res", null);
 		res.setRes_num("R0002");
 		
-		
-		//[ 예약정보조회 ]
+		// [ 회원정보조회 ]
+		MemberVO member = service.getMember(sId);
+		// [ 예약정보조회 ]
 		res = service.getReservation(res);
-		System.out.println(res);
+		System.out.println("res" + res);
 		//테이블 예약금액에 천단위 쉼표줌
 		NumberFormat numberFormat = NumberFormat.getInstance();
 		String res_table_price = numberFormat.format(res.getRes_table_price());
 		// [예약정보중 사업장정보 조회]
 		company = service.getCompany(res);
-		
+		System.out.println("company" + company);
 		// [예약정보중 선주문정보 조회]
 		// PreOrderInfo객체를 생성해서 join문으로 메뉴테이블 정보까지 받아옴
 		List<PreOrderInfo> poiList = service.getPreOrderInfo(res);
@@ -117,12 +110,28 @@ public class PaymentController {
 		
 		// 방법2. 디비에서 가지고 올 때 String 타입으로 가지고 와서 변환해줌
 		String dbPoint = service.getPoint(res);
+		System.out.println("dbPoint" + dbPoint);
 		String totalPoint = "";
 		if(dbPoint.equals(null) || Integer.parseInt(dbPoint) < 0) {
 			totalPoint = "0";
 		} else {
 			totalPoint = numberFormat.format(Integer.parseInt(dbPoint));
 		}
+		
+		// 0.결제번호 무작위생성
+		// 날짜 정보 가지고옴
+		LocalDate date = LocalDate.now();
+		// 년월일 따로 가지고옴
+		int year = date.getYear();
+		int month = date.getMonthValue();
+		int day = date.getDayOfMonth();
+//		System.out.println("year : " + year);
+//		System.out.println("month : " + month);
+//		System.out.println("day : " + day);
+		// 무작위 번호앞에 년월일 붙여서 결제번호생성
+		String pay_num = "P" + year +( month + (day + UUID.randomUUID().toString().substring(0,7)));
+		System.out.println("payNum : " + pay_num);
+		
 		//--------------------------------------------------------------------
 		// [ PaymentInfo 객체에 문자열 타입으로 파라미터 전달]
 		PaymentInfo paymentInfo = new PaymentInfo(menuTotalPrice,totalPrice,totalPoint,res_table_price);
@@ -132,8 +141,10 @@ public class PaymentController {
 		// 예약조회, 포인트조회,사업장정보조회,선주문조회 
 		map.put("res", res);
 		map.put("paymentInfo", paymentInfo);
+		map.put("pay", pay_num);
 		map.put("com", company);
 		map.put("poi", poiList);
+		map.put("member", member);
 
 		mav = new ModelAndView("payment/payment", "map", map);
 		System.out.println(mav);
@@ -163,21 +174,6 @@ public class PaymentController {
 		
 //		res.setRes_num("R0002");
 		
-		// 0.결제번호 무작위생성
-		// 날짜 정보 가지고옴
-		LocalDate date = LocalDate.now();
-		// 년월일 따로 가지고옴
-		int year = date.getYear();
-		int month = date.getMonthValue();
-		int day = date.getDayOfMonth();
-//		System.out.println("year : " + year);
-//		System.out.println("month : " + month);
-//		System.out.println("day : " + day);
-		// 무작위 번호앞에 년월일 붙여서 결제번호생성
-		String payNum = "P" + year +( month + (day + UUID.randomUUID().toString().substring(0,7)));
-		System.out.println("payNum : " + payNum);
-		
-		
 		// 1. 최종 결제정보 insert 
 		// payment의 외래키가 user_idx여서 세션에서 불러옴
 		int sIdx = Integer.parseInt((String)session.getAttribute("sIdx"));
@@ -206,7 +202,7 @@ public class PaymentController {
 		System.out.println(discountPoint + ", " + earnedPoints);
 		
 		//1.의 insert
-		int insertPayment = service.paymentSuccess(res,sIdx,payNum,payment); //res의 res_table_price와pay_per_price같음
+		int insertPayment = service.paymentSuccess(res,sIdx,paymentInfo.getPayNum(),payment); //res의 res_table_price와pay_per_price같음
 		if(insertPayment > 0) {
 			// 1-1. 3번 성공시 예약테이블에서 결제완료상태로 표시 변경 update (res_pay_status = 1)
 			int updateReservationStatus = service.payStatusChange(res);
@@ -246,7 +242,7 @@ public class PaymentController {
 			+ "&discountPoint=" + paymentInfo.getDiscountPoint() 
 			+ "&earnedPoints=" + paymentInfo.getEarnedPoints()
 			+ "&finalTotalPayment=" + paymentInfo.getTotalPayment()
-			+ "&payNum=" + payNum
+			+ "&pay_num=" + payment.getPay_num()
 			);
 			return mav;
 		
@@ -262,7 +258,7 @@ public class PaymentController {
 	public ModelAndView payment_info(HttpSession session, Map<String, Object> map
 			,@RequestParam(defaultValue = "") String res_num,  @RequestParam(defaultValue = "")String discountPoint
 			,@RequestParam(defaultValue = "")String earnedPoints, @RequestParam(defaultValue = "") String finalTotalPayment
-			,@RequestParam(defaultValue = "0")String payNum
+			,@RequestParam(defaultValue = "0")String pay_num
 			) {
 		session.setAttribute("sId", "user02");
 
@@ -282,7 +278,7 @@ public class PaymentController {
 		MemberVO member = service.getMember(sId);
 		ReservationVO res = service.getResultRes(member);
 		CompanyVO company = service.getCompany(res);
-		PaymentVO payment = service.getPayment(payNum);
+		PaymentVO payment = service.getPayment(pay_num);
 		System.out.println(payment.getPay_method());
 		System.out.println("예약자 이름" + res.getRes_name());
 		// 결제수단 넣기

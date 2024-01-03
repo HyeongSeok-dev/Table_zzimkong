@@ -208,14 +208,14 @@
 						<section id="rightSec01" class="section_box">
 							<div class="res_header">
 								<h2 id="res_h2">예약 상세</h2><h3 class="res_num">${map.res.res_num}</h3>
-				  <%-- param--%><input type="hidden" value="${map.res.res_num}" name="res_num">
+				  <%-- param--%><input type="hidden" value="${map.res.res_num}" id="res_num" name="res_num">
 							</div>
 							<div class="res_main">
 								<ul>
 									<li class="res_li">
 										<span class="res_info">상호명</span>
 										<h3 class="res_com_name">${map.com.com_name}</h3>
-					  	  <%-- param--%><input type="hidden" value="${map.com.com_name}" name="com_name">
+					  	  <%-- param--%><input type="hidden" id="com_name" value="${map.com.com_name}" name="com_name">
 									</li>
 									<li class="res_li">
 										<span class="res_info">주소</span>
@@ -249,7 +249,7 @@
 									<li class="res_li">
 										<span class="res_info">인원수</span>
 										<span class="per_detail">${map.res.res_person} 명</span>
-						  <%-- param--%><input type="hidden" value="${map.res.res_person}" name="res_person">
+						  <%-- param--%><input type="hidden" value="${map.res.res_person}" name="res_person" id="res_person">
 									</li>
 									<li class="res_li2">
 										<div class="res_info">고객 요청사항</div>
@@ -370,6 +370,10 @@
 		<%--info페이지에 필요한 할인전 예약금액 --%>
 		<input type="hidden" value="${map.paymentInfo.totalPrice}" name="beforeDiscountTotalPrice"/>
 		<input type="hidden" value="${map.res.res_idx}" name="res_idx"/>
+		<input type="hidden" value="${map.pay}" name="pay_num" id="pay_num"/>
+		<input type="hidden" value="${map.member.user_email}" name="user_email" id="user_email"/>
+		<input type="hidden" value="${map.member.user_name}" name="user_name" id="user_name"/>
+		<input type="hidden" value="${map.member.user_name}" name="user_name" id="user_name"/>
 	</form>
 	
 	<footer>

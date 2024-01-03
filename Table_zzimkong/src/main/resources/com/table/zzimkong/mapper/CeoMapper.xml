@@ -74,6 +74,7 @@
 			,#{com.com_ad_grade}
 			,#{com.com_search_tag}
 			,current_timestamp()
+			,#{com.open_date}
 		)
 	</insert>
 	<select id="selectEachCompany" resultType="company">

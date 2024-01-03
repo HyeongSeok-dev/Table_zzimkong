@@ -28,7 +28,7 @@
 						<td colspan="5">
 							<div class="div_display">
 								<div class="div_display div_align">
-									<input type="text" name="com_num_str" id="com_num_register" placeholder="사업자등록번호는 10자리로 '-'를 제외하고 정확하게 입력해주세요." id="comNumText">
+									<input type="text" name="com_num" id="com_num_register" placeholder="사업자등록번호는 10자리로 '-'를 제외하고 정확하게 입력해주세요." id="comNumText">
 									<button type="button" class="button_olive" id="comNumBtn">조회하기</button>
 								</div>
 								<div class="guide" id="guide"></div>
@@ -51,20 +51,22 @@
 							</div>
 						</td>
 						<th>대표자명<span class="*">*</span></th>
-						<td colspan="2"><input type="text" name="user_name" id="user_name" value="홍길동" readonly="readonly"></td>
-<%-- 						<td colspan="2"><input type="text" name="user_name" id="user_name" value="${member.user_name }" readonly="readonly"></td> --%>
+						<td colspan="2"><input type="text" name="com_ceo" id="user_name" value="홍길동" readonly="readonly"></td>
+<%-- 						<td colspan="2"><input type="text" name="com_ceo" id="user_name" value="${member.user_name }" readonly="readonly"></td> --%>
 					</tr>
 					<tr>
 						<th>개업일자<span class="*">*</span></th>
-						<td colspan="2"><input type="text" name="com_open_date" id="openDate" value="" placeholder="특수기호 없이 YYYYMMDD" style="font-size: 14px;"></td>
+						<td colspan="2"><input type="text" name="open_date" id="openDate" value="" placeholder="특수기호 없이 YYYYMMDD" style="font-size: 14px;"></td>
 					</tr>
 					<tr>
 						<th>상호명</th>
-						<td colspan="2"><input type="text" name="com_name" id="com_name"  value="" readonly="readonly"></td>
+<!-- 						<td colspan="2"><input type="text" name="com_name" id="com_name"  value=""  readonly="readonly"></td> -->
+						<td colspan="2"><input type="text" name="com_name" id="com_name"  value="" ></td>
 					</tr>
 					<tr>
 						<th>업태</th>
-						<td colspan="2"><input type="text" name=com_category id="com_category" value="" readonly="readonly"></td>
+						<td colspan="2"><input type="text" name=com_category id="com_category" value=""></td>
+<!-- 						<td colspan="2"><input type="text" name=com_category id="com_category" value="" readonly="readonly"></td> -->
 					</tr>
 					<tr>
 						<th>전화번호</th>
@@ -73,7 +75,8 @@
 					<tr>
 						<th>주소</th>
 						<td colspan="5">
-						<input type="text" name="com_address" id="com_address" maxlength="5" size="50" value="" readonly="readonly"></td>
+						<input type="text" name="com_address" id="com_address" size="50" value=""></td>
+<!-- 						<input type="text" name="com_address" id="com_address" maxlength="5" size="50" value="" readonly="readonly"></td> -->
 					</tr>
 					<tr>
 						<th>영업 시작시간</th><!-- 자바스크립트로 데이터 합치기 -->
@@ -124,7 +127,7 @@
 							    </c:forEach>
 							</select>
 							:
-							<select class="minute" name="starMin" id="openMin">
+							<select class="minute" name="startMin" id="openMin">
 								<!-- 0분부터 59분까지 -->
 							    <option value="">분</option>
 								<c:forEach var="i" begin="0" end="59">

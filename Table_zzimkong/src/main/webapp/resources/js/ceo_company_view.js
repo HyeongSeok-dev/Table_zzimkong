@@ -1,4 +1,9 @@
 $(function() {
+	if($("#com_status").text().trim() == "승인대기") {
+		console.log("승인대기");
+			$("#company_state2").val("");
+			$("#company_state2").prop('disabled', true);
+	}
 	
 	$("#company_state2").on("change", function(){
 		

@@ -286,7 +286,7 @@ public class CeoController {
 //			return "forward";
 //		}
 		//user_idx 
-		company.setUser_idx(Integer.parseInt((String)session.getAttribute("sIdx")));
+		company.setUser_idx((int)session.getAttribute("sIdx"));
 		
 		// [사업장 이미지 업로드]
 		String uploadDir = "/resources/upload";
@@ -409,7 +409,7 @@ public class CeoController {
 		} else if(addressArr[1].endsWith("군")) {
 			si = addressArr[1].replace("군", "");
 		}
-		
+		System.out.println("포함여부 : " + addressArr[0].contains("특별시"));
 		String gugun = "";
 		if((addressArr[0].contains("특별시") || addressArr[0].contains("광역시")) && (addressArr[1].endsWith("구") || addressArr[1].endsWith("군"))) {
 			gugun = si + "_" + addressArr[1];
