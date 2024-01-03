@@ -26,10 +26,11 @@ s<!DOCTYPE html>
 				<div class="header_div01">
 					<span><h1>사업장별 예약관리</h1></span>
 					<span class="header_span">
-						<select id="storeList">
+						<select id="storeList" onchange="showResInfo(this.value)">
 							<c:if test="${not empty storeList}">
 								<c:forEach var="company" items="${storeList}">
-									<option value="${company.com_id}">${company.com_name}</option>
+									<!--선택된 com_id가 파라미터로 넘어온 com_id가 비어있지 않고 파라미터로 넘어온 com_id가 선택된 com_id가 같을때 선택유지  -->
+									<option value="${company.com_id}" <c:if test="${not empty param.com_id and param.com_id eq company.com_id}">selected</c:if>>${company.com_name}</option>
 								</c:forEach>
 							</c:if>
 						</select>

@@ -36,13 +36,13 @@ public interface CeoMapper {
 
 	List<CompanyVO> selectCeoList(int sIdx);
 
-	List<ReservationVO> selectResInfo(CompanyVO company);
-
 	ReservationVO selectResDetailInfo(ReservationVO res);
 	
 	int updateCompany(CompanyVO company);
 
 	MemberVO selectUser(String sId);
+
+	List<ReservationVO> selectResInfo(int com_id);
 
 	
 }

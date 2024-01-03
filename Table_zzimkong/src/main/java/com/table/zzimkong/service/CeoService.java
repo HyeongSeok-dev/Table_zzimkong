@@ -78,9 +78,6 @@ public class CeoService {
 		return mapper.selectCeoList(sIdx);
 	}
 
-	public List<ReservationVO> getResInfoList(CompanyVO company) {
-		return mapper.selectResInfo(company);
-	}
 	
 	public int companyModify(CompanyVO company) {
 		// TODO Auto-generated method stub
@@ -94,6 +91,10 @@ public class CeoService {
 	public MemberVO getUserInfo(String sId) {
 		// TODO Auto-generated method stub
 		return mapper.selectUser(sId);
+	}
+
+	public List<ReservationVO> getResInfoList(int com_id) {
+		return mapper.selectResInfo(com_id);
 	}
 
 	

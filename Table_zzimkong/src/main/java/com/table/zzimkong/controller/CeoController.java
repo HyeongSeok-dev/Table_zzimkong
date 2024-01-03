@@ -227,18 +227,32 @@ public class CeoController {
 		return "popup_close";
 	}
 	
-	@RequestMapping("ceo/reservation")
-	public String ceo_reservation(HttpSession session, Model model, CompanyVO company, ReservationVO res) {
-//		int sId = (int)session.getAttribute("sId");
+	@GetMapping("ceo/reservation")
+	public String ceo_reservation(HttpSession session, Model model, @RequestParam(defaultValue = "-1") int com_id, CompanyVO company) {
+		System.out.println("com" + com_id);
+		
+		//로그인 아이디의 업체별 목록 조회
 		int sIdx = (Integer)session.getAttribute("sIdx");
 		List<CompanyVO> storeList = service.getComList(sIdx);
 		model.addAttribute("storeList", storeList);
 		System.out.println("storeList" + storeList);
 		
-		 
-		List<ReservationVO> comResList = service.getResInfoList(company);
+		// 페이지가 처음 로딩될때 (com_id -1)이면
+		if(com_id == -1) {
+			//목록중 첫번째 가게의 com_id를 변수에 저장
+//			company = storeList.get(0);
+//			com_id = company.getCom_id(); 
+			
+			//첫번째 com_id 꺼내서 저장 
+			com_id = storeList.get(0).getCom_id(); 
+		}
+		
+		//com_id에 해당하는 예약정보 조회 
+		List<ReservationVO> comResList = service.getResInfoList(com_id);
 		System.out.println("예약값" + comResList);
 		model.addAttribute("comResList", comResList);
+		int res_idx = comResList.get(0).getRes_idx();
+		
 		return "ceo/ceo_reservation";
 	}
 	
@@ -249,10 +263,12 @@ public class CeoController {
 	
 	@GetMapping("ceo/reservation/info")	
 	public String ceo_reservation_info(ReservationVO res, Model model) {
+		System.out.println(res);
 		res = service.getResDetailInfo(res);
 		model.addAttribute("res", res);
 		return "ceo/ceo_reservation_info";
 	}
+
 	
 	// [company]=================================================================================
 	

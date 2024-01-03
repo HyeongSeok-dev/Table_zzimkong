@@ -26,33 +26,46 @@ $(document).ready(function() {
     });
 });	
 
-function fetchCompanyData(companyId) {
-	var fetchData ={com_id: companyId}
-    $.ajax({
-        url: 'ceo/reservation', // API 경로를 적절히 변경하세요.
-        type: 'POST',
-		contentType: 'application/json',
-		dataType: 'json',
-		data: JSON.stringify(fetchData),
-        success: function(response) {
-			var reservationTable = $('#reservationTable');
-            reservationTable.find("tr:gt(0)").remove();
-            response.forEach(function(menu) {
-               var row = `<tr>
-                    <td>${res.res_num}</td>
-                    <td>${res.res_date}</td>
-                    <td>${res.res_time}원</td>
-                  	<td>
-						<button type="button" value="예약 상세 정보" onclick="newInfo(${res.res_idx})">예약 상세정보</button>
-					</td>
-                </tr>`;
-                reservationTable.append(row);
-            });
-        },
-        error: function(error) {
-            // 에러가 발생했을 때 실행할 코드
-            console.error("Error fetching data: ", error);
-        }
-    });
-}
-	
+//function fetchCompanyData(companyId) {
+//	var fetchData ={com_id: companyId}
+//    $.ajax({
+//        url: 'ceo/reservation', // API 경로를 적절히 변경하세요.
+//        type: 'POST',
+//		contentType: 'application/json',
+//		dataType: 'json',
+//		data: JSON.stringify(fetchData),
+//        success: function(response) {
+//			var reservationTable = $('#reservationTable');
+//            reservationTable.find("tr:gt(0)").remove();
+//            response.forEach(function(menu) {
+//               var row = `<tr>
+//                    <td>${res.res_num}</td>
+//                    <td>${res.res_date}</td>
+//                    <td>${res.res_time}원</td>
+//                  	<td>
+//						<button type="button" value="예약 상세 정보" onclick="newInfo(${res.res_idx})">예약 상세정보</button>
+//					</td>
+//                </tr>`;
+//                reservationTable.append(row);
+//            });
+//        },
+//        error: function(error) {
+//            // 에러가 발생했을 때 실행할 코드
+//            console.error("Error fetching data: ", error);
+//        }
+//    });
+//}
+/*예약정보 불러오기*/
+function showResInfo(com_id){
+//	$.ajax({
+//		url: "reservation",
+//		type: "GET",
+//		data: {"com_id":com_id},
+//		dataType: "json",
+//		success: function(data){
+//			console.log(JSON.stringify(data));
+//		} 
+//		
+//	});
+	location.href = "reservation?com_id=" + com_id;
+}	
