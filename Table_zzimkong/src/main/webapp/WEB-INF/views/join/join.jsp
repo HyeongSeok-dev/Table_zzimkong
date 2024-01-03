@@ -6,7 +6,12 @@
   
   <script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
     <!-- 전화번호 인증api를 위한 sdk설치 -->
-	<script src="https://cdn.portone.io/v2/browser-sdk.js"></script>
+<!-- 	<script src="https://cdn.portone.io/v2/browser-sdk.js"></script> -->
+	<!-- jQuery -->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+    <!-- iamport.payment.js -->
+	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+	<!-- ================================ -->
   
     <meta charset="UTF-8">
     <title>일반회원 가입</title>
