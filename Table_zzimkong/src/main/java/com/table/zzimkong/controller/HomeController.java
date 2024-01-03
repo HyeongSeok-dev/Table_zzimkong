@@ -91,60 +91,6 @@ public class HomeController {
 	    
 	}
 	
-		
-	
-	
-	@GetMapping("my/review")
-	public String my_review() {
-		return "mypage/my_review";
-	}
-	
-	@GetMapping("my/report/shop")
-	public String my_report_shop() {
-		return "mypage/my_report_shop";
-	}
-	
-	@GetMapping("my/report/reason")
-	public String my_report_reason() {
-		return "mypage/my_report_reason";
-	}
-	
-
-	
-	@GetMapping("my/unregister")
-	public String my_unregister() {
-		return "mypage/my_unregister";
-	}
-	
-	@GetMapping("my/check/passwd")
-	public String my_check_passwd() {
-		return "mypage/my_check_passwd";
-	}
-	
-	@GetMapping("my/qna")
-	public String my_qna() {
-		return "mypage/my_qna";
-	}
-	
-	@GetMapping("my/point")
-	public String my_point() {
-		return "mypage/my_point";
-	}
-	
-	@GetMapping("my/reservation")
-	public String my_reservation() {
-		return "mypage/my_reservation";
-	}
-	
-	@GetMapping("my/edit/reservation")
-	public String my_edit_reservation() {
-		return "mypage/my_edit_reservation";
-	}
-	
-	@GetMapping("my/bookmark")
-	public String my_bookmark() {
-		return "mypage/my_bookmark";
-	}
 	
 	
 	

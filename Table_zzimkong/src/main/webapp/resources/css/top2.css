@@ -7,11 +7,17 @@
     letter-spacing:-0.5px;
     font-size:0.75em;
   }  
+  /* li 기본 스타일 없애기*/
+  li{
+  	list-style: none;
+  }
+ 
 * { 
     padding: 0; 
     margin: 0; 
 /*     color: #0a0c0b; */
 } 
+
 
 * { 
     -webkit-box-sizing: border-box; 

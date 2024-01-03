@@ -42,9 +42,10 @@
 								<div id="img"><img src="${pageContext.request.contextPath}/resources/upload/${com.com_img }" style="width: 200px;"></div>
 								<hr>
 								<div class="file_div">
-								<input type="file" id="file" name="file">
-								<a href="${pageContext.request.contextPath}/resources/upload/${com.com_img }"></a>
-								<div id="onlyone">*사진은 최대 한장만 등록 가능합니다.</div>
+									<input type="file" id="file" name="file" value="${com.com_img }" style="display: none;">
+									<button type="button" id="uploadFileBtn">파일 선택</button>
+									<span id="fileLabel">${fn:substringAfter(com.com_img, '_')}</span>
+									<div class="guide">※ 사진은 최대 한장만 등록 가능합니다.</div>
 								</div>
 							</td>
 							<th>상호명</th>

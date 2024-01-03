@@ -23,12 +23,13 @@
 <script type="text/javascript">
 <!-- 변수 선언 -->
 var contextPath = "${pageContext.request.contextPath}";
+var sId = '<c:out value="${sessionScope.sId}"/>';
 <!-- ============================================================ -->
 document.addEventListener('DOMContentLoaded', function() {
 <!-- ============================================================ -->
+<!-- ============================================================ -->
     var reviewCountsJson = '${reviewCountsJson}'.replace(/&quot;/g, '"');
     var reviewCounts = JSON.parse(reviewCountsJson)[0]; // 첫 번째 객체만 사용
-
     var labels = [
         "인테리어가 멋져요", "혼밥하기 좋아요", "매장이 넓어요", "단체 모임 하기 좋아요", "뷰가 좋아요", 
         "양이 많아요", "음식이 맛있어요", "가성비가 좋아요", "재료가 신선해요", 
@@ -234,16 +235,32 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 	    var formattedDate = formatDate(review.review_update); // 서버로부터 받은 review_update 값을 형식화
 	
-	    var deleteFormHtml = 
-	        '<form action="' + contextPath + '/zzimkong/review/delete" method="POST">' +
-	            '<input type="hidden" name="review_num" value="' + review.review_num + '">' +
-	            '<input type="submit" class="review_delete" value="삭제" onclick="return confirm(\'리뷰를 삭제하시겠습니까?\');">' +
-	        '</form>';
+	    var deleteFormHtml = '';
+	    var modifyButtonHtml = '';
+
+	    // sId가 review.user_id와 같거나, sId가 'admin'일 경우에만 삭제 및 수정 버튼 생성
+	    if (sId === review.user_id || sId === 'admin') {
+	        deleteFormHtml = 
+	            '<form action="' + contextPath + '/zzimkong/review/delete" method="POST">' +
+	                '<input type="hidden" name="review_num" value="' + review.review_num + '">' +
+	                '<input type="submit" class="review_delete" value="삭제" onclick="return confirm(\'리뷰를 삭제하시겠습니까?\');">' +
+	            '</form>';
+
+	        modifyButtonHtml = 
+	            '<a href="modify?review_num=' + review.review_num + '">' +
+	                '<button class="review_modify">수정</button>' +
+	            '</a>';
+	    }
+// 	    var deleteFormHtml = 
+// 	        '<form action="' + contextPath + '/zzimkong/review/delete" method="POST">' +
+// 	            '<input type="hidden" name="review_num" value="' + review.review_num + '">' +
+// 	            '<input type="submit" class="review_delete" value="삭제" onclick="return confirm(\'리뷰를 삭제하시겠습니까?\');">' +
+// 	        '</form>';
 	
-	    var modifyButtonHtml = 
-	        '<a href="modify?review_num=' + review.review_num + '">' +
-	            '<button class="review_modify">수정</button>' +
-	        '</a>';
+// 	    var modifyButtonHtml = 
+// 	        '<a href="modify?review_num=' + review.review_num + '">' +
+// 	            '<button class="review_modify">수정</button>' +
+// 	        '</a>';
 	
 	    var reportButtonHtml = 
 // 	        '<a href="' + contextPath + '/review/report" class="review_report_btn" role="button">리뷰 신고하기</a>';

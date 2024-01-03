@@ -173,6 +173,8 @@ public class MypageController {
 		String sId = (String)session.getAttribute("sId"); // 세션에 아이디값을 가져오는거
 		mypage.setUser_id(sId);//검색할 아이디를 마이페이지에 넣기 
 		MypageInfo dbMypage = service.getMypage(mypage);
+		session.setAttribute("user_nick", dbMypage.getUser_nick()); // String~session: 마이페이지 눌렀을때 닉네임 계속 보이게 세션에 저장
+		
 		System.out.println(dbMypage);
 		// MypageService - getResList() 메서드 호출하여 회원 목록 조회 요청
 		
@@ -190,6 +192,59 @@ public class MypageController {
 		model.addAttribute("mypage", mypage);
 		
 		return "mypage/my_list";
+	}
+	
+	
+	@GetMapping("my/review")
+	public String my_review() {
+		return "mypage/my_review";
+	}
+	
+	@GetMapping("my/report/shop")
+	public String my_report_shop() {
+		return "mypage/my_report_shop";
+	}
+	
+	@GetMapping("my/report/reason")
+	public String my_report_reason() {
+		return "mypage/my_report_reason";
+	}
+	
+
+	
+	@GetMapping("my/unregister")
+	public String my_unregister() {
+		return "mypage/my_unregister";
+	}
+	
+	@GetMapping("my/check/passwd")
+	public String my_check_passwd() {
+		return "mypage/my_check_passwd";
+	}
+	
+	@GetMapping("my/qna")
+	public String my_qna() {
+		return "mypage/my_qna";
+	}
+	
+	@GetMapping("my/point")
+	public String my_point() {
+		return "mypage/my_point";
+	}
+	
+	@GetMapping("my/reservation")
+	public String my_reservation() {
+		return "mypage/my_reservation";
+	}
+	
+	@GetMapping("my/edit/reservation")
+	public String my_edit_reservation() {
+		return "mypage/my_edit_reservation";
+	}
+	
+	@GetMapping("my/bookmark")
+	public String my_bookmark() {
+		return "mypage/my_bookmark";
 	}
 	
 	

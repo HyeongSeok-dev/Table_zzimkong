@@ -219,8 +219,10 @@
 						<div id="owl-example1" class="owl-carousel">
 						  <c:forEach var="recommand" items="${recommendList}">
 						    <div class="owl_example1_items_images">
-						      <img alt="" src="${pageContext.request.contextPath}/resources/upload/${recommand.com_img}"> <br>
-						      ${recommand.com_name}
+					    		<a href="product/detail?com_id=${recommand.com_id}">
+						      		<img alt="" src="${pageContext.request.contextPath}/resources/upload/${recommand.com_img}"> <br>
+						      		${recommand.com_name}
+						    	</a>
 						    </div>                      
 						  </c:forEach>
 						</div>
@@ -234,9 +236,11 @@
 						<div id="owl-example2" class="owl-carousel">
 						  <c:forEach var="review" items="${reviewList}">
 						    <div class="owl_example1_items_images">
-						      <img alt="" src="${pageContext.request.contextPath}/resources/upload/${review.com_img}"> <br>
-						      ${review.com_name}
-						    </div>                      
+						    	<a href="product/detail?com_id=${review.com_id}">
+						      		<img alt="" src="${pageContext.request.contextPath}/resources/upload/${review.com_img}"> <br>
+						     		 ${review.com_name}
+						    	</a>
+						    </div>                          
 						  </c:forEach>
 						</div>
 

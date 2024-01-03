@@ -20,8 +20,8 @@
 	<article id="reviewWriteForm">
 	<div class="container">
 		<div class="restaurant_info">
-			 <a href="redetail?com_id=1"><h1>칸다소바 부전점</h1></a>
-			 <a href="redetail?com_id=1"><h1>${com_id}</h1></a>
+			 <a href="redetail?com_id=1"><h1>파니니숲</h1></a>
+			 <a href="redetail?com_id=1"><h1>${com_name}</h1></a>
 			<p>몇번째 방문</p>
 		</div>
 		<form action="reviewWritePro" name="reviewWriteForm" method="POST" enctype="multipart/form-data">

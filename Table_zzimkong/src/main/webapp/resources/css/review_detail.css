@@ -885,6 +885,7 @@ svg {
     align-items: center;
     justify-content: space-around;
     margin-left:5px;
+    margin-top: 19px;
 }
 
 .review_delete, .review_modify, .review_report_btn {
@@ -1398,6 +1399,7 @@ h1 {
   border-radius: 9px; /* 버튼 모서리 둥글게 */
   text-align: right;
   margin-top: 16px;
+  margin-bottom: 17px;
 }
 .review_report_btn{
   background-color: lightgray !important; /* 버튼 배경색 */
