@@ -33,9 +33,6 @@ public class ReservationController {
 	public ModelAndView reservation(HttpSession session, Map<String, Object> map,
 			ReservationVO res, PreOrderVO pre, CompanyVO com, MemberVO member, MenuVO menu) throws JsonProcessingException {
 		
-		res = (ReservationVO) session.getAttribute("res");
-		NumberFormat numberFormat = NumberFormat.getInstance();
-		String res_table_price = numberFormat.format(res.getRes_table_price());
 	 // 세션에서 "menuList" 속성 가져오기
 	    Object obj = session.getAttribute("menuList");
 
@@ -50,6 +47,9 @@ public class ReservationController {
 	    
 	    
 	    
+	    res = (ReservationVO) session.getAttribute("res");
+	    NumberFormat numberFormat = NumberFormat.getInstance();
+	    String res_table_price = numberFormat.format(res.getRes_table_price());
 //	    session.setAttribute("res", null);
 //	    session.setAttribute("menuList", null);
 	    
