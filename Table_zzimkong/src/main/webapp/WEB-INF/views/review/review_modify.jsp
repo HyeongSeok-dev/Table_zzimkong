@@ -6,7 +6,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- CSS -->
@@ -15,9 +14,19 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
 <!-- Js -->
 <script src="${pageContext.request.contextPath}/resources/js/review_modify.js"></script>
-<script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/jquery-3.7.1.js"></script>
 <script type="text/javascript">
+                 
 function deleteFile(review_num, review_img_1) {
+	
+	 // 새로운 파일 입력 요소 HTML 생성
+  var newFileInputHtml = `
+        <input type="file" id="photoInput${review_img_1}" name="file${review_img_1}" accept="image/*" style="display:none;">
+        <button type="button" id="photoBtn${review_img_1}" class="photo_btn" name="file${review_img_1}">
+            <i class="fas fa-camera"></i> 사진 추가
+        </button>
+        <div class="preview_container" id="previewContainer${review_img_1}" style="display: none;"></div>`;
+
     if (confirm("삭제하시겠습니까?")) {
         $.ajax({
             url: "ReviewDeleteFile",
@@ -26,27 +35,21 @@ function deleteFile(review_num, review_img_1) {
                 "review_num": review_num,
                 "review_img_1": review_img_1
             },
-            success: function(result) {
-                if (result == "true") {
-                    // 기존 프리뷰 및 입력 요소 제거
-                    $("#fileItemArea" + review_img_1).empty();
+            success: function(response) {
+                if(response == "true") {
+                    // 프리뷰 요소 삭제
+					$(".imagePreview").empty().hide();
+                    $(".remove_btn").hide();
 
                     // 새로운 파일 입력 요소 HTML 생성
-                    var newFileInputHtml = `
-                        <input type="file" id="photoInput${review_img_1}" name="file${review_img_1}" accept="image/*" />
-                        <button type="button" id="photoBtn${review_img_1}" class="photo_btn">
-                            <i class="fas fa-camera"></i> 사진 추가
-                        </button>
-                        <div class="preview_container" id="previewContainer${review_img_1}" style="display: none;"></div>
-                    `;
 
                     // 새 요소 삽입
-                    $("#fileItemArea" + review_img_1).html(newFileInputHtml);
+                    $("#fileItemArea").html(newFileInputHtml);
 
-                    // 새 요소에 대한 이벤트 리스너 설정
+                    // 새 요소에 대한 이벤트 핸들러 설정
                     bindNewFileInputEvents(review_img_1);
                 } else {
-                    console.log("파일 삭제 실패!");
+                    alert('이미지 삭제 실패: ' + response.message);
                 }
             }
         });
@@ -54,15 +57,18 @@ function deleteFile(review_num, review_img_1) {
 }
 
 function bindNewFileInputEvents(review_img_id) {
-    // '사진 추가' 버튼에 이벤트 리스너 설정
     $("#photoBtn" + review_img_id).on('click', function() {
         $("#photoInput" + review_img_id).click();
     });
 
-    // 파일 입력 필드에 이벤트 리스너 설정
     $("#photoInput" + review_img_id).on('change', function(event) {
         handleImagePreview(event, review_img_id);
     });
+}
+
+function removePreview(review_img_id) {
+    $("#previewContainer" + review_img_id).empty().hide();
+    $("#photoInput" + review_img_id).val('');
 }
 
 </script>
@@ -209,18 +215,17 @@ function bindNewFileInputEvents(review_img_id) {
 			<div class="separator"></div>
 			<h2 style="text-align: center;">리뷰를 남겨주세요</h2>
 			<!-- 사진 추가 버튼 컨테이너 -->
-			<div class="photo_box">
-			    <div class="file" id="fileItemArea1">
-			        <!-- 기존 코드 -->
-			        <c:choose>
-			            <c:when test="${not empty review.review_img_1}">
-			                <div class="image_wrapper">
-			                    <img src="${pageContext.request.contextPath}/resources/upload/${review.review_img_1}" alt="Image Preview" class="imagePreview"/>
-			                    <a href="javascript:deleteFile(${review.review_num}, '${review.review_img_1}', 1)">
-			                        <img src="${pageContext.request.contextPath}/resources/img/close2.png" class="img_btnDelete">
-			                    </a>
-			                </div>
-			            </c:when>
+		<div class="photo_box">
+<!-- 		    <div class="file" id="fileItemArea1"> -->
+		    <div class="file" id="fileItemArea">
+		        <c:choose>
+		            <c:when test="${not empty review.review_img_1}">
+		                <div class="image_wrapper">
+		                    <img src="${pageContext.request.contextPath}/resources/upload/${review.review_img_1}" alt="Image Preview" class="imagePreview"/>
+		                    <!-- 수정된 removePreview 함수 호출 -->
+		                    <div class="remove_btn" onclick="deleteFile(${review.review_num}, '${review.review_img_1}')">X</div>
+		                </div>
+		            </c:when>
 			            <c:otherwise>
 						    <div class="photo_box">
 							    <div class="file" id="fileItemArea1">
@@ -232,6 +237,7 @@ function bindNewFileInputEvents(review_img_id) {
 							            <div class="image_wrapper">
 							                <img id="imagePreview" src="#" alt="Image Preview"/>
 							                <div class="remove_btn" onclick="removePreview()">X</div>
+							               
 							            </div>
 							        </div>
 							    </div>

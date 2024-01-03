@@ -287,14 +287,12 @@ public class ReviewController {
 	// 파일 삭제 AJAX 요청에 대한 응답 데이터 생성 및 전송을 위해 @ResponseBody 지정
 	@ResponseBody
 	@PostMapping("review/ReviewDeleteFile")
-	public String deleteFile(ReviewVO review
-							,HttpSession session
-							) {
+	public String deleteFile(ReviewVO review,HttpSession session) {
 		
 		// ReviewService - removeBoardFile() 메서드 호출하여 지정된 파일명 삭제 요청
 		// => 파라미터 : ReviewVO 객체   리턴타입 : int(removeCount)
 		int removeCount = service.removeReviewFile(review);
-		
+		System.out.println("삭제여부" + removeCount);
 		try {
 			if(removeCount > 0) { // 레코드의 파일명 삭제(수정) 성공 시
 				// 서버에 업로드 된 실제 파일 삭제
@@ -315,9 +313,9 @@ public class ReviewController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+			return "false";
 		// DB 파일명 삭제 실패 또는 서버 업로드 파일 삭제 실패 등의 문제 발생 시 "false" 리턴
-		return "false";
+		
 	}
 	
 	// "ReviewModifyPro" 서블릿 요청에 대한 글 수정 요청 비즈니스 로직 처리
@@ -357,7 +355,7 @@ public class ReviewController {
 			e.printStackTrace();
 		}
 		
-		System.out.println(review);
+//		System.out.println(review);
 		
 		// BoardVO 객체에 전달(저장)된 실제 파일 정보가 관리되는 MultipartFile 타입 객체 꺼내기
 		// => 단, 수정하지 않은 파일(새로 업로드 항목으로 추가된 파일이 아닌 기존 파일)은

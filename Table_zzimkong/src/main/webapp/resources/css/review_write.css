@@ -280,10 +280,10 @@
     position: absolute;
     top: 0;
     right: 0;
-    background-color: #3FAFFC;
+/*     background-color: #3FAFFC; */
     color: white;
     cursor: pointer;
-    padding: 5px;
+/*     padding: 5px; */
     border-radius: 50%;
     z-index: 10; 
     margin-top: 2px;

@@ -27,7 +27,6 @@ var sId = '<c:out value="${sessionScope.sId}"/>';
 <!-- ============================================================ -->
 document.addEventListener('DOMContentLoaded', function() {
 <!-- ============================================================ -->
-<!-- ============================================================ -->
     var reviewCountsJson = '${reviewCountsJson}'.replace(/&quot;/g, '"');
     var reviewCounts = JSON.parse(reviewCountsJson)[0]; // 첫 번째 객체만 사용
     var labels = [
@@ -171,7 +170,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	    if (!results[2]) return '';
 	    return decodeURIComponent(results[2].replace(/\+/g, " "));
 	    var comId = getParameterByName('com_id');
-	    console.log(comId); // 결과 확인
+	    console.log(comId); 
 	}
 	<!-- ================================================================================================= -->
 	function formatDate(dateString) {

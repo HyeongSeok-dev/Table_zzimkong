@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+    
     function updateCheckboxValue(checkbox) {
         if (checkbox.id === 'review_like') {
             // 좋아요 체크박스는 별도의 로직을 사용
@@ -74,17 +75,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 previewContainer.style.display = 'block';
             };
             reader.readAsDataURL(file);
-        }
-    }
-
-    function removePreview(review_img_id) {
-        var photoInput = $("#photoInput" + review_img_id);
-        var imagePreview = $("#imagePreview" + review_img_id);
-        var previewContainer = $("#previewContainer" + review_img_id);
-        if (photoInput.length && imagePreview.length && previewContainer.length) {
-            photoInput.val('');
-            imagePreview.attr('src', '');
-            previewContainer.hide();
         }
     }
 

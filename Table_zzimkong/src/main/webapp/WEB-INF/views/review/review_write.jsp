@@ -155,7 +155,9 @@
 		    <div id="previewContainer" class="preview_container" style="display: none;">
 		        <div class="image_wrapper">
 		            <img id="imagePreview" src="#" alt="Image Preview"/>
-		            <div class="remove_btn" onclick="removePreview()">X</div>
+		            <div class="remove_btn" onclick="removePreview()" alt="Delete">
+		            	<img src="${pageContext.request.contextPath}/resources/img/close2.png" style="width: 20px; height: 20px;">
+		            </div>
 		        </div>
 		    </div>
 			</div>
