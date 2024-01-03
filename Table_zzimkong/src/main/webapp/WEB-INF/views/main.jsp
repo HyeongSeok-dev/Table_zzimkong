@@ -176,7 +176,7 @@
 									
 					<button type="button" value="채식" class="foodThemeCategory">
 						<span>채식</span>
-					</button>		
+					</button>
 		
 		</div>
 	

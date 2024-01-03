@@ -49,6 +49,18 @@ window.onload = function() {
 //		
 //	}); //닉네임 중복확인
 
+   // 사진 미리 보기
+       $('#file1').change(function() {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            var img = $('<img>').attr('src', e.target.result).css('max-width', '290px').css('max-height', '200px');
+            $('#img').empty().append(img);
+        }
+        reader.readAsDataURL(this.files[0]);
+    });
+    
+    
+   // 닉네임 중복확인
 	$("#modifyBtn").click(function(e){
     if($("#u_nick").val() != "" && isDuplicateNick){
         e.preventDefault(); //버튼의 기본 동작(폼 제출)을 막습니다.

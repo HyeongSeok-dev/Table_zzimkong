@@ -13,7 +13,7 @@
 		<div id="nmContainer" class="nm_container ">
 		  <div class="nm_find_wrap">
 		      <div class="find_box">
-		        <form id="findForm" method="POST" target="_self">
+		        <form action="idPro" id="findForm" method="POST" target="_self">
 		        <!-- 로고 이미지 -->
 		        <div align="center" class="div_img">
 		        	<img class="logo_img_1" src="${pageContext.request.contextPath }/resources/img/logo1_2.png" alt="메인로고1" >
