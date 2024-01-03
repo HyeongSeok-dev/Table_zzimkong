@@ -1,17 +1,17 @@
 $(document).ready(function() {
 
-		var IMP = window.IMP;
-		IMP.init("{imp22106057}");
+//		var IMP = window.IMP;
+//		IMP.init("{imp22106057}");
 		
 	$("#api").click(function() {
 	//휴대폰 본인인증하기=======================================
 	//식별코드 imp22106057
 		
-//		console.log("본인인증 함수작동");
+		console.log("본인인증 함수작동");
 		
 		//인증창 호출
 		IMP.certification({
-//			//pg:'PG사코드.{CPID}', //본인인증설정2개이상일경우 필수
+			//pg:'PG사코드.{CPID}', //본인인증설정2개이상일경우 필수
 			merchant_uid: "ORD20180131-0000011",
 			m_redirect_url: "join/choice",
 			popup : false //pc는 popup파라미터 무시, 항상 true로 적용
@@ -45,7 +45,8 @@ $(document).ready(function() {
 		}); //버튼
 		
 		//돌아가기버튼 메인으로 리다이렉트
-		$("#delete").click(function() {
-//	    	window.location.href = "/";
-		});
+//		$("#delete").click(function() {
+////	    	window.location.href = "/";
+//		});
+
 }); //jquery문 전체
