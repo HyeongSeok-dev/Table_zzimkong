@@ -551,7 +551,7 @@ public class CeoController {
 //		System.out.println(company.getCom_num());
 		CompanyVO company = service.getEachCompany(com_num);
 		
-		System.out.println();
+		System.out.println(company);
 		
 		company.setOpenHour(company.getCom_open_time().split(":")[0]);
 		company.setOpenMin(company.getCom_open_time().split(":")[1]);
@@ -561,6 +561,7 @@ public class CeoController {
 		company.setStartMin(company.getCom_breakStart_time().split(":")[1]);
 		company.setEndHour(company.getCom_breakEnd_time().split(":")[0]);
 		company.setEndMin(company.getCom_breakEnd_time().split(":")[1]);
+		
 		
 		model.addAttribute("com",company);
 		return "ceo/ceo_company_modify";

@@ -58,6 +58,15 @@ $(function() {
  
 	});
 	
+	$('#uploadFileBtn').click(function() {
+        $('#file').click();
+    });
+
+    $('#file').on('change', function() {
+        var fileName = $(this).val().split('\\').pop();
+        $('#fileLabel').text(fileName ? fileName : '선택된 파일 없음');
+    });
+	
 	//사진 미리보기
     $('#file').change(function() {
         var reader = new FileReader();
