@@ -14,12 +14,13 @@
         var mapContainer = document.getElementById('map'), 
             mapOption = {
                 center: new kakao.maps.LatLng(33.450701, 126.570667),
-                level: 3 
+                level: 4 
             }; 
 
         var map = new kakao.maps.Map(mapContainer, mapOption);
 
         var address = decodeURIComponent(new URLSearchParams(window.location.search).get('address'));
+        var name = decodeURIComponent(new URLSearchParams(window.location.search).get('name'));
 
         var geocoder = new kakao.maps.services.Geocoder();
 
@@ -32,7 +33,7 @@
                 });
 
                 var infowindow = new kakao.maps.InfoWindow({
-                    content: '<div style="padding:5px;">' + address + ' <a href="https://map.kakao.com/link/to/' + encodeURIComponent(address) + ',' + result[0].y + ',' + result[0].x + '" target="_blank" style="color:blue">길찾기</a></div>'
+                    content: '<div><strong>' + name + '</strong><br>' + address + ' <a href="https://map.kakao.com/link/to/' + encodeURIComponent(address) + ',' + result[0].y + ',' + result[0].x + '" target="_blank" style="color:blue">길찾기</a></div>'
                 });
                 infowindow.open(map, marker);
 

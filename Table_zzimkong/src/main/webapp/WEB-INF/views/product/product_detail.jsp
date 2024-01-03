@@ -65,13 +65,13 @@
 					현재 위치에서 <strong class="restaurant-distance"> ${company_info.distance}m </strong>
 					<input type="hidden" name="storeAddress" value="${company.com_address}">
 			</span>
-				<button onclick="mapPopup('${company.com_address}')" class="Move__Map__Button">지도보기</button>
+				<button onclick="mapPopup('${company.com_address}', '${company.com_name}')" class="Move__Map__Button">지도보기</button>
 			</li>
 			<li class="tel">${company.com_tel}</li>
 			<li class="tag">${tag_mood}</li>
 			<li class="char">${tag_facilities}</li>
-			<li class="feedback button style-UoJ8Z" id="style-UoJ8Z">폐업신고 ·
-				정보수정 제안</li>
+			<li class="feedback button style-UoJ8Z" id="style-UoJ8Z"><a href="../member/cs/faq">폐업신고 ·
+				정보수정 제안</a></li>
 		</ul>
 	</div>
 	<p class="gap20"></p>
@@ -86,7 +86,7 @@
 				</div>
 				<ul class="list">
 					<li>
-						<p class="r-txt">${company.com_open_time} ~ ${company.com_close_time} / 브레이크타임 : ${company.com_break_time}</p>
+						<p class="r-txt">${company.com_open_time} ~ ${company.com_close_time} / 브레이크타임 : ${company.com_breakStart_time} ~ ${company.com_breakEnd_time}</p>
 					</li>
 				</ul>
 			</div>

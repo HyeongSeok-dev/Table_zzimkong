@@ -411,13 +411,14 @@ iframe {
 .menu_contents {
 	width: 65%;
 	order: 1;
-	padding-left: 100px; 
+	padding-left: 5px; 
 }
 
 .menu_box {
 	margin: 0 auto;
-	width: 350px;
-	height: auto;
+	width: 450px;
+	height: 350px;
+	overflow: hidden;
 	text-align: center;
 	justify-content: center;
 	display: inline-block
@@ -1023,16 +1024,15 @@ span.similar_recom_title {
 
 .com_pic {
 	width: 600px;
-	max-width: 100%;
-	height: auto;
+	height: 400px;
 	margin-top: -55px;
 	max-height: 100%;
 	object-fit: cover;
+	overflow: hidden;
 }
 
 .com_pic_wrapper {
 	text-align: center;
-	max-height: 100%;
 	overflow: hidden;
 }
 

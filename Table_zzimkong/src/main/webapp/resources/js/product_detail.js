@@ -222,14 +222,12 @@ $(document).ready(function() {
     });
 });
 
-function mapPopup(address) {
-	// 팝업창의 URL을 설정합니다. 적절한 URL로 변경해야 합니다.
-	var encodedAddress = encodeURIComponent(address);
-	var url = "map?address=" + encodedAddress;
-
+function mapPopup(address, name) {
+    var encodedAddress = encodeURIComponent(address);
+    var encodedName = encodeURIComponent(name);
+    var url = "map?address=" + encodedAddress + "&name=" + encodedName;
 	var windowName = "MapPopup";
 	var windowSize = "width=1000,height=800,left=200,top=200";
 
 	window.open(url, windowName, windowSize);
 }
-
