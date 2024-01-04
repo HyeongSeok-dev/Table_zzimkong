@@ -17,38 +17,6 @@ window.onload = function() {
 	};
 } // window.onload 끝
 
-//	$("#modifyBtn").click(function(){
-//		var 
-//		
-//		});
-
-	// 닉네임 중복 확인	
-//	$("#u_nick").blur(function(){
-//			
-//		//닉네임 입력값 가져오기
-//		let user_nick = $("#u_nick").val();
-//		
-//		$.ajax({
-//			url: "MypageCheckDupNick",
-//			data: {
-//				user_nick : user_nick
-//			},
-//			dataType: "json",
-//			success : function(checkDuplicateResult){
-//				if(checkDuplicateResult ){ //중복
-//					$("#checkNickResult").html("이미 사용중인 닉네임");
-//					$("#checkNickResult").css("color", "red");
-//					isDuplicateNick = true;
-//				}else{ //중복X
-//					$("#checkNickResult").html("사용 가능한 닉네임");
-//					$("#checkNickResult").css("color", "blue");
-//					isDuplicateNick = false;
-//				}
-//			} //success
-//		}); //ajax
-//		
-//	}); //닉네임 중복확인
-
    // 사진 미리 보기
        $('#file1').change(function() {
         var reader = new FileReader();
@@ -111,9 +79,9 @@ window.onload = function() {
             let lengthRegex = /^[A-Za-z0-9!@#$%]{8,16}$/;
             
             if(!lengthRegex.exec(passwd)){ //길이체크
-                msg = "영어 대소문자, 숫자, 특수문자 조합 8~16자리";
+                msg = "영문, 숫자, 특수문자 조합 8 ~ 16자리";
                 color = "red";
-                isPasswd = false;
+//                isPasswd = false;
             }else{
                 let engUpperRegex = /[A-Z]/; //대문자
                 let engLowerRegex = /[a-z]/; //소문자
@@ -159,72 +127,6 @@ window.onload = function() {
             e.preventDefault(); // 폼 제출을 막음
         }
     });
-//	$("#txtPassword2").blur(function(){
-//		let passwd = $("#txtPassword2").val();
-//		let msg = "";
-//		let color = "";
-//		
-//		//비밀번호 길이 검증
-//		// 대소문자, 숫자 ,특수문자(!@#$%)를 포함하여 8~16 입력
-//		let lengthRegex = /^[A-Za-z0-9!@#$%]{8,16}$/;
-//		
-//		if(!lengthRegex.exec(passwd)){ //길이체크
-//			msg = "영어 대소문자, 숫자, 특수문자 조합 8~16자리";
-//			color = "red";
-//		}else{
-//			let engUpperRegex = /[A-Z]/; //대문자
-//			let engLowerRegex = /[a-z]/; //소문자
-//			let numRegex = /[\d]/; //숫자
-//			let specRegex = /[!@#$%]/; //특수문자
-//			
-//			let count = 0;
-//			
-//			if(engUpperRegex.exec(passwd)){count++;}
-//			if(engLowerRegex.exec(passwd)){count++;}
-//			if(numRegex.exec(passwd)){count++;}
-//			if(specRegex.exec(passwd)){count++;}
-//			
-//			switch(count){
-//				case 4 : msg = "안전"; color = "green"; break;
-//				case 3 : msg = "보통"; color = "yellow"; break;
-//				case 2 : msg = "위험"; color = "orange"; break;
-//				case 1 : case 0 :  msg = "사용 불가능한 비밀번호"; color = "red"; 
-//			}
-//			
-//			if(count >= 2){ //안전,보통,위험 (사용가능)
-//				isPasswd = true;
-//			}else{ //사용 불가능한 비밀번호
-//				isPasswd = false;
-//			}	
-//				
-//		}
-//		
-//		$("#checkPasswdResult").html(msg);
-//		$("#checkPasswdResult").css("color", color);
-//		
-//	}); //비밀번호검증
-	
-	// 비밀번호확인 입력란에 키를 누를때마다 비밀번호와 같은지 체크하기
-//	document.modifyForm.user_passwd2.onkeyup = function() {
-//		let isSamePasswd = false;
-//		let passwd = document.modifyForm.user_passwd1.value;
-//		let passwd2 = document.modifyForm.user_passwd2.value;
-//		
-//		// 비밀번호와 비밀번호확인 입력 내용이 같으면 "비밀번호 일치"(파란색) 표시,
-//		// 아니면, "비밀번호 불일치"(빨간색) 표시
-//	    if(passwd == passwd2) { // 일치
-//	     	document.querySelector("#checkPasswd2Result").innerText = "비밀번호 일치";
-//	     	document.querySelector("#checkPasswd2Result").style.color = "#3FAFFC";
-//	     	// 일치 여부를 저장하는 변수 isSamePasswd 값을 true 로 변경
-//	     	isSamePasswd = true;
-//	    } else { // 불일치
-//	     	document.querySelector("#checkPasswd2Result").innerText = "비밀번호 불일치";
-//	     	document.querySelector("#checkPasswd2Result").style.color = "red";
-//	     	// 일치 여부를 저장하는 변수 isSamePasswd 값을 true 로 변경
-//	     	isSamePasswd = false;
-//	    }
-//		
-//	};
 
 	document.modifyForm.user_passwd1.onkeyup = checkPassword;
 	document.modifyForm.user_passwd2.onkeyup = checkPassword;
@@ -251,15 +153,6 @@ window.onload = function() {
 	
 	}); // document.ready 끝
 
-/* 예약 취소 모달창 my_list.jsp */
-	function cancelReservation(){
-		confirm("예약을 취소하시겠습니까?");
-		if(true) {
-			alert("예약이 취소되었습니다.");
-		}
-	} // cancelReservation 끝
-	
-	
 document.addEventListener('DOMContentLoaded', function() {
 
     /* 북마크 추가/삭제 */

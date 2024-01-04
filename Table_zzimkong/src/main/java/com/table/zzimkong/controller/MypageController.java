@@ -15,6 +15,7 @@ import org.springframework.ui.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.*;
 
+import com.itwillbs.mvc_board.vo.*;
 import com.table.zzimkong.service.*;
 import com.table.zzimkong.vo.*;
 
@@ -189,22 +190,48 @@ public class MypageController {
 		int sIdx = (int)session.getAttribute("sIdx"); //세션 인덱스 가져오기
 		List<Map<String, Object>> resList = service.getResList(sIdx);
 		System.out.println("resList : " + resList);
-		// Model 객체에 회원 목록 조회 결과 저장
+		// Model 객체에 회원 목록 조회 결과 저장(resList 문자열을 "resList"라는 속성명으로 저장)
 		model.addAttribute("resList", resList);
-
-		List<Map<String, Object>> resList2 = service.getResList2(sIdx);
-		model.addAttribute("resList2", resList2);
 		
 		return "mypage/my_list";
 	}
 	
 	@GetMapping("my/reservation")
-	public String my_reservation(MypageInfo mypage, HttpSession session, Model model, HttpServletResponse response) {
+	
+	public String my_reservation(MypageInfo mypage, HttpSession session, Model model, HttpServletResponse response, @RequestParam(defaultValue = "1") int pageNum ) {
+		
+		// ----------------------------------------------------------------
+		// 페이징 처리를 위해 조회 목록 갯수 조절 시 사용될 변수 선언
+//		int listLimit = 10;
+//		int startRow = (pageNum - 1) * listLimit;
 		int sIdx = (int)session.getAttribute("sIdx"); //세션 인덱스 가져오기
-		
+//		
 		List<Map<String, Object>> resList2 = service.getResList2(sIdx);
+//		
+//		// --------------------------------------------------------------------
+//		// 페이징 처리를 위한 계산 작업
+//		// BoardService - getBoardListCount() 메서드 호출하여 전체 게시물 목록 갯수 조회 요청
+//		// => 파라미터 : 검색타입, 검색어
+//		// => 리턴타입 : int(listCount)
+//		int listCount = service.getBoardListCount(searchType, searchKeyword);
+//		int pageListLimit = 3; // 임시) 페이지 당 페이지 번호 갯수를 3개로 지정
+//		int maxPage = listCount / listLimit + (listCount % listLimit > 0 ? 1 : 0);
+//		int startPage = (pageNum - 1) / pageListLimit * pageListLimit + 1;
+//		int endPage = startPage + pageListLimit - 1;
+//		if(endPage > maxPage) {
+//			endPage = maxPage;
+//		}
+//		
+//		// 계산된 페이징 처리 관련 값을 PageInfo 객체에 저장
+//		PageInfo pageInfo = new PageInfo(listCount, pageListLimit, maxPage, startPage, endPage);
+//		// ----------------------------------------------------------------------------
+//		// 게시물 목록과 페이징 정보 저장
+//		model.addAttribute("boardList", boardList);
+//		model.addAttribute("pageInfo", pageInfo);
+				
+		// Model 객체에 회원 목록 조회 결과 저장(resList2 문자열을 "resList2"라는 속성명으로 저장)
 		model.addAttribute("resList2", resList2);
-		
+
 		return "mypage/my_reservation";
 	}
 	

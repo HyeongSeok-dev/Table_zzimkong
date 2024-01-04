@@ -30,13 +30,13 @@ public class MypageService {
 		return mapper.selectUserNick(mypage);
 	}
 	
-	// 예약 내역 목록
+	// 예약 내역 목록 간략히 보기
 	public List<Map<String, Object>> getResList(int sIdx) {
 		// TODO Auto-generated method stub
 		return mapper.selectResList(sIdx);
 	}
 	
-	// 예약 내역 목록
+	 // 예약 내역 목록 상세 보기
 	public List<Map<String, Object>> getResList2(int sIdx) {
 		// TODO Auto-generated method stub
 		return mapper.selectResList2(sIdx);

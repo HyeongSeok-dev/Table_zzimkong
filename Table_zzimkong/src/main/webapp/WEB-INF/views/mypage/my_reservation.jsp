@@ -61,6 +61,7 @@
 					<th>방문예정일</th>
 					<th>예약상태</th>
 					<th>결제상태</th>
+					<th></th>
 				</tr>
 				<%-- 예약 목록 출력 --%>
 				<c:forEach var="res2" items="${resList2}">
@@ -95,6 +96,19 @@
 							<td>알수없음</td>
 						</c:otherwise>
 					</c:choose>
+					<c:choose>
+	                	<c:when test="${res2.res_status eq 1}">
+	                		<td>
+	                    	<div class="div_button">
+	                        	<button type="button" id="my_delete" onclick="cancelReservation()">예약취소</button>
+	                    	</div>
+	                    	</td>
+	                	</c:when>
+	                	<c:otherwise>
+	                    <!-- 예약완료가 아닌 경우에는 아무것도 보이지 않게 -->
+	                    <td>-</td>
+	                	</c:otherwise>
+	                </c:choose>
 				  </tr>
 				</c:forEach>
 			</table>
