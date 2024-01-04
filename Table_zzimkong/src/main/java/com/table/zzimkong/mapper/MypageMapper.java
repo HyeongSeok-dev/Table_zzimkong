@@ -1,6 +1,7 @@
 package com.table.zzimkong.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.*;
 
@@ -20,7 +21,9 @@ public interface MypageMapper {
 	MypageInfo selectUserNick(MypageInfo mypage);
 	
 	// 예약 내역 조회
-	List<ReservationVO> selectResList(int sIdx);
+//	List<ReservationVO> selectResList(int sIdx);
+
+	List<Map<String, Object>> selectResList(Object user_idx);
 
 //	CompanyVO selectCom(ReservationVO res);
 }

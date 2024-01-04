@@ -43,20 +43,32 @@
 					<th>예약상태</th>
 					<th>결제상태</th>
 				</tr>
-				<tr>
-					<td>23/09/15 14:00</td>
-					<td>현풍닭칼국수</td>
-					<td>김기린</td>
-					<td>3</td>
-					<td>예약금 결제</td>
-					<td>23/09/15 14:00</td>
-					<td>예약 완료</td>
+				<%-- 예약 목록 출력 --%>
+				<c:forEach var="resList" items="${resList}">
+				  <tr>
+					<td>${res.com_id }</td>
+					<td>${res.res_name }</td>
+					<td>${res.res_person }</td>
+					<td>${res.menu_name }</td>
+					<td>${res.res_date }</td>
+					<td>${res.res_status }</td>
+					<td>${res.res_pay_status }</td>
+				  </tr>
+				</c:forEach>
+<!-- 				<tr> -->
+<!-- 					<td>23/09/15 14:00</td> -->
+<!-- 					<td>현풍닭칼국수</td> -->
+<!-- 					<td>김기린</td> -->
+<!-- 					<td>3</td> -->
+<!-- 					<td>예약금 결제</td> -->
+<!-- 					<td>23/09/15 14:00</td> -->
+<!-- 					<td>예약 완료</td> -->
 <!-- 					<td> -->
 <!-- 						<div class="div_button"> -->
 <!-- 							<button type="button" id="my_delete" onclick="cancelReservation()">예약취소</button> -->
 <!-- 						</div> -->
 <!-- 					</td> -->
-				</tr>
+<!-- 				</tr> -->
 				
 			</table>
 			<br>

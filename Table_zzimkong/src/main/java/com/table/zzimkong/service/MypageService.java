@@ -36,14 +36,15 @@ public class MypageService {
 //		return mapper.selectResList(sIdx);
 //	}
 
-//	public List<Map<String, Object>> getResList(Object user_idx) {
-//		// TODO Auto-generated method stub
-//		return mapper.selectResList(user_idx);
-//	}
 
 //	public CompanyVO getComName(ReservationVO res) {
 		// TODO Auto-generated method stub
 //		return mapper.selectCom(res);
 //	}
+
+	public List<Map<String, Object>> getResList(int user_idx) {
+		// TODO Auto-generated method stub
+		return mapper.selectResList(user_idx);
+	}
 
 }

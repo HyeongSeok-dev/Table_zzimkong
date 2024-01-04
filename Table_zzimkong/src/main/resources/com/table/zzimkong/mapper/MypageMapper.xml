@@ -39,12 +39,18 @@
 	</update>
 	
 	<!-- 예약내역 조회 - SELECT -->
-	<select id="selectResList">
+	<select id="selectResList" resultType="map">
 		SELECT *
-		FROM reservation as  r, company as c
-		WHERE c.user_idx = #{sIdx} AND #{c.com_id} ;
-<!-- 		ORDER BY res_idx DESC; -->
+		FROM mypage_view
+		WHERE user_idx = #{user_idx}
 	</select>
+	
+<!-- 	<select id="selectResList"> -->
+<!-- 		SELECT * -->
+<!-- 		FROM reservation as  r, company as c -->
+<!-- 		WHERE c.user_idx = #{sIdx} AND #{c.com_id} ; -->
+<!-- 		ORDER BY res_idx DESC; -->
+<!-- 	</select> -->
 	
 	<!-- 회사명 조회 - SELECT -->
 <!-- 	<select id="selectCom"> -->
