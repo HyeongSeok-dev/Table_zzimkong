@@ -92,9 +92,12 @@
 							<select class="minute" name="openMin" id="openMin">
 								<!-- 0분부터 59분까지 -->
 							    <option value="">분</option>
-								<c:forEach var="i" begin="0" end="59">
-							    	<option value="${i}">${i}</option>
-							    </c:forEach>
+							    <option value="00">00</option>
+							    <option value="00">10</option>
+							    <option value="00">20</option>
+							    <option value="00">30</option>
+							    <option value="00">40</option>
+							    <option value="00">50</option>
 							</select>
 						</td>
 						<th>영업 종료시간</th>
@@ -108,11 +111,13 @@
 							</select>
 							:
 							<select class="minute" name="closeMin" id="closeMin">
-								<!-- 0분부터 59분까지 -->
 							    <option value="">분</option>
-								<c:forEach var="i" begin="0" end="59">
-							    	<option value="${i}">${i}</option>
-							    </c:forEach>
+								<option value="00">00</option>
+							    <option value="00">10</option>
+							    <option value="00">20</option>
+							    <option value="00">30</option>
+							    <option value="00">40</option>
+							    <option value="00">50</option>
 							</select>
 						</td>
 					</tr>	
@@ -128,11 +133,13 @@
 							</select>
 							:
 							<select class="minute" name="startMin" id="openMin">
-								<!-- 0분부터 59분까지 -->
 							    <option value="">분</option>
-								<c:forEach var="i" begin="0" end="59">
-							    	<option value="${i}">${i}</option>
-							    </c:forEach>
+								<option value="00">00</option>
+							    <option value="00">10</option>
+							    <option value="00">20</option>
+							    <option value="00">30</option>
+							    <option value="00">40</option>
+							    <option value="00">50</option>
 							</select>
 						</td>
 						<th>브레이크타임 종료시간</th>
@@ -146,11 +153,13 @@
 							</select>
 							:
 							<select class="minute" name="endMin">
-								<!-- 0분부터 59분까지 -->
 							    <option value="">분</option>
-								<c:forEach var="i" begin="0" end="59">
-							    	<option value="${i}">${i}</option>
-							    </c:forEach>
+								<option value="00">00</option>
+							    <option value="00">10</option>
+							    <option value="00">20</option>
+							    <option value="00">30</option>
+							    <option value="00">40</option>
+							    <option value="00">50</option>
 							</select>
 						</td>
 					</tr>	

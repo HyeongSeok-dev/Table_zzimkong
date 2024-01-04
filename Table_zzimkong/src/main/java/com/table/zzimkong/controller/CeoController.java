@@ -357,8 +357,14 @@ public class CeoController {
 		// [영업시간/브레이크타임 시간분 합치기]
 		company.setCom_open_time(company.getOpenHour() + " : " + company.getOpenMin());
 		company.setCom_close_time(company.getCloseHour() + " : " + company.getCloseMin());
-		company.setCom_breakStart_time(company.getStartHour() + " : " + company.getStartMin());
-		company.setCom_breakEnd_time(company.getEndHour() + " : " + company.getEndMin());
+		
+		if(company.getStartHour() == "" || company.getStartMin() == "" || company.getEndHour() == "" || company.getEndMin() == "") {
+			company.setCom_breakStart_time("");
+			company.setCom_breakEnd_time("");
+		} else {
+			company.setCom_breakStart_time(company.getStartHour() + " : " + company.getStartMin());
+			company.setCom_breakEnd_time(company.getEndHour() + " : " + company.getEndMin());
+		}
 		
 		//------------------------------------------------------------------------------------------------
 		//카테고리 boolea으로 변경하기
@@ -488,24 +494,32 @@ public class CeoController {
 	@GetMapping("ceo/company/list")
 	public String companyListForm(HttpSession session,Model model) {
 		
-//		if(session.getAttribute("sId") == null) {
-//		
-//		model.addAttribute("msg", "접근권한이 없습니다!");
-//		model.addAttribute("targetURL", "login");
-//		
-//		return "forward";
-//	}
+		if(session.getAttribute("sId") == null) {
+		
+		model.addAttribute("msg", "접근권한이 없습니다!");
+		model.addAttribute("targetURL", "login");
+		
+		return "forward";
+	}
 //		session.setAttribute("sIdx", 76);
 		int sIdx = (int)session.getAttribute("sIdx");
+		
 		
 		System.out.println(sIdx);
 		
 		List<CompanyVO> myCompanyList = service.getMyCompanyList(sIdx);
 		
 		for(CompanyVO company : myCompanyList) {
-			
 			company.setOperatingTime(company.getCom_open_time() + " ~ " + company.getCom_close_time());
-			company.setBreakTime(company.getCom_breakStart_time() + " ~ " + company.getCom_breakEnd_time());
+			
+			if(company.getCom_breakStart_time().isEmpty() || company.getCom_breakEnd_time().isEmpty()) {
+				System.out.println("비었음");
+				company.setBreakTime("");
+			} else {
+				System.out.println("정보있음");
+				company.setBreakTime(company.getCom_breakStart_time() + " ~ " + company.getCom_breakEnd_time());
+			}
+//			company.setBreakTime(company.getCom_breakStart_time() + " ~ " + company.getCom_breakEnd_time());
 			
 		}
 		
@@ -528,8 +542,17 @@ public class CeoController {
 		CompanyVO company = service.getEachCompany(com_num);
 		
 		company.setOperatingTime(company.getCom_open_time() + " ~ " + company.getCom_close_time());
-		company.setBreakTime(company.getCom_breakStart_time() + " ~ " + company.getCom_breakEnd_time());
+		System.out.println("time" + company.getCom_breakStart_time());
+		if(company.getCom_breakStart_time().isEmpty() || company.getCom_breakEnd_time().isEmpty()) {
+			System.out.println("비었음");
+			company.setBreakTime("");
+		} else {
+			System.out.println("정보있음");
+			company.setBreakTime(company.getCom_breakStart_time() + " ~ " + company.getCom_breakEnd_time());
+		}
 		company.setCom_reg_date(company.getCom_reg_date());
+		
+		System.out.println(company.getBreakTime());
 		
 		model.addAttribute("com", company);
 		return "ceo/ceo_company_view";
@@ -590,16 +613,24 @@ public class CeoController {
 //		System.out.println(company.getCom_num());
 		CompanyVO company = service.getEachCompany(com_num);
 		
-		System.out.println(company);
+		System.out.println(company.getCom_open_time().split(":")[0]);
 		
-		company.setOpenHour(company.getCom_open_time().split(":")[0]);
-		company.setOpenMin(company.getCom_open_time().split(":")[1]);
-		company.setCloseHour(company.getCom_close_time().split(":")[0]);
-		company.setCloseMin(company.getCom_close_time().split(":")[1]);
-		company.setStartHour(company.getCom_breakStart_time().split(":")[0]);
-		company.setStartMin(company.getCom_breakStart_time().split(":")[1]);
-		company.setEndHour(company.getCom_breakEnd_time().split(":")[0]);
-		company.setEndMin(company.getCom_breakEnd_time().split(":")[1]);
+		company.setOpenHour(company.getCom_open_time().split(":")[0].trim());
+		company.setOpenMin(company.getCom_open_time().split(":")[1].trim());
+		company.setCloseHour(company.getCom_close_time().split(":")[0].trim());
+		company.setCloseMin(company.getCom_close_time().split(":")[1].trim());
+		
+		if(!company.getCom_breakStart_time().isEmpty() || !company.getCom_breakEnd_time().isEmpty()) {
+			company.setStartHour(company.getCom_breakStart_time().split(":")[0].trim());
+			company.setStartMin(company.getCom_breakStart_time().split(":")[1].trim());
+			company.setEndHour(company.getCom_breakEnd_time().split(":")[0].trim());
+			company.setEndMin(company.getCom_breakEnd_time().split(":")[1].trim());
+		} else {
+			company.setStartHour("");
+			company.setStartMin("");
+			company.setEndHour("");
+			company.setEndMin("");
+		}
 		
 		
 		model.addAttribute("com",company);

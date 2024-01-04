@@ -68,36 +68,52 @@
 							<td colspan="2">
 								<select class="hour" name="openHour" id="openHour">
 								    <!-- 0시부터 23시까지 -->
-								    <option value="">시</option>
-								    <c:forEach var="i" begin="0" end="23">
-								    	<option value="${i}" ${i == com.openHour ? 'selected' : ''}>${i}</option>
-								    </c:forEach>
+									<c:choose>
+										<c:when test="${empty com.openHour}">
+									    	<option value="">시</option>
+									    </c:when>
+									    <c:otherwise>
+										    <c:forEach var="i" begin="0" end="23">
+										    	<option value="${i}" ${i == com.openHour ? 'selected' : ''}>${i}</option>
+										    </c:forEach>
+									    </c:otherwise>
+									</c:choose>    
 								</select>
 								:
 								<select class="minute" name="openMin" id="openMin">
-									<!-- 0분부터 59분까지 -->
 								    <option value="">분</option>
-									<c:forEach var="i" begin="0" end="59">
-								    	<option value="${i}" ${i == com.openMin ? 'selected' : ''}>${i}</option>
-								    </c:forEach>
+									<option value="00" <c:if test="${com.openMin eq '00'}">selected</c:if>>00</option>
+								    <option value="10" <c:if test="${com.openMin eq '10'}">selected</c:if>>10</option>
+								    <option value="20" <c:if test="${com.openMin eq '20'}">selected</c:if>>20</option>
+								    <option value="30" <c:if test="${com.openMin eq '30'}">selected</c:if>>30</option>
+								    <option value="40" <c:if test="${com.openMin eq '40'}">selected</c:if>>40</option>
+								    <option value="50" <c:if test="${com.openMin eq '50'}">selected</c:if>>50</option>
 								</select>
 							</td>
 							<th>영업 종료시간</th>
 							<td colspan="2">
 								<select class="hour" name="closeHour">
 								    <!-- 0시부터 23시까지 -->
-								    <option value="">시</option>
-								    <c:forEach var="i" begin="0" end="23">
-								    	<option value="${i}" ${i == com.closeHour ? 'selected' : ''}>${i}</option>
-								    </c:forEach>
+								    <c:choose>
+										<c:when test="${empty com.closeHour}">
+									    	<option value="">시</option>
+									    </c:when>
+									    <c:otherwise>
+										    <c:forEach var="i" begin="0" end="23">
+										    	<option value="${i}" ${i == com.closeHour ? 'selected' : ''}>${i}</option>
+										    </c:forEach>
+									    </c:otherwise>
+									</c:choose>
 								</select>
 								:
 								<select class="minute" name="closeMin">
-									<!-- 0분부터 59분까지 -->
 								    <option value="">분</option>
-									<c:forEach var="i" begin="0" end="59">
-								    	<option value="${i}" ${i == com.closeMin ? 'selected' : ''}>${i}</option>
-								    </c:forEach>
+									<option value="00" <c:if test="${com.closeMin eq '00'}">selected</c:if>>00</option>
+								    <option value="10" <c:if test="${com.closeMin eq '10'}">selected</c:if>>10</option>
+								    <option value="20" <c:if test="${com.closeMin eq '20'}">selected</c:if>>20</option>
+								    <option value="30" <c:if test="${com.closeMin eq '30'}">selected</c:if>>30</option>
+								    <option value="40" <c:if test="${com.closeMin eq '40'}">selected</c:if>>40</option>
+								    <option value="50" <c:if test="${com.closeMin eq '50'}">selected</c:if>>50</option>
 								</select>
 							</td>
 						</tr>	
@@ -106,36 +122,52 @@
 							<td colspan="2">
 								<select class="hour" name="startHour" id="openHour">
 								    <!-- 0시부터 23시까지 -->
-								    <option value="">시</option>
-								    <c:forEach var="i" begin="0" end="23">
-								    	<option value="${i}" ${i == com.startHour ? 'selected' : ''}>${i}</option>
-								    </c:forEach>
+									<c:choose>
+										<c:when test="${empty com.startHour}">
+									    	<option value="">시</option>
+									    </c:when>
+									    <c:otherwise>
+										    <c:forEach var="i" begin="0" end="23">
+										    	<option value="${i}" ${i == com.startHour ? 'selected' : ''}>${i}</option>
+										    </c:forEach>
+									    </c:otherwise>
+									</c:choose>
 								</select>
 								:
 								<select class="minute" name="startMin" id="openMin">
-									<!-- 0분부터 59분까지 -->
 								    <option value="">분</option>
-									<c:forEach var="i" begin="0" end="59">
-								    	<option value="${i}" ${i == com.startMin ? 'selected' : ''}>${i}</option>
-								    </c:forEach>
+									<option value="00" <c:if test="${com.startMin eq '00'}">selected</c:if>>00</option>
+								    <option value="10" <c:if test="${com.startMin eq '10'}">selected</c:if>>10</option>
+								    <option value="20" <c:if test="${com.startMin eq '20'}">selected</c:if>>20</option>
+								    <option value="30" <c:if test="${com.startMin eq '30'}">selected</c:if>>30</option>
+								    <option value="40" <c:if test="${com.startMin eq '40'}">selected</c:if>>40</option>
+								    <option value="50" <c:if test="${com.startMin eq '50'}">selected</c:if>>50</option>
 								</select>
 							</td>
 							<th>브레이크타임 종료시간</th>
 							<td colspan="2">
 								<select class="hour" name="endHour">
 								    <!-- 0시부터 23시까지 -->
-								    <option value="">시</option>
-								    <c:forEach var="i" begin="0" end="23">
-								    	<option value="${i}" ${i == com.endHour ? 'selected' : ''}>${i}</option>
-								    </c:forEach>
+								    <c:choose>
+										<c:when test="${empty com.endHour}">
+									    	<option value="">시</option>
+									    </c:when>
+									    <c:otherwise>
+										    <c:forEach var="i" begin="0" end="23">
+										    	<option value="${i}" ${i == com.endHour ? 'selected' : ''}>${i}</option>
+										    </c:forEach>
+									    </c:otherwise>
+									</c:choose>
 								</select>
 								:
-								<select class="minute" name="endMin">
-									<!-- 0분부터 59분까지 -->
-								    <option value="">분</option>
-									<c:forEach var="i" begin="0" end="59">
-								    	<option value="${i}" ${i == com.endMin ? 'selected' : ''}>${i}</option>
-								    </c:forEach>
+								<select class="minute" name="endMin" >
+									<option value="">분</option>
+									<option value="00" <c:if test="${com.endMin eq '00'}">selected</c:if>>00</option>
+								    <option value="10" <c:if test="${com.endMin eq '10'}">selected</c:if>>10</option>
+								    <option value="20" <c:if test="${com.endMin eq '20'}">selected</c:if>>20</option>
+								    <option value="30" <c:if test="${com.endMin eq '30'}">selected</c:if>>30</option>
+								    <option value="40" <c:if test="${com.endMin eq '40'}">selected</c:if>>40</option>
+								    <option value="50" <c:if test="${com.endMin eq '50'}">selected</c:if>>50</option>
 								</select>
 							</td>
 						</tr>	

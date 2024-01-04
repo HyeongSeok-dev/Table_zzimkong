@@ -136,44 +136,29 @@ $(function() {
 			$.ajax({
 				type: "POST",
 				url: "https://api.odcloud.kr/api/nts-businessman/v1/validate?"
-				 + "serviceKey=mtlt43WH%2BFWYUXqzevm8DYClYRQKrSpN2Ci%2BIL2Gd1mEnNh3mtqJU0lUAOl68D6iIUKyt4JPb4gz65d4NzarzA%3D%3D"
-//				+ "serviceKey=mtlt43WH+FWYUXqzevm8DYClYRQKrSpN2Ci+IL2Gd1mEnNh3mtqJU0lUAOl68D6iIUKyt4JPb4gz65d4NzarzA=="
+				+ "serviceKey=mtlt43WH%2BFWYUXqzevm8DYClYRQKrSpN2Ci%2BIL2Gd1mEnNh3mtqJU0lUAOl68D6iIUKyt4JPb4gz65d4NzarzA%3D%3D"
 				 ,
 				data:  JSON.stringify(data),
 				contentType: "application/json",
 				dataType: "json",
 				accept: "application/json",
 				success: function(businesses) {
-					console.log(businesses);
-					let com_num = businesses.b_no; // 사업자 등록번호 
-					let com_ceo = businesses.p_nm; // 대표명 
-					let com_name = businesses.b_nm; // 상호
-					let com_category = businesses.b_sector; //업태
-					let com_address = businesses.b_adr; //주소
-					
-					if(ceo_name === $("#user_name").val() || businesses.data.valid == "01"){
-						$("#com_num").val(com_num);
-						$("#com_num").attr('readonly', true);
-						$("#com_name").val(com_name);
-						$("#com_category").val(com_category);
-						$("#com_category").attr('readonly', true);
-						$("#com_address").val(com_address);
-						$("#com_address").attr('readonly', true);
-						$("#guide").text("조회확인");
+					console.log(businesses.valid_cnt);
+					if(businesses.valid_cnt == 1){
+						$("#guide").text("등록번호가 조회 되었습니다.");
 						$("#guide").css("color","green");
 						
-					} else {
-						alert("조회하신 사업자등록번호의 대표자명이 회원님의 성함과 일치하지 않습니다."
-						+ "\n사업자등록번호를 다시한번 확인해 주세요!");
-						$("#guide").text("사업자등록번호를 다시 확인해주세요!");
+						
+					} else if(businesses.valid_cnt == 1){
+						alert("조회하신 사업자등록번호의 정보가 일치하지 않습니다."
+						+ "\n사업자등록번호, 성함, 개업일을 다시한번 확인해 주세요!");
+						$("#guide").text("입력하신 정보를 다시 확인해주세요!");
 						$("#guide").css("color","#bb5b67");
 					}
 					
 				},
 				error: function(result) {
 					 console.log(result.responseText)
-					$("#guide").text("사업자등록번호를 다시 확인해주세요!");
-					$("#guide").css("color","#bb5b67");
 				}
 			});
 		}
@@ -181,7 +166,7 @@ $(function() {
 	});// 조회버튼
 	
 	$("form").submit(function(){
-		if($("#com_num_register").val() == "" || $("#guide").text() != "조회확인") {
+		if($("#com_num_register").val() == "") {
 			alert("사업자 등록번호를 조회해 주세요");
 			$('html, body').animate({
             scrollTop: $('body').offset().top

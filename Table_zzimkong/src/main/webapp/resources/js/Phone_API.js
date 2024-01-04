@@ -5,23 +5,20 @@ $(document).ready(function() {
 	//휴대폰 본인인증하기=======================================
 	//식별코드 imp22106057
 		
-		console.log("본인인증");
+		console.log("본인인증 함수작동");
 		
 		var IMP = window.IMP;
 		IMP.init("imp22106057");
 
 		//인증창 호출
-		IMP.certification({ //param
-			pg: 'danal_tpay.A010002002',
-	        merchant_uid: 'merchant_' + new Date().getTime(),
-//	        m_redirect_url: 'join/join', //리디렉션 될 URL
-	        },function (rsp) { //callback
-		
-					console.log('여기');	
+		IMP.certification({
+	        merchant_uid: 'merchant_' + new Date().getTime()
+	        },function (rsp) {
+					console.log('여기이');	
 		
 	            //본인인증 성공 프로세스
 	            if (rsp.success) {
-					console.log('여기2');	
+					console.log('여기');	
 	            	jQuery.ajax({
 						url: "join",
 						method: "post",
