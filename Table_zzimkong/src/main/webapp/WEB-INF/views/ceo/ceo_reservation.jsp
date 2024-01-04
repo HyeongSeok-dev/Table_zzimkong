@@ -40,7 +40,7 @@ s<!DOCTYPE html>
 			</div>
 			<div class="text_inner">
 				<div class="header">
-					<span><h3>예약자</h3></span>	
+					<span><h3>예약정보</h3></span>	
 				</div>
 				<table id="reservationTable" border="1">
 					<tr>
@@ -48,7 +48,7 @@ s<!DOCTYPE html>
 						<th>예약날짜</th>
 						<th>예약시간</th>
 						<th>예약정보</th>
-						<th>취소여부</th>
+						<th>취소여부</th>	
 					</tr>
 					<c:forEach var="res" items="${comResList}" varStatus="status">
 						<tr>
@@ -56,11 +56,11 @@ s<!DOCTYPE html>
 							<td>${res.res_date}</td>
 							<td>${res.res_time}</td>
 							<td>
-							<button type="button" value="예약 상세 정보" onclick="newInfo()">예약 상세정보</button>
+							<button type="button" value="예약 상세 정보" onclick="newInfo(${res.res_idx})">예약 상세정보</button>
 							</td>
 							<c:choose>
-								<c:when test="${member.member_status eq 1}"><td class="member_status_normal">예약완료</td></c:when>
-								<c:when test="${member.member_status eq 2}"><td class="member_status_rest">예약취소</td></c:when>
+								<c:when test="${res.res_status eq 1}"><td>예약완료</td></c:when>
+								<c:when test="${res.res_status eq 2}"><td>예약취소</td></c:when>
 							</c:choose>
 						</tr>
 					</c:forEach>
@@ -81,30 +81,30 @@ s<!DOCTYPE html>
 						<th>오늘의 예약취소 수</th>
 					</tr>
 					<tr>
-						<td>8건</td>
-						<td>22명</td>
-						<td>1건</td>
+						<td>${resTotal}</td>
+						<td>${totalPersons}</td>
+						<td>${count}</td>
 					</tr>
 				</table>
 			</div>
 			
-			<div class="text_inner">
-				<div class="header">
-				<sapn><h3>월간 예약 현황</h3></sapn>
-				</div>
-				<table border="1">
-					<tr>
-						<th>월간 예약 수</th>
-						<th>월간 예약방문자 수</th>
-						<th>월간 예약취소 수</th>
-					</tr>
-					<tr>
-						<td>194건</td>
-						<td>582명</td>
-						<td>13건</td>
-					</tr>
-				</table>
-			</div>
+<!-- 			<div class="text_inner"> -->
+<!-- 				<div class="header"> -->
+<!-- 				<sapn><h3>월간 예약 현황</h3></sapn> -->
+<!-- 				</div> -->
+<!-- 				<table border="1"> -->
+<!-- 					<tr> -->
+<!-- 						<th>월간 예약 수</th> -->
+<!-- 						<th>월간 예약방문자 수</th> -->
+<!-- 						<th>월간 예약취소 수</th> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td>194건</td> -->
+<!-- 						<td>582명</td> -->
+<!-- 						<td>13건</td> -->
+<!-- 					</tr> -->
+<!-- 				</table> -->
+<!-- 			</div> -->
 		</div>
 	</section>
 	<footer>

@@ -33,18 +33,17 @@
 					<th>선주문 금액</th>
 				</tr>
 				<tr>
-					<td>f1e9fvl</td>
-					<td>홍길동</td>
-					<td>010-4674-4772</td>
-					<td>2명</td>
+					<td>${res.res_num}</td>
+					<td>${res.res_name}</td>
+					<td>${res.res_phone}</td>
+					<td>${res.res_person}</td>
 					<td>
 					* 스테이크<br>
 					* 파스타<br>
 					* 샐러드
 					</td>
-					<td>40000원</td>
+					<td>${res.res_table_price}</td>
 					<td>127,000원</td>
-					
 				</tr>
 			</table>
 			<br>

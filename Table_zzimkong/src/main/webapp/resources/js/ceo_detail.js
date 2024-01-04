@@ -8,8 +8,8 @@ function newDetails(){
 }
 
 //예약정보
-function newInfo() {
-  var url = "reservation/info";
+function newInfo(res_idx) {
+  var url = "reservation/info?res_idx=" + res_idx;
   var name = "New Info";
   var specs = "width=1200,height=600";  // 팝업창의 너비와 높이를 설정합니다. 필요에 따라 조정하세요.
   

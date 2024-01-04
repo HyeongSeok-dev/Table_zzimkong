@@ -252,8 +252,27 @@ public class CeoController {
 		System.out.println("예약값" + comResList);
 		//예약이 없을 경우 예외 처리
 		if(comResList.size()!=0) {
-			model.addAttribute("comResList", comResList);
 			int res_idx = comResList.get(0).getRes_idx();
+			//당일예약 합계
+			int resTotal = comResList.size();
+			System.out.println("예약합계" + resTotal);
+			//당일 예약 인원수
+			int totalPersons = comResList.stream()
+                    .mapToInt(ReservationVO::getRes_person)
+                    .sum();
+			
+			int count = 0;
+			for (ReservationVO res : comResList) {
+			    if (res.getRes_status() == 2) {
+			        count++;
+			    }
+			}
+			
+			model.addAttribute("count", count);
+			model.addAttribute("totalPersons", totalPersons);
+			model.addAttribute("resTotal", resTotal);
+			model.addAttribute("comResList", comResList);
+			
 		}
 		return "ceo/ceo_reservation";
 	}

@@ -138,6 +138,8 @@
 		SELECT *
 		FROM reservation
 		WHERE com_id = #{com_id} AND res_date = CURDATE()
+		ORDER BY
+			res_time DESC
 	</select>
 
 	<select id="selectResDetailInfo">

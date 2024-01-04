@@ -24,8 +24,8 @@
 			<table border="1">
 				<tr>
 					<th>예약시간대</th>
-					<th>예약된 테이블</th>
-					<th>예약가능 테이블</th>
+					<th>예약된 인원</th>
+					<th>예약가능 인원</th>
 				
 				</tr>
 				<tr>
