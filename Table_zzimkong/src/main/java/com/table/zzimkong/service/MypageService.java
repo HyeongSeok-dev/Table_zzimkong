@@ -31,20 +31,15 @@ public class MypageService {
 	}
 	
 	// 예약 내역 목록
-//	public List<ReservationVO> getResList(int sIdx) {
-//		// TODO Auto-generated method stub
-//		return mapper.selectResList(sIdx);
-//	}
-
-
-//	public CompanyVO getComName(ReservationVO res) {
-		// TODO Auto-generated method stub
-//		return mapper.selectCom(res);
-//	}
-
 	public List<Map<String, Object>> getResList(int sIdx) {
 		// TODO Auto-generated method stub
 		return mapper.selectResList(sIdx);
+	}
+	
+	// 예약 내역 목록
+	public List<Map<String, Object>> getResList2(int sIdx) {
+		// TODO Auto-generated method stub
+		return mapper.selectResList2(sIdx);
 	}
 
 }

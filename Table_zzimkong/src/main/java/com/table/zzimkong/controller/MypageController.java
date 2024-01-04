@@ -191,10 +191,22 @@ public class MypageController {
 		System.out.println("resList : " + resList);
 		// Model 객체에 회원 목록 조회 결과 저장
 		model.addAttribute("resList", resList);
+
+		List<Map<String, Object>> resList2 = service.getResList2(sIdx);
+		model.addAttribute("resList2", resList2);
 		
 		return "mypage/my_list";
 	}
 	
+	@GetMapping("my/reservation")
+	public String my_reservation(MypageInfo mypage, HttpSession session, Model model, HttpServletResponse response) {
+		int sIdx = (int)session.getAttribute("sIdx"); //세션 인덱스 가져오기
+		
+		List<Map<String, Object>> resList2 = service.getResList2(sIdx);
+		model.addAttribute("resList2", resList2);
+		
+		return "mypage/my_reservation";
+	}
 	
 	@GetMapping("my/review")
 	public String my_review() {
@@ -233,10 +245,6 @@ public class MypageController {
 		return "mypage/my_point";
 	}
 	
-	@GetMapping("my/reservation")
-	public String my_reservation() {
-		return "mypage/my_reservation";
-	}
 	
 	@GetMapping("my/edit/reservation")
 	public String my_edit_reservation() {

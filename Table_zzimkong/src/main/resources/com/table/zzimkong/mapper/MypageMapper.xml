@@ -47,6 +47,14 @@
 		LIMIT 5
 	</select>
 	
+	<!-- 예약내역 상세조회 - SELECT -->
+	<select id="selectResList2" resultType="map">
+		SELECT *
+		FROM mypage_view
+		WHERE user_idx = #{sIdx}
+		ORDER BY res_date DESC
+	</select>
+	
 <!-- 	<select id="selectResList"> -->
 <!-- 		SELECT * -->
 <!-- 		FROM reservation as  r, company as c -->

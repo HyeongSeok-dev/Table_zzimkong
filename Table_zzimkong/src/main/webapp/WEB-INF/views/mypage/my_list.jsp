@@ -69,7 +69,7 @@
 						<c:when test="${res.res_pay_status eq 1}">
 							<td>결제</td>
 						</c:when>
-						<c:when test="${res.res_pay_status eq 1}">
+						<c:when test="${res.res_pay_status eq 2}">
 							<td>미결제</td>
 						</c:when>
 						<c:otherwise>

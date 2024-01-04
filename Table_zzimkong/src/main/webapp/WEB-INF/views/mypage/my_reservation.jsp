@@ -63,18 +63,41 @@
 					<th>결제상태</th>
 				</tr>
 				<%-- 예약 목록 출력 --%>
-				<c:forEach var="res" items="${resList}">
+				<c:forEach var="res2" items="${resList2}">
 				  <tr>
-					<td>${res.com_name }</td>
-					<td>${res.res_name }</td>
-					<td>${res.res_person }</td>
-					<td>${res.menu_name }</td>
-					<td>${res.res_date }</td>
-					<td>${res.res_status }</td>
-					<td>${res.res_pay_status }</td>
+						<td>${res2.com_name }</td>
+						<td>${res2.res_name }</td>
+						<td>${res2.res_person }</td>
+						<td>${res2.menu_name }</td>
+						<td>${res2.res_date }</td>
+					<c:choose>
+						<c:when test="${res2.res_status eq 1}">
+							<td>예약완료</td>
+						</c:when>
+						<c:when test="${res2.res_status eq 2}">
+							<td style="color: red;">예약취소</td>
+						</c:when>
+						<c:when test="${res2.res_status eq 3}">
+							<td style="color: green;">방문완료</td>
+						</c:when>
+						<c:otherwise>
+							<td>알수없음</td>
+						</c:otherwise>
+					</c:choose>
+					<c:choose>
+						<c:when test="${res2.res_pay_status eq 1}">
+							<td>결제</td>
+						</c:when>
+						<c:when test="${res2.res_pay_status eq 2}">
+							<td>미결제</td>
+						</c:when>
+						<c:otherwise>
+							<td>알수없음</td>
+						</c:otherwise>
+					</c:choose>
 				  </tr>
-				</c:forEach>				  
-				</table>
+				</c:forEach>
+			</table>
 		</div>
 	</div>
 	</main>
