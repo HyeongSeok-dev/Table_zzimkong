@@ -42,7 +42,14 @@
 						<th style="width: 300px;">프로필사진</th>
 						<td style="width: 700px;">
 							<div id="img">
-								<img src="${pageContext.request.contextPath}/resources/upload/${mypage.user_img}"width="300" height="300">
+							<c:choose>
+					        	<c:when test="${not empty sessionScope.imgName}">
+						        	<img id="profile" src="${pageContext.request.contextPath}/resources/upload/${sessionScope.imgName}">
+					        	</c:when>
+					        	<c:otherwise>
+						        	<img id="profile" src="${pageContext.request.contextPath}/resources/img/profile.png">
+					        	</c:otherwise>
+					        </c:choose>
 							</div>
 							<p>프로필 사진으로 사용할 이미지를 등록해 주세요.</p>
 	                          <input type="file" id="file1" name="m_file" class="hide"><br>

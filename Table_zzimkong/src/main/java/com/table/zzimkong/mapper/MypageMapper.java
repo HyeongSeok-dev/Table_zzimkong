@@ -23,7 +23,7 @@ public interface MypageMapper {
 	// 예약 내역 조회
 //	List<ReservationVO> selectResList(int sIdx);
 
-	List<Map<String, Object>> selectResList(Object user_idx);
+	List<Map<String, Object>> selectResList(@Param("sIdx") int sIdx);
 
 //	CompanyVO selectCom(ReservationVO res);
 }

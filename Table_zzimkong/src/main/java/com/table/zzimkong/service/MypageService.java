@@ -42,9 +42,9 @@ public class MypageService {
 //		return mapper.selectCom(res);
 //	}
 
-	public List<Map<String, Object>> getResList(int user_idx) {
+	public List<Map<String, Object>> getResList(int sIdx) {
 		// TODO Auto-generated method stub
-		return mapper.selectResList(user_idx);
+		return mapper.selectResList(sIdx);
 	}
 
 }

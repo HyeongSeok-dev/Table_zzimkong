@@ -178,14 +178,13 @@ public class MypageController {
 	// [ 나의 예약 내역 목록 조회 ]
 	
 	@GetMapping("my/list")
-	public String my_list(MypageInfo mypage, HttpSession session, Model model, HttpServletResponse response, Integer user_idx) {
+	public String my_list(MypageInfo mypage, HttpSession session, Model model, HttpServletResponse response) {
 		
-		int sIdx = (int)session.getAttribute("sIdx");
 		String sId = (String)session.getAttribute("sId"); // 세션에 아이디값을 가져오는거
 		mypage.setUser_id(sId);//검색할 아이디를 마이페이지에 넣기 
 		MypageInfo dbMypage = service.getMypage(mypage);
 		session.setAttribute("user_nick", dbMypage.getUser_nick()); // String~session: 마이페이지 눌렀을때 닉네임 계속 보이게 세션에 저장
-		
+		session.setAttribute("imgName", dbMypage.getUser_img());
 //		System.out.println(dbMypage);
 		// MypageService - getResList() 메서드 호출하여 회원 목록 조회 요청
 		
@@ -196,10 +195,10 @@ public class MypageController {
 //		for(ReservationVO res:resList) {
 //			CompanyVO com = service.getComName(res);
 //		}
-		List<Map<String, Object>> resList = service.getResList(user_idx);
+		int sIdx = (int)session.getAttribute("sIdx"); //세션 인덱스 가져오기
+		List<Map<String, Object>> resList = service.getResList(sIdx);
 //		System.out.println();
 		// Model 객체에 회원 목록 조회 결과 저장
-//		model.addAttribute("resList", resList);
 		model.addAttribute("resList", resList);
 		
 		return "mypage/my_list";

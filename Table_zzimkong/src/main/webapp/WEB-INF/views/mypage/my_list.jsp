@@ -44,7 +44,7 @@
 					<th>결제상태</th>
 				</tr>
 				<%-- 예약 목록 출력 --%>
-				<c:forEach var="resList" items="${resList}">
+				<c:forEach var="res" items="${resList}">
 				  <tr>
 					<td>${res.com_id }</td>
 					<td>${res.res_name }</td>

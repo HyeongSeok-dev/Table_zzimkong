@@ -42,7 +42,7 @@
 	<select id="selectResList" resultType="map">
 		SELECT *
 		FROM mypage_view
-		WHERE user_idx = #{user_idx}
+		WHERE user_idx = #{sIdx}
 	</select>
 	
 <!-- 	<select id="selectResList"> -->
