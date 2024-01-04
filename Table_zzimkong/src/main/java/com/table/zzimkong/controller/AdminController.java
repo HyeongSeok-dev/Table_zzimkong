@@ -70,7 +70,7 @@ public class AdminController {
         return "admin/admin_main";
 	}
 	
-	// 관리자 페이지 - 회원 목록 조회, 검색 기능, 페이지네이션
+	// 관리자 페이지 - 회원 목록 조회 요청 (페이지네이션, 검색 기능, 카테고리 필터)
 	@GetMapping("admin/user") 
 	public String memberList(
 			@RequestParam(defaultValue = "") String searchMemberType,
@@ -81,9 +81,13 @@ public class AdminController {
 			HttpSession session, Model model, HttpServletResponse response) {
 		// 관리자 페이지 접근 제한
 		if (!isvalid(session, model, response)) return null;
-		
+
+		System.out.println("-------------------------------------------------------");
+		System.out.println("searchMemberType : " + searchMemberType);
+		System.out.println("searchMemberKeyword : " + searchMemberKeyword);
 		System.out.println("memberCategory : " + memberCategory);
 		System.out.println("memberStatusCategory : " + memberStatusCategory);
+		System.out.println("-------------------------------------------------------");
 
 		// 검색된 회원 목록의 수
 		int listCount = service.adminMemberListCount(searchMemberType, searchMemberKeyword, memberCategory, memberStatusCategory);

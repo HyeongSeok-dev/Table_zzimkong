@@ -52,9 +52,7 @@
 						<th>상호명</th>
 						<th>업태</th>
 						<th>대표자명</th>
-<!-- 						<th>전화번호</th> -->
 						<th>영업시간</th>
-<!-- 						<th>건당<br>최대인원</th> -->
 						<th>등록일자</th>
 						<%-- 카테고리 필터 : 광고 등급 --%>
 						<th>
@@ -84,9 +82,7 @@
 							<td>${company.com_name}</td>
 							<td>${company.com_category}</td>
 							<td>${company.com_ceo}</td>
-<%-- 							<td>${company.com_tel}</td> --%>
 							<td>${fn:substring(company.com_open_time, 0, 5)} ~ ${fn:substring(company.com_close_time, 0, 5)}</td>
-<%-- 							<td>${company.com_max_people}명</td> --%>
 							<td><fmt:formatDate value="${company.com_reg_date}" pattern="yy/MM/dd HH:mm"/></td>
 							<td class="ad_grade_item" data-category="ad_grade_${company.com_ad_grade}">${company.com_ad_grade}단계</td>
 							<%-- 업체 상태 --%>
@@ -116,6 +112,31 @@
 				</table>		
 			</form>	
 		</div>
+	</section>
+	
+	<%-- 페이지네이션 --%>
+	<c:set var="pageNum" value="1"/>
+	<c:if test="${not empty param.pageNum}">
+		<c:set var="pageNum" value="${param.pageNum}"/>
+	</c:if>
+	
+	<section id="pageList">
+		<input type="button" value="이전" onclick="location.href='?pageNum=${pageNum - 1}&searchCompanyType=${searchCompanyType}&searchCompanyKeyword=${searchCompanyKeyword}'"
+		 <c:if test="${pageNum <= 1}">disabled</c:if>>	
+	
+		<c:forEach var="i" begin="${pageInfo.startPage}" end="${pageInfo.endPage}">
+			<c:choose>
+				<c:when test="${pageNum eq i}">
+					<b>${i}</b>
+				</c:when>
+				<c:otherwise>
+					<a href="?pageNum=${i}&searchCompanyType=${searchCompanyType}&searchCompanyKeyword=${searchCompanyKeyword}">${i}</a>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+		
+		<input type="button" value="다음" onclick="location.href='?pageNum=${pageNum + 1}&searchCompanyType=${searchCompanyType}&searchCompanyKeyword=${searchCompanyKeyword}'"
+		 <c:if test="${pageNum >= pageInfo.maxPage}">disabled</c:if>>	
 	</section>
 	
 	<%-- 상단으로/bottom --%>

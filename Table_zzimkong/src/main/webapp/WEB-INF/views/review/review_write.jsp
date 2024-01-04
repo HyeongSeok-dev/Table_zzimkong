@@ -152,14 +152,15 @@
 		    <button type="button" id="photoBtn" class="photo_btn">
 		        <i class="fas fa-camera"></i> 사진 추가
 		    </button>
-		    <div id="previewContainer" class="preview_container" style="display: none;">
-		        <div class="image_wrapper">
-		            <img id="imagePreview" src="#" alt="Image Preview"/>
-		            <div class="remove_btn" onclick="removePreview()" alt="Delete">
-		            	<img src="${pageContext.request.contextPath}/resources/img/close2.png" style="width: 20px; height: 20px;">
-		            </div>
+			<div id="previewContainer" class="preview_container" style="display: none;">
+		    	<div class="image_wrapper">
+		      	  <img id="imagePreview" src="#" alt="Image Preview"/>
+		        	<div class="remove_btn" onclick="removePreview()">
+		            <img src="${pageContext.request.contextPath}/resources/img/close2.png" style="width: 20px; height: 20px;" alt="Delete">
 		        </div>
 		    </div>
+		</div>
+			
 			</div>
 			<!-- ===================================================================== -->
 			<!-- 리뷰 텍스트 박스 -->

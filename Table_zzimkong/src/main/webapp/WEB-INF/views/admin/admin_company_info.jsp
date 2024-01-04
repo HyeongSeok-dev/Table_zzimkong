@@ -34,17 +34,17 @@
 					<th rowspan="2">대표자명</th>
 					<td colspan="2" rowspan="2"><input type="text" value="${company.com_ceo}" disabled></td>
 					<th>사업자등록번호</th>
-					<td colspan="2">${company.com_num}</td>
+					<c:set var="num" value="${company.com_num}"/>
+					<td colspan="2">${fn:substring(num, 0, 3)}-${fn:substring(num, 3, 5)}-${fn:substring(num, 5, 10)}</td>
 				</tr>
 				<tr>
 					<th>전화번호</th>
 					<td colspan="2">${company.com_tel}</td>
-	<%-- 				<c:set var="tel" value="${company.com_tel}"/> --%>
-	<%-- 				<td colspan="2">${fn:substring(tel, 0, 3)}-${fn:substring(tel, 3, 7)}-${fn:substring(tel, 7, 12)}</td> --%>
 				</tr>
 				<tr>
 					<th>주소</th>
 	<!-- 				<td colspan="5"><input type="text" maxlength="5" size="50" value="(68902) 부산광역시 해운대구 센텀3로 20 (우동, 센텀호텔316,317호)" disabled></td> -->
+					<%-- 나중에 우편번호 넣기 --%>
 					<td colspan="5"><input type="text" maxlength="5" size="50" value="${company.com_address}" disabled></td>
 				</tr>
 				<tr>

@@ -292,5 +292,43 @@ td> select {
 }
 
 
+#pageList {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+#pageList input[type="button"] {
+    background-color: #fff;
+    color: #3FAFFC;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    margin: 0 10px;
+    transition: background-color 0.3s;
+}
+
+#pageList input[type="button"]:disabled {
+    background-color: #fff;
+    color: #fff;
+    cursor: not-allowed;
+}
+
+#pageList b,
+#pageList a {
+    color: #333;
+    font-size: 1.2em;
+    margin: 0 10px;
+}
+
+#pageList a {
+    text-decoration: none;
+    color: #0095FB;
+}
+
+#pageList a:hover {
+    color: #0073ce;
+}
 
 

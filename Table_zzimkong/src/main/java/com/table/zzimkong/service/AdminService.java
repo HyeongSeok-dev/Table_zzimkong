@@ -22,7 +22,8 @@ public class AdminService {
 		return mapper.selectAdminMain();
 	}
 	
-	// 관리자 - 회원 목록 조회 요청, 검색 기능, 페이지네이션
+	// 관리자 - 회원 목록 조회 요청 (페이지네이션, 검색 기능, 카테고리 필터)
+	//        + 검색 결과, 카테고리 필터링에 따른 페이지네이션의 범위 재조정
 	public List<MemberVO> adminMemberList(String searchMemberType, String searchMemberKeyword, String memberCategory, String memberStatusCategory, int startRow, int listLimit) {
 		return mapper.selectAdminMemberList(searchMemberType, searchMemberKeyword, memberCategory, memberStatusCategory, startRow, listLimit);
 	}

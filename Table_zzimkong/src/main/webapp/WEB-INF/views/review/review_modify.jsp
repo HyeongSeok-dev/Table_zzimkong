@@ -42,8 +42,6 @@ function deleteFile(review_num, review_img_1) {
                     $(".remove_btn").hide();
 
                     // 새로운 파일 입력 요소 HTML 생성
-
-                    // 새 요소 삽입
                     $("#fileItemArea").html(newFileInputHtml);
 
                     // 새 요소에 대한 이벤트 핸들러 설정
@@ -56,19 +54,34 @@ function deleteFile(review_num, review_img_1) {
     }
 }
 
-function bindNewFileInputEvents(review_img_id) {
-    $("#photoBtn" + review_img_id).on('click', function() {
-        $("#photoInput" + review_img_id).click();
+// function bindNewFileInputEvents(review_img_id) {
+//     $("#photoBtn" + review_img_id).on('click', function() {
+//         $("#photoInput" + review_img_id).click();
+//     });
+
+//     $("#photoInput" + review_img_id).on('change', function(event) {
+//         handleImagePreview(event, review_img_id);
+//     });
+// }
+
+// function removePreview(review_img_id) {
+//     $("#previewContainer" + review_img_id).empty().hide();
+//     $("#photoInput" + review_img_id).val('');
+// }
+
+function bindNewFileInputEvents(review_img_1) {
+    $("#photoBtn" + review_img_1).on('click', function() {
+        $("#photoInput" + review_img_1).click();
     });
 
-    $("#photoInput" + review_img_id).on('change', function(event) {
-        handleImagePreview(event, review_img_id);
+    $("#photoInput" + review_img_1).on('change', function(event) {
+        handleImagePreview(event, review_img_1);
     });
 }
 
-function removePreview(review_img_id) {
-    $("#previewContainer" + review_img_id).empty().hide();
-    $("#photoInput" + review_img_id).val('');
+function removePreview(review_img_1) {
+    $("#previewContainer" + review_img_1).empty().hide();
+    $("#photoInput" + review_img_1).val('');
 }
 
 </script>
@@ -223,7 +236,10 @@ function removePreview(review_img_id) {
 		                <div class="image_wrapper">
 		                    <img src="${pageContext.request.contextPath}/resources/upload/${review.review_img_1}" alt="Image Preview" class="imagePreview"/>
 		                    <!-- 수정된 removePreview 함수 호출 -->
-		                    <div class="remove_btn" onclick="deleteFile(${review.review_num}, '${review.review_img_1}')">X</div>
+<%-- 		                    <div class="remove_btn" onclick="deleteFile(${review.review_num}, '${review.review_img_1}')">X</div> --%>
+		                    <div class="remove_btn" onclick="deleteFile(${review.review_num}, '${review.review_img_1}')">
+                		        <img src="${pageContext.request.contextPath}/resources/img/close2.png" style="width: 20px; height: 20px;" alt="Delete">
+		                    </div>
 		                </div>
 		            </c:when>
 			            <c:otherwise>
@@ -233,17 +249,20 @@ function removePreview(review_img_id) {
 							        <button type="button" id="photoBtn" class="photo_btn">
 							            <i class="fas fa-camera"></i> 사진 추가
 							        </button>
-							        <div class="preview_container" id="previewContainer" style="display: none;">
-							            <div class="image_wrapper">
-							                <img id="imagePreview" src="#" alt="Image Preview"/>
-							                <div class="remove_btn" onclick="removePreview()">X</div>
-							               
+							        <div id="previewContainer" class="preview_container" style="display: none;">
+								    	<div class="image_wrapper">
+								      	  <img id="imagePreview" src="#" alt="Image Preview"/>
+								        	<div class="remove_btn" onclick="removePreview()">
+								            <img src="${pageContext.request.contextPath}/resources/img/close2.png" style="width: 20px; height: 20px;" alt="Delete">
+											        </div>
+											    </div>
+											</div>
 							            </div>
 							        </div>
-							    </div>
-							</div>
 			            </c:otherwise>
 			        </c:choose>
+					    </div>
+					</div>
 			    </div>
 			</div>
 			<!-- ===================================================================== -->
@@ -254,9 +273,9 @@ function removePreview(review_img_id) {
 			<section id="commandCell">
 			<div class="review_input_section">
 			<button class="register_button" onclick="location.href='${pageContext.request.contextPath}/review/complete'">수정하기</button>
-			</section>
-				</form>
 			</div>
+			</section>
+			</form>
 		</div>
 	</div>
 	<!-- ===================================================================== -->

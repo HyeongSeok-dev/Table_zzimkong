@@ -110,6 +110,29 @@
 		</div>
 	</section>
 	
+	<%-- 페이지네이션 --%>
+	<c:set var="pageNum" value="1"/>
+	<c:if test="${not empty param.pageNum}">
+		<c:set var="pageNum" value="${param.pageNum}"/>
+	</c:if>
+	
+	<section id="pageList">
+		<input type="button" value="이전" onclick="location.href='?pageNum=${pageNum - 1}'"<c:if test="${pageNum <= 1}">disabled</c:if>>	
+	
+		<c:forEach var="i" begin="${pageInfo.startPage}" end="${pageInfo.endPage}">
+			<c:choose>
+				<c:when test="${pageNum eq i}">
+					<b>${i}</b>
+				</c:when>
+				<c:otherwise>
+					<a href="?pageNum=${i}">${i}</a>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+		
+		<input type="button" value="다음" onclick="location.href='?pageNum=${pageNum + 1}'" <c:if test="${pageNum >= pageInfo.maxPage}">disabled</c:if>>	
+	</section>
+	
 	<%-- 상단으로/bottom --%>
 	<footer>
 		<jsp:include page="../inc/topup.jsp"/>
