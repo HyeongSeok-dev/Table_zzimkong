@@ -147,17 +147,6 @@ window.onload = function() {
         }
     }
 
-    //비밀번호 입력창에서 focus를 잃었을 때 비밀번호 검증
-    $("#txtPassword2").blur(validatePassword);
-
-    //폼 제출 시 비밀번호 검증
-    $("form").submit(function(e) {
-        validatePassword();
-        if (!isPasswd) {
-            alert('새 비밀번호를 다시 입력해주세요');
-            e.preventDefault(); // 폼 제출을 막음
-        }
-    });
 
     //비밀번호 입력창에서 focus를 잃었을 때 비밀번호 검증
     $("#txtPassword2").blur(validatePassword);

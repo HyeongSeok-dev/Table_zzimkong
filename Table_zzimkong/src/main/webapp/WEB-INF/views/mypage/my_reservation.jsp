@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +8,9 @@
 <title>Insert title here</title>
 <link href="${pageContext.request.contextPath }/resources/css/mypage.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
+<!-- jQuery, javascript -->
+<script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/mypage2.js"></script>
 <script type="text/javascript">
 	function cancelReservation(){
 		confirm("예약을 취소하시겠습니까?");
@@ -40,102 +44,36 @@
 				<button type="button">6개월</button>
 				<button type="button">3개월</button>
 				<button type="button">1개월</button>
-				<input type="date">
+				<input type="date" id="date1">
 				-
-				<input type="date">
+				<input type="date" id="date2">
 				<button type="button" onclick="showDate()">조회</button>
 				<p id="selectedDate"></p>
 			</span>
 			</div>
 			<br>
-			<table style="width: 1000px; height: 400px; table-layout: fixed;">
+			<table style="width: 1000px; height: 100px; table-layout: fixed;">
 				<tr class ="subject">
-					<th style="width:150px;">예약일자</th>
 					<th>가게명</th>
-					<th>주소</th>					
-					<th style="width:50px;">인원</th>
-					<th style="width:200px"">선주문유무</th>
+					<th>방문자명</th>					
+					<th>인원</th>
+					<th>선주문메뉴</th>
+					<th>방문예정일</th>
 					<th>예약상태</th>
-					<th style="width:140px;"></th>
+					<th>결제상태</th>
 				</tr>
-				<tr>
-					<td>23/12/05 12:30</td>
-					<td>파전닭갈비</td>
-					<td>양정</td>
-					<td>4</td>
-					<td>예약금 결제/ 메뉴 결제</td>
-					<td>예약 완료</td>
-					<td>
-						<div class="div_button">
-							<button type="button" id="my_delete" onclick="cancelReservation()">예약취소</button>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td>23/09/24 19:30</td>
-					<td>맛나주꾸미</td>
-					<td>남포동</td>
-					<td>4</td>
-					<td>예약금 미결제</td>
-					<td>예약 취소</td>
-					<td>
-						<div class="div_button">
-							<button type="button" id="my_delete" onclick="cancelReservation()">예약취소</button>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td>23/09/15 14:00</td>
-					<td>현풍닭칼국수</td>
-					<td>서면</td>
-					<td>3</td>
-					<td>예약금 결제</td>
-					<td>방문 완료</td>
-					<td>
-						<div class="div_button">
-							<button type="button" onclick="location.href='${pageContext.request.contextPath }/review/write'">리뷰작성</button>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td>23/09/02 12:30</td>
-					<td>웅치킨</td>
-					<td>서면</td>
-					<td>4</td>
-					<td>예약금 결제/ 메뉴 결제</td>
-					<td>방문 완료</td>
-					<td>
-						<div class="div_button">
-							<button type="button" onclick="location.href='${pageContext.request.contextPath }/review/write'">리뷰작성</button>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td>23/08/27 12:30</td>
-					<td>부산갈비</td>
-					<td>남포</td>
-					<td>4</td>
-					<td>예약금 결제/ 메뉴 결제</td>
-					<td>방문 완료</td>
-					<td>
-						<div class="div_button">
-							<button type="button" onclick="location.href='${pageContext.request.contextPath }/review/write'">리뷰작성</button>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td>23/08/23 12:30</td>
-					<td>이재모피자</td>
-					<td>남포</td>
-					<td>4</td>
-					<td>예약금 결제/ 메뉴 결제</td>
-					<td>방문 완료</td>
-					<td>
-						<div class="div_button">
-							<button type="button" onclick="location.href='${pageContext.request.contextPath }/review/write'">리뷰작성</button>
-						</div>
-					</td>
-				</tr>
+				<%-- 예약 목록 출력 --%>
+				<c:forEach var="res" items="${resList}">
+				  <tr>
+					<td>${res.com_name }</td>
+					<td>${res.res_name }</td>
+					<td>${res.res_person }</td>
+					<td>${res.menu_name }</td>
+					<td>${res.res_date }</td>
+					<td>${res.res_status }</td>
+					<td>${res.res_pay_status }</td>
+				  </tr>
+				</c:forEach>				  
 				</table>
 		</div>
 	</div>

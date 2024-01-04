@@ -33,7 +33,7 @@
 			</span>
 			</div>
 			<br>
-			<table style="width: 1000px; height: 400px; table-layout: fixed;">
+			<table style="width: 1000px; height: 100px; table-layout: fixed;">
 				<tr class ="subject">
 					<th>가게명</th>
 					<th>방문자명</th>					
@@ -46,30 +46,38 @@
 				<%-- 예약 목록 출력 --%>
 				<c:forEach var="res" items="${resList}">
 				  <tr>
-					<td>${res.com_id }</td>
-					<td>${res.res_name }</td>
-					<td>${res.res_person }</td>
-					<td>${res.menu_name }</td>
-					<td>${res.res_date }</td>
-					<td>${res.res_status }</td>
-					<td>${res.res_pay_status }</td>
+						<td>${res.com_name }</td>
+						<td>${res.res_name }</td>
+						<td>${res.res_person }</td>
+						<td>${res.menu_name }</td>
+						<td>${res.res_date }</td>
+					<c:choose>
+						<c:when test="${res.res_status eq 1}">
+							<td>예약완료</td>
+						</c:when>
+						<c:when test="${res.res_status eq 2}">
+							<td style="color: red;">예약취소</td>
+						</c:when>
+						<c:when test="${res.res_status eq 3}">
+							<td style="color: green;">방문완료</td>
+						</c:when>
+						<c:otherwise>
+							<td>알수없음</td>
+						</c:otherwise>
+					</c:choose>
+					<c:choose>
+						<c:when test="${res.res_pay_status eq 1}">
+							<td>결제</td>
+						</c:when>
+						<c:when test="${res.res_pay_status eq 1}">
+							<td>미결제</td>
+						</c:when>
+						<c:otherwise>
+							<td>알수없음</td>
+						</c:otherwise>
+					</c:choose>
 				  </tr>
 				</c:forEach>
-<!-- 				<tr> -->
-<!-- 					<td>23/09/15 14:00</td> -->
-<!-- 					<td>현풍닭칼국수</td> -->
-<!-- 					<td>김기린</td> -->
-<!-- 					<td>3</td> -->
-<!-- 					<td>예약금 결제</td> -->
-<!-- 					<td>23/09/15 14:00</td> -->
-<!-- 					<td>예약 완료</td> -->
-<!-- 					<td> -->
-<!-- 						<div class="div_button"> -->
-<!-- 							<button type="button" id="my_delete" onclick="cancelReservation()">예약취소</button> -->
-<!-- 						</div> -->
-<!-- 					</td> -->
-<!-- 				</tr> -->
-				
 			</table>
 			<br>
 			<div class ="title">

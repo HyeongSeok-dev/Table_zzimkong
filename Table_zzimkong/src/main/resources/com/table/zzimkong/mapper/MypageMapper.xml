@@ -43,6 +43,8 @@
 		SELECT *
 		FROM mypage_view
 		WHERE user_idx = #{sIdx}
+		ORDER BY res_date DESC
+		LIMIT 5
 	</select>
 	
 <!-- 	<select id="selectResList"> -->
