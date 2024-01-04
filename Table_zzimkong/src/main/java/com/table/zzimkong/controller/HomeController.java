@@ -73,6 +73,12 @@ public class HomeController {
        
 	        //메인화면에 카테고리별로 정보 뿌리기==================================
 	        
+	        //위생순
+	        search = (SearchVO)session.getAttribute("search");
+	        
+	        List<CompanyVO>cleanList = service.getCleanList(search);
+	        model.addAttribute("cleanList", cleanList);
+	        
 	        //추천순(광고순)
 	        search = (SearchVO)session.getAttribute("search");
 	        

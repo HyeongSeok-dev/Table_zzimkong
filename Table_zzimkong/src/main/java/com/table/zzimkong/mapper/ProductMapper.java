@@ -27,6 +27,8 @@ public interface ProductMapper {
 	List<CompanyVO> selectSimilarCompanyList(@Param("sort") String sort, @Param("company")CompanyVO company, @Param("tagList")List<String> tagList,@Param("individualTags") List<String> individualTags);
 
 	//메인화면에 추천순 뿌리기=====================================
+	//위생순
+	List<CompanyVO> selectCleanList(SearchVO search);
 	//추천순(광고등급순)
 	List<CompanyVO> selectRecommendList(SearchVO search);
 	//별점순

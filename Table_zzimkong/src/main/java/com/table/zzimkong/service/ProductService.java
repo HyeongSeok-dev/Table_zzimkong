@@ -50,6 +50,10 @@ public class ProductService {
 	}
 
 	//메인 화면에 추천 뿌리기====================================
+	//위생순
+	public List<CompanyVO> getCleanList(SearchVO search) {
+		return mapper.selectCleanList(search);
+	}
 	//추천순(광고등급순)
 	public List<CompanyVO> getRecommendList(SearchVO search) {
 		return mapper.selectRecommendList(search);
@@ -68,5 +72,6 @@ public class ProductService {
 		// TODO Auto-generated method stub
 		return mapper.selectReviewScore(company);
 	}
+
 	
 }

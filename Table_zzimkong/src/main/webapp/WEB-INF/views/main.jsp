@@ -75,7 +75,8 @@
 									<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 										<ul class="nav navbar-nav navbar-right">
 											<c:choose>
-												<c:when test="${empty sessionScope.sId }"> <%-- 미 로그인 시 --%>
+												<%-- 미 로그인 시 --%>
+												<c:when test="${empty sessionScope.sId }"> 
 													<%--로그인 --%>
 													<li class="dropdown"><a href="${pageContext.request.contextPath}/login">
 <%-- 													<img src="${pageContext.request.contextPath}/resources/img/top_user.png" style="width: 25px; height: 25px;"> --%>
@@ -89,46 +90,38 @@
 												
 												<%--업주회원 로그인시 --%>
 												<c:when test="${sessionScope.sCategory eq 2}"> 
-													<li class="dropdown">
-													    <a href="main" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-<%-- 		      										    <input type="text" class="input_text" value="${sessionScope.sNick}&nbsp;님" style="width: 100px;"> --%>
-		      										    <span>${sessionScope.sName}&nbsp;업주님</span>
-<%-- 													    <img src="${pageContext.request.contextPath}/resources/img/top_user.png" style="width: 25px; height: 25px;"> --%>
-													    </a>
-													    <ul class="dropdown-menu">
-													        <li><a href="${pageContext.request.contextPath}/ceo/sale">업주페이지</a></li>
-													        <li><a href="${pageContext.request.contextPath}/my/list">마이페이지</a></li>
-													        <li><a href="${pageContext.request.contextPath}/MemberLogout">로그아웃</a></li>
-													    </ul>
-													</li>
+													<li class="dropdown"><a href="${pageContext.request.contextPath}/my/list">
+      										    	${sessionScope.sName}&nbsp;업주님</a></li>
+      										    	<%--업주페이지 --%>
+													<li class="dropdown"><a href="${pageContext.request.contextPath}/ceo/sale">
+													업주페이지</a></li>
 													<%--알림 --%>
-													<li class="dropdown"><a href="${pageContext.request.contextPath}/#">
+<%-- 													<li class="dropdown"><a href="${pageContext.request.contextPath}/#"> --%>
 <%-- 													<img src="${pageContext.request.contextPath}/resources/img/top_bell.png" style="width: 25px; height: 25px;"> --%>
-													알림</a></li>
+<!-- 													알림</a></li> -->
 													<%--고객센터 --%>
 													<li class="dropdown"><a href="${pageContext.request.contextPath}/member/cs/faq">
 <%-- 													<img  src="${pageContext.request.contextPath}/resources/img/top_headset.png" style="width: 25px; height: 25px;"> --%>
 													고객센터</a></li>
+													<%--로그아웃 --%>
+													<li class="dropdown"><a href="${pageContext.request.contextPath}/MemberLogout">
+													로그아웃</a></li>
 												</c:when>
 												
 												
 												<c:otherwise>
 												<%--로그인후 마이페이지/로그아웃 --%>
-													<li class="dropdown">
-													    <a href="main" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-		      										    <span>${sessionScope.sNick}&nbsp;님</span>
-													    </a>
-													    <ul class="dropdown-menu">
-													        <li><a href="${pageContext.request.contextPath}/my/list">마이페이지</a></li>
-													        <li><a href="${pageContext.request.contextPath}/MemberLogout">로그아웃</a></li>
-													    </ul>
-													</li>
+													<li class="dropdown"><a href="${pageContext.request.contextPath}/my/list">
+		      										 ${sessionScope.sNick}&nbsp;님</a></li>
 													<%--알림 --%>
-													<li class="dropdown"><a href="${pageContext.request.contextPath}/#">
-													알림</a></li>
+<%-- 													<li class="dropdown"><a href="${pageContext.request.contextPath}/#"> --%>
+<!-- 													알림</a></li> -->
 													<%--고객센터 --%>
 													<li class="dropdown"><a href="${pageContext.request.contextPath}/member/cs/faq">
 													고객센터</a></li>
+													<%--로그아웃 --%>
+													<li class="dropdown"><a href="${pageContext.request.contextPath}/MemberLogout">
+													로그아웃</a></li>
 												</c:otherwise>
 											</c:choose>
 										</ul>
@@ -211,12 +204,30 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="block wow fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
+					
+						<%--위생순--%>
+						<div class="title">
+							<h3><span class="seleted_location">${search.location}</span> <span>위생순</span></h3>
+						</div>
+						<%-- 상세페이지로 가는 이미지 --%>
+						<div id="owl-example1" class="owl-carousel">
+						  <c:forEach var="clean" items="${cleanList}">
+						    <div class="owl_example1_items_images">
+					    		<a href="product/detail?com_id=${clean.com_id}">
+						      		<img alt="" src="${pageContext.request.contextPath}/resources/upload/${clean.com_img}"> <br>
+						      		${clean.com_name}
+						    	</a>
+						    </div>                      
+						  </c:forEach>
+						</div>
+						
 						<%--추천순(광고등급순)--%>
+						<br><br><br>
 						<div class="title">
 							<h3><span class="seleted_location">${search.location}</span> <span>추천순</span></h3>
 						</div>
 						<%-- 상세페이지로 가는 이미지 --%>
-						<div id="owl-example1" class="owl-carousel">
+						<div id="owl-example2" class="owl-carousel">
 						  <c:forEach var="recommand" items="${recommendList}">
 						    <div class="owl_example1_items_images">
 					    		<a href="product/detail?com_id=${recommand.com_id}">
@@ -233,7 +244,7 @@
 							<h3><span class="seleted_location">${search.location}</span> <span>별점순</span></h3>
 						</div>
 						<%-- 상세페이지로 가는 이미지 --%>
-						<div id="owl-example2" class="owl-carousel">
+						<div id="owl-example3" class="owl-carousel">
 						  <c:forEach var="review" items="${reviewList}">
 						    <div class="owl_example1_items_images">
 						    	<a href="product/detail?com_id=${review.com_id}">

@@ -35,26 +35,27 @@
 						<!-- 일반 회원가입 버튼 -->
 						<div class="innerBox1">
 							<div>
+								<img src="${pageContext.request.contextPath }/resources/img/choice_user.png" width="60" height="60"><br>
 								<button type="button" class="joinFormBtn" id="join_u">
 									일반 회원가입
 								</button>
 								<br>
 								<!-- 아이디 연동 가입 -->
 									<!-- 카카오 -->
-									<a id="kakao" href="javascript:loginWithKakao()">
-									  <img src="${pageContext.request.contextPath }/resources/img/kakao_join.png" width="222"
-									    alt="카카오 로그인 버튼" />
-									</a>
+<!-- 									<a id="kakao" href="javascript:loginWithKakao()"> -->
+<%-- 									  <img src="${pageContext.request.contextPath }/resources/img/kakao_join.png" width="222" --%>
+<!-- 									    alt="카카오 로그인 버튼" /> -->
+<!-- 									</a> -->
 <!-- 								<button type="button" class="joinFormBtn" id="kakao"> -->
 <%-- 									<img src="${pageContext.request.contextPath }/resources/img/kakao_logo.png" alt="카카오 로고"> --%>
 <!-- 									카카오 -->
 <!-- 								</button> -->
-								<br>
+<!-- 								<br> -->
 								<!-- 네이버 -->
-								<button type="button" class="joinFormBtn" id="naver">
-									<img src="${pageContext.request.contextPath }/resources/img/naver_logo.png" alt="네이버 로고">
-									네이버
-								</button>
+<!-- 								<button type="button" class="joinFormBtn" id="naver"> -->
+<%-- 									<img src="${pageContext.request.contextPath }/resources/img/naver_logo.png" alt="네이버 로고"> --%>
+<!-- 									네이버 -->
+<!-- 								</button> -->
 							</div>
 						</div>
 					</div>
@@ -66,6 +67,7 @@
 						<h2>업체 회원</h2>
 						<div class="innerBox2">
 							<!-- 업체 회원가입 버튼 -->
+							<img src="${pageContext.request.contextPath }/resources/img/choice_ceo.png" width="60" height="60"><br>
 							<button type="button" class="joinFormBtn" id="join_c">
 								<span>업체 회원가입</span>
 							</button>

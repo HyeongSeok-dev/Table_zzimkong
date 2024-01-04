@@ -163,6 +163,7 @@ $(document).ready(function() {
 		if(!lengthRegex.exec(passwd)){ //길이체크
 			msg = "영어 대소문자, 숫자, 특수문자 조합 8~16자리";
 			color = "red";
+			isPasswd = false;
 		}else{
 			let engUpperRegex = /[A-Z]/; //대문자
 			let engLowerRegex = /[a-z]/; //소문자

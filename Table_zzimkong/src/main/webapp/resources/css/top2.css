@@ -2,28 +2,32 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap'); 
 
   body {  
-    color:#0a0c0b;
-    background:#ffffff;
-    letter-spacing:-0.5px;
-    font-size:0.75em;
+    color: #2E2E2E;
+/*     background:#ffffff; */
+/*     letter-spacing:-0.5px; */
+    padding: 0px;
+    padding-bottom: 5px;
+    margin: 0px;
+    font-size: 15px;
+    text-transform: uppercase;
   }  
   /* li 기본 스타일 없애기*/
   li{
   	list-style: none;
   }
  
-* { 
-    padding: 0; 
-    margin: 0; 
+/* * {  */
+/*     padding: 0;  */
+/*     margin: 0;  */
 /*     color: #0a0c0b; */
-} 
+/* }  */
 
 
-* { 
-    -webkit-box-sizing: border-box; 
-    -moz-box-sizing: border-box; 
-    box-sizing: border-box;
-} 
+/* * {  */
+/*     -webkit-box-sizing: border-box;  */
+/*     -moz-box-sizing: border-box;  */
+/*     box-sizing: border-box; */
+/* }  */
 
 body { 
     letter-spacing: -0.5px;
@@ -104,7 +108,7 @@ img[alt="logo2"] {
 }
 
 .top_menu {
-	width : 150px;
+	width : 350px;
 	height: 30px;
 	display: flex;
 	justify-content: space-evenly;

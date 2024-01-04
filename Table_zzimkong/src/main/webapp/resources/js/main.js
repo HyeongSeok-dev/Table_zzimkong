@@ -21,18 +21,9 @@ $(document).ready(function() {
 
     limitItems("#owl-example1");
     limitItems("#owl-example2");
+    limitItems("#owl-example3");
 	 
-
-
-	$("#owl-example3").owlCarousel({
-		// Most important owl features
-		items: 4,
-		pagination: true,
-		paginationSpeed: 1000,
-		navigation: true,
-		navigationText: ["", "<i class='fa fa-angle-right'></i>"],
-		slideSpeed: 800,
-	});
+	
 	$("#owl-example4").owlCarousel({
 		// Most important owl features
 		items: 4,
