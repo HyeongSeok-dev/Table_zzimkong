@@ -49,8 +49,19 @@
 			</p>
 		</div>
 		<div class="favor-pic-appra">
-			<div class="favor">
-				<span> 즐겨찾기 </span>
+			<div class="favor_container">
+				<c:choose>
+					<c:when test="${isLiked eq 'true'}">
+						<div class="favor_on">
+						<span class="favorite_button"> 즐겨찾기 </span>
+						</div>
+					</c:when>
+					<c:otherwise>
+						<div class="favor_off">
+						<span class="favorite_button"> 즐겨찾기 </span>
+						</div>
+					</c:otherwise>
+				</c:choose>
 			</div>
 			<div>
 				<c:if test="${isvisited}">

@@ -333,6 +333,8 @@ a {
 	margin-bottom: 0
 }
 
+
+
 iframe {
 	border: 0;
 	outline: 0;
@@ -548,7 +550,24 @@ strong {
 	background-color: initial
 }
 
-.s-list.pic-grade .favor-pic-appra .favor span {
+.favor_on span {
+	font-size: 13px;
+	padding: 2px 0 3px 25px;
+	background:
+		url(https://s3-ap-northeast-1.amazonaws.com/dcicons/new/images/web/common/like-on@2x.png)
+		left/20px no-repeat;
+	background-image:
+		url(https://s3-ap-northeast-1.amazonaws.com/dcicons/new/images/web/common/like-on@2x.png);
+	background-position-x: left;
+	background-position-y: center;
+	background-size: 20px;
+	background-attachment: initial;
+	background-origin: initial;
+	background-clip: initial;
+	background-color: initial
+}
+
+.favor_off span {
 	font-size: 13px;
 	padding: 2px 0 3px 25px;
 	background:

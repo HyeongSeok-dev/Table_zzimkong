@@ -265,6 +265,27 @@
 		GROUP BY com_id
 	</select>
 	
+	<select id="selectBookmark" resultType="bookmark">
+		SELECT * 
+		FROM bookmark
+		WHERE user_idx = #{sIdx}
+		AND com_id = #{com_id}
+	</select>
+	
+	<insert id="insertBookmark">
+		INSERT INTO bookmark
+		VALUES (
+			null
+			,#{com_id}
+			,#{sIdx}
+		)
+	</insert>
+	
+	<delete id="deleteBookmark">
+		DELETE FROM bookmark
+		WHERE user_idx = #{sIdx}
+		AND com_id = #{com_id}
+	</delete>
 	
 	<!-- 메인화면=============================================== -->
 	<!-- 위생순 -->

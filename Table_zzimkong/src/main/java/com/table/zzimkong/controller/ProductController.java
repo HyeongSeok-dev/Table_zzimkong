@@ -22,8 +22,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.table.zzimkong.service.ProductService;
+import com.table.zzimkong.vo.BookmarkVO;
 import com.table.zzimkong.vo.CompanyVO;
 import com.table.zzimkong.vo.MemberVO;
 import com.table.zzimkong.vo.MenuVO;
@@ -102,21 +104,24 @@ public class ProductController {
 			model.addAttribute("msg","서치가 없어졌어요");
 			return "fail_back";
 		}
+		
 		String selectTimeButton = company.getSelectedTime();
 		if(selectTimeButton == null || selectTimeButton.equals("")) {
 			selectTimeButton = search.getTime();
 		}
+		
 		search.setTime(selectTimeButton);
 		LocalTime localTime = LocalTime.parse(search.getTime());
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("h:mm");
+		
 		if (localTime.isBefore(LocalTime.NOON)) {
 	        search.setDisplayTime("오전 " + localTime.format(formatter));
 	    } else {
 	        search.setDisplayTime("오후 " + localTime.format(formatter));
 	    }
 		session.setAttribute("search", search);
-		
 		System.out.println("변경된 시간" + search.getTime());
+		
 		int remainingPeople = service.getReservationInfo(search, company.getCom_id());
 		if(remainingPeople - search.getPersons() <0) {
 			model.addAttribute("msg"," 예약인원이 초과되었습니다!");
@@ -128,6 +133,16 @@ public class ProductController {
 		List<ReviewVO> reviews = service.getReviewInfo(company);
 		ReviewVO reviewScore = service.getReviewScore(company);
 		List<MenuVO> menuList = service.getMenuList(company);
+		
+		
+		if(session.getAttribute("sIdx") != null) {
+			BookmarkVO bookmark = service.getBookmark((int)session.getAttribute("sIdx"),dbCompany.getCom_id());
+			if(bookmark != null) {
+				model.addAttribute("isLiked", "true");
+			}else {
+				model.addAttribute("isLiked", "false");
+			}
+		}
 		
 		LocalTime openTime = LocalTime.parse(dbCompany.getCom_open_time());
 		LocalTime closeTime = LocalTime.parse(dbCompany.getCom_close_time());
@@ -289,6 +304,29 @@ public class ProductController {
 		List<CompanyVO> companyList = service.getsimilarCompanyList(sort, company, tagList, individualTags);
 		
 		return ResponseEntity.ok(companyList);
+	}
+	
+	@ResponseBody
+	@PostMapping("product/favor")
+	public String favor(HttpSession session, BookmarkVO bookmark, @RequestParam int com_id) {
+		
+		int sIdx = 0;
+		
+		if(session.getAttribute("sIdx") == null) {
+			return "notLogin";
+		}
+		sIdx = (int)session.getAttribute("sIdx");
+		
+		bookmark = service.getBookmark(sIdx,com_id);
+		if(bookmark == null) {
+			int insertCount  = service.registBookmark(sIdx,com_id);
+			return "true";
+		}else {
+			int deleteCount =  service.removeBookmark(sIdx,com_id);
+			return "false";
+		}
+		
+		
 	}
 	
 }

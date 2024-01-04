@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import com.table.zzimkong.vo.BookmarkVO;
 import com.table.zzimkong.vo.CompanyVO;
 import com.table.zzimkong.vo.MenuVO;
 import com.table.zzimkong.vo.ReservationVO;
@@ -37,4 +38,10 @@ public interface ProductMapper {
 	List<ReviewVO> selectReviewInfo(CompanyVO company);
 
 	ReviewVO selectReviewScore(CompanyVO company);
+
+	BookmarkVO selectBookmark(@Param("sIdx") int sIdx, @Param("com_id") int com_id);
+
+	int insertBookmark(@Param("sIdx") int sIdx, @Param("com_id") int com_id);
+
+	int deleteBookmark(@Param("sIdx") int sIdx, @Param("com_id") int com_id);
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.table.zzimkong.mapper.ProductMapper;
+import com.table.zzimkong.vo.BookmarkVO;
 import com.table.zzimkong.vo.CompanyVO;
 import com.table.zzimkong.vo.MenuVO;
 import com.table.zzimkong.vo.ReservationVO;
@@ -71,6 +72,21 @@ public class ProductService {
 	public ReviewVO getReviewScore(CompanyVO company) {
 		// TODO Auto-generated method stub
 		return mapper.selectReviewScore(company);
+	}
+
+	public BookmarkVO getBookmark(int sIdx, int com_id) {
+		// TODO Auto-generated method stub
+		return mapper.selectBookmark(sIdx,com_id);
+	}
+
+	public int registBookmark(int sIdx, int com_id) {
+		// TODO Auto-generated method stub
+		return mapper.insertBookmark(sIdx,com_id);
+	}
+
+	public int removeBookmark(int sIdx, int com_id) {
+		// TODO Auto-generated method stub
+		return mapper.deleteBookmark(sIdx,com_id);
 	}
 
 	

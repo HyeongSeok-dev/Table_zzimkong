@@ -2,6 +2,35 @@ $(document).ready(function() {
 	var contextRoot = window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2));
 
 	fetchRestaurants('near');
+	//즐겨찾기 누르기
+	
+	 $(".favorite_button").click(function() {
+        var comId = $("#com_id").val(); // 회사 아이디 가져오기
+
+        // Ajax 요청 보내기
+        $.ajax({
+            type: "POST",
+            url: "favor",
+            data: { com_id: comId },
+            success: function(response) {
+                if (response != 'notLogin') {
+                    if (response === 'true') {
+                        $(".favor_container").html("<div class='favor_on'><span id='favorite_button'> 즐겨찾기 </span></div>");
+                    } else if (response === 'false') {
+                        $(".favor_container").html("<div class='favor_off'><span id='favorite_button'> 즐겨찾기 </span></div>");
+                    }
+                } else {
+                    alert('로그인 후 즐겨찾기가 가능합니다!');
+                    window.location.href = "../login";
+                }
+            },
+            error: function() {
+                alert("오류가 발생했습니다.");
+            }
+        });
+    });
+
+
 
 	$('input[name="menu_idx"]').each(function() {
 		$(this).change(function() {
@@ -26,7 +55,7 @@ $(document).ready(function() {
 			fetchRestaurants(sortValue);
 		});
 	});
-
+	
 
 
 	$('#reservation-confirm-button').click(function() {
@@ -205,21 +234,6 @@ $(document).ready(function() {
 	});
 
 
-	var scrollAmount =  180; // adjust multiplier based on visible images count
-
-    $('.scroll-btn.left').click(function(){
-        $('.review_container').animate({
-            scrollLeft: '-=' + scrollAmount
-        }, 'fast');
-        console.log("왼쪽 클릭됨")
-    });
-
-    $('.scroll-btn.right').click(function(){
-        $('.review_container').animate({
-            scrollLeft: '+=' + scrollAmount
-        }, 'fast');
-        console.log("오른쪽 클릭됨")
-    });
 });
 
 function mapPopup(address, name) {
