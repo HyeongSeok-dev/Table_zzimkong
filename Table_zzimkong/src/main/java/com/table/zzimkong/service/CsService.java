@@ -26,4 +26,24 @@ public class CsService {
 		return mapper.selectBoard(board, member, boardCategory);
 	}
 
+	public int registboard(CsVO board) {
+		// TODO Auto-generated method stub
+		return mapper.insertBoard(board);
+	}
+
+	public CsVO getQnaBoard(CsVO board) {
+		// TODO Auto-generated method stub
+		return mapper.selectQnaBoard(board);
+	}
+
+	public int modifyQnaBoard(CsVO board) {
+		// TODO Auto-generated method stub
+		return mapper.updateQnaBoard(board);
+	}
+
+	public int removeBoard(CsVO board) {
+		// TODO Auto-generated method stub
+		return mapper.deleteQnaBoard(board);
+	}
+
 }

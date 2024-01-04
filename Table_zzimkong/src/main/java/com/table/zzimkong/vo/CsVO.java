@@ -2,6 +2,8 @@ package com.table.zzimkong.vo;
 
 import java.time.LocalDate;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Data;
 
 @Data
@@ -28,6 +30,10 @@ public class CsVO {
 	private String searchFAQ;
 	private String sdate;
 	private String edate;
-	
+	private MultipartFile mFile1;
+	private MultipartFile mFile2;
+	private MultipartFile mFile3;
+	private MultipartFile mFile4;
+	private MultipartFile mFile5;
 }
 

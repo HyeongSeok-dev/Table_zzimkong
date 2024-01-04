@@ -15,4 +15,12 @@ public interface CsMapper {
 
 	List<CsVO> selectBoard(@Param("board") CsVO board, @Param("member") MemberVO member,@Param("category") int boardCategory);
 
+	int insertBoard(CsVO board);
+
+	CsVO selectQnaBoard(CsVO board);
+
+	int updateQnaBoard(CsVO board);
+
+	int deleteQnaBoard(CsVO board);
+
 }

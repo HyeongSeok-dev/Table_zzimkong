@@ -3,6 +3,6 @@
 <script>
 	// 전달받은 msg 속성값 alert() 함수로 출력
 	alert("${msg}")
-	// 전달받은 targetURL 속성값 location.href 로 이동 처리
+	//팝업닫기
 	window.close(); 
 </script>

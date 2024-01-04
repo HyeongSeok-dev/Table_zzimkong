@@ -13,19 +13,19 @@
 <script type="text/javascript">
 	function qnaRegisterForm() {
 		/* 팝업창 중앙 정렬 */
-		var popupW = 950;
-		var popupH = 700;
+		var popupW = 1000;
+		var popupH = 900;
 		var left = Math.ceil((window.screen.width - popupW)/2);
 		var top = Math.ceil((window.screen.height - popupH)/2);
 		window.open('${pageContext.request.contextPath }/ceo/cs/qna/register','','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
 	}
-	function qnaViewForm() {
+	function qnaViewForm(board_num) {
 		/* 팝업창 중앙 정렬 */
-		var popupW = 950;
-		var popupH = 700;
+		var popupW = 1000;
+		var popupH = 900;
 		var left = Math.ceil((window.screen.width - popupW)/2);
 		var top = Math.ceil((window.screen.height - popupH)/2);
-		window.open('${pageContext.request.contextPath }/ceo/cs/qna/view','','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
+		window.open('${pageContext.request.contextPath }/ceo/cs/qna/view?cs_board_num=' + board_num,'','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
 	}
 </script>
 
@@ -99,7 +99,7 @@
 				        </thead>
 				        <tbody>
 				        <c:forEach var="board" items="${boardList}">
-				                <tr>
+				                <tr onclick="qnaViewForm(${board.cs_board_num})">
 				                    <td>${board.cs_board_num}</td>
 				                    <c:choose>
 				                    	<c:when test="${board.cs_board_category_sub eq '1'}">
@@ -119,10 +119,9 @@
 				                    	</c:when>
 				                    </c:choose>
 				                    <th class="cs_th">
-				                        <a href="#" onclick="faqViewForm()">${board.cs_board_subject}</a>
+				                        ${board.cs_board_subject}
 				                    </th>
 				                    <td>${board.cs_board_date}</td>
-				                    
 				                </tr>
 				            </c:forEach>
 				        </tbody>

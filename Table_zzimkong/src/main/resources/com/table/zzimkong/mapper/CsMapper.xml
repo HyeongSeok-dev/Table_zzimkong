@@ -29,5 +29,67 @@
 			</if>
 		</where>
 	</select>
+	<insert id="insertBoard">
+		<selectKey keyProperty="cs_board_num" resultType="int" order="BEFORE">
+			SELECT IFNULL(MAX(cs_board_num),0)
+			FROM cs_board
+		</selectKey>
+		
+		INSERT INTO cs_board
+		VALUES(
+			#{cs_board_num} +1
+			,#{user_id}
+			,#{cs_board_subject}
+			,#{cs_board_content}
+			,#{cs_board_num}
+			,0
+			,0
+			,0
+			,now()
+			,#{cs_board_category_user}
+			,#{cs_board_category_main}
+			,#{cs_board_category_sub}
+			,#{cs_board_img_1}
+			,#{cs_board_img_2}
+			,#{cs_board_img_3}
+			,#{cs_board_img_4}
+			,#{cs_board_img_5}
+		)
+	</insert>
+	
+	<select id="selectQnaBoard" resultType="cs">
+		SELECT * 
+		FROM cs_board
+		WHERE cs_board_num = #{cs_board_num}
+	</select>
+	
+	<update id="updateQnaBoard">
+		UPDATE cs_board
+		SET cs_board_subject = #{cs_board_subject}
+			, cs_board_content = #{cs_board_content}
+			<if test="cs_board_img_1 != null and !cs_board_img_1.equals('')">
+				, cs_board_img_1 = #{cs_board_img_1}
+			</if>
+			<if test="cs_board_img_2 != null and !cs_board_img_2.equals('')">
+				, cs_board_img_2 = #{cs_board_img_2}
+			</if>
+			<if test="cs_board_img_3 != null and !cs_board_img_3.equals('')">
+				, cs_board_img_3 = #{cs_board_img_3}
+			</if>
+			<if test="cs_board_img_4 != null and !cs_board_img_4.equals('')">
+				, cs_board_img_4 = #{cs_board_img_4}
+			</if>
+			<if test="cs_board_img_5 != null and !cs_board_img_5.equals('')">
+				, cs_board_img_5 = #{cs_board_img_5}
+			</if>
+		WHERE
+			cs_board_num = #{cs_board_num}
+
+	</update>
+			
+	<delete id="deleteQnaBoard">
+		DELETE FROM cs_board
+		WHERE cs_board_num = #{cs_board_num}
+	</delete>
 	
 </mapper>

@@ -59,7 +59,6 @@ public class ProductController {
 	    }
 
 		session.setAttribute("search", search);
-		System.out.println("서치 세션 최초 등록" + search);
 		search.setRedirectURL("/product/list");
 
 		return ResponseEntity.ok(search);
@@ -274,7 +273,7 @@ public class ProductController {
 		    	
 			String[] tagsArray = company.getCom_search_tag().split("#");
 			
-			// 분리된 태그를 리스트로 변환하고 중복 및 빈 문자열 제거
+			// 분리된 태그를 셋으로 변환하고 중복 및 빈 문자열 제거
 			Set<String> tagsSet = new HashSet<>(Arrays.asList(tagsArray));
 			tagsSet.remove("");  // 빈 문자열 제거
 			
