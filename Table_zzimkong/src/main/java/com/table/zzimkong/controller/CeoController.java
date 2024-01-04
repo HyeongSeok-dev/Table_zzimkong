@@ -250,9 +250,11 @@ public class CeoController {
 		//com_id에 해당하는 예약정보 조회 
 		List<ReservationVO> comResList = service.getResInfoList(com_id);
 		System.out.println("예약값" + comResList);
-		model.addAttribute("comResList", comResList);
-		int res_idx = comResList.get(0).getRes_idx();
-		
+		//예약이 없을 경우 예외 처리
+		if(comResList.size()!=0) {
+			model.addAttribute("comResList", comResList);
+			int res_idx = comResList.get(0).getRes_idx();
+		}
 		return "ceo/ceo_reservation";
 	}
 	
@@ -263,8 +265,8 @@ public class CeoController {
 	
 	@GetMapping("ceo/reservation/info")	
 	public String ceo_reservation_info(ReservationVO res, Model model) {
-		System.out.println(res);
 		res = service.getResDetailInfo(res);
+		System.out.println("info에서 받는거" + res);
 		model.addAttribute("res", res);
 		return "ceo/ceo_reservation_info";
 	}

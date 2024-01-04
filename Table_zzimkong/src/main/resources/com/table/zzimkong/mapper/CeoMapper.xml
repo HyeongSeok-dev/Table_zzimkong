@@ -137,7 +137,7 @@
 	<select id="selectResInfo" resultType="res">
 		SELECT *
 		FROM reservation
-		WHERE com_id = #{com_id}
+		WHERE com_id = #{com_id} AND res_date = CURDATE()
 	</select>
 
 	<select id="selectResDetailInfo">
