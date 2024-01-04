@@ -1,13 +1,24 @@
 // admin_user.jsp
+// 회원 탈퇴 처리
 function user_withdraw(user_idx) {
-    var result = confirm("강제 탈퇴시키겠습니까?");
-    if(result) { // 확인을 눌렀을 경우
-        document.getElementById('user_idx').value = user_idx;
-        document.getElementById('withdrawForm').submit();
-    } else {
-		event.preventDefault();
-    }
-}
+  var result = confirm("강제 탈퇴시키겠습니까?");
+  if(result) { // 확인을 눌렀을 경우
+      var form = document.createElement("form");
+      form.method = "POST";
+      form.action = "/zzimkong/admin/user/withdraw/Pro";
+
+      var element = document.createElement("input");
+      element.value = user_idx;
+      element.name = "user_idx";
+      form.appendChild(element);
+
+      document.body.appendChild(form);
+
+      form.submit();
+  } else {
+    event.preventDefault();
+  }
+};
 
 
 // admin_report.jsp
@@ -63,6 +74,7 @@ function company_disapprove() {
 
 
 // admin_company_info.jsp
+// 취소 버튼 누를 시 이전값으로 돌림 - 미완료
 function company_shut_down() {
 	var company_state = document.getElementById("company_state");
 	var prev_value = company_state.options[company_state.selectedIndex].value;
@@ -83,8 +95,9 @@ function company_shut_down() {
 }
 
 
-// 고객센터
+// 고객센터 //
 // admin_cs_notice.jsp
+// 고객센터 글 등록
 function noticeRegisterForm() {
 	/* 팝업창 중앙 정렬 */
 	var popupW = 950;
@@ -93,7 +106,7 @@ function noticeRegisterForm() {
 	var top = Math.ceil((window.screen.height - popupH)/2);
 	window.open('notice/register','','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
 }
-
+// 공지사항 뷰페이지로 이동
 function noticeViewForm(cs_board_num, cs_board_category_user, contextPath) {
 	/* 팝업창 중앙 정렬 */
 	var popupW = 950;
@@ -113,7 +126,9 @@ function noticeViewForm(cs_board_num, cs_board_category_user, contextPath) {
 	window.open(url,'','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
 }
 
+
 // admin_cs_faq.jsp
+// 자주묻는질문 글 등록
 function faqRegisterForm() {
 	/* 팝업창 중앙 정렬 */
 	var popupW = 950;
@@ -122,7 +137,7 @@ function faqRegisterForm() {
 	var top = Math.ceil((window.screen.height - popupH)/2);
 	window.open('faq/register','','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
 }
-
+// 자주묻는질문 뷰페이지로 이동
 function faqViewForm(cs_board_num, cs_board_category_user, contextPath) {
 	/* 팝업창 중앙 정렬 */
 	var popupW = 950;
@@ -143,6 +158,7 @@ function faqViewForm(cs_board_num, cs_board_category_user, contextPath) {
 }
 	
 // admin_cs_faq_register.jsp
+// 고객센터 - 회원유형 선택에 따라 질문유형 셀렉트박스가 변경됨
 $(document).ready(function() {
     $('.csUserSelect').change(function() {
         var userSelect = $(this).val();
@@ -156,83 +172,35 @@ $(document).ready(function() {
     });
 });
 
-//// 사용자가 선택한 값을 로컬스토리지에 저장
-//document.getElementById('memberCategory').addEventListener('change', function() {
-//    localStorage.setItem('selectedMemberCategory', this.value);
-//});
-//
-//// 페이지 로드 시 저장된 값을 불러와서 셀렉트 박스에 설정
-//window.onload = function() {
-//    var selectedValue = localStorage.getItem('selectedMemberCategory');
-//    if(selectedValue) {
-//        document.getElementById('memberCategory').value = selectedValue;
-//    }
-//};
-
 
 // 카테고리 필터
 // 1) 회원 관리 - 회원 구분, 회원 상태
 document.addEventListener("DOMContentLoaded", function(){
-	console.log("시작!");
-	
     const memberCategorySelect = document.querySelector('#memberCategory');
     const memberStatusCategorySelect = document.querySelector('#memberStatusCategory');
     const memberItems = document.querySelectorAll('.member_item');
     const memberStatusItems = document.querySelectorAll('.member_status_item');
-
-	console.log('memberCategorySelect:', memberCategorySelect.value);
-	console.log('memberStatusCategorySelect:', memberStatusCategorySelect.value);
-
-    // 사용자가 선택한 값을 로컬스토리지에 저장
-    memberCategorySelect.addEventListener('change', function() {
-        localStorage.setItem('selectedMemberCategory', memberCategorySelect.value);
-        
-        console.log('1memberCategorySelect:', memberCategorySelect.value);
-		console.log('1memberStatusCategorySelect:', memberStatusCategorySelect.value);
-
-    });
-
-    memberStatusCategorySelect.addEventListener('change', function() {
-        localStorage.setItem('selectedMemberStatusCategory', memberStatusCategorySelect.value);
-    	
-    	console.log('2memberCategorySelect:', memberCategorySelect.value);
-		console.log('2memberStatusCategorySelect:', memberStatusCategorySelect.value);
-    });
-	
-    // 페이지 로드 시 저장된 값을 불러와서 셀렉트 박스에 설정
-    var selectedCategoryValue = localStorage.getItem('selectedMemberCategory');
-    if (selectedCategoryValue) {
-        memberCategorySelect.value = selectedCategoryValue;
-
-    	console.log('3memberCategorySelect:', memberCategorySelect.value);
-		console.log('3memberStatusCategorySelect:', memberStatusCategorySelect.value);
-    }
-
-    var selectedStatusCategoryValue = localStorage.getItem('selectedMemberStatusCategory');
-    if (selectedStatusCategoryValue) {
-        memberStatusCategorySelect.value = selectedStatusCategoryValue;
-
-    	console.log('4memberCategorySelect:', memberCategorySelect.value);
-		console.log('4memberStatusCategorySelect:', memberStatusCategorySelect.value);
-    }
+    
+	console.log("memberCategorySelect : " + memberCategorySelect);
+	console.log("memberStatusCategorySelect" + memberStatusCategorySelect);
+	console.log("member_item" + member_item);
+	console.log("member_status_item" + member_status_item);
 
     function filterMembers() {
         const currentCategory = memberCategorySelect.value;
         const currentStatusCategory = memberStatusCategorySelect.value;
+        
+        for (let i = 0; i < memberItems.length; i++) {
+            const trElement = memberItems[i].closest('tr');
+            const memberStatus = trElement.querySelector('.member_status_item');
 
-        // 서버에 데이터 요청
-        fetch(`/zzimkong/admin/user?pageNum=1&searchMemberType=&searchMemberKeyword=&memberCategory=${currentCategory}&memberStatusCategory=${currentStatusCategory}`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('네트워크 응답이 정상이 아닙니다: ' + response.status);
-                }
-                return response.text();  // HTML 형식의 응답을 받습니다.
-            })
-            .then(html => {
-                // 서버로부터 받아온 HTML을 페이지에 적용
-                document.querySelector('.text').innerHTML = html;
-            })
-            .catch(error => console.error('데이터를 가져오는 중 오류 발생:', error));
+            if ((currentCategory === 'member_all' || memberItems[i].dataset.category === currentCategory)
+                && (currentStatusCategory === 'member_status_all' || memberStatus.dataset.category === currentStatusCategory)) {
+                trElement.style.display = '';
+            } else {
+                trElement.style.display = 'none';
+            }
+        }
     }
 
     if (memberCategorySelect) {

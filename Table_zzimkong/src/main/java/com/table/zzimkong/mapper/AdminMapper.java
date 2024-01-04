@@ -17,7 +17,8 @@ public interface AdminMapper {
 	// 관리자 - 메인 : 데이터 뿌리기
 	AdminMainVO selectAdminMain();
 		
-	// 관리자 - 회원 목록 조회, 검색 기능, 페이지네이션
+	// 관리자 - 회원 목록 조회 요청 (페이지네이션, 검색 기능, 카테고리 필터)
+	//        + 검색 결과, 카테고리 필터링에 따른 페이지네이션의 범위 재조정
 	List<MemberVO> selectAdminMemberList(
 			@Param("searchMemberType") String searchMemberType,
 			@Param("searchMemberKeyword") String searchMemberKeyword,
