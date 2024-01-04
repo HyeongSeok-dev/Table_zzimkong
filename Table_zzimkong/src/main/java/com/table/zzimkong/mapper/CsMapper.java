@@ -17,7 +17,7 @@ public interface CsMapper {
 
 	int insertBoard(CsVO board);
 
-	CsVO selectQnaBoard(CsVO board);
+	CsVO selectBoardDetail(CsVO board);
 
 	int updateQnaBoard(CsVO board);
 

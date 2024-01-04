@@ -31,9 +31,9 @@ public class CsService {
 		return mapper.insertBoard(board);
 	}
 
-	public CsVO getQnaBoard(CsVO board) {
+	public CsVO getBoardDetail(CsVO board) {
 		// TODO Auto-generated method stub
-		return mapper.selectQnaBoard(board);
+		return mapper.selectBoardDetail(board);
 	}
 
 	public int modifyQnaBoard(CsVO board) {

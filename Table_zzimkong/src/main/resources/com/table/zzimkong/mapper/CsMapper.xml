@@ -57,7 +57,7 @@
 		)
 	</insert>
 	
-	<select id="selectQnaBoard" resultType="cs">
+	<select id="selectBoardDetail" resultType="cs">
 		SELECT * 
 		FROM cs_board
 		WHERE cs_board_num = #{cs_board_num}

@@ -10,13 +10,13 @@
  <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/ceo_top.css"> 
  <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
-	function noticeViewForm() {
+	function noticeViewForm(board_num) {
 		/* 팝업창 중앙 정렬 */
 		var popupW = 950;
 		var popupH = 700;
 		var left = Math.ceil((window.screen.width - popupW)/2);
 		var top = Math.ceil((window.screen.height - popupH)/2);
-		window.open('${pageContext.request.contextPath }/ceo/cs/notice/view','','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
+		window.open('${pageContext.request.contextPath }/ceo/cs/notice/view?cs_board_num=' + board_num,'','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
 	}
 </script>
 </head>
@@ -71,9 +71,8 @@
 				        </tr>
 				        </thead>
 				        <tbody>
-				        <tr>
 				            <c:forEach var="board" items="${boardList}">
-				                <tr>
+				                <tr onclick="noticeViewForm(${board.cs_board_num})">
 				                    <td>${board.cs_board_num}</td>
 				                    <c:choose>
 				                    	<c:when test="${board.cs_board_category_sub eq '1'}">
@@ -84,7 +83,7 @@
 				                    	</c:when>
 				                    </c:choose>
 				                    <th class="cs_th">
-				                        <a href="#" onclick="faqViewForm()">${board.cs_board_subject}</a>
+				                        ${board.cs_board_subject}
 				                    </th>
 				                    <td>${board.cs_board_date}</td>
 				                </tr>

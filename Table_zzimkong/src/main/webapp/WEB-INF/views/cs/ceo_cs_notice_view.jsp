@@ -22,18 +22,18 @@
 			<table>
 				<tr>
 					<th>번호</th>
-					<td>1</td>
+					<td>${board.cs_board_num}</td>
 				</tr>
 				<tr>
 					<th colspan="1">제목</th>
 					<td colspan="3">
-						--제목
+						${board.cs_board_subject}
 					</td>
 				</tr>
 				<tr>
 					<th colspan="1">공지내용</th>
 					<td colspan="3">
-						-- 공지내용
+						${board.cs_board_content}
 					</td>
 				</tr>
 			</table>

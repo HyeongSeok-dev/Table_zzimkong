@@ -23,32 +23,40 @@
 			<table>
 				<tr>
 					<th>번호</th>
-					<td>1</td>
+					<td>${board.cs_board_num}</td>
 					<th>
 						질문유형
 					</th>
 					<td>
-					[사업자회원의 경우 질문유형]<br>
-					예약관리, 메뉴관리, 광고,<br>
-					 블랙회원관리, 업체관리<br>
+						<c:choose>
+							<c:when test="${board.cs_board_category_sub eq 1}">
+								예약관리
+							</c:when>
+							<c:when test="${board.cs_board_category_sub eq 2}">
+								메뉴관리
+							</c:when>
+							<c:when test="${board.cs_board_category_sub eq 3}">
+								광고
+							</c:when>
+							<c:when test="${board.cs_board_category_sub eq 4}">
+								블랙회원관리
+							</c:when>
+							<c:when test="${board.cs_board_category_sub eq 5}">
+								업체관리
+							</c:when>
+						</c:choose>
 					</td>
 				</tr>
 				<tr>
 					<th colspan="2">제목</th>
 					<td colspan="4">
-					-- 여기제목
+					${board.cs_board_subject}
 					</td>
 				</tr>
 				<tr>
-					<th colspan="2">문의내용</th>
+					<th colspan="2">내용</th>
 					<td colspan="4">
-						--여기 문의내용
-					</td>
-				</tr>
-				<tr>
-					<th colspan="2">답변</th>
-					<td colspan="4">
-						--여기 답변내용
+						${board.cs_board_content}
 					</td>
 				</tr>
 			</table>

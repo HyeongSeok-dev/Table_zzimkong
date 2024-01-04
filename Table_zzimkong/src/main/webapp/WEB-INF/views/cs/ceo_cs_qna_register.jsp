@@ -51,6 +51,11 @@
                 event.preventDefault(); // 폼 제출을 막음
                 alert("개인정보 수집 및 이용에 동의해야 합니다."); // 얼럿 메시지 표시
             }
+            if($('#category_select').val() === ''){
+                event.preventDefault(); // 폼 제출을 막음
+                alert("분류를 선택해주세요"); // 얼럿 메시지 표시
+                $('#category_select').focus();
+            }
         });
     });
 </script>
@@ -70,7 +75,7 @@
                         <td width="100">${member.user_name}</td>
                         <th width="80">유형</th>
                         <td>
-                            <select class="category_select" name="cs_board_category_sub">
+                            <select class="category_select" id="category_select" name="cs_board_category_sub">
                                 <option value="">유형선택</option>
                                 <option value="1">예약관리</option>
                                 <option value="2">메뉴관리</option>

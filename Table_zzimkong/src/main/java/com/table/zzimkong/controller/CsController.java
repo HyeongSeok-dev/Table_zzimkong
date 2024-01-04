@@ -52,7 +52,24 @@ public class CsController {
 	}
 	
 	@GetMapping("ceo/cs/faq/view")
-	public String ceo_cs_faq_view() {
+	public String ceo_cs_faq_view(CsVO board, Model model, HttpSession session, MemberVO member) {
+		
+		if(session.getAttribute("sIdx") == null) {
+			model.addAttribute("msg", "잘못된 접근입니다.");
+			return "fail_back";
+		}
+		
+		int sIdx = (int)session.getAttribute("sIdx");
+		
+		member = service.getmember(sIdx);
+		if(member.getUser_category() ==1) {
+			model.addAttribute("msg", "잘못된 접근입니다.");
+			return "fail_back";
+		}
+		board = service.getBoardDetail(board);
+		
+		model.addAttribute("board", board);
+		
 		return "cs/ceo_cs_faq_view";
 	}
 	
@@ -80,7 +97,24 @@ public class CsController {
 	}
 	
 	@GetMapping("ceo/cs/notice/view")
-	public String ceo_cs_notice_view() {
+	public String ceo_cs_notice_view(CsVO board, Model model, HttpSession session, MemberVO member) {
+		
+		if(session.getAttribute("sIdx") == null) {
+			model.addAttribute("msg", "잘못된 접근입니다.");
+			return "fail_back";
+		}
+		
+		int sIdx = (int)session.getAttribute("sIdx");
+		
+		member = service.getmember(sIdx);
+		if(member.getUser_category() ==1) {
+			model.addAttribute("msg", "잘못된 접근입니다.");
+			return "fail_back";
+		}
+		board = service.getBoardDetail(board);
+		
+		model.addAttribute("board", board);
+		
 		return "cs/ceo_cs_notice_view";
 	}
 	
@@ -100,7 +134,7 @@ public class CsController {
 			return "fail_back";
 		}
 		
-		board = service.getQnaBoard(board);
+		board = service.getBoardDetail(board);
 		
 		model.addAttribute("board", board);
 		model.addAttribute("member", member);
@@ -384,7 +418,7 @@ public class CsController {
 		}
 		
 		System.out.println(board);
-		board = service.getQnaBoard(board);
+		board = service.getBoardDetail(board);
 		
 		if(!member.getUser_id().equals(board.getUser_id())) {
 			model.addAttribute("msg", "잘못된 접근입니다.");
@@ -435,7 +469,7 @@ public class CsController {
 			model.addAttribute("msg", "잘못된 접근입니다.");
 			return "fail_back";
 		}
-		board = service.getQnaBoard(board);
+		board = service.getBoardDetail(board);
 		
 		if(!member.getUser_id().equals(board.getUser_id())) {
 			model.addAttribute("msg", "잘못된 접근입니다.");
