@@ -1,6 +1,6 @@
 package com.table.zzimkong.service;
 
-import java.util.List;
+import java.util.*;
 
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
@@ -31,10 +31,15 @@ public class MypageService {
 	}
 	
 	// 예약 내역 목록
-	public List<ReservationVO> getResList(int sIdx) {
-		// TODO Auto-generated method stub
-		return mapper.selectResList(sIdx);
-	}
+//	public List<ReservationVO> getResList(int sIdx) {
+//		// TODO Auto-generated method stub
+//		return mapper.selectResList(sIdx);
+//	}
+
+//	public List<Map<String, Object>> getResList(Object user_idx) {
+//		// TODO Auto-generated method stub
+//		return mapper.selectResList(user_idx);
+//	}
 
 //	public CompanyVO getComName(ReservationVO res) {
 		// TODO Auto-generated method stub

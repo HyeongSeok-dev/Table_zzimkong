@@ -178,7 +178,7 @@ public class MypageController {
 	// [ 나의 예약 내역 목록 조회 ]
 	
 	@GetMapping("my/list")
-	public String my_list(MypageInfo mypage, HttpSession session, Model model, HttpServletResponse response) {
+	public String my_list(MypageInfo mypage, HttpSession session, Model model, HttpServletResponse response, Object user_idx) {
 		
 		int sIdx = (int)session.getAttribute("sIdx");
 		String sId = (String)session.getAttribute("sId"); // 세션에 아이디값을 가져오는거
@@ -186,7 +186,7 @@ public class MypageController {
 		MypageInfo dbMypage = service.getMypage(mypage);
 		session.setAttribute("user_nick", dbMypage.getUser_nick()); // String~session: 마이페이지 눌렀을때 닉네임 계속 보이게 세션에 저장
 		
-		System.out.println(dbMypage);
+//		System.out.println(dbMypage);
 		// MypageService - getResList() 메서드 호출하여 회원 목록 조회 요청
 		
 //		List<ReservationVO> resList = service.getResList(sIdx);
@@ -196,7 +196,7 @@ public class MypageController {
 //		for(ReservationVO res:resList) {
 //			CompanyVO com = service.getComName(res);
 //		}
-		
+//		List<Map<String, Object>> reservationList = service.getResList(user_idx);
 		
 		// Model 객체에 회원 목록 조회 결과 저장
 //		model.addAttribute("resList", resList);
