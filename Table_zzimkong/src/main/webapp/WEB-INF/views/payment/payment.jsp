@@ -28,7 +28,7 @@
  	<header>
 		<jsp:include page="../inc/top2.jsp"></jsp:include>
 	</header>
-	<form action="paymentPro" name="payForm" method="POST">
+<!-- 	<form action="paymentPro" name="payForm" method="POST"> -->
 		<div class="div_outter">
 			<div class="div_form_header">
 				<span><h1>결제</h1></span>
@@ -94,12 +94,12 @@
 								<span class="font_stlye"> </span>
 							</div>
 							<br>
-							<div>
-								<input type="radio" name="pay_method" value="2" id="naverPay">&nbsp;
-								<img src="${pageContext.request.contextPath }/resources/img/naverPay_png.png" width="65" id = "naver">
-								<span class="font_stlye"> </span>
-							</div>
-							<br>
+<!-- 							<div> -->
+<!-- 								<input type="radio" name="pay_method" value="2" id="naverPay">&nbsp; -->
+<%-- 								<img src="${pageContext.request.contextPath }/resources/img/naverPay_png.png" width="65" id = "naver"> --%>
+<!-- 								<span class="font_stlye"> </span> -->
+<!-- 							</div> -->
+<!-- 							<br> -->
 							<div>
 								<input type="radio" name="pay_method" value="3" id="creditCardPayment"><span class="font_stlye"> 카드결제</span>
 <!-- 								<select class="select" id="cardSelect" name="pay_card_co"> -->
@@ -199,8 +199,8 @@
 						</div>
 					</section>
 					<div class="div_submit">
-						<button type="submit" class="pay_button">결제</button> 
-						<button type="button" class="pay_button" id="api">API 결제</button> 
+						<button type="button" class="pay_button" id="payBtn">결제</button> 
+<!-- 						<button type="button" class="pay_button" id="api">API 결제</button>  -->
 					</div>
 				</div>
 				<div class="div_right_box">
@@ -297,7 +297,7 @@
 									   	  <%-- param--%><input type="hidden" value="${preOrder.menu_name}" name="PreOrderStatus"/>
 														<span class="count">
 															<span>${preOrder.pre_num}</span>
-											  <%-- param--%><input type="hidden" value="${preOrder.pre_num}" name="PreOrderStatus"/>
+											  <%-- param--%><input type="hidden" value="${preOrder.pre_num}" name="pre_num"/>
 															개
 														</span>
 														<span class="price">
@@ -368,13 +368,14 @@
 			</div>
 		</div>
 		<%--info페이지에 필요한 할인전 예약금액 --%>
-		<input type="hidden" value="${map.paymentInfo.totalPrice}" name="beforeDiscountTotalPrice"/>
-		<input type="hidden" value="${map.res.res_idx}" name="res_idx"/>
+<%-- 		<input type="hidden" value="${map.paymentInfo.totalPrice}" name="beforeDiscountTotalPrice"/> --%>
+		<input type="hidden" value="${map.res.res_idx}" name="res_idx" id="res_idx"/>
 		<input type="hidden" value="${map.pay}" name="pay_num" id="pay_num"/>
+		<!-- 결제자(회원)와 예약자가 다를 수 있기 때문에 결제자 정보 저장 -->
 		<input type="hidden" value="${map.member.user_email}" name="user_email" id="user_email"/>
 		<input type="hidden" value="${map.member.user_name}" name="user_name" id="user_name"/>
-		<input type="hidden" value="${map.member.user_name}" name="user_name" id="user_name"/>
-	</form>
+		<input type="hidden" value="${map.member.user_phone}" name="user_phone" id="user_phone"/>
+<!-- 	</form> -->
 	
 	<footer>
 		<jsp:include page="../inc/bottom.jsp"></jsp:include>

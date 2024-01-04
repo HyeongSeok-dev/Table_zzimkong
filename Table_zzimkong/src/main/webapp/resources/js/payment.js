@@ -217,7 +217,7 @@ $(function() {
 	});
 	
 	// 필수선택이 비어있을 때 안내문
-	$("form").submit(function() {
+	$("#payBtn").on("click",function() {
 		
 		if($('input[name="pay_method"]:checked').length == 0) { 
 			
@@ -258,15 +258,136 @@ $(function() {
 				return false;
 		}				
 		
-		//div나 span태그의 값을 넘김
+		//div나 span태그의 값을 넘김(form-submit 사용할떄)
 		 var discountPoint = $("#discountPoint").text();
 	     var earnedPoints = $("#earnedPoints").text();
 	     var totalPayment = $("#totalPayment").text();
 	     var preOrderTotalPrice = $("#preOrderTotalPrice").text();
-         $(this).append("<input type='hidden' name='discountPoint' value='" + discountPoint + "' />");
-         $(this).append("<input type='hidden' name='earnedPoints' value='" + earnedPoints + "' />");
-         $(this).append("<input type='hidden' name='totalPayment' value='" + totalPayment + "' />");
-         $(this).append("<input type='hidden' name='preOrderTotalPrice' value='" + preOrderTotalPrice + "' />");
+         var IMP = window.IMP;
+		IMP.init('imp05703412');
+		
+		// 라디오버튼에 따른 결제팝업 변경
+		if($('input[name="pay_method"]:checked').length == 0) {
+				alert("결제수단을 선택해주세요!!");
+		} else if($('input[type=radio][value="1"]').is(':checked')) {//카카오페이
+				// V1방법 카카오페이 연동
+				console.log("kakao");
+				IMP.request_pay({
+				  pg: "kakaopay",
+				  pay_method: "card", // 생략가
+				  merchant_uid: $("#res_num").val(), // 상점에서 생성한 고유 주문번호
+				  name: "찜콩테이블 예약 - " + $("#com_name").val() +" "+ $("#res_person").val() + "명",
+				  amount: parseInt($("#totalPayment").text().trim().replace(/,/g, '')),
+				  buyer_email: $("#user_email").val(),
+				  buyer_name: $("#user_name").val(),
+				}, function (rsp) { 
+					console.log("function");
+					console.log("rsp : " + rsp);
+					console.log("status : " + rsp.status);
+				    if (rsp.success) {
+				      // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
+				      // jQuery로 HTTP 요청
+				      jQuery.ajax({
+				        url: "paymentPro", 
+				        method: "get",
+				        headers: { "Content-Type": "application/json" },
+				        data: {
+				          imp_uid: rsp.imp_uid,            // 결제 고유번호
+				          pay_num: $("#pay_num").val(),  // 주문번호
+				          res_num: rsp.merchant_uid,	//예약번호
+				          res_idx: $("#res_idx").val(),	//예약인덱스
+				          preOrderTotalPrice: preOrderTotalPrice,
+				          discountPoint: discountPoint,
+				          earnedPoints: earnedPoints,
+				          totalPayment: totalPayment  // 주문번호   
+				        }
+				      }).done(function (data) {
+				        // 가맹점 서버 결제 API 성공시 로직
+				        console.log("성공 : " + data);
+				      })
+				    } else {
+				      alert("결제에 실패하였습니다. 에러 내용: " + rsp.error_msg);
+				    }
+				});
+//		} else if($('input[type=radio][value="2"]').is(':checked')) { // 네이버페이
+		
+		} else if($('input[type=radio][value="3"]').is(':checked')) { //카드결제
+			console.log("dd");
+			//이니시스
+			IMP.request_pay({
+			    pg : 'html5_inicis.INIBillTst', //테스트 시 html5_inicis.INIpayTest 기재 
+			    pay_method : 'card',
+			    merchant_uid: $("#pay_num").val(), //상점에서 생성한 고유 주문번호
+			    name : "찜콩테이블 예약 - " + $("#com_name").val() +" "+ $("#res_person").val() + "명",
+			    amount : parseInt($("#totalPayment").text().trim().replace(/,/g, '')),
+			    buyer_email : $("#user_email").val(),
+			    buyer_name : $("#user_name").val(),
+			    buyer_tel : $("#user_phone").val(),   //필수 파라미터 입니다.
+//			    escrow : true, //에스크로 결제인 경우 설정
+			}, function(rsp) { // callback 로직
+				if (rsp.success) {   
+				        $.ajax({
+					        url: "paymentPro", 
+					        method: "POST",
+					        headers: { "Content-Type": "application/json" },
+					        data: {
+					          imp_uid: rsp.imp_uid,            // 결제 고유번호
+					          pay_num: rsp.merchant_uid,        // 주문번호
+					          res_num: $("#res_num").val(),	//예약번호
+					          res_idx: $("#res_idx").val(),	//예약인덱스
+					          preOrderTotalPrice: preOrderTotalPrice,
+					          discountPoint: discountPoint,
+					          earnedPoints: earnedPoints,
+					          totalPayment: totalPayment
+					        }
+					      }).done(function (data) {
+					       console.log("2번까지");
+					      })
+					    } else {
+					      alert("결제에 실패하였습니다.\n" + rsp.error_msg);
+					    }
+			});
+		} else if($('input[type=radio][value="4"]').is(':checked')) { //무통장입금
+				alert("무통장 입급을 선택하셨습니다.\n입금정보를 다시 확인해주세요! \n" + "은행 : " + selectVal + "\n입금 계좌 : " + account);
+		} else if($("#mobilePhonePayment").is(':checked')) { // 휴대폰 결제
+				console.log("폰결제");
+				IMP.request_pay(
+				  {
+				    pg: "danal",
+				    pay_method: "phone",
+				    merchant_uid: $("#pay_num").val(), // 상점에서 생성한 고유 주문번호
+				    name: "찜콩테이블 예약 - " + $("#com_name").val() +" "+ $("#res_person").val() + "명",
+				    amount: parseInt($("#totalPayment").text().trim().replace(/,/g, '')),
+				    buyer_email: $("#user_email").val(),
+				  	buyer_name: $("#user_name").val(),
+				  },
+				  function (rsp) {
+				    if (rsp.success) {   
+						console.log("ajax전까지 함")
+				      $.ajax({
+					        url: "paymentPro", 
+					        method: "POST",
+					        headers: { "Content-Type": "application/json" },
+					        data: {
+					          imp_uid: rsp.imp_uid,            // 결제 고유번호
+					          pay_num: rsp.merchant_uid,        // 주문번호
+					          res_num: $("#res_num").val(),	//예약번호
+					          res_idx: $("#res_idx").val(),	//예약인덱스
+					          preOrderTotalPrice: preOrderTotalPrice,
+					          discountPoint: discountPoint,
+					          earnedPoints: earnedPoints,
+					          totalPayment: totalPayment   // 주문번호
+					        }
+					      }).done(function (data) {
+					       console.log("2번까지");
+					      })
+				    } else {
+				      alert("결제에 실패하였습니다. 에러 내용: " + rsp.error_msg);
+				    }
+				  }
+				);
+		} //결제수단선택
+         
 		return true;
 	}); //submit버튼
 	
