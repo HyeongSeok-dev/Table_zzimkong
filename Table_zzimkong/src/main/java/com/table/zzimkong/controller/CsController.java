@@ -828,7 +828,7 @@ public class CsController {
 			model.addAttribute("targetURL", "../../login");
 			return "forward";
 		}
-		
+		/**/
 		int sIdx = (int)session.getAttribute("sIdx");
 		
 		member = service.getmember(sIdx);
