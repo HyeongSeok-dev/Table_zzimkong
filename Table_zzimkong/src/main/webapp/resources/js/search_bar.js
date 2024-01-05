@@ -236,9 +236,9 @@ $(document).ready(function() {
 		});
 	}
 	//	 검색어 입력창에서 엔터 누를 때
-	$(".search_input_text").off('keypress').on('keypress', function(event) {
-		event.preventDefault();
+	$(".search_input_text").off('keydown').on('keydown', function(event) {
 		if (event.keyCode === 13) {
+			event.preventDefault();
 			sendFormDataToNextPage();
 		}
 	});
