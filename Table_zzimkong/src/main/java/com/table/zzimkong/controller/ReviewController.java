@@ -112,7 +112,7 @@ public class ReviewController {
         model.addAttribute("reviews", reviews);
 
         // 카테고리별 리뷰 개수 가져오기
-        ReviewCategoryCountVO categoryCount = service.categoryCount();
+        ReviewCategoryCountVO categoryCount = service.categoryCount(comId);
         model.addAttribute("categoryCount",categoryCount);
         
         
@@ -548,9 +548,6 @@ public class ReviewController {
 		        return "forward";
 			}
 		}
-		
-		
-		
 		
 		
 		// ===================================================================

@@ -157,9 +157,9 @@ public class ReviewService {
 
 	
 	// 키워드 카테고리 카운트 : 데이터 뿌리기
-		public ReviewCategoryCountVO categoryCount() {
+		public ReviewCategoryCountVO categoryCount(int comId) {
 
-		return mapper.categoryCount();
+		return mapper.categoryCount(comId);
 	}
 	
 	

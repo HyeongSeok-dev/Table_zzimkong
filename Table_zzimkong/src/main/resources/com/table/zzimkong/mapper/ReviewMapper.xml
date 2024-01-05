@@ -300,10 +300,17 @@
 		</choose>
 	</select>
 	
-	<!-- 키워드 검색  -->
+	<!-- 키워드 검색 카운트 -->
+<!-- 	<select id="categoryCount"> -->
+<!-- 	    SELECT *  -->
+<!-- 	    FROM review_category_count_1 -->
+<!-- 		WHERE com_id = #{com_id}  -->
+<!--     </select> -->
+
 	<select id="categoryCount">
-    SELECT * 
-    FROM review_category_count;
+	    SELECT * 
+	    FROM review_category_count_1
+	    WHERE com_id = #{com_id}
 	</select>
 	
 	

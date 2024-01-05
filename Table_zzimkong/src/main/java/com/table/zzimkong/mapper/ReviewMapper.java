@@ -82,7 +82,7 @@ public interface ReviewMapper {
 	List<ReviewVO> selectReviewsByCategory(ReviewVO review);
 
 	// 키워드 리뷰 카운트
-	ReviewCategoryCountVO categoryCount();
+	ReviewCategoryCountVO categoryCount(int comId);
 
 
 }
