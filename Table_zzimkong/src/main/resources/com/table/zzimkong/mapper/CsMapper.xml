@@ -41,7 +41,7 @@
 			,#{user_id}
 			,#{cs_board_subject}
 			,#{cs_board_content}
-			,#{cs_board_num}
+			,#{cs_board_num} +1
 			,0
 			,0
 			,0

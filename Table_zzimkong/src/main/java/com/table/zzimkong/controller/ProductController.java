@@ -59,7 +59,7 @@ public class ProductController {
 	    } else {
 	    	search.setDisplayTime("오후 " + localTime.format(formatter));
 	    }
-
+		
 		session.setAttribute("search", search);
 		search.setRedirectURL("/product/list");
 

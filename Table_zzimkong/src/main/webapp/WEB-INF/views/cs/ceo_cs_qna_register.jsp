@@ -98,7 +98,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th colspan="1">파일첨부 <br> (5개까지)</th>
+                        <th colspan="1">파일첨부</th>
                         <td colspan="3" class="td_file">
                             <input type="file" name="mFile1" class="file" accept="image/*">
                             <input type="file" name="mFile2" class="file" accept="image/*">

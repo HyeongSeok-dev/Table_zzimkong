@@ -9,6 +9,7 @@
  <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
  <link href="${pageContext.request.contextPath }/resources/css/member_cs.css" rel="stylesheet">
  <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/ceo_top.css"> 
+  <script src="https://code.jquery.com/jquery-latest.min.js"></script>
  <script type="text/javascript">
  	function popupResister() {
  		
@@ -20,13 +21,13 @@
 		window.open('${pageContext.request.contextPath }/member/cs/qna/register','','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
 	}
  	
- 	function qnaViewForm() {
+ 	function qnaViewForm(board_num) {
 		/* 팝업창 중앙 정렬 */
 		var popupW = 950;
 		var popupH = 700;
 		var left = Math.ceil((window.screen.width - popupW)/2);
 		var top = Math.ceil((window.screen.height - popupH)/2);
-		window.open('${pageContext.request.contextPath }/member/cs/qna/view','','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
+		window.open('${pageContext.request.contextPath }/member/cs/qna/view?cs_board_num=' + board_num,'','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
 	}
  </script>
  
@@ -82,35 +83,51 @@
 				        <thead>
 				        <tr>
 				            <th scope="col" class="th-num">번호</th>
-				            <th scope="col" class="th-category">유형</th>
+				            <th scope="col" class="th-category">
+				            	<select name="ceoCategory" style="border: none; background-color: rgb(244, 250, 255); font-weight: bold; text-align: center; font-size: 15px; color: #333;">
+				            		<option value="">유형선택</option>
+				            		<option value="1">예약</option>
+				            		<option value="2">주문/결제</option>
+				            		<option value="3">리뷰</option>
+				            		<option value="4">회원정보</option>
+				            		<option value="5">이용문의</option>
+				            		<option value="6">쿠폰/포인트</option>
+				            	</select>
+				            </th>
 				            <th scope="col" class="th-title">제목</th>
 				            <th scope="col" class="th-date">등록일</th>
 				        </tr>
 				        </thead>
 				        <tbody>
-				        <tr>
-				            <td>3</td>
-				            <th class="cs_th">주문/결제</th>
-				            <th class="cs_th">
-				              <a onclick ="qnaViewForm()">문의문의</a>
-				              <p>테스트</p>
-				            </th>
-				            <td>2017.07.13</td>
-				        </tr>
-				
-				        <tr>
-				            <td>2</td>
-				            <th class="cs_th">예약</th>
-				            <th class="cs_th"><a onclick="qnaViewForm()">문의문의</a></th>
-				            <td>2017.06.15</td>
-				        </tr>
-				
-				        <tr>
-				            <td>1</td>
-				            <th class="cs_th">리뷰</th>
-				            <th class="cs_th"><a onclick="qnaViewForm()">문의문의</a></th>
-				            <td>2017.06.15</td>
-				        </tr>
+				        <c:forEach var="board" items="${boardList}">
+				                <tr onclick="qnaViewForm(${board.cs_board_num})">
+				                    <td>${board.cs_board_num}</td>
+				                    <c:choose>
+				                    	<c:when test="${board.cs_board_category_sub eq '1'}">
+						                    <th class="cs_th">예약</th>
+				                    	</c:when>
+				                    	<c:when test="${board.cs_board_category_sub eq '2'}">
+						                    <th class="cs_th">주문/결제</th>
+				                    	</c:when>
+				                    	<c:when test="${board.cs_board_category_sub eq '3'}">
+						                    <th class="cs_th">리뷰</th>
+				                    	</c:when>
+				                    	<c:when test="${board.cs_board_category_sub eq '4'}">
+						                    <th class="cs_th">회원정보</th>
+				                    	</c:when>
+				                    	<c:when test="${board.cs_board_category_sub eq '5'}">
+						                    <th class="cs_th">이용문의</th>
+				                    	</c:when>
+				                    	<c:when test="${board.cs_board_category_sub eq '6'}">
+						                    <th class="cs_th">쿠폰/포인트</th>
+				                    	</c:when>
+				                    </c:choose>
+				                    <th class="cs_th">
+				                        ${board.cs_board_subject}
+				                    </th>
+				                    <td>${board.cs_board_date}</td>
+				                </tr>
+				            </c:forEach>
 				        </tbody>
 				    </table>
 				</div>

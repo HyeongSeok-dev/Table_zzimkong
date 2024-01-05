@@ -21,21 +21,23 @@
 			<table>
 				<tr>
 					<th>번호</th>
-					<td>1</td>
+					<td>${board.cs_board_num}</td>
 				</tr>
 				<tr>
 					<th colspan="1">제목</th>
 					<td colspan="3">
-						--제목
+						${board.cs_board_subject}
 					</td>
 				</tr>
 				<tr>
 					<th colspan="1">공지내용</th>
 					<td colspan="3">
-						-- 공지내용
+						${board.cs_board_content}
 					</td>
 				</tr>
 			</table>
+			<br><br>
+			<button type="button" class="button_olive" onclick="javascript:window.close()">닫기</button>
 			<%--공지사항의 수정과 삭제 권한은 오직 관리자에게만 있음 수정과 삭제는 관리자 페이지에서 진행!! --%>
 	</section>
 </body>

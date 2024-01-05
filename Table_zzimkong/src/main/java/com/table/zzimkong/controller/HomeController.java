@@ -55,7 +55,6 @@ public class HomeController {
 	            time = defaultTime.format(DateTimeFormatter.ofPattern("HH:mm")); 
 	            search.setDisplayDate("오늘");
 	        }
-	        
 	        LocalTime localTime = LocalTime.parse(time, DateTimeFormatter.ofPattern("HH:mm"));
 	        displayTime = localTime.format(DateTimeFormatter.ofPattern("a h:mm"));
 	        search.setDate(date.toString());
@@ -78,7 +77,7 @@ public class HomeController {
 	        
 	        List<CompanyVO>cleanList = service.getCleanList(search);
 	        model.addAttribute("cleanList", cleanList);
-	        
+	        /* */
 	        //추천순(광고순)
 	        search = (SearchVO)session.getAttribute("search");
 	        
