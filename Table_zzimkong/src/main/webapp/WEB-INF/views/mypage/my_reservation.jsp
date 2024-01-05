@@ -73,7 +73,7 @@
 						<td>${res2.res_date }</td>
 					<c:choose>
 						<c:when test="${res2.res_status eq 1}">
-							<td>예약완료</td>
+							<td style="color: blue;">예약완료</td>
 						</c:when>
 						<c:when test="${res2.res_status eq 2}">
 							<td style="color: red;">예약취소</td>
@@ -100,7 +100,7 @@
 	                	<c:when test="${res2.res_status eq 1}">
 	                		<td>
 	                    	<div class="div_button">
-	                        	<button type="button" id="my_delete" onclick="cancelReservation()">예약취소</button>
+	                        	<button type="button" id="my_delete" onclick="cancelReservation(${res2.res_idx})">예약취소</button>
 	                    	</div>
 	                    	</td>
 	                	</c:when>

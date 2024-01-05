@@ -41,5 +41,12 @@ public class MypageService {
 		// TODO Auto-generated method stub
 		return mapper.selectResList2(sIdx);
 	}
+	
+	// 예약 취소하기
+	public int myResCancel(MypageInfo mypage) {
+		// TODO Auto-generated method stub
+		return mapper.updateMyResCancel(mypage);
+	}
+
 
 }

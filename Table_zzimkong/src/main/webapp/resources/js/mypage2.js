@@ -10,3 +10,22 @@
 	    document.getElementById("date2").max = today;
 	}
 	
+	
+	// 예약취소 버튼 클릭시 예약취소로 상태 변경
+		function cancelReservation(res_idx) {
+	    $.ajax({
+	        type: "POST",
+	        url: "/my/resPro",
+	        data: {
+	            res_idx: res_idx
+	        },
+	        success: function() {
+	            location.reload();
+	        },
+	        error: function(e) {
+	            alert('예약 취소에 실패했습니다.');
+	            console.log(e);
+		        }
+		    });
+		}
+

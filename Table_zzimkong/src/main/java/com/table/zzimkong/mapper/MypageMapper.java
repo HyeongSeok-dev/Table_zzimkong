@@ -20,9 +20,13 @@ public interface MypageMapper {
 	// 닉네임 중복확인
 	MypageInfo selectUserNick(MypageInfo mypage);
 	
-	// 예약 내역 조회
+	// 예약 내역 간략히 조회
 	List<Map<String, Object>> selectResList(@Param("sIdx") int sIdx);
-
+	
+	// 예약 내역 모두 조회
 	List<Map<String, Object>> selectResList2(@Param("sIdx") int sIdx);
+	
+	// 예약 취소
+	int updateMyResCancel(MypageInfo mypage);
 
 }

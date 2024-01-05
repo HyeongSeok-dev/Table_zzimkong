@@ -55,6 +55,13 @@
 		ORDER BY res_date DESC
 	</select>
 	
+	<!-- 예약취소버튼 클릭시 취소 - UPDATE -->
+	<update id="updateMyResCancel">
+		UPDATE reservation 
+		SET res_status = 2
+		WHERE res_idx = #{res_idx}
+	</update>
+	
 <!-- 	<select id="selectResList"> -->
 <!-- 		SELECT * -->
 <!-- 		FROM reservation as  r, company as c -->
