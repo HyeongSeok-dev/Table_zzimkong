@@ -86,14 +86,19 @@
 			)
 		</insert>
 		
-<!-- 		<insert id="insertMenu"> -->
-<!-- 			INSERT INTO pre_order -->
-<!-- 			VALUES ( null -->
-<!-- 				, #{res_idx} -->
-<!-- 				, #{menu_idx} -->
-<!-- 				, #{pre_num} -->
-<!-- 				) -->
-<!-- 		</insert> -->
+	<select id="selectResIdx" resultType="res">
+		SELECT * 
+		FROM reservation
+		WHERE res_num = #{res_num}
+	</select>	
+		
+	<insert id="insertPreOrder">
+	    INSERT INTO pre_order (res_idx, menu_idx, pre_num) 
+	    VALUES   <!--item   var  -->
+	    <foreach collection="res, menu_idx, pre" item="menu" separator=",">
+	        (null, #{menu.res.res_idx}, #{menu.menu_idx.menu_idx}, #{menu.pre.pre_num})
+	    </foreach>
+	</insert>
 		
 		
 
