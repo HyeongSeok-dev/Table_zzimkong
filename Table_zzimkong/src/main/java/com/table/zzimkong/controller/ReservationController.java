@@ -1,6 +1,7 @@
 package com.table.zzimkong.controller;
 
 import java.text.NumberFormat;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -49,7 +50,9 @@ public class ReservationController {
 	    
 	    res = (ReservationVO) session.getAttribute("res");
 	    NumberFormat numberFormat = NumberFormat.getInstance();
-	    String res_table_price = numberFormat.format(res.getRes_table_price());
+	    String res_table_price_str = numberFormat.format(res.getRes_table_price());
+//	    map.put("res_table_price", res_table_price);
+//	    System.out.println("예약금" + res_table_price);
 //	    session.setAttribute("res", null);
 //	    session.setAttribute("menuList", null);
 	    
@@ -78,7 +81,6 @@ public class ReservationController {
 	    map.put("totalPayPrice", totalPayPrice);
 	    map.put("com", com);
         map.put("res", res);
-	    
 	    
 	    System.out.println("업체정보" + com);
 	    System.out.println("예약정보" + res);
@@ -120,20 +122,21 @@ public class ReservationController {
 		
 //		res = service.getreservation(res);
 
-		
-		
+		map.put("res", res);
+		map.put("menu", menuList);
+		System.out.println(map);
 		mav = new ModelAndView("reservation/reservation", "map", map);
 		return mav;
 	}
 	
 	@RequestMapping("reservationPro")
-	public ModelAndView reservationPro(HttpSession session, ReservationVO res, Map<String, Object> map, PreOrderVO pres, CompanyVO com, MenuVO menu) {
+	public ModelAndView reservationPro(HttpSession session, ReservationVO res, PreOrderVO pre, CompanyVO com, MenuVO menu) {
 		ModelAndView mav;
 		String alphanumeric = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         StringBuilder sb = new StringBuilder();
         Random random = new Random();
         
-        
+        System.out.println("cccccccccccc");
         for (int i = 0; i < 7; i++) {
             int index = random.nextInt(alphanumeric.length());
             char randomChar = alphanumeric.charAt(index);
@@ -146,9 +149,19 @@ public class ReservationController {
         
         
         int insertCount = service.registResvation(res);
+        System.out.println("제발" + res);
+        System.out.println("메뉴!" + menu);
         
+        res = service.getResIdx(res);
+        System.out.println("플리즈!!!" + res);
+        //pre insert!!!!!!!!!!!!
+//        int insertPre = service.getPreOrder(res.getRes_idx(), menu.getMenu_idx(), pre);
+        System.out.println("선" + pre);
      
+        Map<String, Object> map = new HashMap<String, Object>();
         map.put("res", res);
+        System.out.println("제발!!!!!!" + res);
+        
         map.put("com", com);
 //        List<MenuVO> menuList = new ArrayList<MenuVO>();
 //        menuList = (List<MenuVO>) map.get("menus");

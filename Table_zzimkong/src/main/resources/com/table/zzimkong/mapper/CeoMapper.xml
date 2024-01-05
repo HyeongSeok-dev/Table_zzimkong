@@ -148,6 +148,16 @@
 		WHERE res_idx = #{res_idx}
 	</select>
 	
+	<insert id="insertPreOrder">
+		INSERT INTO pre_order
+		VALUES(
+			null
+			, #{res_idx}
+			, #{menu_idx}
+			, #{pre_num}
+		)
+	</insert>
+	
 	
 	
 	

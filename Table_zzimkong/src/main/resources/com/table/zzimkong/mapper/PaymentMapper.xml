@@ -42,13 +42,13 @@
 		WHERE res_idx = #{res_idx} AND pre.menu_idx = menu.menu_idx;
 	</select>
 	
-	<!-- [paymentPro] -->
+	<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>[paymentPro]<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
 	<insert id="insertPayment">
 		INSERT
 		INTO payment
 		VALUES (
 			null
-			, #{payNum}
+			, #{payment.pay_num}
 			, #{res.res_idx}
 			, #{sIdx}
 			, #{payment.pay_method}

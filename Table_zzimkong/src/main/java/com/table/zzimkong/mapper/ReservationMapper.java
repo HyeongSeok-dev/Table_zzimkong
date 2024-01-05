@@ -1,6 +1,7 @@
 package com.table.zzimkong.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.table.zzimkong.vo.CompanyVO;
 import com.table.zzimkong.vo.MemberVO;
@@ -23,6 +24,13 @@ public interface ReservationMapper {
 	MemberVO selectUserInfo(ReservationVO res);
 
 	int insertResInfo(ReservationVO res);
+
+	ReservationVO selectResIdx(ReservationVO res);
+
+    //pre insert!!!!!!!!!!!!
+
+//	int insertPreOrder(@Param("res") int res_idx, @Param("menu_idx") int menu_idx, @Param("pre") PreOrderVO pre);
+//	int insertPreOrder(@Param("res_idx") int res_idx, @Param("pre") PreOrderVO pre, @Param("menuList") List<MenuVO> menuList);
 
 //	int insertMenu(PreOrderVO pre);
 

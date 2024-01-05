@@ -87,11 +87,11 @@
 				            <th scope="col" class="th-category">
 				            	<select name="ceoCategory" style="border: none; background-color: rgb(244, 250, 255); font-weight: bold; text-align: center; font-size: 15px; color: #333;">
 				            		<option value="">유형선택</option>
-				            		<option value="예약관리">예약관리</option>
-				            		<option value="메뉴관리">메뉴관리</option>
-				            		<option value="광고">광고</option>
-				            		<option value="블랙회원관리">블랙회원관리</option>
-				            		<option value="업체관리">업체관리</option>
+				            		<option value="1">예약관리</option>
+				            		<option value="2">메뉴관리</option>
+				            		<option value="3">광고</option>
+				            		<option value="4">블랙회원관리</option>
+				            		<option value="5">업체관리</option>
 				            	</select>
 				            </th>
 				            <th scope="col" class="th-title">제목</th>

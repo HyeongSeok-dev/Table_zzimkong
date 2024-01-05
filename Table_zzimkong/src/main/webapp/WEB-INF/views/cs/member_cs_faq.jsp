@@ -10,13 +10,13 @@
  <link href="${pageContext.request.contextPath }/resources/css/member_cs.css" rel="stylesheet">
  <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/ceo_top.css"> 
 <script type="text/javascript">
-	function faqViewForm() {
+	function faqViewForm(board_num) {
 		/* 팝업창 중앙 정렬 */
 		var popupW = 950;
 		var popupH = 700;
 		var left = Math.ceil((window.screen.width - popupW)/2);
 		var top = Math.ceil((window.screen.height - popupH)/2);
-		window.open('${pageContext.request.contextPath }/member/cs/faq/view','','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
+		window.open('${pageContext.request.contextPath }/member/cs/faq/view?cs_board_num=' + board_num,'','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
 	}
 </script>
 </head>
@@ -68,12 +68,12 @@
 				            <th scope="col" class="th-num">
 				            	<select name="memberCategory" style="border: none; background-color: rgb(244, 250, 255); font-weight: bold; text-align: center; font-size: 15px; color: #333;">
 				            		<option value="">유형선택</option>
-				            		<option value="예약">예약</option>
-									<option value="주문/결제">주문/결제</option>
-									<option value="리뷰">리뷰</option>
-									<option value="회원정보">회원정보</option>
-									<option value="이용문의">이용문의</option>
-									<option value="쿠폰/포인트">쿠폰/포인트</option>
+				            		<option value="1">예약</option>
+									<option value="2">주문/결제</option>
+									<option value="3">리뷰</option>
+									<option value="4">회원정보</option>
+									<option value="5">이용문의</option>
+									<option value="6">쿠폰/포인트</option>
 				            	</select>
 				            </th>
 				            <th scope="col" class="th-title">제목</th>
@@ -82,31 +82,35 @@
 				        </thead>
 				        
 				        <tbody>
-				        <tr>
-				            <td>3</td>
-				            <th class="cs_th">
-				              	업체관리
-				            </th>
-				            <th class="cs_th">
-				              <a onclick="faqViewForm()">문의문의</a>
-				              <p>테스트</p>
-				            </th>
-				            <td>2017.07.13</td>
-				        </tr>
-				
-				        <tr>
-				            <td>2</td>
-				            <th class="cs_th">예약관리</th>
-				            <th class="cs_th"><a onclick="faqViewForm()">문의문의</a></th>
-				            <td>2017.06.15</td>
-				        </tr>
-				
-				        <tr>
-				            <td>1</td>
-				            <th class="cs_th">광고</th>
-				            <th class="cs_th"><a onclick="faqViewForm()">문의문의</a></th>
-				            <td>2017.06.15</td>
-				        </tr>
+				        	<c:forEach var="board" items="${boardList}">
+				                <tr onclick="faqViewForm(${board.cs_board_num})">
+				                    <td>${board.cs_board_num}</td>
+				                    <c:choose>
+				                    	<c:when test="${board.cs_board_category_sub eq '1'}">
+						                    <th class="cs_th">예약</th>
+				                    	</c:when>
+				                    	<c:when test="${board.cs_board_category_sub eq '2'}">
+						                    <th class="cs_th">주문/결제</th>
+				                    	</c:when>
+				                    	<c:when test="${board.cs_board_category_sub eq '3'}">
+						                    <th class="cs_th">리뷰</th>
+				                    	</c:when>
+				                    	<c:when test="${board.cs_board_category_sub eq '4'}">
+						                    <th class="cs_th">회원정보</th>
+				                    	</c:when>
+				                    	<c:when test="${board.cs_board_category_sub eq '5'}">
+						                    <th class="cs_th">이용문의</th>
+				                    	</c:when>
+				                    	<c:when test="${board.cs_board_category_sub eq '6'}">
+						                    <th class="cs_th">쿠폰/포인트</th>
+				                    	</c:when>
+				                    </c:choose>
+				                    <th class="cs_th">
+				                        ${board.cs_board_subject}
+				                    </th>
+				                    <td>${board.cs_board_date}</td>
+				                </tr>
+				            </c:forEach>
 				        </tbody>
 				    </table>
 				</div>

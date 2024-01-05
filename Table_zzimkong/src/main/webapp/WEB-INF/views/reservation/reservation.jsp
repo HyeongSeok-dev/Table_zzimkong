@@ -21,6 +21,7 @@
  <input type="hidden" name="com_id" value="${map.com.com_id}" />
  <input type="hidden" name="user_idx" value="${res.user_idx}" />
 <%--  <input type="hidden" name="res_idx" value="${res.res_idx}" /> --%>
+<%--  <input type="hidden" name="res_idx" value="${res.res_idx}" /> --%>
 <!-- 	<action="" name="reservation" onsubmit="return validateForm()"> -->
 	<div class="out_block">
 		<!-- 찜버튼 박스 -->
@@ -74,7 +75,7 @@
 						<div class="info">
 							<span class="info_title">예약 금액</span>
 							<span class="info_content" ><b>${res.res_table_price}</b>원</span>
-							<input type="hidden" name="res_table_price" value="${res.res_table_price}">
+							<input type="hidden" name="res_table_price" value="${res.res_table_price}" id="resTablePrice">
 						</div>
 						<div class="info" id="menu_price">
 							<span class="info_title">주문한 메뉴 금액</span>
@@ -85,6 +86,7 @@
 							<span class="info_content" id="menu_content">
 							<c:forEach var="menu" items="${map.menu}">
 								<div class="info_price">
+									<input type="hidden" name="menu_idx" value="${menu.menu_idx}">
 									<span class="menu_name">${menu.menu_name}</span>
 									<span class="count">${menu.order_amount}</span>
 									<span class="price">${menu.menu_price}</span>
@@ -519,7 +521,7 @@
 					</div>
 				</section>
 			</div>
-			<button type="button" class="payment" onclick="btnPay();">결제하기</button>
+			<button type="button" class="payment" onclick="btnPay();"><b>${map.totalPayPrice }</b>원 결제하기</button>
 <!-- onclick="btnPay();" -->
 		<!-- 	</action> -->
 	</div>

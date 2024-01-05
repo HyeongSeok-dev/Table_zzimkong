@@ -17,7 +17,7 @@
 		var popupH = 700;
 		var left = Math.ceil((window.screen.width - popupW)/2);
 		var top = Math.ceil((window.screen.height - popupH)/2);
-		window.open('${pageContext.request.contextPath }/member/cs/notice/view','','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
+		window.open('${pageContext.request.contextPath }/member/cs/notice/view?cs_board_num=' + board_num,'','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
 	}
 </script>
 </head>
@@ -65,32 +65,30 @@
 		                <thead>
 		                <tr>
 		                    <th scope="col" class="th-num">번호</th>
+		                    <th scope="col" class="th-num">유형</th>
 		                    <th scope="col" class="th-title">제목</th>
 		                    <th scope="col" class="th-date">등록일</th>
 		                </tr>
 		                </thead>
 		                <tbody>
-		                <tr>
-		                    <td>3</td>
-		                    <th class="cs_th">
-		                      <a onclick="noticeViewForm()">[공지사항] 개인정보 처리방침 변경안내처리방침</a>
-		                      <p>테스트</p>
-		                    </th>
-		                    <td>2017.07.13</td>
-		                </tr>
-		
-		                <tr>
-		                    <td>2</td>
-		                    <th class="cs_th"><a onclick="noticeViewForm()">공지사항 안내입니다. 이용해주셔서 감사합니다</a></th>
-		                    <td>2017.06.15</td>
-		                </tr>
-		
-		                <tr>
-		                    <td>1</td>
-		                    <th class="cs_th"><a onclick="noticeViewForm()">공지사항 안내입니다. 이용해주셔서 감사합니다</a></th>
-		                    <td>2017.06.15</td>
-		                </tr>
-		                </tbody>
+				            <c:forEach var="board" items="${boardList}">
+				                <tr onclick="noticeViewForm(${board.cs_board_num})">
+				                    <td>${board.cs_board_num}</td>
+				                    <c:choose>
+				                    	<c:when test="${board.cs_board_category_sub eq '1'}">
+						                    <th class="cs_th">알림</th>
+				                    	</c:when>
+				                    	<c:when test="${board.cs_board_category_sub eq '2'}">
+						                    <th class="cs_th">이벤트</th>
+				                    	</c:when>
+				                    </c:choose>
+				                    <th class="cs_th">
+				                        ${board.cs_board_subject}
+				                    </th>
+				                    <td>${board.cs_board_date}</td>
+				                </tr>
+				            </c:forEach>
+				        </tbody>
 		            </table>
 		        </div>
 		    </div>

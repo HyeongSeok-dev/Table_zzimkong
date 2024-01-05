@@ -28,7 +28,7 @@
  	<header>
 		<jsp:include page="../inc/top2.jsp"></jsp:include>
 	</header>
-<!-- 	<form action="paymentPro" name="payForm" method="POST"> -->
+	<form action="paymentPro" name="payForm" method="POST">
 		<div class="div_outter">
 			<div class="div_form_header">
 				<span><h1>결제</h1></span>
@@ -61,6 +61,7 @@
 									<option value="5000" >[신규회원] 가입축하기념 5,000원 할인</option>
 									<option value="0.1" >[크리스마스] 크리스마스외식 테이블찜콩 10% 할인</option>
 								</select>
+								 &nbsp; &nbsp;
 								<button id="useCoupone" class="use_button"  type="button">사용하기</button>
 							</div>
 							<div class="point">
@@ -200,7 +201,6 @@
 					</section>
 					<div class="div_submit">
 						<button type="button" class="pay_button" id="payBtn">결제</button> 
-<!-- 						<button type="button" class="pay_button" id="api">API 결제</button>  -->
 					</div>
 				</div>
 				<div class="div_right_box">
@@ -274,7 +274,7 @@
 											<div>
 												<span class="detail">메뉴 선결제금액</span>
 												<span class="detail_price">
-													<span id="preOrderTotalPrice">선주문 없음</span>
+													<span id="preOrderTotalPrice_text">선주문 없음</span>
 												</span>
 											</div>  
 										</c:when>
@@ -282,7 +282,7 @@
 											<div>
 												<span class="detail">메뉴 선결제금액</span>
 												<span class="detail_price">
-													<span id="preOrderTotalPrice" >
+													<span id="preOrderTotalPrice_text" >
 														${map.paymentInfo.menuTotalPrice }
 													</span> 원
 		 										</span>
@@ -314,7 +314,7 @@
 										<span class="detail">쿠폰할인</span>
 										 <span class="detail_price">
 										 	- 
-										 	<span id="discountCoupon">0</span>
+										 	<span id="discountCoupon_text">0</span>
 										 	원
 										 </span>
 									</div> 
@@ -322,7 +322,7 @@
 										<span class="detail">포인트할인</span>
 										<span class="detail_price">
 											- 
-											<span id="discountPoint">0</span>
+											<span id="discountPoint_text">0</span>
 											원
 										</span>
 									</div> 
@@ -331,7 +331,7 @@
 									<div class="points_earn">
 										<span class="detail">적립예정 포인트</span>
 										<span class="detail_price">
-											<span id="earnedPoints">0</span> 원
+											<span id="earnedPoints_text">0</span> 원
 										</span>
 									</div>
 									<div>
@@ -357,7 +357,7 @@
 								<div class="total_detail">
 									<span class="total_info">총 결제 금액</span>
 									<span class="total_price" >
-										<span id="totalPayment">${map.paymentInfo.totalPrice}</span>
+										<span id="totalPayment_text">${map.paymentInfo.totalPrice}</span>
 										원
 									</span>
 								</div>
@@ -375,7 +375,11 @@
 		<input type="hidden" value="${map.member.user_email}" name="user_email" id="user_email"/>
 		<input type="hidden" value="${map.member.user_name}" name="user_name" id="user_name"/>
 		<input type="hidden" value="${map.member.user_phone}" name="user_phone" id="user_phone"/>
-<!-- 	</form> -->
+		<input type="hidden" value="" name="discountPoint" id="discountPoint"/>
+		<input type="hidden" value="" name="earnedPoints" id="earnedPoints" />
+		<input type="hidden" value="" name="totalPayment"  id="totalPayment"/>
+		<input type="hidden" value="" name="preOrderTotalPrice"  id="preOrderTotalPrice"/>
+	</form>
 	
 	<footer>
 		<jsp:include page="../inc/bottom.jsp"></jsp:include>

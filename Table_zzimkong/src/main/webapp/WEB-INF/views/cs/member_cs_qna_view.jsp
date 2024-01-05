@@ -9,8 +9,15 @@
 <%-- 본문 css --%>
 <link href="${pageContext.request.contextPath }/resources/css/ceo_article.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-
+	$(document).ready(function() {
+		$('#cs_button_delete').click(function() {
+	        if (confirm("삭제하시겠습니까?")) {
+	            location.href='${pageContext.request.contextPath }/member/cs/qna/delete?cs_board_num=${board.cs_board_num}';
+	        }
+	    });
+	});
 </script>
 </head>
 <body class="info_window">
@@ -25,28 +32,51 @@
 				<table>
 					<tr>
 						<th width="80">회원정보</th>
-						<td width="100">이형석</td>
+						<td width="100">${member.user_name}</td>
 						<th width="80">유형</th>
 						<td>
-							--유형
+							<c:choose>
+								<c:when test="${board.cs_board_category_sub eq 1}">
+									예약
+								</c:when>
+								<c:when test="${board.cs_board_category_sub eq 2}">
+									주문/결제
+								</c:when>
+								<c:when test="${board.cs_board_category_sub eq 3}">
+									리뷰
+								</c:when>
+								<c:when test="${board.cs_board_category_sub eq 4}">
+									회원정보
+								</c:when>
+								<c:when test="${board.cs_board_category_sub eq 5}">
+									이용문의
+								</c:when>
+								<c:when test="${board.cs_board_category_sub eq 6}">
+									쿠폰/포인트
+								</c:when>
+							</c:choose>
 						</td>
 					</tr>
 					<tr>
 						<th colspan="1">제목</th>
 						<td colspan="3">
-						--제목
+						${board.cs_board_subject}
 						</td>
 					</tr>
 					<tr>
 						<th colspan="1">문의내용</th>
 						<td colspan="3">
-						--내용
+						${board.cs_board_content}
 						</td>
 					</tr>
 					<tr>
 						<th colspan="1">사진</th>
 						<td colspan="3" class="td_file">
-						--사진
+							<div><c:if test="${not empty board.cs_board_img_1}"><img src="${pageContext.request.contextPath}/resources/upload/${board.cs_board_img_1}"></c:if></div>
+							<div><c:if test="${not empty board.cs_board_img_2}"><img src="${pageContext.request.contextPath}/resources/upload/${board.cs_board_img_2}"></c:if></div>
+							<div><c:if test="${not empty board.cs_board_img_3}"><img src="${pageContext.request.contextPath}/resources/upload/${board.cs_board_img_3}"></c:if></div>
+							<div><c:if test="${not empty board.cs_board_img_4}"><img src="${pageContext.request.contextPath}/resources/upload/${board.cs_board_img_4}"></c:if></div>
+							<div><c:if test="${not empty board.cs_board_img_5}"><img src="${pageContext.request.contextPath}/resources/upload/${board.cs_board_img_5}"></c:if></div>
 						</td>
 					</tr>
 				</table>
