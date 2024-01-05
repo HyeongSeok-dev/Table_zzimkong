@@ -813,6 +813,7 @@ public class CsController {
 		member = service.getmember(sIdx);
 		
 		int boardCategory = 3;
+		member.setUser_category(1);
 		List<CsVO> boardList = service.getBoard(board, member, boardCategory);
 		
 		model.addAttribute("boardList", boardList);

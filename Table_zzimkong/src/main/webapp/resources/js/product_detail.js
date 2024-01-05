@@ -14,7 +14,11 @@ $(document).ready(function() {
             data: { com_id: comId },
             success: function(response) {
                 if (response != 'notLogin') {
-                    window.reload();
+                    if (response === 'true') {
+                        $(".favor_container").html("<div class='favor_on'><span id='favorite_button'> 즐겨찾기 </span></div>");
+                    } else if (response === 'false') {
+                        $(".favor_container").html("<div class='favor_off'><span id='favorite_button'> 즐겨찾기 </span></div>");
+                    }
                 } else {
                     alert('로그인 후 즐겨찾기가 가능합니다!');
                     window.location.href = "../login";

@@ -101,7 +101,7 @@ public class ProductController {
 		System.out.println("디테일후" + search);
 		
 		if(search == null) {
-			model.addAttribute("msg","서치가 없어졌어요");
+			model.addAttribute("msg","서버가 재시작 되어서 세션이 없어졌어요");
 			return "fail_back";
 		}
 		
