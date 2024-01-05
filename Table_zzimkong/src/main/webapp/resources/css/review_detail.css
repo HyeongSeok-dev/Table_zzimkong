@@ -3,7 +3,7 @@
 .menu_checkbox_container {
     margin: 5px;
     padding: 5px;
-    display: inline-block; /* 또는 필요에 따라 다른 디스플레이 속성을 사용할 수 있습니다 */
+    display: inline-block; 
 }
 
 .checkbox_label {
@@ -1215,7 +1215,7 @@ h1 {
 /*  =============================================================  */
 .reviewer_info>.reviewer_name {
     display: block;
-    overflow: hidden;
+/*     overflow: hidden; */
     text-overflow: ellipsis;
     white-space: nowrap;
     font-weight: bold;
@@ -1288,7 +1288,7 @@ h1 {
 	height:20px;
 	margin-right:3px;
 	margin-bottom:10px;
-	margin-top:-5px;
+	margin-top:-3px;
 }
 
 /*  =============================================================  */
@@ -1500,4 +1500,52 @@ h1 {
     color: #3FAFFC; /* 클릭된 링크의 색상 */
 	font-weight: 600;
 }
+/*  =============================================================  */
+.category_label {
+    display: inline-block;
+    background-color: #fff;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border: 1px solid lightgray;
+}
 
+.category_label:hover {
+/*     background-color: #e0e0e0; */
+}
+
+.category_button {
+    display: none!important; /* 체크박스 숨김 */
+	font-size: 14px;
+	font-size: 14px;
+}
+
+/* 텍스트 색상 변경 */
+.category_button:checked + span.button_text {
+/*     color: white; */
+	
+}
+
+.button_text {
+	font-size: 16px;
+}
+
+.category_button:checked + span.button_text::before {
+    content: '';
+    background-color: #b9e6f7; /* 체크 상태에서의 배경 색상 */
+    border: 1px solid #b9e6f7; /* 체크 상태에서의 경계선 색상 */
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 5px;
+    z-index: -1;
+}
+
+.category_label {
+    position: relative; /* 포지셔닝 기준 설정 */
+    z-index: 1;
+}

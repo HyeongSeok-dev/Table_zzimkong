@@ -102,15 +102,24 @@ public class ReviewService {
 	}
 
 	
-	public List<ReviewVO> getSortedReviews(int comId, 
-            String sortType,
-            boolean photoOnly,
-            String menuName) {
+//	public List<ReviewVO> getSortedReviews(int comId, 
+//            String sortType,
+//            boolean photoOnly,
+//            String menuName) {
+//
+//		return mapper.getSortedReviews(comId, sortType,photoOnly,menuName);
+//	}
 
-		return mapper.getSortedReviews(comId, sortType,photoOnly,menuName);
+	public List<ReviewVO> getSortedReviews(int comId, String sortType, boolean photoOnly, String menuName) {
+	    if (menuName != null && !menuName.isEmpty()) {
+	        // menuName 파라미터가 있는 경우, menuName에 따라 리뷰 필터링
+	        return mapper.selectReviewsByMenuName(comId, menuName);
+	    } else {
+	        // 그렇지 않은 경우, 기존의 sortType 및 photoOnly 조건에 따라 필터링
+	        return mapper.getSortedReviews(comId, sortType, photoOnly, menuName);
+	    }
 	}
-
-		
+	
 	// =========================================================================
 	// 메뉴 불러오기 
 	public List<String> getMenuNamesByComId(int comId) {
@@ -129,6 +138,20 @@ public class ReviewService {
 	public int registReviewReport(ReviewVO review) {
 
 		return mapper.insertReviewReport(review);
+	}
+
+	public List<ReviewVO> getReviewsByMenuName(int comId, String menuName) {
+
+		return mapper.selectReviewsByMenuName(comId, menuName);
+	}
+
+	// 키워드 검색
+	public List<ReviewVO> filterReviewsByCategory(int comId, String category) {
+			System.out.println("키워드 확인>>>>> " + comId + category);
+			ReviewVO vo = new ReviewVO();
+			vo.setCom_id(comId);
+			vo.setCategory(category);
+		return mapper.selectReviewsByCategory(vo);
 	}
 	
 

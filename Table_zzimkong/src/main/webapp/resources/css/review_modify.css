@@ -278,17 +278,8 @@
     max-height: 200px;
 }
 .remove_btn {
-/*     position: absolute; */
-/*     top: 0; */
-/*     right: 0; */
-/*     background-color: #3FAFFC; */
-/*     color: white; */
-/*     cursor: pointer; */
-/*     padding: 5px; */
-/*     border-radius: 50%; */
     z-index: 10; 
     margin-top: 2px;
-/*     margin-right:603px; */
 }
 /* ============================================================== */
 /* 사진 업로드 프리뷰 */

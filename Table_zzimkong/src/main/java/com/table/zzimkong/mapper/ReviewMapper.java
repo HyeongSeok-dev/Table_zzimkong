@@ -15,6 +15,7 @@ import com.table.zzimkong.vo.ReviewVO;
 @Mapper
 public interface ReviewMapper {
 
+
 	// 업체명 
 	String selectCompanyName(int comId);
 	
@@ -73,6 +74,12 @@ public interface ReviewMapper {
 
 	// 리뷰 신고
 	int insertReviewReport(ReviewVO review);
+	
+	// 메뉴이름으로 리뷰 검색
+	List<ReviewVO> selectReviewsByMenuName(int comId, String menuName);
+
+	// 키워드로 리뷰 검색
+	List<ReviewVO> selectReviewsByCategory(ReviewVO review);
 
 
 

@@ -24,9 +24,79 @@
 <!-- 변수 선언 -->
 var contextPath = "${pageContext.request.contextPath}";
 var sId = '<c:out value="${sessionScope.sId}"/>';
-<!-- ============================================================ -->
-document.addEventListener('DOMContentLoaded', function() {
-<!-- ============================================================ -->
+	// ===================================================================
+	document.addEventListener('DOMContentLoaded', function() {
+	// ===================================================================
+
+	// 정렬 링크를 찾음
+	    var sortLinks = document.querySelectorAll('.sort-link');
+	    sortLinks.forEach(function(link) {
+	        link.addEventListener('click', function(event) {
+	            // 이벤트의 기본 동작을 방지
+	            event.preventDefault();
+	
+	            // data-sort-type 속성에서 정렬 타입을 읽음
+	            var sortType = this.getAttribute('data-sort-type');
+	            sortReviews(sortType);
+	        });
+	    });
+
+	// ===================================================================
+	// 최신 리뷰 목록을 불러오기
+    sortReviews('newest');
+	// ===================================================================
+	// 사진 넘기기 
+	var carouselInner = document.querySelector('.carousel-inner');
+	var images = Array.from(carouselInner.children);
+	var imageWidth = images[0].getBoundingClientRect().width;
+
+	images.forEach(function(img, idx) {
+		img.style.left = imageWidth * idx + 'px';
+	});
+
+	document.querySelector('.carousel-next').addEventListener(
+		'click',
+		function() {
+			if (currentIndex < images.length - 1) {
+				currentIndex++;
+				carouselInner.style.transform = 'translateX('
+					+ (-imageWidth * currentIndex) + 'px)';
+			}
+		});
+
+
+	var currentIndex = 0;
+	document.querySelector('.carousel-prev').addEventListener(
+		'click',
+		function() {
+			if (currentIndex > 0) {
+				currentIndex--;
+				carouselInner.style.transform = 'translateX('
+					+ (-imageWidth * currentIndex) + 'px)';
+			}
+		});
+
+	// ===================================================================
+	// 리뷰 메뉴버튼 
+	document.querySelectorAll('.menu_button').forEach(button => {
+		button.addEventListener('click', function() {
+			this.classList.toggle('active');
+		});
+	});
+
+	// ===================================================================
+		var deleteButtons = document.querySelectorAll('.review_delete');
+	deleteButtons.forEach(function(deleteButton) {
+	    deleteButton.addEventListener('click', function(event) {
+	        // 팝업창을 표시
+	        deleteConfirmationPopup.style.display = 'block';
+	
+	        // 기본 이벤트 방지 (링크 이동 등..)
+	        event.preventDefault();
+	    });
+	}); 
+	
+	// ===================================================================
     var reviewCountsJson = '${reviewCountsJson}'.replace(/&quot;/g, '"');
     var reviewCounts = JSON.parse(reviewCountsJson)[0]; // 첫 번째 객체만 사용
     var labels = [
@@ -138,6 +208,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	 // 초기 리뷰 목록 로드
    	 filterReviewsByCheckedMenus();
 		
+
 	    // 메뉴 체크박스 변경 감지
   	  $('.menu_checkbox').change(filterReviewsByCheckedMenus);
 
@@ -152,7 +223,7 @@ document.addEventListener('DOMContentLoaded', function() {
           filterReviewsByCheckedMenus();
 	      });
 	  });
-
+			
 		// =================================================================	
 		// 현재 선택된 메뉴 이름을 반환하는 함수
 		function getMenuNames() {
@@ -161,66 +232,81 @@ document.addEventListener('DOMContentLoaded', function() {
 		    }).get().join(', ');
 		}
 		// =================================================================	
-	function getParameterByName(name) {
-	    var url = window.location.href;
-	    name = name.replace(/[\[\]]/g, "\\$&");
-	    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-	        results = regex.exec(url);
-	    if (!results) return null;
-	    if (!results[2]) return '';
-	    return decodeURIComponent(results[2].replace(/\+/g, " "));
-	    var comId = getParameterByName('com_id');
-	    console.log(comId); 
-	}
-	<!-- ================================================================================================= -->
-	function formatDate(dateString) {
-	    var options = { year: '2-digit', month: '2-digit', day: '2-digit', weekday: 'short' };
-	    return new Intl.DateTimeFormat('ko-KR', options).format(new Date(dateString));
-	}
-	<!-- ================================================================================================= -->
-	// 체크박스 상태에 따라 리뷰를 필터링하고 서버에 요청하는 함수
-	function filterReviewsByCheckedMenus() {
-	    var checkedMenuNames = $('.menu_checkbox:checked').map(function() {
-	        return this.value;
-	    }).get().join(', '); // 체크된 메뉴 이름 수집
+		// URL에서 값 가져옴 (지우면 안됨)	
+		function getParameterByName(name) {
+		    var url = window.location.href;
+		    name = name.replace(/[\[\]]/g, "\\$&");
+		    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+		        results = regex.exec(url);
+		    if (!results) return null;
+		    if (!results[2]) return '';
 	
-	    var sortType = $('.sort-link.active').data('sort-type') || 'newest';
-	    var photoOnly = $('#photoReviewCheckbox').is(':checked');
-		
-	    // 체크된 메뉴 이름을 sortReviews 함수에 전달
-	    sortReviews(sortType, photoOnly, checkedMenuNames);
-	}	
-	<!-- ================================================================================================= -->
-	function sortReviews(sortType, photoOnly,menuNames) { // photoOnly 매개변수 추가
-	    console.log("Sorting reviews with: ", sortType, photoOnly, menuNames); // 로그 출력
-	    var comId = getParameterByName('com_id'); // com_id 값을 가져옴
-
-	    var requestData = {
-	            comId: comId,
-	            sortType: sortType,
-	            photoOnly: photoOnly,
-	            menuName: menuNames
-	        };
+		    return decodeURIComponent(results[2].replace(/\+/g, " "));
+	
+		}
+		    var comId = getParameterByName('com_id');
+		    console.log(comId); 
+		// =================================================================	
+		// 작성 날짜 포맷 변환	
+		function formatDate(dateString) {
+		    var options = { year: '2-digit', month: '2-digit', day: '2-digit', weekday: 'short' };
+		    return new Intl.DateTimeFormat('ko-KR', options).format(new Date(dateString));
+		}
+		// =================================================================	
+		var photoOnly = false; // 전역 변수
+		// =================================================================			
+		// 체크박스 상태에 따라 리뷰를 필터링하고 서버에 요청하는 함수
+		function filterReviewsByCheckedMenus() {
+		    var checkedMenuNames = $('.menu_checkbox:checked').map(function() {
+		        return this.value;
+		    }).get().join(', '); // 체크된 메뉴 이름 수집
+	
+		    var sortType = $('.sort-link.active').data('sort-type') || 'newest';
+		    var photoOnly = $('#photoReviewCheckbox').is(':checked');
+			
+		    console.log("체크메뉴>>>>>>>>>>>>>> ", checkedMenuNames);
+		    console.log("Sort Type:>>>>>>>>>>> ", sortType, "Photo Only: ", photoOnly);
+		    
+		    // 메뉴 이름만 사용하여 리뷰 필터링
+		    if (checkedMenuNames && !photoOnly && sortType === 'newest') {
+		        sortReviews(null, false, checkedMenuNames);
+		    } else {
+		        // 기존 조건에 따라 리뷰 필터링
+		        sortReviews(sortType, photoOnly, checkedMenuNames);
+		    }
+		}
+		// =================================================================	
+		function sortReviews(sortType, photoOnly,menuNames) { // photoOnly 매개변수 추가
+		    console.log("메뉴 네임 넘어오는지 확인: >>>>>>>>>>>>>>" +  sortType +  photoOnly + menuNames); // 로그 출력
+		    var comId = getParameterByName('com_id'); // com_id 값을 가져옴
+	
+		    var requestData = {
+		            comId: comId,
+		            sortType: sortType,
+		            photoOnly: photoOnly,
+		            menuName: menuNames
+		        };
 	    
 	    // 체크된 메뉴 이름이 있을 경우에만 requestData 객체에 추가
-	  if (checkedMenuNames) {
-        requestData.menuName = checkedMenuNames;
-    }
-	    
-	    // 체크된 메뉴 이름들을 수집
-	    var checkedMenuNames = $('.menu_checkbox:checked').map(function() {
-	        return this.value;
-	    }).get().join(', ');
-	    
-	    console.log(">>>Sorting reviews by: ", sortType, ", Photo only: ", photoOnly, ", Menu Names:<<<< ", checkedMenuNames);
-	    
-	    $.ajax({
-  			url: '/zzimkong/review/redetail/sortedReviews', // 컨텍스트 경로를 포함한 전체 경로
-			type: 'GET',
-	        data: requestData,
-	        dataType: 'json', // 서버로부터 JSON 형태의 응답을 기대
-	        success: function(response) {
+		  if (checkedMenuNames) {
+	        requestData.menuName = checkedMenuNames;
+	    }
+		    
+		    // 체크된 메뉴 이름들을 수집
+		    var checkedMenuNames = $('.menu_checkbox:checked').map(function() {
+		        return this.value;
+		    }).get().join(', ');
+		    
+		    console.log(">>>Sorting reviews by: ", sortType, ", Photo only: ", photoOnly, ", Menu Names:<<<< ", checkedMenuNames);
+		    
+		    $.ajax({
+	  			url: '/zzimkong/review/redetail/sortedReviews', 
+				type: 'GET',
+		        data: requestData,
+		        dataType: 'json', 
+		        success: function(response) {
 	            // response 형식이 JSON이고, reviews 배열을 포함하는지 확인 필요
+		// =================================================================	
 	            var reviews = response;
 	            var reviewsContainer = $('#reviewsContainer');
 
@@ -232,7 +318,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	            return;
 	        }
 	
-	    var formattedDate = formatDate(review.review_update); // 서버로부터 받은 review_update 값을 형식화
+	    var formattedDate = formatDate(review.review_update);
 	
 	    var deleteFormHtml = '';
 	    var modifyButtonHtml = '';
@@ -250,21 +336,9 @@ document.addEventListener('DOMContentLoaded', function() {
 	                '<button class="review_modify">수정</button>' +
 	            '</a>';
 	    }
-// 	    var deleteFormHtml = 
-// 	        '<form action="' + contextPath + '/zzimkong/review/delete" method="POST">' +
-// 	            '<input type="hidden" name="review_num" value="' + review.review_num + '">' +
-// 	            '<input type="submit" class="review_delete" value="삭제" onclick="return confirm(\'리뷰를 삭제하시겠습니까?\');">' +
-// 	        '</form>';
-	
-// 	    var modifyButtonHtml = 
-// 	        '<a href="modify?review_num=' + review.review_num + '">' +
-// 	            '<button class="review_modify">수정</button>' +
-// 	        '</a>';
-	
+
 	    var reportButtonHtml = 
-// 	        '<a href="' + contextPath + '/review/report" class="review_report_btn" role="button">리뷰 신고하기</a>';
 '<a href="' + contextPath + '/review/report?review_num=' + review.review_num + '&com_id=' + review.com_id + '" class="review_report_btn" role="button">리뷰 신고하기</a>';
-// '<a href="' + contextPath + '/review/report?review_num=' + review.review_num + '&com_id=' + review.com_id + '&user_id=' + review.user_id + '" class="review_report_btn" role="button">리뷰 신고하기</a>';
 	    var imagePopupHtml = '';
 	    if (review.review_img_1) {
 	        imagePopupHtml = 
@@ -325,9 +399,142 @@ document.addEventListener('DOMContentLoaded', function() {
 		        }
 		    });
 		}
+	
+	// 체크박스 선택 시 해당 리뷰출력 
 	// =================================================================	
 	$(document).ready(function() {
-		
+	// =================================================================	
+	// 카테고리 체크박스 변경 감지
+	    $('.category_button').change(function() {
+	    	var selectedCategories = getSelectedCategories();
+	        if (selectedCategories.length > 0) {
+	            filterReviewsByCategories(selectedCategories);
+	        } else {
+	            // 모든 체크박스가 해제되면 원래의 리뷰 리스트를 불러옴
+	            filterReviewsByCheckedMenus();
+	        }
+	    });
+	    // 선택된 카테고리를 배열로 반환하는 함수
+	    function getSelectedCategories() {
+	        return $('.category_button:checked').map(function() {
+	            return $(this).data('category');
+	        }).get();
+	    }
+
+   // 카테고리 버튼 클릭 이벤트 핸들러
+    $('.category_button').click(function() {
+        var category = $(this).data('category');
+        var comId = Number(getParameterByName('com_id'));
+        loadReviewsByCategory(category,comId);
+    });
+
+	// 카테고리별 리뷰 로드 함수
+	function loadReviewsByCategory(category,comId) {
+
+	    $.ajax({
+  			url: '/zzimkong/review/redetail/filterByCategory', 
+	        type: 'GET',
+	        data: { category: category, 
+	        	comId: comId},
+	        dataType: 'json',
+	        success: function(reviews) {
+	            displayReviews(reviews);
+// 	            console.log("업체아이디!!!!! >>>>>>" + comId)
+	        },
+	        error: function(xhr, status, error) {
+	            console.error("Error occurred: " + error);
+	        }
+	    });
+	}
+
+	// 리뷰 표시 함수
+	function displayReviews(reviews) {
+	    var reviewsContainer = $('#reviewsContainer');
+	    reviewsContainer.empty();
+
+	    reviews.forEach(function(review) {
+        // photoOnly가 true일 때, 이미지가 없는 리뷰는 건너뜀
+        if (photoOnly && !review.review_img_1) {
+            return;
+        }
+
+    var formattedDate = formatDate(review.review_update); // 서버로부터 받은 review_update 값을 형식화
+
+    var deleteFormHtml = '';
+    var modifyButtonHtml = '';
+
+    // sId가 review.user_id와 같거나, sId가 'admin'일 경우에만 삭제 및 수정 버튼 생성
+    if (sId === review.user_id || sId === 'admin') {
+        deleteFormHtml = 
+            '<form action="' + contextPath + '/zzimkong/review/delete" method="POST">' +
+                '<input type="hidden" name="review_num" value="' + review.review_num + '">' +
+                '<input type="submit" class="review_delete" value="삭제" onclick="return confirm(\'리뷰를 삭제하시겠습니까?\');">' +
+            '</form>';
+
+        modifyButtonHtml = 
+            '<a href="modify?review_num=' + review.review_num + '">' +
+                '<button class="review_modify">수정</button>' +
+            '</a>';
+    }
+
+    var reportButtonHtml = 
+'<a href="' + contextPath + '/review/report?review_num=' + review.review_num + '&com_id=' + review.com_id + '" class="review_report_btn" role="button">리뷰 신고하기</a>';
+    var imagePopupHtml = '';
+    if (review.review_img_1) {
+        imagePopupHtml = 
+            '<div class="review_photos">' +
+                '<img src="' + contextPath + '/resources/upload/' + review.review_img_1 + '" alt="Review Image">' +
+                '<div id="image-popup" class="image-popup" style="display: none;">' +
+                    '<span class="close-popup">&times;</span>' +
+                    '<img id="popup-img" class="popup-content">' +
+                '</div>' +
+            '</div>';
+    }
+
+    var reviewHtml = 
+        '<ul class="review_list">' +
+            '<li class="review_list1">' +
+                '<div class="reviewer">' +
+                    '<div class="reviewer_photo">' +
+                        '<a href="#" target="_blank" class="profile_link">' +
+                            '<div class="profile_image">' +
+                                '<img src="' + contextPath + '/resources/img/profile.png" alt="프로필" width="38" height="38">' +
+                            '</div>' +
+                        '</a>' +
+                    '</div>' +
+                    '<div class="reviewer_info">' +
+                        '<div class="reviewer_name">' + review.user_id + '</div>' +
+                        '<div class="score1">' +
+                            '<img src="' + contextPath + '/resources/img/review_star.png" width="15" height="15">' +
+                            (review.review_score / 2).toFixed(1) +
+                        '</div>' +
+                    '</div>' +
+                '</div>' +
+                imagePopupHtml +
+                '<p class="review_content">' + review.review_content + '</p>' +
+                '<div class="review-actions">' +
+                    '<div class="review-action1">' +
+                        '<i class="far fa-comment" id="commentIcon" style="cursor: pointer;"></i>' +
+                        '<i class="far fa-heart" id="heartIcon" style="cursor: pointer;"></i>' +
+                    '</div>' +
+                    '<div class="review-action2">' +
+                        '<div class="review-action-buttons">' +
+                            deleteFormHtml +
+                            modifyButtonHtml +
+                            reportButtonHtml +
+                        '</div>' +
+                        '<span class="comment-icon" onclick="showCommentForm()"></span><br><br>' +
+    				    '<div class="review_date">' + formattedDate + ' 작성</div>' + 
+                 		  '<div class="separator"></div>' + 
+                    '</div>' +
+                '</div>' +
+            '</li>' +
+        '</ul>';
+
+    $('#reviewsContainer').append(reviewHtml);
+	});
+
+}
 	// =================================================================	
 	// 하트 아이콘 클릭 이벤트
 	$('#reviewsContainer').on('click', '.fa-heart', function() {
@@ -342,7 +549,6 @@ document.addEventListener('DOMContentLoaded', function() {
 	    var windowSize = "width=515,height=632";
 	    window.open(url, windowName, windowSize);
 	});
-		
 	// =================================================================	
 	    // 페이지 로드 시 최신순으로 리뷰를 불러옴
     filterReviewsByCheckedMenus();
@@ -357,31 +563,33 @@ document.addEventListener('DOMContentLoaded', function() {
         filterReviewsByCheckedMenus();
     });
 	// =================================================================	
-	    // 메뉴 이름 불러오기
-		    var comId = getParameterByName('com_id');
-		    $.ajax({
-		        url: contextPath + '/review_menus', // URL 수정
-		        type: 'GET',
-		        data: { comId: comId }, // 데이터 추가
-		        dataType: 'json',
-		        success: function(menus) {
-		            var menuContainer = $('.menu_select');
-		            menus.forEach(function(menu) {
-		            	   // sanitizedMenu : 메뉴 이름에서 공백과 특수 문자를 제거하거나 대체(메뉴이름 안전하게 처리)
-		                var sanitizedMenu = menu.replace(/[^a-zA-Z0-9]/g, '_');
+    // 메뉴 이름 불러오기
+	    var comId = getParameterByName('com_id');
+	    $.ajax({
+	        url: contextPath + '/review_menus', // URL 수정
+	        type: 'GET',
+	        data: { comId: comId }, // 데이터 추가
+	        dataType: 'json',
+	        success: function(menus) {
+	            var menuContainer = $('.menu_select');
+	            menus.forEach(function(menu) {
+	            	   // sanitizedMenu : 메뉴 이름에서 공백과 특수 문자를 제거하거나 대체(메뉴이름 안전하게 처리)
+	                var sanitizedMenu = menu.replace(/[^a-zA-Z0-9]/g, '_');
 
-		                var checkboxHtml = 
-		                    '<div class="menu_checkbox_container">' +
-		                        '<input type="checkbox" id="menu_checkbox_' + sanitizedMenu + '" class="menu_checkbox" value="' + menu + '">' +
-		                        '<label for="menu_checkbox_' + sanitizedMenu + '" class="menu_button">' + menu + '</label>' +
-		                    '</div>';
-		                menuContainer.append(checkboxHtml);
+	                var checkboxHtml = 
+	                    '<div class="menu_checkbox_container">' +
+	                        '<input type="checkbox" id="menu_checkbox_' + sanitizedMenu + '" class="menu_checkbox" value="' + menu + '">' +
+	                        '<label for="menu_checkbox_' + sanitizedMenu + '" class="menu_button">' + menu + '</label>' +
+	                    '</div>';
+	                menuContainer.append(checkboxHtml);
 
-		            });
-		        },
-		        error: function(error) {
-		            console.log("Error: ", error);
-		        }
+	            });
+	        },
+	        error: function(xhr, status, error) {
+	            console.error("Error occurred: ", error);
+	            console.error("Status: ", status);
+	            console.error("Response: ", xhr.responseText);
+	        }
 		});
 	});
 	// =================================================================	
@@ -410,81 +618,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 this.classList.add('active'); // 클릭된 링크에 'active' 클래스 추가
             });
         });
-    
-	// ===================================================================
-	document.addEventListener('DOMContentLoaded', function() {
-	
-	// ===================================================================
-	// 정렬 링크를 찾음
-	    var sortLinks = document.querySelectorAll('.sort-link');
-	    sortLinks.forEach(function(link) {
-	        link.addEventListener('click', function(event) {
-	            // 이벤트의 기본 동작을 방지
-	            event.preventDefault();
-	
-	            // data-sort-type 속성에서 정렬 타입을 읽음
-	            var sortType = this.getAttribute('data-sort-type');
-	            sortReviews(sortType);
-	        });
-	    });
-
-	// ===================================================================
-	// 최신 리뷰 목록을 불러오기
-    sortReviews('newest');
-	// ===================================================================
-	// 사진 넘기기 
-	var carouselInner = document.querySelector('.carousel-inner');
-	var images = Array.from(carouselInner.children);
-	var imageWidth = images[0].getBoundingClientRect().width;
-
-	images.forEach(function(img, idx) {
-		img.style.left = imageWidth * idx + 'px';
-	});
-
-	document.querySelector('.carousel-next').addEventListener(
-		'click',
-		function() {
-			if (currentIndex < images.length - 1) {
-				currentIndex++;
-				carouselInner.style.transform = 'translateX('
-					+ (-imageWidth * currentIndex) + 'px)';
-			}
-		});
-
-
-	var currentIndex = 0;
-	document.querySelector('.carousel-prev').addEventListener(
-		'click',
-		function() {
-			if (currentIndex > 0) {
-				currentIndex--;
-				carouselInner.style.transform = 'translateX('
-					+ (-imageWidth * currentIndex) + 'px)';
-			}
-		});
-
-	// ===================================================================
-	// 리뷰 메뉴버튼 
-	document.querySelectorAll('.menu_button').forEach(button => {
-		button.addEventListener('click', function() {
-			this.classList.toggle('active');
-		});
-	});
-
-	// ===================================================================
-		var deleteButtons = document.querySelectorAll('.review_delete');
-	deleteButtons.forEach(function(deleteButton) {
-	    deleteButton.addEventListener('click', function(event) {
-	        // 팝업창을 표시
-	        deleteConfirmationPopup.style.display = 'block';
-	
-	        // 기본 이벤트 방지 (링크 이동 등)
-	        event.preventDefault();
-	    });
-	}); 
-	
-	}); //document.addEventListener의 끝
-
 </script>
 	<!-- ================================================================================================= -->
 </head>
@@ -522,6 +655,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	</div>
 	<!-- ======================================================================================== -->
 <div class="chart-container">
+	    
     <canvas id="reviewChart"></canvas>
 </div>
 	<!-- ======================================================================================== -->
@@ -558,11 +692,43 @@ document.addEventListener('DOMContentLoaded', function() {
 	</div>
 	</div>
 	<div class="menu_select">
-		<span class="menu_select_subject">&nbsp;&nbsp;&nbsp;&nbsp;메뉴&nbsp;</span>
+		<span class="menu_select_subject">&nbsp;&nbsp;&nbsp;&nbsp;대표 메뉴&nbsp;</span>
 	</div>
 	<br>
-<!-- 	<div class="menu_select"> -->
 <!-- 		<span class="menu_select_subject">&nbsp;&nbsp;&nbsp;&nbsp;특징&nbsp;</span> -->
+<!-- 			<div class="category_buttons"> -->
+<!-- 			    <input type="checkbox" class="category_button" data-category="taste">맛 -->
+<!-- 			    <input type="checkbox" class="category_button" data-category="satisfaction">만족도 -->
+<!-- 			    <input type="checkbox" class="category_button" data-category="service">서비스 -->
+<!-- 			    <input type="checkbox" class="category_button" data-category="waiting">대기 시간 -->
+<!-- 			    <input type="checkbox" class="category_button" data-category="quantity">음식량 -->
+<!-- 			</div> -->
+			<div class="category_buttons">
+				<span class="menu_select_subject">&nbsp;&nbsp;&nbsp;&nbsp;특징&nbsp;</span>
+			
+			    <label class="category_label" data-category="taste">
+        		<input type="checkbox" class="category_button" data-category="taste">
+        		<span class="button_text">맛</span>
+    			</label>
+			    <label class="category_label" data-category="satisfaction">
+        		<input type="checkbox" class="category_button" data-category="satisfaction">
+        		<span class="button_text">만족도</span>
+    			</label>
+			    <label class="category_label" data-category="service">
+        		<input type="checkbox" class="category_button" data-category="service">
+        		<span class="button_text">서비스</span>
+    			</label>
+			    <label class="category_label" data-category="waiting">
+        		<input type="checkbox" class="category_button" data-category="waiting">
+        		<span class="button_text">대기 시간</span>
+    			</label>
+			    <label class="category_label" data-category="quantity">
+        		<input type="checkbox" class="category_button" data-category="quantity">
+        		<span class="button_text">음식량</span>
+    			</label>
+			</div>
+			
+		
 	<!-- ========================================================================================= -->
 <!-- 		<div class="menu_select"> -->
 <!-- 		    <span class="menu_select_subject">&nbsp;&nbsp;&nbsp;&nbsp;메뉴&nbsp;</span> -->
@@ -572,11 +738,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		    <!-- 추가 메뉴 항목 -->
 		</div>
 	<!-- ========================================================================================= -->
-<!-- 			<button class="menu_button" id="mazeBtn">맛</button> -->
-<!-- 			<button class="menu_button" id="mazeBtn">만족도</button> -->
-<!-- 			<button class="menu_button" id="mazeBtn">서비스</button> -->
-<!-- 			<button class="menu_button" id="mazeBtn">대기시간</button> -->
-<!-- 			<button class="menu_button" id="mazeBtn">음식량</button> -->
 	</div>
 	<br>
 	<br>
@@ -588,11 +749,9 @@ document.addEventListener('DOMContentLoaded', function() {
 				<a href="#" class="sort-link" id="review_likes_order" data-sort-type="likes">좋아요 순</a>
 		</div>
 	<div class="separator"></div>
-<!-- 	<!-- ========================================================================================= --> 
+	<!-- ========================================================================================= --> 
 	<div class="reviews_container" id="reviewsContainer">
-
 	</div>
-
 	<!-- ========================================================================================= -->
 	<br><br><br><br><br><br><br><br><br><br>
 	<footer>

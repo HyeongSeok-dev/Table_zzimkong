@@ -87,29 +87,25 @@ public class ReviewController {
         String reviewCountsJson = new Gson().toJson(reviewCounts);
         model.addAttribute("reviewCountsJson", reviewCountsJson);		
 		model.addAttribute("reviews", reviews);
-        
-        // 리뷰 정렬 처리
-        
-        // photoOnly 파라미터에 따라 사진이 있는 리뷰만 필터링
-//        List<ReviewVO> reviews; // => 위에서 선언됨
-        if(photoOnly) {
-        	// 사진이 있는 리뷰만 가져옴
-        	reviews = service.getSortedReviews(comId, sortType, photoOnly, menuName);
-        } else {
-            // sortType에 따라 리뷰 정렬
-            switch (sortType) {
-                case "highest":
-                    reviews = service.getReviewsSortedByScore(comId, true);
-                    break;
-                case "lowest":
-                    reviews = service.getReviewsSortedByScore(comId, false);
-                    break;
-                case "newest": 
-                default:
-                    reviews = service.getAllReviews(comId); // 기본적으로 모든 리뷰 가져옴
-                    break;      
-            }
-        }
+
+		if (!photoOnly && menuName != null && !menuName.isEmpty()) {
+		    // 메뉴 이름으로 리뷰 필터링
+		    reviews = service.getReviewsByMenuName(comId, menuName);
+		} else {
+		    // sortType에 따라 리뷰 정렬
+		    switch (sortType) {
+		        case "highest":
+		            reviews = service.getReviewsSortedByScore(comId, true);
+		            break;
+		        case "lowest":
+		            reviews = service.getReviewsSortedByScore(comId, false);
+		            break;
+		        case "newest":
+		        default:
+		            reviews = service.getAllReviews(comId); // 기본적으로 모든 리뷰 가져옴
+		            break;
+		    }
+		}
 
         model.addAttribute("reviews", reviews);
 	        
@@ -125,6 +121,7 @@ public class ReviewController {
                                            @RequestParam(value = "menuName", required = false) String menuName) {
         return service.getSortedReviews(comId, sortType, photoOnly,menuName);
     }
+    // false: 필수가 아닌 조건 
 
 	// ===================================================================
     // [ 메뉴이름 가져오기 ]
@@ -134,7 +131,14 @@ public class ReviewController {
 
     	return service.getMenuNamesByComId(comId);
     }
-
+    // ===================================================================
+    // [ 키워드 검색 ]
+    @GetMapping("/review/redetail/filterByCategory")
+    @ResponseBody
+    public List<ReviewVO> filterReviewsByCategory(@RequestParam("comId") int comId,@RequestParam("category") String category) {
+    	
+    	return service.filterReviewsByCategory(comId, category);
+    }
     
     // ===================================================================
 	// [ 리뷰 작성 ]

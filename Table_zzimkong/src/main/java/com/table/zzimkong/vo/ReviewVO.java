@@ -75,14 +75,11 @@ public class ReviewVO {
 
 	// ------------------------------------------------------------------------------------
 	// 신고 테이블
-//	private int report_num;
 	private int report_reason;
 	private int report_person;
 	private String report_content;
 	private boolean report_category;
 	private int report_status;
-	
-	
 	
 	private double avg_score;
 	private int reviewCount;
@@ -91,6 +88,10 @@ public class ReviewVO {
 	private int threeStarCount;
 	private int twoStarCount;
 	private int oneStarCount;
+	
+	// ------------------------------------------------------------------------------------
+	// 카테고리 검색
+	private String category;
 	
 	
 	

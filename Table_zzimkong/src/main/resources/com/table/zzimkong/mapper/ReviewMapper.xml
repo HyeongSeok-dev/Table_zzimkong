@@ -12,7 +12,7 @@
 	VALUES (
 	#{review_num}
 	,#{user_id}
-	,1 -- com_id
+	,2 -- com_id
 	,0
 	,1
 	,'0'
@@ -215,46 +215,89 @@
 	</select>
 	
 	
-	
-	
-	
-	
-	
-	
-<!-- 	<select id="getSortedReviews" resultType="review"> -->
-<!-- 	    SELECT *  -->
-<!-- 	    FROM review -->
-<!-- 	    WHERE com_id = #{comId} -->
-<!-- 	    <if test="photoOnly"> -->
-<!-- 	        AND review_img_1 IS NOT NULL -->
-<!-- 	    </if> -->
-<!-- 	    <if test="menuName != null"> -->
-<!--    			AND review_content LIKE CONCAT('%', #{menuName}, '%') -->
-<!--    		</if> -->
-<!-- 	    <choose> -->
-<!-- 	        <when test="sortType == 'newest'"> -->
-<!-- 	            ORDER BY review_update DESC -->
-<!-- 	        </when> -->
-<!-- 	        <when test="sortType == 'highest'"> -->
-<!-- 	            ORDER BY review_score DESC, review_update DESC -->
-<!-- 	        </when> -->
-<!-- 	        <when test="sortType == 'lowest'"> -->
-<!-- 	            ORDER BY review_score ASC, review_update DESC -->
-<!-- 	        </when> -->
-<!-- 	        <when test="sortType == 'likes'"> -->
-<!-- 	            ORDER BY likes_count DESC, review_update DESC -->
-<!-- 	        </when> -->
-<!-- 	        <otherwise> -->
-<!-- 	            ORDER BY review_update DESC -->
-<!-- 	        </otherwise> -->
-<!-- 	    </choose> -->
-<!-- 	</select> -->
+	<!-- 메뉴 이름으로 리뷰 필터링 -->
+	<select id="selectReviewsByMenuName" parameterType="map" resultType="review">
+	    SELECT *
+	    FROM review
+	    WHERE com_id = #{comId}
+	    AND review_content LIKE CONCAT('%', #{menuName}, '%')
+	    ORDER BY review_update DESC
+	</select>
 	
 	<!-- 메뉴이름 불러오기  -->
 	<select id="selectReviewMenu" parameterType="int" resultType="String">
 	    SELECT menu_name 
 	    FROM menu 
 		WHERE com_id = #{com_id} 
+	</select>
+	
+	<!-- 키워드 검색 -->
+	<select id="selectReviewsByCategory" parameterType="review" resultType="review">
+	    <choose>
+        	<when test="category == 'taste'">
+        	 SELECT * FROM review
+	         WHERE com_id = #{com_id} 
+	         AND (
+	         	review_content LIKE '%추천%'
+	                OR review_content LIKE '%맛%'
+	                OR review_content LIKE '%매콤%'
+	                OR review_content LIKE '%달달%'
+	                OR review_content LIKE '%싱겁%'
+	                OR review_content LIKE '%단%'
+	                OR review_content LIKE '%신맛%')
+	         ORDER BY review_update DESC       
+      	  </when>
+        <when test="category == 'satisfaction'">
+            SELECT * FROM review
+			WHERE com_id = #{com_id} 
+             AND (
+                review_content LIKE '%좋은%'
+	                OR review_content LIKE '%나쁜%'
+	                OR review_content LIKE '%최고%'
+	                OR review_content LIKE '%만족%'
+	                OR review_content LIKE '%좋았%'
+	                OR review_content LIKE '%추천%'
+	                OR review_content LIKE '%친절%')
+	         ORDER BY review_update DESC       
+	                
+        </when>
+			<when test="category == 'service'">
+				SELECT * FROM review
+				WHERE com_id = #{com_id} 
+				AND	( 
+				review_content LIKE '%친절%'
+					OR review_content LIKE '%나쁜%'
+					OR review_content LIKE '%좋은%'
+					OR review_content LIKE '%불친절%')
+				ORDER BY review_update DESC       
+					
+			</when>	
+			<when test="category == 'waiting'">
+				SELECT * FROM review
+				WHERE com_id = #{com_id} 
+				AND( 
+				review_content LIKE '%대기%'
+					OR review_content LIKE '%줄%'
+					OR review_content LIKE '%웨이팅%'
+					OR review_content LIKE '%회전%'
+					OR review_content LIKE '%브레이크%'
+					OR review_content LIKE '%시간%')
+				ORDER BY review_update DESC       
+					
+			</when>	
+			<when test="category == 'quantity'">
+				SELECT * FROM review
+				WHERE com_id = #{com_id} 
+				AND(
+				review_content LIKE '%양%'
+					OR review_content LIKE '%많은%'
+					OR review_content LIKE '%적은%'
+					OR review_content LIKE '%배부%'
+					OR review_content LIKE '%배고%')
+				ORDER BY review_update DESC       
+					
+			</when>	
+		</choose>
 	</select>
 	
 	<!-- 신고 시 회원정보 불러오기(메일/폰번호) -->
@@ -284,8 +327,8 @@
 	#{report_reason},
 	#{report_person},
 	#{report_content},
-	#{user_email},
 	#{user_phone},
+	#{user_email},
 	#{com_id},
 	false, 
 	1
