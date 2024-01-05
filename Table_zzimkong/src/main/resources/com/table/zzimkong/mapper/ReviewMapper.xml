@@ -300,6 +300,14 @@
 		</choose>
 	</select>
 	
+	<!-- 키워드 검색  -->
+	<select id="categoryCount">
+    SELECT * 
+    FROM review_category_count;
+	</select>
+	
+	
+	
 	<!-- 신고 시 회원정보 불러오기(메일/폰번호) -->
 	<select id="findUserById" resultType="com.table.zzimkong.vo.MemberVO">
 		SELECT user_phone, user_email

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.table.zzimkong.mapper.ReviewMapper;
 import com.table.zzimkong.vo.MemberVO;
 import com.table.zzimkong.vo.MenuVO;
+import com.table.zzimkong.vo.ReviewCategoryCountVO;
 import com.table.zzimkong.vo.ReviewCountVO;
 import com.table.zzimkong.vo.ReviewMenuVO;
 import com.table.zzimkong.vo.ReviewVO;
@@ -153,6 +154,13 @@ public class ReviewService {
 			vo.setCategory(category);
 		return mapper.selectReviewsByCategory(vo);
 	}
-	
 
+	
+	// 키워드 카테고리 카운트 : 데이터 뿌리기
+		public ReviewCategoryCountVO categoryCount() {
+
+		return mapper.categoryCount();
+	}
+	
+	
 }

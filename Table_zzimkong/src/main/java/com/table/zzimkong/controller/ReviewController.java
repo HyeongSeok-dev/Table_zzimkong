@@ -17,6 +17,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,7 @@ import com.google.gson.Gson;
 import com.table.zzimkong.service.ReviewService;
 import com.table.zzimkong.vo.MemberVO;
 import com.table.zzimkong.vo.MenuVO;
+import com.table.zzimkong.vo.ReviewCategoryCountVO;
 import com.table.zzimkong.vo.ReviewCountVO;
 import com.table.zzimkong.vo.ReviewMenuVO;
 import com.table.zzimkong.vo.ReviewVO;
@@ -57,7 +59,8 @@ public class ReviewController {
 	                            @RequestParam(value = "photoOnly", required = false, defaultValue = "false") boolean photoOnly,
 	                            @RequestParam(value = "menuName", required = false) String menuName,
 								HttpSession session,
-	                            Model model) {		
+	                            Model model,
+	                            HttpServletResponse response) {		
 		
 		// 세션 값 저장해두기
 		String sId = (String) session.getAttribute("sId");
@@ -106,10 +109,14 @@ public class ReviewController {
 		            break;
 		    }
 		}
-
         model.addAttribute("reviews", reviews);
-	        
-		return "review/review_detail";
+
+        // 카테고리별 리뷰 개수 가져오기
+        ReviewCategoryCountVO categoryCount = service.categoryCount();
+        model.addAttribute("categoryCount",categoryCount);
+        
+        
+        return "review/review_detail";
 	}
 	// ===================================================================
     // [ AJAX 요청 처리: 정렬된 리뷰 목록 출력 ]
@@ -139,7 +146,6 @@ public class ReviewController {
     	
     	return service.filterReviewsByCategory(comId, category);
     }
-    
     // ===================================================================
 	// [ 리뷰 작성 ]
 	// "detail" 서블릿 요청에 대한 리뷰 글쓰기 폼 표시
@@ -542,6 +548,11 @@ public class ReviewController {
 		        return "forward";
 			}
 		}
+		
+		
+		
+		
+		
 		// ===================================================================
 	@GetMapping("complete")
 	public String review_complete() {

@@ -695,38 +695,35 @@ var sId = '<c:out value="${sessionScope.sId}"/>';
 		<span class="menu_select_subject">&nbsp;&nbsp;&nbsp;&nbsp;대표 메뉴&nbsp;</span>
 	</div>
 	<br>
-<!-- 		<span class="menu_select_subject">&nbsp;&nbsp;&nbsp;&nbsp;특징&nbsp;</span> -->
-<!-- 			<div class="category_buttons"> -->
-<!-- 			    <input type="checkbox" class="category_button" data-category="taste">맛 -->
-<!-- 			    <input type="checkbox" class="category_button" data-category="satisfaction">만족도 -->
-<!-- 			    <input type="checkbox" class="category_button" data-category="service">서비스 -->
-<!-- 			    <input type="checkbox" class="category_button" data-category="waiting">대기 시간 -->
-<!-- 			    <input type="checkbox" class="category_button" data-category="quantity">음식량 -->
-<!-- 			</div> -->
-			<div class="category_buttons">
-				<span class="menu_select_subject">&nbsp;&nbsp;&nbsp;&nbsp;특징&nbsp;</span>
-			
-			    <label class="category_label" data-category="taste">
-        		<input type="checkbox" class="category_button" data-category="taste">
-        		<span class="button_text">맛</span>
-    			</label>
-			    <label class="category_label" data-category="satisfaction">
-        		<input type="checkbox" class="category_button" data-category="satisfaction">
-        		<span class="button_text">만족도</span>
-    			</label>
-			    <label class="category_label" data-category="service">
-        		<input type="checkbox" class="category_button" data-category="service">
-        		<span class="button_text">서비스</span>
-    			</label>
-			    <label class="category_label" data-category="waiting">
-        		<input type="checkbox" class="category_button" data-category="waiting">
-        		<span class="button_text">대기 시간</span>
-    			</label>
-			    <label class="category_label" data-category="quantity">
-        		<input type="checkbox" class="category_button" data-category="quantity">
-        		<span class="button_text">음식량</span>
-    			</label>
-			</div>
+
+	<div class="category_buttons">
+	    <span class="menu_select_subject">&nbsp;&nbsp;&nbsp;&nbsp;특징&nbsp;</span>
+	
+	    <label class="category_label" data-category="taste">
+	        <input type="checkbox" class="category_button" data-category="taste">
+	        <span class="button_text">맛 ${categoryCount.review_category_count_taste}</span>
+	    </label>
+	
+	    <label class="category_label" data-category="satisfaction">
+	        <input type="checkbox" class="category_button" data-category="satisfaction">
+	        <span class="button_text">만족도 ${categoryCount.review_category_count_satisfaction}</span>
+	    </label>
+	
+	    <label class="category_label" data-category="service">
+	        <input type="checkbox" class="category_button" data-category="service">
+	        <span class="button_text">서비스 ${categoryCount.review_category_count_service}</span>
+	    </label>
+	
+	    <label class="category_label" data-category="waiting">
+	        <input type="checkbox" class="category_button" data-category="waiting">
+	        <span class="button_text">대기 시간 ${categoryCount.review_category_count_waiting}</span>
+	    </label>
+	
+	    <label class="category_label" data-category="quantity">
+	        <input type="checkbox" class="category_button" data-category="quantity">
+	        <span class="button_text">음식량 ${categoryCount.review_category_count_quantity}</span>
+	    </label>
+	</div>
 			
 		
 	<!-- ========================================================================================= -->

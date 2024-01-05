@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.table.zzimkong.vo.MemberVO;
 import com.table.zzimkong.vo.MenuVO;
+import com.table.zzimkong.vo.ReviewCategoryCountVO;
 import com.table.zzimkong.vo.ReviewCountVO;
 import com.table.zzimkong.vo.ReviewMenuVO;
 import com.table.zzimkong.vo.ReviewVO;
@@ -68,7 +69,6 @@ public interface ReviewMapper {
 	// 메뉴 불러오기 
 	List<String> selectReviewMenu(int comId);
 
-	
 	// 신고시 회원정보 불러오기 
 	MemberVO findUserById(String sId);
 
@@ -81,6 +81,8 @@ public interface ReviewMapper {
 	// 키워드로 리뷰 검색
 	List<ReviewVO> selectReviewsByCategory(ReviewVO review);
 
+	// 키워드 리뷰 카운트
+	ReviewCategoryCountVO categoryCount();
 
 
 }
