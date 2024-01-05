@@ -12,9 +12,6 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PaymentInfo {
-	//결제번호 생성후 저장
-	private String payNum;
-	
 	//결제를 위해불러올 정보저장
 	private String menuTotalPrice;
 	private String totalPrice;

@@ -13,8 +13,10 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -43,7 +45,7 @@ public class PaymentController {
 								 ReservationVO res, CompanyVO company) {
 		ModelAndView mav; 
 		//세션에 저장된 아이디로 회원정보확인 하기 위해 일단 세션에 임의의 값 넣음
-		session.setAttribute("sId", "user02");
+//		session.setAttribute("sId", "user02");
 //		res = (ReservationVO)map.get("res");
 //		System.out.println(res);
 		// 세션에 로그인이 안되어있다면 접근금지
@@ -60,7 +62,7 @@ public class PaymentController {
 		// 나중에 예약완성되면 확인하기
 //		res = ((ReservationVO)session.getAttribute("res")
 //		session.setAttribute("res", null);
-		res.setRes_num("R0003"); 
+//		res.setRes_num("R0004"); 
 		
 		// [ 회원정보조회 ]
 		MemberVO member = service.getMember(sId);
@@ -152,107 +154,113 @@ public class PaymentController {
 		System.out.println(mav);
 		return mav;
 	}
-	//----------------------------------------------------------------------------------------------------
+	//============================================================================
 //	@ResponseBody
-	@GetMapping("paymentPro")
-	public String paymentPro(HttpSession session, Model model,
-			@RequestParam(defaultValue = "") String res_num, @RequestParam(defaultValue = "0")String pay_num,
-			@RequestParam(defaultValue = "") String imp_uid, @RequestParam(defaultValue = "0")String res_idx,
-			@RequestParam(defaultValue = "") String earnedPoints, @RequestParam(defaultValue = "0")String preOrderTotalPrice,
-			@RequestParam(defaultValue = "") String totalPayment, @RequestParam(defaultValue = "0")String discountPoint
-			
-//			@RequestParam PaymentVO payment, @RequestParam ReservationVO res,@RequestParam PaymentInfo paymentInfo
-			) {
+	@PostMapping("paymentPro")
+	public String paymentPro(HttpSession session, @RequestBody Map<String, Object> map) {
 		
-//		System.out.println("paymentVO : " + payment);
-//		System.out.println("PaymentInfo : " + paymentInfo);
-//		System.out.println("ReservationVO : " + res);
-		System.out.println("res_num : " + res_num);
-		System.out.println("pay_num : " + pay_num);
+		// ajax로 파라미터를 받을 때 map객체를 사용해서 받음
+		System.out.println("map : " + map);
+		System.out.println("-");
+		
 		//세션에 저장된 아이디로 회원정보확인 하기 위해 일단 세션에 임의의 값 넣음
 //		session.setAttribute("sIdx", "2");
+		String sIdx = (String)session.getAttribute("sIdx");
 		
+		// 세션에 로그인이 안되어있다면 접근금지 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 일단 지금 session null나옴 
+//		if(session.getAttribute("sId") == null) {
+//			return "false";
+//		}
 		
-		// 세션에 로그인이 안되어있다면 접근금지
-		if(session.getAttribute("sId") == null) {
-			
-			model.addAttribute("msg", "접근권한이 없습니다!");
-			model.addAttribute("targetURL", "login");
-			return "forword";
-		}
+		System.out.println("--");
+		// [ 결제번호로 결제정보 조회하기 ] --------------------------------
+		ReservationVO res = new ReservationVO();
+		res.setRes_num((String)map.get("res_num"));
 		
-//		res.setRes_num("R0002");
-		// 결제번호로 결제정보 조회하기 
+		// payment 뷰페이 로딩시 사용하기 때문에 reservationVO객체에 넣어서 사용
 		res = service.getReservation(res);
+		System.out.println("---res : "+res);
+		//---------------------------------------------------------------------
 		
-		// 1. 최종 결제정보 insert 
-		// payment의 외래키가 user_idx여서 세션에서 불러옴
-		int sIdx = (int)session.getAttribute("sIdx");
-		// 천단위 쉼표제거 후 형변환뒤 payment객체에 넣어줌
-		System.out.println("pay_po_price_String 변환전 : " + paymentInfo.getPreOrderTotalPrice().trim());
+		
+		// [ 결제정보를 데이터 베이스에 저장하기 위한 데이터정리 ] -------------
+		
+		// 데이터베스에 들고갈 paymentVO객체 생성
+		PaymentVO payment = new PaymentVO();
+		// 1. payment의 외래키가 user_idx여서 세션에서 불러옴 >>>>>>>>>>> 지금 세션작동 안됨 일단 주석처리
+//		int sIdx = (int)session.getAttribute("sIdx");
+		
+		// 2. 천단위 쉼표제거 후 형변환뒤 payment객체에 넣어줌
+		System.out.println("pay_po_price_String 변환전 : " + (String)map.get("preOrderTotalPrice"));
 		int pay_po_price; //현장에서 결제
+		
 		// controller에서만 판별하기 위한 pay_on_sit =1 : 선주문없음 pay_on_sit = 2 : 선주문있음 
-		if(paymentInfo.getPreOrderTotalPrice().trim().equals("선주문 없음")) {
+		if(map.get("preOrderTotalPrice").equals("선주문 없음")) {
 			pay_po_price = 0;
 			payment.setPay_on_site(1); // 선주문 없음
-		} else if(paymentInfo.getPreOrderTotalPrice().trim().equals("0")) {
+		} else if(map.get("preOrderTotalPrice").equals("0")) {
 			pay_po_price = 0;
 			payment.setPay_on_site(2); // 선주문있는데 현장에서 결제함
 		} else {
-			pay_po_price = Integer.parseInt(paymentInfo.getPreOrderTotalPrice().trim().replace(",", ""));
+			pay_po_price = Integer.parseInt(((String)map.get("preOrderTotalPrice")).trim().replace(",", ""));
 			payment.setPay_on_site(3); // 선주문있는데 선결제함
 		}
 		payment.setPay_po_price(pay_po_price); 
-		System.out.println(pay_po_price);
+		payment.setPay_num((String)map.get("pay_num"));
+		
+		System.out.println(pay_po_price); // 0 => 현장결제가 있거나 선주문이 없음
 		System.out.println(payment);
 		System.out.println(res);
 		
-		//2. paymentInfo 에서 discountPoint 와 earnedPoints가 String 타입이기 때문에 형변환을 하고 넣어줘야함
-		int discountPoint = Integer.parseInt("-"+paymentInfo.getDiscountPoint().replace(",", "").trim());
-		int earnedPoints = Integer.parseInt(paymentInfo.getEarnedPoints().replace(",", "").trim());
-		System.out.println(discountPoint + ", " + earnedPoints);
+		// 3. paymentInfo 에서 discountPoint 와 earnedPoints가 String 타입이기 때문에 형변환을 하고 넣어줘야함
+		int discountPoint = Integer.parseInt("-"+((String)map.get("discountPoint")).replace(",", "").trim());
+		int earnedPoints = Integer.parseInt(((String)map.get("earnedPoints")).replace(",", "").trim());
+		System.out.println("사용포인트, 적립포인트 인트타입 변환 " + discountPoint + ", " + earnedPoints);
 		
-		//1.의 insert
-		int insertPayment = service.paymentSuccess(res,sIdx,paymentInfo.getPayNum(),payment); //res의 res_table_price와pay_per_price같음
+		
+		// 인단 여기까지 처리함 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+		
+		
+		// [ 결제정보 insert ]
+		int insertPayment = service.paymentSuccess(res,sIdx,payment); //res의 res_table_price와pay_per_price같음
 		if(insertPayment > 0) {
 			// 1-1. 3번 성공시 예약테이블에서 결제완료상태로 표시 변경 update (res_pay_status = 1)
 			int updateReservationStatus = service.payStatusChange(res);
 			if(updateReservationStatus == 0) {
 
-				model.addAttribute("msg", "예약정보에 결제완료 상태표시를 실패했습니다!");
-				return "fail_back";
+				return "false";
 			}
-			
-			// 1-2. 사용한 포인트 insert (point_category = 4) //discountPoint(paymentInfo 객체에서 int로 변환)
-			if(discountPoint < 0) {
-				
-				int insertSubUsedPoint = service.subUsedPoint(sIdx, discountPoint);
-				if(insertSubUsedPoint == 0) {
-					model.addAttribute("msg", "포인트 사용정보 변경을 실패했습니다!");
-					return "fail_back";
-				}
-			}
-			
-			// 1-3. 결제로 인한 적립 포인트 insert  (point_category = 1) //earnedPoints(paymentInfo 객체에서 int로 변환)
-			if(earnedPoints > 0) {
-				
-				int insertAddPoint = service.addPoint(sIdx, earnedPoints);
-				if(insertAddPoint == 0) {
-					
-					model.addAttribute("msg", "포인트 적립에 실패했습니다!");
-					return "fail_back";
-				}
-			}
-			
-//			mav = new ModelAndView();
-//			mav.setViewName("redirect:/payment/info?res_num=" + res.getRes_num()
-//			+ "&discountPoint=" + paymentInfo.getDiscountPoint() 
-//			+ "&earnedPoints=" + paymentInfo.getEarnedPoints()
-//			+ "&finalTotalPayment=" + paymentInfo.getTotalPayment()
-//			+ "&pay_num=" + payment.getPay_num()
-//			);
-			return "true";
-		
+//			
+//			// 1-2. 사용한 포인트 insert (point_category = 4) //discountPoint(paymentInfo 객체에서 int로 변환)
+//			if(discountPoint < 0) {
+//				
+//				int insertSubUsedPoint = service.subUsedPoint(sIdx, discountPoint);
+//				if(insertSubUsedPoint == 0) {
+//					model.addAttribute("msg", "포인트 사용정보 변경을 실패했습니다!");
+//					return "fail_back";
+//				}
+//			}
+//			
+//			// 1-3. 결제로 인한 적립 포인트 insert  (point_category = 1) //earnedPoints(paymentInfo 객체에서 int로 변환)
+//			if(earnedPoints > 0) {
+//				
+//				int insertAddPoint = service.addPoint(sIdx, earnedPoints);
+//				if(insertAddPoint == 0) {
+//					
+//					model.addAttribute("msg", "포인트 적립에 실패했습니다!");
+//					return "fail_back";
+//				}
+//			}
+//			
+////			mav = new ModelAndView();
+////			mav.setViewName("redirect:/payment/info?res_num=" + res.getRes_num()
+////			+ "&discountPoint=" + paymentInfo.getDiscountPoint() 
+////			+ "&earnedPoints=" + paymentInfo.getEarnedPoints()
+////			+ "&finalTotalPayment=" + paymentInfo.getTotalPayment()
+////			+ "&pay_num=" + payment.getPay_num()
+////			);
+//			return "true";
+//		
 		} else {
 			return "false";
 		}
