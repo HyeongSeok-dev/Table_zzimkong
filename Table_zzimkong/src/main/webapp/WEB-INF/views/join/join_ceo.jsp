@@ -10,7 +10,9 @@
     <title>업체 회원 가입</title>
     <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/join_ceo.css">
-
+	<!-- 사업자번호 진위 여부 -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	
 	<!-- js -->
     <script src="${pageContext.request.contextPath }/resources/js/join_ceo.js"></script>
 
@@ -76,10 +78,15 @@
                   <span id="checkPhoneResult"></span>
 			  </div>
 			  <br>
+			  <!-- 개업일 -->
+			  <div>
+	              <input type="text" id="com_date" class="inputTxt inpBig" placeholder="개업일 (' - ' 를 빼고 입력)"  maxlength="16" autocomplete="false">
+			  </div>
+			  <br>
 			   <!-- 사업자번호 -->
               <div id="ceoBox">
-				  <input type="text" id="com_num" name="com_num" class="inputTxt inpBig" placeholder="사업자번호 (' - ' 를 빼고 입력)" onkeydown="eventObj.loginByEnterKey(event)" maxlength="100">
-				  <button type="button" class="inputTxt inpBig">인증하기</button>
+				  <input type="text" id="com_num" name="com_num" class="inputTxt inpBig" placeholder="사업자번호 (' - ' 를 빼고 입력)"  maxlength="100">
+				  <button type="button" class="inputTxt inpBig" id="api">인증하기</button>
                	  <span id="checCeonNmResult"></span>
 			  </div>
 			  <br>              

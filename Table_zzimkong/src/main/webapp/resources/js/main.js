@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	
-	//출력 10개로 제한
+	//정렬 출력 10개로 제한
     var limitItems = function(carouselId) {
         var carousel = $(carouselId);
         var items = carousel.children();
@@ -67,6 +67,24 @@ $(document).ready(function() {
 	//Initiat WOW JS
 	new WOW().init();
 
+//지역 선택에 따른 정렬 
+//$(document).ready(function() {
+//    $('input[name=location]').change(function() {
+//        var selectedValue = $(this).val();
+//
+//        $.ajax({
+//            url: 'selectArea',  
+//            type: 'POST',  
+//            data: { value: selectedValue },  // 전송할 데이터
+//            success: function(response) { //요청성공
+//                console.log(response);
+//            },
+//            error: function(error) { //요청실패
+//                console.error(error);
+//            }
+//        });
+//    });
+//});
 
 
 

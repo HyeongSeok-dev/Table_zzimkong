@@ -70,7 +70,6 @@ public class MemberController {
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		String securePasswd = passwordEncoder.encode(member.getUser_passwd());
 		member.setUser_passwd(securePasswd);
-
 		
 	      member.setUser_category(1); //임시 - 일반회원(1) or 업주회원(2)
 		

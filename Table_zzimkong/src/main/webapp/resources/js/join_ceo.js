@@ -272,5 +272,52 @@ $(document).ready(function() {
 
 	}); 
 	
-});
+	//사업자 번호 인증
+		$("#api").click(function(){
+				console.log("사업자api");
+				var data = {
+					
+				"businesses": [ 
+					{
+			         "b_no": $("#com_num").val() , //사업자번호
+			         "start_dt" : $("#com_date").val(), // 개업일 필수
+					  "p_nm" : $("#u_name").val(), // 대표자명 필수
+				      "p_nm2": "",
+				      "b_nm": "",
+				      "corp_no": "",
+				      "b_sector": "",
+				      "b_type": "",
+				      "b_adr": ""
+					 }
+					 ]
+		       }; //var data
+		    
+			    $.ajax({
+			    type: "POST",
+			    url: "https://api.odcloud.kr/api/nts-businessman/v1/validate?"// serviceKey 값을 xxxxxx에 입력
+				+ "serviceKey=CYbq%2B5t%2F8Jf2FwQcca5NGu4wJMrcTJ83jxrSTNfpTbv8YDkS%2Bi9AWNr0Oa0c4OZLZEY3LPbm806fMYW7x0bBeg%3D%3D"
+				,
+			    data: JSON.stringify(data), // json 을 string으로 변환하여 전송
+			    contentType: "application/json",
+			    dataType: "json",
+			    accept: "application/json",
+			    success: function(businesses) {
+			        console.log("성공");
+			        console.log(businesses.valid_cnt);
+			        if(businesses.valid_cnt == 1){ //성공했을때
+						$("#checCeonNmResult").text("사업자번호 인증에 성공하였습니다. ");		
+						$("#checCeonNmResult").css("color", "blue");
+					}else{ //실패했을때
+						$("#checCeonNmResult").text("사업자번호 인증에 실패하였습니다. 입력하신 정보를 다시한번 확인해주세요. ");		
+						$("#checCeonNmResult").css("color", "red");
+					}
+			    },
+			    error: function(result) {
+			        console.log(result.responseText); //responseText의 에러메세지 확인
+			    }
+		 });
+
+	}); //사업자번호 인증api
+	
+}); //jquery
 	

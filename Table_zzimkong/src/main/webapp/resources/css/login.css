@@ -5,6 +5,15 @@
     padding-right: 0;  /* footer의 오른쪽 여백 제거 */
 }
 
+/*회원가입 글씨통일하기*/
+#joinBtn {
+    font-size: 18px;  /* 글씨 크기를 20px로 설정 */
+}
+
+#joinBtn:hover {
+    text-decoration: underline;  /* 마우스 오버 시 밑줄 추가 */
+}
+
 
 /* 체크박스랑 로그인 버튼 사이에 간격띄우기 */
 .check {
