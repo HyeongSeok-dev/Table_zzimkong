@@ -175,8 +175,7 @@ public class MypageController {
 
 	}
 	
-	// [ 나의 내역 조회 ]
-	
+	//---------- 나의 내역 조회 ----------------
 	@GetMapping("my/list")
 	public String my_list(MypageInfo mypage, HttpSession session, Model model, HttpServletResponse response) {
 		
@@ -201,8 +200,24 @@ public class MypageController {
 		return "mypage/my_list";
 	}
 	
-	// [ 나의 예약 상세 조회 ]
+	// => AJAX 요청에 대한 응답 처리를 위해 @ResponseBody 적용
+	@ResponseBody
+	@PostMapping("my/listPro")
+	public String my_listPro(BookmarkVO bookmark, HttpSession session, Model model) {
+		
+		// 하트 클릭시 북마크 삭제
+	    int deleteCount = service.bookmarkDel(bookmark);
+	    
+	    if(deleteCount > 0) { // 성공시
+	        return "{\"result\": \"success\"}";
+	    } else { // 실패시
+	        return "{\"result\": \"fail\"}";
+	    }
+	}
 	
+	
+	
+	//----------------나의 예약 더보기 페이지--------------------
 	@GetMapping("my/reservation")
 	public String my_reservation(MypageInfo mypage, HttpSession session, Model model, HttpServletResponse response)	{
 		
@@ -232,7 +247,7 @@ public class MypageController {
 		}
 	}	
 	
-	// 나의 북마크 조회
+	//----------------나의 북마크 더보기 페이지------------------
 	@GetMapping("my/bookmark")
 	public String my_bookmark(BookmarkVO bookmark, HttpSession session, Model model) {
 		int sIdx = (int)session.getAttribute("sIdx"); //세션 인덱스 가져오기 (회원번호)
@@ -241,6 +256,22 @@ public class MypageController {
 		model.addAttribute("bookmarkList2", bookmarkList2);
 		
 		return "mypage/my_bookmark";
+	}
+	
+	// => AJAX 요청에 대한 응답 처리를 위해 @ResponseBody 적용
+	@ResponseBody
+	@PostMapping("my/bookmark/del")
+	public String my_bookmark_del(BookmarkVO bookmark, HttpSession session, Model model) {
+		
+		// 하트 클릭시 북마크 삭제
+	    int deleteCount = service.bookmarkDel2(bookmark);
+	    System.out.println("북마크2 : " + bookmark);
+	    
+	    if(deleteCount > 0) { // 성공시
+	        return "{\"result\": \"success\"}";
+	    } else { // 실패시
+	        return "{\"result\": \"fail\"}";
+	    }
 	}
 
 	@GetMapping("my/review")

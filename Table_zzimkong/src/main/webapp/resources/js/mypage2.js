@@ -31,4 +31,40 @@
 		    event.preventDefault();
 		  }
 		};
+		
+		    
+		function removeBookmark2(com_id) {
+		    var result = confirm("북마크를 삭제하시겠습니까?");
+		    
+		    if(result) {
+		        $.ajax({
+		            type: "POST",
+		            url: "/zzimkong/my/listPro",
+		            data: { com_id: com_id },
+		            success: function(response) {
+		                // 요청이 성공적으로 처리되었을 때 실행되는 코드입니다.
+		                // 여기서는 해당 북마크를 화면에서 삭제합니다.
+		                $('#'+com_id).remove();
+		            }
+		        });
+		    }
+		};
+		
+		function removeBookmark(com_id) {
+		    var result = confirm("북마크를 삭제하시겠습니까?");
+		    
+		    if(result) {
+		        $.ajax({
+		            type: "POST",
+		            url: "/zzimkong/my/bookmark/del",
+		            data: { com_id: com_id },
+		            success: function(response) {
+		                // 요청이 성공적으로 처리되었을 때 실행되는 코드입니다.
+		                // 여기서는 해당 북마크를 화면에서 삭제합니다.
+		                $('#'+com_id).remove();
+		            }
+		        });
+		    }
+		};
 
+	

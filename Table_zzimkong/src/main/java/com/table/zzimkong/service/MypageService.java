@@ -53,6 +53,19 @@ public class MypageService {
 	public List<BookmarkVO> getBookmarkList2(int sIdx) {
 		return mapper.selectBookmarkList2(sIdx);
 	}
+	
+	// 나의내역 페이지에서 북마크 삭제
+	public int bookmarkDel(BookmarkVO bookmark) {
+		// TODO Auto-generated method stub
+		return mapper.deleteBookmark(bookmark);
+	}
+
+	// 더보기 페이지에서 북마크 삭제
+	public int bookmarkDel2(BookmarkVO bookmark) {
+		return mapper.deleteBookmark2(bookmark);
+	}
+
+
 
 
 

@@ -34,6 +34,14 @@ public interface MypageMapper {
 
 	// 북마크 목록 모두 조회
 	List<BookmarkVO> selectBookmarkList2(@Param("sIdx") int sIdx);
+	
+	// 나의내역 페이지 북마크 삭제
+	int deleteBookmark(BookmarkVO bookmark);
+
+	// 더보기 페이지 북마크 삭제
+	int deleteBookmark2(BookmarkVO bookmark);
+
+
 
 
 }

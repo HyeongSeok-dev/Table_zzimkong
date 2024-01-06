@@ -12,9 +12,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 <!-- jQuery, javascript -->
 <script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/js/mypage.js">
-</script>
+<script src="${pageContext.request.contextPath}/resources/js/mypage.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/mypage2.js"></script>
 </head>
 <body>
 	<header>
@@ -91,12 +90,12 @@
 			<br>
 			<div class="bookmark_image">
 			<c:forEach var="bookmark" items="${bookmarkList}">
-		        <div>
+		        <div id="${bookmark.com_id}">
 		        	<a href="${pageContext.request.contextPath}/product/detail?com_id=${bookmark.com_id}">
 		           	 <img class="image_size" src="${pageContext.request.contextPath}/resources/upload/${bookmark.com_img}">
 		       		</a>
 			    <div id="likeButton" class="like_button">
-		       		<svg id="heart" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+		       		<svg id="heart" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" onclick="removeBookmark2('${bookmark.com_id}')">
 		            	<path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
 		        	</svg>
 		        	${bookmark.com_name}
