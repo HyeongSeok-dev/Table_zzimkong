@@ -17,7 +17,7 @@
 	        type: "POST",
 	        url: "/my/resPro",
 	        data: {
-	            res_idx: res_idx
+	            res_idx:res_idx
 	        },
 	        success: function() {
 	            location.reload();
