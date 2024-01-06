@@ -28,7 +28,7 @@
  	<header>
 		<jsp:include page="../inc/top2.jsp"></jsp:include>
 	</header>
-	<form action="paymentPro" name="payForm" method="POST">
+	<form action="paymentPro" name="payForm" method="POST" id="payForm">
 		<div class="div_outter">
 			<div class="div_form_header">
 				<span><h1>결제</h1></span>
@@ -52,23 +52,12 @@
 			<div class="div_inner">
 				<div class="div_left_box">
 					<section id="leftSec01" class="section_box">
-						<h2>쿠폰/포인트</h2>
-						<div class="coupon_and_point">
-							<div class="coupon">
-								<div class="font_stlye">쿠폰선택</div>
-								<select class="select_coupon" name="selectCoupon">
-									<option value="" >쿠폰을 선택해주세요</option>
-									<option value="5000" >[신규회원] 가입축하기념 5,000원 할인</option>
-									<option value="0.1" >[크리스마스] 크리스마스외식 테이블찜콩 10% 할인</option>
-								</select>
-								 &nbsp; &nbsp;
-								<button id="useCoupone" class="use_button"  type="button">사용하기</button>
-							</div>
+						<h2>포인트</h2>
 							<div class="point">
 								<div class="point_result">
-									<span class="font_stlye">포인트</span> 
+<!-- 									<span class="font_stlye">포인트</span>  -->
 									<span class="point_available">
-										사용가능금액&nbsp;
+										&nbsp;&nbsp;사용가능금액&nbsp;
 										<span id="useablePoint">
  											${map.paymentInfo.totalPoint}
 										</span>
@@ -79,7 +68,6 @@
 								<input type="text" value="" placeholder="0" class="point_to_use" name="pointToUse"/><span class="won">원</span>
 								<button id="usePoint" class="use_button"  type="button">사용하기</button>
 							</div>
-						</div>
 					</section>
 					<section id="leftSec02" class="section_box">
 						<h2>결제수단</h2>
@@ -95,55 +83,12 @@
 								<span class="font_stlye"> </span>
 							</div>
 							<br>
-<!-- 							<div> -->
-<!-- 								<input type="radio" name="pay_method" value="2" id="naverPay">&nbsp; -->
-<%-- 								<img src="${pageContext.request.contextPath }/resources/img/naverPay_png.png" width="65" id = "naver"> --%>
-<!-- 								<span class="font_stlye"> </span> -->
-<!-- 							</div> -->
-<!-- 							<br> -->
 							<div>
 								<input type="radio" name="pay_method" value="3" id="creditCardPayment"><span class="font_stlye"> 카드결제</span>
-<!-- 								<select class="select" id="cardSelect" name="pay_card_co"> -->
-<!-- 									<option value="">카드사를 선택해 주세요</option> -->
-<!-- 									<option value="삼성">삼성</option> -->
-<!-- 									<option value="신한">신한</option> -->
-<!-- 									<option value="현대">현대</option> -->
-<!-- 									<option value="국민">국민</option> -->
-<!-- 									<option value="비씨">비씨</option> -->
-<!-- 									<option value="롯데">롯데</option> -->
-<!-- 									<option value="우리">우리</option> -->
-<!-- 									<option value="하나">하나</option> -->
-<!-- 									<option value="농협">농협</option> -->
-<!-- 									<option value="씨티">씨티</option> -->
-<!-- 								</select> -->
 							</div>
 							<br>
 							<div>	
 								<input type="radio" name="pay_method" value="5" id="mobilePhonePayment"><span class="font_stlye"> 휴대폰결제</span>
-							</div>
-							<br>
-							<div>
-								<input type="radio" name="pay_method" value="4" id="accountPayment"><span class="font_stlye"> 무통장입금</span>
-								<span class="pm_acc_comment">20분 이내 입금되지 않으면 예약은 자동 취소됩니다.</span>
-								<br>
-								<select class="select_b" id="bankSelect" name="bankSelect">
-									<option value="">입금은행</option>
-									<option value="신한">신한</option>
-									<option value="국민">국민</option>
-									<option value="우리">우리</option>
-									<option value="하나">하나</option>
-									<option value="농협">농협</option>
-									<option value="씨티">씨티</option>
-									<option value="기업">기업</option>
-									<option value="SC">SC</option>
-									<option value="우체국">우체국</option>
-									<option value="부산">부산</option>
-									<option value="대구">대구</option>
-									<option value="외환">외환</option>
-									<option value="카카오뱅크">카카오뱅크</option>
-									<option value="케이뱅크">케이뱅크</option>
-								</select>
-								<input type="text" placeholder="계좌번호" value="" class="account" name="accNum" readonly>
 							</div>
 						</div>
 					</section>
@@ -172,19 +117,6 @@
 									<a onclick="paymentAgreeView()" class="info-content agree">보기</a>
 								</span>
 							</div>	
-							<!-- 예약에 있어서 주석 -->
-<!-- 							<div class="agree_main"> -->
-<!-- 								<span> -->
-<!-- 									<input type="checkbox" id="revocationAgree" name="agreement" class="agree"> -->
-<!-- 									<span class="each_agree"> -->
-<!-- 										<span class="agree_font">[필수]</span>  -->
-<!-- 										취소 및 환불규정 동의 합니다. -->
-<!-- 									</span> -->
-<!-- 								</span> -->
-<!-- 								<span> -->
-<!-- 									<a href="#" class="info-content">보기</a> -->
-<!-- 								</span> -->
-<!-- 							</div> -->
 							<div class="agree_main">
 								<span>
 									<input type="checkbox" name="per_info_consent" class="agree">

@@ -107,11 +107,11 @@
 	<select id="selectResultRes" resultType="res">
 		SELECT * 
 		FROM reservation
-		WHERE user_idx = #{user_idx}
+		WHERE res_num = #{res_num}
 	</select>
 	<select id="selectPayment" resultType="payment">
 		SELECT * 
 		FROM payment
-		WHERE pay_num = '${payNum}' 
+		WHERE res_idx = #{res_idx} 
 	</select>
 </mapper>

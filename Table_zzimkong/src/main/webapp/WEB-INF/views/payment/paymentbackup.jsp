@@ -9,45 +9,26 @@
 <link href="${pageContext.request.contextPath }/resources/css/payment.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet" type="text/css">
 <script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
+<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+<script src="https://cdn.portone.io/v2/browser-sdk.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/payment.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/payment_API.js"></script>
 <script type="text/javascript"> 
-// $(function() {
-// 	$("form").submit(function(e) {
-			
-// 			e.preventDefault();
-	
-// 		    var formData = new FormData(this);
-// 		    formData.append('discountPoint', $("#discountPoint").text());
-// 		    formData.append('earnedPoints', $("#earnedPoints").text());
-// 		    formData.append('totalPayment', $("#totalPayment").text());
-// 		    formData.append('preOrderTotalPrice', $("#preOrderTotalPrice").text());
-		
-// 		    $.ajax({
-// 		        url: "paymentPro",
-// 		        type: "POST",
-// 		        data: formData,
-// 		        contentType: false,
-// 		        processData: false,
-// 		        success: function(response) {
-// 		            console.log(response + " - 파라미터 전달 성공");
-// 		        },
-// 		        error: function(error) {
-// 		            console.log(error + " - 파라미터 전달 실패");	    
-// 		        }
-// 		    });
-		
-// 		    return true;
-// 		});
-// });
-
+	function paymentAgreeView() {
+			/* 팝업창 중앙 정렬 */
+			var popupW = 950;
+			var popupH = 700;
+			var left = Math.ceil((window.screen.width - popupW)/2);
+			var top = Math.ceil((window.screen.height - popupH)/2);
+			window.open('${pageContext.request.contextPath }/payment/agree','','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
+		}
 </script>
-
 </head>
 <body>
  	<header>
 		<jsp:include page="../inc/top2.jsp"></jsp:include>
 	</header>
-	<form action="paymentPro" name="payForm" method="post">
+	<form action="paymentPro" name="payForm" method="POST" id="payForm">
 		<div class="div_outter">
 			<div class="div_form_header">
 				<span><h1>결제</h1></span>
@@ -80,23 +61,24 @@
 									<option value="5000" >[신규회원] 가입축하기념 5,000원 할인</option>
 									<option value="0.1" >[크리스마스] 크리스마스외식 테이블찜콩 10% 할인</option>
 								</select>
+								 &nbsp; &nbsp;
 								<button id="useCoupone" class="use_button"  type="button">사용하기</button>
 							</div>
-							<div class="point">
-								<div class="point_result">
-									<span class="font_stlye">포인트</span> 
-									<span class="point_available">
-										사용가능금액&nbsp;
-										<span id="useablePoint">
- 											${map.paymentInfo.totalPoint}
-										</span>
-										원
-										 &nbsp; <span><a id="useAllPoint">전액사용</a></span>
+						</div>
+						<div class="point">
+							<div class="point_result">
+								<span class="font_stlye">포인트</span> 
+								<span class="point_available">
+									사용가능금액&nbsp;
+									<span id="useablePoint">
+											${map.paymentInfo.totalPoint}
 									</span>
-								</div>
-								<input type="text" value="" placeholder="0" class="point_to_use" name="pointToUse"/><span class="won">원</span>
-								<button id="usePoint" class="use_button"  type="button">사용하기</button>
+									원
+									 &nbsp; <span><a id="useAllPoint">전액사용</a></span>
+								</span>
 							</div>
+							<input type="text" value="" placeholder="0" class="point_to_use" name="pointToUse"/><span class="won">원</span>
+							<button id="usePoint" class="use_button"  type="button">사용하기</button>
 						</div>
 					</section>
 					<section id="leftSec02" class="section_box">
@@ -109,31 +91,35 @@
 							<br>
 							<div>
 								<input type="radio" name="pay_method" value="1" id="kakaoPay">&nbsp;
-								<img src="${pageContext.request.contextPath }/resources/img/kakao_logo.png" width="20">
-								<span class="font_stlye"> 카카오페이</span>
+								<img src="${pageContext.request.contextPath }/resources/img/kakaoPay_png.png" width="65" id="kakao">
+								<span class="font_stlye"> </span>
 							</div>
 							<br>
-							<div>
-								<input type="radio" name="pay_method" value="2" id="naverPay">&nbsp;
-								<img src="${pageContext.request.contextPath }/resources/img/naver_logo.png" width="20">
-								<span class="font_stlye"> 네이버페이</span>
-							</div>
-							<br>
+<!-- 							<div> -->
+<!-- 								<input type="radio" name="pay_method" value="2" id="naverPay">&nbsp; -->
+<%-- 								<img src="${pageContext.request.contextPath }/resources/img/naverPay_png.png" width="65" id = "naver"> --%>
+<!-- 								<span class="font_stlye"> </span> -->
+<!-- 							</div> -->
+<!-- 							<br> -->
 							<div>
 								<input type="radio" name="pay_method" value="3" id="creditCardPayment"><span class="font_stlye"> 카드결제</span>
-								<select class="select" id="cardSelect" name="pay_card_co">
-									<option value="">카드사를 선택해 주세요</option>
-									<option value="삼성">삼성</option>
-									<option value="신한">신한</option>
-									<option value="현대">현대</option>
-									<option value="국민">국민</option>
-									<option value="비씨">비씨</option>
-									<option value="롯데">롯데</option>
-									<option value="우리">우리</option>
-									<option value="하나">하나</option>
-									<option value="농협">농협</option>
-									<option value="씨티">씨티</option>
-								</select>
+<!-- 								<select class="select" id="cardSelect" name="pay_card_co"> -->
+<!-- 									<option value="">카드사를 선택해 주세요</option> -->
+<!-- 									<option value="삼성">삼성</option> -->
+<!-- 									<option value="신한">신한</option> -->
+<!-- 									<option value="현대">현대</option> -->
+<!-- 									<option value="국민">국민</option> -->
+<!-- 									<option value="비씨">비씨</option> -->
+<!-- 									<option value="롯데">롯데</option> -->
+<!-- 									<option value="우리">우리</option> -->
+<!-- 									<option value="하나">하나</option> -->
+<!-- 									<option value="농협">농협</option> -->
+<!-- 									<option value="씨티">씨티</option> -->
+<!-- 								</select> -->
+							</div>
+							<br>
+							<div>	
+								<input type="radio" name="pay_method" value="5" id="mobilePhonePayment"><span class="font_stlye"> 휴대폰결제</span>
 							</div>
 							<br>
 							<div>
@@ -159,10 +145,6 @@
 								</select>
 								<input type="text" placeholder="계좌번호" value="" class="account" name="accNum" readonly>
 							</div>
-							<br>
-							<div>	
-								<input type="radio" name="pay_method" value="5" id="mobilePhonePayment"><span class="font_stlye"> 휴대폰결제</span>
-							</div>
 						</div>
 					</section>
 					<section id="leftSec03" class="section_box">
@@ -176,7 +158,7 @@
 									 서비스약관에 동의 합니다.
 								</span>
 							</span>
-							<span><a href="#" class="info-content">보기</a></span>
+							<span></span>
 							</div>
 							<div class="agree_main">
 								<span>
@@ -187,21 +169,22 @@
 									</span>
 								</span>
 								<span>
-									<a href="#" class="info-content">보기</a>
+									<a onclick="paymentAgreeView()" class="info-content agree">보기</a>
 								</span>
 							</div>	
-							<div class="agree_main">
-								<span>
-									<input type="checkbox" id="revocationAgree" name="agreement" class="agree">
-									<span class="each_agree">
-										<span class="agree_font">[필수]</span> 
-										취소 및 환불규정 동의 합니다.
-									</span>
-								</span>
-								<span>
-									<a href="#" class="info-content">보기</a>
-								</span>
-							</div>
+							<!-- 예약에 있어서 주석 -->
+<!-- 							<div class="agree_main"> -->
+<!-- 								<span> -->
+<!-- 									<input type="checkbox" id="revocationAgree" name="agreement" class="agree"> -->
+<!-- 									<span class="each_agree"> -->
+<!-- 										<span class="agree_font">[필수]</span>  -->
+<!-- 										취소 및 환불규정 동의 합니다. -->
+<!-- 									</span> -->
+<!-- 								</span> -->
+<!-- 								<span> -->
+<!-- 									<a href="#" class="info-content">보기</a> -->
+<!-- 								</span> -->
+<!-- 							</div> -->
 							<div class="agree_main">
 								<span>
 									<input type="checkbox" name="per_info_consent" class="agree">
@@ -211,13 +194,13 @@
 									</span>
 								</span>
 								<span>
-									<a href="#" class="info-content">보기</a>
+									<a onclick="paymentAgreeView()" class="info-content agree">보기</a>
 								</span>
 							</div>
 						</div>
 					</section>
 					<div class="div_submit">
-						<button type="submit" class="pay_button">결제</button> 
+						<button type="button" class="pay_button" id="payBtn">결제</button> 
 					</div>
 				</div>
 				<div class="div_right_box">
@@ -225,14 +208,14 @@
 						<section id="rightSec01" class="section_box">
 							<div class="res_header">
 								<h2 id="res_h2">예약 상세</h2><h3 class="res_num">${map.res.res_num}</h3>
-				  <%-- param--%><input type="hidden" value="${map.res.res_num}" name="res_num">
+				  <%-- param--%><input type="hidden" value="${map.res.res_num}" id="res_num" name="res_num">
 							</div>
 							<div class="res_main">
 								<ul>
 									<li class="res_li">
 										<span class="res_info">상호명</span>
 										<h3 class="res_com_name">${map.com.com_name}</h3>
-					  	  <%-- param--%><input type="hidden" value="${map.com.com_name}" name="com_name">
+					  	  <%-- param--%><input type="hidden" id="com_name" value="${map.com.com_name}" name="com_name">
 									</li>
 									<li class="res_li">
 										<span class="res_info">주소</span>
@@ -266,7 +249,7 @@
 									<li class="res_li">
 										<span class="res_info">인원수</span>
 										<span class="per_detail">${map.res.res_person} 명</span>
-						  <%-- param--%><input type="hidden" value="${map.res.res_person}" name="res_person">
+						  <%-- param--%><input type="hidden" value="${map.res.res_person}" name="res_person" id="res_person">
 									</li>
 									<li class="res_li2">
 										<div class="res_info">고객 요청사항</div>
@@ -287,11 +270,11 @@
 						 <%-- param--%> <input type="hidden" value="${map.res.res_table_price}" name="pay_per_price"/>
 									</div>
 									<c:choose>
-										<c:when test="${empty map.poi.pre_idx}">
+										<c:when test="${empty map.poi[0].pre_idx}">
 											<div>
 												<span class="detail">메뉴 선결제금액</span>
 												<span class="detail_price">
-													<span id="preOrderTotalPrice">선주문 없음</span>
+													<span id="preOrderTotalPrice_text">선주문 없음</span>
 												</span>
 											</div>  
 										</c:when>
@@ -299,7 +282,7 @@
 											<div>
 												<span class="detail">메뉴 선결제금액</span>
 												<span class="detail_price">
-													<span id="preOrderTotalPrice" >
+													<span id="preOrderTotalPrice_text" >
 														${map.paymentInfo.menuTotalPrice }
 													</span> 원
 		 										</span>
@@ -314,7 +297,7 @@
 									   	  <%-- param--%><input type="hidden" value="${preOrder.menu_name}" name="PreOrderStatus"/>
 														<span class="count">
 															<span>${preOrder.pre_num}</span>
-											  <%-- param--%><input type="hidden" value="${preOrder.pre_num}" name="PreOrderStatus"/>
+											  <%-- param--%><input type="hidden" value="${preOrder.pre_num}" name="pre_num"/>
 															개
 														</span>
 														<span class="price">
@@ -331,7 +314,7 @@
 										<span class="detail">쿠폰할인</span>
 										 <span class="detail_price">
 										 	- 
-										 	<span id="discountCoupon">0</span>
+										 	<span id="discountCoupon_text">0</span>
 										 	원
 										 </span>
 									</div> 
@@ -339,7 +322,7 @@
 										<span class="detail">포인트할인</span>
 										<span class="detail_price">
 											- 
-											<span id="discountPoint">0</span>
+											<span id="discountPoint_text">0</span>
 											원
 										</span>
 									</div> 
@@ -348,7 +331,7 @@
 									<div class="points_earn">
 										<span class="detail">적립예정 포인트</span>
 										<span class="detail_price">
-											<span id="earnedPoints">0</span> 원
+											<span id="earnedPoints_text">0</span> 원
 										</span>
 									</div>
 									<div>
@@ -374,7 +357,7 @@
 								<div class="total_detail">
 									<span class="total_info">총 결제 금액</span>
 									<span class="total_price" >
-										<span id="totalPayment">${map.paymentInfo.totalPrice}</span>
+										<span id="totalPayment_text">${map.paymentInfo.totalPrice}</span>
 										원
 									</span>
 								</div>
@@ -385,8 +368,17 @@
 			</div>
 		</div>
 		<%--info페이지에 필요한 할인전 예약금액 --%>
-		<input type="hidden" value="${map.paymentInfo.totalPrice}" name="beforeDiscountTotalPrice"/>
-		<input type="hidden" value="${map.res.res_idx}" name="res_idx"/>
+<%-- 		<input type="hidden" value="${map.paymentInfo.totalPrice}" name="beforeDiscountTotalPrice"/> --%>
+		<input type="hidden" value="${map.res.res_idx}" name="res_idx" id="res_idx"/>
+		<input type="hidden" value="${map.pay}" name="pay_num" id="pay_num"/>
+		<!-- 결제자(회원)와 예약자가 다를 수 있기 때문에 결제자 정보 저장 -->
+		<input type="hidden" value="${map.member.user_email}" name="user_email" id="user_email"/>
+		<input type="hidden" value="${map.member.user_name}" name="user_name" id="user_name"/>
+		<input type="hidden" value="${map.member.user_phone}" name="user_phone" id="user_phone"/>
+		<input type="hidden" value="" name="discountPoint" id="discountPoint"/>
+		<input type="hidden" value="" name="earnedPoints" id="earnedPoints" />
+		<input type="hidden" value="" name="totalPayment"  id="totalPayment"/>
+		<input type="hidden" value="" name="preOrderTotalPrice"  id="preOrderTotalPrice"/>
 	</form>
 	
 	<footer>

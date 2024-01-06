@@ -53,8 +53,8 @@ public class PaymentService {
 		return mapper.insertAddPoint(sIdx, earnedPoints);
 	}
 
-	public int paymentSuccess(ReservationVO res, int sIdx, String payNum, PaymentVO payment) {
-		return mapper.insertPayment(res, sIdx, payNum, payment);
+	public int paymentSuccess(ReservationVO res, int sIdx, PaymentVO payment) {
+		return mapper.insertPayment(res, sIdx, payment);
 	}
 
 	public int payStatusChange(ReservationVO res) {
@@ -67,13 +67,13 @@ public class PaymentService {
 		return mapper.selectMember(sId);
 	}
 
-	public ReservationVO getResultRes(MemberVO member) {
-		return mapper.selectResultRes(member);
+	public ReservationVO getResultRes(String res_num) {
+		return mapper.selectResultRes(res_num);
 	}
 
-	public PaymentVO getPayment(String payNum) {
+	public PaymentVO getPayment(ReservationVO res) {
 		// TODO Auto-generated method stub
-		return mapper.selectPayment(payNum);
+		return mapper.selectPayment(res);
 	}
 
 }

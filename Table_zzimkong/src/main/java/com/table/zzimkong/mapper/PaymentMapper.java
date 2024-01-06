@@ -38,7 +38,7 @@ public interface PaymentMapper {
 	int insertAddPoint(@Param("sIdx") int sIdx, @Param("earnedPoints") int earnedPoints);
 
 	int insertPayment(@Param("res")ReservationVO res, @Param("sIdx") int sIdx,
-					@Param("payNum")String payNum, @Param("payment") PaymentVO payment);
+					 @Param("payment") PaymentVO payment);
 
 	int updateReservationStatus(ReservationVO res);
 
@@ -46,8 +46,8 @@ public interface PaymentMapper {
 	
 	MemberVO selectMember(String sId);
 
-	ReservationVO selectResultRes(MemberVO member);
+	ReservationVO selectResultRes(String res_num);
 
-	PaymentVO selectPayment(String payNum);
+	PaymentVO selectPayment(ReservationVO res);
 
 }
