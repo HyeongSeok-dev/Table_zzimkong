@@ -85,7 +85,7 @@ public class MemberController {
 		}//joinPro()
 	
 	//MemberCheckDupId(아이디 중복확인)에대한 비지니스 로직 처리===============================
-	@ResponseBody
+	@ResponseBody // 응답 데이터를 body로 그대로 활용하기 위해 이 어노테이션을 적용!
 	@GetMapping("join/MemberCheckDupId")
 	public String checkDupId(MemberVO member) {
 		MemberVO dbMember = service.getMember(member);

@@ -28,5 +28,12 @@ public interface MypageMapper {
 	
 	// 예약 취소
 	int updateMyResCancel(MypageInfo mypage);
+	
+	// 북마크 목록
+	List<BookmarkVO> selectBookmarkList(@Param("sIdx") int sIdx);
+
+	// 북마크 목록 모두 조회
+	List<BookmarkVO> selectBookmarkList2(@Param("sIdx") int sIdx);
+
 
 }

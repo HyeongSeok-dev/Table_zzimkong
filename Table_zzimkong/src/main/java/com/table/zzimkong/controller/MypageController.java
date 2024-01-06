@@ -186,12 +186,17 @@ public class MypageController {
 		session.setAttribute("user_nick", dbMypage.getUser_nick()); // String~session: 마이페이지 눌렀을때 닉네임 계속 보이게 세션에 저장
 		session.setAttribute("imgName", dbMypage.getUser_img());
 		
-		//---- 예약조회(간략히 보기) --------------------
 		int sIdx = (int)session.getAttribute("sIdx"); //세션 인덱스 가져오기
+		//---- 예약조회(간략히 보기) --------------------
 		List<Map<String, Object>> resList = service.getResList(sIdx);
 		System.out.println("resList : " + resList);
 		// Model 객체에 회원 목록 조회 결과 저장(resList 문자열을 "resList"라는 속성명으로 저장)
 		model.addAttribute("resList", resList);
+		
+		//---- 북마크(간략히 보기) --------------------
+		List<BookmarkVO> bookmarkList = service.getBookmarkList(sIdx);
+		System.out.println("북마크 : " + sIdx); 
+		model.addAttribute("bookmarkList", bookmarkList);
 		
 		return "mypage/my_list";
 	}
@@ -227,6 +232,17 @@ public class MypageController {
 		}
 	}	
 	
+	// 나의 북마크 조회
+	@GetMapping("my/bookmark")
+	public String my_bookmark(BookmarkVO bookmark, HttpSession session, Model model) {
+		int sIdx = (int)session.getAttribute("sIdx"); //세션 인덱스 가져오기 (회원번호)
+		List<BookmarkVO> bookmarkList2 = service.getBookmarkList2(sIdx);
+		System.out.println("북마크 : " + sIdx); 
+		model.addAttribute("bookmarkList2", bookmarkList2);
+		
+		return "mypage/my_bookmark";
+	}
+
 	@GetMapping("my/review")
 	public String my_review() {
 		return "mypage/my_review";
@@ -270,10 +286,6 @@ public class MypageController {
 		return "mypage/my_edit_reservation";
 	}
 	
-	@GetMapping("my/bookmark")
-	public String my_bookmark() {
-		return "mypage/my_bookmark";
-	}
 	
 	
 

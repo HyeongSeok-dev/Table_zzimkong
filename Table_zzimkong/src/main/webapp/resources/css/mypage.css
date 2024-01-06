@@ -6,7 +6,7 @@
 
 .wrapper {
 	margin-left: 500px;
-	margin-right: 300px;
+	margin-right: 500px;
 	margin-top: 70px;
 }
 
@@ -23,6 +23,11 @@
     font-size: 25px;
     display: inline; /* 글자 길이에 맞게 */
     font-weight: bold;
+}
+
+.small-text {
+   font-size: 13px;
+   vertical-align: middle;
 }
 
 h3 {
@@ -49,13 +54,6 @@ table {
     font-size: 15px;
 }
 
-/* th { */
-/*     background-color: #3FAFFC; */
-/*     color: #333; */
-/*     padding: 15px; */
-/*     font-size: 15px; */
-/* } */
-
 td {
     padding: 15px;
     font-size: 14px;
@@ -66,13 +64,6 @@ td, th {
     border: 1px solid #e7e7e7;
     line-height: 3;
 }
-
-/* p { */
-/* 	line-height: 1; */
-/* 	color:  #797979; */
-/* 	font-size:13px; */
-/* } */
-
 
 .input_text {
     width: 30%;
@@ -195,10 +186,17 @@ input[type="date"]::before {
 .bookmark_image {
 	display: flex;
 	margin-top: 20px;
+	flex-wrap: wrap;
 }
 
-.bookmark_image img {
-	margin-right:100px;
+/* .bookmark_image img { */
+/* 	margin-right:50px; */
+/* } */
+
+.bookmark_image div {
+   flex-basis: 33.33%;
+   box-sizing: border-box;
+   margin-bottom: 20px;  /* 아래쪽으로 20px의 간격을 줌 */
 }
 
 .like_button {

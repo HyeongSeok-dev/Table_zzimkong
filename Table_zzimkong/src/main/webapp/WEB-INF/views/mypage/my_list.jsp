@@ -82,7 +82,7 @@
 			<br>
 			<div class ="title">
 			<span class= "mypg">
-				<h1>나의 북마크</h1>
+				<h1>나의 북마크 <span class="small-text">(이름순)</span></h1>
 			</span>			
 			<span>
 				<button type= "button" onclick="location.href='bookmark'">더보기</button>
@@ -90,40 +90,20 @@
 			</div>
 			<br>
 			<div class="bookmark_image">
-				<div>
-					<a href="${pageContext.request.contextPath}/product/detail">
-						<img class="image_size" src="${pageContext.request.contextPath}/resources/img/mylist_image1.jpg" >
-					</a>
-				<div id="likeButton" class="like_button">
-					<svg id="heart" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-				        <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-				    </svg>
-						83해치
+			<c:forEach var="bookmark" items="${bookmarkList}">
+		        <div>
+		        	<a href="${pageContext.request.contextPath}/product/detail?com_id=${bookmark.com_id}">
+		           	 <img class="image_size" src="${pageContext.request.contextPath}/resources/upload/${bookmark.com_img}">
+		       		</a>
+			    <div id="likeButton" class="like_button">
+		       		<svg id="heart" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+		            	<path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+		        	</svg>
+		        	${bookmark.com_name}
+			    </div>
 				</div>
-				</div>			
-				<div>
-					<a href="${pageContext.request.contextPath}/product/detail">
-						<img class="image_size" src="${pageContext.request.contextPath}/resources/img/mylist_image2.jpg" >
-					</a>
-				<div id="likeButton" class="like_button">
-					<svg id="heart" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-				        <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-				    </svg>
-						이재모피자 부산역점
-				</div>	
-				</div>	
-				<div>
-					<a href="${pageContext.request.contextPath}/product/detail">
-						<img class="image_size" src="${pageContext.request.contextPath}/resources/img/mylist_image3.jpg" >
-					</a>
-					<div id="likeButton" class="like_button">
-					<svg id="heart" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-				        <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-				    </svg>
-						아덴블랑제리 부전점
-				</div>
-				</div>	
-			</div>		
+			</c:forEach>
+			</div>
 			<br>
 			<br>
 			<div class ="title">
