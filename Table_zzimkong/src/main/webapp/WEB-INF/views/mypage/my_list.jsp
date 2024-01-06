@@ -38,7 +38,7 @@
 					<th>가게명</th>
 					<th>방문자명</th>					
 					<th>인원</th>
-					<th>선주문메뉴</th>
+<!-- 					<th>선주문메뉴</th> -->
 					<th>방문예정일</th>
 					<th>예약상태</th>
 					<th>결제상태</th>
@@ -49,17 +49,17 @@
 						<td>${res.com_name }</td>
 						<td>${res.res_name }</td>
 						<td>${res.res_person }</td>
-						<td>${res.menu_name }</td>
-						<td>${res.res_date }</td>
+<%-- 						<td>${res.menu_name }</td> --%>
+						<td>${res.res_date} ${res.res_time}</td>
 					<c:choose>
 						<c:when test="${res.res_status eq 1}">
-							<td>예약완료</td>
+							<td style="color: #3FAFFC;">예약완료</td>
 						</c:when>
 						<c:when test="${res.res_status eq 2}">
 							<td style="color: red;">예약취소</td>
 						</c:when>
 						<c:when test="${res.res_status eq 3}">
-							<td style="color: green;">방문완료</td>
+							<td>방문완료</td>
 						</c:when>
 						<c:otherwise>
 							<td>알수없음</td>

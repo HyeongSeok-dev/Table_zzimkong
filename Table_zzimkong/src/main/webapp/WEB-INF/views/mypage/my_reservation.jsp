@@ -11,22 +11,6 @@
 <!-- jQuery, javascript -->
 <script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/mypage2.js"></script>
-<script type="text/javascript">
-	function cancelReservation(){
-		confirm("예약을 취소하시겠습니까?");
-		if(true) {
-			alert("예약이 취소되었습니다.");
-		}
-	}
-	function editReservation() {
-		/* 팝업창 중앙 정렬 */
-		var popupW = 950;
-		var popupH = 700;
-		var left = Math.ceil((window.screen.width - popupW)/2);
-		var top = Math.ceil((window.screen.height - popupH)/2);
-		window.open('edit/reservation','','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
-	}
-</script>
 </head>
 <body>
 	<header>
@@ -69,17 +53,17 @@
 						<td>${res2.com_name }</td>
 						<td>${res2.res_name }</td>
 						<td>${res2.res_person }</td>
-						<td>${res2.menu_name }</td>
-						<td>${res2.res_date }</td>
+						<td>${res2.ordered_menus }</td>
+						<td>${res2.res_date } ${res2.res_time}</td>
 					<c:choose>
 						<c:when test="${res2.res_status eq 1}">
-							<td style="color: blue;">예약완료</td>
+							<td style="color: #3FAFFC;">예약완료</td>
 						</c:when>
 						<c:when test="${res2.res_status eq 2}">
 							<td style="color: red;">예약취소</td>
 						</c:when>
 						<c:when test="${res2.res_status eq 3}">
-							<td style="color: green;">방문완료</td>
+							<td>방문완료</td>
 						</c:when>
 						<c:otherwise>
 							<td>알수없음</td>
@@ -96,19 +80,19 @@
 							<td>알수없음</td>
 						</c:otherwise>
 					</c:choose>
-					<c:choose>
-	                	<c:when test="${res2.res_status eq 1}">
-	                		<td>
-	                    	<div class="div_button">
-	                        	<button type="button" id="my_delete" onclick="cancelReservation(${res2.res_idx})">예약취소</button>
-	                    	</div>
-	                    	</td>
-	                	</c:when>
-	                	<c:otherwise>
-	                    <!-- 예약완료가 아닌 경우에는 아무것도 보이지 않게 -->
-	                    <td>-</td>
-	                	</c:otherwise>
-	                </c:choose>
+	                <td>
+						<c:choose>
+		                	<c:when test="${res2.res_status eq 1}">
+	<!-- 	                    	<div class="div_button"> -->
+		                        	<button type="submit" id="my_delete" onclick="cancelReservation(${res2.res_idx})">예약취소</button>
+	<!-- 	                    	</div> -->
+		                	</c:when>
+		                	<c:otherwise>
+	<!-- 	                    예약완료가 아닌 경우에는 아무것도 보이지 않게 -->
+									-
+		                	</c:otherwise>
+		                </c:choose>
+	                 </td>
 				  </tr>
 				</c:forEach>
 			</table>

@@ -214,6 +214,7 @@ public class MypageController {
 	@PostMapping("my/resPro")
 	public String my_resPro(MypageInfo mypage, HttpSession session, Model model, HttpServletResponse response) {
 		
+		// 예약 취소 버튼
 		int updateCount = service.myResCancel(mypage);
 		
 		if(updateCount > 0) { // 성공시
