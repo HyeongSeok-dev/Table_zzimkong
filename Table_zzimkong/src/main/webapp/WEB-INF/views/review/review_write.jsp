@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
 <!-- Js -->
 <script src="${pageContext.request.contextPath}/resources/js/review_write.js"></script>
-
+<script src="${pageContext.request.contextPath}/resources/js/jquery-3.7.1.js"></script>
 <title>리뷰 작성 페이지</title>
 <!-- 수정 -->
 </head>
@@ -20,11 +20,14 @@
 	<article id="reviewWriteForm">
 	<div class="container">
 		<div class="restaurant_info">
-			 <a href="redetail?com_id=1"><h1>파니니숲</h1></a>
-			 <a href="redetail?com_id=1"><h1>${com_name}</h1></a>
+<!-- 			 <a href="redetail?com_id=1"><h1>파니니숲</h1></a> -->
+<%-- 			 <a href="redetail?com_id=1"><h1>${comName}</h1></a> --%>
+	 <a href="${pageContext.request.contextPath}/review/redetail?com_id=${com_id}"><h1>${comName}</h1></a>
+
 			<p>몇번째 방문</p>
 		</div>
 		<form action="reviewWritePro" name="reviewWriteForm" method="POST" enctype="multipart/form-data">
+	    <input type="hidden" name="com_id" value="${param.com_id}">		
 		<div class="separator"></div>
 		<div class="review_rate_1" style="text-align: center;">
 		<fieldset class="review_rate">
@@ -168,7 +171,9 @@
 				name="review_content" placeholder="업주와 다른 사용자들이 상처받지 않도록 좋은 표현을 사용해주세요.(500자수 제한)"></textarea>
 			<a class="caution_link" href="#" onclick="openPopup()">리뷰 작성 유의사항</a>
 			<section id="commandCell">
-			<button class="register_button" onclick="location.href='${pageContext.request.contextPath}/review/complete'">등록하기</button>
+			<button class="register_button" onclick="location.href='${pageContext.request.contextPath}/review/complete?com_id=${com_id}'">등록하기</button>
+<%-- 		    <a href="${pageContext.request.contextPath}/review/write?com_id=${param.com_id}"><i class="fas fa-pencil-alt"></i> &nbsp;리뷰쓰기</a> --%>
+			
 			</section>
 		</div>
 	</form>

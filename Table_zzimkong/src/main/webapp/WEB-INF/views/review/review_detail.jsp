@@ -4,6 +4,7 @@
 <%-- 날짜 출력 형식 변경을 위해 JSTL - format(fmt) 라이브러리 등록 --%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!-- 기존의 CSS 및 JavaScript 링크 -->
+<c:set var="comId" value="${param.com_id}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,6 +25,7 @@
 <!-- 변수 선언 -->
 var contextPath = "${pageContext.request.contextPath}";
 var sId = '<c:out value="${sessionScope.sId}"/>';
+
 	// ===================================================================
 	document.addEventListener('DOMContentLoaded', function() {
 	// ===================================================================
@@ -99,6 +101,7 @@ var sId = '<c:out value="${sessionScope.sId}"/>';
 	// ===================================================================
     var reviewCountsJson = '${reviewCountsJson}'.replace(/&quot;/g, '"');
     var reviewCounts = JSON.parse(reviewCountsJson)[0]; // 첫 번째 객체만 사용
+//     var reviewCounts = JSON.parse(reviewCountsJson)[0]; // 첫 번째 객체만 사용
     var labels = [
         "인테리어가 멋져요", "혼밥하기 좋아요", "매장이 넓어요", "단체 모임 하기 좋아요", "뷰가 좋아요", 
         "양이 많아요", "음식이 맛있어요", "가성비가 좋아요", "재료가 신선해요", 
@@ -200,10 +203,18 @@ var sId = '<c:out value="${sessionScope.sId}"/>';
 	// =================================================================	
 	$(document).ready(function() {
 	// =================================================================	
+		// 리뷰 페이지에서 댓글 아이콘에 대한 JavaScript 코드
+// 		document.getElementById('commentIcon').addEventListener('click', function() {
+// 		    window.location.href = contextPath + "/review/comment?com_id=" + comId;
+// 		});
+	// =================================================================	
+		
 	    // 페이지 로드 시 기본 상태 설정
 	    var initialSortType = $('.sort-link.active').data('sort-type') || 'newest';
 	    var photoOnly = $('#photoReviewCheckbox').is(':checked');
 // 	    var menuNames = getMenuNames();
+	    comId = getParameterByName('com_id');  // comId 초기화
+
 
 	 // 초기 리뷰 목록 로드
    	 filterReviewsByCheckedMenus();
@@ -223,7 +234,7 @@ var sId = '<c:out value="${sessionScope.sId}"/>';
           filterReviewsByCheckedMenus();
 	      });
 	  });
-			
+	
 		// =================================================================	
 		// 현재 선택된 메뉴 이름을 반환하는 함수
 		function getMenuNames() {
@@ -244,8 +255,8 @@ var sId = '<c:out value="${sessionScope.sId}"/>';
 		    return decodeURIComponent(results[2].replace(/\+/g, " "));
 	
 		}
-		    var comId = getParameterByName('com_id');
-		    console.log(comId); 
+// 		    var comId = getParameterByName('com_id');
+// 		    console.log(comId); 
 		// =================================================================	
 		// 작성 날짜 포맷 변환	
 		function formatDate(dateString) {
@@ -332,9 +343,12 @@ var sId = '<c:out value="${sessionScope.sId}"/>';
 	            '</form>';
 
 	        modifyButtonHtml = 
-	            '<a href="modify?review_num=' + review.review_num + '">' +
-	                '<button class="review_modify">수정</button>' +
-	            '</a>';
+// 	            '<a href="modify?review_num=' + review.review_num + '">' +
+// 	                '<button class="review_modify">수정</button>' +
+// 	            '</a>';
+	        	'<a href="modify?review_num=' + review.review_num + '&com_id=' + review.com_id + '">' +
+	            '<button class="review_modify">수정</button>' +
+	        	'</a>';
 	    }
 
 	    var reportButtonHtml = 
@@ -374,7 +388,7 @@ var sId = '<c:out value="${sessionScope.sId}"/>';
 	                '<p class="review_content">' + review.review_content + '</p>' +
 	                '<div class="review-actions">' +
 	                    '<div class="review-action1">' +
-	                        '<i class="far fa-comment" id="commentIcon" style="cursor: pointer;"></i>' +
+                        '<i class="far fa-comment" id="commentIcon" style="cursor: pointer;" onclick="showCommentForm();"></i>' +
 	                        '<i class="far fa-heart" id="heartIcon" style="cursor: pointer;"></i>' +
 	                    '</div>' +
 	                    '<div class="review-action2">' +
@@ -383,7 +397,7 @@ var sId = '<c:out value="${sessionScope.sId}"/>';
 	                            modifyButtonHtml +
 	                            reportButtonHtml +
 	                        '</div>' +
-	                        '<span class="comment-icon" onclick="showCommentForm()"></span><br><br>' +
+	                        '<span class="comment-icon" onclick="showCommentForm()"></span><br><br>'
 	    				    '<div class="review_date">' + formattedDate + ' 작성</div>' + 
 	                 		  '<div class="separator"></div>' + 
 	                    '</div>' +
@@ -403,6 +417,11 @@ var sId = '<c:out value="${sessionScope.sId}"/>';
 	// 체크박스 선택 시 해당 리뷰출력 
 	// =================================================================	
 	$(document).ready(function() {
+	// =================================================================	
+	// =================================================================	
+  // 체크박스와 정렬 링크의 이벤트 핸들러 설정
+//         $('.category_button, #photoReviewCheckbox').change(filterReviewsByCheckedMenus);
+
 	// =================================================================	
 	// 카테고리 체크박스 변경 감지
 	    $('.category_button').change(function() {
@@ -514,7 +533,7 @@ var sId = '<c:out value="${sessionScope.sId}"/>';
                 '<p class="review_content">' + review.review_content + '</p>' +
                 '<div class="review-actions">' +
                     '<div class="review-action1">' +
-                        '<i class="far fa-comment" id="commentIcon" style="cursor: pointer;"></i>' +
+                        '<i class="far fa-comment" id="commentIcon" style="cursor: pointer;" onclick="showCommentForm();"></i>' +
                         '<i class="far fa-heart" id="heartIcon" style="cursor: pointer;"></i>' +
                     '</div>' +
                     '<div class="review-action2">' +
@@ -523,7 +542,7 @@ var sId = '<c:out value="${sessionScope.sId}"/>';
                             modifyButtonHtml +
                             reportButtonHtml +
                         '</div>' +
-                        '<span class="comment-icon" onclick="showCommentForm()"></span><br><br>' +
+                        '<span class="comment-icon" onclick="showCommentForm()"></span><br><br>'
     				    '<div class="review_date">' + formattedDate + ' 작성</div>' + 
                  		  '<div class="separator"></div>' + 
                     '</div>' +
@@ -549,6 +568,21 @@ var sId = '<c:out value="${sessionScope.sId}"/>';
 	    var windowSize = "width=515,height=632";
 	    window.open(url, windowName, windowSize);
 	});
+	// =================================================================	
+	// 댓글 아이콘 누르면 댓글창 뜸
+	function showCommentForm() {
+	    // 현재 URL에서 com_id 값을 가져옴
+	    var comId = getParameterByName('com_id');
+	    
+	    // 댓글창을 여는 URL에 com_id 값을 포함시킴
+	    var url = contextPath + "/review/comment?com_id=" + comId;
+	    var windowName = "commentPopup";
+	    var windowSize = "width=515,height=632";
+	    
+	    // 팝업 창으로 댓글 페이지를 엶
+	    window.open(url, windowName, windowSize);
+	}
+
 	// =================================================================	
 	    // 페이지 로드 시 최신순으로 리뷰를 불러옴
     filterReviewsByCheckedMenus();
@@ -649,8 +683,11 @@ var sId = '<c:out value="${sessionScope.sId}"/>';
 				<path d="M7.5 14.97a7.62 7.62 0 01-2.88-.55 7.25 7.25 0 01-2.44-1.62 7.25 7.25 0 01-1.61-2.43A7.81 7.81 0 010 7.5a7.25 7.25 0 01.55-2.88 7.44 7.44 0 011.63-2.43A7.45 7.45 0 014.62.55 7.27 7.27 0 017.5 0c1.01.01 1.97.2 2.88.57a7.25 7.25 0 012.43 1.61 7.25 7.25 0 011.62 2.43A7.81 7.81 0 0115 7.5a7.25 7.25 0 01-.55 2.88 7.44 7.44 0 01-1.63 2.43A7.45 7.45 0 017.5 15v-.03zM7.5 1a6.3 6.3 0 00-3.25.88 6.59 6.59 0 00-2.37 2.37A6.3 6.3 0 001 7.5c0 1.17.3 2.25.88 3.25a6.59 6.59 0 002.37 2.37A6.3 6.3 0 007.5 14c.87 0 1.7-.16 2.5-.49a6.4 6.4 0 002.1-1.4A6.4 6.4 0 0013.51 10a6.5 6.5 0 000-5 6.4 6.4 0 00-1.4-2.1A6.4 6.4 0 0010 1.49 6.5 6.5 0 007.5 1zM5 5.31C5.06 4.02 5.9 3 7.54 3 9 3 10 3.93 10 5.16c0 .93-.47 1.59-1.22 2.05-.73.45-.94.78-.94 1.4V9H6.82v-.55c0-.78.37-1.32 1.16-1.8.68-.43.94-.8.94-1.44 0-.74-.56-1.28-1.43-1.28-.87 0-1.43.53-1.5 1.38H5zm2.5 6.19a.74.74 0 01-.75-.75c0-.43.33-.75.75-.75.43 0 .75.32.75.75 0 .42-.32.75-.75.75z"></path>
 			</svg>
 		</h2>
+<!-- 		<div class="review_write_button"> -->
+<%-- 		    <a href="write?com_id="${review.review_num}><i class="fas fa-pencil-alt"></i> &nbsp;리뷰쓰기</a> --%>
+<!-- 		</div> -->
 		<div class="review_write_button">
-		    <a href="write?com_id="${review.review_num}><i class="fas fa-pencil-alt"></i> &nbsp;리뷰쓰기</a>
+		    <a href="${pageContext.request.contextPath}/review/write?com_id=${param.com_id}"><i class="fas fa-pencil-alt"></i> &nbsp;리뷰쓰기</a>
 		</div>
 	</div>
 	<!-- ======================================================================================== -->

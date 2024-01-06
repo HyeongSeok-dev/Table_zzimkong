@@ -109,20 +109,20 @@ public class HomeController {
 //		return "review/review_write";
 //	}
 	
-	@GetMapping("review/complete")
-	public String review_complete() {
-		return "review/review_complete";
-	}
+//	@GetMapping("review/complete")
+//	public String review_complete() {
+//		return "review/review_complete";
+//	}
 	
 //	@GetMapping("review/report")
 //	public String review_report() {
 //		return "review/review_report";
 //	}
 
-	@GetMapping("review/comment")
-	public String review_comment() {
-		return "review/review_comment";
-	}
+//	@GetMapping("review/comment")
+//	public String review_comment() {
+//		return "review/review_comment";
+//	}
 
 	
 	@GetMapping("top2")

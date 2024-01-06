@@ -93,8 +93,9 @@ function removePreview(review_img_1) {
 	<div class="container">
 		<div class="restaurant_info">
 <!-- 			 <a href="detail?com_id=1"><h1>음식점 이름</h1></a> -->
-			 <a href="redetail?com_id=1"><h1>칸다소바 부전점</h1></a>
-			 <a href="redetail?com_id=1"><h1>${com_id}</h1></a>
+<!-- 			 <a href="redetail?com_id=1"><h1>칸다소바 부전점</h1></a> -->
+<%-- 			 <a href="redetail?com_id=1"><h1>${com_id}</h1></a> --%>
+			 <a href="${pageContext.request.contextPath}/review/redetail?com_id=${com_id}"><h1>${comName}</h1></a>
 			 <!--            ~~~~~~~~~ : 나중에 ${com_id}로 고쳐서 값 받아오기 -->
 <!-- 			 <input type="submit" value="음식점 이름" onclick="location.href=detail"> -->
 			<p>몇번째 방문</p>
@@ -104,6 +105,7 @@ function removePreview(review_img_1) {
 <!-- 		<form action="ReviewModifyPro" name="reviewModifyForm" method="POST" enctype="multipart/form-data"> -->
 	    <input type="hidden" name="review_num" value="${review.review_num}"> <!-- 231228 추가 -->
 	    <input type="hidden" name="com_id" value="${review.com_id}">    <!-- 231228 추가 -->
+	    <input type="hidden" name="com_name" value="${review.com_id}">    <!-- 231228 추가 -->
 	    <input type="hidden" name="user_id" value="${sId}">  <!-- 231228 추가 -->
 		<div class="separator"></div>
 		<div class="review_rate_1" style="text-align: center;">

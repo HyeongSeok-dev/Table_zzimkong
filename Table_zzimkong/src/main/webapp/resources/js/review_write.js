@@ -1,5 +1,14 @@
 document.addEventListener('DOMContentLoaded', function() {    
 	// ==================================================================================
+	
+	    function submitReview() {
+        // 폼 검증 또는 기타 로직을 여기에 추가할 수 있음
+
+        // 폼 데이터를 제출하는 코드
+        document.reviewWriteForm.action = "${pageContext.request.contextPath}/review/complete?com_id=" + currentComId;
+        document.reviewWriteForm.submit();
+    }
+	// ==================================================================================
 	// 사진 추가 
     document.getElementById('photoBtn').addEventListener('click', function() {
         document.getElementById('photoInput').click();

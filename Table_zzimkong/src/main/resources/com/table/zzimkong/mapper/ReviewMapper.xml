@@ -12,7 +12,7 @@
 	VALUES (
 	#{review_num}
 	,#{user_id}
-	,2 -- com_id
+	,#{com_id} -- com_id
 	,0
 	,1
 	,'0'
@@ -52,6 +52,14 @@
 	    FROM company
 	    WHERE com_id = #{com_id}
 	</select>
+
+<!-- 	<select id="selectCompanyName" resultType="com.table.zzimkong.vo.ReviewVO"> -->
+<!-- 	    SELECT r.*, c.com_name -->
+<!-- 	    FROM review r -->
+<!-- 	    JOIN company c ON r.com_id = c.com_id -->
+<!-- 	    WHERE r.review_num = #{review_num} -->
+<!-- 	</select> -->
+
 	
 	<!-- 리뷰 갯수 -->
 	<select id="countReview" resultType="int">
@@ -259,7 +267,6 @@
 	                OR review_content LIKE '%추천%'
 	                OR review_content LIKE '%친절%')
 	         ORDER BY review_update DESC       
-	                
         </when>
 			<when test="category == 'service'">
 				SELECT * FROM review
@@ -295,18 +302,11 @@
 					OR review_content LIKE '%배부%'
 					OR review_content LIKE '%배고%')
 				ORDER BY review_update DESC       
-					
 			</when>	
 		</choose>
 	</select>
 	
 	<!-- 키워드 검색 카운트 -->
-<!-- 	<select id="categoryCount"> -->
-<!-- 	    SELECT *  -->
-<!-- 	    FROM review_category_count_1 -->
-<!-- 		WHERE com_id = #{com_id}  -->
-<!--     </select> -->
-
 	<select id="categoryCount">
 	    SELECT * 
 	    FROM review_category_count_1
