@@ -43,9 +43,15 @@ public interface MypageMapper {
 	
 	// 방문한 가게 조회
 	List<MypageInfo> selectVisitedShop(int sIdx);
-	
+
 	// 가게 신고하기
 	int insertShopReport(ReportVO report);
+	
+	// 나의 리뷰 조회
+	List<ReviewVO> selectMyReview(String sId);
+
+
+
 
 
 

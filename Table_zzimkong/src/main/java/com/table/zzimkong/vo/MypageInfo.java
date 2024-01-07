@@ -35,6 +35,7 @@ public class MypageInfo {
 	private String com_name;
 	private String com_address;
 	private int res_status; // 방문완료일 때만 뜨게 하기 위해 추가
+	private int com_id;
 	
 	// 가게 신고 테이블
 	private int report_reason;

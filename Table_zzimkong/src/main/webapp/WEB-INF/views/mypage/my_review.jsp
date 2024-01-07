@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +9,10 @@
 <link href="${pageContext.request.contextPath }/resources/css/mypage.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
 <script type="text/javascript">
+	function reviewEdit(review_num, com_id) {
+		location.href = "${pageContext.request.contextPath}/review/modify?review_num=" + review_num + "&com_id=" + com_id;
+	}
+	
 	function reviewDelete() {
 		confirm("리뷰를 삭제하시겠습니까?")
 		if(true){
@@ -32,42 +37,22 @@
 			<br>
 			<table style="width: 1000px; height: 200px; table-layout: fixed;">
 				<tr>
-					<th>방문일자</th>
+					<th>작성일자</th>				
 					<th>가게명</th>				
 					<th>내용</th>
-					<th>수정/삭제</th>
+					<th></th>
 				</tr>
-				<tr>
-					<td align="center">23/09/15 14:00</td>
-					<td>현풍닭칼국수</td>
-					<td>★★★★★<br>맛있어서 울면서 먹었어요</td>
-					<td align="center">
-					<button type="button">수정</button>
-					<button type="button" id="my_delete" onclick="reviewDelete()">삭제</button>
-					</td>
-				</tr>
-				<tr>
-					<td align="center">23/09/24 19:30</td>
-					<td>맛나주꾸미</td>
-					<td>★★<br>음식은 맛있는데 청결하지 못한 매장</td>
-					<td align="center">
-					<button type="button">수정</button>
-					<button type="button" id="my_delete" onclick="reviewDelete()">삭제</button>
-					</td>
-				</tr>
-				<tr>
-					<td align="center">23/12/05 12:30</td>
-					<td>파전닭갈비</td>
-					<td>★★★★★<br>존맛 대존맛</td>
-					<td align="center">
-					<button type="button">수정</button>
-					<button type="button" id="my_delete" onclick="reviewDelete()">삭제</button>
-					</td>
-				</tr>
-			</table>
-			<div align="center">
-			1 | 2 | 3 
-			</div>
+				<c:forEach var="myReview" items="${myReviewList}">	
+					<tr>
+						<td>${myReview.review_update}</td>
+						<td>${myReview.com_name}</td>
+						<td>${myReview.review_content}</td>
+						<td align="center">
+						<button type="button" onclick="reviewEdit(${myReview.review_num}, ${myReview.com_id})">수정</button>
+						<button type="button" id="my_delete" onclick="reviewDelete()">삭제</button>
+						</td>
+					</tr>
+				</c:forEach>
 		</div>
 	</div>
 	</main>
