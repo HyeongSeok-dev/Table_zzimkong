@@ -12,6 +12,7 @@
 
 #joinBtn:hover {
     text-decoration: underline;  /* 마우스 오버 시 밑줄 추가 */
+	cursor: pointer;
 }
 
 

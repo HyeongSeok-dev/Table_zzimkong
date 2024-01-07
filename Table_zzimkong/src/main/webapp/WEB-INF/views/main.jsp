@@ -24,8 +24,11 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/main.css">
 <!-- Responsive Stylesheet -->
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/responsive.css">
+<!--  광고슬라이드 아이콘 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 
 <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
+
 <!-- Js -->
 <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
 <script>
@@ -141,10 +144,22 @@
 	
 	<!--header-img start (광고)============================== -->
 						
-	<section id="hero-area">
-		<img class="img-responsive_main" src="${pageContext.request.contextPath}/resources/img/omakase.jpg" >
+<!-- 	<section id="hero-area"> -->
 <%-- 		<img class="img-responsive_main" src="${pageContext.request.contextPath}/resources/img/omakase.jpg" > --%>
-	</section>
+<%-- <%-- 		<img class="img-responsive_main" src="${pageContext.request.contextPath}/resources/img/omakase.jpg" > --%> --%>
+<!-- 	</section> -->
+	
+	
+	<div id="hero-area">
+  <button id="prev"><i class="fas fa-angle-left"></i></button> <!-- 이전광고 -->
+  <div id="slide1" class="slide"><img class="img-responsive_main" src="${pageContext.request.contextPath}/resources/img/omakase.jpg"></div>
+  <div id="slide2" class="slide"><img class="img-responsive_main" src="${pageContext.request.contextPath}/resources/img/dog.JPG"></div>
+  <button id="next"><i class="fas fa-angle-right"></i></button> <!-- 다음광고 -->
+  <!-- 추가될 이미지들 -->
+</div>
+
+
+<!-- <span id="currentSlide"></span> 페이지 표시 -->
 							
 	
 	<!-- 카테고리 버튼 -->
@@ -220,6 +235,37 @@
 						    </div>                      
 						  </c:forEach>
 						</div>
+						
+<%-- 						위생순 --%>
+<!--                         <div class="title"> -->
+<%--                             <h3><span class="seleted_location">${search.location}</span> <span>위생순</span></h3> --%>
+<!--                         </div> -->
+<%--                         상세페이지로 가는 이미지 --%>
+<!--                         <div id="owl-example1" class="owl-carousel"> -->
+<%--                           <c:choose> --%>
+<%--                             <c:when test="${empty cleanList}"> --%>
+<%--                               <c:forEach var="clean" items="${cleanList}"> --%>
+<!--                                 <div class="owl_example1_items_images"> -->
+<%--                                   <a href="product/detail?com_id=${clean.com_id}"> --%>
+<%--                                     <img alt="" src="${pageContext.request.contextPath}/resources/upload/${clean.com_img}"> <br> --%>
+<%--                                     ${clean.com_name} --%>
+<!--                                   </a> -->
+<!--                                 </div> -->
+<%--                               </c:forEach> --%>
+<%--                             </c:when> --%>
+<%--                             <c:otherwise> --%>
+<%--                             선택한 지역이 있으면 그 지역에 따른 정렬 --%>
+<%--                               <c:forEach var="clean" items="${selectAreaCleanList}"> --%>
+<!--                                 <div class="owl_example1_items_images"> -->
+<%--                                   <a href="product/detail?com_id=${clean.com_id}"> --%>
+<%--                                     <img alt="" src="${pageContext.request.contextPath}/resources/upload/${clean.com_img}"> <br> --%>
+<%--                                     ${clean.com_name} --%>
+<!--                                   </a> -->
+<!--                                 </div> -->
+<%--                               </c:forEach> --%>
+<%--                             </c:otherwise> --%>
+<%--                           </c:choose> --%>
+<!--                         </div> -->
 						
 						<%--추천순(광고등급순)--%>
 						<br><br><br>

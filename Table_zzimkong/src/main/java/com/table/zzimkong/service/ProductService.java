@@ -55,6 +55,12 @@ public class ProductService {
 	public List<CompanyVO> getCleanList(SearchVO search) {
 		return mapper.selectCleanList(search);
 	}
+	
+	//위생순 지역선택에 따른 정렬
+	public List<CompanyVO> getSelectAreaCleanList(SearchVO search) {
+		return mapper.selectAreaCleanList(search);
+	}
+	
 	//추천순(광고등급순)
 	public List<CompanyVO> getRecommendList(SearchVO search) {
 		return mapper.selectRecommendList(search);
@@ -88,6 +94,7 @@ public class ProductService {
 		// TODO Auto-generated method stub
 		return mapper.deleteBookmark(sIdx,com_id);
 	}
+
 
 	
 }

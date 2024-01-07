@@ -91,6 +91,10 @@ public class ProductController {
 		model.addAttribute("listCount", listCount);
 		model.addAttribute("companyList", companyList);
 		
+		//선택된 지역에따라 메인화면 정렬
+		List<CompanyVO> companyListMain = service.getCompanyList(search);
+		session.setAttribute("companyListMain", companyListMain);
+		
 		return "product/product_list";
 	}
 	

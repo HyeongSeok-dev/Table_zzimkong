@@ -1,5 +1,46 @@
 $(document).ready(function() {
 	
+	//광고슬라이드
+	
+$(document).ready(function() {
+  var totalSlides = $('#hero-area .slide').length;
+  var currentSlide = 1;
+
+  function updateSlide() {
+    $('#hero-area .slide').removeClass('active');
+    $('#slide' + currentSlide).addClass('active');
+    $('#currentSlide').text(currentSlide + ' / ' + totalSlides);
+  }
+
+  setInterval(function() {
+    currentSlide++;
+    if (currentSlide > totalSlides) {
+      currentSlide = 1;
+    }
+    updateSlide();
+  }, 5000); // 5초마다 슬라이드를 변경합니다.
+
+  $('#prev').click(function() {
+    currentSlide--;
+    if (currentSlide < 1) {
+      currentSlide = totalSlides;
+    }
+    updateSlide();
+  });
+
+  $('#next').click(function() {
+    currentSlide++;
+    if (currentSlide > totalSlides) {
+      currentSlide = 1;
+    }
+    updateSlide();
+  });
+
+  updateSlide();
+});
+
+	//==============================
+	
 	//정렬 출력 10개로 제한
     var limitItems = function(carouselId) {
         var carousel = $(carouselId);

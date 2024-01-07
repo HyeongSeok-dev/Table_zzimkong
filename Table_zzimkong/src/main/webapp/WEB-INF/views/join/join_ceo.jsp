@@ -80,7 +80,7 @@
 			  <br>
 			  <!-- 개업일 -->
 			  <div>
-	              <input type="text" id="com_date" class="inputTxt inpBig" placeholder="개업일 (' - ' 를 빼고 입력)"  maxlength="16" autocomplete="false">
+	              <input type="text" id="com_date" class="inputTxt inpBig" placeholder="개업일 8자리(' - ' 를 빼고 입력)"  maxlength="16" autocomplete="false">
 			  </div>
 			  <br>
 			   <!-- 사업자번호 -->

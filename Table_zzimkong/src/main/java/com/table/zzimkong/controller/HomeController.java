@@ -77,7 +77,14 @@ public class HomeController {
 	        
 	        List<CompanyVO>cleanList = service.getCleanList(search);
 	        model.addAttribute("cleanList", cleanList);
-	        /* */
+	        
+	        //위생순 지역선택에따른 정렬
+	        search = (SearchVO)session.getAttribute("search");
+	        
+	        List<CompanyVO>companyListMain = service.getSelectAreaCleanList(search);
+	        model.addAttribute("companyListMain", companyListMain);
+	        
+	        
 	        //추천순(광고순)
 	        search = (SearchVO)session.getAttribute("search");
 	        
@@ -123,6 +130,7 @@ public class HomeController {
 //	public String review_comment() {
 //		return "review/review_comment";
 //	}
+
 
 	
 	@GetMapping("top2")
