@@ -92,11 +92,13 @@
 		WHERE res_num = #{res_num}
 	</select>	
 		
+
+	
 	<insert id="insertPreOrder">
-	    INSERT INTO pre_order (res_idx, menu_idx, pre_num) 
-	    VALUES   <!--item   var  -->
-	    <foreach collection="res, menu_idx, pre" item="menu" separator=",">
-	        (null, #{menu.res.res_idx}, #{menu.menu_idx.menu_idx}, #{menu.pre.pre_num})
+	    INSERT INTO pre_order (pre_idx, res_idx, menu_idx, pre_num) 
+	    VALUES <!--item   var  -->
+	    <foreach collection="menuList" item="menu" separator=",">
+	        (null, #{res_idx}, #{menu.menu_idx}, #{menu.pre_num})
 	    </foreach>
 	</insert>
 		
