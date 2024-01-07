@@ -50,7 +50,7 @@
       <a href="${pageContext.request.contextPath }/my/list" class="common-mypage__sc-13c5psb-0 dhFOel">나의 내역</a>
       <a href="${pageContext.request.contextPath }/my/review" class="common-mypage__sc-13c5psb-0 dhFOel">나의 리뷰</a>
       <a href="${pageContext.request.contextPath }/my/report/shop" class="common-mypage__sc-13c5psb-0 dhFOel">가게 신고하기</a>
-      <a href="${pageContext.request.contextPath }/my/qna" class="common-mypage__sc-13c5psb-0 dhFOel">1:1 문의</a>
+      <a href="${pageContext.request.contextPath }/member/cs/qna" class="common-mypage__sc-13c5psb-0 dhFOel">1:1 문의</a>
   </div>
   </nav>
 </div>

@@ -32,7 +32,7 @@
 		
 		<h3>상세 사유</h3>
 		<br><br>
-		<textarea rows="10" cols="40" name="motivation" placeholder="내용을 입력해주세요."></textarea><br>
+		<textarea rows="10" cols="40" name="motivation" placeholder="방문한 날짜와 함께 자세한 내용을 입력해주세요."></textarea><br>
 		<br>
 		<div class = "click_button">
 			<button type="submit" onclick="reportRegister()">신고</button>

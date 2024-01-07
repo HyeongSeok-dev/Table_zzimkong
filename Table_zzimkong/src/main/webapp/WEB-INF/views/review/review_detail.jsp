@@ -33,10 +33,9 @@ function showCommentForm(element) {
     var comId = getParameterByName('com_id');
     var url = contextPath + "/review/comment?com_id=" + comId + "&review_num=" + reviewNum;
     var windowName = "commentPopup";
-    var windowSize = "width=515,height=632";
+    var windowSize = "width=565,height=632";
     window.open(url, windowName, windowSize);
 }
-// ===============================
 	// ===================================================================
 	document.addEventListener('DOMContentLoaded', function() {
 	// ===================================================================

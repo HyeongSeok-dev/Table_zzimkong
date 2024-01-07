@@ -91,7 +91,9 @@ public class ReviewVO {
 	
 	// 카테고리 검색
 	private String category;
-	
+
+	// 각 리뷰 당 댓글 수 
+	private int commentCount; 
 	
 	
 }

@@ -69,11 +69,19 @@ public class MypageService {
 	public List<MypageInfo> getVisitedShop(int sIdx) {
 		return mapper.selectVisitedShop(sIdx);
 	}
-	
+
 	// 가게 신고하기
 	public int registShopReport(ReportVO report) {
 		return mapper.insertShopReport(report);
 	}
+	
+	// 리뷰 조회
+	public List<ReviewVO> getMyReview(String sId) {
+		return mapper.selectMyReview(sId);
+	}
+
+
+	
 
 
 

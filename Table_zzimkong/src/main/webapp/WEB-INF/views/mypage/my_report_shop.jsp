@@ -9,12 +9,12 @@
 <link href="${pageContext.request.contextPath }/resources/css/mypage.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
 <script type="text/javascript">
-	function reportReason() {
+	function reportReason(com_id) {
 		var popupW = 600;
 		var popupH = 650;
 		var left = Math.ceil((window.screen.width - popupW)/2);
 		var top = Math.ceil((window.screen.height - popupH)/2);
-		window.open('reason','','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')				
+		window.open('${pageContext.request.contextPath }/my/report/reason?com_id=' + com_id,'','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')				
 	}
 </script>
 </head>
@@ -46,7 +46,7 @@
 							<td>${visitedShop.com_address}</td>
 							<td>
 								<div class = "click_button">
-									<button type="button" onclick="reportReason()">신고하기</button>
+									<button type="button" onclick="reportReason(${visitedShop.com_id})">신고하기</button>
 								</div>
 							</td>
 						</tr>

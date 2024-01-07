@@ -95,11 +95,11 @@
     
     <!-- 방문한 가게 조회 - SELECT -->
     <select id="selectVisitedShop" >
-	    SELECT mv.com_name, ANY_VALUE(c.com_address) as com_address -- GROUP_CONCAT 함수는 중복된 값을 다 포함하여 문자열을 생성하기 때문에, 동일한 가게 이름에 대해 여러 주소가 존재하는 경우 그 모든 주소를 문자열로 반환했음. 가게당 주소가 한번 나올 수 있도록 ANY_VALUE 함수 사용
+	    SELECT mv.com_name, mv.com_id, ANY_VALUE(c.com_address) as com_address -- GROUP_CONCAT 함수는 중복된 값을 다 포함하여 문자열을 생성하기 때문에, 동일한 가게 이름에 대해 여러 주소가 존재하는 경우 그 모든 주소를 문자열로 반환했음. 가게당 주소가 한번 나올 수 있도록 ANY_VALUE 함수 사용
 		FROM mypage_view mv
 		JOIN company c ON mv.com_name = c.com_name
 		WHERE mv.user_idx = #{userIdx} AND mv.res_status = 3
-		GROUP BY mv.com_name; -- 같은 가게는 하나로 묶기
+		GROUP BY mv.com_name, mv.com_id; -- 같은 가게는 하나로 묶기
     </select>
     
     <!-- 가게 신고하기 - INSERT -->
@@ -108,5 +108,11 @@
     	VALUES (#{report_reason}, #{report_content})
     </insert>
     
-
+    <!-- 나의 리뷰 조회하기 - SELECT -->
+	<select id="selectMyReview">
+	    SELECT r.review_num, r.com_id, r.review_update, c.com_name, r.review_content
+	    FROM review r, company c  
+	    WHERE r.user_id = #{sId} 
+	    AND r.com_id = c.com_id; 
+	</select>
 </mapper>

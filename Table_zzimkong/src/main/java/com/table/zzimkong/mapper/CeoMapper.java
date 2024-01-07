@@ -7,8 +7,9 @@ import org.apache.ibatis.annotations.Param;
 
 import com.table.zzimkong.vo.CompanyVO;
 import com.table.zzimkong.vo.MemberVO;
-import com.table.zzimkong.vo.MenuList;
 import com.table.zzimkong.vo.MenuVO;
+import com.table.zzimkong.vo.PreOrderInfo;
+import com.table.zzimkong.vo.PreOrderVO;
 import com.table.zzimkong.vo.ReservationVO;
 
 @Mapper
@@ -45,4 +46,6 @@ public interface CeoMapper {
 	List<ReservationVO> selectResInfo(int com_id);
 
 	CompanyVO selectComNum(CompanyVO com);
+
+	List<PreOrderInfo> selectPreInfo(ReservationVO res);
 }

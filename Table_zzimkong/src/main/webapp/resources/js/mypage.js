@@ -30,9 +30,12 @@ window.onload = function() {
     
    // 닉네임 중복확인
 	$("#modifyBtn").click(function(e){
-    if($("#u_nick").val() != "" && isDuplicateNick){
-        e.preventDefault(); //버튼의 기본 동작(폼 제출)을 막습니다.
-        alert("이미 존재하는 닉네임입니다.");
+	    if($("#u_nick").val() == ""){
+	        e.preventDefault(); //버튼의 기본 동작(폼 제출)을 막습니다.
+	        alert("닉네임을 입력해주세요.");
+	    } else if(isDuplicateNick){
+	        e.preventDefault(); //버튼의 기본 동작(폼 제출)을 막습니다.
+	        alert("이미 존재하는 닉네임입니다.");
 	    }
 	});
 	let isDuplicateNick = false; //닉네임 중복 여부 저장할 변수
@@ -81,7 +84,7 @@ window.onload = function() {
             if(!lengthRegex.exec(passwd)){ //길이체크
                 msg = "영문, 숫자, 특수문자 조합 8 ~ 16자리";
                 color = "red";
-//                isPasswd = false;
+                isPasswd = false; // 이거!!!!!!
             }else{
                 let engUpperRegex = /[A-Z]/; //대문자
                 let engLowerRegex = /[a-z]/; //소문자

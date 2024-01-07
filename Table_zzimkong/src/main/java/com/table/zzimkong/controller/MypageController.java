@@ -271,9 +271,15 @@ public class MypageController {
 	        return "{\"result\": \"fail\"}";
 	    }
 	}
-
+	// --------------나의 리뷰----------------------------------------------------
 	@GetMapping("my/review")
-	public String my_review() {
+	public String my_review(ReviewVO review, HttpSession session, Model model) {
+		String sId = (String)session.getAttribute("sId"); //세션 아이디 가져오기
+		List<ReviewVO> myReview = service.getMyReview(sId);
+		System.out.println("myReview : " + myReview);
+		
+		model.addAttribute("myReviewList", myReview);
+		
 		return "mypage/my_review";
 	}
 	
@@ -282,7 +288,7 @@ public class MypageController {
 	public String my_report_shop(MypageInfo mypage, HttpSession session, Model model) {
 		int sIdx = (int)session.getAttribute("sIdx"); //세션 인덱스 가져오기 (회원번호)
 		List<MypageInfo> visitedShop = service.getVisitedShop(sIdx);
-		System.out.println();
+//		System.out.println(sIdx);
 		
 		// Model 객체에 회원 목록 조회 결과 저장(visitedShop 문자열을 "visitedShopList"라는 속성명으로 저장)
 		model.addAttribute("visitedShopList", visitedShop);
@@ -293,6 +299,17 @@ public class MypageController {
 	//------------가게 신고하기-------------------
 	@GetMapping("my/report/reason")
 	public String my_report_reason(HttpSession session, Model model) {
+		
+		if(session.getAttribute("sIdx") == null) {
+			model.addAttribute("msg", "로그인이 필요합니다!");
+			model.addAttribute("targetURL", "../../login");
+			return "forward";
+		}
+		
+		model.addAttribute(model);
+		
+//		MypageInfo 
+		
 		return "mypage/my_report_reason";
 	}
 	
