@@ -64,7 +64,7 @@ public class AdminController {
 		return true;
 	}
 
-	
+	/**/
 	// 관리자 페이지 - 메인(답변해야할 문의 갯수, 입점을 승인해야할 가게 갯수, 처리해야할 신고 갯수,
 	// 						사이트 일일 방문자 수, 일일 가입자 수, 일일 예약 건수)
 	@GetMapping("admin/main")
