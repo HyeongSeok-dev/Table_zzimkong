@@ -1,7 +1,6 @@
 $(document).ready(function() {
 	
 	//광고슬라이드
-	
 $(document).ready(function() {
   var totalSlides = $('#hero-area .slide').length;
   var currentSlide = 1;
