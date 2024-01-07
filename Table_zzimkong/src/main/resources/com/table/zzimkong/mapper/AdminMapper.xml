@@ -280,8 +280,18 @@
 	<select id="selectAdminCsList" parameterType="int" resultType="cs">
 		SELECT *
 		FROM cs_board
-		WHERE cs_board_category_main = #{csCategory}
-		ORDER BY cs_board_num DESC
+		<where>
+			AND cs_board_category_main = #{csCategory}
+			<if test="board.searchFAQ != null and !board.searchFAQ.equals('') ">
+				AND cs_board_subject LIKE CONCAT('%', #{board.searchFAQ}, '%')
+			</if>
+			<if test="board.sdate != null and !board.sdate.equals('')">
+				AND cs_board_date BETWEEN #{board.sdate} AND #{board.edate}
+			</if>
+		</where>
+		ORDER BY
+			cs_board_re_ref DESC
+			, cs_board_re_seq ASC
 	</select>
 	
 	<!-- 관리자 - 고객센터 : 공지사항, 자주묻는질문 새 글 등록 -->
@@ -297,11 +307,9 @@
 			, 'admin'
 			, #{cs_board_subject}
 			, #{cs_board_content}
-			<if test="#{cs_board_category_main.equals(3)}">
-			 , #{cs_board_re_ref}
-			 , #{cs_board_re_lev} + 1
-			 , #{cs_board_re_seq} + 1		
-			</if>
+			 , #{cs_board_num} + 1
+			 , #{cs_board_re_lev}
+			 , #{cs_board_re_seq}		
 			, 0 	-- cs_board_readcount
 			, now()	-- cs_board_date
 			, #{cs_board_category_user}
@@ -314,4 +322,59 @@
 			, #{cs_board_img_5}
 		)
 	</insert>
+	
+	<update id="updateNoticeAndFaqBoard">
+			UPDATE cs_board
+		SET cs_board_subject = #{cs_board_subject}
+			, cs_board_content = #{cs_board_content}
+			<if test="cs_board_img_1 != null and !cs_board_img_1.equals('')">
+				, cs_board_img_1 = #{cs_board_img_1}
+			</if>
+			<if test="cs_board_img_2 != null and !cs_board_img_2.equals('')">
+				, cs_board_img_2 = #{cs_board_img_2}
+			</if>
+			<if test="cs_board_img_3 != null and !cs_board_img_3.equals('')">
+				, cs_board_img_3 = #{cs_board_img_3}
+			</if>
+			<if test="cs_board_img_4 != null and !cs_board_img_4.equals('')">
+				, cs_board_img_4 = #{cs_board_img_4}
+			</if>
+			<if test="cs_board_img_5 != null and !cs_board_img_5.equals('')">
+				, cs_board_img_5 = #{cs_board_img_5}
+			</if>
+			,cs_board_category_user = #{cs_board_category_user}
+			,cs_board_category_sub = #{cs_board_category_sub}
+		WHERE
+			cs_board_num = #{cs_board_num}
+	</update>
+	
+	<insert id="insertBoardReply">
+		<selectKey keyProperty="cs_board_num" resultType="int" order="BEFORE">
+			SELECT IFNULL(MAX(cs_board_num), 0)
+			FROM cs_board
+		</selectKey>
+		INSERT
+		INTO cs_board
+		VALUES (
+			#{cs_board_num} + 1
+			, 'admin'
+			, #{cs_board_subject}
+			, #{cs_board_content}
+			 , #{cs_board_re_ref}
+			 , #{cs_board_re_lev} +1
+			 , #{cs_board_re_seq} +1		
+			, 0 	-- cs_board_readcount
+			, now()	-- cs_board_date
+			, #{cs_board_category_user}
+			, #{cs_board_category_main}
+			, #{cs_board_category_sub}
+			, #{cs_board_img_1}
+			, #{cs_board_img_2}
+			, #{cs_board_img_3}
+			, #{cs_board_img_4}
+			, #{cs_board_img_5}
+		)
+	</insert>
+		
+	
 </mapper>

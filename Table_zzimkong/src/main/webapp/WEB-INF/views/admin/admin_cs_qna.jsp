@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,21 +11,21 @@
  <script src="https://code.jquery.com/jquery-latest.min.js"></script>
  <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/admin_top.css"> 
 <script type="text/javascript">
-	function qnaQuestionForm() {
+	function qnaQuestionForm(cs_board_num) {
 		/* 팝업창 중앙 정렬 */
 		var popupW = 950;
 		var popupH = 700;
 		var left = Math.ceil((window.screen.width - popupW)/2);
 		var top = Math.ceil((window.screen.height - popupH)/2);
-		window.open('${pageContext.request.contextPath }/admin/cs/qna/question','','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
+		window.open('${pageContext.request.contextPath }/admin/cs/qna/question?cs_board_num='+cs_board_num,'','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
 	}
-	function qnaAnswerViewForm() {
+	function qnaAnswerViewForm(cs_board_num) {
 		/* 팝업창 중앙 정렬 */
 		var popupW = 950;
 		var popupH = 700;
 		var left = Math.ceil((window.screen.width - popupW)/2);
 		var top = Math.ceil((window.screen.height - popupH)/2);
-		window.open('${pageContext.request.contextPath }/admin/cs/qna/answer/view','','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
+		window.open('${pageContext.request.contextPath }/admin/cs/qna/answer/view?cs_board_num='+cs_board_num,'','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
 	}
 </script>
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
@@ -64,7 +65,7 @@
 			                	</span>
 			                    <span class="search-wrap">
 			                        <label for="search" class="blind">공지사항 내용 검색</label>
-			                        <input id="search" type="search" name="" placeholder="검색어를 입력해주세요." value="">
+			                        <input id="search" type="search" name="searchFAQ" placeholder="검색어를 입력해주세요." value="">
 			                        <button type="submit" class="btn btn-dark">검색</button>
 			                    </span>
 		                   </div>
@@ -110,50 +111,87 @@
 				        </tr>
 				        </thead>
 				        <tbody>
-				        <tr>
-				            <td>3</td>
-				            <th class="cs_th">사업자회원</th>
-				            <th class="cs_th">블랙리스트</th>
-				            <th class="cs_th">
-				              <a onclick="qnaQuestionForm()">문의문의</a>
-				              <p>테스트</p>
-				            </th>
-				            <td>zzim</td>
-				            <td>2017.07.13</td>
-				        </tr>
-				        <tr>
-				            <td>2</td>
-				            <th class="cs_th">사업자회원</th>
-				            <th class="cs_th">블랙리스트</th>
-				            <th class="cs_th">
-				              <a onclick="qnaQuestionForm()">문의문의</a> <%--문의 제목 누르면 문의 내용 열람하고 viewForm에 답변달기 버튼있음 --%>
-				              <p>테스트</p>
-				            </th>
-				            <td>zzim</td>
-				            <td>2017.07.13</td>
-				        </tr>
-				        <tr class="cs_re_tr"> <%--문의에 대한 답글 --%>
-				            <td class="cs_re_td">2-[답글]</td>
-				            <th class="cs_re_th">관리자</th>
-				            <th class="cs_re_th">블랙리스트</th>
-				            <th class="cs_re_th">
-				              <a onclick="qnaAnswerViewForm()">문의문의에대한 답입니다.</a>
-				              <p>테스트</p>
-				            </th>
-				            <td class="cs_re_td">admin</td>
-				            <td class="cs_re_td">2017.07.13</td>
-				        </tr>
-				        <tr>
-				            <td>1</td>
-				            <th class="cs_th">블랙리스트</th>
-				            <th class="cs_th">사업자회원</th>
-				            <th class="cs_th">
-				              <a onclick="qnaQuestionForm()">문의문의</a>
-				              <p>테스트</p>
-				            </th>
-				            <td>zzim</td>
-				            <td>2017.07.13</td>
-				        </tr>
+				       		 <c:forEach var="board" items="${adminCsQnaList}">
+				       		 	<c:choose>
+					       		 	<c:when test="${board.user_id eq 'admin'}">
+					                	<tr onclick="qnaAnswerViewForm(${board.cs_board_num})">
+					       		 	</c:when>
+									<c:otherwise>
+					                	<tr onclick="qnaQuestionForm(${board.cs_board_num})">
+									</c:otherwise>				                
+				                </c:choose>
+   				       		 	<c:choose>
+					                <c:when test="${board.cs_board_re_lev eq 0}">
+					                    <td>${board.cs_board_num}</td>
+					                </c:when>
+					                <c:otherwise>
+					                    <td></td>
+					                </c:otherwise>
+			                    </c:choose>
+				                    <c:choose>
+				                    	<c:when test="${board.cs_board_category_user eq '1'}">
+						                    <th class="cs_th">일반회원</th>
+				                    	</c:when>
+				                    	<c:when test="${board.cs_board_category_user eq '2'}">
+						                    <th class="cs_th">사업자회원</th>
+				                    	</c:when>
+				                    </c:choose>
+				                    <c:if test="${board.cs_board_category_user eq '1'}">
+					                    <c:choose>
+					                    	<c:when test="${board.cs_board_category_sub eq '1'}">
+							                    <th class="cs_th">예약</th>
+					                    	</c:when>
+					                    	<c:when test="${board.cs_board_category_sub eq '2'}">
+							                    <th class="cs_th">주문/결제</th>
+					                    	</c:when>
+					                    	<c:when test="${board.cs_board_category_sub eq '3'}">
+							                    <th class="cs_th">리뷰</th>
+					                    	</c:when>
+					                    	<c:when test="${board.cs_board_category_sub eq '4'}">
+							                    <th class="cs_th">회원정보</th>
+					                    	</c:when>
+					                    	<c:when test="${board.cs_board_category_sub eq '5'}">
+							                    <th class="cs_th">이용문의</th>
+					                    	</c:when>
+					                    	<c:when test="${board.cs_board_category_sub eq '6'}">
+							                    <th class="cs_th">쿠폰/포인트</th>
+					                    	</c:when>
+					                    </c:choose>
+				                    </c:if>
+			                    	<c:if test="${board.cs_board_category_user eq '2'}">
+					                     <c:choose>
+					                    	<c:when test="${board.cs_board_category_sub eq '1'}">
+							                    <th class="cs_th">예약관리</th>
+					                    	</c:when>
+					                    	<c:when test="${board.cs_board_category_sub eq '2'}">
+							                    <th class="cs_th">메뉴관리</th>
+					                    	</c:when>
+					                    	<c:when test="${board.cs_board_category_sub eq '3'}">
+							                    <th class="cs_th">광고</th>
+					                    	</c:when>
+					                    	<c:when test="${board.cs_board_category_sub eq '4'}">
+							                    <th class="cs_th">블랙회원관리</th>
+					                    	</c:when>
+					                    	<c:when test="${board.cs_board_category_sub eq '5'}">
+							                    <th class="cs_th">업체관리</th>
+					                    	</c:when>
+					                    </c:choose>
+				                    </c:if>
+				                    <th class="cs_th">
+				                          <c:if test="${board.cs_board_re_lev > 0}">
+											<c:forEach begin="1" end="${board.cs_board_re_lev}">
+												&nbsp;&nbsp;							
+											</c:forEach>
+											<img src="${pageContext.request.contextPath }/resources/img/reply-icon.png" style="width: 20px; height: 20px;">
+										</c:if>
+				                        ${board.cs_board_subject}
+				                    </th>
+				                    <th class="cs_th">
+				                        ${board.user_id}
+				                    </th>
+				                    <td>${board.cs_board_date}</td>
+				                </tr>
+				            </c:forEach>
 				        </tbody>
 				    </table>
 				</div>

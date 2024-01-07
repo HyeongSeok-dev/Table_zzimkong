@@ -79,13 +79,23 @@ public class AdminService {
 	}
 
 	// 관리자 - 고객센터 : 각 카테고리별 목록 조회 요청
-	public List<CsVO> adminCsList(int csCategory) {
-		return mapper.selectAdminCsList(csCategory);
+	public List<CsVO> adminCsList(CsVO board, int csCategory) {
+		return mapper.selectAdminCsList(board,csCategory);
 	}
 
 	// 관리자 - 고객센터 : 공지사항, 자주묻는질문 새 글 등록
-	public int adminCsNoticeFaqRegister(CsVO cs) {
-		return mapper.insertAdminCsNoticeFaqRegister(cs);
+	public int adminCsNoticeFaqRegister(CsVO board) {
+		return mapper.insertAdminCsNoticeFaqRegister(board);
+	}
+
+	public int modifyNoticeAndFaqBoard(CsVO board) {
+		// TODO Auto-generated method stub
+		return mapper.updateNoticeAndFaqBoard(board);
+	}
+
+	public int registBoardReply(CsVO board) {
+		// TODO Auto-generated method stub
+		return mapper.insertBoardReply(board);
 	}
 
 	

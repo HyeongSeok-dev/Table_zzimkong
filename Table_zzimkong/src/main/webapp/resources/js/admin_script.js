@@ -116,7 +116,7 @@ function noticeViewForm(cs_board_num, cs_board_category_user, contextPath) {
 	
 	/* 각 공지사항 페이지로 이동하기 위한 주소 */
 	var url = contextPath;
-	if(cs_board_category_user == 1) {
+	if(cs_board_category_user == 1 || cs_board_category_user == 3) {
 		url += "/member/cs/notice/view?cs_board_num=" + cs_board_num;
 	}
 	if(cs_board_category_user == 2) {
@@ -157,22 +157,6 @@ function faqViewForm(cs_board_num, cs_board_category_user, contextPath) {
 	window.open(url,'','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
 }
 	
-// admin_cs_faq_register.jsp
-// 고객센터 - 회원유형 선택에 따라 질문유형 셀렉트박스가 변경됨
-$(document).ready(function() {
-    $('.csUserSelect').change(function() {
-        var userSelect = $(this).val();
-        if (userSelect == '1') {
-            $('.member_category_select').show();
-            $('.ceo_category_select').hide();
-        } else if (userSelect == '2') {
-            $('.ceo_category_select').show();
-            $('.member_category_select').hide();
-        }
-    });
-});
-
-
 // 카테고리 필터
 // 1) 회원 관리 - 회원 구분, 회원 상태
 document.addEventListener("DOMContentLoaded", function(){
@@ -276,4 +260,8 @@ document.addEventListener("DOMContentLoaded", function(){
     if (reportStatusCategorySelect) {
         reportStatusCategorySelect.addEventListener('change', filterReports);
     }
+    
+    
+    
+    
 });

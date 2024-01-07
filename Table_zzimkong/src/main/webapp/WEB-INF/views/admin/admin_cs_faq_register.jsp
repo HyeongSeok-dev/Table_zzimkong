@@ -10,6 +10,7 @@
 <link href="${pageContext.request.contextPath}/resources/css/global.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/admin_script.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/cs.js"></script>
 </head>
 <body class="info_window">
 	<section>
@@ -23,7 +24,7 @@
 					<td></td>
 					<th>회원유형</th>
 					<td>
-						<select class="csUserSelect" name="cs_board_category_user" required>
+						<select class="user_select" name="cs_board_category_user" required>
 		            		<option selected disabled>회원유형</option>
 							<option value="1">일반회원</option>
 							<option value="2">사업자회원</option>
@@ -41,7 +42,7 @@
 						<option value="6">이용문의</option>
 						<option value="7">쿠폰/포인트</option>
 	            	</select>
-	            	<select class="ceo_category_select" name="cs_board_category_sub" hidden="">
+	            	<select class="ceo_category_select" name="cs_board_category_sub">
 	            		<option selected disabled>질문유형</option>
 	            		<option value="1">예약관리</option>
 	            		<option value="2">메뉴관리</option>
@@ -60,15 +61,18 @@
 				<tr>
 					<th colspan="2">내용</th>
 					<td colspan="4">
-						<textarea rows="20" cols="80" name="cs_board_content" placeholder="내용을 입력해주세요."></textarea>
+						<textarea rows="20" cols="100" name="cs_board_content" placeholder="내용을 입력해주세요."></textarea>
 					</td>
 				</tr>
 				<tr>
 					<th colspan="2">파일첨부</th>
 					<td colspan="4" class="td_file">
-						<input type="file" multiple="multiple">
-						<div class="file_5">* 파일 5개까지 첨부 가능</div>
-					</td>
+                          <input type="file" name="mFile1" class="file" accept="image/*">
+                          <input type="file" name="mFile2" class="file" accept="image/*">
+                          <input type="file" name="mFile3" class="file" accept="image/*">
+                          <input type="file" name="mFile4" class="file" accept="image/*">
+                          <input type="file" name="mFile5" class="file" accept="image/*">
+                     </td>
 				</tr>
 			</table>
 			<br><br>

@@ -70,10 +70,14 @@ public interface AdminMapper {
 	ReportVO selectAdminReportDetail(ReportVO report);
 
 	// 관리자 - 고객센터 : 각 카테고리별 목록 조회
-	List<CsVO> selectAdminCsList(int csCategory);
+	List<CsVO> selectAdminCsList(@Param("board") CsVO board, @Param("csCategory") int csCategory);
 
 	// 관리자 - 고객센터 : 공지사항, 자주묻는질문 새 글 등록
-	int insertAdminCsNoticeFaqRegister(CsVO cs);
+	int insertAdminCsNoticeFaqRegister(CsVO board);
+
+	int updateNoticeAndFaqBoard(CsVO board);
+
+	int insertBoardReply(CsVO board);
 
 	
 

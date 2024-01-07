@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
@@ -135,6 +136,12 @@ public class CsController {
 		}
 		
 		board = service.getBoardDetail(board);
+		
+		if(!board.getUser_id().equals(member.getUser_id())) {
+			model.addAttribute("msg", "잘못된 접근입니다.");
+			return "fail_back";
+		}
+		
 		
 		model.addAttribute("board", board);
 		model.addAttribute("member", member);
@@ -418,8 +425,23 @@ public class CsController {
 		
 		System.out.println(board);
 		board = service.getBoardDetail(board);
+		List<CsVO> memberBoards = service.getBoard(board, member, 3);
+		
+		boolean isReplyBoard = false;
+		
+		for(CsVO memberBoard : memberBoards) {
+			if(memberBoard.getCs_board_num() == board.getCs_board_re_ref()) {
+				isReplyBoard = true;
+			}
+		}
 		
 		if(!member.getUser_id().equals(board.getUser_id())) {
+			if(isReplyBoard) {
+				model.addAttribute("board", board);
+				model.addAttribute("member", member);
+				
+				return "cs/ceo_cs_qna_view";
+			}
 			model.addAttribute("msg", "잘못된 접근입니다.");
 			return "fail_back";
 		}
@@ -546,9 +568,9 @@ public class CsController {
 		
 		model.addAttribute("board", board);
 		model.addAttribute("member", member);
-		return "cs/member_cs_qna_modify";		
+		return "cs/member_cs_qna_modify";
 	}
-	
+
 	@PostMapping("member/cs/qna/modifyPro")
 	public String member_cs_qna_modifyPro(CsVO board, Model model, HttpSession session, MemberVO member) {
 		
@@ -828,7 +850,6 @@ public class CsController {
 			model.addAttribute("targetURL", "../../login");
 			return "forward";
 		}
-		/**/
 		int sIdx = (int)session.getAttribute("sIdx");
 		
 		member = service.getmember(sIdx);
@@ -836,13 +857,26 @@ public class CsController {
 		System.out.println(board);
 		board = service.getBoardDetail(board);
 		
+		List<CsVO> memberBoards = service.getBoard(board, member, 3);
+		
+		boolean isReplyBoard = false;
+		
+		for(CsVO memberBoard : memberBoards) {
+			if(memberBoard.getCs_board_num() == board.getCs_board_re_ref()) {
+				isReplyBoard = true;
+			}
+		}
+		model.addAttribute("board", board);
+		model.addAttribute("member", member);
+		
 		if(!member.getUser_id().equals(board.getUser_id())) {
+			if(isReplyBoard) {
+				return "cs/member_cs_qna_view";
+			}
 			model.addAttribute("msg", "잘못된 접근입니다.");
 			return "fail_back";
 		}
 		
-		model.addAttribute("board", board);
-		model.addAttribute("member", member);
 		return "cs/member_cs_qna_view";
 	}
 	

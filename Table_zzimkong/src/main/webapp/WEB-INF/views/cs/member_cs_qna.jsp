@@ -123,6 +123,12 @@
 				                    	</c:when>
 				                    </c:choose>
 				                    <th class="cs_th">
+				                          <c:if test="${board.cs_board_re_lev > 0}">
+											<c:forEach begin="1" end="${board.cs_board_re_lev}">
+												&nbsp;&nbsp;							
+											</c:forEach>
+											<img src="${pageContext.request.contextPath }/resources/img/reply-icon.png" style="width: 20px; height: 20px;">
+										</c:if>
 				                        ${board.cs_board_subject}
 				                    </th>
 				                    <td>${board.cs_board_date}</td>

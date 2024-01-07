@@ -27,9 +27,9 @@
 				</span>
 				
 				<span>
-					<button type="button" id="buttonNotice" onclick="location.href='notice'">공지사항</button>
-					<button type="button" id="buttonFaq" onclick="location.href='faq'">자주 묻는 질문</button>	
-					<button type="button" id="buttonQna" onclick="location.href='qna'">1:1 문의</button>	
+					<button type="button" id="buttonNotice" onclick="location.href='notice'">공지사항 관리</button>
+					<button type="button" id="buttonFaq" onclick="location.href='faq'">자주 묻는 질문 관리</button>	
+					<button type="button" id="buttonQna" onclick="location.href='qna'">1:1 문의 관리</button>	
 				</span>
 			</div>
 		
@@ -51,7 +51,7 @@
 								
 								<span class="search-wrap">
 									<label for="search" class="blind">자주묻는 질문 검색</label>
-									<input id="search" type="search" name="" placeholder="검색어를 입력해주세요." value="">
+									<input id="search" type="search" name="searchFAQ" placeholder="검색어를 입력해주세요." value="">
 									<button type="submit" class="btn btn-dark">검색</button>
 								</span>
 								

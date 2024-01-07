@@ -26,9 +26,9 @@
 				</span>
 				
 				<span>
-					<button type="button" id="buttonNotice" onclick="location.href='notice'">공지사항</button>
-					<button type="button" id="buttonFaq" onclick="location.href='faq'">자주 묻는 질문</button>	
-					<button type="button" id="buttonQna" onclick="location.href='qna'">1:1 문의</button>	
+					<button type="button" id="buttonNotice" onclick="location.href='notice'">공지사항 관리</button>
+					<button type="button" id="buttonFaq" onclick="location.href='faq'">자주 묻는 질문 관리</button>	
+					<button type="button" id="buttonQna" onclick="location.href='qna'">1:1 문의 관리</button>	
 				</span>
 			</div>
 		
@@ -50,7 +50,7 @@
 								
 								<span class="search-wrap">
 									<label for="search" class="blind">공지사항 내용 검색</label>
-									<input id="search" type="search" name="" placeholder="검색어를 입력해주세요." value="">
+									<input id="search" type="search" name="searchFAQ" placeholder="검색어를 입력해주세요." value="">
 									<button type="submit" class="btn btn-dark">검색</button>
 								</span>
 								
@@ -81,8 +81,8 @@
 						</thead>
 						<tbody>
 							<%-- 아래로 공지사항 목록 출력 --%>
-							<c:forEach var="cs_notice" items="#{adminCsNoticeList}">
-								<tr>
+							<c:forEach var="cs_notice" items="${adminCsNoticeList}">
+								<tr onclick="noticeViewForm('${cs_notice.cs_board_num}', '${cs_notice.cs_board_category_user}', '${pageContext.request.contextPath}')">
 									<td>${cs_notice.cs_board_num}</td>
 									<%-- 노출회원 카테고리 구분 --%>
 									<c:choose>
@@ -92,13 +92,15 @@
 										<c:when test="${cs_notice.cs_board_category_user eq 2}">
 											<th class="cs_th">업주회원</th>
 										</c:when>
+										<c:when test="${cs_notice.cs_board_category_user eq 3}">
+											<th class="cs_th">전체회원</th>
+										</c:when>
 										<c:otherwise>
 											<th class="cs_th" style="color:red;">알수없음</th>
 										</c:otherwise>
 									</c:choose>
 									<%-- 카테고리 소분류 --%>
 									<th class="cs_th">
-										<a onclick="noticeViewForm('${cs_notice.cs_board_num}', '${cs_notice.cs_board_category_user}', '${pageContext.request.contextPath}')">
 											<c:choose>
 												<c:when test="${cs_notice.cs_board_category_sub eq 1}">
 													[알림] 
@@ -111,7 +113,6 @@
 												</c:otherwise>
 											</c:choose>
 											${cs_notice.cs_board_subject}
-										</a>
 									</th>
 									<td>${cs_notice.cs_board_date}</td>
 								</tr>

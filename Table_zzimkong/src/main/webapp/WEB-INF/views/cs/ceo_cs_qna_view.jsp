@@ -79,7 +79,9 @@
 				</table>
 				<br>
 				<br><br>
-				<button type="button" class="button_olive" onclick="location.href='${pageContext.request.contextPath }/ceo/cs/qna/modify?cs_board_num=${board.cs_board_num}'">수정하기</button>
+				<c:if test="${sessionScope.sId eq board.user_id}">
+					<button type="button" class="button_olive" onclick="location.href='${pageContext.request.contextPath }/ceo/cs/qna/modify?cs_board_num=${board.cs_board_num}'">수정하기</button>
+				</c:if>
 				<button type="button" id="cs_button_delete">삭제</button>
 			</div>
 		</div>

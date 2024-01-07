@@ -35,10 +35,22 @@
 						${board.cs_board_content}
 					</td>
 				</tr>
+				<tr>
+					<th colspan="1">사진</th>
+					<td colspan="3" class="td_file">
+						<div><c:if test="${not empty board.cs_board_img_1}"><img src="${pageContext.request.contextPath}/resources/upload/${board.cs_board_img_1}"></c:if></div>
+						<div><c:if test="${not empty board.cs_board_img_2}"><img src="${pageContext.request.contextPath}/resources/upload/${board.cs_board_img_2}"></c:if></div>
+						<div><c:if test="${not empty board.cs_board_img_3}"><img src="${pageContext.request.contextPath}/resources/upload/${board.cs_board_img_3}"></c:if></div>
+						<div><c:if test="${not empty board.cs_board_img_4}"><img src="${pageContext.request.contextPath}/resources/upload/${board.cs_board_img_4}"></c:if></div>
+						<div><c:if test="${not empty board.cs_board_img_5}"><img src="${pageContext.request.contextPath}/resources/upload/${board.cs_board_img_5}"></c:if></div>
+					</td>
+				</tr>
 			</table>
 			<br><br>
 			<button type="button" class="button_olive" onclick="javascript:window.close()">닫기</button>
-			<%--공지사항의 수정과 삭제 권한은 오직 관리자에게만 있음 수정과 삭제는 관리자 페이지에서 진행!! --%>
+			<c:if test="${sessionScope.sId eq 'admin'}">
+				<button type="button" class="button_olive" onclick="location.href='${pageContext.request.contextPath }/admin/cs/notice/modify?cs_board_num='+ ${board.cs_board_num}">수정하기</button>
+			</c:if>
 	</section>
 </body>
 </html>

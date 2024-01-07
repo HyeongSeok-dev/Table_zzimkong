@@ -11,7 +11,7 @@
  <link href="${pageContext.request.contextPath }/resources/css/member_cs.css" rel="stylesheet">
  <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/ceo_top.css"> 
  <script type="text/javascript">
-	function noticeViewForm() {
+	function noticeViewForm(board_num) {
 		/* 팝업창 중앙 정렬 */
 		var popupW = 950;
 		var popupH = 700;

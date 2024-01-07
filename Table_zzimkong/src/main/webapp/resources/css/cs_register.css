@@ -12,7 +12,11 @@
 #cs_agree_checkbox {
 	margin-right: 10px;
 }
-
+img{
+	width:400px;
+	height: auto;
+	max-height: 300px;
+}
 .cs_agree {
 	position: relative;
 	left: 180px;
