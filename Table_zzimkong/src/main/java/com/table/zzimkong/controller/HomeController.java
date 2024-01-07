@@ -29,6 +29,7 @@ public class HomeController {
 	@GetMapping("/")
 	public String main(Model model, SearchVO search, MemberVO member, HttpSession session) {
 			//기본 검색 디폴트 세팅 
+		System.out.println("초기 서치 상태" + search);
 			search.setPersons(2);
 	        
 	        LocalDateTime defaultTime = LocalDateTime.now().plusHours(2);
@@ -60,7 +61,9 @@ public class HomeController {
 	        search.setDate(date.toString());
 	        search.setTime(time);
 	        search.setDisplayTime(displayTime);
-	        search.setLocation("전국");
+	        if(search.getLocation() == null) {
+	        	search.setLocation("전국");
+	        }
 	        search.setContext(null);
 	        
 	        model.addAttribute("search", search);
@@ -78,27 +81,13 @@ public class HomeController {
 	        List<CompanyVO>cleanList = service.getCleanList(search);
 	        model.addAttribute("cleanList", cleanList);
 	        
-	        //위생순 지역선택에따른 정렬
-	        search = (SearchVO)session.getAttribute("search");
-	        
-	        List<CompanyVO>companyListMain = service.getSelectAreaCleanList(search);
-	        model.addAttribute("companyListMain", companyListMain);
-	        
-	        
-	        //추천순(광고순)
-	        search = (SearchVO)session.getAttribute("search");
-	        
 	        List<CompanyVO>recommendList = service.getRecommendList(search);
 	        model.addAttribute("recommendList", recommendList);
-	        
-	        //별점순
-	        search = (SearchVO)session.getAttribute("search");
 	        
 	        List<CompanyVO>reviewList = service.getReviewList(search);
 	        model.addAttribute("reviewList", reviewList);
 	        
 	        //==============================================================
-	        
 	    return "main";
 	    
 	}

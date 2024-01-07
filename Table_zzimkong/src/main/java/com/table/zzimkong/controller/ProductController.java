@@ -61,6 +61,17 @@ public class ProductController {
 	    }
 		
 		session.setAttribute("search", search);
+		
+		
+        List<CompanyVO>cleanListMain = service.getCleanList(search);
+        session.setAttribute("cleanListMain", cleanListMain);
+        
+        List<CompanyVO>recommendListMain = service.getRecommendList(search);
+        session.setAttribute("recommendListMain", recommendListMain);
+        
+        List<CompanyVO>reviewListMain = service.getReviewList(search);
+        session.setAttribute("reviewListMain", reviewListMain);
+		
 		search.setRedirectURL("/product/list");
 
 		return ResponseEntity.ok(search);
@@ -90,11 +101,7 @@ public class ProductController {
 		session.setAttribute("search", search);
 		model.addAttribute("listCount", listCount);
 		model.addAttribute("companyList", companyList);
-		
-		//선택된 지역에따라 메인화면 정렬
-		List<CompanyVO> companyListMain = service.getCompanyList(search);
-		session.setAttribute("companyListMain", companyListMain);
-		
+	
 		return "product/product_list";
 	}
 	
