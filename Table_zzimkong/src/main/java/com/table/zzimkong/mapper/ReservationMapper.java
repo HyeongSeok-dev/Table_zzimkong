@@ -31,7 +31,7 @@ public interface ReservationMapper {
 	ReservationVO selectResIdx(ReservationVO res);
 
 	//pre insert!!!!!!!!!!!!
-	int insertPreOrder(int res_idx, List<MenuVO> menuList);
+	int insertPreOrder(@Param("res_idx") int res_idx, @Param("menuList") List<MenuVO> menuList);
 
 
 //	int insertPreOrder(@Param("res") int res_idx, @Param("menu_idx") int menu_idx, @Param("pre") PreOrderVO pre);

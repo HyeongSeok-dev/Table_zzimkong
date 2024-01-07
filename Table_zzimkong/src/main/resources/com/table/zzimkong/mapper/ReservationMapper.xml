@@ -94,13 +94,21 @@
 		
 
 	
+<!-- 	<insert id="insertPreOrder"> -->
+<!-- 	    INSERT INTO pre_order (pre_idx, res_idx, menu_idx, pre_num)  -->
+<!-- 	    VALUES item   var  -->
+<!-- 	    <foreach collection="menuList" item="menu" separator=","> -->
+<!-- 	        (null, #{res}, #{menuList}, #{menu.pre_num}) -->
+<!-- 	    </foreach> -->
+<!-- 	</insert> -->
+	
 	<insert id="insertPreOrder">
-	    INSERT INTO pre_order (pre_idx, res_idx, menu_idx, pre_num) 
-	    VALUES <!--item   var  -->
-	    <foreach collection="menuList" item="menu" separator=",">
-	        (null, #{res_idx}, #{menu.menu_idx}, #{menu.pre_num})
-	    </foreach>
-	</insert>
+        INSERT INTO pre_order (pre_idx, res_idx, menu_idx, pre_num) 
+        VALUES
+        <foreach collection="menuList" item="menu" separator=",">
+            (null, #{res_idx}, #{menu.menu_idx}, #{menu.order_amount})
+        </foreach>
+    </insert>
 		
 		
 
