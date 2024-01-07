@@ -28,5 +28,26 @@ public class MypageInfo {
 	// => 멤버변수명은 form 태그 내의 파일의 name 속성값과 동일해야함
 	private MultipartFile m_file;
 	
+	// 예약내역 조회시 필요한 예약번호 추가
 	private int res_idx;
+	
+	// 가게 신고할 때 필요한 회사 이름, 주소 추가
+	private String com_name;
+	private String com_address;
+	private int res_status; // 방문완료일 때만 뜨게 하기 위해 추가
+	
+	// 가게 신고 테이블
+	private int report_reason;
+	private int report_person;
+	private String report_content;
+	private boolean report_category;
+	private int report_status;
+	
+	private double avg_score;
+	private int reviewCount;
+	private int fiveStarCount;
+	private int fourStarCount;
+	private int threeStarCount;
+	private int twoStarCount;
+	private int oneStarCount;
 }

@@ -92,5 +92,21 @@
         DELETE FROM bookmark
         WHERE com_id = #{com_id}
     </delete>
+    
+    <!-- 방문한 가게 조회 - SELECT -->
+    <select id="selectVisitedShop" >
+	    SELECT mv.com_name, ANY_VALUE(c.com_address) as com_address -- GROUP_CONCAT 함수는 중복된 값을 다 포함하여 문자열을 생성하기 때문에, 동일한 가게 이름에 대해 여러 주소가 존재하는 경우 그 모든 주소를 문자열로 반환했음. 가게당 주소가 한번 나올 수 있도록 ANY_VALUE 함수 사용
+		FROM mypage_view mv
+		JOIN company c ON mv.com_name = c.com_name
+		WHERE mv.user_idx = #{userIdx} AND mv.res_status = 3
+		GROUP BY mv.com_name; -- 같은 가게는 하나로 묶기
+    </select>
+    
+    <!-- 가게 신고하기 - INSERT -->
+    <insert id= "insertShopReport">
+      INSERT INTO report(report_reason, report_content)
+    	VALUES (#{report_reason}, #{report_content})
+    </insert>
+    
 
 </mapper>

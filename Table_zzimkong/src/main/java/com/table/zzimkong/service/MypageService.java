@@ -64,6 +64,16 @@ public class MypageService {
 	public int bookmarkDel2(BookmarkVO bookmark) {
 		return mapper.deleteBookmark2(bookmark);
 	}
+	
+	// 방문한 가게 조회
+	public List<MypageInfo> getVisitedShop(int sIdx) {
+		return mapper.selectVisitedShop(sIdx);
+	}
+	
+	// 가게 신고하기
+	public int registShopReport(ReportVO report) {
+		return mapper.insertShopReport(report);
+	}
 
 
 

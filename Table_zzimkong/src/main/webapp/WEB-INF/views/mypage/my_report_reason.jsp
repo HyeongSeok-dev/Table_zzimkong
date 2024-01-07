@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>가게 신고하기</title>
 <link href="${pageContext.request.contextPath }/resources/css/mypage.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
 <script type="text/javascript">
@@ -14,7 +14,13 @@
 </script>
 </head>
 <body>
-	<form action="" method="post">
+	<form action="reason2" method="post">
+		<div align="center" class="div_img">
+			<img class="logo_img_1" src="${pageContext.request.contextPath }/resources/img/logo1_2.png" alt="메인로고1" >
+			<img class="logo_img_2" src="${pageContext.request.contextPath }/resources/img/logo3_2.png" alt="메인로고2" >
+		</div>
+  		<!-- 테두리를 위한 div테그 -->
+        <div id="box">
 		<h3>신고 사유를 선택해주세요</h3>
 		<br><br>
 		<section class="report_reason">
@@ -32,6 +38,7 @@
 			<button type="submit" onclick="reportRegister()">신고</button>
 			<button type="reset" id="button_grey2">초기화</button>
 			<button type="button" id="my_delete" onclick="javascript:window.close()">취소</button>
+		</div>
 		</div>
 	</form>
 
