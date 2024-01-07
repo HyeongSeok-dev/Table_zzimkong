@@ -10,7 +10,7 @@
     min-width: 1560px;
     max-width: 1880px;
     padding: 10px 40px;
-    margin: 0px auto;
+    margin: auto;
     box-sizing: border-box;
 }
 
@@ -290,7 +290,9 @@ section {
     width: 170px;
     float: left;
     margin: 54px 40px 0px 0px;
+    margin-left: 0px;
     font-size: 14px;
+    
 }
 
 nav {

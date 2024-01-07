@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +11,7 @@
 <script type="text/javascript">
 	function reportReason() {
 		var popupW = 600;
-		var popupH = 500;
+		var popupH = 650;
 		var left = Math.ceil((window.screen.width - popupW)/2);
 		var top = Math.ceil((window.screen.height - popupH)/2);
 		window.open('reason','','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')				
@@ -31,41 +32,26 @@
 			</span>
 			</div>
 			<br>
+				<h3 class="small-text">* 신고할 가게를 선택해주세요 (이름순)</h3>
 				<table style="width: 1000px; table-layout: fixed;">
 					<tr>
-						<th style="width:50px">선택</th>
-						<th>예약일자</th>
-						<th>가게명</th>
+						<th style="width:150px">가게명</th>
 						<th>주소</th>
+						<th style="width:150px"></th>
 					</tr>
-					<tr>
-						<td><input type="radio" name="check"></td>
-						<td>2023/05/17</td>
-						<td>기장손칼국수</td>
-						<td>서면</td>
-					</tr>
-					<tr>
-						<td><input type="radio" name="check"></td>
-						<td>2023/07/16</td>
-						<td>화남정돼지국밥</td>
-						<td>초읍</td>
-					</tr>
-					<tr>
-						<td><input type="radio" name="check"></td>
-						<td>2023/10/22</td>
-						<td>송원감자탕</td>
-						<td>초량</td>
-					</tr>
-					<tr>
-						<td><input type="radio" name="check"></td>
-						<td>2023/12/04</td>
-						<td>송화강</td>
-						<td>양정</td>
-					</tr>
+					<%-- 방문한 가게 출력 --%>
+					<c:forEach var="visitedShop" items="${visitedShopList}">
+						<tr>
+							<td><b>${visitedShop.com_name}</b></td>
+							<td>${visitedShop.com_address}</td>
+							<td>
+								<div class = "click_button">
+									<button type="button" onclick="reportReason()">신고하기</button>
+								</div>
+							</td>
+						</tr>
+					</c:forEach>
 				</table>
-				<div class = "click_button">
-					<button type="button" onclick="reportReason()">신고하기</button>
-				</div>
 			</div>
 	</div>
 	</main>

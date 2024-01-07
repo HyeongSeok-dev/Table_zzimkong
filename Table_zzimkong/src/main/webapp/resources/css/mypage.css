@@ -5,9 +5,10 @@
 }
 
 .wrapper {
-	margin-left: 500px;
+	margin-left: 450px;
 	margin-right: 500px;
 	margin-top: 70px;
+	position: absolute;
 }
 
 .title{
@@ -15,6 +16,32 @@
 	justify-content: space-between; /* 그 사이에 공간을 준다 */
 	width: 1000px;
 }
+
+.logo_img_1 {
+    width: 80px;
+    margin-top: 30px;
+}
+
+.logo_img_2 {
+    width: 200px;
+    margin-top: 30px;
+}
+.div_img {
+	margin-bottom: 30px;
+}
+
+#box{
+/* 	text-align: center; */
+	width: 500px; 
+	height: 480px;
+    margin: 0 auto;
+    margin-bottom: 50px; 
+    padding: 40px; 
+    border: 1px solid #d9d9d9; 
+    background: #fbfcfd; 
+    box-sizing: border-box;
+}
+
 
 .mypg> h1 {
     color: #515151;
@@ -180,6 +207,8 @@ input[type="date"]::before {
 .image_size {
 	width: 250px;
     height: 250px;
+/*     margin: 30px; 원하는 마진으로 변경 */
+	object-fit: cover; /* 이미지의 비율을 유지하면서, 지정한 width와 height에 맞게 이미지를 잘라냄 */
     border-radius: 10%;
 }
 
@@ -187,11 +216,13 @@ input[type="date"]::before {
 	display: flex;
 	margin-top: 20px;
 	flex-wrap: wrap;
+	justify-content: space-between; /* 이미지 사이의 간격을 균등하게 조정 */
 }
 
 /* .bookmark_image img { */
 /* 	margin-right:50px; */
 /* } */
+
 
 .bookmark_image div {
    flex-basis: 33.33%;

@@ -34,7 +34,7 @@ public class ReservationController {
 	public ModelAndView reservation(HttpSession session, Map<String, Object> map,
 			ReservationVO res, PreOrderVO pre, CompanyVO com, MemberVO member, MenuVO menu) throws JsonProcessingException {
 		
-	 // 세션에서 "menuList" 속성 가져오기
+		// 세션에서 "menuList" 속성 가져오기
 	    Object obj = session.getAttribute("menuList");
 
 	    // ObjectMapper 인스턴스 생성
@@ -45,7 +45,7 @@ public class ReservationController {
 
 	    // JSON 문자열을 List<MenuVO>로 변환
 	    List<MenuVO> menuList = mapper.readValue(jsonStr, new TypeReference<List<MenuVO>>(){});
-	    
+//	    System.out.println("처음리스트" + menuList);
 	    
 	    
 	    res = (ReservationVO) session.getAttribute("res");
@@ -56,7 +56,7 @@ public class ReservationController {
 //	    session.setAttribute("res", null);
 //	    session.setAttribute("menuList", null);
 	    
-	    //메뉴가격 변수만들기~!
+	    //메뉴가격 합계변수만들기
 	    int count = 0;
 	    int menuTotalPriceInt = 0;
 	    int totalPayPriceInt = 0;
@@ -79,13 +79,12 @@ public class ReservationController {
 	    
 	    map.put("menuTotalPayPrice", menuTotalPayPrice);
 	    map.put("totalPayPrice", totalPayPrice);
-	    map.put("com", com);
+//	    map.put("com", com);
         map.put("res", res);
 	    
-	    System.out.println("업체정보" + com);
+//	    System.out.println("업체정보" + com);
 	    System.out.println("예약정보" + res);
-	    System.out.println("메뉴" + menuList);
-	    
+	    System.out.println("메뉴" + menuList); //리스트 들어있음
 	    
 	    //[가게 ]
 	    int sIdx = (int)session.getAttribute("sIdx");
@@ -102,29 +101,23 @@ public class ReservationController {
 			return mav;
 		}
 		
-		
 		//[가게이름 조회]
         com = service.getCompany(res);
-        System.out.println(com);
         map.put("com", com);
         System.out.println("업체정보2" + com);
         
-        // [예약선택정보 조회]
-
-		
-//		List<PreOrderInfo> poiList = service.getPreInfo(res);
-//		
-//		//[예약자 정보 조회]
+		//[예약자 정보 조회]
 		member = service.getUserInfo(res);
 		System.out.println(res);
 		map.put("member", member);
 		
 		
-//		res = service.getreservation(res);
-
 		map.put("res", res);
 		map.put("menu", menuList);
-		System.out.println(map);
+			
+		System.out.println("메누체크" + menuList);
+		
+		
 		mav = new ModelAndView("reservation/reservation", "map", map);
 		return mav;
 	}
@@ -132,9 +125,12 @@ public class ReservationController {
 	@RequestMapping("reservationPro")
 	public ModelAndView reservationPro(HttpSession session, ReservationVO res, PreOrderVO pre, CompanyVO com, MenuVO menu) {
 		ModelAndView mav;
+	
 		String alphanumeric = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         StringBuilder sb = new StringBuilder();
         Random random = new Random();
+        
+        List<MenuVO> menuList = (List<MenuVO>) session.getAttribute("menuList");
         
         System.out.println("cccccccccccc");
         for (int i = 0; i < 7; i++) {
@@ -153,9 +149,12 @@ public class ReservationController {
         System.out.println("메뉴!" + menu);
         
         res = service.getResIdx(res);
-        System.out.println("플리즈!!!" + res);
+        System.out.println("플리즈!!!" + res.getRes_idx());
+        
+//        List<MenuVO> menuList = createMenuList();
+        System.out.println("메뉴리스트" + menuList);
         //pre insert!!!!!!!!!!!!
-//        int insertPre = service.getPreOrder(res.getRes_idx(), menu.getMenu_idx(), pre);
+        int insertPre = service.getPreOrder(res.getRes_idx(), menuList);
         System.out.println("선" + pre);
      
         Map<String, Object> map = new HashMap<String, Object>();
@@ -170,4 +169,10 @@ public class ReservationController {
         mav = new ModelAndView("redirect:/payment?res_num="+res.getRes_num());
 		return mav;
 	}
+	
+//	private List<MenuVO> createMenuList() {
+//	    List<MenuVO> menuList = new ArrayList<>();
+//	    // menuList에 MenuVO 객체들을 추가합니다.
+//	    return menuList;
+//	}
 }

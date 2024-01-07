@@ -64,9 +64,11 @@ public class ReservationService {
 	
     //pre insert!!!!!!!!!!!!
 
-//	public int getPreOrder(int res_idx, int menu_idx, PreOrderVO pre, List<MenuVO> menuList) {
-//		return mapper.insertPreOrder(res_idx, menu_idx, pre);
-//	}
+	public int getPreOrder(int res_idx, List<MenuVO> menuList) {
+		return mapper.insertPreOrder(res_idx, menuList);
+	}
+
+
 
 
 //	public int insertMenu(PreOrderVO pre) {

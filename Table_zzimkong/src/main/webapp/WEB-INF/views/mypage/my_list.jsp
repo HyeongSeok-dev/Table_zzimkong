@@ -45,7 +45,7 @@
 				<%-- 예약 목록 출력 --%>
 				<c:forEach var="res" items="${resList}">
 				  <tr>
-						<td>${res.com_name }</td>
+						<td style="height: 50px;"><b>${res.com_name }</b></td>
 						<td>${res.res_name }</td>
 						<td>${res.res_person }</td>
 <%-- 						<td>${res.menu_name }</td> --%>
@@ -94,12 +94,12 @@
 		        	<a href="${pageContext.request.contextPath}/product/detail?com_id=${bookmark.com_id}">
 		           	 <img class="image_size" src="${pageContext.request.contextPath}/resources/upload/${bookmark.com_img}">
 		       		</a>
-			    <div id="likeButton" class="like_button">
-		       		<svg id="heart" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" onclick="removeBookmark2('${bookmark.com_id}')">
-		            	<path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-		        	</svg>
-		        	${bookmark.com_name}
-			    </div>
+			    <div id="likeButton" class="like_button" style="display: flex; align-items: center;">
+				    <svg id="heart" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" onclick="removeBookmark2('${bookmark.com_id}')" style="margin-right: 10px;">
+				        <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+				    </svg>
+				     ${bookmark.com_name}
+				</div>
 				</div>
 			</c:forEach>
 			</div>

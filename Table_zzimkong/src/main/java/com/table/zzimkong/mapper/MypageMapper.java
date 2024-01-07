@@ -40,6 +40,12 @@ public interface MypageMapper {
 
 	// 더보기 페이지 북마크 삭제
 	int deleteBookmark2(BookmarkVO bookmark);
+	
+	// 방문한 가게 조회
+	List<MypageInfo> selectVisitedShop(int sIdx);
+	
+	// 가게 신고하기
+	int insertShopReport(ReportVO report);
 
 
 

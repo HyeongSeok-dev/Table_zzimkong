@@ -1,11 +1,12 @@
 package com.table.zzimkong.vo;
 
 import java.sql.Date;
-import java.sql.Time;
 
 import lombok.Data;
+import lombok.Getter;
 
 @Data
+@Getter
 public class ReservationVO {
 	private int res_idx;
 	private String res_num;
@@ -25,5 +26,7 @@ public class ReservationVO {
 	
 	// 마이페이지에서 불러올 가게명 JOIN을 위한 멤버변수
 	private String com_name;
+
+
 	
 }

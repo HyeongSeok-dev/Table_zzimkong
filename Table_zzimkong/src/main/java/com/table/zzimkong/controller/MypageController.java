@@ -215,8 +215,6 @@ public class MypageController {
 	    }
 	}
 	
-	
-	
 	//----------------나의 예약 더보기 페이지--------------------
 	@GetMapping("my/reservation")
 	public String my_reservation(MypageInfo mypage, HttpSession session, Model model, HttpServletResponse response)	{
@@ -279,16 +277,33 @@ public class MypageController {
 		return "mypage/my_review";
 	}
 	
+	//--------------가게 신고 - 방문한 가게 조회하기-----------------------------------
 	@GetMapping("my/report/shop")
-	public String my_report_shop() {
+	public String my_report_shop(MypageInfo mypage, HttpSession session, Model model) {
+		int sIdx = (int)session.getAttribute("sIdx"); //세션 인덱스 가져오기 (회원번호)
+		List<MypageInfo> visitedShop = service.getVisitedShop(sIdx);
+		System.out.println();
+		
+		// Model 객체에 회원 목록 조회 결과 저장(visitedShop 문자열을 "visitedShopList"라는 속성명으로 저장)
+		model.addAttribute("visitedShopList", visitedShop);
+		
 		return "mypage/my_report_shop";
 	}
 	
+	//------------가게 신고하기-------------------
 	@GetMapping("my/report/reason")
-	public String my_report_reason() {
+	public String my_report_reason(HttpSession session, Model model) {
 		return "mypage/my_report_reason";
 	}
 	
+	// "report/reason2" 서블릿 요청에 대한 글쓰기 비즈니스 로직 처리
+	@PostMapping("my/report/reason2")
+	public String my_report_reason2(ReportVO report, HttpSession session, Model model) {
+		
+		int insertCount = service.registShopReport(report);
+		System.out.println(report);
+		return "mypage/my_report_reason";
+	}
 
 	
 	@GetMapping("my/unregister")
