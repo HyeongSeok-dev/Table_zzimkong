@@ -18,7 +18,7 @@ function newInfo(res_idx) {
 
 $(document).ready(function() {
 	var initialCompanyId = $('#storeList option:first').val();
-    fetchCompanyData(initialCompanyId); 
+//    fetchCompanyData(initialCompanyId); 
 
     $('#storeList').change(function() {
         var selectedCompanyId = $(this).val();

@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -21,7 +22,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -32,6 +32,7 @@ import com.table.zzimkong.vo.CompanyVO;
 import com.table.zzimkong.vo.MemberVO;
 import com.table.zzimkong.vo.MenuList;
 import com.table.zzimkong.vo.MenuVO;
+import com.table.zzimkong.vo.PreOrderInfo;
 import com.table.zzimkong.vo.ReservationVO;
 
 @Controller
@@ -283,10 +284,38 @@ public class CeoController {
 	}
 	
 	@GetMapping("ceo/reservation/info")	
-	public String ceo_reservation_info(ReservationVO res, Model model) {
+	public String ceo_reservation_info(ReservationVO res, Model model, MenuVO menu, HttpSession session, PreOrderInfo poi) {
 		res = service.getResDetailInfo(res);
 		System.out.println("info에서 받는거" + res);
 		model.addAttribute("res", res);
+
+		
+		
+		List<PreOrderInfo> preInfo = service.getPreOrderInfo(res);
+		model.addAttribute("preInfo", preInfo);
+		System.out.println("정보" + preInfo);
+		
+	    NumberFormat numberFormat = NumberFormat.getInstance();
+
+		
+	    //메뉴가격 합계변수만들기
+	    int count = 0;
+	    int eachMenuTotalPriceInt = 0;
+		int menuTotalPriceInt = 0;
+		for(PreOrderInfo preOrderInfo : preInfo) {
+			eachMenuTotalPriceInt = (Integer.parseInt(preOrderInfo.getMenu_price()) * preOrderInfo.getPre_num());
+			menuTotalPriceInt += eachMenuTotalPriceInt;
+			String eachMenuTotalPrice = numberFormat.format(eachMenuTotalPriceInt);
+			preOrderInfo.setEachMenuTotalPrice(eachMenuTotalPrice);
+			count++;
+		}
+		String totalPrice = numberFormat.format(res.getRes_table_price() + menuTotalPriceInt);
+		String menuTotalPrice = numberFormat.format(menuTotalPriceInt);
+		
+		model.addAttribute("totalPrice", totalPrice);
+		model.addAttribute("menuTotalPrice", menuTotalPrice);
+		
+		
 		return "ceo/ceo_reservation_info";
 	}
 

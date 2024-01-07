@@ -76,7 +76,6 @@ public class ReservationController {
 	    String totalPayPrice = numberFormat.format(res.getRes_table_price() + totalPayPriceInt);
 	    String menuTotalPayPrice = numberFormat.format(totalPayPriceInt);
 	    System.out.println(totalPayPrice);
-	    
 	    map.put("menuTotalPayPrice", menuTotalPayPrice);
 	    map.put("totalPayPrice", totalPayPrice);
 //	    map.put("com", com);

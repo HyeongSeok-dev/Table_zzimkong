@@ -8,8 +8,9 @@ import org.springframework.stereotype.Service;
 import com.table.zzimkong.mapper.CeoMapper;
 import com.table.zzimkong.vo.CompanyVO;
 import com.table.zzimkong.vo.MemberVO;
-import com.table.zzimkong.vo.MenuList;
 import com.table.zzimkong.vo.MenuVO;
+import com.table.zzimkong.vo.PreOrderInfo;
+import com.table.zzimkong.vo.PreOrderVO;
 import com.table.zzimkong.vo.ReservationVO;
 
 
@@ -100,5 +101,9 @@ public class CeoService {
 	public CompanyVO getComNum(CompanyVO com) {
 		// TODO Auto-generated method stub
 		return mapper.selectComNum(com);
+	}
+
+	public List<PreOrderInfo> getPreOrderInfo(ReservationVO res) {
+		return mapper.selectPreInfo(res);
 	}
 }

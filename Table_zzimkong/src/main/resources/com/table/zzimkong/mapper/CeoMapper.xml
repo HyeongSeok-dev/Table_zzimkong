@@ -158,6 +158,12 @@
 		)
 	</insert>
 	
+	<select id="selectPreInfo" resultType="poi">
+		SELECT pre.pre_idx, pre.pre_num, pre.menu_idx, menu.menu_name, menu_price 
+		FROM pre_order pre , menu
+		WHERE res_idx = #{res_idx} AND pre.menu_idx = menu.menu_idx
+	</select>
+	
 	
 	
 	
