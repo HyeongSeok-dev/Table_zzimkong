@@ -197,8 +197,8 @@ $(document).ready(function() {
 				console.log("Response: ", response);
           		$(".info_text").text("테이블 인원수: " + response.persons + "명, " + response.displayDate + " " + response.displayTime);
           		if(response.location != null){
-          			$(".seleted_location").text(response.location.replace('_',' '));
           			location.reload();
+          			$(".seleted_location").text(response.location.replace('_',' '));
 				}
 				if(response.requestURL== "/product/list"){
 					console.log("페이지 이동");

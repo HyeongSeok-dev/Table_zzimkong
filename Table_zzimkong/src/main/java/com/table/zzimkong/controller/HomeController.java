@@ -29,64 +29,64 @@ public class HomeController {
 	@GetMapping("/")
 	public String main(Model model, SearchVO search, MemberVO member, HttpSession session) {
 			//기본 검색 디폴트 세팅 
-		System.out.println("초기 서치 상태" + search);
-			search.setPersons(2);
-	        
-	        LocalDateTime defaultTime = LocalDateTime.now().plusHours(2);
-	        LocalDate date;
-	        String time;
-	        String displayTime;
-	        if (defaultTime.toLocalTime().isAfter(LocalTime.of(22, 0)) || defaultTime.toLocalTime().isBefore(LocalTime.of(1, 0))) {
-	            date = LocalDate.now().plusDays(1);
-	            time = "13:00"; 
-	            search.setDisplayDate("내일");
-	        } else if (defaultTime.toLocalTime().isBefore(LocalTime.of(10, 0))) {
-	            date = LocalDate.now();
-	            time = "13:00"; 
-	            search.setDisplayDate("오늘");
-	        } else {
-	        	date = LocalDate.now();
-	            // 30분 단위로 반올림
-	            int minute = defaultTime.getMinute();
-	            if (minute % 30 >= 15) {
-	                defaultTime = defaultTime.plusMinutes(30 - (minute % 30));
-	            } else {
-	                defaultTime = defaultTime.minusMinutes(minute % 30);
-	            }
-	            time = defaultTime.format(DateTimeFormatter.ofPattern("HH:mm")); 
-	            search.setDisplayDate("오늘");
-	        }
-	        LocalTime localTime = LocalTime.parse(time, DateTimeFormatter.ofPattern("HH:mm"));
-	        displayTime = localTime.format(DateTimeFormatter.ofPattern("a h:mm"));
-	        search.setDate(date.toString());
-	        search.setTime(time);
-	        search.setDisplayTime(displayTime);
-	        if(search.getLocation() == null) {
-	        	search.setLocation("전국");
-	        }
-	        search.setContext(null);
-	        
-	        model.addAttribute("search", search);
-	        
-	        System.out.println(search);
-	      
-	        model.addAttribute("member", member);
-	        
-       
-	        //메인화면에 카테고리별로 정보 뿌리기==================================
-	        
-	        //위생순
-	        search = (SearchVO)session.getAttribute("search");
-	        
-	        List<CompanyVO>cleanList = service.getCleanList(search);
-	        model.addAttribute("cleanList", cleanList);
-	        
-	        List<CompanyVO>recommendList = service.getRecommendList(search);
-	        model.addAttribute("recommendList", recommendList);
-	        
-	        List<CompanyVO>reviewList = service.getReviewList(search);
-	        model.addAttribute("reviewList", reviewList);
-	        
+			if(search.getPersons() == 0) {
+				search.setPersons(2);
+		        
+		        LocalDateTime defaultTime = LocalDateTime.now().plusHours(2);
+		        LocalDate date;
+		        String time;
+		        String displayTime;
+		        if (defaultTime.toLocalTime().isAfter(LocalTime.of(22, 0)) || defaultTime.toLocalTime().isBefore(LocalTime.of(1, 0))) {
+		            date = LocalDate.now().plusDays(1);
+		            time = "13:00"; 
+		            search.setDisplayDate("내일");
+		        } else if (defaultTime.toLocalTime().isBefore(LocalTime.of(10, 0))) {
+		            date = LocalDate.now();
+		            time = "13:00"; 
+		            search.setDisplayDate("오늘");
+		        } else {
+		        	date = LocalDate.now();
+		            // 30분 단위로 반올림
+		            int minute = defaultTime.getMinute();
+		            if (minute % 30 >= 15) {
+		                defaultTime = defaultTime.plusMinutes(30 - (minute % 30));
+		            } else {
+		                defaultTime = defaultTime.minusMinutes(minute % 30);
+		            }
+		            time = defaultTime.format(DateTimeFormatter.ofPattern("HH:mm")); 
+		            search.setDisplayDate("오늘");
+		        }
+		        LocalTime localTime = LocalTime.parse(time, DateTimeFormatter.ofPattern("HH:mm"));
+		        displayTime = localTime.format(DateTimeFormatter.ofPattern("a h:mm"));
+		        search.setDate(date.toString());
+		        search.setTime(time);
+		        search.setDisplayTime(displayTime);
+		        if(search.getLocation() == null) {
+		        	search.setLocation("전국");
+		        }
+		        search.setContext(null);
+		        
+		        model.addAttribute("search", search);
+		        
+		        System.out.println(search);
+		      
+		        model.addAttribute("member", member);
+		        
+	       
+		        //메인화면에 카테고리별로 정보 뿌리기==================================
+		        
+		        //위생순
+		        search = (SearchVO)session.getAttribute("search");
+		        
+		        List<CompanyVO>cleanList = service.getCleanList(search);
+		        model.addAttribute("cleanList", cleanList);
+		        
+		        List<CompanyVO>recommendList = service.getRecommendList(search);
+		        model.addAttribute("recommendList", recommendList);
+		        
+		        List<CompanyVO>reviewList = service.getReviewList(search);
+		        model.addAttribute("reviewList", reviewList);
+			}
 	        //==============================================================
 	    return "main";
 	    
