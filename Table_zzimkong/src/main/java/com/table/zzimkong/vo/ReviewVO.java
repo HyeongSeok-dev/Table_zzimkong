@@ -89,7 +89,6 @@ public class ReviewVO {
 	private int twoStarCount;
 	private int oneStarCount;
 	
-	// ------------------------------------------------------------------------------------
 	// 카테고리 검색
 	private String category;
 	

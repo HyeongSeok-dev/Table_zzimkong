@@ -66,7 +66,7 @@ public class ReviewController {
 		// 세션 값 저장해두기
 		String sId = (String) session.getAttribute("sId");
 		
-	    session.setAttribute("com_id", comId);
+		session.setAttribute("com_id", comId);
 //	    session.setAttribute("review_num", reviewNum);
 	    session.setAttribute("user_id", sId);
 	    		
@@ -587,11 +587,20 @@ public class ReviewController {
 	}
 
 	
-	// [ 리뷰 댓글 ] 
+	// ===================================================================
+	// [ 리뷰 댓글 기능 ] 
 	@GetMapping("review/comment")
-	public String review_comment(@RequestParam("com_id") int comId, Model model, HttpSession session) {
+	public String review_comment(
+								 @RequestParam("com_id") int comId, 
+								 @RequestParam("review_num") int reviewNum,
+								 Model model, HttpSession session
+								 ) {
+		// review_num과 com_id를 모델에 추가
+		model.addAttribute("reviewNum", reviewNum);
+		model.addAttribute("com_id", comId);
 		
-	    // 현재 로그인한 사용자의 ID를 세션에서 가져옴
+		String userId = (String) session.getAttribute("user_id");
+		// 현재 로그인한 사용자의 ID를 세션에서 가져옴
 		String sId = (String)session.getAttribute("sId");
 		
 	    // 세션에 com_id와 user_id를 설정
@@ -602,8 +611,122 @@ public class ReviewController {
 		String comName = service.getCompanyName(comId);
 		model.addAttribute("comName",comName);
 		
+		MemberVO member = service.getUserInfo(sId);
+		model.addAttribute("member",member);
+		model.addAttribute("userId",userId);
+		
+		
+		// --------------------------------------------------------------------------
+		// [ 댓글 기능 추가 ]
+		// 현재 게시물에 포함되어 있는 댓글 목록 조회(댓글은 페이징 처리 생략)
+		// BoardService - getTinyReplyBoardList() 메서드 호출하여 댓글 목록 조회 요청
+		// => 파라미터 : 글번호   리턴타입 : List<Map<String, Object>>(tinyReplyBoardList)
+		List<Map<String, Object>> tinyReplyReviewList = service.getTinyReplyReviewList(reviewNum);
+//		System.out.println(tinyReplyBoardList);
+		
+		// Model 객체에 댓글 목록 객체(List) 추가
+		model.addAttribute("tinyReplyReviewList", tinyReplyReviewList);
+		// --------------------------------------------------------------------------
 		
 		return "review/review_comment";
 	}
+
+	// [ 댓글 기능 ]
+	// "BoardTinyReplyWrite" 서블릿 요청에 대한 댓글 작성 비즈니스 로직 처리
+	// => 폼 파라미터 데이터를 TinyReplyBoardVO 객체 대신 Map 타입 객체로 처리
+	//    (주의! 파라미터 매핑용으로 Map 타입 선언 시 @RequestParam 어노테이션 필수!)
+	//    (만약, 어노테이션 생략 시 파라미터 데이터가 저장되어 있지 않은 단순 Map 객체가 주입됨)
+	@PostMapping("review/ReviewTinyReplyWrite")
+	public String writeTinyReply(@RequestParam Map<String, String> map, HttpSession session, Model model
+//								,@RequestParam("com_id") int comId
+								) {
+//		System.out.println(map);
+		
+		if(session.getAttribute("sId") == null) {
+			model.addAttribute("msg", "잘못된 접근입니다!");
+			return "fail_back";
+		}
+		
+		// BoardService - registTinyReplyBoard() 메서드 호출하여 댓글 등록 작업 요청
+		// => 파라미터 : Map 객체   리턴타입 : int(insertCount)
+		int insertCount = service.registTinyReplyReview(map);
+		
+		
+		// 댓글 등록 요청 결과 판별
+		// => 성공 시 글 상세정보(BoardDetail) 서블릿 리다이렉트(파라미터 : 글번호, 페이지번호)
+		// => 실패 시 "댓글 작성 실패!" 메세지 처리(fail_back)
+		if(insertCount > 0) {
+//			return "redirect:/review/comment?review_num=" + map.get("review_num");
+	        return "redirect:/review/comment?review_num=" + map.get("review_num") + "&com_id=" + map.get("com_id");
+		} else {
+			model.addAttribute("msg", "댓글 작성 실패!");
+			return "fail_back";
+		}
+		
+	}
+	
+	// "BoardTinyReplyDelete" 서블릿 요청에 대한 댓글 삭제 작업 처리
+	@ResponseBody
+	@GetMapping("review/ReviewTinyReplyDelete")
+	public String deleteTinyReply(@RequestParam Map<String, String> map, HttpSession session) {
+		// 세션 아이디가 없을 경우 "invalidSession" 문자열 리턴
+		String sId = (String)session.getAttribute("sId");
+		if(sId == null) {
+			return "invalidSession";
+		}
+		
+		// BoardService - getTinyReplyWriter() 메서드 호출하여 댓글 작성자 조회
+		// => 파라미터 : Map 객체   리턴타입 : Map(map)
+		map = service.getTinyReplyWriter(map);
+//		System.out.println(map);
+		
+		// 댓글 작성자가 세션 아이디와 동일하거나 세션 아이디가 관리자일 경우에만
+		// BoardService - removeTinyReplyBoard() 메서드 호출하여 댓글 삭제 작업 요청
+		// (아니면 "invalidSession" 리턴)
+		// => 파라미터 : Map 객체   리턴타입 : int(deleteCount)
+		if(sId.equals(map.get("user_id")) || sId.equals("admin")) {
+			int deleteCount = service.removeTinyReplyReview(map);
+			
+			// 삭제 요청 결과 판별
+			// => 성공 시 "true", 실패 시 "false" 리턴
+			if(deleteCount > 0) {
+				return "true";
+			} else {
+				return "false";
+			}
+		} else {
+			return "invalidSession";
+		}
+		
+	}	
+	
+	// "BoardTinyReReplyWrite" 서블릿 요청에 대한 대댓글 작성 비즈니스 로직 처리
+	// => AJAX 요청에 대한 응답 처리를 위해 @ResponseBody 적용
+	@ResponseBody
+	@PostMapping("review/ReviewTinyReReplyWrite")
+	public String writeTinyReReply(@RequestParam Map<String, String> map, HttpSession session) {
+		if(session.getAttribute("sId") == null) {
+			return "invalidSession";
+		}
+		
+		// BoardService - registTinyReReplyBoard() 메서드 호출하여 대댓글 등록 요청
+		// => 파라미터 : Map 객체   리턴타입 : int(insertCount)
+		int insertCount = service.registTinyReReplyReview(map);
+		
+		// 등록 요청 처리 결과 판별
+		// => 성공 시 "true", 실패 시 "false" 리턴
+		if(insertCount > 0) {
+			return "true";
+		} else {
+			return "false"; 
+		}
+		
+	}
+
+
+
+
+
+
 
 }

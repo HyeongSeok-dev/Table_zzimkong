@@ -84,5 +84,20 @@ public interface ReviewMapper {
 	// 키워드 리뷰 카운트
 	ReviewCategoryCountVO categoryCount(int comId);
 
+	// 댓글 작성 요청
+	int insertTinyReplyReview(Map<String, String> map);
 
+	// 댓글 리스트 조회 요청
+	List<Map<String, Object>> selectTinyReplyReviewList(int reviewNum);
+
+	// 댓글 작성자 조회 요청
+	Map<String, String> selectTinyReplyReviewWriter(Map<String, String> map);
+
+	// 댓글 삭제 요청
+	int deleteTinyReplyReview(Map<String, String> map);
+
+	// 대댓글 작성 요청
+	int insertTinyReReplyReview(Map<String, String> map);
+
+	
 }

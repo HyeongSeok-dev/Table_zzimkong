@@ -161,6 +161,41 @@ public class ReviewService {
 
 		return mapper.categoryCount(comId);
 	}
+		
+		
+	// 리뷰 댓글 작성 요청 
+	public int registTinyReplyReview(Map<String, String> map) {
+			// TODO Auto-generated method stub
+		return mapper.insertTinyReplyReview(map);
+		}
+
+	// 리뷰 댓글 리스트 조회 요청
+	public List<Map<String, Object>> getTinyReplyReviewList(int reviewNum) {
+
+		return mapper.selectTinyReplyReviewList(reviewNum);
+	}
+
+	// 리뷰 댓글 작성자 조회 요청
+	public Map<String, String> getTinyReplyWriter(Map<String, String> map) {
+		return mapper.selectTinyReplyReviewWriter(map);
+	}
+
+	// 리뷰 댓글 삭제 요청
+	public int removeTinyReplyReview(Map<String, String> map) {
+		
+		return mapper.deleteTinyReplyReview(map);
+	}
+
 	
+	// 대댓글 등록 요청
+	// => 단, 두 가지 이상의 작업을 수행해야할 경우 트랜잭션 처리
+	public int registTinyReReplyReview(Map<String, String> map) {
+		// 기존 댓글들의 순서 조정
+		// => 단, 댓글들을 작성한 순서대로 나열할 경우(최신 댓글이 아래쪽에 위치할 경우) 불필요
+//		mapper.updateTinyReplyBoardSeq(map);
+		
+		// 대댓글 등록
+		return mapper.insertTinyReReplyReview(map);
+	}
 	
 }

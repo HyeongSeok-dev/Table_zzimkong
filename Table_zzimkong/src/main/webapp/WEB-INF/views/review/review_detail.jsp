@@ -26,6 +26,17 @@
 var contextPath = "${pageContext.request.contextPath}";
 var sId = '<c:out value="${sessionScope.sId}"/>';
 
+// ===============================
+// 댓글 아이콘 클릭 시 댓글창을 여는 함수
+function showCommentForm(element) {
+    var reviewNum = element.getAttribute('data-review-num');
+    var comId = getParameterByName('com_id');
+    var url = contextPath + "/review/comment?com_id=" + comId + "&review_num=" + reviewNum;
+    var windowName = "commentPopup";
+    var windowSize = "width=515,height=632";
+    window.open(url, windowName, windowSize);
+}
+// ===============================
 	// ===================================================================
 	document.addEventListener('DOMContentLoaded', function() {
 	// ===================================================================
@@ -98,6 +109,9 @@ var sId = '<c:out value="${sessionScope.sId}"/>';
 	    });
 	}); 
 	
+	// ===================================================================
+
+		
 	// ===================================================================
     var reviewCountsJson = '${reviewCountsJson}'.replace(/&quot;/g, '"');
     var reviewCounts = JSON.parse(reviewCountsJson)[0]; // 첫 번째 객체만 사용
@@ -218,7 +232,6 @@ var sId = '<c:out value="${sessionScope.sId}"/>';
 
 	 // 초기 리뷰 목록 로드
    	 filterReviewsByCheckedMenus();
-		
 
 	    // 메뉴 체크박스 변경 감지
   	  $('.menu_checkbox').change(filterReviewsByCheckedMenus);
@@ -388,8 +401,9 @@ var sId = '<c:out value="${sessionScope.sId}"/>';
 	                '<p class="review_content">' + review.review_content + '</p>' +
 	                '<div class="review-actions">' +
 	                    '<div class="review-action1">' +
-                        '<i class="far fa-comment" id="commentIcon" style="cursor: pointer;" onclick="showCommentForm();"></i>' +
-	                        '<i class="far fa-heart" id="heartIcon" style="cursor: pointer;"></i>' +
+//                         '<i class="far fa-comment" id="commentIcon" style="cursor: pointer;" onclick="showCommentForm();"></i>' +
+						'<i class="far fa-comment" data-review-num="' + review.review_num + '" style="cursor: pointer;" onclick="showCommentForm(this);"></i>' + 
+						'<i class="far fa-heart" id="heartIcon" style="cursor: pointer;"></i>' +
 	                    '</div>' +
 	                    '<div class="review-action2">' +
 	                        '<div class="review-action-buttons">' +
@@ -397,7 +411,7 @@ var sId = '<c:out value="${sessionScope.sId}"/>';
 	                            modifyButtonHtml +
 	                            reportButtonHtml +
 	                        '</div>' +
-	                        '<span class="comment-icon" onclick="showCommentForm()"></span><br><br>'
+	                        '<span class="comment-icon" onclick="showCommentForm()"></span><br><br>'+
 	    				    '<div class="review_date">' + formattedDate + ' 작성</div>' + 
 	                 		  '<div class="separator"></div>' + 
 	                    '</div>' +
@@ -465,6 +479,26 @@ var sId = '<c:out value="${sessionScope.sId}"/>';
 	        }
 	    });
 	}
+	
+	// ===============================
+	// 댓글 아이콘 누르면 댓글창 뜸
+// 	function showCommentForm() {
+// 	    // review_num 값을 element의 data-review-num 속성에서 가져옴
+// 	    var reviewNum = element.getAttribute('data-review-num');
+// 	    // 현재 URL에서 com_id 값을 가져옴
+// 	    var comId = getParameterByName('com_id');
+	    
+// 	    // 댓글창을 여는 URL에 com_id 값을 포함시킴
+// // 	    var url = contextPath + "/review/comment?com_id=" + comId;
+// 	    var url = contextPath + "/review/comment?com_id=" + comId + "&review_num=" + reviewNum;
+// 	    var windowName = "commentPopup";
+// 	    var windowSize = "width=515,height=632";
+	    
+// 	    // 팝업 창으로 댓글 페이지를 엶
+// 	    window.open(url, windowName, windowSize);
+// 	}
+
+	// ===============================
 
 	// 리뷰 표시 함수
 	function displayReviews(reviews) {
@@ -497,7 +531,7 @@ var sId = '<c:out value="${sessionScope.sId}"/>';
     }
 
     var reportButtonHtml = 
-'<a href="' + contextPath + '/review/report?review_num=' + review.review_num + '&com_id=' + review.com_id + '" class="review_report_btn" role="button">리뷰 신고하기</a>';
+'<a href="' + contextPath + '/review/report?review_num=' + ${reviewNum} + '&com_id=' + review.com_id + '" class="review_report_btn" role="button">리뷰 신고하기</a>';
     var imagePopupHtml = '';
     if (review.review_img_1) {
         imagePopupHtml = 
@@ -533,8 +567,9 @@ var sId = '<c:out value="${sessionScope.sId}"/>';
                 '<p class="review_content">' + review.review_content + '</p>' +
                 '<div class="review-actions">' +
                     '<div class="review-action1">' +
-                        '<i class="far fa-comment" id="commentIcon" style="cursor: pointer;" onclick="showCommentForm();"></i>' +
-                        '<i class="far fa-heart" id="heartIcon" style="cursor: pointer;"></i>' +
+//   						  '<i class="far fa-comment" data-review-num="' + ${review.review_num} + '" style="cursor: pointer;" onclick="showCommentForm(this);"></i>' +
+  						'<i class="far fa-comment" data-review-num=${review.review_num} style="cursor: pointer;" onclick="showCommentForm(this);"></i>' +
+  						  '<i class="far fa-heart" id="heartIcon" style="cursor: pointer;"></i>' +
                     '</div>' +
                     '<div class="review-action2">' +
                         '<div class="review-action-buttons">' +
@@ -561,27 +596,32 @@ var sId = '<c:out value="${sessionScope.sId}"/>';
 	});
 	
 	// 댓글 아이콘 클릭 이벤트
-	$('#reviewsContainer').on('click', '.fa-comment', function() {
-	    var contextRoot = window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2));
-	    var url = contextRoot + "/review/comment";
-	    var windowName = "commentPopup";
-	    var windowSize = "width=515,height=632";
-	    window.open(url, windowName, windowSize);
-	});
+// 	$('#reviewsContainer').on('click', '.fa-comment', function() {
+// 	    var contextRoot = window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2));
+// // 	    var url = contextRoot + "/review/comment";
+// // 	    var url = contextPath + "/review/comment?com_id=" + comId + "&review_num=" + reviewNum;
+
+// 	    var windowName = "commentPopup";
+// 	    var windowSize = "width=515,height=632";
+// 	    window.open(url, windowName, windowSize);
+// 	});
 	// =================================================================	
 	// 댓글 아이콘 누르면 댓글창 뜸
-	function showCommentForm() {
-	    // 현재 URL에서 com_id 값을 가져옴
-	    var comId = getParameterByName('com_id');
+// 	function showCommentForm() {
+// 	    // review_num 값을 element의 data-review-num 속성에서 가져옴
+// 	    var reviewNum = element.getAttribute('data-review-num');
+// 	    // 현재 URL에서 com_id 값을 가져옴
+// 	    var comId = getParameterByName('com_id');
 	    
-	    // 댓글창을 여는 URL에 com_id 값을 포함시킴
-	    var url = contextPath + "/review/comment?com_id=" + comId;
-	    var windowName = "commentPopup";
-	    var windowSize = "width=515,height=632";
+// 	    // 댓글창을 여는 URL에 com_id 값을 포함시킴
+// // 	    var url = contextPath + "/review/comment?com_id=" + comId;
+// 	    var url = contextPath + "/review/comment?com_id=" + comId + "&review_num=" + reviewNum;
+// 	    var windowName = "commentPopup";
+// 	    var windowSize = "width=515,height=632";
 	    
-	    // 팝업 창으로 댓글 페이지를 엶
-	    window.open(url, windowName, windowSize);
-	}
+// 	    // 팝업 창으로 댓글 페이지를 엶
+// 	    window.open(url, windowName, windowSize);
+// 	}
 
 	// =================================================================	
 	    // 페이지 로드 시 최신순으로 리뷰를 불러옴
@@ -698,7 +738,7 @@ var sId = '<c:out value="${sessionScope.sId}"/>';
 	<!-- ======================================================================================== -->
 	<br><br><br><br><br>
 		<!-- 사진/영상리뷰 제목 -->
-		<h2 class="review_photo_subject">사진/영상리뷰</h2>
+		<h2 class="review_photo_subject">사진 리뷰</h2>
 		<!-- 이미지 슬라이더 컨테이너 -->
 		<div class="carousel">
 		    <div class="carousel-inner">
@@ -724,7 +764,7 @@ var sId = '<c:out value="${sessionScope.sId}"/>';
 		</h2>
 		<label class="checkbox-container">
 		    <input type="checkbox" id="photoReviewCheckbox">
-		    <span class="checkmark"></span>사진/영상 리뷰만 
+		    <span class="checkmark"></span>사진 리뷰만 보기 
 		</label>
 	</div>
 	</div>
