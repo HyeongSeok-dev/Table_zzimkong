@@ -55,7 +55,7 @@
 				<%-- 예약 목록 출력 --%>
 				<c:forEach var="res2" items="${resList2}">
 				  <tr>
-						<td style="height: 45px;"><b>${res2.com_name }</b></td>
+						<td style="height: 45px;"><b><a href="${pageContext.request.contextPath}/product/detail?com_id=${res2.com_id}">${res2.com_name }</a></b></td>
 						<td>${res2.res_name }</td>
 						<td>${res2.res_person }</td>
 						<td>${res2.ordered_menus }</td>
