@@ -1551,3 +1551,15 @@ h1 {
     position: relative; /* 포지셔닝 기준 설정 */
     z-index: 1;
 }
+
+/* 댓글 갯수 */
+.comment_count_number {
+    font-size: 18px;
+    margin-bottom: 2px;
+}
+
+.comment-section {
+    display: inline-flex; /* 또는 flex, 요소들을 가로로 나열 */
+    align-items: center; /* 수직 중앙 정렬 */
+    gap: 10px; /* 아이콘과 텍스트 사이의 간격 */
+}

@@ -209,5 +209,11 @@ public class ReviewService {
 
 		return mapper.selectCountReservation(userIdx, comId);
 	}
+
+	// 각 리뷰에 대한 댓글 갯수 카운트
+	public int getCommentCount(int review_num) {
+
+		return mapper.selectCountComment(review_num);
+	}
 	
 }

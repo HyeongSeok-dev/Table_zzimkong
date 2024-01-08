@@ -66,7 +66,7 @@
 		<br>
 		<div class="separator"></div>
 		<div class="review_section">
-			<h2>어떤 점이 좋았나요? (1개 ~ 5개)</h2>
+			<h2>어떤 점이 좋았나요?</h2>
 			<p>이 장소에 어울리는 키워드를 골라주세요.</p>
 			<div class="keyword_section">
 				<div class="keyword_category">
@@ -183,7 +183,6 @@
 	<div id="popup">
 		<h2>리뷰 작성 유의사항</h2>
 		<p>
-			<b>리뷰 작성 유의사항</b>
 		<p>
 		<p>
 			리뷰 운영 정책을 위반한 경우, 통보 없이 리뷰를 숨김처리 하거나 회원의 리뷰 <br>작성 권한을 중지 또는 해지할

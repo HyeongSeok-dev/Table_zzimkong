@@ -68,7 +68,7 @@ public class ReviewVO {
 	private int moodFastCount;
 	private int moodChildCount;
 	private int moodNoKeywordCount;
-	
+
 	private String menu_name;
 	private String user_email;
 	private String user_phone;
