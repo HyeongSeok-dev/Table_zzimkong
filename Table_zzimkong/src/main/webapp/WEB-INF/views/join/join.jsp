@@ -61,7 +61,7 @@
               <span id="checkNickResult"></span>
               <br><br>
               <!-- 이름 -->
-              <input type="text" id="u_name" name="user_name" class="inputTxt inpBig" placeholder="이름" maxlength="16" autocomplete="false" pattern="[가-힣]*">
+              <input type="text" id="u_name" name="user_name" class="inputTxt inpBig" placeholder="이름" maxlength="16" autocomplete="false" pattern="[\uAC00-\uD7A3]*">
               <!-- 생년월일 --><span class="bday">생년월일</span>
               <input type="date" id="com_birth" name="user_birth" class="inputTxt inpBig" maxlength="16" autocomplete="false">
            	  <br><br><br>
@@ -69,14 +69,18 @@
 	              <div class="u_emil">
 	                <input type="text" id="u_email" name="user_email1" class="inputTxt inpBig" placeholder="이메일" onkeydown="eventObj.loginByEnterKey(event)" maxlength="16" autocomplete="false">
 	                <span id="at">@</span>
-					<select id="u_email2" name="user_email2" class="inputTxt inpBig" >
-		                <option value="">선택하세요</option>
-		                <option value="gmail.com">gmail.com</option>
-		                <option value="naver.com">naver.com</option>
-		                <option value="daum.net">daum.net</option>
-		                <option value="yahoo.com">yahoo.com</option>
-		                <option value="yahoo.com">직접입력</option>
-		             </select>	 
+	                
+					<input type="text" id="customEmail" class="inputTxt inpBig" name="user_email2" style="display:none;" placeholder="이메일을 입력하세요">
+					&nbsp;&nbsp;
+					<select id="u_email2" name="user_email2" class="inputTxt inpBig" onchange="checkOption(this)">
+				  <option value="">선택하세요</option>
+				  <option value="gmail.com">gmail.com</option>
+				  <option value="naver.com">naver.com</option>
+				  <option value="daum.net">daum.net</option>
+				  <option value="yahoo.com">yahoo.com</option>
+				  <option value="custom">직접입력</option>
+				</select> 
+
 		           </div>
    				   <span id="checkEmailResult"></span><br>
 <!--               <br> -->

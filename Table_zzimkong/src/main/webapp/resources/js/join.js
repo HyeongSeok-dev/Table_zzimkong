@@ -1,5 +1,20 @@
-$(document).ready(function() {
+	//이메일 직접입력 선택시 
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('u_email2').addEventListener('change', function() {
+    var inputBox = document.getElementById('customEmail');
+    if(this.value === "custom") {
+      inputBox.style.display = "block";
+    } else {
+      inputBox.style.display = "none";
+    }
+  });
+});
 	
+
+
+
+$(document).ready(function() {
+
 	//생일 선택시 오늘이후 날짜 선택 막아놓음
 	window.onload = function() {
     var today = new Date();

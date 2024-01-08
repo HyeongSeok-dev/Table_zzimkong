@@ -71,7 +71,7 @@ public class MemberController {
 		String securePasswd = passwordEncoder.encode(member.getUser_passwd());
 		member.setUser_passwd(securePasswd);
 		
-	      member.setUser_category(1); //임시 - 일반회원(1) or 업주회원(2)
+//	      member.setUser_category(1); //임시 - 일반회원(1) or 업주회원(2)
 		
 			int insertCount = service.registMember(member);
 			if(insertCount > 0) { // 성공				
