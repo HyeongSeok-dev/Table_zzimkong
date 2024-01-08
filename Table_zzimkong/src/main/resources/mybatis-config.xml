@@ -19,5 +19,6 @@
 		<typeAlias type="com.table.zzimkong.vo.CsVO"  alias="cs"/>
 		<typeAlias type="com.table.zzimkong.vo.BookmarkVO"  alias="bookmark"/>
 		<typeAlias type="com.table.zzimkong.vo.PointVO"  alias="point"/>
+		<typeAlias type="com.table.zzimkong.vo.MailAuthInfoVO"  alias="mailAuthInfo"/>
 	</typeAliases>
 </configuration>

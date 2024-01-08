@@ -199,6 +199,7 @@ public class MypageController {
 		MypageInfo dbMypage = service.getMypage(mypage);
 		session.setAttribute("user_nick", dbMypage.getUser_nick());// String~session: 마이페이지 눌렀을때 닉네임 계속 보이게 세션에 저장
 		session.setAttribute("imgName", dbMypage.getUser_img());
+//		session.setAttribute(sId, get)
 		
 		int sIdx = (int)session.getAttribute("sIdx"); //세션 인덱스 가져오기
 		//---- 예약조회(간략히 보기) --------------------
