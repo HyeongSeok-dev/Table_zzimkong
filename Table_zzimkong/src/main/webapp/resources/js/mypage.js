@@ -1,6 +1,4 @@
-$(document).ready(function() {
-	
-	
+
 window.onload = function() {
 	// 회원정보 수정 - 이메일
 	document.modifyForm.emailDomain.onchange = function() {
@@ -17,6 +15,8 @@ window.onload = function() {
 	};
 } // window.onload 끝
 
+$(document).ready(function() {
+	
    // 사진 미리 보기
        $('#file1').change(function() {
         var reader = new FileReader();
@@ -123,13 +123,13 @@ window.onload = function() {
     $("#txtPassword2").blur(validatePassword);
 
     //폼 제출 시 비밀번호 검증
-    $("form").submit(function(e) {
-        validatePassword();
-        if (!isPasswd) {
-            alert('새 비밀번호를 다시 입력해주세요');
-            e.preventDefault(); // 폼 제출을 막음
-        }
-    });
+//    $("form").submit(function(e) {
+//        validatePassword();
+//        if (!isPasswd) {
+//            alert('새 비밀번호를 다시 입력해주세요');
+//            e.preventDefault(); // 폼 제출을 막음
+//        }
+//    }); // 컨트롤러에 메시지 지정해놨는데 이거 설정하니까 안나와서 주석처리함
 
 	document.modifyForm.user_passwd1.onkeyup = checkPassword;
 	document.modifyForm.user_passwd2.onkeyup = checkPassword;

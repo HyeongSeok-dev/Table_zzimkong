@@ -228,29 +228,6 @@ public class MemberController {
 		    return "redirect:/";
 		}
 		
-//		if(dbMember == null || !passwordEncoder.matches(member.getUser_passwd(), dbMember.getUser_passwd())) {
-////		if(dbMember == null || !dbMember.getUser_passwd().equals(member.getUser_passwd())) {
-//		// 로그인 실패 처리
-//		model.addAttribute("msg", "로그인 실패!");
-//		return "fail_back";
-//		} else { // 로그인 성공
-//		// 세션 객체에 로그인 성공한 아이디를 "sId" 속성으로 추가
-//		session.setAttribute("sId", member.getUser_id());
-//		//메인닉네임표시
-//		session.setAttribute("sNick", dbMember.getUser_nick());
-//		//메인화면 회원상태 구별을 위한 세션
-//		session.setAttribute("sStatus", dbMember.getUser_status());
-//		//메인 업주화면 이름 표시를위한 세션
-//		session.setAttribute("sName", dbMember.getUser_name());
-//		//  user_idx가 외래키여서 session에 sIdx 넣었음
-//		session.setAttribute("sIdx", dbMember.getUser_idx());	
-//		// 메인페이지로 리다이렉트
-//		return "redirect:/";
-//		}
-		
-		
-		
-		
 	}
 		
 	// "MemberLogout" 요청에 대한 로그아웃 비즈니스 로직 처리
@@ -263,8 +240,18 @@ public class MemberController {
 
 	// 아이디 찾기
 	@GetMapping("login/find/id")
-	public String login_find_id() {
+	public String login_find_id(MemberVO member, HttpSession session, Model model) {
+//		System.out.println(member); 
+		
 		return "login/login_find_id";
+	}
+	
+	@PostMapping("login/find/idPro")
+	public String login_find_idPro(MemberVO member, String user_email1, String user_email2, HttpSession session, Model model) {
+		System.out.println(member); // form action 값 잘 넘어왔는지 찍어보기
+		member.setUser_email(user_email1 + "@" + user_email2);
+		System.out.println(member); // email 두개 결합 잘 되었나 확인
+		return "";
 	}
 	
 	//비밀번호 찾기
