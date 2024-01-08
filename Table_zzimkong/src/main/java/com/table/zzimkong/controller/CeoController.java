@@ -664,18 +664,20 @@ public class CeoController {
 		CompanyVO company = service.getEachCompany(com_num);
 		
 		System.out.println(company.getCom_open_time().split(":")[0]);
-		
+		System.out.println("breakStart_time : " + company.getCom_breakStart_time());
+		System.out.println("breakEnd_time : " + company.getCom_breakEnd_time());
 		company.setOpenHour(company.getCom_open_time().split(":")[0].trim());
 		company.setOpenMin(company.getCom_open_time().split(":")[1].trim());
 		company.setCloseHour(company.getCom_close_time().split(":")[0].trim());
 		company.setCloseMin(company.getCom_close_time().split(":")[1].trim());
 		
-		if(!company.getCom_breakStart_time().isEmpty() || !company.getCom_breakEnd_time().isEmpty()) {
+		if(!company.getCom_breakStart_time().isBlank() || !company.getCom_breakEnd_time().isBlank()) {
 			company.setStartHour(company.getCom_breakStart_time().split(":")[0].trim());
 			company.setStartMin(company.getCom_breakStart_time().split(":")[1].trim());
 			company.setEndHour(company.getCom_breakEnd_time().split(":")[0].trim());
 			company.setEndMin(company.getCom_breakEnd_time().split(":")[1].trim());
 		} else {
+			System.out.println("널스트링 맞음");
 			company.setStartHour("");
 			company.setStartMin("");
 			company.setEndHour("");
@@ -698,7 +700,7 @@ public class CeoController {
 //			return "forward";
 //		}
 		
-		System.out.println("수정전 : " + company);
+		System.out.println("수정1 : " + company);
 		// [사업장 이미지 업로드]
 		String uploadDir = "/resources/upload";
 		String saveDir = session.getServletContext().getRealPath(uploadDir);
@@ -729,8 +731,15 @@ public class CeoController {
 		//시간정보 db 테이터로 수정함
 		company.setCom_open_time(company.getOpenHour() + ":" + company.getOpenMin());
 		company.setCom_close_time(company.getCloseHour() + ":" + company.getCloseMin());
+		System.out.println("-> : " + company.getCom_breakStart_time());
+		System.out.println("-> : " + company.getCom_breakEnd_time());
+		if(company.getCom_breakStart_time() != null || company.getCom_breakEnd_time() != null) {
 		company.setCom_breakStart_time(company.getStartHour() + ":" + company.getStartMin());
 		company.setCom_breakEnd_time(company.getEndHour() + ":" + company.getEndMin());
+		} else {
+			company.setCom_breakStart_time("");
+			company.setCom_breakEnd_time("");
+		}
 		
 		//카테고리 boolea으로 변경하기
 		if(company.getCom_tag().contains("데이트")) {
@@ -818,7 +827,7 @@ public class CeoController {
 //					}
 		}
 		
-		System.out.println("수정 후 : " + company);
+		System.out.println("수정 : " + company);
 		
 		int updateCompany = service.companyModify(company);
 		

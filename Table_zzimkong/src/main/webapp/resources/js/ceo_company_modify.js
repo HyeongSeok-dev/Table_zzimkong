@@ -1,5 +1,6 @@
 $(function() {
 	 console.log("test");
+	 console.log("test" + $("#file").val());
 	/* 텍스트 박스에 숫자만 입력 할 수 있음 */
 	$('#hMax').on('input', function () {
     	$(this).val($(this).val().replace(/[^0-9]/g, ''));
@@ -67,12 +68,6 @@ $(function() {
             scrollTop: $('body').offset().top
             }, 500);
             $("#com_tel").focus();
-		} else if($("#file").val() == "") {
-			alert("사업장의 사진을 등록해 주세요");
-			$('html, body').animate({
-            scrollTop: $('body').offset().top
-            }, 500);
-            $("#file").focus();
 		} else if($("#openHour").val() == "") {
 			alert("영업 시작시간을 선택해 주세요.");
             $("#openHour").focus();

@@ -55,27 +55,28 @@ public class PaymentController {
 		
 		// [ 회원정보조회 ]
 		MemberVO member = service.getMember(sId);
+		
 		// [ 예약정보조회 ]
 		res = service.getReservation(res);
 		System.out.println("res : " + res);
 		//테이블 예약금액에 천단위 쉼표줌
 		NumberFormat numberFormat = NumberFormat.getInstance();
 		String res_table_price = numberFormat.format(res.getRes_table_price());
+		
 		// [예약정보중 사업장정보 조회]
 		company = service.getCompany(res);
 		System.out.println("company" + company);
+		
 		// [예약정보중 선주문정보 조회]
-		// PreOrderInfo객체를 생성해서 join문으로 메뉴테이블 정보까지 받아옴
+		// 1. PreOrderInfo객체를 생성해서 join문으로 메뉴테이블 정보까지 받아옴
 		List<PreOrderInfo> poiList = service.getPreOrderInfo(res);
 		System.out.println(poiList);
-		// 각 메뉴의 가격과 갯수를 곱한 결과를 저장함
+		// 2. 각 메뉴의 가격과 갯수를 곱한 결과를 저장함
 		int eachMenuTotalPriceInt = 0;
 		int menuTotalPriceInt = 0;
 		for(PreOrderInfo preOrderInfo : poiList) {
 			System.out.println("preOrderInfo : " + preOrderInfo);
 			// [선주문정보와 메뉴정보를 이용해서 결제할 가격 구하기 ] 
-			// [선주문 정보중 메뉴정보 조회]
-			// 1. 개수를 곱한 메뉴가격 
 //			System.out.println(" Integer.parseInt(preOrderInfo.getMenu_price()) : " + Integer.parseInt(preOrderInfo.getMenu_price()));
 //			System.out.println("preOrderInfo.getPre_num() : " + preOrderInfo.getPre_num());
 			eachMenuTotalPriceInt = (Integer.parseInt(preOrderInfo.getMenu_price()) * preOrderInfo.getPre_num());
@@ -86,13 +87,14 @@ public class PaymentController {
 //			System.out.println("count : " + count);
 		}
 		
-		// 2. 선주문한 총 가격
+		// 3. 선주문한 총 가격
 		System.out.println("menuTotalPriceInt : " + menuTotalPriceInt);
-		// 3. paymentInfo 객체로 넣기전에 정수인 수에 천단위로 쉼표를 넣어서 문자열타입으로 만듬
+		// 4. paymentInfo 객체로 넣기전에 정수인 수에 천단위로 쉼표를 넣어서 문자열타입으로 만듬
 		String totalPrice = numberFormat.format(res.getRes_table_price() + menuTotalPriceInt);
 		String menuTotalPrice = numberFormat.format(menuTotalPriceInt);
 		System.out.println(poiList);
 		//--------------------------------------------------------------------
+		
 		//[ 사용가능 포인트 조회 ]
 		// 디비에서 가지고 올 때 String 타입으로 가지고 와서 변환해줌
 		String dbPoint = service.getPoint(res);
