@@ -11,6 +11,11 @@
 <!-- jQuery, javascript -->
 <script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/mypage2.js"></script>
+<script type="text/javascript">
+	function writeReview(com_id) {
+		location.href = "${pageContext.request.contextPath}/review/write?com_id=" + com_id;
+	}
+</script>
 </head>
 <body>
 	<header>
@@ -50,7 +55,7 @@
 				<%-- 예약 목록 출력 --%>
 				<c:forEach var="res2" items="${resList2}">
 				  <tr>
-						<td style="height: 45px;"><b>${res2.com_name }</b></td>
+						<td style="height: 45px;"><b><a href="${pageContext.request.contextPath}/product/detail?com_id=${res2.com_id}">${res2.com_name }</a></b></td>
 						<td>${res2.res_name }</td>
 						<td>${res2.res_person }</td>
 						<td>${res2.ordered_menus }</td>
@@ -81,17 +86,17 @@
 						</c:otherwise>
 					</c:choose>
 	                <td>
-						<c:choose>
-		                	<c:when test="${res2.res_status eq 1}">
-	<!-- 	                    	<div class="div_button"> -->
-		                        	<button type="submit" id="my_delete" onclick="cancelReservation(${res2.res_idx})">예약취소</button>
-	<!-- 	                    	</div> -->
-		                	</c:when>
-		                	<c:otherwise>
-	<!-- 	                    예약완료가 아닌 경우에는 아무것도 보이지 않게 -->
-									-
-		                	</c:otherwise>
-		                </c:choose>
+					<c:choose>
+					    <c:when test="${res2.res_status eq 1}">
+					        <button type="submit" id="my_delete" onclick="cancelReservation(${res2.res_idx})">예약취소</button>
+					    </c:when>
+					    <c:when test="${res2.res_status eq 3}">
+					        <button type="submit" id="write_review" onclick="writeReview(${res2.com_id})">리뷰쓰기</button>
+					    </c:when>
+					    <c:otherwise>
+					        -
+					    </c:otherwise>
+					</c:choose>
 	                 </td>
 				  </tr>
 				</c:forEach>

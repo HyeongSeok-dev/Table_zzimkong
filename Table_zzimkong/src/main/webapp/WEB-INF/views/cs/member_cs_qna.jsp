@@ -29,6 +29,32 @@
 		var top = Math.ceil((window.screen.height - popupH)/2);
 		window.open('${pageContext.request.contextPath }/member/cs/qna/view?cs_board_num=' + board_num,'','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
 	}
+ 	$('#cs_board_category_sub').change(function() {
+	    var cs_board_category_sub = $(this).val();
+	    var searchFAQ = $('#search').val();
+	    var sdate = $('#sdate').val();
+	    var edate = $('#edate').val();
+		console.log("버튼체인지됨");
+	    $.ajax({
+	        url: "sortBoardQna", 
+	        type: 'GET',
+	        dataType: 'json',
+	        data: { 
+	        	"cs_board_category_user" : '1',
+	            "cs_board_category_main" : '2',
+	            "cs_board_category_sub" : cs_board_category_sub,
+	            "searchFAQ" : searchFAQ
+	            "sdate" : sdate
+	            "edate" : edate
+	        },
+	        success: function(response) {
+	        	
+	        },
+	        error: function(xhr, textStatus, errorThrown) {
+	            console.log('에러 발생: ' + errorThrown);
+	        }
+	    });
+	});
  </script>
  
 </head>
@@ -67,7 +93,7 @@
 			                	</span>
 			                    <span class="search-wrap">
 			                        <label for="search" class="blind">공지사항 내용 검색</label>
-			                        <input id="search" type="search" name="searchNotice" placeholder="검색어를 입력해주세요." value="">
+			                        <input id="search" type="search" name="searchFAQ" placeholder="검색어를 입력해주세요." value="">
 			                        <button type="submit" class="btn btn-dark">검색</button>
 			                    </span>
 			                    <button type="button" id="buttonRegister" onclick="popupResister()">문의하기</button>
@@ -84,7 +110,7 @@
 				        <tr>
 				            <th scope="col" class="th-num">번호</th>
 				            <th scope="col" class="th-category">
-				            	<select name="ceoCategory" style="border: none; background-color: rgb(244, 250, 255); font-weight: bold; text-align: center; font-size: 15px; color: #333;">
+				            	<select name="category" id="cs_board_category_sub" style="border: none; background-color: rgb(244, 250, 255); font-weight: bold; text-align: center; font-size: 15px; color: #333;">
 				            		<option value="">유형선택</option>
 				            		<option value="1">예약</option>
 				            		<option value="2">주문/결제</option>

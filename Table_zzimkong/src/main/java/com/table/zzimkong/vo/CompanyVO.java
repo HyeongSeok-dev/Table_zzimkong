@@ -82,5 +82,8 @@ public class CompanyVO {
 	private String breakTime;
 	
 	private String com_tag;
+	
+	// admin_company.jsp에서 필요한 정보
+	private String company_open_register;
 }
 

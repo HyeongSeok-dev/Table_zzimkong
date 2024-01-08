@@ -212,7 +212,29 @@ $(document).ready(function() {
 			}
 		});
 	}
-
+	function fatchlocationData() {
+		var location_data = $("input[name='location']:checked").val();
+		
+		 $.ajax({
+	        url: "fatchlocationData", 
+	        type: 'GET',
+	        dataType: 'json',
+	        data: { 
+	        	"location" : location_data
+	        },
+			success: function(data) {
+				for(let board of data.boardList) { 
+	                let tbody = $('#board-list tbody');
+	                tbody.empty();
+	                
+                }
+			},
+			error: function(error) {
+				// 에러가 발생했을 때 실행할 코드
+				console.log("Error: ", error);
+			}
+		});
+	}
 
 	function sendFormDataToNextPage() {
 		formData['context'] = $('.search_input_text').val();

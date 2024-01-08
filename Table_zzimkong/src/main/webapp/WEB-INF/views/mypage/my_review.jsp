@@ -45,7 +45,7 @@
 				<c:forEach var="myReview" items="${myReviewList}">	
 					<tr>
 						<td>${myReview.review_update}</td>
-						<td>${myReview.com_name}</td>
+						<td><b><a href="${pageContext.request.contextPath}/product/detail?com_id=${myReview.com_id}">${myReview.com_name}</a></b></td>
 						<td>${myReview.review_content}</td>
 						<td align="center">
 						<button type="button" onclick="reviewEdit(${myReview.review_num}, ${myReview.com_id})">수정</button>

@@ -27,6 +27,9 @@ public class ReservationVO {
 	// 마이페이지에서 불러올 가게명 JOIN을 위한 멤버변수
 	private String com_name;
 
-
-	
+	// 관리자페이지 - 예약 현황 차트 출력
+	private int res_hour;
+	private int res_minute;
+	private int res_count;
+	private int res_count2;
 }

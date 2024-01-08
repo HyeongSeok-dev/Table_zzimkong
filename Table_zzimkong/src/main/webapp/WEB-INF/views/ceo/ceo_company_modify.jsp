@@ -61,7 +61,7 @@
 						</tr>
 						<tr>
 							<th>시간당 최대 인원</th>
-							<td colspan="2" style="font-size: 18px;"><input name="perHourMaxPerson" id="hMax" type="text" value="${com.com_max_people }"> 명</td>
+							<td colspan="2" style="font-size: 18px;"><input name="com_max_people" id="hMax" type="text" value="${com.com_max_people }"> 명</td>
 						</tr>
 						<tr>
 							<th>영업 시작시간</th>
@@ -71,6 +71,9 @@
 									<c:choose>
 										<c:when test="${empty com.openHour}">
 									    	<option value="">시</option>
+									    	<c:forEach var="i" begin="0" end="23">
+										    	<option value="${i}">${i}</option>
+										    </c:forEach>
 									    </c:when>
 									    <c:otherwise>
 										    <c:forEach var="i" begin="0" end="23">
@@ -97,6 +100,9 @@
 								    <c:choose>
 										<c:when test="${empty com.closeHour}">
 									    	<option value="">시</option>
+									    	<c:forEach var="i" begin="0" end="23">
+										    	<option value="${i}">${i}</option>
+										    </c:forEach>
 									    </c:when>
 									    <c:otherwise>
 										    <c:forEach var="i" begin="0" end="23">
@@ -125,6 +131,9 @@
 									<c:choose>
 										<c:when test="${empty com.startHour}">
 									    	<option value="">시</option>
+									    	<c:forEach var="i" begin="0" end="23">
+										    	<option value="${i}">${i}</option>
+										    </c:forEach>
 									    </c:when>
 									    <c:otherwise>
 										    <c:forEach var="i" begin="0" end="23">
@@ -151,6 +160,9 @@
 								    <c:choose>
 										<c:when test="${empty com.endHour}">
 									    	<option value="">시</option>
+									    	<c:forEach var="i" begin="0" end="23">
+										    	<option value="${i}">${i}</option>
+										    </c:forEach>
 									    </c:when>
 									    <c:otherwise>
 										    <c:forEach var="i" begin="0" end="23">

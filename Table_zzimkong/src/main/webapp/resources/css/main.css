@@ -5,6 +5,8 @@
 }
 
 /*슬라이드*/
+
+
 .slide {
   display: none;
 }
@@ -54,7 +56,7 @@
 .img-responsive_main {
 	width: 900px;
 /*    height: auto; 이미지 높이는 자동으로 조정하여 비율 유지 */
-    height: 400px;  /* 이미지 높이를 슬라이드의 높이로 설정 */
+    height: 450px;  /* 이미지 높이를 슬라이드의 높이로 설정 */
     object-fit: cover;  /* 이미지를 꽉 차게 표시하고, 비율을 유지하면서 필요한 경우 잘라냄 */
     /* object-fit: contain;  이미지를 꽉 차게 표시하고, 비율을 유지하면서 모든 부분이 보이게 함 */
 }

@@ -44,8 +44,7 @@
 			<div class="float_after"></div>
 	        
 			<h3>업체 관리</h3>
-			
-			<form action="/zzimkong/admin/company/approve/Pro" method="POST" class="companyApprove">
+			<form action="/zzimkong/admin/company/register/pro" method="POST" class="companyRegister">
 				<table border="1">
 					<tr>
 						<th>업체번호</th>
@@ -68,10 +67,11 @@
 						<th>
 							<select id="companyStatusCategory">
 								<option value="company_status_all" selected>업체상태</option>
-								<option value="company_status_2">대기</option>
 								<option value="company_status_1">정상</option>
+								<option value="company_status_2">대기</option>
 								<option value="company_status_3">영업중지</option>
 								<option value="company_status_4">폐점</option>
+								<option value="company_status_5">입점거부</option>
 							</select>
 						</th>
 					</tr>
@@ -83,7 +83,8 @@
 							<td>${company.com_category}</td>
 							<td>${company.com_ceo}</td>
 							<td>${fn:substring(company.com_open_time, 0, 5)} ~ ${fn:substring(company.com_close_time, 0, 5)}</td>
-							<td><fmt:formatDate value="${company.com_reg_date}" pattern="yy/MM/dd HH:mm"/></td>
+<%-- 							<td><fmt:formatDate value="${company.com_reg_date}" pattern="yy/MM/dd HH:mm"/></td> --%>
+							<td>${company.com_reg_date}</td>
 							<td class="ad_grade_item" data-category="ad_grade_${company.com_ad_grade}">${company.com_ad_grade}단계</td>
 							<%-- 업체 상태 --%>
 							<c:choose>
@@ -93,8 +94,12 @@
 								<c:when test="${company.com_status eq 2}">
 									<td class="company_status_item" data-category="company_status_2">
 										<input type="hidden" id="com_id" name="com_id">
-										<button type="submit" class="button_olive" onclick="company_approve('${company.com_id}')">승인</button>
-										<button type="button" class="button_cancel" onclick="company_disapprove()">거부</button>
+										<input type="hidden" id="company_open_register" name="company_open_register">
+										
+										<button type="submit" class="button_olive" name="company_oepn_ok"
+											onclick="event.stopPropagation(); company_approve(event, '${company.com_id}', this.name)">승인</button>
+										<button type="submit" class="button_cancel" name="company_oepn_no"
+											onclick="event.stopPropagation(); company_disapprove(event, '${company.com_id}', this.name)">거부</button>
 									</td>
 								</c:when>
 								<c:when test="${company.com_status eq 3}">
@@ -102,6 +107,9 @@
 								</c:when>
 								<c:when test="${company.com_status eq 4}">
 									<td class="company_status_item" data-category="company_status_4">폐점</td>
+								</c:when>
+								<c:when test="${company.com_status eq 5}">
+									<td class="company_status_item" data-category="company_status_5">입점거부</td>
 								</c:when>
 								<c:otherwise>
 									<td class="company_status_item" data-category="company_status_unknown" style="color:red;">알수없음</td>

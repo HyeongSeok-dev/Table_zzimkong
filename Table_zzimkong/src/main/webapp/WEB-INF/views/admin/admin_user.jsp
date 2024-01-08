@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
@@ -74,7 +75,7 @@
 				</tr>
 				<%-- 아래로 회원 목록 출력 --%>
 				<c:forEach var="member" items="#{memberList}">
-					<tr>
+					<tr onclick="user_info_open('${member.user_idx}')" class="tr_hover">
 						<td>${member.user_idx}</td>
 						<%-- 회원 구분 --%>
 						<c:choose>
@@ -97,7 +98,12 @@
 							<%-- 숫자값 : 쉼표로 구분된 형식으로 --%>
 							<fmt:formatNumber value="${member.total_point}" groupingUsed="true"/>p
 						</td>
-						<td>${member.user_reg_date}</td>
+						<td>
+							<c:if test="${member.user_status eq 3}">
+								<b>탈퇴일자 :</b><br>
+							</c:if>
+							${member.user_reg_date}
+						</td>
 						<%-- 회원 상태 --%>
 						<c:choose>
 							<c:when test="${member.user_status eq 1}">
@@ -114,7 +120,7 @@
 							</c:otherwise>
 						</c:choose>
 						<%-- 회원 탈퇴 --%>
-						<td>
+						<td id="withdrawbutton">
 							<input type="hidden" id="user_idx" name="user_idx">
 							<c:choose>
 								<c:when test="${member.user_status eq 1 || member.user_status eq 2}">
@@ -138,10 +144,8 @@
 	</c:if>
 	
 	<section id="pageList">
-    <input type="button" value="이전" onclick="location.href='?pageNum=${pageNum - 1}
-												&searchMemberType=${searchMemberType}&searchMemberKeyword=${searchMemberKeyword}
-    											&memberCategory=${selectMemberCategory}&memberStatusCategory=${selectMemberStatusCategory}'"
-    											<c:if test="${pageNum <= 1}">disabled</c:if>>
+	<input type="button" value="이전" onclick="location.href='?pageNum=${pageNum - 1}&searchMemberType=${searchMemberType}&searchMemberKeyword=${searchMemberKeyword}&memberCategory=${selectMemberCategory}&memberStatusCategory=${selectMemberStatusCategory}'"
+	 <c:if test="${pageNum <= 1}">disabled</c:if>>
     <c:forEach var="i" begin="${pageInfo.startPage}" end="${pageInfo.endPage}">
         <c:choose>
             <c:when test="${pageNum eq i}">
@@ -152,11 +156,8 @@
         	</c:otherwise>
         </c:choose>
     </c:forEach>
-    
-    <input type="button" value="다음" onclick="location.href='?pageNum=${pageNum + 1}
-    											&searchMemberType=${searchMemberType}&searchMemberKeyword=${searchMemberKeyword}
-    											&memberCategory=${selectMemberCategory}&memberStatusCategory=${selectMemberStatusCategory}'"
-    											<c:if test="${pageNum >= pageInfo.maxPage}">disabled</c:if>>
+	<input type="button" value="다음" onclick="location.href='?pageNum=${pageNum + 1}&searchMemberType=${searchMemberType}&searchMemberKeyword=${searchMemberKeyword}&memberCategory=${selectMemberCategory}&memberStatusCategory=${selectMemberStatusCategory}'"
+	 <c:if test="${pageNum >= pageInfo.maxPage}">disabled</c:if>>
 	</section>
 	
 	<%-- 상단으로/bottom --%>

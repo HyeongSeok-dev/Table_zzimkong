@@ -7,17 +7,22 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.table.zzimkong.service.CsService;
@@ -911,4 +916,22 @@ public class CsController {
 	}
 	
 	
+	@ResponseBody
+	@GetMapping("member/cs/sortBoardFaq")
+	public String sortBoard(CsVO board, Model model, HttpSession session, MemberVO member, 
+			@RequestParam("cs_board_category_user")String userCategory, @RequestParam("cs_board_category_main")String mainCategory,
+			@RequestParam("cs_board_category_sub")String subCategory, @RequestParam("searchFAQ")String searchFAQ) {
+		
+		member.setUser_category(Integer.parseInt(userCategory));
+		board.setCs_board_category_sub(Integer.parseInt(subCategory));
+		board.setSearchFAQ(searchFAQ);
+		
+		List<CsVO> boardList = service.getBoard(board, member, Integer.parseInt(mainCategory));
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("boardList", boardList);
+		System.out.println("보드리스트" + boardList);
+		JSONObject jsonObject = new JSONObject(map);
+		return jsonObject.toString();
+	}
 }

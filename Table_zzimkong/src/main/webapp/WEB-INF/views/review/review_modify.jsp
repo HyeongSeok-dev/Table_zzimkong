@@ -54,21 +54,6 @@ function deleteFile(review_num, review_img_1) {
     }
 }
 
-// function bindNewFileInputEvents(review_img_id) {
-//     $("#photoBtn" + review_img_id).on('click', function() {
-//         $("#photoInput" + review_img_id).click();
-//     });
-
-//     $("#photoInput" + review_img_id).on('change', function(event) {
-//         handleImagePreview(event, review_img_id);
-//     });
-// }
-
-// function removePreview(review_img_id) {
-//     $("#previewContainer" + review_img_id).empty().hide();
-//     $("#photoInput" + review_img_id).val('');
-// }
-
 function bindNewFileInputEvents(review_img_1) {
     $("#photoBtn" + review_img_1).on('click', function() {
         $("#photoInput" + review_img_1).click();
@@ -145,7 +130,7 @@ function removePreview(review_img_1) {
 		<br>
 		<div class="separator"></div>
 		<div class="review_section">
-			<h2>어떤 점이 좋았나요? (1개 ~ 5개)</h2>
+			<h2>어떤 점이 좋았나요?</h2>
 			<p>이 장소에 어울리는 키워드를 골라주세요.</p>
 			<div class="keyword_section">
 				<div class="keyword_category">

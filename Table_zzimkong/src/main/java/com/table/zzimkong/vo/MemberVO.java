@@ -23,5 +23,11 @@ public class MemberVO {
 	private int point_value; // 포인트
 	private int total_point; // 포인트 합계
 	
+	// 관리자페이지 - 가입 현황 차트 출력
+	private int join_time_count;
+	private int join_date_count;
+	private int join_hour;
+	private int join_minute;
+	
 } //MemberVO
 

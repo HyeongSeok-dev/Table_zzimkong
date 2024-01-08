@@ -117,7 +117,10 @@ public class MypageController {
 		}
 		
 		System.out.println("실제 업로드 파일명 : " + mypage.getUser_img());
-		session.setAttribute("imgName", mypage.getUser_img());
+		// 파일이 있으면(mypage.getUser_img()이 널스트링이 아니면("")) 세션에 이미지 넣기 
+		if(!mypage.getUser_img().equals("")) {
+			session.setAttribute("imgName", mypage.getUser_img()); // 세션에 이미지 넣기
+		}
 		System.out.println(session.getAttribute("imgName"));
 		// MypageService - getMypage() 메서드 호출하여 회원 정보 조회 요청(패스워드 비교용)
 		// => 파라미터 : MypageInfo 객체 리턴타입 : MypageInfo(dbMypage)
@@ -125,52 +128,64 @@ public class MypageController {
 		
 		// BCryptPasswordEncoder 클래스를 활용하여 입력받은 기존 패스워드와 DB 패스워드 비교
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		
+
+		// 비밀번호 검증을 위한 변수 선언. 초기값은 true
+		boolean passwordValidation = true;
+
+		// 관리자가 아닌 경우, 또는 관리자이지만 수정하려는 회원의 아이디가 없는 경우
 		if(!sId.equals("admin") || (sId.equals("admin") && (mypage.getUser_id() == null || mypage.getUser_id().equals("")))) {
-			// 이 때, 동일한 조건에서 패스워드 검증도 추가로 수행
-			// => 관리자가 다른 회원의 정보를 수정할 경우에는 패스워드 검증 수행 생략됨
-			if (mypage.getUser_passwd() != null && !mypage.getUser_passwd().equals("")) { // 이 부분 추가해서 닉네임이나 이메일주소만 변경해도 정보수정 가능하게 함
-				if (!passwordEncoder.matches(mypage.getUser_passwd(), dbMypage.getUser_passwd())) {
-					model.addAttribute("msg", "현재 비밀번호가 틀렸습니다.");
+		    // 비밀번호가 입력된 경우
+		    if (mypage.getUser_passwd() != null && !mypage.getUser_passwd().equals("")) { 
+		        // 입력된 비밀번호와 DB에 저장된 비밀번호를 비교
+		        if (!passwordEncoder.matches(mypage.getUser_passwd(), dbMypage.getUser_passwd())) {
+		            model.addAttribute("msg", "현재 비밀번호가 틀렸습니다.");
+		            passwordValidation = false; // 비밀번호가 틀린 경우 passwordValidation을 false로 변경
+		        }
+		    }
+		}
+
+		// passwordValidation이 true인 경우에만 회원 정보 수정 로직 실행
+		if (passwordValidation) {
+			// 새 패스워드를 입력받았을 경우 BCryptPasswordEncoder 클래스를 활용하여 암호화 처리
+			if (user_passwd1 != null && !user_passwd1.equals("")) {
+				// 새로운 비밀번호와 현재 비밀번호가 동일한지 체크
+				if (passwordEncoder.matches(user_passwd1, dbMypage.getUser_passwd())) {
+					model.addAttribute("msg", "새 비밀번호가 현재 비밀번호와 동일합니다.");
 					return "fail_back";
 				}
+				user_passwd1 = passwordEncoder.encode(user_passwd1);
+				mypage.setUser_passwd(user_passwd1);
 			}
-		}
-		
-		// 새 패스워드를 입력받았을 경우 BCryptPasswordEncoder 클래스를 활용하여 암호화 처리
-		if (user_passwd1 != null && !user_passwd1.equals("")) {
-			user_passwd1 = passwordEncoder.encode(user_passwd1);
-			mypage.setUser_passwd(user_passwd1);
-		}
-		
-		System.out.println(mypage);
-		// MypageService - modifyMypage() 메서드 호출하여 회원 정보 수정 요청
-		// => 파라미터 : MypageInfo 객체, 새 패스워드(newPasswd) 리턴타입 : int(updateCount)
-		int updateCount = service.modifyMypage(mypage, user_passwd1);
 
-		// 회원 정보 수정 요청 결과 판별
-		// => 실패 시 "fail_back" 페이지 포워딩 처리("회원정보 수정 실패!")
-		// => 성공 시 "MypageInfo" 서블릿 리다이렉트
-		if(updateCount > 0) { // 성공 시
-			 session.setAttribute("msg", "회원정보 수정이 완료되었습니다.");
-			try {
-				if(!mFile.getOriginalFilename().equals("")) {
-					mFile.transferTo(new File(saveDir, imgName));
-			}
-			} catch (IllegalStateException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}	
-			 // 관리자가 다른 회원 정보 수정 시 MypageInfo 서블릿 주소에 아이디 파라미터 결합
-			if(!sId.equals("admin") || (sId.equals("admin") && (mypage.getUser_id() == null || mypage.getUser_id().equals("")))) {
-				return "redirect:/my/modify/profile";
-			} else {
-				return "redirect:/my/modify/profile?id=" + mypage.getUser_id();
-			}
-		} else { // 실패 시
-			model.addAttribute("msg", "회원정보 수정 실패!");
-			return "fail_back";
+		    try {
+		        // MypageService - modifyMypage() 메서드 호출하여 회원 정보 수정 요청
+		        // => 파라미터 : MypageInfo 객체, 새 패스워드(newPasswd) 리턴타입 : int(updateCount)
+		        int updateCount = service.modifyMypage(mypage, user_passwd1);
+
+		        // 회원 정보 수정 요청 결과 판별
+		        // => 실패 시 "fail_back" 페이지 포워딩 처리("회원정보 수정 실패!")
+		        // => 성공 시 "MypageInfo" 서블릿 리다이렉트
+		        if(updateCount > 0) { // 성공 시
+		            session.setAttribute("msg", "회원정보 수정이 완료되었습니다.");
+		            if(!mFile.getOriginalFilename().equals("")) {
+		                mFile.transferTo(new File(saveDir, imgName));
+		            }
+		            // 관리자가 다른 회원 정보 수정 시 MypageInfo 서블릿 주소에 아이디 파라미터 결합
+		            if(!sId.equals("admin") || (sId.equals("admin") && (mypage.getUser_id() == null || mypage.getUser_id().equals("")))) {
+		                return "redirect:/my/modify/profile";
+		            } else {
+		                return "redirect:/my/modify/profile?id=" + mypage.getUser_id();
+		            }
+		        } else { // 실패 시
+		            model.addAttribute("msg", "회원정보 수정 실패!");
+		            return "fail_back";
+		        }
+		    } catch (Exception e) {
+		        model.addAttribute("msg", "회원정보 수정 실패!");
+		        return "fail_back";
+		    }
+		} else { // 비밀번호 검증이 실패한 경우
+		    return "fail_back";
 		}
 
 	}

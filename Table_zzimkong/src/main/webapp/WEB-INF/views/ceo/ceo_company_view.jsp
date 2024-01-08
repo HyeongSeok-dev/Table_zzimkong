@@ -80,7 +80,7 @@
 					</tr>
 					<tr>
 						<th>시간당 최대 인원</th>
-						<td>${com.com_max_people }</td>
+						<td>${com.com_max_people } 명</td>
 						<th colspan="2">광고등급</th>
 						<td>
 							<c:choose>

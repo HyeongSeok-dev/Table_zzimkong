@@ -3,20 +3,14 @@ package com.table.zzimkong.controller;
 import javax.servlet.http.HttpSession;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -61,53 +55,48 @@ public class PaymentController {
 		
 		// [ 회원정보조회 ]
 		MemberVO member = service.getMember(sId);
+		
 		// [ 예약정보조회 ]
 		res = service.getReservation(res);
 		System.out.println("res : " + res);
 		//테이블 예약금액에 천단위 쉼표줌
 		NumberFormat numberFormat = NumberFormat.getInstance();
 		String res_table_price = numberFormat.format(res.getRes_table_price());
+		
 		// [예약정보중 사업장정보 조회]
 		company = service.getCompany(res);
 		System.out.println("company" + company);
+		
 		// [예약정보중 선주문정보 조회]
-		// PreOrderInfo객체를 생성해서 join문으로 메뉴테이블 정보까지 받아옴
+		// 1. PreOrderInfo객체를 생성해서 join문으로 메뉴테이블 정보까지 받아옴
 		List<PreOrderInfo> poiList = service.getPreOrderInfo(res);
 		System.out.println(poiList);
-		// 각 메뉴의 가격과 갯수를 곱한 결과를 저장함
-		int count = 0;
+		// 2. 각 메뉴의 가격과 갯수를 곱한 결과를 저장함
 		int eachMenuTotalPriceInt = 0;
 		int menuTotalPriceInt = 0;
 		for(PreOrderInfo preOrderInfo : poiList) {
 			System.out.println("preOrderInfo : " + preOrderInfo);
 			// [선주문정보와 메뉴정보를 이용해서 결제할 가격 구하기 ] 
-			// [선주문 정보중 메뉴정보 조회]
-			// 1. 개수를 곱한 메뉴가격 
 //			System.out.println(" Integer.parseInt(preOrderInfo.getMenu_price()) : " + Integer.parseInt(preOrderInfo.getMenu_price()));
 //			System.out.println("preOrderInfo.getPre_num() : " + preOrderInfo.getPre_num());
 			eachMenuTotalPriceInt = (Integer.parseInt(preOrderInfo.getMenu_price()) * preOrderInfo.getPre_num());
 			menuTotalPriceInt += eachMenuTotalPriceInt;
 			String eachMenuTotalPrice = numberFormat.format(eachMenuTotalPriceInt);
 			preOrderInfo.setEachMenuTotalPrice(eachMenuTotalPrice);
-			count++;
 //			System.out.println("eachMenuTotalPriceInt : " + eachMenuTotalPriceInt);
 //			System.out.println("count : " + count);
 		}
 		
-		// 2. 선주문한 총 가격
+		// 3. 선주문한 총 가격
 		System.out.println("menuTotalPriceInt : " + menuTotalPriceInt);
-		// 3. paymentInfo 객체로 넣기전에 정수인 수에 천단위로 쉼표를 넣어서 문자열타입으로 만듬
+		// 4. paymentInfo 객체로 넣기전에 정수인 수에 천단위로 쉼표를 넣어서 문자열타입으로 만듬
 		String totalPrice = numberFormat.format(res.getRes_table_price() + menuTotalPriceInt);
 		String menuTotalPrice = numberFormat.format(menuTotalPriceInt);
 		System.out.println(poiList);
 		//--------------------------------------------------------------------
-		//[ 사용가능 포인트 조회 ]
-		// 방법1. 회원가입하면 기본 포인트 주고 가지고올 때  int로 가지고옴 (null나올수 없음)
-		// 처음 가입한 사람이 결제하면 오류생김(포인트내역이 없어서 null이 나옴)
-//		int dbPoint = service.getPoint(res);
-//		String totalPoint = numberFormat.format(dbPoint);
 		
-		// 방법2. 디비에서 가지고 올 때 String 타입으로 가지고 와서 변환해줌
+		//[ 사용가능 포인트 조회 ]
+		// 디비에서 가지고 올 때 String 타입으로 가지고 와서 변환해줌
 		String dbPoint = service.getPoint(res);
 		System.out.println("dbPoint" + dbPoint);
 		String totalPoint = "";
@@ -137,10 +126,10 @@ public class PaymentController {
 		System.out.println(paymentInfo);
 		System.out.println(poiList);
 		System.out.println(res);
+		
 		// 예약조회, 포인트조회,사업장정보조회,선주문조회 
 		map.put("res", res);
 		map.put("paymentInfo", paymentInfo);
-//		map.put("pay", pay_num);
 		map.put("com", company);
 		map.put("poi", poiList);
 		map.put("member", member);
@@ -167,10 +156,10 @@ public class PaymentController {
 			return "false";
 		}
 		
-		//
+		// 무통장 입금시 결제번호 생성
 //		int pay_method = Integer.parseInt(map.get("pay_method"));
 //		if(pay_method == 4) {
-//			// 0.결제번호 무작위생성
+//			// 결제번호 무작위생성
 //			// 날짜 정보 가지고옴
 //			LocalDate date = LocalDate.now();
 //			// 년월일 따로 가지고옴
@@ -229,9 +218,6 @@ public class PaymentController {
 		int earnedPoints = Integer.parseInt(((String)map.get("earnedPoints")).replace(",", "").trim());
 		System.out.println("사용포인트, 적립포인트 인트타입 변환 " + discountPoint + ", " + earnedPoints);
 		System.out.println("-----포인트처리");
-		
-		
-		// 인단 여기까지 처리함 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 		
 		
 		// [ 결제정보 insert ]
@@ -372,11 +358,6 @@ public class PaymentController {
 		// [ PaymentInfo 객체에 문자열 타입으로 파라미터 전달]
 		PaymentInfo paymentInfo = new PaymentInfo(menuTotalPrice,totalPrice,paymentDate,res_table_price,payMethod);
 		// 예약조회, 포인트조회,사업장정보조회,선주문조회 
-		
-		// int타입 포인트에 천단위 쉼표넣고 String타입으로 변환
-//		String finalDiscountPoint = numberFormat.format(discountPoint);
-//		String finalEarnedPoints = numberFormat.format(earnedPoints);
-//		System.out.println("finalDiscountPoint" + finalDiscountPoint);
 		
 		map.put("res", res);
 		map.put("member", member);

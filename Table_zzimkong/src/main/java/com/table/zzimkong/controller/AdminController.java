@@ -1,7 +1,9 @@
 package com.table.zzimkong.controller;
 
+
 import java.io.Console;
 import java.io.File;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -10,6 +12,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+
 import java.util.List;
 import java.util.UUID;
 
@@ -46,7 +49,7 @@ public class AdminController {
 	//		+ boolean : "admin"이 아닐 경우 commit 방지
 	@GetMapping("adminAccessDented")
 	public String forward(Model model, HttpServletRequest request) {
-		model.addAttribute("msg", "잘못된 접근입니다.");
+		model.addAttribute("msg", "잘못된 접근입니다!");
 		model.addAttribute("targetURL", request.getContextPath());
 		return "forward";
 	}
@@ -64,9 +67,11 @@ public class AdminController {
 		return true;
 	}
 
-	/**/
-	// 관리자 페이지 - 메인(답변해야할 문의 갯수, 입점을 승인해야할 가게 갯수, 처리해야할 신고 갯수,
-	// 						사이트 일일 방문자 수, 일일 가입자 수, 일일 예약 건수)
+
+	
+	// 관리자 페이지 - 오늘 할 일 : 문의 답변 대기, 입점 승인 대기, 신고 처리 대기
+	//               - 사이트 현황 : 오늘 가입자 수, 오늘 예약 수
+	//               - 차트 : 가입자 현황(시간, 날짜별), 예약자 현황(시간, 날짜별)
 	@GetMapping("admin/main")
 	public String adminMain(HttpSession session, Model model, HttpServletResponse response) {
 		// 관리자 페이지 접근 제한
@@ -75,12 +80,57 @@ public class AdminController {
 		// 문의 답변 대기, 입점 승인 대기, 신고 처리 대기,
 		// 오늘 가입자 수, 오늘 예약 수
 		AdminMainVO adminMain = service.adminMain();
-        model.addAttribute("adminMain", adminMain);
-
-        return "admin/admin_main";
+		model.addAttribute("adminMain", adminMain);
+		
+		return "admin/admin_main";
+	}
+	// 차트 : 시간별 가입자 현황
+	@ResponseBody
+	@GetMapping("admin/mainDataMemberTimeCount")
+	public AdminMainVO adminMainDataMemberTimeCount(HttpSession session, Model model, HttpServletResponse response) {
+		// 관리자 페이지 접근 제한
+		if (!isvalid(session, model, response)) return null;
+		
+		AdminMainVO adminMain = service.adminMain();
+		
+		return adminMain;
+	}
+	// 차트 : 날짜별 가입자 현황
+	@ResponseBody
+	@GetMapping("admin/mainDataMemberDateCount")
+	public AdminMainVO adminMainDataMemberDateCount(HttpSession session, Model model, HttpServletResponse response) {
+		// 관리자 페이지 접근 제한
+		if (!isvalid(session, model, response)) return null;
+		
+		AdminMainVO adminMain = service.adminMain();
+		
+		return adminMain;
+	}
+	// 차트 : 날짜별 예약자 현황
+	@ResponseBody
+	@GetMapping("admin/mainDataHour")
+	public AdminMainVO adminMainDataHour(HttpSession session, Model model, HttpServletResponse response) {
+		// 관리자 페이지 접근 제한
+		if (!isvalid(session, model, response)) return null;
+		
+		AdminMainVO adminMain = service.adminMain();
+		
+		return adminMain;
+	}
+	// 차트 : 시간별 예약자 현황
+	@ResponseBody
+	@GetMapping("admin/mainData")
+	public AdminMainVO adminMainData(HttpSession session, Model model, HttpServletResponse response) {
+		// 관리자 페이지 접근 제한
+		if (!isvalid(session, model, response)) return null;
+		
+		AdminMainVO adminMain = service.adminMain();
+		
+		return adminMain;
 	}
 	
 	// 관리자 페이지 - 회원 목록 조회 요청 (페이지네이션, 검색 기능, 카테고리 필터)
+	//               + 검색 결과, 카테고리 필터링에 따른 페이지네이션의 범위 재조정
 	@GetMapping("admin/user") 
 	public String memberList(
 			@RequestParam(defaultValue = "") String searchMemberType,
@@ -128,6 +178,18 @@ public class AdminController {
 		return "admin/admin_user";
 	}
 	
+	// 관리자 페이지 - 회원 목록 상세정보
+	@GetMapping("admin/user/info")
+	public String userInfo(MemberVO member, HttpSession session, Model model, HttpServletResponse response) {
+		// 관리자 페이지 접근 제한
+		if (!isvalid(session, model, response)) return null;
+		
+		member = service.adminMemberInfo(member);
+		model.addAttribute("member", member);
+		
+		return "admin/admin_user_info";
+	}
+	
 	// 관리자 페이지 - 회원 탈퇴
 	@PostMapping("admin/user/withdraw/Pro")
 	public String memberwithdrawPro(MemberVO member, HttpSession session, Model model, HttpServletResponse response) {
@@ -137,11 +199,9 @@ public class AdminController {
 		int updateCount = service.adminMemberWithdraw(member);
 
 		if(updateCount > 0) { // 성공 시
-//			model.addAttribute("msg", "탈퇴 처리되었습니다!");
-//			model.addAttribute("targetURL", "admin/user");
-//			return "forward";
-			return "redirect:/admin/user";
-			
+			model.addAttribute("msg", "회원 탈퇴 처리되었습니다!");
+			model.addAttribute("targetURL", "/zzimkong/admin/user");
+			return "forward";
 		} else { // 실패 시
 			model.addAttribute("msg", "회원 탈퇴 처리 실패!");
 			return "fail_back";
@@ -206,28 +266,43 @@ public class AdminController {
 		int updateCount = service.adminCompanyInfoModify(company);
 
 		if(updateCount > 0) { // 성공 시
-//			model.addAttribute("msg", "수정되었습니다!");
-//			model.addAttribute("targetURL", "admin/company/info?com_id=" + company.getCom_id());
-//			return "forward";
-			return "redirect:/admin/company/info?com_id=" + company.getCom_id();
+			model.addAttribute("msg", "업체 정보가 수정되었습니다!");
+			model.addAttribute("targetURL", "/zzimkong/admin/company/info?com_id=" + company.getCom_id());
+			return "forward";
+//			return "redirect:/admin/company/info?com_id=" + company.getCom_id();
 		} else { // 실패 시
 			model.addAttribute("msg", "업체 정보 수정 실패!");
 			return "fail_back";
 		}
 	}
 	
-	// 관리자 페이지 - 업체 승인
-	@PostMapping("admin/company/approve/Pro")
-	public String companyApprovePro(CompanyVO company, HttpSession session, Model model, HttpServletResponse response) {
+	// 관리자 페이지 - 업체 승인/거부 처리
+	@PostMapping("admin/company/register/pro")
+	public String companyRegisterPro(
+			CompanyVO company,
+			@RequestParam("com_id") String com_id,
+			@RequestParam("company_open_register") String company_open_register,
+			HttpSession session, Model model, HttpServletResponse response) {
 		// 관리자 페이지 접근 제한
 		if (!isvalid(session, model, response)) return null;
 		
-		int updateCount = service.adminCompanyApprove(company);
+		// 서버로 전송할 때마다 기존값에 추가됨을 방지
+		company_open_register = company_open_register.replace(",", "");
+		// 수정된 company_open_register 값을 company 객체에 다시 설정
+		company.setCompany_open_register(company_open_register);
+
+		int updateCount = service.adminCompanyRegister(company);
 		
 		if(updateCount > 0) { // 성공 시
-			return "redirect:/admin/company";
+			if(company_open_register.equals("company_oepn_ok")) {			// 입점 승인
+				model.addAttribute("msg", "입점이 승인되었습니다!");
+			} else if(company_open_register.equals("company_oepn_no")) {	// 입점 거부
+				model.addAttribute("msg", "입점이 거부되었습니다!");				
+			}
+			model.addAttribute("targetURL", "/zzimkong/admin/company");
+			return "forward";
 		} else { // 실패 시
-			model.addAttribute("msg", "업체 승인 실패!");
+			model.addAttribute("msg", "입점 처리 실패!");
 			return "fail_back";
 		}
 	}
@@ -275,20 +350,30 @@ public class AdminController {
 	}
 	
 	// 관리자 페이지 - 신고 승인/반려 처리
-//	@PostMapping("admin/report/detail/Blind/Pro")
-//	public String reportBlind(ReportVO report, HttpSession session, Model model, HttpServletResponse response) {
-//		// 관리자 페이지 접근 제한
-//		if (!isvalid(session, model, response)) return null;
-//		
-//		int updateCount = service.adminReportBlind(report);
-//		
-//		if(updateCount > 0) { // 성공 시
-//			return "redirect:/admin/report";
-//		} else { // 실패 시
-//			model.addAttribute("msg", "신고 승인 실패!");
-//			return "fail_back";
-//		}
-//	}
+	@PostMapping("admin/report/detail/register/pro")
+	public String reportRegister(
+			ReportVO report,
+			@RequestParam("report_num") String report_num,
+			@RequestParam("report_approve_register") String report_approve_register,
+			HttpSession session, Model model, HttpServletResponse response) {
+		// 관리자 페이지 접근 제한
+		if (!isvalid(session, model, response)) return null;
+		
+		int updateCount = service.adminReportRegister(report);
+		
+		if(updateCount > 0) { // 성공 시
+			if (report_approve_register.equals("report_approve_ok")) {		// 신고 승인
+				model.addAttribute("msg", "신고가 승인되었습니다!");
+			} else if(report_approve_register.equals("report_approve_no")) { // 신고 반려
+				model.addAttribute("msg", "신고가 반려되었습니다!");
+			}
+			model.addAttribute("targetURL", "/zzimkong/admin/report/detail?report_num=" + report_num);
+			return "forward";
+		} else { // 실패 시
+			model.addAttribute("msg", "신고 처리 실패!");
+			return "fail_back";
+		}
+	}
 	
 	// 관리자 페이지 - 고객센터 : 공지사항 새 글 작성
 	@GetMapping("admin/cs/notice/register")
@@ -412,7 +497,7 @@ public class AdminController {
 		return "admin/admin_cs_notice";
 	}
 	
-	// 관리자 페이지 - 고객센터 : 공지사항 글 수정 - 아직 안함
+	// 관리자 페이지 - 고객센터 : 공지사항 글 수정
 	@GetMapping("admin/cs/notice/modify")
 	public String admin_cs_notice_modify(CsVO board, HttpSession session, Model model, HttpServletResponse response) {
 		// 관리자 페이지 접근 제한
