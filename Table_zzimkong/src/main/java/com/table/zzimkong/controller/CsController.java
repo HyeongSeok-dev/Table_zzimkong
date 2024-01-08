@@ -423,10 +423,6 @@ public class CsController {
 		int sIdx = (int)session.getAttribute("sIdx");
 		
 		member = service.getmember(sIdx);
-		if(member.getUser_category() ==1) {
-			model.addAttribute("msg", "잘못된 접근입니다.");
-			return "fail_back";
-		}
 		
 		System.out.println(board);
 		board = service.getBoardDetail(board);
@@ -588,7 +584,7 @@ public class CsController {
 		int sIdx = (int)session.getAttribute("sIdx");
 		
 		member = service.getmember(sIdx);
-		
+		member.setUser_category(1);
 		if(!member.getUser_id().equals(board.getUser_id())) {
 			model.addAttribute("msg", "잘못된 접근입니다.");
 			return "fail_back";
@@ -732,7 +728,8 @@ public class CsController {
 		int sIdx = (int)session.getAttribute("sIdx");
 		
 		member = service.getmember(sIdx);
-		
+		member.setUser_category(1);
+
 		//이미지 업로드 로직
 		String uploadDir = "/resources/upload"; // 가상의 경로(이클립스 프로젝트 상에 생성한 경로)
 		String saveDir = session.getServletContext().getRealPath(uploadDir); // 또는 
@@ -858,7 +855,7 @@ public class CsController {
 		int sIdx = (int)session.getAttribute("sIdx");
 		
 		member = service.getmember(sIdx);
-		
+		member.setUser_category(1);
 		System.out.println(board);
 		board = service.getBoardDetail(board);
 		
@@ -873,7 +870,6 @@ public class CsController {
 		}
 		model.addAttribute("board", board);
 		model.addAttribute("member", member);
-		
 		if(!member.getUser_id().equals(board.getUser_id())) {
 			if(isReplyBoard) {
 				return "cs/member_cs_qna_view";
@@ -917,14 +913,37 @@ public class CsController {
 	
 	
 	@ResponseBody
-	@GetMapping("member/cs/sortBoardFaq")
-	public String sortBoard(CsVO board, Model model, HttpSession session, MemberVO member, 
+	@GetMapping("sortBoardFaq")
+	public String sortBoardFaq(CsVO board, Model model, HttpSession session, MemberVO member, 
 			@RequestParam("cs_board_category_user")String userCategory, @RequestParam("cs_board_category_main")String mainCategory,
 			@RequestParam("cs_board_category_sub")String subCategory, @RequestParam("searchFAQ")String searchFAQ) {
 		
 		member.setUser_category(Integer.parseInt(userCategory));
 		board.setCs_board_category_sub(Integer.parseInt(subCategory));
 		board.setSearchFAQ(searchFAQ);
+		
+		List<CsVO> boardList = service.getBoard(board, member, Integer.parseInt(mainCategory));
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("boardList", boardList);
+		System.out.println("보드리스트" + boardList);
+		JSONObject jsonObject = new JSONObject(map);
+		return jsonObject.toString();
+	}
+	
+	@ResponseBody
+	@GetMapping("sortBoardQna")
+	public String sortBoardQna(CsVO board, Model model, HttpSession session, MemberVO member, 
+			@RequestParam("cs_board_category_user")String userCategory, @RequestParam("cs_board_category_main")String mainCategory,
+			@RequestParam("cs_board_category_sub")String subCategory, @RequestParam("searchFAQ")String searchFAQ, 
+			@RequestParam("sdate")String sdate, @RequestParam("edate")String edate){
+		
+		member.setUser_category(Integer.parseInt(userCategory));
+		member.setUser_id((String)session.getAttribute("sId"));
+		board.setCs_board_category_sub(Integer.parseInt(subCategory));
+		board.setSearchFAQ(searchFAQ);
+		board.setSdate(sdate);
+		board.setEdate(edate);
 		
 		List<CsVO> boardList = service.getBoard(board, member, Integer.parseInt(mainCategory));
 		

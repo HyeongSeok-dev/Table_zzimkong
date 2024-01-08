@@ -20,6 +20,63 @@
 		window.open('${pageContext.request.contextPath }/ceo/cs/faq/view?cs_board_num=' + board_num,'','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
 	}
 	
+	$(document).ready(function() {
+		$('#cs_board_category_sub').change(function() {
+		    let cs_board_category_sub = $(this).val();
+		    let searchFAQ = $('#search').val();
+			console.log("버튼체인지됨");
+		    $.ajax({
+		        url: "../../sortBoardFaq", 
+		        type: 'GET',
+		        dataType: 'json',
+		        data: { 
+		        	"cs_board_category_user" : '2',
+		            "cs_board_category_main" : '2',
+		            "cs_board_category_sub" : cs_board_category_sub,
+		            "searchFAQ" : searchFAQ
+		        },
+		        success: function(data) {
+	                let tbody = $('#board-list tbody');
+	                tbody.empty();
+		        	if (data.boardList.length === 0){
+			        	var newRow = "<td colspan='4'>검색결과가 없습니다.</td>"
+		           		tbody.append(newRow);
+			        	return;
+		        	}
+		        	for(let board of data.boardList) { 
+
+		                switch (board.cs_board_category_sub) {
+			                case 1:
+			                    categoryText = '예약관리';
+			                    break;
+			                case 2:
+			                    categoryText = '메뉴관리';
+			                    break;
+			                case 3:
+			                    categoryText = '광고';
+			                    break;
+			                case 4:
+			                    categoryText = '블랙회원관리';
+			                    break;
+			                case 5:
+			                    categoryText = '업체관리';
+			                    break;
+	           			 }
+	                    var newRow = '<tr onclick="faqViewForm(' + board.cs_board_num + ')">' +
+	                        '<td>' + board.cs_board_num + '</td>' +
+	                        '<th class="cs_th">' + categoryText + '</th>' +
+	                        '<th class="cs_th">' + board.cs_board_subject + '</th>' +
+	                        '<td>' + board.cs_board_date + '</td>' +
+	                        '</tr>';
+	                    tbody.append(newRow);
+		        	}
+		        },
+		        error: function() {
+	                
+		        }
+		    });
+		});
+	});
 	/* 마우스 오버시 한줄 색변경*/
 // 	$(document).ready(function() {
 //   $("#hover td, #hover th").hover(function() {
@@ -85,7 +142,7 @@
 				        <tr>
 				            <th scope="col" class="th-num">번호</th>
 				            <th scope="col" class="th-category">
-				            	<select name="ceoCategory" style="border: none; background-color: rgb(244, 250, 255); font-weight: bold; text-align: center; font-size: 15px; color: #333;">
+				            	<select name="ceoCategory" id="cs_board_category_sub" style="border: none; background-color: rgb(244, 250, 255); font-weight: bold; text-align: center; font-size: 15px; color: #333;">
 				            		<option value="">유형선택</option>
 				            		<option value="1">예약관리</option>
 				            		<option value="2">메뉴관리</option>

@@ -14,7 +14,8 @@
 	rel="stylesheet">
 <script
 	src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0b71f7bc975653acc7be99d324066bee&libraries=services"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0b71f7bc975653acc7be99d324066bee
+&libraries=services"></script>
 <script src="${pageContext.request.contextPath }/resources/js/product_detail.js"></script>
 
 </head>
@@ -65,7 +66,7 @@
 			</div>
 			<div>
 				<c:if test="${isvisited}">
-					<a href="review?com_id=${company.com_id}"><button class="appra Profile__Evaluation">
+					<a href="../review?com_id=${company.com_id}"><button class="appra Profile__Evaluation">
 						<span> 평가하기 </span>
 					</button></a>
 				</c:if>

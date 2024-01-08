@@ -19,12 +19,12 @@
 			AND cs_board_category_user = #{member.user_category}
 			AND cs_board_category_main = #{category}
 			<if test="category == 3">
-				AND user_id = #{member.user_id}
+				AND (user_id = #{member.user_id}
                 OR cs_board_re_ref IN (
                     SELECT cs_board_num 
                     FROM cs_board 
                     WHERE user_id = #{member.user_id}
-                )
+                ))
 			</if>
 			<if test="board.searchFAQ != null and !board.searchFAQ.equals('') ">
 				AND cs_board_subject LIKE CONCAT('%', #{board.searchFAQ}, '%')
