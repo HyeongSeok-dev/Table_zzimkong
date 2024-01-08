@@ -211,29 +211,59 @@ $(document).ready(function() {
 			}
 		});
 	}
-	function fatchlocationData() {
-		var location_data = $("input[name='location']:checked").val();
-		
-		 $.ajax({
-	        url: "fatchlocationData", 
-	        type: 'GET',
-	        dataType: 'json',
-	        data: { 
-	        	"location" : location_data
-	        },
-			success: function(data) {
-				for(let board of data.boardList) { 
-	                let tbody = $('#board-list tbody');
-	                tbody.empty();
-	                
-                }
-			},
-			error: function(error) {
-				// 에러가 발생했을 때 실행할 코드
-				console.log("Error: ", error);
-			}
-		});
-	}
+function fetchLocationData() {
+    var location_data = $("input[name='location']:checked").val();
+
+    $.ajax({
+        url: "fetchLocationData",
+        type: 'GET',
+        dataType: 'json',
+        data: {
+            "location": location_data
+        },
+        success: function(data) {
+            // Clear current items in all carousels
+            var owl1 = $('#owl-example1').empty();
+            var owl2 = $('#owl-example2').empty();
+            var owl3 = $('#owl-example3').empty();
+
+            // Assuming companyList is an array of companies for all sections
+            for (let company of data.companyList) {
+                // Update 위생순 section with new data
+                var cleanHtml = '<div class="owl_example1_items_images">' +
+                                    '<a href="product/detail?com_id=' + company.com_id + '">' +
+                                        '<img alt="" src="' + company.com_img + '"> <br>' +
+                                        company.com_name +
+                                    '</a>' +
+                                '</div>';
+                owl1.append(cleanHtml);
+                
+                // Update 추천순 section with new data
+                var recommendHtml = '<div class="owl_example1_items_images">' +
+                                        '<a href="product/detail?com_id=' + company.com_id + '">' +
+                                            '<img alt="" src="' + company.com_img + '"> <br>' +
+                                            company.com_name +
+                                        '</a>' +
+                                    '</div>';
+                owl2.append(recommendHtml);
+                
+                // Update 별점순 section with new data
+                var reviewHtml = '<div class="owl_example1_items_images">' +
+                                     '<a href="product/detail?com_id=' + company.com_id + '">' +
+                                         '<img alt="" src="' + company.com_img + '"> <br>' +
+                                         company.com_name +
+                                     '</a>' +
+                                 '</div>';
+                owl3.append(reviewHtml);
+            }
+
+        },
+        error: function(error) {
+            console.log("Error: ", error);
+        }
+    });
+}
+
 
 	function sendFormDataToNextPage() {
 		formData['context'] = $('.search_input_text').val();
