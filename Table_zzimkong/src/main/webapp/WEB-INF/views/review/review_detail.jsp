@@ -573,7 +573,7 @@ function showCommentForm(element) {
 	});
 
 }
-	// =================================================================	
+	// ==================================================================	
 	// 하트 아이콘 클릭 이벤트
 	$('#reviewsContainer').on('click', '.fa-heart', function() {
 	    $(this).toggleClass('far').toggleClass('fas').toggleClass('filled');
