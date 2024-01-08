@@ -20,17 +20,13 @@ public interface MemberMapper {
 	
 	//아이디 찾기
 	MemberVO selectUserEmail(MemberVO member);
-	
-	// 메일 인증정보 조회
-	MailAuthInfoVO selectMailAuthInfo(String id);
-	
-	// 새 인증정보 등록
-	void insertMailAuthInfo(@Param("param")String param, @Param("auth_code")String auth_code, @Param("method")int method);
-	
-	// 기존 인증정보 갱신
-	void updateMailAuthInfo(@Param("param")String param, @Param("auth_code")String auth_code, @Param("method")int method);
-	
-	// 기존 인증정보 갱신
+
+	MailAuthInfoVO selectMailAuthInfo(String user_id);
+
+	void insertMailAuthInfo(@Param("user_id") String user_id, @Param("auth_code")String auth_code);
+
+	void updateMailAuthInfo(@Param("user_id") String user_id, @Param("auth_code")String auth_code);
+
 	void updateMailAuthStatus(String user_id);
 	
 	// 기존 인증정보 삭제
