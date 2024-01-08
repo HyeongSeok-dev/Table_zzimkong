@@ -24,15 +24,15 @@
 	<update id="updateMypage">
     UPDATE user
     SET
-<!--         <if test="mypage.user_img != null and !mypage.user_img.equals('')"> -->
-		user_img = #{mypage.user_img}
-<!--         </if> -->
-        , user_nick = #{mypage.user_nick}
+        user_nick = #{mypage.user_nick}
         , user_email = CONCAT(#{mypage.user_email1}, '@', #{mypage.user_email2}) -- user_email1, user_email2 문자열 결합
         <!-- 새 패스워드(newPasswd) 존재 여부에 따라 변경 여부 결정 -->
         <!-- 주의! 비교에 사용될 파라미터는 #{} 제외하고 표현 -->
         <if test="user_passwd1 != null and !user_passwd1.equals('')">
             , user_passwd = #{user_passwd1}  -- 새 패스워드 존재할 경우 기존 패스워드 변경
+        </if>
+        <if test="mypage.user_img != null and !mypage.user_img.equals('')">
+			, user_img = #{mypage.user_img}
         </if>
     WHERE
         user_id = #{mypage.user_id}
