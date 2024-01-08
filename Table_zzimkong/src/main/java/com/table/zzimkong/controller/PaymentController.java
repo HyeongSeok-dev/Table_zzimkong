@@ -83,15 +83,15 @@ public class PaymentController {
 			// [선주문정보와 메뉴정보를 이용해서 결제할 가격 구하기 ] 
 			// [선주문 정보중 메뉴정보 조회]
 			// 1. 개수를 곱한 메뉴가격 
-			System.out.println(" Integer.parseInt(preOrderInfo.getMenu_price()) : " + Integer.parseInt(preOrderInfo.getMenu_price()));
-			System.out.println("preOrderInfo.getPre_num() : " + preOrderInfo.getPre_num());
+//			System.out.println(" Integer.parseInt(preOrderInfo.getMenu_price()) : " + Integer.parseInt(preOrderInfo.getMenu_price()));
+//			System.out.println("preOrderInfo.getPre_num() : " + preOrderInfo.getPre_num());
 			eachMenuTotalPriceInt = (Integer.parseInt(preOrderInfo.getMenu_price()) * preOrderInfo.getPre_num());
 			menuTotalPriceInt += eachMenuTotalPriceInt;
 			String eachMenuTotalPrice = numberFormat.format(eachMenuTotalPriceInt);
 			preOrderInfo.setEachMenuTotalPrice(eachMenuTotalPrice);
 			count++;
-			System.out.println("eachMenuTotalPriceInt : " + eachMenuTotalPriceInt);
-			System.out.println("count : " + count);
+//			System.out.println("eachMenuTotalPriceInt : " + eachMenuTotalPriceInt);
+//			System.out.println("count : " + count);
 		}
 		
 		// 2. 선주문한 총 가격
@@ -117,7 +117,7 @@ public class PaymentController {
 			totalPoint = numberFormat.format(Integer.parseInt(dbPoint));
 		}
 		
-//		// 0.결제번호 무작위생성
+//		// 0.결제번호 무작위생성 -- api연결하면서 필요 없어짐
 //		// 날짜 정보 가지고옴
 //		LocalDate date = LocalDate.now();
 //		// 년월일 따로 가지고옴
@@ -158,37 +158,36 @@ public class PaymentController {
 		System.out.println("map : " + map);
 		System.out.println("-");
 		
-		//세션에 저장된 아이디로 회원정보확인 하기 위해 일단 세션에 임의의 값 넣음
-//		session.setAttribute("sIdx", "2");
 		int sIdx = (int)session.getAttribute("sIdx");
 		// 데이터베스에 들고갈 paymentVO객체 생성
 		PaymentVO payment = new PaymentVO();
 		
-		// 세션에 로그인이 안되어있다면 접근금지 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 일단 지금 session null나옴 
-//		if(session.getAttribute("sId") == null) {
-//			return "false";
-//		}
+		// 세션에 로그인이 안되어있다면 접근금지
+		if(session.getAttribute("sId") == null) {
+			return "false";
+		}
 		
-		int pay_method = Integer.parseInt(map.get("pay_method"));
-		if(pay_method == 4) {
-			// 0.결제번호 무작위생성
-			// 날짜 정보 가지고옴
-			LocalDate date = LocalDate.now();
-			// 년월일 따로 가지고옴
-			int year = date.getYear();
-			int month = date.getMonthValue();
-			int day = date.getDayOfMonth();
+		//
+//		int pay_method = Integer.parseInt(map.get("pay_method"));
+//		if(pay_method == 4) {
+//			// 0.결제번호 무작위생성
+//			// 날짜 정보 가지고옴
+//			LocalDate date = LocalDate.now();
+//			// 년월일 따로 가지고옴
+//			int year = date.getYear();
+//			int month = date.getMonthValue();
+//			int day = date.getDayOfMonth();
 //		System.out.println("year : " + year);
 //		System.out.println("month : " + month);
 //		System.out.println("day : " + day);
 			// 무작위 번호앞에 년월일 붙여서 결제번호생성
-			String pay_num = "P" + year +( month + (day + UUID.randomUUID().toString().substring(0,7)));
-			System.out.println("payNum : " + pay_num);
-			payment.setPay_num(pay_num);
-		}
-		payment.setPay_method(pay_method);
+//			String pay_num = "P" + year +( month + (day + UUID.randomUUID().toString().substring(0,7)));
+//			System.out.println("payNum : " + pay_num);
+//			payment.setPay_num(pay_num);
+//		}
+//		payment.setPay_method(pay_method);
 		
-		System.out.println("--payment : " + payment);
+//		System.out.println("--payment : " + payment);
 		// [ 예약번호로 예약정보 조회하기 ] --------------------------------
 		ReservationVO res = new ReservationVO();
 		res.setRes_num((String)map.get("res_num"));
