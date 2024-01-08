@@ -7,13 +7,22 @@
 		<title>비밀번호 찾기</title>
 		<link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
 		<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/login_findPasswd.css">
+		<script type="text/javascript">
+		    function checkOption(select) {
+		        // Get the selected value from dropdown
+		        var selectedValue = select.value;
+		        
+		        // Set the value of the 'email2' input field
+		        document.getElementById('user_email2').value = selectedValue;
+		    }
+		</script>
 	</head>
 	<body>
 	
 		<div id="nmContainer" class="nm_container ">
 		  <div class="nm_find_wrap">
 		      <div class="find_box">
-		        <form id="findForm" method="POST" action="">
+		        <form id="findForm" method="POST" action="passwdPro">
 		        
 		        <!-- 로고 이미지 -->
 		        <div align="center" class="div_img">
@@ -25,19 +34,20 @@
 		       <div id="box">
 		       
 		       		<!-- 아이디 입력 -->
-		       		<input type="text" placeholder="아이디를 입력해주세요" id="u_name" class="input_txt">
+		       		<input type="text" name="user_id" placeholder="아이디를 입력해주세요" id="u_name" class="input_txt">
 		       		
 			        <!-- 이메일 입력-->
-			        <div class="u_email" align="center">
-		                <input type="text" id="uEmail" name="uEmail" placeholder="이메일" onkeydown="eventObj.loginByEnterKey(event)" maxlength="16" autocomplete="false">
+			        <div class="u_email" align="center" >
+		                <input type="text" id="user_email1" name="user_email1" placeholder="이메일" style="width: 70px;" onkeydown="eventObj.loginByEnterKey(event)" maxlength="16" autocomplete="false">
 		                <span id="at">@</span>
-						<select id="uEmail2" name="uEmail">
+		                <input type="text" id="user_email2" name="user_email2" style="width: 70px;">
+						<select onchange="checkOption(this)">
 			                <option value="">선택하세요</option>
 			                <option value="gmail.com">gmail.com</option>
 			                <option value="naver.com">naver.com</option>
 			                <option value="daum.net">daum.net</option>
 			                <option value="yahoo.com">yahoo.com</option>
-			                <option value="yahoo.com">직접입력</option>
+			                <option value="">직접입력</option>
 			             </select>	              
 		           </div>
 		           

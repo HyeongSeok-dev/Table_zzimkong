@@ -21,6 +21,16 @@ public interface MemberMapper {
 	//아이디 찾기
 	MemberVO selectUserEmail(MemberVO member);
 
+	MailAuthInfoVO selectMailAuthInfo(String id);
+
+	void insertMailAuthInfo(String id, String auth_code);
+
+	void updateMailAuthInfo(String id, String auth_code);
+
+	void updateMailAuthStatus(String user_id);
+
+	void deleteMailAuthInfo(String user_id);
+
 
 	
 } //MemberMapper

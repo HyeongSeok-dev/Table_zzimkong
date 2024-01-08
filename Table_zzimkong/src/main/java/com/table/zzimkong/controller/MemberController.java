@@ -18,7 +18,8 @@ public class MemberController {
 	// MemberService 객체 자동 주입
 	@Autowired
 	private MemberService service;
-
+	@Autowired
+	private SendMailService mailService;
 
 	@GetMapping("join/join")
 	public String join() {
@@ -268,18 +269,18 @@ public class MemberController {
 	public String login_find_passwd() {
 		return "login/login_find_passwd";
 	}
-	//비밀번호 찾기 메일 발송테스트를 위한 매핑
-//	@GetMapping("TestAuthMail")
-//	public String testAuthMail() {
-//		
-//		System.out.println();
-//		return "";
-//	}
 	
-//	@ResponseBody
-//	@PostMapping("login/find/idPro")
-//	public String findId(String uEmail,String uEmail2, Model model) {
-//		return "
-//	}
+	@PostMapping("login/find/passwdPro")
+	public String login_find_passwdPro(MemberVO member, HttpSession session, Model model) {
+		System.out.println(member);
+		
+		member.setUser_email(member.getUser_email1()+"@"+member.getUser_email2());
+		String auth_code = mailService.sendPasswdAuthMail(member); // MemberVO 객체 전달
+		service.registMailAuthInfo(member.getUser_id(), auth_code);
+
+		
+		return "";
+	}
+	
 		
 }//MemberController
