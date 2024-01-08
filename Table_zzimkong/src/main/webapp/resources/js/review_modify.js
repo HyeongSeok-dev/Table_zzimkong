@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     
+    // --------------------------------------------------------
+
     function updateCheckboxValue(checkbox) {
         if (checkbox.id === 'review_like') {
             // 좋아요 체크박스는 별도의 로직을 사용

@@ -133,7 +133,7 @@
 	        <if test="review_etc_fast != null">, review_etc_fast = #{review_etc_fast}</if>
 	        <if test="review_etc_child != null">, review_etc_child = #{review_etc_child}</if>
 	        <if test="review_no_keyword != null">, review_no_keyword = #{review_no_keyword}</if>
-	        <if test="review_img_1 != null">, review_img_1 = #{review_img_1}</if>
+	        <if test="review_img_1 != null and review_img_1 != ''">, review_img_1 = #{review_img_1}</if>
 	        <if test="review_like != null">, review_like = #{review_like}</if>
 	    WHERE review_num = #{review_num}
 	</update>
