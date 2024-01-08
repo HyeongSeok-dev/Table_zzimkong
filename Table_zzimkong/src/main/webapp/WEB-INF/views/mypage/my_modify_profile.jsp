@@ -53,7 +53,6 @@
 							</div>
 							<p>프로필 사진으로 사용할 이미지를 등록해 주세요.</p>
 	                          <input type="file" id="file1" name="m_file" class="hide"><br>
-	                          <input type="checkbox" > 프로필 초기화
 						</td>
 					</tr>
 					<tr>

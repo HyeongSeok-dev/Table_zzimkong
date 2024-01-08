@@ -7,11 +7,11 @@
 <title>가게 신고하기</title>
 <link href="${pageContext.request.contextPath }/resources/css/mypage.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
-<script type="text/javascript">
-	function reportRegister(){
-		confirm("해당 가게를 신고하였습니다.");
-	}
-</script>
+<!-- <script type="text/javascript"> -->
+// 	function reportRegister(){
+// 		confirm("해당 가게를 신고하였습니다.");
+// 	}
+<!-- </script> -->
 </head>
 <body>
 	<form action="reason2" method="post">
@@ -32,10 +32,10 @@
 		
 		<h3>상세 사유</h3>
 		<br><br>
-		<textarea rows="10" cols="40" name="motivation" placeholder="방문한 날짜와 함께 자세한 내용을 입력해주세요."></textarea><br>
+		<textarea rows="10" cols="40" name="report_content" placeholder="방문한 날짜와 함께 자세한 내용을 입력해주세요."></textarea><br>
 		<br>
 		<div class = "click_button">
-			<button type="submit" onclick="reportRegister()">신고</button>
+			<button type="submit">신고</button>
 			<button type="reset" id="button_grey2">초기화</button>
 			<button type="button" id="my_delete" onclick="javascript:window.close()">취소</button>
 		</div>

@@ -194,10 +194,10 @@ public class MypageController {
 	@GetMapping("my/list")
 	public String my_list(MypageInfo mypage, HttpSession session, Model model, HttpServletResponse response) {
 		
-		String sId = (String)session.getAttribute("sId"); // 세션에 아이디값을 가져오는거
+		String sId = (String)session.getAttribute("sId"); // 세션에 아이디값 가져오기
 		mypage.setUser_id(sId);//검색할 아이디를 마이페이지에 넣기 
 		MypageInfo dbMypage = service.getMypage(mypage);
-		session.setAttribute("user_nick", dbMypage.getUser_nick()); // String~session: 마이페이지 눌렀을때 닉네임 계속 보이게 세션에 저장
+		session.setAttribute("user_nick", dbMypage.getUser_nick());// String~session: 마이페이지 눌렀을때 닉네임 계속 보이게 세션에 저장
 		session.setAttribute("imgName", dbMypage.getUser_img());
 		
 		int sIdx = (int)session.getAttribute("sIdx"); //세션 인덱스 가져오기
@@ -235,7 +235,6 @@ public class MypageController {
 	public String my_reservation(MypageInfo mypage, HttpSession session, Model model, HttpServletResponse response)	{
 		
 		int sIdx = (int)session.getAttribute("sIdx"); //세션 인덱스 가져오기
-//		
 		List<Map<String, Object>> resList2 = service.getResList2(sIdx);
 				
 		// Model 객체에 회원 목록 조회 결과 저장(resList2 문자열을 "resList2"라는 속성명으로 저장)
@@ -334,8 +333,19 @@ public class MypageController {
 		
 		int insertCount = service.registShopReport(report);
 		System.out.println(report);
-		return "mypage/my_report_reason";
-	}
+		
+		if(insertCount > 0) {
+			model.addAttribute("msg","신고가 정상적으로 처리되었습니다!");
+			return "forward";
+		
+			} else {
+		        model.addAttribute("msg", "신고 처리에 실패했습니다.");
+		        return "forward";
+			}
+		}
+		
+//		return "mypage/my_report_reason";
+//	}
 
 	
 	@GetMapping("my/unregister")
@@ -353,8 +363,20 @@ public class MypageController {
 		return "mypage/my_qna";
 	}
 	
+	//-------포인트 조회하기-----------
+	
 	@GetMapping("my/point")
-	public String my_point() {
+	public String my_point(PointVO point, HttpSession session, Model model) {
+		int sIdx = (int)session.getAttribute("sIdx");
+		 point.setUser_idx(sIdx);
+		// MypageService - getShowPoint() 메서드 호출하여 포인트 조회
+		List<PointVO> dbShowPoint = service.getShowPoint(point);
+		
+		// 조회 결과 Model 객체에 저장
+		model.addAttribute("showPoint",dbShowPoint);
+		System.out.println("dbShowPoint : " + dbShowPoint);
+		
+		// 포인트 조회 페이지 포워딩
 		return "mypage/my_point";
 	}
 	

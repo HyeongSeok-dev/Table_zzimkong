@@ -80,6 +80,12 @@ public class MypageService {
 		return mapper.selectMyReview(sId);
 	}
 
+	// 포인트 조회
+	public List<PointVO> getShowPoint(PointVO point) {
+		return mapper.selectShowPoint(point);
+	}
+	
+
 
 	
 

@@ -50,6 +50,11 @@ public interface MypageMapper {
 	// 나의 리뷰 조회
 	List<ReviewVO> selectMyReview(String sId);
 
+	// 포인트 조회
+	List<PointVO> selectShowPoint(PointVO point);
+	
+	
+
 
 
 
