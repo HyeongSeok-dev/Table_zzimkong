@@ -264,6 +264,26 @@ public class MemberController {
 		return "";
 	}
 	
+	@GetMapping("MemberEmailAuth")
+	public String MemberEmailAuth(MailAuthInfoVO authInfo, HttpSession session, Model model) {
+		
+//		MailAuthInfoVO authinfo
+		System.out.println("authInfo : " + authInfo);
+		
+		// MemberService - requestEmailAuth() 메서드 호출하여 인증 요청
+		// => 파라미터 : MailAuthInfoVO 객체   리턴타입 : boolean(isAuthSuccess)
+		boolean isAuthSuccess = service.requestEmailAuth(authInfo);
+		
+		if(isAuthSuccess) { // 성공
+			model.addAttribute("msg", "인증 성공! 로그인 페이지로 이동합니다!");
+			model.addAttribute("targetURL", "login");
+			return "forward";
+		} else { // 실패 
+			model.addAttribute("msg", "인증 실패!");
+			return "fail_back";
+		}
+	}
+	
 	//비밀번호 찾기
 	@GetMapping("login/find/passwd")
 	public String login_find_passwd() {
