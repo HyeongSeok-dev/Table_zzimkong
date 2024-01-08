@@ -62,16 +62,6 @@ public class ProductController {
 		
 		session.setAttribute("search", search);
 		
-		
-        List<CompanyVO>cleanListMain = service.getCleanList(search);
-        session.setAttribute("cleanListMain", cleanListMain);
-        
-        List<CompanyVO>recommendListMain = service.getRecommendList(search);
-        session.setAttribute("recommendListMain", recommendListMain);
-        
-        List<CompanyVO>reviewListMain = service.getReviewList(search);
-        session.setAttribute("reviewListMain", reviewListMain);
-		
 		search.setRedirectURL("/product/list");
 
 		return ResponseEntity.ok(search);

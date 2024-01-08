@@ -62,13 +62,13 @@
 				<tr>
 					<th colspan="2">문의제목</th>
 					<td colspan="4">
-						<input type="text" placeholder="제목" value="${board.cs_board_subject}">
+						${board.cs_board_subject}
 					</td>
 				</tr>
 				<tr>
 					<th colspan="2">문의내용</th>
 					<td colspan="4">
-						<textarea rows="20" cols="80" >${board.cs_board_content}</textarea>
+						${board.cs_board_content}
 					</td>
 				</tr>
 				<tr>

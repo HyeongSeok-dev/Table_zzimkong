@@ -75,16 +75,12 @@
 					</div>
 				</div>
 				<div class="filter_wrapper">
-					<c:choose>
-						<c:when test="${empty cleanListMain}">
-							<div class="modal-opener seleted_location">${search.location} </div>
-						</c:when>
-						<c:otherwise>
-							<c:forEach var="clean" items="${cleanListMain}" begin="1" end="1">
-								<div class="modal-opener seleted_location">${clean.com_gugun} </div>
-							</c:forEach>
-						</c:otherwise>	
-					</c:choose>
+					<c:if test="${not empty search.location}">
+						<div class="modal-opener seleted_location">${search.location} </div>
+					</c:if>
+					<c:if test="${empty search.location}">
+						<div class="modal-opener seleted_location">전국 </div>
+					</c:if>
 					<img class="filter_icon modal-opener"
 						src="${pageContext.request.contextPath}/resources/img/search_filter.png"/>
 					<div id="filterModal" class="modal">

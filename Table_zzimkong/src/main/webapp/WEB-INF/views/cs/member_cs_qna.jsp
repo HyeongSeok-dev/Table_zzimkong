@@ -29,32 +29,78 @@
 		var top = Math.ceil((window.screen.height - popupH)/2);
 		window.open('${pageContext.request.contextPath }/member/cs/qna/view?cs_board_num=' + board_num,'','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
 	}
+$(document).ready(function() {
  	$('#cs_board_category_sub').change(function() {
-	    var cs_board_category_sub = $(this).val();
-	    var searchFAQ = $('#search').val();
-	    var sdate = $('#sdate').val();
-	    var edate = $('#edate').val();
-		console.log("버튼체인지됨");
+	    let cs_board_category_sub = $(this).val();
+	    let searchFAQ = $('#search').val();
+	    let sdate = $('#sdate').val();
+	    let edate = $('#edate').val();
 	    $.ajax({
-	        url: "sortBoardQna", 
+	        url: "../../sortBoardQna", 
 	        type: 'GET',
 	        dataType: 'json',
 	        data: { 
 	        	"cs_board_category_user" : '1',
-	            "cs_board_category_main" : '2',
+	            "cs_board_category_main" : '3',
 	            "cs_board_category_sub" : cs_board_category_sub,
-	            "searchFAQ" : searchFAQ
-	            "sdate" : sdate
+	            "searchFAQ" : searchFAQ,
+	            "sdate" : sdate,
 	            "edate" : edate
 	        },
-	        success: function(response) {
-	        	
+	        success: function(data) {
+                let tbody = $('#board-list tbody');
+                tbody.empty();
+	        	if (data.boardList.length === 0){
+		        	var newRow = "<td colspan='4'>검색결과가 없습니다.</td>"
+	           		tbody.append(newRow);
+		        	return;
+	        	}
+	        	for(let board of data.boardList) { 
+
+	                switch (board.cs_board_category_sub) {
+		                case 1:
+		                    categoryText = '예약';
+		                    break;
+		                case 2:
+		                    categoryText = '주문/결제';
+		                    break;
+		                case 3:
+		                    categoryText = '리뷰';
+		                    break;
+		                case 4:
+		                    categoryText = '회원정보';
+		                    break;
+		                case 5:
+		                    categoryText = '이용문의';
+		                    break;
+		                case 6:
+		                    categoryText = '쿠폰/포인트';
+		                    break;
+           			 }
+	        		let re = "";
+					if(board.cs_board_re_lev > 0) {
+						for(let i = 0; i < board.cs_board_re_lev; i++) {
+							re += "&nbsp;&nbsp;";
+						}
+						
+						re += '<img style="width: 20px; height: 20px;" src="${pageContext.request.contextPath }/resources/img/reply-icon.png">';
+					}
+					
+                    var newRow = '<tr onclick="qnaViewForm(' + board.cs_board_num + ')">' +
+                        '<td>' + board.cs_board_num + '</td>' +
+                        '<th class="cs_th">'+  categoryText + '</th>' +
+                        '<th class="cs_th">' + re + board.cs_board_subject + '</th>' +
+                        '<td>' + board.cs_board_date + '</td>' +
+                        '</tr>';
+                    tbody.append(newRow);
+	        	}
 	        },
-	        error: function(xhr, textStatus, errorThrown) {
-	            console.log('에러 발생: ' + errorThrown);
+	        error: function(e) {
+                console.log("에러" +e)
 	        }
 	    });
 	});
+});
  </script>
  
 </head>

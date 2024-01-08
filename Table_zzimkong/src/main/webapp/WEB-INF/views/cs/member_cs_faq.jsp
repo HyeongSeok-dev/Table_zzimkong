@@ -16,22 +16,21 @@
 	href="${pageContext.request.contextPath }/resources/css/ceo_top.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
+function faqViewForm(board_num) {
+	/* 팝업창 중앙 정렬 */
+	var popupW = 950;
+	var popupH = 700;
+	var left = Math.ceil((window.screen.width - popupW)/2);
+	var top = Math.ceil((window.screen.height - popupH)/2);
+	window.open('${pageContext.request.contextPath }/member/cs/faq/view?cs_board_num=' + board_num,'','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
+}
 $(document).ready(function() {
-	function faqViewForm(board_num) {
-		/* 팝업창 중앙 정렬 */
-		var popupW = 950;
-		var popupH = 700;
-		var left = Math.ceil((window.screen.width - popupW)/2);
-		var top = Math.ceil((window.screen.height - popupH)/2);
-		window.open('${pageContext.request.contextPath }/member/cs/faq/view?cs_board_num=' + board_num,'','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
-	}
-	
 	$('#cs_board_category_sub').change(function() {
 	    let cs_board_category_sub = $(this).val();
 	    let searchFAQ = $('#search').val();
 		console.log("버튼체인지됨");
 	    $.ajax({
-	        url: "sortBoardFaq", 
+	        url: "../../sortBoardFaq", 
 	        type: 'GET',
 	        dataType: 'json',
 	        data: { 
@@ -79,12 +78,11 @@ $(document).ready(function() {
                     tbody.append(newRow);
 	        	}
 	        },
-	        error: function(xhr, textStatus, errorThrown) {
+	        error: function() {
                 
 	        }
 	    });
 	});
-	
 });
 </script>
 </head>
@@ -136,8 +134,8 @@ $(document).ready(function() {
 						<thead>
 							<tr>
 								<th scope="col" class="th-num">번호</th>
-								<th scope="col" class="th-num"><select name="category"
-									id="cs_board_category_sub"
+								<th scope="col" class="th-num">
+								<select name="category"	id="cs_board_category_sub"
 									style="border: none; background-color: rgb(244, 250, 255); font-weight: bold; text-align: center; font-size: 15px; color: #333;">
 										<option value="">유형선택</option>
 										<option value="1">예약</option>

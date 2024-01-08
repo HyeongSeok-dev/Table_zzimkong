@@ -45,12 +45,6 @@ public class MemberController {
 		return "join/join_agree";
 	}
 	
-	
-	@GetMapping("login/find/passwd")
-	public String login_find_passwd() {
-		return "login/login_find_passwd";
-	}
-
 	@GetMapping("my/complet")
 	public String my_complet() {
 		return "mypage/my_complet";
@@ -272,6 +266,19 @@ public class MemberController {
 	public String login_find_id() {
 		return "login/login_find_id";
 	}
+	
+	//비밀번호 찾기
+	@GetMapping("login/find/passwd")
+	public String login_find_passwd() {
+		return "login/login_find_passwd";
+	}
+	//비밀번호 찾기 메일 발송테스트를 위한 매핑
+//	@GetMapping("TestAuthMail")
+//	public String testAuthMail() {
+//		
+//		System.out.println();
+//		return "";
+//	}
 	
 //	@ResponseBody
 //	@PostMapping("login/find/idPro")
