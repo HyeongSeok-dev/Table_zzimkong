@@ -23,9 +23,9 @@ public interface MemberMapper {
 
 	MailAuthInfoVO selectMailAuthInfo(String id);
 
-	void insertMailAuthInfo(String id, String auth_code);
+	void insertMailAuthInfo(@Param("param")String param, @Param("auth_code")String auth_code, @Param("method")int method);
 
-	void updateMailAuthInfo(String id, String auth_code);
+	void updateMailAuthInfo(@Param("param")String param, @Param("auth_code")String auth_code, @Param("method")int method);
 
 	void updateMailAuthStatus(String user_id);
 

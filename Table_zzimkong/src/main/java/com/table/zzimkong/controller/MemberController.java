@@ -275,6 +275,14 @@ public class MemberController {
 		System.out.println(member);
 		
 		member.setUser_email(member.getUser_email1()+"@"+member.getUser_email2());
+		
+		MemberVO dbMember = service.getMember(member);
+		
+		if(dbMember == null) { // 이메일이 없음
+			model.addAttribute("msg", "존재하지 않는 회원입니다.");
+			return "fail_back";
+		}
+		
 		String auth_code = mailService.sendPasswdAuthMail(member); // MemberVO 객체 전달
 		service.registPasswdMailAuthInfo(member.getUser_id(), auth_code);
 

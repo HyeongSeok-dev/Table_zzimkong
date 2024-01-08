@@ -6,6 +6,6 @@ import lombok.Data;
 public class MailAuthInfoVO {
 	private int auth_idx;
 	private String user_id;
-	private String auth_str;
+	private String auth_code;
 	private String user_email;
 }

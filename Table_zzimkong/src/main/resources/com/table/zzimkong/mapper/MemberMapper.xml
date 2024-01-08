@@ -70,7 +70,7 @@
 		<if test="user_id == null and user_email1 != null">
 			and user_email = CONCAT(#{user_email1},'@',#{user_email2})
 	 	</if>
-	
+			and user_status = 1
 	</where>
 </select>
 
@@ -90,5 +90,10 @@
 	FROM user
 	WHERE user_email = #{user_email} AND user_status = '1';
 </select>
+
+
+
+
+
 
 </mapper>

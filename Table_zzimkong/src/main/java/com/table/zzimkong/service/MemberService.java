@@ -52,11 +52,11 @@ public class MemberService {
 		if(authInfo == null) { // 기존 인증정보 존재하지 않을 경우 => 새 인증정보 추가(INSERT)
 			// MemberMapper - insertMailAuthInfo() 메서드 호출하여 새 인증정보 추가
 			// => 파라미터 : 아이디, 인증코드
-			mapper.insertMailAuthInfo(id, auth_code);
+			mapper.insertMailAuthInfo(id, auth_code, 0);
 		} else { // 기존 인증정보 존재할 경우 => 기존 인증정보 갱신(UPDATE)
 			// MemberMapper - updateMailAuthInfo() 메서드 호출하여 기존 인증정보 갱신
 			// => 파라미터 : 아이디, 인증코드
-			mapper.updateMailAuthInfo(id, auth_code);
+			mapper.updateMailAuthInfo(id, auth_code, 0);
 		}
 		
 	}
@@ -72,11 +72,11 @@ public class MemberService {
 		if(authInfo == null) { // 기존 인증정보 존재하지 않을 경우 => 새 인증정보 추가(INSERT)
 			// MemberMapper - insertMailAuthInfo() 메서드 호출하여 새 인증정보 추가
 			// => 파라미터 : 아이디, 인증코드
-			mapper.insertMailAuthInfo(email, auth_code);
+			mapper.insertMailAuthInfo(email, auth_code , 1);
 		} else { // 기존 인증정보 존재할 경우 => 기존 인증정보 갱신(UPDATE)
 			// MemberMapper - updateMailAuthInfo() 메서드 호출하여 기존 인증정보 갱신
 			// => 파라미터 : 아이디, 인증코드
-			mapper.updateMailAuthInfo(email, auth_code);
+			mapper.updateMailAuthInfo(email, auth_code, 1);
 		}
 		
 	}
@@ -95,7 +95,7 @@ public class MemberService {
 		// 조회된 인증 정보 존재 여부 판별
 		if(currentAuthInfo != null) { // 존재할 경우(아이디에 해당하는 인증 정보 존재)
 			// 인증메일 하이퍼링크를 통해 전달받은 인증코드와 조회된 인증코드 문자열 비교
-			if(authInfo.getAuth_str().equals(currentAuthInfo.getAuth_str())) {
+			if(authInfo.getAuth_code().equals(currentAuthInfo.getAuth_code())) {
 				// 1. MemberMapper - updateMailAuthStatus() 메서드 호출하여
 				//    member 테이블의 인증상태(mail_auth_status) 값을 "Y" 로 변경
 				//    => 파라미터 : 아이디
