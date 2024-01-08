@@ -32,6 +32,10 @@
 			<if test="board.sdate != null and !board.sdate.equals('')">
 				AND cs_board_date BETWEEN #{board.sdate} AND #{board.edate}
 			</if>
+			<if test="board.cs_board_category_sub != null and board.cs_board_category_sub != 0">
+				AND cs_board_category_sub = #{board.cs_board_category_sub}
+			</if>
+			
 			ORDER BY
 				cs_board_re_ref DESC
 				, cs_board_re_seq ASC

@@ -167,6 +167,14 @@
 			<version>${org.aspectj-version}</version>
 		</dependency>	
 		
+				<!-- 11. JSON 데이터 처리 라이브러리(JSON, Gson, Jackson 등) -->
+		<!-- https://mvnrepository.com/artifact/org.json/json -->
+		<dependency>
+		    <groupId>org.json</groupId>
+		    <artifactId>json</artifactId>
+		    <version>20231013</version>
+		</dependency>
+				
 		<!-- Logging -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
