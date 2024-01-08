@@ -65,14 +65,7 @@ select.search_select {
 #search {
 	width: 100% !important;
 }
-	
-/* 버튼 CSS */
-/* button[type="button"], button[type="submit"], button[type="reset"] { */
-    
-/*     text-decoration: none; */
-/*     display: inline-block; */
-/*     transition-duration: 0.4s; */
-/* } */
+
 
 /* 버튼 : 흰색 - 탈퇴, 거부 */
 .button_cancel {
@@ -95,6 +88,9 @@ select.search_select {
 	padding: 3px;
 }
 
+#withdrawbutton button {
+	margin: 0px;
+}
 
 /* 상세 정보 창 CSS */
 .info_window {

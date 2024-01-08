@@ -1,7 +1,7 @@
 // admin_user.jsp
 // 회원 탈퇴 처리
 function user_withdraw(user_idx) {
-  var result = confirm("강제 탈퇴시키겠습니까?");
+  var result = confirm("회원을 강제 탈퇴시키겠습니까?");
   if(result) { // 확인을 눌렀을 경우
       var form = document.createElement("form");
       form.method = "POST";
@@ -37,13 +37,45 @@ function report_declaration(report_num) {
 
 
 // admin_report_declaration.jsp
-function report_blind() {
-	confirm("리뷰 블라인드 처리하시겠습니까?");
-}
-function report_blind_not() {
-	confirm("반려하시곘습니까?");
-}
+document.addEventListener('DOMContentLoaded', (event) => {
+	window.report_approve = function(report_num, reportName) {
+		var result = confirm("신고를 승인하시겠습니까?");
+		if(result) {
+			document.getElementById('report_num').value = report_num;
+			document.getElementById('report_approve_register').value = reportName;
+			document.getElementById('reportRegister').submit();
+		} else {
+			event.preventDefault();
+		}
+	}
+  
+window.report_disapprove = function(report_num, reportName) {
+	var result = confirm("신고를 반려하시곘습니까?");
+		if(result) {
+			document.getElementById('report_num').value = report_num;
+			document.getElementById('report_approve_register').value = reportName;
+			document.getElementById('reportRegister').submit();
+		} else {
+			event.preventDefault();
+		}
+	}
+});
 
+
+
+
+function user_info_open(user_idx) {
+	/* 팝업창 중앙 정렬 */
+	var popupW = 750;
+	var popupH = 650;
+	var left = Math.ceil((window.screen.width - popupW)/2);
+	var top = Math.ceil((window.screen.height - popupH)/2);
+	
+	/* 각 회원정보로 이동하기 위한 주소 */
+	var url = "user/info?user_idx=" + user_idx;
+	
+	window.open(url,'','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
+}
 
 // admin_company.jsp
 function company_info_open(com_id) {
@@ -59,18 +91,29 @@ function company_info_open(com_id) {
 	window.open(url,'','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
 }
 
-function company_approve(com_id) {
-	var result = confirm("입점 승인합니다.");
-    if(result) { // 확인을 눌렀을 경우
-        document.getElementById('com_id').value = com_id;
-        document.getElementById('companyApprove').submit();
-    } else {
-		event.preventDefault();
-    }
-}
-function company_disapprove() {
-	confirm("입점 거부합니다.");
-}
+document.addEventListener('DOMContentLoaded', (event) => {
+	window.company_approve = function(event, com_id, company_open_register) {
+		var result = confirm("입점을 승인하시겠습니까?");
+		if(result) {
+			document.getElementById('com_id').value = com_id;
+			document.getElementById('company_open_register').value = company_open_register;
+			document.getElementById('companyRegister').submit();
+		} else {
+			event.preventDefault();
+		}
+	}
+  
+window.company_disapprove = function(event, com_id, company_open_register) {
+	var result = confirm("입점을 거부하시겠습니까?");
+		if(result) {
+			document.getElementById('com_id').value = com_id;
+			document.getElementById('company_open_register').value = company_open_register;
+			document.getElementById('companyRegister').submit();
+		} else {
+			event.preventDefault();
+		}
+	}
+});
 
 
 // admin_company_info.jsp
@@ -165,11 +208,6 @@ document.addEventListener("DOMContentLoaded", function(){
     const memberItems = document.querySelectorAll('.member_item');
     const memberStatusItems = document.querySelectorAll('.member_status_item');
     
-	console.log("memberCategorySelect : " + memberCategorySelect);
-	console.log("memberStatusCategorySelect" + memberStatusCategorySelect);
-	console.log("member_item" + member_item);
-	console.log("member_status_item" + member_status_item);
-
     function filterMembers() {
         const currentCategory = memberCategorySelect.value;
         const currentStatusCategory = memberStatusCategorySelect.value;

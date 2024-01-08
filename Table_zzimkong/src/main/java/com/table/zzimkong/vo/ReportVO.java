@@ -18,6 +18,8 @@ public class ReportVO {
     private int report_category;
     private int report_status;
     
+    // admin_report_detail.jsp에서 필요한 정보들
     private ReviewVO review;
+    private String report_approve_register;
 }
 

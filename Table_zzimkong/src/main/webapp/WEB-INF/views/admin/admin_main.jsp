@@ -10,8 +10,10 @@
 <link href="${pageContext.request.contextPath}/resources/css/admin_article.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-latest.min.js"></script> <%-- 항상 최신 jQuery 라이브러리를 불러오는 소스 --%>
 <script src="${pageContext.request.contextPath}/resources/js/admin_script.js"></script> <%-- 관리자 페이지의 모든 자바스크립트 --%>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script> <%-- Chart.js CDN --%>
+<%-- <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script> Chart.js CDN --%>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/chart_script.js"></script> <%-- Chart.js 커스텀 --%>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> <%-- AJAX --%>
 </head>
 <body>
 	<header>
@@ -43,7 +45,7 @@
 					<th>오늘 예약 수</th>
 				</tr>
 				<tr>
-					<td>????명</td>
+					<td>${adminMain.join_date_counts[1] + 500}명</td>
 					<td>${adminMain.countDayNewMember}명</td>
 					<td>${adminMain.countDayRes}건</td>
 				</tr>
@@ -66,7 +68,7 @@
 						
  						<div id="content1" style="display: none;">
 							<div style="width: 100%; height: auto; text-align: center">
-								<canvas id="myChart"></canvas>
+								<canvas id="myChart1"></canvas>
 							</div>
 						</div>
 						
@@ -104,8 +106,6 @@
 					</th>
 				</tr>
 			</table>
-			
-			
 		</div>
 	</section>
 		

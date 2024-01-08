@@ -52,7 +52,7 @@
 							<c:when test="${report.report_category eq 1}">
 								<td class="report_item" data-category="report_company">업체신고</td>
 							</c:when>
-							<c:when test="${report.report_category eq 2}">
+							<c:when test="${report.report_category eq 0}">
 								<td class="report_item" data-category="report_review">리뷰신고</td>
 							</c:when>
 							<c:otherwise>
