@@ -10,6 +10,7 @@
 		<title>아이디 찾기</title>
 		<link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
 		<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/login_findId.css">
+		<script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/js/mypage.js"></script>
 	</head>
 	<body>
@@ -40,10 +41,10 @@
 <!-- 			                <option value="">직접입력</option> -->
 <!-- 			             </select>	               -->
 						<!-- 이메일 주소 분리("@" 기준)하여 표시 -->
-						<c:set var="arrEmail" value="${fn:split(mypage.user_email, '@')}" />
-						<input type="text" name="user_email1" class="email_text" value="${arrEmail[0]}"> @
-						<input type="text" name="user_email2" class="email_text" value="${arrEmail[1]}">
-	                   	<select class="email_domain" name="emailDomain">
+						<c:set var="arrEmail" value="" />
+						<input type="text" id="user_email1" name="user_email1" class="email_text" value=""> @
+						<input type="text" id="user_email2" name="user_email2" class="email_text" value="">
+	                   	<select id="emailDomain" name="emailDomain">
 							<option value="">선택하세요</option>
 			                <option value="gmail.com">gmail.com</option>
 			                <option value="naver.com">naver.com</option>
