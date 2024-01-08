@@ -133,7 +133,6 @@ public class ReviewController {
         return service.getSortedReviews(comId, sortType, photoOnly,menuName);
     }
     // false: 필수가 아닌 조건 
-
 	// ===================================================================
     // [ 메뉴이름 가져오기 ]
     @GetMapping("/review_menus")
@@ -160,14 +159,24 @@ public class ReviewController {
 		String comName = service.getCompanyName(comId);
 		String sId = (String) session.getAttribute("sId");
 		
+	    // 세션에서 user_id 가져오기
+	    String userId = (String) session.getAttribute("sId");
+		
 		if (sId == null){
 			model.addAttribute("msg", "로그인이 필요합니다");
 			model.addAttribute("targetURL", "/zzimkong/login");
 			return "forward";
 		}
 		
+	    // user_id를 사용하여 member 테이블에서 user_idx 찾기
+	    Integer userIdx = service.findUserIdx(userId);		
+		
+		// 작성자 방문횟수 계산
+		int visitCount = service.getReservationCount(userIdx, comId);
+		
 	    model.addAttribute("comId", comId);
 	    model.addAttribute("comName", comName);
+	    model.addAttribute("visitCount", visitCount);
 
 	    return "review/review_write";
 	}
@@ -183,7 +192,6 @@ public class ReviewController {
 			model.addAttribute("targetURL", "/zzimkong/login");
 			return "forward";
 		}
-		
 		review.setUser_id(userId);
 		System.out.println("reviewVO값: " + review);
 			
@@ -722,11 +730,5 @@ public class ReviewController {
 		}
 		
 	}
-
-
-
-
-
-
 
 }

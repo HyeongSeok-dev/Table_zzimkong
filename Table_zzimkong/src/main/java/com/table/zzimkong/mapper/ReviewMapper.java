@@ -99,5 +99,11 @@ public interface ReviewMapper {
 	// 대댓글 작성 요청
 	int insertTinyReReplyReview(Map<String, String> map);
 
+	// 사용자 idx조회
+	Integer selectUserIdx(String userId);
+
+	// 예약 횟수 조회(user_idx)
+	int selectCountReservation(@Param("userIdx") int userIdx, @Param("comId") int comId);
+
 	
 }

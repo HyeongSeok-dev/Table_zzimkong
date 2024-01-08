@@ -23,8 +23,8 @@
 <!-- 			 <a href="redetail?com_id=1"><h1>파니니숲</h1></a> -->
 <%-- 			 <a href="redetail?com_id=1"><h1>${comName}</h1></a> --%>
 	 <a href="${pageContext.request.contextPath}/review/redetail?com_id=${com_id}"><h1>${comName}</h1></a>
-
-			<p>몇번째 방문</p>
+			
+		<span id="visitCountNumber">${visitCount}</span><span id="visitCount">번째 방문</span>
 		</div>
 		<form action="reviewWritePro" name="reviewWriteForm" method="POST" enctype="multipart/form-data">
 	    <input type="hidden" name="com_id" value="${param.com_id}">		

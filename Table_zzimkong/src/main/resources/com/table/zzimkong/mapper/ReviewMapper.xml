@@ -412,20 +412,6 @@
 	   들여쓰기레벨과 순서번호는 전달받은 값 + 1
 	-->
 	<insert id="insertTinyReReplyReview">
-		<!-- 새 댓글 번호 계산 -->
-		<!-- 대댓글을 순서대로 나열하기 위해 기존 댓글 그룹에서 가장 큰 순서번호 조회 추가-->
-<!-- 		<selectKey keyProperty="reply_num" resultType="int" order="BEFORE"> -->
-<!-- 			SELECT IFNULL(MAX(reply_num), 0) -->
-<!-- 			FROM tiny_reply_board -->
-<!-- 		</selectKey> -->
-		
-		<!--  -->
-		<!-- 
-		2개 이상의 값을 조회하여 새로운 Map 객체에 저장(이름을 result 로 지정)
-		=> 기존 reply_num 의 가장 큰 값 조회 시에는 WHERE 절이 불필요하지만
-		   추가되는 reply_re_seq 의 가장 큰 값 조회 시에는 WHERE 절이 필요하다
-		   따라서, 별도의 서브쿼리를 사용하여 조건을 추가해야함
-		-->
 		<selectKey keyProperty="result" resultType="map" order="BEFORE">
 			SELECT 
 				IFNULL(MAX(comment_num), 0) AS comment_num
@@ -458,7 +444,21 @@
 	</insert>
 	
 	
+	<!-- user_idx 조회 -->
+	<select id="selectUserIdx" resultType="int">
+		SELECT user_idx
+		FROM user
+		WHERE user_id = #{user_id}
+	</select>
 	
+	<!-- 예약완료 방문 횟수 카운트 -->
+	<select id="selectCountReservation" parameterType="map" resultType="int">
+		SELECT COUNT(*)
+		FROM reservation
+		WHERE user_idx = #{userIdx} AND
+		res_status = 3 AND
+		com_id = #{comId}
+	</select>
 	
 	
 	

@@ -95,5 +95,8 @@ public class ReviewVO {
 	// 각 리뷰 당 댓글 수 
 	private int commentCount; 
 	
+	// user_idx 찾기
+	private int user_idx;
+	
 	
 }

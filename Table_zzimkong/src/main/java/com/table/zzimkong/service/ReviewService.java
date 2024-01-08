@@ -197,5 +197,17 @@ public class ReviewService {
 		// 대댓글 등록
 		return mapper.insertTinyReReplyReview(map);
 	}
+
+	// 사용자 user_idx 찾기
+	public Integer findUserIdx(String userId) {
+
+		return mapper.selectUserIdx(userId);
+	}
+
+	// 예약완료 횟수 카운트
+	public int getReservationCount(int userIdx, int comId) {
+
+		return mapper.selectCountReservation(userIdx, comId);
+	}
 	
 }
