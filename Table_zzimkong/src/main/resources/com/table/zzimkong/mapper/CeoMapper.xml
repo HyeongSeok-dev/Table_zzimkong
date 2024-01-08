@@ -166,6 +166,12 @@
 		WHERE res_idx = #{res_idx} AND pre.menu_idx = menu.menu_idx
 	</select>
 	
+	<select id="selectResList" resultType="res">
+		SELECT * 
+        FROM reservation
+        WHERE com_id = #{com_id}
+	</select>
+	
 	
 	
 	

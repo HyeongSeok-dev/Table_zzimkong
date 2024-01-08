@@ -8,6 +8,7 @@ import java.nio.file.Paths;
 import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -228,28 +229,78 @@ public class CeoController {
 		return "popup_close";
 	}
 	
+//	@GetMapping("ceo/reservation")
+//	public String ceo_reservation(HttpSession session, Model model, @RequestParam(defaultValue = "-1") int com_id, CompanyVO company) {
+//		System.out.println("com" + com_id);
+//		
+//		//로그인 아이디의 업체별 목록 조회
+//		int sIdx = (Integer)session.getAttribute("sIdx");
+//		List<CompanyVO> storeList = service.getComList(sIdx);
+//		model.addAttribute("storeList", storeList);
+//		System.out.println("storeList" + storeList);
+//		
+//		// 페이지가 처음 로딩될때 (com_id -1)이면
+//		if(com_id == -1) {
+//			//목록중 첫번째 가게의 com_id를 변수에 저장
+////			company = storeList.get(0);
+////			com_id = company.getCom_id(); 
+//			
+//			//첫번째 com_id 꺼내서 저장 
+//			com_id = storeList.get(0).getCom_id(); 
+//		}
+//		
+//		//com_id에 해당하는 예약정보 조회 
+//		List<ReservationVO> comResList = service.getResInfoList(com_id);
+//		System.out.println("예약값" + comResList);
+//		//예약이 없을 경우 예외 처리
+//		if(comResList.size()!=0) {
+//			int res_idx = comResList.get(0).getRes_idx();
+//			//당일예약 합계
+//			int resTotal = comResList.size();
+//			System.out.println("예약합계" + resTotal);
+//			//당일 예약 인원수
+//			int totalPersons = comResList.stream()
+//                    .mapToInt(ReservationVO::getRes_person)
+//                    .sum();
+//			
+//			int count = 0;
+//			for (ReservationVO res : comResList) {
+//			    if (res.getRes_status() == 2) {
+//			        count++;
+//			    }
+//			}
+//			
+//			model.addAttribute("count", count);
+//			model.addAttribute("totalPersons", totalPersons);
+//			model.addAttribute("resTotal", resTotal);
+//			model.addAttribute("comResList", comResList);
+//			
+//		}
+//		return "ceo/ceo_reservation";
+//	}
+	
 	@GetMapping("ceo/reservation")
-	public String ceo_reservation(HttpSession session, Model model, @RequestParam(defaultValue = "-1") int com_id, CompanyVO company) {
-		System.out.println("com" + com_id);
-		
-		//로그인 아이디의 업체별 목록 조회
+	public String ceo_reservation(HttpSession session, Model model,  CompanyVO company) {
+//		//로그인 아이디의 업체별 목록 조회
 		int sIdx = (Integer)session.getAttribute("sIdx");
 		List<CompanyVO> storeList = service.getComList(sIdx);
 		model.addAttribute("storeList", storeList);
-		System.out.println("storeList" + storeList);
 		
-		// 페이지가 처음 로딩될때 (com_id -1)이면
-		if(com_id == -1) {
-			//목록중 첫번째 가게의 com_id를 변수에 저장
-//			company = storeList.get(0);
-//			com_id = company.getCom_id(); 
-			
-			//첫번째 com_id 꺼내서 저장 
-			com_id = storeList.get(0).getCom_id(); 
-		}
 		
-		//com_id에 해당하는 예약정보 조회 
-		List<ReservationVO> comResList = service.getResInfoList(com_id);
+		return "ceo/ceo_reservation";
+	}
+	
+	@ResponseBody
+	@PostMapping("ceo/reservation/resPro")
+	public ResponseEntity<?> ceo_reservation_resPro( Map<String, Object> map, HttpSession session, Model model, CompanyVO company, @RequestParam int com_id) {
+		company.setCom_id(com_id);
+		List<ReservationVO> resInfoList = service.getResList(company);
+		
+		System.out.println("큼아이디" + company.getCom_id());
+		
+		
+//		com_id에 해당하는 예약정보 조회 
+		List<ReservationVO> comResList = service.getResInfoList(company);
 		System.out.println("예약값" + comResList);
 		//예약이 없을 경우 예외 처리
 		if(comResList.size()!=0) {
@@ -261,21 +312,29 @@ public class CeoController {
 			int totalPersons = comResList.stream()
                     .mapToInt(ReservationVO::getRes_person)
                     .sum();
-			
 			int count = 0;
 			for (ReservationVO res : comResList) {
 			    if (res.getRes_status() == 2) {
 			        count++;
 			    }
 			}
-			
-			model.addAttribute("count", count);
-			model.addAttribute("totalPersons", totalPersons);
-			model.addAttribute("resTotal", resTotal);
-			model.addAttribute("comResList", comResList);
-			
+			map = new HashMap<String, Object>();
+			map.put("resInfoList", resInfoList);
+			map.put("count", count);
+			map.put("resTotal", resTotal);
+			map.put("totalPersons", totalPersons);
+			System.out.println("매애앱" + map);
+//			System.out.println("count" + count);
+//			System.out.println("totalPersons" + totalPersons);
+//			System.out.println("resTotal" + resTotal);
+//			model.addAttribute("count", count);
+//			model.addAttribute("totalPersons", totalPersons);
+//			model.addAttribute("resTotal", resTotal);
+//			model.addAttribute("comResList", comResList);
 		}
-		return "ceo/ceo_reservation";
+		
+		
+		return ResponseEntity.ok(map);
 	}
 	
 	@GetMapping("ceo/reservation/detail")

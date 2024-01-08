@@ -26,11 +26,13 @@ s<!DOCTYPE html>
 				<div class="header_div01">
 					<span><h1>사업장별 예약관리</h1></span>
 					<span class="header_span">
-						<select id="storeList" onchange="showResInfo(this.value)">
+<!-- 						<select id="storeList" onchange="showResInfo(this.value)"> -->
+						<select id="storeList">
 							<c:if test="${not empty storeList}">
 								<c:forEach var="company" items="${storeList}">
 									<!--선택된 com_id가 파라미터로 넘어온 com_id가 비어있지 않고 파라미터로 넘어온 com_id가 선택된 com_id가 같을때 선택유지  -->
-									<option value="${company.com_id}" <c:if test="${not empty param.com_id and param.com_id eq company.com_id}">selected</c:if>>${company.com_name}</option>
+<%-- 									<option value="${company.com_id}" <c:if test="${not empty param.com_id and param.com_id eq company.com_id}">selected</c:if>>${company.com_name}</option> --%>
+									<option value="${company.com_id}">${company.com_name}</option>
 								</c:forEach>
 							</c:if>
 						</select>
@@ -50,20 +52,20 @@ s<!DOCTYPE html>
 						<th>예약정보</th>
 						<th>취소여부</th>	
 					</tr>
-					<c:forEach var="res" items="${comResList}" varStatus="status">
-						<tr>
-							<td>${res.res_num}</td>
-							<td>${res.res_date}</td>
-							<td>${res.res_time}</td>
-							<td>
-							<button type="button" value="예약 상세 정보" onclick="newInfo(${res.res_idx})">예약 상세정보</button>
-							</td>
-							<c:choose>
-								<c:when test="${res.res_status eq 1}"><td>예약완료</td></c:when>
-								<c:when test="${res.res_status eq 2}"><td>예약취소</td></c:when>
-							</c:choose>
-						</tr>
-					</c:forEach>
+<%-- 					<c:forEach var="res" items="${comResList}" varStatus="status"> --%>
+<!-- 						<tr> -->
+<%-- 							<td>${res.res_num}</td> --%>
+<%-- 							<td>${res.res_date}</td> --%>
+<%-- 							<td>${res.res_time}</td> --%>
+<!-- 							<td> -->
+<%-- 							<button type="button" value="예약 상세 정보" onclick="newInfo(${res.res_idx})">예약 상세정보</button> --%>
+<!-- 							</td> -->
+<%-- 							<c:choose> --%>
+<%-- 								<c:when test="${res.res_status eq 1}"><td>예약완료</td></c:when> --%>
+<%-- 								<c:when test="${res.res_status eq 2}"><td>예약취소</td></c:when> --%>
+<%-- 							</c:choose> --%>
+<!-- 						</tr> -->
+<%-- 					</c:forEach> --%>
 				</table>
 			</div>
 			
@@ -74,7 +76,7 @@ s<!DOCTYPE html>
 						<button type="button" value="상세정보" class="popup" onclick="newDetails()">상세정보</button>
 					</span>
 				</div>
-				<table border="1">
+				<table id="reservationStatus" border="1">
 					<tr>
 						<th>오늘의 예약 수</th>
 						<th>오늘의 예약방문자 수</th>
