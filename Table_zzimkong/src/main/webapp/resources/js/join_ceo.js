@@ -1,3 +1,15 @@
+//이메일 직접입력 선택시 
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('u_email2').addEventListener('change', function() {
+    var inputBox = document.getElementById('customEmail');
+    if(this.value === "custom") {
+      inputBox.style.display = "block";
+    } else {
+      inputBox.style.display = "none";
+    }
+  });
+});
+
 $(document).ready(function() {
 	//생일 선택시 오늘이후 날짜 선택 막아놓음
 	window.onload = function() {
@@ -159,9 +171,8 @@ $(document).ready(function() {
 		let lengthRegex = /^[A-Za-z0-9!@#$%]{8,16}$/;
 		
 		if(!lengthRegex.exec(passwd)){ //길이체크
-			msg = "영어 대소문자, 숫자, 특수문자 조합 8~16자리";
+			msg = "영어 대소문자, 숫자, 특수문자 조합 8~16자리 권장";
 			color = "red";
-			isPasswd = false;
 		}else{
 			let engUpperRegex = /[A-Z]/; //대문자
 			let engLowerRegex = /[a-z]/; //소문자
