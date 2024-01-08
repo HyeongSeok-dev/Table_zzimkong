@@ -63,9 +63,6 @@ function checkbox_allCheck(){
 
 
 
-
-
-
 //성명, 연락처, 약관동의, 유의사항동의 값없으면 포커스 이동
 function btnPay() {
   var resName = document.forms["reservation"]["res_name"];
