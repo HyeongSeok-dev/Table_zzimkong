@@ -84,8 +84,8 @@
 				<br><br>
 				<c:if test="${sessionScope.sId eq board.user_id}">
 					<button type="button" class="button_olive" onclick="location.href='${pageContext.request.contextPath }/member/cs/qna/modify?cs_board_num='+ ${board.cs_board_num}">수정하기</button>
+					<button type="button" id="cs_button_delete">삭제</button>
 				</c:if>
-				<button type="button" id="cs_button_delete">삭제</button>
 			</div>
 		</div>
 	</section>
