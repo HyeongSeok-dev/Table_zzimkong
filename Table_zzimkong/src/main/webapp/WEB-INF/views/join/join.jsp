@@ -61,7 +61,7 @@
               <span id="checkNickResult"></span>
               <br><br>
               <!-- 이름 -->
-              <input type="text" id="u_name" name="user_name" class="inputTxt inpBig" placeholder="이름" maxlength="16" autocomplete="false" pattern="[\uAC00-\uD7A3]*">
+              <input type="text" id="u_name" name="user_name" class="inputTxt inpBig" placeholder="이름" maxlength="16" autocomplete="false" >
               <!-- 생년월일 --><span class="bday">생년월일</span>
               <input type="date" id="com_birth" name="user_birth" class="inputTxt inpBig" maxlength="16" autocomplete="false">
            	  <br><br><br>

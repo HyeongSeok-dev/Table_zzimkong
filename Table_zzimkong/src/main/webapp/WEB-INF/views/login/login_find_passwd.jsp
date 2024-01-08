@@ -13,7 +13,7 @@
 		<div id="nmContainer" class="nm_container ">
 		  <div class="nm_find_wrap">
 		      <div class="find_box">
-		        <form id="findForm" method="POST" target="_self">
+		        <form id="findForm" method="POST" action="">
 		        
 		        <!-- 로고 이미지 -->
 		        <div align="center" class="div_img">
@@ -25,7 +25,7 @@
 		       <div id="box">
 		       
 		       		<!-- 아이디 입력 -->
-		       		<input type="text" placeholder="아이디를 입력해주세요" class="input_txt">
+		       		<input type="text" placeholder="아이디를 입력해주세요" id="u_name" class="input_txt">
 		       		
 			        <!-- 이메일 입력-->
 			        <div class="u_email" align="center">
