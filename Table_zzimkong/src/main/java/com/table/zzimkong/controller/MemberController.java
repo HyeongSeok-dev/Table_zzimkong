@@ -247,10 +247,19 @@ public class MemberController {
 	}
 	
 	@PostMapping("login/find/idPro")
-	public String login_find_idPro(MemberVO member, String user_email1, String user_email2, HttpSession session, Model model) {
+	public String login_find_idPro(MemberVO member, HttpSession session, Model model) {
 		System.out.println(member); // form action 값 잘 넘어왔는지 찍어보기
-		member.setUser_email(user_email1 + "@" + user_email2);
+		member.setUser_email(member.getUser_email1() + "@" + member.getUser_email2());
 		System.out.println(member); // email 두개 결합 잘 되었나 확인
+		
+		MemberVO dbMember = service.getUserEmail(member);
+		
+		if(dbMember == null) { // 이메일이 없음
+			model.addAttribute("msg", "존재하지 않는 이메일입니다.");
+			return "fail_back";
+		} else { // 이메일 존재
+			
+		}
 		return "";
 	}
 	

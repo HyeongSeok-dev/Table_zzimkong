@@ -84,4 +84,11 @@
 		
 </update>
 
+<!-- 아이디 찾기 -->
+<select id="selectUserEmail" resultType="member">
+	SELECT *
+	FROM user
+	WHERE user_email = #{user_email} AND user_status = '1';
+</select>
+
 </mapper>

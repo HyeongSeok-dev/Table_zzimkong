@@ -36,6 +36,11 @@ public class MemberService {
 		return mapper.insertCeoMember(member);
 	}
 
+	// 아이디 찾기
+	public MemberVO getUserEmail(MemberVO member) {
+		return mapper.selectUserEmail(member);
+	}
+
 	
 	
 	

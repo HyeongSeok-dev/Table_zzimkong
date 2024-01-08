@@ -17,6 +17,9 @@ public interface MemberMapper {
 
 	//업주회원가입
 	int insertCeoMember(MemberVO member);
+	
+	//아이디 찾기
+	MemberVO selectUserEmail(MemberVO member);
 
 
 	
