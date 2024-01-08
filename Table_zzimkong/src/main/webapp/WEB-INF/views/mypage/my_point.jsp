@@ -70,6 +70,7 @@
 				</tr>
 			</c:forEach>
 		</table>
+		
 	</div>
 	</main>
 	
