@@ -104,7 +104,9 @@
 			,com_close_time = #{com_close_time}
 			,com_breakStart_time = #{com_breakStart_time}
 			,com_breakEnd_time = #{com_breakEnd_time}
-			,com_img = #{com_img}
+			<if test="!com_img.equals('')">
+				,com_img = #{com_img}
+			</if>
 			,com_max_people = #{com_max_people}
 			,com_tag_date = #{com_tag_date}
 			,com_tag_family = #{com_tag_family}

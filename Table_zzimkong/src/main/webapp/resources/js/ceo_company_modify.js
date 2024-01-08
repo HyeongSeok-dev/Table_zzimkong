@@ -59,7 +59,7 @@ $(function() {
         }
         reader.readAsDataURL(this.files[0]);
     });
-		
+    
 	$("#modifyButton").on("click", function() {
 		console.log("수정버튼");
 		if($("#com_tel").val() == "") {
@@ -68,6 +68,12 @@ $(function() {
             scrollTop: $('body').offset().top
             }, 500);
             $("#com_tel").focus();
+//		} else if($("#file").val() == "") {
+//			alert("사진을 등록해 주세요!");
+//			$('html, body').animate({
+//            scrollTop: $('body').offset().top
+//            }, 500);
+//            $("#file").focus();
 		} else if($("#openHour").val() == "") {
 			alert("영업 시작시간을 선택해 주세요.");
             $("#openHour").focus();
