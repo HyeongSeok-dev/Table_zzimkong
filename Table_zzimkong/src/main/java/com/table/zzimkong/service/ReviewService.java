@@ -87,8 +87,6 @@ public class ReviewService {
 
 		return mapper.countReviewsByComId(comId);
 	}
-
-	
 	// =========================================================================
 	// 리뷰 정렬(최신순/별점높은순/별점낮은순 - 사진/영상 리뷰만 보기)
 	public List<ReviewVO> getReviewsSortedByNewest(int comId) {
@@ -214,6 +212,12 @@ public class ReviewService {
 	public int getCommentCount(int review_num) {
 
 		return mapper.selectCountComment(review_num);
+	}
+
+    // 이런 곳 좋아요 출력
+	public int getLikeCount(int comId) {
+
+		return mapper.getCompanyLike(comId);
 	}
 	
 }

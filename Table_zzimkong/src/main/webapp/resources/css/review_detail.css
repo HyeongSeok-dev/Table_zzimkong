@@ -215,12 +215,12 @@ strong {
 } 
 
 .score strong  { 
-    font-size: 26px; 
+/*     font-size: 26px;  */
     margin-right: 6px;
 } 
 
 .score strong  { 
-    font-size: 20px; 
+    font-size: 25px; 
     margin-right: 0;
 } 
 
@@ -1155,7 +1155,8 @@ h1 {
     display: flex;
     align-items: center;
     width: 100%;
-}
+    margin-bottom: 20px;
+ }
 
 .review_list a {
     color: inherit;
@@ -1236,7 +1237,7 @@ h1 {
     white-space: nowrap;
     color: #222225;
     letter-spacing: -0.2px;
-    margin-left: 816px;
+    margin-left: 887px;
     font-size: 16px;
     padding-bottom: 10px;
 }
@@ -1563,3 +1564,15 @@ h1 {
     align-items: center; /* 수직 중앙 정렬 */
     gap: 10px; /* 아이콘과 텍스트 사이의 간격 */
 }
+
+/* 이 가게 좋아요 출력 */
+
+.fa-heart {
+    color: #3FAFFC; /* 파란색 하트 아이콘 */
+    margin-right: 5px; /* 하트 아이콘과 숫자 사이의 간격 */
+}
+
+.like_count_top {
+	color:#464646;
+}
+

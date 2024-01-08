@@ -118,10 +118,12 @@ public class ReviewController {
         ReviewCategoryCountVO categoryCount = service.categoryCount(comId);
         model.addAttribute("categoryCount",categoryCount);
         
+        // 이런 곳 좋아요 출력
+        int likeCount = service.getLikeCount(comId);
+        model.addAttribute("likeCount", likeCount);
+        
         
         model.addAttribute("reviews", reviews);
-        
-        
         
         return "review/review_detail";
 	}

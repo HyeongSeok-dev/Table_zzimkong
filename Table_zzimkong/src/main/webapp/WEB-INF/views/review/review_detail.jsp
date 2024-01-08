@@ -422,7 +422,7 @@ function showCommentForm(element) {
 	                        '</div>' +
 	                        '<span class="comment-icon" onclick="showCommentForm()"></span><br><br>'+
 	    				    '<div class="review_date">' + formattedDate + ' 작성</div>' + 
-	                 		  '<div class="separator"></div>' + 
+	                 		'<div class="separator"></div>' + 
 	                    '</div>' +
 	                '</div>' +
 	            '</li>' +
@@ -495,18 +495,16 @@ function showCommentForm(element) {
 
 	    reviews.forEach(function(review) {
 	    
-	   	console.log("Review ID:>>>>>>>>>>>>>>>>>>>>>>>>>", review.review_num, "Comment Count:", review.commentCount);
-
+// 	   	console.log("Review ID:>>>>>>>>>>>>>>>>>>>>>>>>>", review.review_num, "Comment Count:", review.commentCount);
         // photoOnly가 true일 때, 이미지가 없는 리뷰는 건너뜀
         if (photoOnly && !review.review_img_1) {
             return;
         }
         
         var commentCount = review.commentCount; // commentCount 추출
-    var formattedDate = formatDate(review.review_update); // 서버로부터 받은 review_update 값을 형식화
-
-    var deleteFormHtml = '';
-    var modifyButtonHtml = '';
+	    var formattedDate = formatDate(review.review_update); // 서버로부터 받은 review_update 값을 형식화
+	    var deleteFormHtml = '';
+	    var modifyButtonHtml = '';
 
     // sId가 review.user_id와 같거나, sId가 'admin'일 경우에만 삭제 및 수정 버튼 생성
     if (sId === review.user_id || sId === 'admin') {
@@ -572,7 +570,7 @@ function showCommentForm(element) {
                         '</div>' +
                         '<span class="comment-icon" onclick="showCommentForm()"></span><br><br>'
     				    '<div class="review_date">' + formattedDate + ' 작성</div>' + 
-                 		  '<div class="separator"></div>' + 
+               		  '<div class="separator"></div>' + 
                     '</div>' +
                 '</div>' +
             '</li>' +
@@ -661,22 +659,29 @@ function showCommentForm(element) {
 	<!-- ================================================================================================= -->
 </head>
 <body>
-	<div class="restaurant_name">
-		<h2>${comName}</h2>
-		<div class="separator"></div>
-	</div>
+<div class="restaurant_name_with_likes">
+    <div class="restaurant_name">
+<%--         <h2>${comName}</h2> --%>
+        <h2>${comName}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-heart" aria-hidden="true"></i><span class="like_count_top">${likeCount}</span></h2> 
+        <div class="separator"></div>
+    </div>
+    <div class="likes">
+        <i class="fa fa-heart" aria-hidden="true"></i> <!-- Font Awesome 하트 아이콘 -->
+        <span class="like-count">${likeCount}</span>
+    </div>
+</div>
 	<br>
 	<br>
 	<br>
-	<div class="average">
-		<h5>
+    <div class="average">
+        <h5>
 			<span>${reviewCount}개 리뷰 별점 평균</span>
-		</h5>
-		<br>
-		<div class="score">
-			<strong>${reviewAverage}</strong>
-		</div>
-	</div>
+        </h5>
+        <br>
+        <div class="score">
+            <strong>${reviewAverage}</strong>
+        </div>
+    </div>
 	<!-- ================================================================================================= -->
 	<br>
 	<br>
@@ -772,8 +777,9 @@ function showCommentForm(element) {
 		<div class="reviewer_order">
 				<a href="#" class="sort-link" id="review_newest" data-sort-type="newest">최신순 </a>|
 				<a href="#" class="sort-link" id="review_highest" data-sort-type="highest">별점 높은 순 </a>|
-				<a href="#" class="sort-link" id="review_lowest" data-sort-type="lowest">별점 낮은 순 </a>|
-				<a href="#" class="sort-link" id="review_likes_order" data-sort-type="likes">좋아요 순</a>
+				<a href="#" class="sort-link" id="review_lowest" data-sort-type="lowest">별점 낮은 순 </a>
+				<!-- 				<a href="#" class="sort-link" id="review_likes_order" data-sort-type="likes"> | 좋아요 순</a> -->
+				
 		</div>
 	<div class="separator"></div>
 	<!-- ========================================================================================= --> 

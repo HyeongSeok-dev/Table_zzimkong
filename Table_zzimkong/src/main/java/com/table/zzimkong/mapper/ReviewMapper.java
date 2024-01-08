@@ -108,5 +108,8 @@ public interface ReviewMapper {
 	// 각 리뷰에 대한 댓글 갯수 카운트
 	int selectCountComment(int review_num);
 
+	// 이런 곳 좋아요 출력
+	int getCompanyLike(int comId);
+
 	
 }

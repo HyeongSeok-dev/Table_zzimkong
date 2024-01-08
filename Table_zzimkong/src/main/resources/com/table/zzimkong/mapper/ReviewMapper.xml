@@ -213,9 +213,9 @@
 	        <when test="sortType == 'lowest'">
 	            ORDER BY review_score ASC, review_update DESC
 	        </when>
-	        <when test="sortType == 'likes'">
-	            ORDER BY likes_count DESC, review_update DESC
-	        </when>
+<!-- 	        <when test="sortType == 'likes'"> -->
+<!-- 	            ORDER BY likes_count DESC, review_update DESC -->
+<!-- 	        </when> -->
 	        <otherwise>
 	            ORDER BY review_update DESC
 	        </otherwise>
@@ -467,6 +467,14 @@
 		WHERE review_num = #{review_num}	
 	</select>
 	
+	<!-- 이런 곳 좋아요 출력 -->
+	<select id="getCompanyLike" resultType="int">
+	    SELECT COUNT(*)
+	    FROM review
+	    WHERE com_id = #{comId} AND review_like = 1;
+	</select>
+	
+	
+	
+	
 </mapper>
-	
-	
