@@ -276,7 +276,7 @@ public class MemberController {
 		
 		member.setUser_email(member.getUser_email1()+"@"+member.getUser_email2());
 		String auth_code = mailService.sendPasswdAuthMail(member); // MemberVO 객체 전달
-		service.registMailAuthInfo(member.getUser_id(), auth_code);
+		service.registPasswdMailAuthInfo(member.getUser_id(), auth_code);
 
 		
 		return "";

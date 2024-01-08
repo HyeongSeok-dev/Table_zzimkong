@@ -13,7 +13,6 @@ public class MemberService {
 	// MemberMapper 객체 자동 주입
 	@Autowired
 	private MemberMapper mapper;
-/**/
 	//일반회원가입
 	public int registMember(MemberVO member) {
 		// MemberMapper(인터페이스) - insertMember()
@@ -42,7 +41,7 @@ public class MemberService {
 		return mapper.selectUserEmail(member);
 	}
 	
-	public void registMailAuthInfo(String id, String auth_code) {
+	public void registPasswdMailAuthInfo(String id, String auth_code) {
 		// 기존 인증정보 존재 여부 확인을 위해 인증정보 조회 수행
 		// MemberMapper - selectMailAuthInfo() 메서드 호출
 		// => 파라미터 : 아이디, 인증코드   리턴타입 : MailAuthInfoVO
@@ -58,6 +57,26 @@ public class MemberService {
 			// MemberMapper - updateMailAuthInfo() 메서드 호출하여 기존 인증정보 갱신
 			// => 파라미터 : 아이디, 인증코드
 			mapper.updateMailAuthInfo(id, auth_code);
+		}
+		
+	}
+	
+	public void registIdailAuthInfo(String email, String auth_code) {
+		// 기존 인증정보 존재 여부 확인을 위해 인증정보 조회 수행
+		// MemberMapper - selectMailAuthInfo() 메서드 호출
+		// => 파라미터 : 아이디, 인증코드   리턴타입 : MailAuthInfoVO
+		MailAuthInfoVO authInfo = mapper.selectMailAuthInfo(email);
+		System.out.println("authInfo : " + authInfo);
+		
+		// 기존 인증 정보 존재 여부 판별
+		if(authInfo == null) { // 기존 인증정보 존재하지 않을 경우 => 새 인증정보 추가(INSERT)
+			// MemberMapper - insertMailAuthInfo() 메서드 호출하여 새 인증정보 추가
+			// => 파라미터 : 아이디, 인증코드
+			mapper.insertMailAuthInfo(email, auth_code);
+		} else { // 기존 인증정보 존재할 경우 => 기존 인증정보 갱신(UPDATE)
+			// MemberMapper - updateMailAuthInfo() 메서드 호출하여 기존 인증정보 갱신
+			// => 파라미터 : 아이디, 인증코드
+			mapper.updateMailAuthInfo(email, auth_code);
 		}
 		
 	}
