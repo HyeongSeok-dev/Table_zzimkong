@@ -37,9 +37,11 @@
 .chart-container {
     position: relative;
     height: 120vh;
-    width: 1100px;
+/*     width: 1100px; */
+    width: 100%;
     margin: 0 auto; /* 중앙 정렬 */
     font-family:'Pretendard-Regular', sans-serif;
+    max-width: 1100px;
 }
 
 .review_select_chart_fill {
