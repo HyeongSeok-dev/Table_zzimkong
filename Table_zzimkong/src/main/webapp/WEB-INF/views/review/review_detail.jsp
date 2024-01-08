@@ -438,9 +438,8 @@ function showCommentForm(element) {
 	// =================================================================	
 	$(document).ready(function() {
 	// =================================================================	
-	// =================================================================	
   // 체크박스와 정렬 링크의 이벤트 핸들러 설정
-//         $('.category_button, #photoReviewCheckbox').change(filterReviewsByCheckedMenus);
+  //  $('.category_button, #photoReviewCheckbox').change(filterReviewsByCheckedMenus);
 
 	// =================================================================	
 	// 카테고리 체크박스 변경 감지
@@ -486,26 +485,6 @@ function showCommentForm(element) {
 	    });
 	}
 	
-	// ===============================
-	// 댓글 아이콘 누르면 댓글창 뜸
-// 	function showCommentForm() {
-// 	    // review_num 값을 element의 data-review-num 속성에서 가져옴
-// 	    var reviewNum = element.getAttribute('data-review-num');
-// 	    // 현재 URL에서 com_id 값을 가져옴
-// 	    var comId = getParameterByName('com_id');
-	    
-// 	    // 댓글창을 여는 URL에 com_id 값을 포함시킴
-// // 	    var url = contextPath + "/review/comment?com_id=" + comId;
-// 	    var url = contextPath + "/review/comment?com_id=" + comId + "&review_num=" + reviewNum;
-// 	    var windowName = "commentPopup";
-// 	    var windowSize = "width=515,height=632";
-	    
-// 	    // 팝업 창으로 댓글 페이지를 엶
-// 	    window.open(url, windowName, windowSize);
-// 	}
-
-	// ===============================
-
 	// 리뷰 표시 함수
 	function displayReviews(reviews) {
 	    var reviewsContainer = $('#reviewsContainer');
@@ -573,7 +552,7 @@ function showCommentForm(element) {
                 '<p class="review_content">' + review.review_content + '</p>' +
                 '<div class="review-actions">' +
                     '<div class="review-action1">' +
-  						'<i class="far fa-comment" data-review-num=${review.review_num} style="cursor: pointer;" onclick="showCommentForm(this);"></i>' +
+					'<i class="far fa-comment" data-review-num="' + review.review_num + '" style="cursor: pointer;" onclick="showCommentForm(this);"></i>' + 
   						  '<i class="far fa-heart" id="heartIcon" style="cursor: pointer;"></i>' +
                     '</div>' +
                     '<div class="review-action2">' +
