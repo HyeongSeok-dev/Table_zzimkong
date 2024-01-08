@@ -9,6 +9,7 @@ import java.util.*;
 
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -100,11 +101,11 @@ public class HomeController {
 	public String fetchLocationData(SearchVO search, @RequestParam String location) {
 		List<CompanyVO> list = service.getCleanList(search);
 		
-		System.out.println(list);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("companyList", list);
+		JSONObject jsonObject = new JSONObject(map);
 		
-		
-		
-		return "";
+		return jsonObject.toString();
 		
 	}
 	
