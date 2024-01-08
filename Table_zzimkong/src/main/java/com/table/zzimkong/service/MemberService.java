@@ -13,7 +13,7 @@ public class MemberService {
 	// MemberMapper 객체 자동 주입
 	@Autowired
 	private MemberMapper mapper;
-
+/**/
 	//일반회원가입
 	public int registMember(MemberVO member) {
 		// MemberMapper(인터페이스) - insertMember()
