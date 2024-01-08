@@ -3,20 +3,14 @@ package com.table.zzimkong.controller;
 import javax.servlet.http.HttpSession;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -75,7 +69,6 @@ public class PaymentController {
 		List<PreOrderInfo> poiList = service.getPreOrderInfo(res);
 		System.out.println(poiList);
 		// 각 메뉴의 가격과 갯수를 곱한 결과를 저장함
-		int count = 0;
 		int eachMenuTotalPriceInt = 0;
 		int menuTotalPriceInt = 0;
 		for(PreOrderInfo preOrderInfo : poiList) {
@@ -89,7 +82,6 @@ public class PaymentController {
 			menuTotalPriceInt += eachMenuTotalPriceInt;
 			String eachMenuTotalPrice = numberFormat.format(eachMenuTotalPriceInt);
 			preOrderInfo.setEachMenuTotalPrice(eachMenuTotalPrice);
-			count++;
 //			System.out.println("eachMenuTotalPriceInt : " + eachMenuTotalPriceInt);
 //			System.out.println("count : " + count);
 		}
@@ -102,12 +94,7 @@ public class PaymentController {
 		System.out.println(poiList);
 		//--------------------------------------------------------------------
 		//[ 사용가능 포인트 조회 ]
-		// 방법1. 회원가입하면 기본 포인트 주고 가지고올 때  int로 가지고옴 (null나올수 없음)
-		// 처음 가입한 사람이 결제하면 오류생김(포인트내역이 없어서 null이 나옴)
-//		int dbPoint = service.getPoint(res);
-//		String totalPoint = numberFormat.format(dbPoint);
-		
-		// 방법2. 디비에서 가지고 올 때 String 타입으로 가지고 와서 변환해줌
+		// 디비에서 가지고 올 때 String 타입으로 가지고 와서 변환해줌
 		String dbPoint = service.getPoint(res);
 		System.out.println("dbPoint" + dbPoint);
 		String totalPoint = "";
@@ -369,11 +356,6 @@ public class PaymentController {
 		// [ PaymentInfo 객체에 문자열 타입으로 파라미터 전달]
 		PaymentInfo paymentInfo = new PaymentInfo(menuTotalPrice,totalPrice,paymentDate,res_table_price,payMethod);
 		// 예약조회, 포인트조회,사업장정보조회,선주문조회 
-		
-		// int타입 포인트에 천단위 쉼표넣고 String타입으로 변환
-//		String finalDiscountPoint = numberFormat.format(discountPoint);
-//		String finalEarnedPoints = numberFormat.format(earnedPoints);
-//		System.out.println("finalDiscountPoint" + finalDiscountPoint);
 		
 		map.put("res", res);
 		map.put("member", member);
