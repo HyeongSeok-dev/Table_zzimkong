@@ -137,10 +137,10 @@ public class PaymentController {
 		System.out.println(paymentInfo);
 		System.out.println(poiList);
 		System.out.println(res);
+		
 		// 예약조회, 포인트조회,사업장정보조회,선주문조회 
 		map.put("res", res);
 		map.put("paymentInfo", paymentInfo);
-//		map.put("pay", pay_num);
 		map.put("com", company);
 		map.put("poi", poiList);
 		map.put("member", member);
@@ -167,10 +167,10 @@ public class PaymentController {
 			return "false";
 		}
 		
-		//
+		// 무통장 입금시 결제번호 생성
 //		int pay_method = Integer.parseInt(map.get("pay_method"));
 //		if(pay_method == 4) {
-//			// 0.결제번호 무작위생성
+//			// 결제번호 무작위생성
 //			// 날짜 정보 가지고옴
 //			LocalDate date = LocalDate.now();
 //			// 년월일 따로 가지고옴
@@ -229,9 +229,6 @@ public class PaymentController {
 		int earnedPoints = Integer.parseInt(((String)map.get("earnedPoints")).replace(",", "").trim());
 		System.out.println("사용포인트, 적립포인트 인트타입 변환 " + discountPoint + ", " + earnedPoints);
 		System.out.println("-----포인트처리");
-		
-		
-		// 인단 여기까지 처리함 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 		
 		
 		// [ 결제정보 insert ]
