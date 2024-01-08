@@ -2,6 +2,7 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
 <mapper namespace="com.table.zzimkong.mapper.MypageMapper">
 
 	<!-- 회원정보 조회 - SELECT -->
@@ -118,16 +119,16 @@
 	</select>
 	
 	<!-- 포인트 조회하기 - SELECT -->
-	<select id="selectShowPoint" resultType="int">
+	<select id="selectShowPoint" resultType="point">
 		SELECT point_date, point_category, point_value
 		FROM point
 		WHERE user_idx = #{user_idx}
 	</select>
 	
-	<!-- 포인트 총합 - SELECT -->
-	<select id="selectShowPoint" resultType="int">
-		SELECT SUM(point_value) 
-		FROM point 
-		WHERE user_idx = #{user_idx}
-	</select>
+<!-- 	<select id="selectShowPoint" resultType="point"> -->
+<!-- 		SELECT SUM(point_value)  -->
+<!-- 		FROM point  -->
+<!-- 		WHERE user_idx = #{user_idx} -->
+<!-- 	</select> -->
+	
 </mapper>

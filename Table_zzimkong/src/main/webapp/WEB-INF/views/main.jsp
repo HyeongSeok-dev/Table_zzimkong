@@ -222,14 +222,11 @@
 					<div class="block wow fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
 <%-- 						위생순 --%>
 
-                          <c:choose>
-                            <c:when test="${empty cleanListMain}">
                                <div class="title">
 		                            <h3><span class="seleted_location">${search.location}</span> <span>위생순</span></h3>
 		                        </div>
 		                        <div id="owl-example1" class="owl-carousel">
 	                              <c:forEach var="clean" items="${cleanList}">
-	                              
 	                                <div class="owl_example1_items_images">
 	                                  <a href="product/detail?com_id=${clean.com_id}">
 	                                    <img alt="" src="${pageContext.request.contextPath}/resources/upload/${clean.com_img}"> <br>
@@ -238,26 +235,6 @@
 	                                </div>
 	                              </c:forEach>
                               </div>
-                            </c:when>
-                            <c:otherwise>
-                               <div class="title">
-                               		<c:forEach var="clean" items="${cleanListMain}" begin="1" end="1">
-		                            	<h3><span class="seleted_location">${clean.com_gugun}</span> <span>위생순</span></h3>
-                               		</c:forEach>
-		                        </div>
-		                        <div id="owl-example1" class="owl-carousel">
-                              <c:forEach var="clean" items="${cleanListMain}">
-                              
-                                <div class="owl_example1_items_images">
-                                  <a href="product/detail?com_id=${clean.com_id}">
-                                    <img alt="" src="${pageContext.request.contextPath}/resources/upload/${clean.com_img}"> <br>
-                                    ${clean.com_name}
-                                  </a>
-                                </div>
-                              </c:forEach>
-                                </div>
-                            </c:otherwise>
-                          </c:choose>
                         
 						
 						<%--추천순(광고등급순)--%>

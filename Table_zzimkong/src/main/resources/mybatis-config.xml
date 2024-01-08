@@ -18,5 +18,6 @@
 		<typeAlias type="com.table.zzimkong.vo.ReportVO"  alias="report"/>
 		<typeAlias type="com.table.zzimkong.vo.CsVO"  alias="cs"/>
 		<typeAlias type="com.table.zzimkong.vo.BookmarkVO"  alias="bookmark"/>
+		<typeAlias type="com.table.zzimkong.vo.PointVO"  alias="point"/>
 	</typeAliases>
 </configuration>
