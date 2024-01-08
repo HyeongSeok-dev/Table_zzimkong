@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%-- JSTL 에서 split() 등의 함수 사용을 위해 functions 라이브러리 추가(${fn:xxx()} 형식으로 활용) --%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>	   
 <!DOCTYPE html>
 <html>
 	<head>
@@ -7,6 +10,7 @@
 		<title>아이디 찾기</title>
 		<link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
 		<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/login_findId.css">
+		<script src="${pageContext.request.contextPath}/resources/js/mypage.js"></script>
 	</head>
 	<body>
 		<br>
@@ -25,16 +29,28 @@
 		       <div id="box">
 			        <!-- 이메일 -->
 			        <div class="u_email" align="center" >
-		                <input type="text" id="uEmail" name="uEmail" placeholder="이메일" onkeydown="eventObj.loginByEnterKey(event)" maxlength="16" autocomplete="false">
-		                <span id="at">@</span>
-						<select id="uEmail2" name="uEmail2">
-			                <option value="">선택하세요</option>
+<!-- 		                <input type="text" id="uEmail" name="uEmail" placeholder="이메일" onkeydown="eventObj.loginByEnterKey(event)" maxlength="16" autocomplete="false" required> -->
+<!-- 		                <span id="at">@</span> -->
+<!-- 						<select id="uEmail2" name="uEmail2" required> -->
+<!-- 			                <option value="">선택하세요</option> -->
+<!-- 			                <option value="gmail.com">gmail.com</option> -->
+<!-- 			                <option value="naver.com">naver.com</option> -->
+<!-- 			                <option value="daum.net">daum.net</option> -->
+<!-- 			                <option value="yahoo.com">yahoo.com</option> -->
+<!-- 			                <option value="">직접입력</option> -->
+<!-- 			             </select>	               -->
+						<!-- 이메일 주소 분리("@" 기준)하여 표시 -->
+						<c:set var="arrEmail" value="${fn:split(mypage.user_email, '@')}" />
+						<input type="text" name="user_email1" class="email_text" value="${arrEmail[0]}"> @
+						<input type="text" name="user_email2" class="email_text" value="${arrEmail[1]}">
+	                   	<select class="email_domain" name="emailDomain">
+							<option value="">선택하세요</option>
 			                <option value="gmail.com">gmail.com</option>
 			                <option value="naver.com">naver.com</option>
 			                <option value="daum.net">daum.net</option>
 			                <option value="yahoo.com">yahoo.com</option>
-			                <option value="yahoo.com">직접입력</option>
-			             </select>	              
+			                <option value="">직접입력</option>
+						</select>
 		           </div>
 		        
 		           
