@@ -133,11 +133,11 @@
 					<div class="name_number">
 						<div class="input_box">
 							<h3>성명</h3>
-		             		<input type="text" placeholder="성명을 입력해주세요." name="res_name" class="name">
+		             		<input type="text" placeholder="성명을 입력해주세요." name="res_name" id="res_name" class="name">
 		            	</div>
 			            <div class="input_box">
 							<h3>연락처</h3>
-			            	<input type="text" placeholder="휴대폰 번호를 입력해주세요." name="res_phone" class="number">
+			            	<input type="text" placeholder="휴대폰 번호를 입력해주세요." name="res_phone" id="res_phone" class="number">
 			            </div>
 					</div>
 				</section>
@@ -521,7 +521,7 @@
 					</div>
 				</section>
 			</div>
-			<button type="button" class="payment" onclick="btnPay();"><b>${map.totalPayPrice }</b>원 결제하기</button>
+			<button type="button" class="payment" onclick="btnPay()"><b>${map.totalPayPrice }</b>원 결제하기</button>
 <!-- onclick="btnPay();" -->
 		<!-- 	</action> -->
 	</div>
