@@ -14,7 +14,7 @@
 </head>
 <body>
 	<header>
-		<jsp:include page="../inc/top2_search_bar.jsp"/>
+		<jsp:include page="../inc/top2.jsp"/>
 	</header>
 	<main>
 		<jsp:include page="../inc/my_sidebar.jsp"  />
@@ -33,14 +33,6 @@
 			</div>
 	<br>
 		<table style="table-layout: fixed;">
-<!-- 			<tr> -->
-<!-- 				<th style="width: 100px;">발생일</th> -->
-<!-- 				<th style="width: 50px;">구분</th> -->
-<!-- 				<th style="width: 500px;">내역</th> -->
-<!-- 				<th style="width: 80px;">적립포인트</th> -->
-<!-- 				<th style="width: 80px;">사용포인트</th> -->
-<!-- 				<th style="width: 80px;">잔여포인트</th> -->
-<!-- 			</tr> -->
 			<tr>
 				<th style="width: 100px;">발생일</th>
 				<th style="width: 50px;">구분</th>
@@ -64,36 +56,20 @@
 					<c:when test="${point.point_category eq 4}">
 					<td>포인트 사용</td>
 					</c:when>
+				</c:choose>
+				<c:choose>
+					<c:when test="${point.point_value gt 0}">
+						<td>${point.point_value}</td>
+						<td></td>
+					</c:when>
+					<c:otherwise>
+						<td></td>
+						<td>${point.point_value}</td>
+					</c:otherwise>
 				</c:choose>	
-					<td>${point.point_value}</td>
-					<td>${point.point_value}</td>
 				</tr>
 			</c:forEach>
 		</table>
-<!-- 			<tr> -->
-<!-- 				<td>2023/05/17</td> -->
-<!-- 				<td>적립</td> -->
-<!-- 				<td>기장손칼국수 리뷰 포인트 적립</td> -->
-<!-- 				<td>500p</td> -->
-<!-- 				<td></td> -->
-<!-- 				<td>5000p</td> -->
-<!-- 			</tr> -->
-<!-- 			<tr> -->
-<!-- 				<td>2023/07/16</td> -->
-<!-- 				<td>적립</td> -->
-<!-- 				<td>화남정돼지국밥 리뷰 포인트 적립</td> -->
-<!-- 				<td>500p</td> -->
-<!-- 				<td></td> -->
-<!-- 				<td>5500p</td> -->
-<!-- 			</tr> -->
-<!-- 			<tr> -->
-<!-- 				<td>2023/10/22</td> -->
-<!-- 				<td>사용</td> -->
-<!-- 				<td>송원감자탕 예약 사용</td> -->
-<!-- 				<td></td> -->
-<!-- 				<td>2500p</td> -->
-<!-- 				<td>3000p</td> -->
-<!-- 			</tr> -->
 	</div>
 	</main>
 	
