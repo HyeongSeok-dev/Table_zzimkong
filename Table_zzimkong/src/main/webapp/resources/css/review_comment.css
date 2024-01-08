@@ -268,8 +268,8 @@ body {
 }
 	
 	.replyContent img {
-		width: 10px;
-		height: 10px;
+/* 		width: 10px; */
+/* 		height: 10px; */
 	}
 	
 	.replyWriter {
@@ -311,3 +311,29 @@ body {
   margin-top: 20px; /* 위쪽 간격 늘리기 */
   margin-bottom: 20px; /* 아래쪽 간격 늘리기 */
 }
+
+/* 답글 달기 이모티콘 */
+#reviewCommentIcon {
+	width: 25px;
+	height: auto;
+	margin-bottom: -5px;
+}
+
+.comment_icon_text {
+	  text-decoration-line: none;
+	  color: #000000;
+/* 	  margin-right:10px; */
+	
+}
+
+.reviewDelelteIcon {
+	width: 15px;
+	height: auto;
+	  margin-right:60px;
+}
+
+a {
+    text-decoration: none;
+}
+
+

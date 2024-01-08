@@ -143,20 +143,21 @@ function confirmReplyDelete(comment_num,review_num) {
 <!--     <tr> -->
     <tr id="contentRow_${tinyReplyReview.comment_num}">
         <td class="replyContent" colspan="2">
-            <c:forEach var="i" begin="1" end="${tinyReplyReview.comment_re_lev}">
+        	<c:forEach var="i" begin="1" end="${tinyReplyReview.comment_re_lev}">
                 &nbsp;&nbsp;&nbsp;&nbsp;
             </c:forEach>
              &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${tinyReplyReview.comment_content}
-            <c:if test="${not empty sessionScope.sId}">
-                <a href="javascript:reReplyWriteForm(${tinyReplyReview.comment_num}, ${tinyReplyReview.comment_re_ref}, ${tinyReplyReview.comment_re_lev}, ${tinyReplyReview.comment_re_seq})">
-                    <img src="${pageContext.request.contextPath}/resources/img/reply-icon.png" alt="대댓글 작성">
-                </a>
                 <c:if test="${sessionScope.sId eq tinyReplyReview.user_id or sessionScope.sId eq 'admin'}">
                     <a href="javascript:void(0)" onclick="confirmReplyDelete(${tinyReplyReview.comment_num}, ${param.review_num})">
-                        <img src="${pageContext.request.contextPath}/resources/img/delete-icon.png" alt="댓글 삭제">
+                        <img src="${pageContext.request.contextPath}/resources/img/delete-icon.png" alt="댓글 삭제" class="reviewDelelteIcon">
                     </a>
-             <div class="separator"></div>
                 </c:if>
+            <c:if test="${not empty sessionScope.sId}">
+                <a href="javascript:reReplyWriteForm(${tinyReplyReview.comment_num}, ${tinyReplyReview.comment_re_ref}, ${tinyReplyReview.comment_re_lev}, ${tinyReplyReview.comment_re_seq})" 
+                	class="comment_icon_text">
+                    <img src="${pageContext.request.contextPath}/resources/img/review_comment_icon.webp" id="reviewCommentIcon" alt="대댓글 작성">&nbsp;답글 달기
+                </a>
+             <div class="separator"></div>
             </c:if>
         </td>
     </tr>
