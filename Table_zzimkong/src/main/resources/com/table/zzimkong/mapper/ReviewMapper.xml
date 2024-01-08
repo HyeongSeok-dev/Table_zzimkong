@@ -460,7 +460,12 @@
 		com_id = #{comId}
 	</select>
 	
-	
+	<!-- 각 리뷰에 대한 댓글 갯수 카운트 -->
+	<select id="selectCountComment" parameterType="int" resultType="int">
+		SELECT COUNT(*)
+		FROM comment
+		WHERE review_num = #{review_num}	
+	</select>
 	
 </mapper>
 	

@@ -348,6 +348,8 @@ function showCommentForm(element) {
 	            return;
 	        }
 	
+	    var commentCount = review.commentCount; // commentCount 추출
+
 	    var formattedDate = formatDate(review.review_update);
 	
 	    var deleteFormHtml = '';
@@ -407,9 +409,10 @@ function showCommentForm(element) {
 	                '<p class="review_content">' + review.review_content + '</p>' +
 	                '<div class="review-actions">' +
 	                    '<div class="review-action1">' +
-//                         '<i class="far fa-comment" id="commentIcon" style="cursor: pointer;" onclick="showCommentForm();"></i>' +
-						'<i class="far fa-comment" data-review-num="' + review.review_num + '" style="cursor: pointer;" onclick="showCommentForm(this);"></i>' + 
-						'<i class="far fa-heart" id="heartIcon" style="cursor: pointer;"></i>' +
+// 	'<i class="far fa-comment" data-review-num="' + review.review_num + '" style="cursor: pointer;" onclick="showCommentForm(this);"></i> <span class="comment_count_number">' + commentCount + '</span>' +
+	'<div class="comment-section">' +
+    '<i class="far fa-comment" data-review-num="' + review.review_num + '" style="cursor: pointer;" onclick="showCommentForm(this);"></i>' + '<span class="comment_count_number">' + commentCount + '</span>' +'</div>'+
+// 						'<i class="far fa-heart" id="heartIcon" style="cursor: pointer;"></i>' + // 리뷰 좋아요 보류
 	                    '</div>' +
 	                    '<div class="review-action2">' +
 	                        '<div class="review-action-buttons">' +
@@ -491,11 +494,15 @@ function showCommentForm(element) {
 	    reviewsContainer.empty();
 
 	    reviews.forEach(function(review) {
+	    
+	   	console.log("Review ID:>>>>>>>>>>>>>>>>>>>>>>>>>", review.review_num, "Comment Count:", review.commentCount);
+
         // photoOnly가 true일 때, 이미지가 없는 리뷰는 건너뜀
         if (photoOnly && !review.review_img_1) {
             return;
         }
-
+        
+        var commentCount = review.commentCount; // commentCount 추출
     var formattedDate = formatDate(review.review_update); // 서버로부터 받은 review_update 값을 형식화
 
     var deleteFormHtml = '';
@@ -552,8 +559,10 @@ function showCommentForm(element) {
                 '<p class="review_content">' + review.review_content + '</p>' +
                 '<div class="review-actions">' +
                     '<div class="review-action1">' +
-					'<i class="far fa-comment" data-review-num="' + review.review_num + '" style="cursor: pointer;" onclick="showCommentForm(this);"></i>' + 
-  						  '<i class="far fa-heart" id="heartIcon" style="cursor: pointer;"></i>' +
+// 					'<i class="far fa-comment" data-review-num="' + review.review_num + '" style="cursor: pointer;" onclick="showCommentForm(this);"></i>' + commentCount + 
+'<div class="comment-section">' +
+    '<i class="far fa-comment" data-review-num="' + review.review_num + '" style="cursor: pointer;" onclick="showCommentForm(this);"></i>' + '<span class="comment_count_number">' + commentCount + '</span>' +'</div>'+
+//   						  '<i class="far fa-heart" id="heartIcon" style="cursor: pointer;"></i>' + // 리뷰 좋아요 보류
                     '</div>' +
                     '<div class="review-action2">' +
                         '<div class="review-action-buttons">' +

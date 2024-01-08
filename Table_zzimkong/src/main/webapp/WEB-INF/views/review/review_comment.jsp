@@ -1,15 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <!-- CSS -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/review_comment.css">
-<!-- <link rel="stylesheet" -->
 <%-- 	href="${pageContext.request.contextPath}/resources/css/global.css"> --%>
 <!-- Js -->
 <script src="${pageContext.request.contextPath}/resources/js/review_comment.js"></script>
@@ -18,16 +17,8 @@
 
 // 대댓글 작성 아이콘 클릭 시
 function reReplyWriteForm(comment_num, comment_re_ref, comment_re_lev, comment_re_seq) {
-//		console.log(reply_num + ", " + reply_re_ref + ", " + reply_re_lev + ", " + reply_re_seq);
 
-	// 기존에 존재하는 대댓글 입력폼이 있을 경우 해당 폼 요소 제거(tr 태그 제거)
-	// => "reReplyTr" id 선택자 활용
 	$("#reReplyTr").remove();
-
-	// 지정한 댓글 아래쪽에 대댓글 입력폼 표시
-	// => 댓글 지정하기 위해 댓글 tr 태그의 id 값 활용() - $("#replyTr_" + reply_num)
-	// => 지정한 댓글 아래쪽에 댓글 입력폼 표시를 위해 after() 메서드 활용
-// 	$("#replyTr_" + comment_num).after(
     $("#contentRow_" + comment_num).after(
 		'<tr id="reReplyTr">'
 		+ '	<td colspan="3">'
@@ -121,74 +112,84 @@ function confirmReplyDelete(comment_num,review_num) {
 <title>리뷰 댓글 작성</title>
 </head>
 <body>
-<div class="comment-header">
-    <h3>${comName}</h3>
-</div><!-- <div class="review-button"  id="closeButton"> -->
-<%--     <img src="${pageContext.request.contextPath}/resources/img/comment_close.png" alt="닫기"  />  --%>
-<!-- </div> -->
-	<%-- 목록은 BoardList.bo 서블릿 요청(파라미터 : 페이지번호) --%>
-	
-<!-- 	<p class="no-comments">등록된 댓글이 없습니다.</p> -->
+	<div class="comment-header">
+		<h3>${comName}</h3>
+	</div>
 	<section id="replyArea">
-		<div id="replyListArea"> <%-- 댓글 나오는 목록 --%>
+		<div id="replyListArea">
+			<%-- 댓글 나오는 목록 --%>
 			<table>
-<c:forEach var="tinyReplyReview" items="${tinyReplyReviewList}">
-    <tr class="${tinyReplyReview.comment_re_lev > 0 ? 'reReply' : 'reply'}" id="replyTr_${tinyReplyReview.comment_num}">
-        <td class="replyWriter"> <img src="${pageContext.request.contextPath}/resources/img/profile.png" alt="댓글프로필이미지" class="user_icon" />${tinyReplyReview.user_id}</td>
-        <td class="replyDate" align="right">
-            <fmt:parseDate var="parsedReplyDate" value="${tinyReplyReview.comment_update}" pattern="yyyy-MM-dd'T'HH:mm" type="both" />
-            <fmt:formatDate value="${parsedReplyDate}" pattern="MM-dd HH:mm" />
-        </td>
-    </tr>
-<!--     <tr> -->
-    <tr id="contentRow_${tinyReplyReview.comment_num}">
-        <td class="replyContent" colspan="2">
-        	<c:forEach var="i" begin="1" end="${tinyReplyReview.comment_re_lev}">
+				<c:forEach var="tinyReplyReview" items="${tinyReplyReviewList}">
+					<tr
+						class="${tinyReplyReview.comment_re_lev > 0 ? 'reReply' : 'reply'}"
+						id="replyTr_${tinyReplyReview.comment_num}">
+						<td class="replyWriter"><img
+							src="${pageContext.request.contextPath}/resources/img/profile.png"
+							alt="댓글프로필이미지" class="user_icon" />${tinyReplyReview.user_id}</td>
+						<td class="replyDate" align="right"><fmt:parseDate
+								var="parsedReplyDate" value="${tinyReplyReview.comment_update}"
+								pattern="yyyy-MM-dd'T'HH:mm" type="both" /> <fmt:formatDate
+								value="${parsedReplyDate}" pattern="MM-dd HH:mm" /></td>
+					</tr>
+					<!--     <tr> -->
+					<tr id="contentRow_${tinyReplyReview.comment_num}">
+						<td class="replyContent" colspan="2"><c:forEach var="i"
+								begin="1" end="${tinyReplyReview.comment_re_lev}">
                 &nbsp;&nbsp;&nbsp;&nbsp;
-            </c:forEach>
-             &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${tinyReplyReview.comment_content}
-                <c:if test="${sessionScope.sId eq tinyReplyReview.user_id or sessionScope.sId eq 'admin'}">
-                    <a href="javascript:void(0)" onclick="confirmReplyDelete(${tinyReplyReview.comment_num}, ${param.review_num})">
-                        <img src="${pageContext.request.contextPath}/resources/img/delete-icon.png" alt="댓글 삭제" class="reviewDelelteIcon">
-                    </a>
-                </c:if>
-            <c:if test="${not empty sessionScope.sId}">
-                <a href="javascript:reReplyWriteForm(${tinyReplyReview.comment_num}, ${tinyReplyReview.comment_re_ref}, ${tinyReplyReview.comment_re_lev}, ${tinyReplyReview.comment_re_seq})" 
-                	class="comment_icon_text">
-                    <img src="${pageContext.request.contextPath}/resources/img/review_comment_icon.webp" id="reviewCommentIcon" alt="대댓글 작성">&nbsp;답글 달기
-                </a>
-             <div class="separator"></div>
-            </c:if>
-        </td>
-    </tr>
-</c:forEach>
+            </c:forEach> &nbsp;&nbsp;
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${tinyReplyReview.comment_content}
+							<c:if
+								test="${sessionScope.sId eq tinyReplyReview.user_id or sessionScope.sId eq 'admin'}">
+								<a href="javascript:void(0)"
+									onclick="confirmReplyDelete(${tinyReplyReview.comment_num}, ${param.review_num})">
+									<img
+									src="${pageContext.request.contextPath}/resources/img/delete-icon.png"
+									alt="댓글 삭제" class="reviewDelelteIcon">
+								</a>
+							</c:if> <c:if test="${not empty sessionScope.sId}">
+								<a
+									href="javascript:reReplyWriteForm(${tinyReplyReview.comment_num}, ${tinyReplyReview.comment_re_ref}, ${tinyReplyReview.comment_re_lev}, ${tinyReplyReview.comment_re_seq})"
+									class="comment_icon_text"> <img
+									src="${pageContext.request.contextPath}/resources/img/review_comment_icon.webp"
+									id="reviewCommentIcon" alt="대댓글 작성">&nbsp;답글 달기
+								</a>
+								<div class="separator"></div>
+							</c:if></td>
+					</tr>
+				</c:forEach>
 			</table>
 		</div>
 	</section>
 
-<div class="comment-container">
-	<form action="ReviewTinyReplyWrite" method="post">
+	<div class="comment-container">
+		<form action="ReviewTinyReplyWrite" method="post">
 			<input type="hidden" name="review_num" value="${param.review_num}">
-		    <input type="hidden" name="com_id" value="${param.com_id}"> <!-- 이 부분 추가 -->	
+			<input type="hidden" name="com_id" value="${param.com_id}">
+			<!-- 이 부분 추가 -->
 			<input type="hidden" name="user_id" value="${sessionScope.sId}">
-			
+
 			<%-- 세션 아이디가 없을 경우(미로그인 시) 댓글 작성 차단 --%>
 			<%-- textarea 및 버튼 disabled 처리 --%>
 			<c:choose>
-				<c:when test="${empty sessionScope.sId}"> <%-- 세션 아이디 없음 --%>
-				<div class="comment_area">
-					<textarea id="replyTextarea" name="comment_content" placeholder="로그인 한 사용자만 작성 가능합니다" disabled></textarea>
-					<input type="submit" class="submit-comment" value="댓글쓰기" id="replySubmit" disabled>
-				</div>	
+				<c:when test="${empty sessionScope.sId}">
+					<%-- 세션 아이디 없음 --%>
+					<div class="comment_area">
+						<textarea id="replyTextarea" name="comment_content"
+							placeholder="로그인 한 사용자만 작성 가능합니다" disabled></textarea>
+						<input type="submit" class="submit-comment" value="댓글쓰기"
+							id="replySubmit" disabled>
+					</div>
 				</c:when>
 				<c:otherwise>
 					<div class="comment_area">
-						<textarea id="replyTextarea" name="comment_content" placeholder="리뷰에 따뜻한 댓글을 남겨주세요" maxlength="300" required></textarea>
-						<input type="submit" class="submit-comment" value="댓글쓰기" id="replySubmit">	
-					</div>	
+						<textarea id="replyTextarea" name="comment_content"
+							placeholder="리뷰에 따뜻한 댓글을 남겨주세요" maxlength="300" required></textarea>
+						<input type="submit" class="submit-comment" value="댓글쓰기"
+							id="replySubmit">
+					</div>
 				</c:otherwise>
 			</c:choose>
 		</form>
-</div>
+	</div>
 </body>
 </html>

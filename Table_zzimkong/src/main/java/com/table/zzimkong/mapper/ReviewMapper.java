@@ -105,5 +105,8 @@ public interface ReviewMapper {
 	// 예약 횟수 조회(user_idx)
 	int selectCountReservation(@Param("userIdx") int userIdx, @Param("comId") int comId);
 
+	// 각 리뷰에 대한 댓글 갯수 카운트
+	int selectCountComment(int review_num);
+
 	
 }

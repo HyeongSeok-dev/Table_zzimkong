@@ -323,8 +323,16 @@ body {
 	  text-decoration-line: none;
 	  color: #000000;
 /* 	  margin-right:10px; */
+/* 	  margin-left: 88px; */
 	
 }
+
+.reviewCommentIcon, .comment_icon_text {
+    float: right; /* 오른쪽 끝에 정렬 */
+    /* 추가적인 스타일링이 필요할 수 있음 */
+}
+
+
 
 .reviewDelelteIcon {
 	width: 15px;

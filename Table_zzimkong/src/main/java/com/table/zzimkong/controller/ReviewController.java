@@ -87,7 +87,7 @@ public class ReviewController {
 
 		// 리뷰 리스트 불러오기
 		List<ReviewVO> reviews = service.getAllReviews(comId);
-		model.addAttribute("reviews",reviews);
+
 
 		// 이런 점이 좋았어요 차트 수정
         List<ReviewCountVO> reviewCounts = service.getReviewCountsByComId(comId);
@@ -113,11 +113,14 @@ public class ReviewController {
 		            break;
 		    }
 		}
-        model.addAttribute("reviews", reviews);
 
         // 카테고리별 리뷰 개수 가져오기
         ReviewCategoryCountVO categoryCount = service.categoryCount(comId);
         model.addAttribute("categoryCount",categoryCount);
+        
+        
+        model.addAttribute("reviews", reviews);
+        
         
         
         return "review/review_detail";
@@ -130,7 +133,15 @@ public class ReviewController {
                                            @RequestParam("sortType") String sortType,
                                            @RequestParam(value = "photoOnly", defaultValue = "false") boolean photoOnly,
                                            @RequestParam(value = "menuName", required = false) String menuName) {
-        return service.getSortedReviews(comId, sortType, photoOnly,menuName);
+    	
+        List<ReviewVO> reviews = service.getSortedReviews(comId, sortType, photoOnly, menuName);
+        
+        for (ReviewVO review : reviews) {
+            int commentCount = service.getCommentCount(review.getReview_num());
+            review.setCommentCount(commentCount);
+        }
+
+        return reviews;
     }
     // false: 필수가 아닌 조건 
 	// ===================================================================
@@ -143,8 +154,8 @@ public class ReviewController {
     }
     // ===================================================================
     // [ 키워드 검색 ]
-    @GetMapping("/review/redetail/filterByCategory")
     @ResponseBody
+    @GetMapping("/review/redetail/filterByCategory")
     public List<ReviewVO> filterReviewsByCategory(@RequestParam("comId") int comId,@RequestParam("category") String category) {
     	
     	return service.filterReviewsByCategory(comId, category);
@@ -282,10 +293,6 @@ public class ReviewController {
 		}
 
 	} // reviewWritePro	
-	// ===================================================================
-	// [ 리뷰 작성완료 후 상세페이지 이동 ]
-
-	
 	// ===================================================================
 	// [ 리뷰 수정 ] 
 		@GetMapping("review/modify")
