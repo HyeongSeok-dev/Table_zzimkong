@@ -7,11 +7,11 @@
 <title>가게 신고하기</title>
 <link href="${pageContext.request.contextPath }/resources/css/mypage.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
-<!-- <script type="text/javascript"> -->
-// 	function reportRegister(){
-// 		confirm("해당 가게를 신고하였습니다.");
-// 	}
-<!-- </script> -->
+<!-- <script type="text/javascript">
+ 	function reportRegister(){
+ 		confirm("해당 가게를 신고하였습니다.");
+ 	}
+ </script> -->
 </head>
 <body>
 	<form action="reason2" method="post">

@@ -44,16 +44,32 @@
 			<tr>
 				<th style="width: 100px;">발생일</th>
 				<th style="width: 50px;">구분</th>
-				<th style="width: 80px;">사용포인트</th>
+				<th style="width: 80px;">적립 포인트</th>
+				<th style="width: 80px;">사용 포인트</th>
 			</tr>
 			<c:forEach var="point" items="${showPoint}">
 				<tr>
 					<td>${point.point_date}</td>
 <%-- 					<td><fmt:formatDate value="${point.point_date}" pattern="yyyy-MM-dd HH:mm"/></td> --%>
-					<td>${point.point_category}</td>
+				<c:choose>
+					<c:when test="${point.point_category eq 1}">
+					<td>결제 적립</td>
+					</c:when>
+					<c:when test="${point.point_category eq 2}">
+					<td>리뷰 적립</td>
+					</c:when>
+					<c:when test="${point.point_category eq 3}">
+					<td>이벤트 적립</td>
+					</c:when>
+					<c:when test="${point.point_category eq 4}">
+					<td>포인트 사용</td>
+					</c:when>
+				</c:choose>	
+					<td>${point.point_value}</td>
 					<td>${point.point_value}</td>
 				</tr>
 			</c:forEach>
+		</table>
 <!-- 			<tr> -->
 <!-- 				<td>2023/05/17</td> -->
 <!-- 				<td>적립</td> -->
@@ -78,7 +94,6 @@
 <!-- 				<td>2500p</td> -->
 <!-- 				<td>3000p</td> -->
 <!-- 			</tr> -->
-		</table>
 	</div>
 	</main>
 	
