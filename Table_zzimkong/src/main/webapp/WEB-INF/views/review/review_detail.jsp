@@ -141,9 +141,12 @@ function showCommentForm(element) {
 
     // 순위별로 색상 지정
     var backgroundColors = sortedData.map((value, index) => {
-        if (index === 0) return '#add8e6'; // 1위 
-        if (index < 5) return '#C8E4F7'; // 2 ~ 5위
-        return '#C8E4F7'; // 나머지
+//         if (index === 0) return '#add8e6'; // 1위 
+        if (index === 0) return '#00BFFF'; // 1위 
+//         if (index < 5) return '#C8E4F7'; // 2 ~ 5위
+        if (index < 5) return '#A8D6E5'; // 2 ~ 5위
+//         return '#e6f4f1'; // 나머지
+        return '#E0F7FA'; // 나머지
     });
 
     var ctx = document.getElementById('reviewChart').getContext('2d');
@@ -166,9 +169,10 @@ function showCommentForm(element) {
                 datalabels: {
                     color: '#000',
                     anchor: 'end', // 데이터 레이블을 막대의 끝에 위치.
-                    align: 'end', // 데이터 레이블을 막대의 오른쪽 끝에 정렬.
+                    align: 'right', // 데이터 레이블을 막대의 오른쪽 끝에 정렬.
                     // 여기에 formatter를 추가하여 각 라벨에 해당하는 값을 표시.
-                    offset: -30, // 라벨을 막대 바깥으로 10px 이동.
+//                     offset: -30, // 라벨을 막대 바깥으로 10px 이동.
+                    offset: 10, // 라벨을 막대 바깥으로 10px 이동.
                    	font: {
                    		size: 18,
                    		family: 'Pretendard-Regular',
@@ -205,6 +209,9 @@ function showCommentForm(element) {
             },
             maintainAspectRatio: false,
             layout: {
+                padding: {
+                    right: 40 // 라벨값이 잘리지 않도록 오른쪽에 패딩 추가
+                },
                 backgroundColor: 'transparent' // 차트 배경을 투명하게 설정
             }
         },
@@ -566,7 +573,6 @@ function showCommentForm(element) {
                 '<p class="review_content">' + review.review_content + '</p>' +
                 '<div class="review-actions">' +
                     '<div class="review-action1">' +
-//   						  '<i class="far fa-comment" data-review-num="' + ${review.review_num} + '" style="cursor: pointer;" onclick="showCommentForm(this);"></i>' +
   						'<i class="far fa-comment" data-review-num=${review.review_num} style="cursor: pointer;" onclick="showCommentForm(this);"></i>' +
   						  '<i class="far fa-heart" id="heartIcon" style="cursor: pointer;"></i>' +
                     '</div>' +
@@ -593,34 +599,6 @@ function showCommentForm(element) {
 	$('#reviewsContainer').on('click', '.fa-heart', function() {
 	    $(this).toggleClass('far').toggleClass('fas').toggleClass('filled');
 	});
-	
-	// 댓글 아이콘 클릭 이벤트
-// 	$('#reviewsContainer').on('click', '.fa-comment', function() {
-// 	    var contextRoot = window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2));
-// // 	    var url = contextRoot + "/review/comment";
-// // 	    var url = contextPath + "/review/comment?com_id=" + comId + "&review_num=" + reviewNum;
-
-// 	    var windowName = "commentPopup";
-// 	    var windowSize = "width=515,height=632";
-// 	    window.open(url, windowName, windowSize);
-// 	});
-	// =================================================================	
-	// 댓글 아이콘 누르면 댓글창 뜸
-// 	function showCommentForm() {
-// 	    // review_num 값을 element의 data-review-num 속성에서 가져옴
-// 	    var reviewNum = element.getAttribute('data-review-num');
-// 	    // 현재 URL에서 com_id 값을 가져옴
-// 	    var comId = getParameterByName('com_id');
-	    
-// 	    // 댓글창을 여는 URL에 com_id 값을 포함시킴
-// // 	    var url = contextPath + "/review/comment?com_id=" + comId;
-// 	    var url = contextPath + "/review/comment?com_id=" + comId + "&review_num=" + reviewNum;
-// 	    var windowName = "commentPopup";
-// 	    var windowSize = "width=515,height=632";
-	    
-// 	    // 팝업 창으로 댓글 페이지를 엶
-// 	    window.open(url, windowName, windowSize);
-// 	}
 
 	// =================================================================	
 	    // 페이지 로드 시 최신순으로 리뷰를 불러옴
@@ -636,7 +614,7 @@ function showCommentForm(element) {
         filterReviewsByCheckedMenus();
     });
 	// =================================================================	
-    // 메뉴 이름 불러오기
+    // 메뉴 이름 불러오기 (24/01/08 주석 처리)
 	    var comId = getParameterByName('com_id');
 	    $.ajax({
 	        url: contextPath + '/review_menus', // URL 수정
@@ -799,18 +777,6 @@ function showCommentForm(element) {
 	        <input type="checkbox" class="category_button" data-category="quantity">
 	        <span class="button_text">음식량 ${categoryCount.review_category_count_quantity}</span>
 	    </label>
-	</div>
-			
-		
-	<!-- ========================================================================================= -->
-<!-- 		<div class="menu_select"> -->
-<!-- 		    <span class="menu_select_subject">&nbsp;&nbsp;&nbsp;&nbsp;메뉴&nbsp;</span> -->
-<!-- 		    <span class="menu_item" onclick="filterReviews('마제소바')">마제소바<span class="menu_count">407</span></span> -->
-<!-- 		    <span class="menu_item" onclick="filterReviews('껍데기')">껍데기<span class="menu_count">123</span></span> -->
-<!-- 		    <span class="menu_item" onclick="filterReviews('라멘')">라멘<span class="menu_count">250</span></span> -->
-		    <!-- 추가 메뉴 항목 -->
-		</div>
-	<!-- ========================================================================================= -->
 	</div>
 	<br>
 	<br>
