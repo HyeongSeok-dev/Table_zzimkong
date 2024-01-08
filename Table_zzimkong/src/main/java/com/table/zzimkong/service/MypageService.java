@@ -8,6 +8,8 @@ import org.springframework.stereotype.*;
 import com.table.zzimkong.mapper.*;
 import com.table.zzimkong.vo.*;
 
+// 컨트롤러와 DB를 연결해주는 역할
+
 @Service
 public class MypageService {
 	// MypageMapper 객체 자동 주입
@@ -83,6 +85,12 @@ public class MypageService {
 	// 포인트 조회
 	public List<PointVO> getShowPoint(PointVO point) {
 		return mapper.selectShowPoint(point);
+	}
+	
+	// 포인트 총합
+	public int getTotalPoint(PointVO point) {
+		
+		return mapper.selectTotalPoint(point);
 	}
 	
 

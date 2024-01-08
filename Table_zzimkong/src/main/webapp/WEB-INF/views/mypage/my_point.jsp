@@ -61,15 +61,19 @@
 					<c:when test="${point.point_value gt 0}">
 						<td>${point.point_value}</td>
 						<td></td>
+						
 					</c:when>
 					<c:otherwise>
 						<td></td>
 						<td>${point.point_value}</td>
 					</c:otherwise>
-				</c:choose>	
+				</c:choose>
 				</tr>
 			</c:forEach>
+				<td colspan="4" style="height: 10%;"><p style="font-size:20px; text-align:right; padding-right:30px;"><b>잔여 포인트  :  ${totalPoint} 찜콩</b></p></td>
 		</table>
+						
+
 		
 	</div>
 	</main>

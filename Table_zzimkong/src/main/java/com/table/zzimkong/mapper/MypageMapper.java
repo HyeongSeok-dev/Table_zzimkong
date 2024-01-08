@@ -53,6 +53,9 @@ public interface MypageMapper {
 	// 포인트 조회
 	List<PointVO> selectShowPoint(PointVO point);
 	
+	// 포인트 총점
+	int selectTotalPoint(PointVO point);
+	
 	
 
 

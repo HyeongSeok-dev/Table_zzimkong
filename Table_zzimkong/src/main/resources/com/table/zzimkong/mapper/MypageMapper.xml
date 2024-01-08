@@ -110,7 +110,7 @@
 	</insert>
     
     <!-- 나의 리뷰 조회하기 - SELECT --> 
-	<select id="selectMyReview" resultType="review">-- select는 resultType 필요
+	<select id="selectMyReview" resultType="review">-- select는 resultType 필요!
 	    SELECT r.review_num, r.com_id, r.review_update, c.com_name, r.review_content
 	    FROM review r, company c  
 	    WHERE r.user_id = #{sId} 
@@ -122,6 +122,13 @@
 	<select id="selectShowPoint" resultType="point">
 		SELECT point_date, point_category, point_value
 		FROM point
+		WHERE user_idx = #{user_idx}
+	</select>
+	
+	<!-- 포인트 총점 - SELECT -->
+	<select id="selectTotalPoint" resultType="int">
+		SELECT SUM(point_value) 
+		FROM point 
 		WHERE user_idx = #{user_idx}
 	</select>
 	

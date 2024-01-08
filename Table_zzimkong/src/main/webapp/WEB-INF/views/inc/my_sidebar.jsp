@@ -34,7 +34,7 @@
      <div class="common-mypage__sc-1m1vyak-0 fJZyji">
       <a href="${pageContext.request.contextPath }/my/point" >
          <em>포인트 &gt;</em>
-         <strong>1,150</strong>
+         <strong>${totalPoint}</strong>
         </a>
       <a href="${pageContext.request.contextPath }/my/coupon" >
          <em>나의 쿠폰 &gt;</em>

@@ -369,12 +369,18 @@ public class MypageController {
 	public String my_point(PointVO point, HttpSession session, Model model) {
 		int sIdx = (int)session.getAttribute("sIdx");
 		 point.setUser_idx(sIdx);
-		// MypageService - getShowPoint() 메서드 호출하여 포인트 조회
-		List<PointVO> dbShowPoint = service.getShowPoint(point);
+		// MypageService - getShowPoint() 메서드 호출하여 포인트 목록 조회
+		List<PointVO> dbShowPoint = service.getShowPoint(point);// 포인트 객체를 파라미터에 넣어서 서비스 돌려서 결과값을 dbShowPoint에 리턴
+		// MypageService - getTotalPoint() 메서드 호출하여 포인트 총점 조회
+		int totalPoint = service.getTotalPoint(point);
+		
 		
 		// 조회 결과 Model 객체에 저장
-		model.addAttribute("showPoint",dbShowPoint);
+		model.addAttribute("showPoint", dbShowPoint);
 		System.out.println("dbShowPoint : " + dbShowPoint);
+		
+		model.addAttribute("totalPoint", totalPoint);
+		
 		
 		// 포인트 조회 페이지 포워딩
 		return "mypage/my_point";
