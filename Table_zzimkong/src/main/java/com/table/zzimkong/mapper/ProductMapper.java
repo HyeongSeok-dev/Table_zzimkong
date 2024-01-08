@@ -30,8 +30,6 @@ public interface ProductMapper {
 	//메인화면에 추천순 뿌리기=====================================
 	//위생순
 	List<CompanyVO> selectCleanList(SearchVO search);
-	//위생순 지역선택에따른 정렬
-	List<CompanyVO> selectAreaCleanList(SearchVO search);
 	//추천순(광고등급순)
 	List<CompanyVO> selectRecommendList(SearchVO search);
 	//별점순

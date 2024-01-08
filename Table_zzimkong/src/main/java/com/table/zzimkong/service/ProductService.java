@@ -56,10 +56,6 @@ public class ProductService {
 		return mapper.selectCleanList(search);
 	}
 	
-	//위생순 지역선택에 따른 정렬
-	public List<CompanyVO> getSelectAreaCleanList(SearchVO search) {
-		return mapper.selectAreaCleanList(search);
-	}
 	
 	//추천순(광고등급순)
 	public List<CompanyVO> getRecommendList(SearchVO search) {

@@ -176,6 +176,9 @@ $(document).ready(function() {
 		formData['hygiene'] = $("input[name='hygiene']:checked").val();
 		console.log("필터 모달 데이터 적용됨: ", formData);
 		sendFormDataToCurrentPage();
+		if($("input[name='location']:checked").val() != null){
+			fetchLocationData();
+		}
 		$('#filterModal').hide();
 	});
 
@@ -211,7 +214,9 @@ $(document).ready(function() {
 			}
 		});
 	}
-function fetchLocationData() {
+	
+	//지역선택에 맞는 정렬
+	function fetchLocationData() {
     var location_data = $("input[name='location']:checked").val();
 
     $.ajax({

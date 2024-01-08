@@ -94,6 +94,20 @@ public class HomeController {
 	    
 	}
 	
+	//지역선택에 따라 정렬
+	@ResponseBody
+	@GetMapping("/fetchLocationData")
+	public String fetchLocationData(SearchVO search, @RequestParam String location) {
+		List<CompanyVO> list = service.getCleanList(search);
+		
+		System.out.println(list);
+		
+		
+		
+		return "";
+		
+	}
+	
 	
 	
 	
