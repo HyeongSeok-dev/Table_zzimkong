@@ -93,34 +93,34 @@
 
 	<!-- 메일 인증 정보 조회 - SELECT -->
 	<!-- id 가 일치하는 인증 정보 레코드 조회 -->
-	<select id="selectMailAuthInfo" resultType="mailAuthInfo">
-		SELECT *
-		FROM email_auth
-		WHERE user_id = #{user_id}
+<!-- 	<select id="selectMailAuthInfo" resultType="mailAuthInfo"> -->
+<!-- 		SELECT * -->
+<!-- 		FROM email_auth -->
+<!-- 		WHERE user_id = #{user_id} -->
 		
-	</select>
+<!-- 	</select> -->
 	
 	<!-- 새 인증정보 등록 - INSERT -->
-	<insert id="insertMailAuthInfo">
-		INSERT
-		INTO email_auth
-		VALUES (null,#{user_id}, #{auth_code})
-	</insert>
+<!-- 	<insert id="insertMailAuthInfo"> -->
+<!-- 		INSERT -->
+<!-- 		INTO email_auth -->
+<!-- 		VALUES (null,#{user_id}, #{auth_code}) -->
+<!-- 	</insert> -->
 	
 	<!-- 기존 인증정보 갱신 - UPDATE -->
 	<!-- id 에 해당하는 레코드의 인증코드(auth_code) 컬럼 수정 -->
-	<update id="updateMailAuthInfo">
-		UPDATE email_auth
-		SET auth_code = #{auth_code}
-		WHERE id = #{id}
-	</update>
+<!-- 	<update id="updateMailAuthInfo"> -->
+<!-- 		UPDATE email_auth -->
+<!-- 		SET auth_code = #{auth_code} -->
+<!-- 		WHERE id = #{id} -->
+<!-- 	</update> -->
 	
 	<!-- 회원 메일 인증정보 삭제 - DELETE -->
 	<!-- mail_auth_info 테이블의 id 에 해당하는 레코드 삭제 -->
-	<delete id="deleteMailAuthInfo">
-		DELETE FROM email_auth		
-		WHERE id = #{id}
-	</delete>
+<!-- 	<delete id="deleteMailAuthInfo"> -->
+<!-- 		DELETE FROM email_auth		 -->
+<!-- 		WHERE id = #{id} -->
+<!-- 	</delete> -->
 
 
 
