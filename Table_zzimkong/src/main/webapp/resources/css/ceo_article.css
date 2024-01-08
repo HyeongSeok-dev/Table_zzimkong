@@ -313,13 +313,15 @@ td>div {
     justify-content: center;
 	}
 
-.ceo_bottom {
-/* 	height: 40px; */
+#status_4 {
+	font-size: 20px;
+	color: red;
 }
 
 .file{
 	padding: 5px;
 }
+
 .previewContainer{
 	width: 300px; 
 	height: 150px;

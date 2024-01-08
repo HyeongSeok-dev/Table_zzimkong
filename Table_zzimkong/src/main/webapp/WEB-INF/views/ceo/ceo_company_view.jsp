@@ -17,7 +17,11 @@
 		<div class="text_inner">
 			<div class="header_div01">
 				<span><h3>사업장 정보</h3></span>
-				<span id="status_4"></span>
+				<c:if test="${com.com_status eq '4'}">
+					<span id="status_4">
+							폐점한 사업장 입니다.
+					</span>
+				</c:if>
 			</div>
 		</div>
 		<div class="text_inner_viewTable">
@@ -115,6 +119,7 @@
 					</tr>
 				</table>
 				<br><br>
+				<c:if test="${com.com_status ne '4'}">
 				<span id="span_button">
 					<form action="ad">
 						<input type="hidden" name="com_num" value="${com.com_num }">				
@@ -125,6 +130,7 @@
 						<button type="submit" class="button_olive">수정/폐점신청</button>
 					</form>
 				</span>
+				</c:if>
 		</div>
 	</section>
 </body>

@@ -5,6 +5,12 @@ $(function() {
 			$("#company_state2").prop('disabled', true);
 	}
 	
+	if($("#com_status").text().trim() == "폐점") {
+		console.log("폐점");
+		$("#company_state2").val("");
+			$("#company_state2").prop('disabled', true);
+	}
+	
 	$("#company_state2").on("change", function(){
 		
 		if($("#company_state2").val() == "영업중지") {
