@@ -131,9 +131,9 @@ public class PaymentController {
 		//--------------------------------------------------------------------
 		// [ PaymentInfo 객체에 문자열 타입으로 파라미터 전달]
 		PaymentInfo paymentInfo = new PaymentInfo(menuTotalPrice,totalPrice,totalPoint,res_table_price);
-		System.out.println(paymentInfo);
-		System.out.println(poiList);
-		System.out.println(res);
+		System.out.println("-- " + paymentInfo);
+		System.out.println("-- " + poiList);
+		System.out.println("== " + res);
 		
 		// 예약조회, 포인트조회,사업장정보조회,선주문조회 
 		map.put("res", res);
@@ -215,6 +215,7 @@ public class PaymentController {
 		}
 		payment.setPay_po_price(pay_po_price); 
 		payment.setPay_num((String)map.get("pay_num"));
+		payment.setPay_method(Integer.parseInt(map.get("pay_method")));
 		
 		System.out.println(pay_po_price); // 0 => 현장결제가 있거나 선주문이 없음
 		System.out.println(payment);
@@ -305,15 +306,9 @@ public class PaymentController {
 			payMethod = "카카오페이";
 			break;
 		case 2:
-			payMethod = "네이버페이";
-			break;
-		case 3:
 			payMethod = "카드 결제";
 			break;
-		case 4:
-			payMethod = "무통장 입금";
-			break;
-		case 5:
+		case 3:
 			payMethod = "휴대폰 결제";
 			break;
 		}
@@ -474,7 +469,7 @@ public class PaymentController {
 		// [ PaymentInfo 객체에 문자열 타입으로 파라미터 전달]
 		PaymentInfo paymentInfo = new PaymentInfo(menuTotalPrice,totalPrice,paymentDate,res_table_price,payMethod);
 		// 예약조회, 포인트조회,사업장정보조회,선주문조회 
-		
+		System.out.println(paymentInfo);
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		map.put("res", res);

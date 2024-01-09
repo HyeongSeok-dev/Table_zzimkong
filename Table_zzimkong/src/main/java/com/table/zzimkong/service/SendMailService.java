@@ -90,7 +90,7 @@ public class SendMailService {
 				+ "<h3>이름 : " +  member.getUser_name() + "</h3>"
 				+ "<h3>결제일시 : " +  paymentInfo.getPaymentDate() + "</h3>"
 				+ "<h3>결제수단 : " +  paymentInfo.getPayMethod() + "</h3>"
-				+ "<h3>총 결제금액 : " +  paymentInfo.getMenuTotalPrice() + "</h3>"
+				+ "<h3>총 결제금액 : " +  paymentInfo.getTotalPrice() + "</h3>"
 				+ "<h3>결제금액 상세 내역</h3>"
 				+ "&nbsp;&nbsp;<b>- 총 예약금 : " +  paymentInfo.getRes_table_price() + "</b><br>"
 				+ "&nbsp;&nbsp;<b>- 총 선주문금 : " +  paymentInfo.getMenuTotalPrice() + "</b><br>"

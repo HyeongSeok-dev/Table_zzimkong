@@ -85,11 +85,11 @@
 								</div>
 								<br>
 								<div>
-									<input type="radio" name="pay_method" value="3" id="creditCardPayment"><span class="font_stlye"> 카드결제</span>
+									<input type="radio" name="pay_method" value="2" id="creditCardPayment"><span class="font_stlye"> 카드결제</span>
 								</div>
 								<br>
 								<div>	
-									<input type="radio" name="pay_method" value="5" id="mobilePhonePayment"><span class="font_stlye"> 휴대폰결제</span>
+									<input type="radio" name="pay_method" value="3" id="mobilePhonePayment"><span class="font_stlye"> 휴대폰결제</span>
 								</div>
 							</div>
 						</section>

@@ -37,10 +37,11 @@
 					<div>
 						<div class="reservation_div">
 							<span class="res_info">업체명</span>
-							<span class="res_address">
-								<span class="res_name">${map.com.com_name}</span>&nbsp;
-								${map.com.com_address}
-							</span>
+							<span class="res_name">${map.com.com_name}</span>
+						</div>
+						<div class="reservation_div">
+							<span class="res_info">주소</span>
+							<span class="res_address">${map.com.com_address}</span>
 						</div>
 						
 						<div class="reservation_div">
