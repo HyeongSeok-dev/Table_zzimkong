@@ -24,7 +24,8 @@ public interface MypageMapper {
 	List<Map<String, Object>> selectResList(@Param("sIdx") int sIdx);
 	
 	// 예약 내역 모두 조회
-	List<Map<String, Object>> selectResList2(@Param("sIdx") int sIdx);
+	List<Map<String, Object>> selectResList2(@Param("sIdx") int sIdx, @Param("startRow") int startRow,
+			@Param("listLimit") int listLimit);
 	
 	// 예약 내역 전체 개수 조회
 	int selectResList2Count();

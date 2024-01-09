@@ -18,6 +18,11 @@
 </script>
 </head>
 <body>
+	<%-- 페이지네이션 - pageNum 파라미터 가져와서 저장(없을 경우 기본값 1로 설정) --%>
+	<c:set var="pageNum" value="1" />
+	<c:if test="${not empty param.pageNum }">
+		<c:set var="pageNum" value="${param.pageNum }" />
+	</c:if>
 	<header>
 		<jsp:include page="../inc/top2.jsp"/>
 	</header>
@@ -101,8 +106,42 @@
 				  </tr>
 				</c:forEach>
 			</table>
+	<section id="pageList">
+		<%-- [이전] 버튼 클릭 시 BoardList.bo 서블릿 요청(파라미터 : 현재 페이지번호 - 1) --%>
+		<%-- 단, 현재 페이지 번호(pageNum) 가 1보다 클 경우에만 동작(아니면 비활성화 처리) --%>
+		<input type="button" value="이전" 
+				onclick="location.href = 'reservation?pageNum=${pageNum - 1}'"
+				<c:if test="${pageNum <= 1 }">disabled</c:if>
+		>	
+	
+		<%-- 현재 페이지 번호가 저장된 pageInfo 객체를 통해 페이지 번호 출력 --%>
+		<%-- 시작페이지(startPage) 부터 끝페이지(endPage) 까지 표시 --%>
+		<c:forEach var="i" begin="${pageInfo.startPage }" end="${pageInfo.endPage }">
+			<%-- 각 페이지마다 하이퍼링크 설정(페이지번호를 pageNum 파라미터로 전달) --%>
+			<%-- 단, 현재 페이지는 하이퍼링크 제거하고 굵게 표시 --%>
+			<c:choose>
+				<%-- 현재 페이지번호와 표시될 페이지번호가 같을 경우 판별 --%>
+				<c:when test="${pageNum eq i}">
+					<b>${i}</b> <%-- 현재 페이지 번호 --%>
+				</c:when>
+				<c:otherwise>
+					<a href="reservation?pageNum=${i}">${i}</a> <%-- 다른 페이지 번호 --%>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+		
+		<%-- [다음] 버튼 클릭 시 BoardList.bo 서블릿 요청(파라미터 : 현재 페이지번호 + 1) --%>
+		<%-- 단, 현재 페이지 번호(pageNum) 가 최대 페이지번호 보다 작을 경우에만 동작(아니면 비활성화 처리) --%>
+		<input type="button" value="다음" 
+			onclick="location.href = 'reservation?pageNum=${pageNum + 1}'"
+			<c:if test="${pageNum >= pageInfo.maxPage }">disabled</c:if>
+		>	
+	</section>
 		</div>
 	</div>
+	
+	
+	
 	</main>
 			
 
