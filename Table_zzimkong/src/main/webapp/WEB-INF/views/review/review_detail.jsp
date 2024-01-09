@@ -376,7 +376,7 @@ function showCommentForm(element) {
 	    if (review.review_img_1) {
 	        imagePopupHtml = 
 	            '<div class="review_photos">' +
-	                '<img src="' + contextPath + '/resources${pageContext.request.contextPath }/resources/upload/' + review.review_img_1 + '" alt="Review Image">' +
+	                '<img src="${pageContext.request.contextPath}/resources/upload/' + review.review_img_1 + '" alt="Review Image">' +
 	                '<div id="image-popup" class="image-popup" style="display: none;">' +
 	                    '<span class="close-popup">&times;</span>' +
 	                    '<img id="popup-img" class="popup-content">' +
@@ -724,7 +724,7 @@ function showCommentForm(element) {
 		        <c:forEach items="${reviews}" var="review" varStatus="status">
 		            <!-- review_img_1 필드에 이미지가 존재하면 표시 -->
 		            <c:if test="${not empty review.review_img_1}">
-		                <img src="/upload${review.review_img_1}" alt="Review Image ${status.index + 1}" />
+		                <img src="${pageContext.request.contextPath}/resources/upload/${review.review_img_1}" alt="Review Image ${status.index + 1}" />
 		            </c:if>
 		        </c:forEach>
 		    </div>
