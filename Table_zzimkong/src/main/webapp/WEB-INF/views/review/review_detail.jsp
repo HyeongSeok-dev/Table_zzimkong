@@ -343,6 +343,8 @@ function showCommentForm(element) {
 	            reviewsContainer.empty(); // 기존 리뷰 목록을 비움
 
 		reviews.forEach(function(review) {
+			
+// 	        var reviewerName = review.user_nick;
 	        // photoOnly가 true일 때, 이미지가 없는 리뷰는 건너뜀
 	        if (photoOnly && !review.review_img_1) {
 	            return;
@@ -398,7 +400,8 @@ function showCommentForm(element) {
 	                        '</a>' +
 	                    '</div>' +
 	                    '<div class="reviewer_info">' +
-	                        '<div class="reviewer_name">' + review.user_id + '</div>' +
+// 	                        '<div class="reviewer_name">' + review.user_id + '</div>' +
+	                        '<div class="reviewer_name">' + review.user_nick + '</div>' +
 	                        '<div class="score1">' +
 	                            '<img src="' + contextPath + '/resources/img/review_star.png" width="15" height="15">' +
 	                            (review.review_score / 2).toFixed(1) +
@@ -500,7 +503,8 @@ function showCommentForm(element) {
         if (photoOnly && !review.review_img_1) {
             return;
         }
-        
+
+//         var reviewerName = review.user_nick; // user_nick이 없는 경우를 대비한 기본값 설정
         var commentCount = review.commentCount; // commentCount 추출
 	    var formattedDate = formatDate(review.review_update); // 서버로부터 받은 review_update 값을 형식화
 	    var deleteFormHtml = '';
@@ -546,7 +550,8 @@ function showCommentForm(element) {
                         '</a>' +
                     '</div>' +
                     '<div class="reviewer_info">' +
-                        '<div class="reviewer_name">' + review.user_id + '</div>' +
+//                         '<div class="reviewer_name">' + review.user_id + '</div>' +
+	                        '<div class="reviewer_name">' + review.user_nick + '</div>' +
                         '<div class="score1">' +
                             '<img src="' + contextPath + '/resources/img/review_star.png" width="15" height="15">' +
                             (review.review_score / 2).toFixed(1) +

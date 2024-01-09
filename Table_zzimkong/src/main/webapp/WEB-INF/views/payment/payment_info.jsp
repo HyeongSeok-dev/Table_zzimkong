@@ -9,6 +9,7 @@
 <link href="${pageContext.request.contextPath }/resources/css/payment_info.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet" type="text/css">
 <script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/paymentInfo.js"></script>
 
 </head>
 <body>
@@ -151,7 +152,10 @@
 						<span class="total_money">${map.ftp} 원</span>
 					</div>
 				</section>
-				<button type="button" class="checked" onclick="location.href='../'">확인</button>
+				<form action="checkInfoEmailAuth">
+					<input type="hidden" value="${map.res.res_num}" name="res_num">
+					<button type="submit" class="checked">확인</button>
+				</form>
 			</div>
 		</div>
 	</div>

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-s<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -72,21 +72,22 @@ s<!DOCTYPE html>
 			<div class="text_inner">
 				<div class="header">
 					<span><h3>오늘의 예약 현황</h3></span>
-					<span>
-						<button type="button" value="상세정보" class="popup" onclick="newDetails()">상세정보</button>
-					</span>
+<!-- 						<span id="detailBtn"> -->
+<!-- 							<button type="button" value="상세정보" class="popup" onclick="newDetail()">상세정보</button> -->
+<!-- 						</span> -->
 				</div>
 				<table id="reservationStatus" border="1">
 					<tr>
 						<th>오늘의 예약 수</th>
 						<th>오늘의 예약방문자 수</th>
 						<th>오늘의 예약취소 수</th>
+						<th>오늘의 인원상세</th>
 					</tr>
-					<tr>
-						<td>${resTotal}</td>
-						<td>${totalPersons}</td>
-						<td>${count}</td>
-					</tr>
+<!-- 					<tr> -->
+<%-- 						<td>${resTotal}</td> --%>
+<%-- 						<td>${totalPersons}</td> --%>
+<%-- 						<td>${count}</td> --%>
+<!-- 					</tr> -->
 				</table>
 			</div>
 			
