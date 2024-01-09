@@ -132,7 +132,6 @@ function confirmReplyDelete(comment_num,review_num) {
 								pattern="yyyy-MM-dd'T'HH:mm" type="both" /> <fmt:formatDate
 								value="${parsedReplyDate}" pattern="MM-dd HH:mm" /></td>
 					</tr>
-					<!--     <tr> -->
 					<tr id="contentRow_${tinyReplyReview.comment_num}">
 						<td class="replyContent" colspan="2"><c:forEach var="i"
 								begin="1" end="${tinyReplyReview.comment_re_lev}">

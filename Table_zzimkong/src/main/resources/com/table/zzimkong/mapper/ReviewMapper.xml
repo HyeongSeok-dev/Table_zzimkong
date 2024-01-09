@@ -75,13 +75,6 @@
 	</select>
 	
 	<!-- 리뷰 리스트 -->
-<!-- 	<select id="allReviewList" parameterType="int" resultType="review"> -->
-<!-- 	    SELECT *  -->
-<!-- 	    FROM review -->
-<!-- 	    WHERE com_id = #{com_id} -->
-<!-- 	    ORDER BY review_update DESC; -->
-<!-- 	</select> -->
-	
 	<select id="allReviewList" parameterType="int" resultType="review">
 	    SELECT r.*, u.user_nick
 	    FROM review r
@@ -232,7 +225,6 @@
 	    </choose>
 	</select>
 	
-	
 	<!-- 메뉴 이름으로 리뷰 필터링 -->
 	<select id="selectReviewsByMenuName" parameterType="map" resultType="review">
 	    SELECT *
@@ -253,8 +245,10 @@
 	<select id="selectReviewsByCategory" parameterType="review" resultType="review">
 	    <choose>
         	<when test="category == 'taste'">
-        	 SELECT * FROM review
-	         WHERE com_id = #{com_id} 
+        	SELECT r.*, u.user_nick
+            FROM review r
+            LEFT JOIN user u ON r.user_id = u.user_id
+            WHERE r.com_id = #{com_id}
 	         AND (
 	         	review_content LIKE '%추천%'
 	                OR review_content LIKE '%맛%'
@@ -263,11 +257,13 @@
 	                OR review_content LIKE '%싱겁%'
 	                OR review_content LIKE '%단%'
 	                OR review_content LIKE '%신맛%')
-	         ORDER BY review_update DESC       
+	         ORDER BY r.review_update DESC       
       	  </when>
         <when test="category == 'satisfaction'">
-            SELECT * FROM review
-			WHERE com_id = #{com_id} 
+            SELECT r.*, u.user_nick
+            FROM review r
+            LEFT JOIN user u ON r.user_id = u.user_id
+            WHERE r.com_id = #{com_id}
              AND (
                 review_content LIKE '%좋은%'
 	                OR review_content LIKE '%나쁜%'
@@ -276,22 +272,26 @@
 	                OR review_content LIKE '%좋았%'
 	                OR review_content LIKE '%추천%'
 	                OR review_content LIKE '%친절%')
-	         ORDER BY review_update DESC       
+	         ORDER BY r.review_update DESC       
         </when>
 			<when test="category == 'service'">
-				SELECT * FROM review
-				WHERE com_id = #{com_id} 
+			SELECT r.*, u.user_nick
+            FROM review r
+            LEFT JOIN user u ON r.user_id = u.user_id
+            WHERE r.com_id = #{com_id}
 				AND	( 
 				review_content LIKE '%친절%'
 					OR review_content LIKE '%나쁜%'
 					OR review_content LIKE '%좋은%'
 					OR review_content LIKE '%불친절%')
-				ORDER BY review_update DESC       
+	         ORDER BY r.review_update DESC       
 					
 			</when>	
 			<when test="category == 'waiting'">
-				SELECT * FROM review
-				WHERE com_id = #{com_id} 
+			SELECT r.*, u.user_nick
+            FROM review r
+            LEFT JOIN user u ON r.user_id = u.user_id
+            WHERE r.com_id = #{com_id}
 				AND( 
 				review_content LIKE '%대기%'
 					OR review_content LIKE '%줄%'
@@ -299,19 +299,21 @@
 					OR review_content LIKE '%회전%'
 					OR review_content LIKE '%브레이크%'
 					OR review_content LIKE '%시간%')
-				ORDER BY review_update DESC       
+	         ORDER BY r.review_update DESC       
 					
 			</when>	
 			<when test="category == 'quantity'">
-				SELECT * FROM review
-				WHERE com_id = #{com_id} 
+			SELECT r.*, u.user_nick
+            FROM review r
+            LEFT JOIN user u ON r.user_id = u.user_id
+            WHERE r.com_id = #{com_id}
 				AND(
 				review_content LIKE '%양%'
 					OR review_content LIKE '%많은%'
 					OR review_content LIKE '%적은%'
 					OR review_content LIKE '%배부%'
 					OR review_content LIKE '%배고%')
-				ORDER BY review_update DESC       
+	         ORDER BY r.review_update DESC       
 			</when>	
 		</choose>
 	</select>
