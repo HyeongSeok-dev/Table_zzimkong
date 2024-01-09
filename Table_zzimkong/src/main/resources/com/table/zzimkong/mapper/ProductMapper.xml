@@ -69,18 +69,17 @@
                 com_id
         ) menu ON c.com_id = menu.com_id
 		 <where>
+		 	AND com_status = 1	
             <if test="context != null and !context.equals('')">
                 AND com_name LIKE CONCAT('%', #{context}, '%')
                 OR com_search_tag LIKE CONCAT('%', #{context}, '%')
+                OR com_category LIKE CONCAT('%', #{context}, '%')
+                OR com_gugun LIKE CONCAT('%', #{context}, '%')
             </if>
             
-            <if test="location != null and location.endsWith('전체')">
-                AND com_gugun LIKE CONCAT('%', #{location.substring(0, location.length() - 3)}, '%')
-            </if>
-            
-            <if test="location != null and !location.endsWith('전체')">
-                AND com_gugun = #{location}
-            </if>
+            <if test="location != null">
+			    AND com_gugun LIKE CONCAT('%', #{location}, '%')
+			</if>
             
             <if test="category != null">
                 AND com_category = #{category}
@@ -156,7 +155,6 @@
             <if test="maxPrice != null">
                 AND menu.max_price <![CDATA[ <= ]]> #{maxPrice}
             </if>
-		        AND com_status = 1	
         </where>
         GROUP BY c.com_id
         <if test="sort.equals('recommend')">
@@ -359,13 +357,9 @@
                 OR com_search_tag LIKE CONCAT('%', #{context}, '%')
             </if>
             
-            <if test="location != null and location.endsWith('전체')">
-                AND com_gugun LIKE CONCAT('%', #{location.substring(0, location.length() - 3)}, '%')
-            </if>
-            
-            <if test="location != null and !location.endsWith('전체')">
-                AND com_gugun = #{location}
-            </if>
+            <if test="location != null">
+			    AND com_gugun LIKE CONCAT('%', #{location}, '%')
+			</if>
             
             <if test="category != null">
                 AND com_category = #{category}
@@ -519,13 +513,9 @@
                 OR com_search_tag LIKE CONCAT('%', #{context}, '%')
             </if>
             
-            <if test="location != null and location.endsWith('전체')">
-                AND com_gugun LIKE CONCAT('%', #{location.substring(0, location.length() - 3)}, '%')
-            </if>
-            
-            <if test="location != null and !location.endsWith('전체')">
-                AND com_gugun = #{location}
-            </if>
+            <if test="location != null">
+			    AND com_gugun LIKE CONCAT('%', #{location}, '%')
+			</if>
             
             <if test="category != null">
                 AND com_category = #{category}
@@ -679,13 +669,9 @@
                 OR com_search_tag LIKE CONCAT('%', #{context}, '%')
             </if>
             
-            <if test="location != null and location.endsWith('전체')">
-                AND com_gugun LIKE CONCAT('%', #{location.substring(0, location.length() - 3)}, '%')
-            </if>
-            
-            <if test="location != null and !location.endsWith('전체')">
-                AND com_gugun = #{location}
-            </if>
+            <if test="location != null">
+			    AND com_gugun LIKE CONCAT('%', #{location}, '%')
+			</if>
             
             <if test="category != null">
                 AND com_category = #{category}

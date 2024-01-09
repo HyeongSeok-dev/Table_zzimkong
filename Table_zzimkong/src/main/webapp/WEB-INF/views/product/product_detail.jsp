@@ -25,10 +25,10 @@
 	<p class="gap20"></p>
 	<div class="s-list pic-grade">
 		<div class="com_pic_wrapper">
-			<img src="${pageContext.request.contextPath}/resources/upload/${company.com_img}" class="com_pic">
+			<img src="/upload${company.com_img}" class="com_pic">
 			<div class="menu_pic_wrapper">
 				<c:forEach var="img" items="${menuList}">
-				<img src="${pageContext.request.contextPath}/resources/upload/${img.menu_img}" class="menu_pic">
+				<img src="/upload${img.menu_img}" class="menu_pic">
 				</c:forEach>
 			</div>
 			
@@ -144,7 +144,7 @@
 						<div class="menu_contents">
 							<div class="menu_box">
 								<img class="menu_img"
-									src="${pageContext.request.contextPath}/resources/upload/${menu.menu_img}">
+									src="/upload${menu.menu_img}">
 							</div>
 							<div class=menu_section>
 								<!-- menu_section 내부 내용은 동일 -->
@@ -198,7 +198,7 @@
 							    <c:if test="${not empty review.review_img_1}">
 							        <c:if test="${imageCount < 5}">
 							            <div class="review_image">
-							                <img src="${pageContext.request.contextPath}/resources/upload/${review.review_img_1}">
+							                <img src="/upload${review.review_img_1}">
 							            </div>
 							            <c:set var="imageCount" value="${imageCount + 1}" />
 							        </c:if>

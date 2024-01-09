@@ -99,6 +99,12 @@ public class HomeController {
 	@ResponseBody
 	@GetMapping("/fetchLocationData")
 	public String fetchLocationData(SearchVO search, @RequestParam String location) {
+		
+		String searchlocation = search.getLocation();
+		if(searchlocation != null && searchlocation.endsWith("전체")) {
+			search.setLocation(searchlocation.substring(0, searchlocation.length() - 3));
+		}
+		
 		List<CompanyVO> list = service.getCleanList(search);
 		
 		Map<String, Object> map = new HashMap<String, Object>();

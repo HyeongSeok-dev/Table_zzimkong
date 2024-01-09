@@ -78,11 +78,11 @@
 				<tr>
 					<th colspan="2">문의 파일</th>
 					<td colspan="4" class="td_file">
-						<div><c:if test="${not empty board.cs_board_img_1}"><img src="${pageContext.request.contextPath}/resources/upload/${board.cs_board_img_1}"></c:if></div>
-                           <div><c:if test="${not empty board.cs_board_img_2}"><img src="${pageContext.request.contextPath}/resources/upload/${board.cs_board_img_2}"></c:if></div>
-                           <div><c:if test="${not empty board.cs_board_img_3}"><img src="${pageContext.request.contextPath}/resources/upload/${board.cs_board_img_3}"></c:if></div>
-                           <div><c:if test="${not empty board.cs_board_img_4}"><img src="${pageContext.request.contextPath}/resources/upload/${board.cs_board_img_4}"></c:if></div>
-                           <div><c:if test="${not empty board.cs_board_img_5}"><img src="${pageContext.request.contextPath}/resources/upload/${board.cs_board_img_5}"></c:if></div>
+						<div><c:if test="${not empty board.cs_board_img_1}"><img src="/upload${board.cs_board_img_1}"></c:if></div>
+                           <div><c:if test="${not empty board.cs_board_img_2}"><img src="/upload${board.cs_board_img_2}"></c:if></div>
+                           <div><c:if test="${not empty board.cs_board_img_3}"><img src="/upload${board.cs_board_img_3}"></c:if></div>
+                           <div><c:if test="${not empty board.cs_board_img_4}"><img src="/upload${board.cs_board_img_4}"></c:if></div>
+                           <div><c:if test="${not empty board.cs_board_img_5}"><img src="/upload${board.cs_board_img_5}"></c:if></div>
                      </td>
 				</tr>
 				<tr>
@@ -100,15 +100,15 @@
 				<tr>
 					<th colspan="1">답변 파일</th>
 					<td colspan="3" class="td_file">
-							<div><c:if test="${not empty replyBoard.cs_board_img_1}"><img src="${pageContext.request.contextPath}/resources/upload/${replyBoard.cs_board_img_1}"></c:if></div>
+							<div><c:if test="${not empty replyBoard.cs_board_img_1}"><img src="/upload${replyBoard.cs_board_img_1}"></c:if></div>
                             <input type="file" name="mFile1" class="file" accept="image/*">
-                            <div><c:if test="${not empty replyBoard.cs_board_img_2}"><img src="${pageContext.request.contextPath}/resources/upload/${replyBoard.cs_board_img_2}"></c:if></div>
+                            <div><c:if test="${not empty replyBoard.cs_board_img_2}"><img src="/upload${replyBoard.cs_board_img_2}"></c:if></div>
                             <input type="file" name="mFile2" class="file" accept="image/*">
-                            <div><c:if test="${not empty replyBoard.cs_board_img_3}"><img src="${pageContext.request.contextPath}/resources/upload/${replyBoard.cs_board_img_3}"></c:if></div>
+                            <div><c:if test="${not empty replyBoard.cs_board_img_3}"><img src="/upload${replyBoard.cs_board_img_3}"></c:if></div>
                             <input type="file" name="mFile3" class="file" accept="image/*">
-                            <div><c:if test="${not empty replyBoard.cs_board_img_4}"><img src="${pageContext.request.contextPath}/resources/upload/${replyBoard.cs_board_img_4}"></c:if></div>
+                            <div><c:if test="${not empty replyBoard.cs_board_img_4}"><img src="/upload${replyBoard.cs_board_img_4}"></c:if></div>
                             <input type="file" name="mFile4" class="file" accept="image/*">
-                            <div><c:if test="${not empty replyBoard.cs_board_img_5}"><img src="${pageContext.request.contextPath}/resources/upload/${replyBoard.cs_board_img_5}"></c:if></div>
+                            <div><c:if test="${not empty replyBoard.cs_board_img_5}"><img src="/upload${replyBoard.cs_board_img_5}"></c:if></div>
                             <input type="file" name="mFile5" class="file" accept="image/*">
                         </td>
 				</tr>

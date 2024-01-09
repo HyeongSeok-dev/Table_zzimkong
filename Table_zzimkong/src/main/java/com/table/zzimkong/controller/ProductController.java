@@ -82,7 +82,11 @@ public class ProductController {
 		if(search != null && search.getSort() == null) {
 			search.setSort("recommend");
 		}
-		
+		String location = search.getLocation();
+		if(location != null && location.endsWith("전체")) {
+			search.setLocation(location.substring(0, location.length() - 3));
+		}
+		System.out.println(location);
 		List<CompanyVO> companyList = service.getCompanyList(search);
 		
 		

@@ -42,7 +42,7 @@
 							<div class="restaurant-list" onclick="submitForm(this);">
 								<div class="restaurant-card">
 									<div class="restaurant-img">
-										<img src="${pageContext.request.contextPath}/resources/upload/${company.com_img}" class="com_pic">
+										<img src="/upload${company.com_img}" class="com_pic">
 									</div>
 									<div class="restaurant-details">
 										<div class="restaurant-info">
