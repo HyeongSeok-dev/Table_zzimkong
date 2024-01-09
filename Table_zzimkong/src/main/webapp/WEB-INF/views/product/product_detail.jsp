@@ -66,7 +66,7 @@
 			</div>
 			<div>
 				<c:if test="${isvisited}">
-					<a href="../review?com_id=${company.com_id}"><button class="appra Profile__Evaluation">
+					<a href="../review/write?com_id=${company.com_id}"><button class="appra Profile__Evaluation">
 						<span> 평가하기 </span>
 					</button></a>
 				</c:if>

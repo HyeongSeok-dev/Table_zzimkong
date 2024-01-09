@@ -199,6 +199,8 @@
 		SELECT *
 		FROM reservation
 		WHERE user_idx = #{user_idx}
+		AND com_id = #{com_id}
+		AND res_status = 3
 	</select>
 	
 	<select id="selectSimilarCompanyList" resultType="company">

@@ -157,8 +157,10 @@ public class ProductController {
 			model.addAttribute("isvisited", false);
 		}else {
 			int user_idx = (int)session.getAttribute("sIdx");
-			List<ReservationVO>resList = service.getVisitedPeople(user_idx);
-			if(resList == null) {
+			System.out.println("유저 인덱스" + user_idx);
+			List<ReservationVO>resList = service.getVisitedPeople(user_idx,company.getCom_id());
+			System.out.println("예약리스트" + resList);
+			if(resList.size() == 0) {
 				model.addAttribute("isvisited", false);
 			}else {
 				model.addAttribute("isvisited", true);
