@@ -683,7 +683,7 @@ public class ReviewController {
 		
 	}
 	
-	// "BoardTinyReplyDelete" 서블릿 요청에 대한 댓글 삭제 작업 처리
+	// "BoardTinyReplyDelete" 서블릿 요청에 대한 댓글 삭제 작업 처리!
 	@ResponseBody
 	@GetMapping("review/ReviewTinyReplyDelete")
 	public String deleteTinyReply(@RequestParam Map<String, String> map, HttpSession session) {
