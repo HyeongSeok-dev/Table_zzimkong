@@ -16,7 +16,7 @@
 	<section>
 		<h3>자주묻는질문 작성</h3>
 		<br><br>
-		<form action="/zzimkong/admin/cs/Register/pro" method="POST" name="adminFaqRegisterForm">
+		<form action="/zzimkong/admin/cs/Register/pro" method="POST" name="adminFaqRegisterForm" enctype="multipart/form-data" >
 			<input type="hidden" name="cs_board_category_main" value="2"> <%-- 자주묻는질문 --%>
 			<table>
 				<tr>
