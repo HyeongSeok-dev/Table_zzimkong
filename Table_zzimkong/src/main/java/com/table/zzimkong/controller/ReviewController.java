@@ -123,7 +123,7 @@ public class ReviewController {
         
         model.addAttribute("reviews", reviews);
         
-        // 예약 완료 0번일 시 리뷰 작성 불가 
+        // 예약 완료 0번일 시 리뷰 작성 불가 메세지 출력 및 리뷰작성 
         if (sId != null) {
             Integer userIdx = service.findUserIdx(sId);
             int visitCount = service.getReservationCount(userIdx, comId);
