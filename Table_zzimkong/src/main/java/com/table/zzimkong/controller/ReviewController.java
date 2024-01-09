@@ -87,7 +87,7 @@ public class ReviewController {
 
 		// 리뷰 리스트 불러오기
 		List<ReviewVO> reviews = service.getAllReviews(comId);
-
+		System.out.println("리뷰리스트 불러오기>>>>>>>>>>>>>>>>>" + reviews);
 
 		// 이런 점이 좋았어요 차트 수정
         List<ReviewCountVO> reviewCounts = service.getReviewCountsByComId(comId);
@@ -142,18 +142,19 @@ public class ReviewController {
             int commentCount = service.getCommentCount(review.getReview_num());
             review.setCommentCount(commentCount);
         }
-
+        
+        System.out.println("메인에 뿌리는 리뷰 >>>>>>>>>>>" + reviews);
         return reviews;
     }
     // false: 필수가 아닌 조건 
 	// ===================================================================
-    // [ 메뉴이름 가져오기 ]
-    @GetMapping("/review_menus")
-    @ResponseBody
-    public List<String> getMenuNames(@RequestParam("comId") int comId) {
-
-    	return service.getMenuNamesByComId(comId);
-    }
+    // [ 메뉴이름 가져오기 ] (240109 주석처리)
+//    @GetMapping("/review_menus")
+//    @ResponseBody
+//    public List<String> getMenuNames(@RequestParam("comId") int comId) {
+//
+//    	return service.getMenuNamesByComId(comId);
+//    }
     // ===================================================================
     // [ 키워드 검색 ]
     @ResponseBody

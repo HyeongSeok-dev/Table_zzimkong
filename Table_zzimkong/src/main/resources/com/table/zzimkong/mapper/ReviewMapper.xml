@@ -76,13 +76,22 @@
 	</select>
 	
 	<!-- 리뷰 리스트 -->
-	<select id="allReviewList" parameterType="int" resultType="review">
-	    SELECT * 
-	    FROM review
-	    WHERE com_id = #{com_id}
-	    ORDER BY review_update DESC;
-	</select>
+<!-- 	<select id="allReviewList" parameterType="int" resultType="review"> -->
+<!-- 	    SELECT *  -->
+<!-- 	    FROM review -->
+<!-- 	    WHERE com_id = #{com_id} -->
+<!-- 	    ORDER BY review_update DESC; -->
+<!-- 	</select> -->
 	
+	<select id="allReviewList" parameterType="int" resultType="review">
+	    SELECT r.*, u.user_nick
+	    FROM review r
+	    LEFT JOIN user u ON r.user_id = u.user_id
+	    WHERE r.com_id = #{com_id}
+	    ORDER BY r.review_num DESC
+	</select>
+
+
 	<!-- 리뷰 수정 뷰페이지-->
 	<select id="modifyReview" parameterType="int" resultType="review">
 	    SELECT * 
@@ -194,9 +203,11 @@
 	
 	<!-- 리뷰 정렬(최신순|별점높은순|별점낮은순 ~ 사진/영상 리뷰만 보기) -->
 		<select id="getSortedReviews" resultType="review">
-	    SELECT * 
-	    FROM review
+	    SELECT * , u.user_nick
+	    FROM review r
+		LEFT JOIN user u ON r.user_id = u.user_id
 	    WHERE com_id = #{comId}
+	    
 	    <if test="photoOnly">
 	        AND review_img_1 IS NOT NULL
 	    </if>
