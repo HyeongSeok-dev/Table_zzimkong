@@ -74,8 +74,8 @@ public class ReviewController {
 		String comName = service.getCompanyName(comId);
 	    model.addAttribute("comId", comId);
 		model.addAttribute("comName",comName);
-		System.out.println("작성페이지 comid>>>>>>>" + comId);
-		System.out.println("작성페이지 comname>>>>>>>" + comName);
+//		System.out.println("작성페이지 comid>>>>>>>" + comId);
+//		System.out.println("작성페이지 comname>>>>>>>" + comName);
 		
 		// 리뷰 갯수
 		int reviewCount = service.getReviewCount(comId);
@@ -87,7 +87,7 @@ public class ReviewController {
 
 		// 리뷰 리스트 불러오기
 		List<ReviewVO> reviews = service.getAllReviews(comId);
-		System.out.println("리뷰리스트 불러오기>>>>>>>>>>>>>>>>>" + reviews);
+//		System.out.println("리뷰리스트 불러오기>>>>>>>>>>>>>>>>>" + reviews);
 
 		// 이런 점이 좋았어요 차트 수정
         List<ReviewCountVO> reviewCounts = service.getReviewCountsByComId(comId);
@@ -113,7 +113,6 @@ public class ReviewController {
 		            break;
 		    }
 		}
-
         // 카테고리별 리뷰 개수 가져오기
         ReviewCategoryCountVO categoryCount = service.categoryCount(comId);
         model.addAttribute("categoryCount",categoryCount);
@@ -123,6 +122,17 @@ public class ReviewController {
         model.addAttribute("likeCount", likeCount);
         
         model.addAttribute("reviews", reviews);
+        
+        // 예약 완료 0번일 시 리뷰 작성 불가 
+        if (sId != null) {
+            Integer userIdx = service.findUserIdx(sId);
+            int visitCount = service.getReservationCount(userIdx, comId);
+            model.addAttribute("visitCount", visitCount);
+        } else {
+            model.addAttribute("visitCount", 0);
+        }
+        
+        
         
         return "review/review_detail";
 	}
@@ -142,7 +152,7 @@ public class ReviewController {
             review.setCommentCount(commentCount);
         }
         
-        System.out.println("메인에 뿌리는 리뷰 >>>>>>>>>>>" + reviews);
+//        System.out.println("메인에 뿌리는 리뷰 >>>>>>>>>>>" + reviews);
         return reviews;
     }
     // false: 필수가 아닌 조건 
@@ -208,13 +218,6 @@ public class ReviewController {
 		review.setUser_id(userId);
 		System.out.println("reviewVO값: " + review);
 			
-//		System.out.println(review.getA().toString());
-		// 보류 (231222)
-		// -------------------------------------------------------------------------------------
-		// 작성자 IP 주소 가져오기
-//		board.setWriter_ip(request.getRemoteAddr());
-//		System.out.println(board.getWriter_ip()); // 0:0:0:0:0:0:0:1
-		// -------------------------------------------------------------------------------------
 		// 가상의 디렉토리 생성
 		String uploadDir = "/resources/upload"; // 가상의 경로
 		// 가상 디렉토리에 대한 실제 경로
@@ -278,16 +281,11 @@ public class ReviewController {
 			} catch (IllegalStateException | IOException e) {
 				e.printStackTrace();
 			}
-			
-			// RedirectAttributes를 사용하여 com_id를 전달
+			//com_id를 전달
 	        redirectAttributes.addAttribute("com_id", review.getCom_id());
 
 	        // 리뷰 작성 완료 페이지로 리다이렉트
 	        return "redirect:/review/complete";
-			
-			
-			// 리뷰리스트 서블릿 리다이렉트
-//			return "redirect:/complete";
 
 		} else {
 			model.addAttribute("msg", "리뷰글 작성 실패!");
@@ -311,7 +309,6 @@ public class ReviewController {
 				model.addAttribute("targetURL","/zzimkong/login");
 				return "forward";
 			}
-			
 			// ReviewService - getRivews() 메서드 재사용하여 게시물 1개 정보 조회
 			// => 별도의 새로운 ReviewVO타입 변수 선언 없이 기존 ReviewVO 타입 변수(review) 재사용
 			// ~> 조회수는 필요없는거 같아서 생략(231227)
@@ -331,7 +328,6 @@ public class ReviewController {
 		    model.addAttribute("comName", comName);
 		    model.addAttribute("review", review);
 			
-		
 			return "review/review_modify";
 		}
 									

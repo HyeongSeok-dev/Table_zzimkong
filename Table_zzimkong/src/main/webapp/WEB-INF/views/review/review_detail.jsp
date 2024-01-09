@@ -666,13 +666,14 @@ function showCommentForm(element) {
 <body>
 <div class="restaurant_name_with_likes">
     <div class="restaurant_name">
-<%--         <h2>${comName}</h2> --%>
-        <h2>${comName}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-heart" aria-hidden="true"></i><span class="like_count_top">${likeCount}</span></h2> 
-        <div class="separator"></div>
+        <h2>${comName}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-heart" aria-hidden="true"></i>
+        <span class="like_count_top">${likeCount}</span><span class="like_text">&nbsp;&nbsp;이런 곳 좋아요</span>
+        </h2>
+    <div class="separator"></div>
     </div>
     <div class="likes">
-        <i class="fa fa-heart" aria-hidden="true"></i> <!-- Font Awesome 하트 아이콘 -->
-        <span class="like-count">${likeCount}</span>
+<!--         <i class="fa fa-heart" aria-hidden="true"></i>  -->
+<%--         <span class="like-count">${likeCount}</span> --%>
     </div>
 </div>
 	<br>
@@ -699,15 +700,21 @@ function showCommentForm(element) {
 			</svg>
 		</h2>
 <!-- 		<div class="review_write_button"> -->
-<%-- 		    <a href="write?com_id="${review.review_num}><i class="fas fa-pencil-alt"></i> &nbsp;리뷰쓰기</a> --%>
+<%-- 		    <a href="${pageContext.request.contextPath}/review/write?com_id=${param.com_id}"><i class="fas fa-pencil-alt"></i> &nbsp;리뷰쓰기</a> --%>
 <!-- 		</div> -->
-		<div class="review_write_button">
-		    <a href="${pageContext.request.contextPath}/review/write?com_id=${param.com_id}"><i class="fas fa-pencil-alt"></i> &nbsp;리뷰쓰기</a>
-		</div>
+	<div class="review_write_button">
+	    <c:choose>
+	        <c:when test="${visitCount > 0}">
+	            <a href="${pageContext.request.contextPath}/review/write?com_id=${param.com_id}"><i class="fas fa-pencil-alt"></i> &nbsp;리뷰쓰기</a>
+	        </c:when>
+	        <c:otherwise>
+	            <a href="#" onclick="alert('방문 완료한 회원만 리뷰를 작성하실 수 있습니다.'); return false;"><i class="fas fa-pencil-alt"></i> &nbsp;리뷰쓰기</a>
+	        </c:otherwise>
+	    </c:choose>
+	</div>
 	</div>
 	<!-- ======================================================================================== -->
 <div class="chart-container">
-	    
     <canvas id="reviewChart"></canvas>
 </div>
 	<!-- ======================================================================================== -->
