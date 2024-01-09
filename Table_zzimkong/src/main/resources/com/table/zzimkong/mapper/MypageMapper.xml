@@ -135,10 +135,10 @@
 	</select>
 	
 	<!-- 포인트 총점 - SELECT -->
-	<select id="selectTotalPoint" resultType="int">
-		SELECT SUM(point_value) 
-		FROM point 
-		WHERE user_idx = #{user_idx}
+	<select id="selectTotalPoint" resultType="java.lang.Integer">
+	    SELECT SUM(point_value) 
+	    FROM point 
+	    WHERE user_idx = #{user_idx}
 	</select>
 	
 </mapper>

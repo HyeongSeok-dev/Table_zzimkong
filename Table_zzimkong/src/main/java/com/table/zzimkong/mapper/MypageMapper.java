@@ -58,7 +58,7 @@ public interface MypageMapper {
 	List<PointVO> selectShowPoint(PointVO point);
 	
 	// 포인트 총점
-	int selectTotalPoint(PointVO point);
+	Integer selectTotalPoint(PointVO point);
 	
 	
 	

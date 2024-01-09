@@ -93,11 +93,9 @@ public class MypageService {
 	}
 	
 	// 포인트 총합
-	public int getTotalPoint(PointVO point) {
-		
-		return mapper.selectTotalPoint(point);
+	public Integer getTotalPoint(PointVO point) {
+	    return mapper.selectTotalPoint(point);
 	}
-
 	
 
 

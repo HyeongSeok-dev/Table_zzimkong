@@ -35,7 +35,8 @@ public interface MemberMapper {
 	MailAuthInfoVO selectVailidMailAuthInfo(MailAuthInfoVO authInfo);
 
 	void selectIdAuthInfo(MailAuthInfoVO authInfo);
-
+	
+	// 아이디 가져와서 이메일 매칭
 	MemberVO selectIdAuth(MailAuthInfoVO authInfo);
 
 

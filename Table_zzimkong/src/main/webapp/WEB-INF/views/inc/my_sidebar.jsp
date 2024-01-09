@@ -36,10 +36,6 @@
          <em>포인트 &gt;</em>
          <strong> ${sessionScope.totalPoint} <span style="font-size: 19px;">찜콩</span></strong>
         </a>
-      <a href="${pageContext.request.contextPath }/my/coupon" >
-         <em>나의 쿠폰 &gt;</em>
-         <strong>5개</strong>
-      </a>
     </div>
   </div>
 </section>
