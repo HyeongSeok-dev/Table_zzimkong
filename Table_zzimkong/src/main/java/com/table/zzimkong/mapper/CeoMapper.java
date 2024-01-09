@@ -43,11 +43,11 @@ public interface CeoMapper {
 
 	MemberVO selectUser(String sId);
 
-	List<ReservationVO> selectResInfo(CompanyVO company);
+	List<ReservationVO> selectResInfo(@Param("com_id") int com_id);
 
 	CompanyVO selectComNum(CompanyVO com);
 
 	List<PreOrderInfo> selectPreInfo(ReservationVO res);
 
-	List<ReservationVO> selectResList(CompanyVO company);
+	CompanyVO selectComTime(CompanyVO com);
 }

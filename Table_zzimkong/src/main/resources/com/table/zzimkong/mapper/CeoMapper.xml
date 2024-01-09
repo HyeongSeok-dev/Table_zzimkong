@@ -139,10 +139,21 @@
 	<select id="selectResInfo" resultType="res">
 		SELECT *
 		FROM reservation
-		WHERE com_id = #{com_id} AND res_date = CURDATE()
+		WHERE com_id = #{com_id} AND res_date = DATE_FORMAT(CURDATE() , '%Y-%m-%d')
 		ORDER BY
 			res_time DESC
 	</select>
+<!-- 	<select id="selectResInfo" resultType="res"> -->
+<!-- 		SELECT * -->
+<!-- 		FROM reservation -->
+<!-- 		WHERE com_id = #{com_id} -->
+<!-- 	</select> -->
+<!-- 	<select id="selectResInfo" resultType="res"> -->
+<!-- 		SELECT * -->
+<!-- 		FROM reservation -->
+<!-- 		WHERE com_id = #{com_id} -->
+<!-- 		AND DATE(res_date) = CURDATE() -->
+<!-- 	</select> -->
 
 	<select id="selectResDetailInfo">
 		SELECT *
@@ -165,11 +176,10 @@
 		FROM pre_order pre , menu
 		WHERE res_idx = #{res_idx} AND pre.menu_idx = menu.menu_idx
 	</select>
-	
-	<select id="selectResList" resultType="res">
-		SELECT * 
-        FROM reservation
-        WHERE com_id = #{com_id}
+	<select id="selectComTime" resultType="company">
+		SELECT *
+		FROM company
+		WHERE com_id = #{com_id}
 	</select>
 	
 	

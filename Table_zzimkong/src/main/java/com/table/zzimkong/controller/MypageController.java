@@ -260,7 +260,7 @@ public class MypageController {
 //		// => 파라미터 : 검색타입, 검색어
 //		// => 리턴타입 : int(listCount)
 		int listCount = service.getResList2Count();
-		int pageListLimit = 3; // 임시) 페이지 당 페이지 번호 갯수를 3개로 지정
+		int pageListLimit = 5; // 페이지에서 보이는 페이지 번호를 5개로 지정
 		int maxPage = listCount / listLimit + (listCount % listLimit > 0 ? 1 : 0);
 		int startPage = (pageNum - 1) / pageListLimit * pageListLimit + 1;
 		int endPage = startPage + pageListLimit - 1;
