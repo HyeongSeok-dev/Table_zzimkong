@@ -49,7 +49,7 @@ function fetchCompanyData(companyId) {
                     <td>${menu.menu_name}</td>
                     <td>${menu.menu_price }원</td>
                     <td>${menu.menu_describe}</td>
-                    <td><img src="${contextRoot}/resources/upload/${menu.menu_img}" class="menu_img"></td>
+                    <td><img src="/upload/${menu.menu_img}" class="menu_img"></td>
                     <td>
                         <button type="button" class="button_olive" onclick="menuModify(${menu.menu_idx})">수정</button>
                     </td>

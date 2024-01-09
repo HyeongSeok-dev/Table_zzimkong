@@ -52,7 +52,7 @@
     if (review.review_img_1) {
         imagePopupHtml = 
             '<div class="review_photos">' +
-                '<img src="' + contextPath + '/resources/upload/' + review.review_img_1 + '" alt="Review Image">' +
+                '<img src="/upload/' + review.review_img_1 + '" alt="Review Image">' +
                 '<div id="image-popup" class="image-popup" style="display: none;">' +
                     '<span class="close-popup">&times;</span>' +
                     '<img id="popup-img" class="popup-content">' +

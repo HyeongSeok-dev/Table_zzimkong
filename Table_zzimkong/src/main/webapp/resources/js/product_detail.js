@@ -206,7 +206,7 @@ $(document).ready(function() {
                                     class="similar_rest_distance_number"></span>
                             </div>
                             <img class="similar_rest_img"
-                                 src="` + contextPath + `/resources/upload/${restaurant.com_img}">
+                                 src="/upload/${restaurant.com_img}">
                             <div class="similar_rest_average">
                                 <img class="similar_rest_average_img"
                                      src="` + contextPath + `/resources/img/products_similar_star.png"
