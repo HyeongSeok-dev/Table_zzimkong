@@ -412,8 +412,10 @@ public class MypageController {
 		// 조회 결과 Model 객체에 저장
 		model.addAttribute("showPoint", dbShowPoint);
 		System.out.println("dbShowPoint : " + dbShowPoint);
-		
 		model.addAttribute("totalPoint", totalPoint);
+		
+		// 포인트 총점을 세션에 저장
+	    session.setAttribute("totalPoint", totalPoint);
 		
 		
 		// 포인트 조회 페이지 포워딩

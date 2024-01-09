@@ -26,9 +26,7 @@
 		       
 		       <!-- 테두리를 위한 div테그 -->
 		       <div id="box">
-		       		<input type="hidden" name="user_email" value="${authInfo.user_email}">
-		       		<input type="hidden" name="auth_code" value="${authInfo.auth_code}">
-		       		<p>회원님의 아이디는 ${authInfo.user_id } 입니다.</p>
+		       		<p>회원님의 아이디는 ${member.user_id } 입니다.</p>
 			          <div class="button_find"  align="center">
 				          <button type="button" class="btn findbtnB" id="findBtn" onclick="location.href='${pageContext.request.contextPath}/login'">
 				            <span>로그인 하러 가기</span>

@@ -169,7 +169,7 @@
 	
 	<select id="selectIdAuth" resultType="member">
 		SELECT *
-		FROM email_auth
+		FROM user
 		WHERE user_email = #{user_email}
 	</select>
 
