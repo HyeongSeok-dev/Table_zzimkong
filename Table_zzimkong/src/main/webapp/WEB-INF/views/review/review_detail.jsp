@@ -648,7 +648,7 @@ function showCommentForm(element) {
         }
     });
     
-    // 최신순,별점순 색상유지
+    // 최신순,별점순 색상유지!
         var links = document.querySelectorAll('.sort-link');
         links.forEach(function(link) {
             link.addEventListener('click', function() {
