@@ -23,13 +23,6 @@
 			<span class= "mypg">
 				<h1>포인트 적립 및 사용내역</h1>
 			</span>
-			<span>
-				<input type="date" id="date1">
-				-
-				<input type="date" id="date2">
-				<button type="button" onclick="showDate()">조회</button>
-				<p id="selectedDate"></p>
-			</span>
 			</div>
 	<br>
 		<table style="table-layout: fixed;">

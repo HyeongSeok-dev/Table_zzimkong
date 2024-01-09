@@ -39,7 +39,7 @@
 				<tr>
 					<th>작성일자</th>				
 					<th>가게명</th>				
-					<th style="width: 400px;">내용</th>
+					<th style="height: 20px; width: 400px;">내용</th>
 					<th></th>
 				</tr>
 				<c:forEach var="myReview" items="${myReviewList}">	
