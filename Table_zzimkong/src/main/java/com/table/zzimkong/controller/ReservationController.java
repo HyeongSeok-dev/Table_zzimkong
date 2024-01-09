@@ -9,14 +9,8 @@ import java.util.Random;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -51,8 +45,7 @@ public class ReservationController {
 
 	    // JSON 문자열을 List<MenuVO>로 변환
 	    List<MenuVO> menuList = mapper.readValue(jsonStr, new TypeReference<List<MenuVO>>(){});
-//	    System.out.println("처음리스트" + menuList);
-	    
+	    System.out.println("처음리스트" + menuList);
 	    
 	    res = (ReservationVO) session.getAttribute("res");
 	    NumberFormat numberFormat = NumberFormat.getInstance();
@@ -96,8 +89,7 @@ public class ReservationController {
 	    res.setUser_idx(sIdx);
 	    System.out.println(sIdx);
 	    
-		// 임의의 값 넣어 접근권한 확인
-//		session.setAttribute("sId", "이재환");
+		// sId넣어 접근권한 확인
 		ModelAndView mav; 
 		if(session.getAttribute("sId") == null) {
 			map.put("msg", "로그인 후 사용가능!");
@@ -129,69 +121,54 @@ public class ReservationController {
 	
 	@RequestMapping("reservationPro")
 	public ModelAndView reservationPro(HttpSession session, ReservationVO res, PreOrderVO pre, CompanyVO com, MenuVO menu) {
-		ModelAndView mav;
-	
+//	ModelAndView mav;
 		String alphanumeric = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-        StringBuilder sb = new StringBuilder();
-        Random random = new Random();
-        
-        List<MenuVO> menuList = (List<MenuVO>) session.getAttribute("menuList");
-        
-        System.out.println("cccccccccccc");
-        for (int i = 0; i < 7; i++) {
-            int index = random.nextInt(alphanumeric.length());
-            char randomChar = alphanumeric.charAt(index);
-            sb.append(randomChar);
-        }
-        
-        String res_num = sb.toString();
-        System.out.println(res_num);
-        res.setRes_num(res_num);
-        
-        
-        int insertCount = service.registResvation(res);
-        System.out.println("제발" + res);
-        System.out.println("메뉴!" + menu);
-        
-        res = service.getResIdx(res);
-        System.out.println("플리즈!!!" + res.getRes_idx());
-        
-//        List<MenuVO> menuList = createMenuList();
-        System.out.println("메뉴리스트" + menuList);
-        //pre insert!!!!!!!!!!!!
-        int insertPre = service.getPreOrder(res.getRes_idx(), menuList);
-        System.out.println("선" + pre);
-     
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("res", res);
-        System.out.println("제발!!!!!!" + res);
-        
-        map.put("com", com);
-//        List<MenuVO> menuList = new ArrayList<MenuVO>();
-//        menuList = (List<MenuVO>) map.get("menus");
-//        session.setAttribute("res", res);
-//	    session.setAttribute("menuList", menuList);
-        mav = new ModelAndView("redirect:/payment?res_num="+res.getRes_num());
-		return mav;
+	    StringBuilder sb = new StringBuilder();
+	    Random random = new Random();
+	    
+	    List<MenuVO> menuList = (List<MenuVO>) session.getAttribute("menuList");
+	    
+	    System.out.println("cccccccccccc");
+	    for (int i = 0; i < 7; i++) {
+	        int index = random.nextInt(alphanumeric.length());
+	        char randomChar = alphanumeric.charAt(index);
+	        sb.append(randomChar);
+	    }
+	    
+	    String res_num = sb.toString();
+	    System.out.println(res_num);
+	    res.setRes_num(res_num);
+	    
+	    
+	    int insertCount = service.registResvation(res);
+	    System.out.println("제발" + res);
+	    System.out.println("메뉴!" + menu);
+	    
+	    res = service.getResIdx(res);
+	    System.out.println("플리즈!!!" + res.getRes_idx());
+	    
+//	    List<MenuVO> menuList = createMenuList();
+		System.out.println("메뉴리스트" + menuList);
+		if (menuList != null) {
+			//pre insert!!!!!!!!!!!!
+			int insertPre = service.getPreOrder(res.getRes_idx(), menuList);
+			System.out.println("선" + pre);
+		
+			    Map<String, Object> map = new HashMap<String, Object>();
+			    map.put("res", res);
+			    System.out.println("제발!!!!!!" + res);
+			    
+			    map.put("com", com);
+		//	        List<MenuVO> menuList = new ArrayList<MenuVO>();
+		//	        menuList = (List<MenuVO>) map.get("menus");
+		//	        session.setAttribute("res", res);
+		//		    session.setAttribute("menuList", menuList);
+		}
+		    ModelAndView mav = new ModelAndView("redirect:/payment?res_num="+res.getRes_num());
+		    return mav;
+//		    mav = new ModelAndView("redirect:/payment?res_num="+res.getRes_num());
+//	    return mav;
 	}
-	
-//	@GetMapping("ceo/reservation")
-//	public String ceo_reservation(HttpSession session, Model model, CompanyVO company) {
-//		int sIdx = (Integer)session.getAttribute("sIdx");
-//		List<CompanyVO> storeList = service.getComList(sIdx);
-//		model.addAttribute("storeList", storeList);
-//		
-//		return "ceo/ceo_reservation";
-//	}
-//	
-//	@PostMapping("ceo/reservation/resPro")
-//	public ResponseEntity<?> ceo_reservation_resPro(@RequestBody Map<String, Object> map, HttpSession session, Model model, CompanyVO company) {
-//		company.setCom_id(Integer.parseInt((String)map.get("com_id")));
-//		List<ReservationVO> resInfoList = servicePro.getMenuList(company);
-//		
-//		return ResponseEntity.ok(resInfoList);
-//	}
-	
-	
-
+       
 }
+	

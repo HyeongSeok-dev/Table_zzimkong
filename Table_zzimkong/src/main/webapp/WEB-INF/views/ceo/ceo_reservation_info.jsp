@@ -44,14 +44,16 @@
 <%-- 					<td>${totalPrice.totalPrice}</td> --%>
 				</tr>
 				<tr>
-					<th colspan="4">메뉴</th>
-					<th colspan="3">수량</th>
+					<th colspan="2">메뉴</th>
+					<th colspan="2">수량</th>
+					<th colspan="3">요구사항</th>
 				</tr>
 				    <c:forEach items="${preInfo}" var="preOrder">
 <%-- 				    console.log("${preInfo}"); --%>
 				       <tr>
-				           <td colspan="4">${preOrder.menu_name}</td>
-				           <td colspan="3">${preOrder.pre_num}</td>
+				           <td colspan="2">${preOrder.menu_name}</td>
+				           <td colspan="2">${preOrder.pre_num}</td>
+				           <td colspan="3">${res.res_request}</td>
 				       </tr>
 				   </c:forEach>
 			</table>

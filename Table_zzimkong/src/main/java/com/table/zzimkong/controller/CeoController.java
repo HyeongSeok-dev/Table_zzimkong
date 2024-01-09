@@ -283,70 +283,26 @@ public class CeoController {
 		return "popup_close";
 	}
 	
-//	@GetMapping("ceo/reservation")
-//	public String ceo_reservation(HttpSession session, Model model, @RequestParam(defaultValue = "-1") int com_id, CompanyVO company) {
-//		System.out.println("com" + com_id);
-//		
-//		//로그인 아이디의 업체별 목록 조회
-//		int sIdx = (Integer)session.getAttribute("sIdx");
-//		List<CompanyVO> storeList = service.getComList(sIdx);
-//		model.addAttribute("storeList", storeList);
-//		System.out.println("storeList" + storeList);
-//		
-//		// 페이지가 처음 로딩될때 (com_id -1)이면
-//		if(com_id == -1) {
-//			//목록중 첫번째 가게의 com_id를 변수에 저장
-////			company = storeList.get(0);
-////			com_id = company.getCom_id(); 
-//			
-//			//첫번째 com_id 꺼내서 저장 
-//			com_id = storeList.get(0).getCom_id(); 
-//		}
-//		
-//		//com_id에 해당하는 예약정보 조회 
-//		List<ReservationVO> comResList = service.getResInfoList(com_id);
-//		System.out.println("예약값" + comResList);
-//		//예약이 없을 경우 예외 처리
-//		if(comResList.size()!=0) {
-//			int res_idx = comResList.get(0).getRes_idx();
-//			//당일예약 합계
-//			int resTotal = comResList.size();
-//			System.out.println("예약합계" + resTotal);
-//			//당일 예약 인원수
-//			int totalPersons = comResList.stream()
-//                    .mapToInt(ReservationVO::getRes_person)
-//                    .sum();
-//			
-//			int count = 0;
-//			for (ReservationVO res : comResList) {
-//			    if (res.getRes_status() == 2) {
-//			        count++;
-//			    }
-//			}
-//			
-//			model.addAttribute("count", count);
-//			model.addAttribute("totalPersons", totalPersons);
-//			model.addAttribute("resTotal", resTotal);
-//			model.addAttribute("comResList", comResList);
-//			
-//		}
-//		return "ceo/ceo_reservation";
-//	}
+	
+	
+	//>>>>>>>>>>>>[ceo/reservation]<<<<<<<<<<<<<<<
 	
 	@GetMapping("ceo/reservation")
-	public String ceoReservation(HttpSession session, Model model,  CompanyVO company) {
+	public String ceo_reservation(HttpSession session, Model model,  CompanyVO company) {
 //		//로그인 아이디의 업체별 목록 조회
 		int sIdx = (Integer)session.getAttribute("sIdx");
 		List<CompanyVO> storeList = service.getComList(sIdx);
 		System.out.println("업체별 목록" + storeList);
 		model.addAttribute("storeList", storeList);
 		
+		
+		
 		return "ceo/ceo_reservation";
 	}
 	
 	@ResponseBody
 	@PostMapping("ceo/reservation/resPro")
-	public String ceoReservationResPro( Map<String, Object> map, HttpSession session, Model model, CompanyVO company, @RequestParam int com_id) {
+	public String ceo_reservation_resPro( Map<String, Object> map, HttpSession session, Model model, CompanyVO company, @RequestParam int com_id) {
 		company.setCom_id(com_id);
 //		com_id에 해당하는 예약정보 조회 
 		List<ReservationVO> comResList = service.getResInfoList(com_id);
@@ -384,12 +340,32 @@ public class CeoController {
 	}
 	
 	@GetMapping("ceo/reservation/detail")
-	public String ceoReservationDetail() {
+	public String ceo_reservation_detail(CompanyVO com, Model model) {
+		com = service.getComTimeInfo(com);
+		System.out.println("com" + com);
+		
+		String com_open_time = com.getCom_open_time();
+        String com_close_time = com.getCom_close_time();
+
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("HH:mm");
+        LocalTime openTime = LocalTime.parse(com_open_time, fmt);
+        LocalTime closeTime = LocalTime.parse(com_close_time, fmt);
+        
+        List<String> intervals = new ArrayList<>();
+        while (openTime.isBefore(closeTime)) {
+            openTime = openTime.plusMinutes(30);
+            intervals.add(openTime.format(fmt));
+        }
+        model.addAttribute("intervals", intervals);
+
+        System.out.println(intervals);
+
+		
 		return "ceo/ceo_reservation_detail";
 	}
 	
 	@GetMapping("ceo/reservation/info")	
-	public String ceoReservationInfo(ReservationVO res, Model model, MenuVO menu, HttpSession session, PreOrderInfo poi) {
+	public String ceo_reservation_info(ReservationVO res, Model model, MenuVO menu, HttpSession session, PreOrderInfo poi) {
 		res = service.getResDetailInfo(res);
 		System.out.println("info에서 받는거" + res);
 		model.addAttribute("res", res);
