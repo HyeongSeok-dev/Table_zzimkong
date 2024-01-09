@@ -70,7 +70,12 @@
 				</c:choose>
 				</tr>
 			</c:forEach>
-				<td colspan="4" style="height: 10%;"><p style="font-size:20px; text-align:right; padding-right:30px;"><b>잔여 포인트  :  ${totalPoint} 찜콩</b></p></td>
+				<td colspan="4" style="height: 10%; text-align: right;">
+				    <span style="font-size:20px; padding-right:30px;">
+				        <b>잔여 포인트 : ${totalPoint}<span class="small-text"> 찜콩</span></b>
+				    </span>
+				</td>
+
 		</table>
 						
 

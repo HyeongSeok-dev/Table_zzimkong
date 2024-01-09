@@ -241,7 +241,7 @@ public class MemberController {
 
 	// 아이디 찾기
 	@GetMapping("login/find/id")
-	public String login_find_id(MemberVO member, HttpSession session, Model model) {
+	public String loginFindId(MemberVO member, HttpSession session, Model model) {
 //		System.out.println(member); 
 		
 		return "login/login_find_id";
@@ -259,8 +259,14 @@ public class MemberController {
 			model.addAttribute("msg", "존재하지 않는 이메일입니다.");
 			return "fail_back";
 		} 
-		return "";
+		
+		String auth_code = mailService.sendIdAuthMail(member); // MemberVO 객체 전달 및 이메일 전송 완료
+		service.registMailAuthInfo(member.getUser_email(), auth_code);
+		model.addAttribute("msg", "인증메일이 발송되었습니다. 메일을 확인하세요");
+		return "popup_close";
+
 	}
+
 
 	//비밀번호 찾기
 	@GetMapping("login/find/passwd")
@@ -298,14 +304,16 @@ public class MemberController {
 		boolean isAuthSuccess = service.requestEmailAuth(authInfo);
 		
 		if(isAuthSuccess) { // 성공
-			model.addAttribute("msg", "인증 성공!");
-			model.addAttribute("targetURL", "login");
-			return "forward";
+//			model.addAttribute("msg", "인증 성공!");
+//			model.addAttribute("targetURL", "login");
+			return "login/login_result_id";
 		} else { // 실패 
 			model.addAttribute("msg", "인증 실패!");
 			return "fail_back";
 		}
 	}
+	
+	
 	
 	@GetMapping("MemberPasswdEmailAuth")
 	public String MemberPasswdEmailAuth(MailAuthInfoVO authInfo, HttpSession session, Model model) {
@@ -346,7 +354,7 @@ public class MemberController {
 		if(updateCount > 0) { //성공
 			model.addAttribute("msg", "비밀번호가 변경되었습니다.");
 			model.addAttribute("targetURL", "login");
-			service.removeAuthInfo(authInfo.getUser_id());
+			service.removeAuthInfo(authInfo.getUser_id()); // 이거 호출하라 함
 			return "forward";
 		}else {
 			model.addAttribute("msg", "비밀번호 변경 오류! 인증을 다시 진행하세요");
