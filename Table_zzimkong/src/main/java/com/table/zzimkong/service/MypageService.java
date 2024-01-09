@@ -31,14 +31,19 @@ public class MypageService {
 		return mapper.selectUserNick(mypage);
 	}
 	
-	// 예약 내역 목록 간략히 보기(my_list.jsp)
+	// 예약 내역 조회 요청 (my_list.jsp에서 3개)
 	public List<Map<String, Object>> getResList(int sIdx) {
 		return mapper.selectResList(sIdx);
 	}
 	
-	 // 예약 내역 목록 상세 보기
+	 // 예약 내역 조회 요청
 	public List<Map<String, Object>> getResList2(int sIdx) {
 		return mapper.selectResList2(sIdx);
+	}
+	
+	// 예약 내역 전체 개수 조회 요청
+	public int getResList2Count() {
+		return mapper.selectResList2Count();
 	}
 	
 	// 예약 취소하기
@@ -92,6 +97,7 @@ public class MypageService {
 		
 		return mapper.selectTotalPoint(point);
 	}
+
 	
 
 

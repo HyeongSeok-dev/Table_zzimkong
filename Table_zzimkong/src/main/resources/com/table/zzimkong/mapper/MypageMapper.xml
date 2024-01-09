@@ -56,6 +56,12 @@
 		ORDER BY res_date ASC, res_time ASC
 	</select>
 	
+	<!-- 예약내역 전체 개수 조회  -->
+	<select id="selectResList2Count" resultType="int">
+		SELECT COUNT(*)
+		FROM mypage_view
+	</select>
+	
 	<!-- 예약취소버튼 클릭시 취소 - UPDATE -->
 	<update id="updateMyResCancel">
 		UPDATE reservation 

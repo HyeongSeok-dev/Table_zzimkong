@@ -26,6 +26,9 @@ public interface MypageMapper {
 	// 예약 내역 모두 조회
 	List<Map<String, Object>> selectResList2(@Param("sIdx") int sIdx);
 	
+	// 예약 내역 전체 개수 조회
+	int selectResList2Count();
+
 	// 예약 취소
 	int updateMyResCancel(MypageInfo mypage);
 	
@@ -55,6 +58,7 @@ public interface MypageMapper {
 	
 	// 포인트 총점
 	int selectTotalPoint(PointVO point);
+	
 	
 	
 

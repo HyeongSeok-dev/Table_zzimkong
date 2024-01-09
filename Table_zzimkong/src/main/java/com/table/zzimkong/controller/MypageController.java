@@ -27,6 +27,7 @@ public class MypageController {
 	// [ 회원정보 조회 ]
 	@GetMapping("my/modify/profile")
 	public String my_modify_profile(MypageInfo mypage, HttpSession session, Model model) {
+		
 		String sId = (String) session.getAttribute("sId");
 		if(sId == null) {
 			model.addAttribute("msg", "잘못된 접근입니다.");
@@ -47,7 +48,7 @@ public class MypageController {
 		model.addAttribute("mypage", dbMypage);
 		System.out.println("dbMypage : " + dbMypage);
 		
-		
+
 		// 회원정보 조회 페이지 포워딩
 		return "mypage/my_modify_profile";
 		
@@ -138,6 +139,7 @@ public class MypageController {
 		    if (mypage.getUser_passwd() != null && !mypage.getUser_passwd().equals("")) { 
 		        // 입력된 비밀번호와 DB에 저장된 비밀번호를 비교
 		        if (!passwordEncoder.matches(mypage.getUser_passwd(), dbMypage.getUser_passwd())) {
+		            session.setAttribute("msg", null); // 세션의 "msg" 속성을 null로 설정
 		            model.addAttribute("msg", "현재 비밀번호가 틀렸습니다.");
 		            passwordValidation = false; // 비밀번호가 틀린 경우 passwordValidation을 false로 변경
 		        }
@@ -146,16 +148,17 @@ public class MypageController {
 
 		// passwordValidation이 true인 경우에만 회원 정보 수정 로직 실행
 		if (passwordValidation) {
-			// 새 패스워드를 입력받았을 경우 BCryptPasswordEncoder 클래스를 활용하여 암호화 처리
-			if (user_passwd1 != null && !user_passwd1.equals("")) {
-				// 새로운 비밀번호와 현재 비밀번호가 동일한지 체크
-				if (passwordEncoder.matches(user_passwd1, dbMypage.getUser_passwd())) {
-					model.addAttribute("msg", "새 비밀번호가 현재 비밀번호와 동일합니다.");
-					return "fail_back";
-				}
-				user_passwd1 = passwordEncoder.encode(user_passwd1);
-				mypage.setUser_passwd(user_passwd1);
-			}
+		    // 새 패스워드를 입력받았을 경우 BCryptPasswordEncoder 클래스를 활용하여 암호화 처리
+		    if (user_passwd1 != null && !user_passwd1.equals("")) {
+		        // 새로운 비밀번호와 현재 비밀번호가 동일한지 체크
+		        if (passwordEncoder.matches(user_passwd1, dbMypage.getUser_passwd())) {
+		            session.setAttribute("msg", null); // 세션의 "msg" 속성을 null로 설정
+		            model.addAttribute("msg", "새 비밀번호가 현재 비밀번호와 동일합니다.");
+		            return "fail_back";
+		        }
+		        user_passwd1 = passwordEncoder.encode(user_passwd1);
+		        mypage.setUser_passwd(user_passwd1);
+		    }
 
 		    try {
 		        // MypageService - modifyMypage() 메서드 호출하여 회원 정보 수정 요청
@@ -187,6 +190,7 @@ public class MypageController {
 		} else { // 비밀번호 검증이 실패한 경우
 		    return "fail_back";
 		}
+
 
 	}
 	
@@ -233,14 +237,42 @@ public class MypageController {
 	
 	//----------------나의 예약 더보기 페이지--------------------
 	@GetMapping("my/reservation")
-	public String my_reservation(MypageInfo mypage, HttpSession session, Model model, HttpServletResponse response)	{
+	public String my_reservation(@RequestParam(defaultValue = "1") int pageNum, 
+			MypageInfo mypage, HttpSession session, Model model, HttpServletResponse response)	{
 		
 		int sIdx = (int)session.getAttribute("sIdx"); //세션 인덱스 가져오기
-		List<Map<String, Object>> resList2 = service.getResList2(sIdx);
 				
 		// Model 객체에 회원 목록 조회 결과 저장(resList2 문자열을 "resList2"라는 속성명으로 저장)
+//		model.addAttribute("resList2", resList2);
+		
+//		// 페이징 처리를 위해 조회 목록 갯수 조절 시 사용될 변수 선언
+		int listLimit = 10;
+		int startRow = (pageNum - 1) * listLimit;
+		
+//		// BoardService - getResList2() 메서드 호출하여 게시물 목록 조회 요청
+//		// => 파라미터 : 검색타입, 검색어, 시작행번호, 게시물 목록갯수
+//		// => 리턴타입 : List<Map<String, Object>>(resList2)
+		List<Map<String, Object>> resList2 = service.getResList2(sIdx);
+//		// --------------------------------------------------------------------
+//		// 검색된 예약 내역의 수를 바탕으로 페이지네이션 생성
+//		// BoardService - getBoardListCount() 메서드 호출하여 전체 게시물 목록 갯수 조회 요청
+//		// => 파라미터 : 검색타입, 검색어
+//		// => 리턴타입 : int(listCount)
+		int listCount = service.getResList2Count();
+		int pageListLimit = 3; // 임시) 페이지 당 페이지 번호 갯수를 3개로 지정
+		int maxPage = listCount / listLimit + (listCount % listLimit > 0 ? 1 : 0);
+		int startPage = (pageNum - 1) / pageListLimit * pageListLimit + 1;
+		int endPage = startPage + pageListLimit - 1;
+		if(endPage > maxPage) {
+			endPage = maxPage;
+		}
+		
+		PageInfo pageInfo = new PageInfo(listCount, pageListLimit, maxPage, startPage, endPage);
+		
+		// 게시물 목록과 페이징 정보 저장
 		model.addAttribute("resList2", resList2);
-
+		model.addAttribute("pageInfo", pageInfo);
+		
 		return "mypage/my_reservation";
 	}
 	
