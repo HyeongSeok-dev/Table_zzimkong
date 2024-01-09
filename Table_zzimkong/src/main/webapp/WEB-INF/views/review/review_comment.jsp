@@ -125,7 +125,8 @@ function confirmReplyDelete(comment_num,review_num) {
 						id="replyTr_${tinyReplyReview.comment_num}">
 						<td class="replyWriter"><img
 							src="${pageContext.request.contextPath}/resources/img/profile.png"
-							alt="댓글프로필이미지" class="user_icon" />${tinyReplyReview.user_id}</td>
+<%-- 							alt="댓글프로필이미지" class="user_icon" />${tinyReplyReview.user_id}</td> --%>
+							alt="댓글프로필이미지" class="user_icon" />${tinyReplyReview.user_nick}</td>
 						<td class="replyDate" align="right"><fmt:parseDate
 								var="parsedReplyDate" value="${tinyReplyReview.comment_update}"
 								pattern="yyyy-MM-dd'T'HH:mm" type="both" /> <fmt:formatDate
