@@ -253,37 +253,15 @@ public class MemberController {
 		member.setUser_email(member.getUser_email1() + "@" + member.getUser_email2());
 		System.out.println(member); // email 두개 결합 잘 되었나 확인
 		
-		MemberVO dbMember = service.getUserEmail(member);
+		MemberVO dbMember = service.getValidMember(member);
 		
 		if(dbMember == null) { // 이메일이 없음
 			model.addAttribute("msg", "존재하지 않는 이메일입니다.");
 			return "fail_back";
-		} else { // 이메일 존재
-			
-		}
+		} 
 		return "";
 	}
-	
-	@GetMapping("MemberEmailAuth")
-	public String MemberEmailAuth(MailAuthInfoVO authInfo, HttpSession session, Model model) {
-		
-//		MailAuthInfoVO authinfo
-		System.out.println("authInfo : " + authInfo);
-		
-		// MemberService - requestEmailAuth() 메서드 호출하여 인증 요청
-		// => 파라미터 : MailAuthInfoVO 객체   리턴타입 : boolean(isAuthSuccess)
-		boolean isAuthSuccess = service.requestEmailAuth(authInfo);
-		
-		if(isAuthSuccess) { // 성공
-			model.addAttribute("msg", "인증 성공! 로그인 페이지로 이동합니다!");
-			model.addAttribute("targetURL", "login");
-			return "forward";
-		} else { // 실패 
-			model.addAttribute("msg", "인증 실패!");
-			return "fail_back";
-		}
-	}
-	
+
 	//비밀번호 찾기
 	@GetMapping("login/find/passwd")
 	public String login_find_passwd() {
@@ -296,18 +274,84 @@ public class MemberController {
 		
 		member.setUser_email(member.getUser_email1()+"@"+member.getUser_email2());
 		
-		MemberVO dbMember = service.getMember(member);
+		MemberVO dbMember = service.getValidMember(member);
 		
-		if(dbMember == null) { // 이메일이 없음
+		if(dbMember == null) {
 			model.addAttribute("msg", "존재하지 않는 회원입니다.");
 			return "fail_back";
 		}
 		
 		String auth_code = mailService.sendPasswdAuthMail(member); // MemberVO 객체 전달
-		service.registPasswdMailAuthInfo(member.getUser_id(), auth_code);
-
+		service.registMailAuthInfo(member.getUser_id(), auth_code);
+		model.addAttribute("msg", "인증메일이 발송되었습니다. 메일을 확인하세요");
+		return "popup_close";
+	}
+	
+	@GetMapping("MemberIdEmailAuth")
+	public String MemberIdEmailAuth(MailAuthInfoVO authInfo, HttpSession session, Model model) {
 		
-		return "";
+//		MailAuthInfoVO authinfo
+		System.out.println("authInfo : " + authInfo);
+		
+		// MemberService - requestEmailAuth() 메서드 호출하여 인증 요청
+		// => 파라미터 : MailAuthInfoVO 객체   리턴타입 : boolean(isAuthSuccess)
+		boolean isAuthSuccess = service.requestEmailAuth(authInfo);
+		
+		if(isAuthSuccess) { // 성공
+			model.addAttribute("msg", "인증 성공!");
+			model.addAttribute("targetURL", "login");
+			return "forward";
+		} else { // 실패 
+			model.addAttribute("msg", "인증 실패!");
+			return "fail_back";
+		}
+	}
+	
+	@GetMapping("MemberPasswdEmailAuth")
+	public String MemberPasswdEmailAuth(MailAuthInfoVO authInfo, HttpSession session, Model model) {
+		
+//		MailAuthInfoVO authinfo
+		System.out.println("authInfo : " + authInfo);
+		
+		// MemberService - requestEmailAuth() 메서드 호출하여 인증 요청
+		// => 파라미터 : MailAuthInfoVO 객체   리턴타입 : boolean(isAuthSuccess)
+		boolean isAuthSuccess = service.requestEmailAuth(authInfo);
+		System.out.println("불린값" + isAuthSuccess);
+		if(isAuthSuccess) { // 성공
+			model.addAttribute("authInfo", authInfo);
+			return "login/login_update_passwd";
+		} else { // 실패 
+			model.addAttribute("msg", "인증 실패!");
+			return "fail_back";
+		}
+	}
+	
+	@PostMapping("updatePasswdPro")
+	public String updatePasswdPro(MemberVO member, HttpSession session, Model model, MailAuthInfoVO authInfo) {
+		
+		MailAuthInfoVO dbAuthInfo = service.getAuthInfo(authInfo);
+		
+		System.out.println(member);
+		System.out.println(authInfo);
+		if(dbAuthInfo == null) {
+			model.addAttribute("msg", "잘못된 접근입니다!");
+			return "fail_back";
+		}
+		
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		String securePasswd = passwordEncoder.encode(member.getUser_passwd());
+		member.setUser_passwd(securePasswd);
+		
+		int updateCount = service.updatePasswd(member);
+		if(updateCount > 0) { //성공
+			model.addAttribute("msg", "비밀번호가 변경되었습니다.");
+			model.addAttribute("targetURL", "login");
+			service.removeAuthInfo(authInfo.getUser_id());
+			return "forward";
+		}else {
+			model.addAttribute("msg", "비밀번호 변경 오류! 인증을 다시 진행하세요");
+			return "fail_back";
+		}
 	}
 	
 		

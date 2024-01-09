@@ -18,19 +18,22 @@ public interface MemberMapper {
 	//업주회원가입
 	int insertCeoMember(MemberVO member);
 	
-	//아이디 찾기
-	MemberVO selectUserEmail(MemberVO member);
+	//정보찾기
+	MemberVO selectValidMember(MemberVO member);
 
-	MailAuthInfoVO selectMailAuthInfo(String user_id);
+	MailAuthInfoVO selectMailAuthInfo(String param);
 
-	void insertMailAuthInfo(@Param("user_id") String user_id, @Param("auth_code")String auth_code);
+	void insertMailAuthInfo(@Param("param") String param, @Param("auth_code")String auth_code);
 
-	void updateMailAuthInfo(@Param("user_id") String user_id, @Param("auth_code")String auth_code);
+	void updateMailAuthInfo(@Param("param") String param, @Param("auth_code")String auth_code);
 
-	void updateMailAuthStatus(String user_id);
-	
 	// 기존 인증정보 삭제
-	void deleteMailAuthInfo(String user_id);
+	void deleteMailAuthInfo(String param);
+
+	int updatePasswd(MemberVO member);
+
+	MailAuthInfoVO selectVailidMailAuthInfo(MailAuthInfoVO authInfo);
+
 
 
 	

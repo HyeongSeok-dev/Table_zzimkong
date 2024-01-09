@@ -37,7 +37,6 @@
         <div class="nmLoginWrap">
           <div class="loginBox">
             <form id="loginForm" method="POST" action="MemberJoinPro"  name="joinForm">
-              <input type="hidden" name="URL" value="https://www.ahnlab.com/kr/site/login/userLogin.do">
 <!--               <input type="hidden" name="fromUrl" value=""> -->
 <!--               <input type="hidden" name="brandId" value=""> -->
               
@@ -70,7 +69,7 @@
 	                <input type="text" id="u_email" name="user_email1" class="inputTxt inpBig" placeholder="이메일" onkeydown="eventObj.loginByEnterKey(event)" maxlength="16" autocomplete="false">
 	                <span id="at">@</span>
 	                
-					<input type="text" id="customEmail" class="inputTxt inpBig" name="user_email2" style="display:none;" placeholder="이메일을 입력하세요">
+					<input type="text" id="customEmail" class="inputTxt inpBig" name="user_email2" style="display:none;" placeholder="이메일을 입력하세요" disabled="disabled">
 					&nbsp;&nbsp;
 					<select id="u_email2" name="user_email2" class="inputTxt inpBig" onchange="checkOption(this)">
 				  <option value="">선택하세요</option>

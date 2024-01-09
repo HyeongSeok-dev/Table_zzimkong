@@ -4,8 +4,10 @@ document.addEventListener('DOMContentLoaded', function() {
     var inputBox = document.getElementById('customEmail');
     if(this.value === "custom") {
       inputBox.style.display = "block";
+      document.getElementById('customEmail').removeAttribute('disabled');
     } else {
       inputBox.style.display = "none";
+      document.getElementById('customEmail').setAttribute('disabled', 'disabled');
     }
   });
 });
