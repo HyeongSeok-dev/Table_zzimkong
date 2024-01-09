@@ -40,9 +40,9 @@ public class ProductService {
 		return mapper.selectReservationInfo(search, comId);
 	}
 
-	public List<ReservationVO> getVisitedPeople(int user_idx) {
+	public List<ReservationVO> getVisitedPeople(int user_idx, int com_id) {
 		// TODO Auto-generated method stub
-		return mapper.selectVisitedPeople(user_idx);
+		return mapper.selectVisitedPeople(user_idx, com_id);
 	}
 
 	public List<CompanyVO> getsimilarCompanyList(String sort, CompanyVO company, List<String> tagList, List<String> individualTags) {
