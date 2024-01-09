@@ -34,6 +34,13 @@ public interface MemberMapper {
 
 	MailAuthInfoVO selectVailidMailAuthInfo(MailAuthInfoVO authInfo);
 
+	void selectIdAuthInfo(MailAuthInfoVO authInfo);
+
+	MemberVO selectIdAuth(MailAuthInfoVO authInfo);
+
+
+
+
 
 
 	

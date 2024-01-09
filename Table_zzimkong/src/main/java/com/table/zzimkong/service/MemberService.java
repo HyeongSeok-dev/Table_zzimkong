@@ -46,6 +46,7 @@ public class MemberService {
 		MailAuthInfoVO authInfo = mapper.selectMailAuthInfo(param);
 		System.out.println("authInfo : " + authInfo);
 		
+		
 		// 기존 인증 정보 존재 여부 판별
 		if(authInfo == null) { // 기존 인증정보 존재하지 않을 경우 => 새 인증정보 추가(INSERT)
 			// MemberMapper - insertMailAuthInfo() 메서드 호출하여 새 인증정보 추가
@@ -108,6 +109,16 @@ public class MemberService {
 		// TODO Auto-generated method stub
 		mapper.deleteMailAuthInfo(user_id);
 	}
+
+
+	public MemberVO requestIdAuth(MailAuthInfoVO authInfo) {
+		// TODO Auto-generated method stub
+		 return mapper.selectIdAuth(authInfo);
+	}
+
+
+	
+	
 
 
 
