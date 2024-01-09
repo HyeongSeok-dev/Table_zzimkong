@@ -537,7 +537,7 @@ public class AdminController {
 		// -------------------
 		System.out.println(board);
 		
-		
+		/**/
 		MultipartFile mFile1 = board.getMFile1();
 		MultipartFile mFile2 = board.getMFile2();
 		MultipartFile mFile3 = board.getMFile3();
