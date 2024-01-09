@@ -122,7 +122,6 @@ public class ReviewController {
         int likeCount = service.getLikeCount(comId);
         model.addAttribute("likeCount", likeCount);
         
-        
         model.addAttribute("reviews", reviews);
         
         return "review/review_detail";

@@ -173,7 +173,6 @@
 			<section id="commandCell">
 			<button class="register_button" onclick="location.href='${pageContext.request.contextPath}/review/complete?com_id=${com_id}'">등록하기</button>
 <%-- 		    <a href="${pageContext.request.contextPath}/review/write?com_id=${param.com_id}"><i class="fas fa-pencil-alt"></i> &nbsp;리뷰쓰기</a> --%>
-			
 			</section>
 		</div>
 	</form>
