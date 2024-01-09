@@ -36,7 +36,7 @@ public class CsController {
 	private CsService service;
 
 	@GetMapping("ceo/cs/faq")
-	public String ceo_cs_faq(CsVO board, Model model, HttpSession session, MemberVO member) {
+	public String ceoCsFaq(CsVO board, Model model, HttpSession session, MemberVO member) {
 		
 		if(session.getAttribute("sIdx") == null) {
 			model.addAttribute("msg", "잘못된 접근입니다.");
@@ -58,7 +58,7 @@ public class CsController {
 	}
 	
 	@GetMapping("ceo/cs/faq/view")
-	public String ceo_cs_faq_view(CsVO board, Model model, HttpSession session, MemberVO member) {
+	public String ceoCsFaqView(CsVO board, Model model, HttpSession session, MemberVO member) {
 		
 		if(session.getAttribute("sIdx") == null) {
 			model.addAttribute("msg", "잘못된 접근입니다.");
@@ -80,7 +80,7 @@ public class CsController {
 	}
 	
 	@GetMapping("ceo/cs/notice")
-	public String ceo_cs_notice(CsVO board, Model model, HttpSession session, MemberVO member) {
+	public String ceoCsNotice(CsVO board, Model model, HttpSession session, MemberVO member) {
 		
 		if(session.getAttribute("sIdx") == null) {
 			model.addAttribute("msg", "잘못된 접근입니다.");
@@ -103,7 +103,7 @@ public class CsController {
 	}
 	
 	@GetMapping("ceo/cs/notice/view")
-	public String ceo_cs_notice_view(CsVO board, Model model, HttpSession session, MemberVO member) {
+	public String ceoCsNoticeView(CsVO board, Model model, HttpSession session, MemberVO member) {
 		
 		if(session.getAttribute("sIdx") == null) {
 			model.addAttribute("msg", "잘못된 접근입니다.");
@@ -125,7 +125,7 @@ public class CsController {
 	}
 	
 	@GetMapping("ceo/cs/qna/modify")
-	public String ceo_cs_qna_modify(CsVO board, Model model, HttpSession session, MemberVO member) {
+	public String ceoCsQnaModify(CsVO board, Model model, HttpSession session, MemberVO member) {
 		
 		if(session.getAttribute("sIdx") == null) {
 			model.addAttribute("msg", "잘못된 접근입니다.");
@@ -155,7 +155,7 @@ public class CsController {
 	}
 	
 	@PostMapping("ceo/cs/qna/modifyPro")
-	public String ceo_cs_qna_modifyPro(CsVO board, Model model, HttpSession session, MemberVO member) {
+	public String ceoCsQnaModifyPro(CsVO board, Model model, HttpSession session, MemberVO member) {
 		
 		if(session.getAttribute("sIdx") == null) {
 			model.addAttribute("msg", "잘못된 접근입니다.");
@@ -284,7 +284,7 @@ public class CsController {
 	}
 	
 	@GetMapping("ceo/cs/qna/register")
-	public String ceo_cs_qna_register(CsVO board, Model model, HttpSession session, MemberVO member) {
+	public String ceoCsQnaRegister(CsVO board, Model model, HttpSession session, MemberVO member) {
 		
 		if(session.getAttribute("sIdx") == null) {
 			model.addAttribute("msg", "잘못된 접근입니다.");
@@ -306,7 +306,7 @@ public class CsController {
 	}
 	
 	@PostMapping("ceo/cs/qna/registerPro")
-	public String ceo_cs_qna_registerPro(CsVO board, Model model, HttpSession session, MemberVO member) {
+	public String ceoCsQnaRegisterPro(CsVO board, Model model, HttpSession session, MemberVO member) {
 		
 		if(session.getAttribute("sIdx") == null) {
 			model.addAttribute("msg", "잘못된 접근입니다.");
@@ -413,7 +413,7 @@ public class CsController {
 	}
 	
 	@GetMapping("ceo/cs/qna/view")
-	public String ceo_cs_qna_view(CsVO board, Model model, HttpSession session, MemberVO member) {
+	public String ceoCsQnaView(CsVO board, Model model, HttpSession session, MemberVO member) {
 		
 		if(session.getAttribute("sIdx") == null) {
 			model.addAttribute("msg", "잘못된 접근입니다.");
@@ -454,7 +454,7 @@ public class CsController {
 	}
 	
 	@GetMapping("ceo/cs/qna")
-	public String ceo_cs_qna(CsVO board, Model model, HttpSession session, MemberVO member) {
+	public String ceoCsQna(CsVO board, Model model, HttpSession session, MemberVO member) {
 		
 		if(session.getAttribute("sIdx") == null) {
 			model.addAttribute("msg", "잘못된 접근입니다.");
@@ -477,7 +477,7 @@ public class CsController {
 	
 	
 	@GetMapping("ceo/cs/qna/delete")
-	public String ceo_cs_qna_delete(CsVO board, Model model, HttpSession session, MemberVO member) {
+	public String ceoCsQnaDelete(CsVO board, Model model, HttpSession session, MemberVO member) {
 		
 		if(session.getAttribute("sIdx") == null) {
 			model.addAttribute("msg", "잘못된 접근입니다.");
@@ -513,7 +513,7 @@ public class CsController {
 	
 	
 	@GetMapping("member/cs/faq")
-	public String member_cs_faq(CsVO board, Model model, HttpSession session, MemberVO member) {
+	public String memberCsFaq(CsVO board, Model model, HttpSession session, MemberVO member) {
 		
 		member.setUser_category(1);
 		int boardCategory = 2;
@@ -525,7 +525,7 @@ public class CsController {
 	}
 	
 	@GetMapping("member/cs/faq/view")
-	public String member_cs_faq_view(CsVO board, Model model, HttpSession session, MemberVO member) {
+	public String memberCsFaqView(CsVO board, Model model, HttpSession session, MemberVO member) {
 		
 		board = service.getBoardDetail(board);
 		
@@ -535,7 +535,7 @@ public class CsController {
 	}
 	
 	@GetMapping("member/cs/notice")
-	public String member_cs_notice(CsVO board, Model model, HttpSession session, MemberVO member) {
+	public String memberCsNotice(CsVO board, Model model, HttpSession session, MemberVO member) {
 		
 		member.setUser_category(1);
 		int boardCategory = 1;
@@ -547,7 +547,7 @@ public class CsController {
 	}
 	
 	@GetMapping("member/cs/notice/view")
-	public String member_cs_notice_view(CsVO board, Model model, HttpSession session, MemberVO member) {
+	public String memberCsNoticeView(CsVO board, Model model, HttpSession session, MemberVO member) {
 		
 		board = service.getBoardDetail(board);
 		
@@ -557,7 +557,7 @@ public class CsController {
 	}
 	
 	@GetMapping("member/cs/qna/modify")
-	public String member_cs_qna_modify(CsVO board, Model model, HttpSession session, MemberVO member) {
+	public String memberCsQnaModify(CsVO board, Model model, HttpSession session, MemberVO member) {
 		
 		if(session.getAttribute("sIdx") == null) {
 			model.addAttribute("msg", "로그인이 필요합니다!");
@@ -573,7 +573,7 @@ public class CsController {
 	}
 
 	@PostMapping("member/cs/qna/modifyPro")
-	public String member_cs_qna_modifyPro(CsVO board, Model model, HttpSession session, MemberVO member) {
+	public String memberCsQnaModifyPro(CsVO board, Model model, HttpSession session, MemberVO member) {
 		
 		if(session.getAttribute("sIdx") == null) {
 			model.addAttribute("msg", "로그인이 필요합니다!");
@@ -698,7 +698,7 @@ public class CsController {
 	
 	
 	@GetMapping("member/cs/qna/register")
-	public String member_cs_qna_register(CsVO board, Model model, HttpSession session, MemberVO member) {
+	public String memberCsQnaRegister(CsVO board, Model model, HttpSession session, MemberVO member) {
 		
 		if(session.getAttribute("sIdx") == null) {
 			model.addAttribute("msg", "로그인이 필요합니다!");
@@ -717,7 +717,7 @@ public class CsController {
 	
 	
 	@PostMapping("member/cs/qna/registerPro")
-	public String member_cs_qna_registerPro(CsVO board, Model model, HttpSession session, MemberVO member) {
+	public String memberCsQnaRegisterPro(CsVO board, Model model, HttpSession session, MemberVO member) {
 		
 		if(session.getAttribute("sIdx") == null) {
 			model.addAttribute("msg", "로그인이 필요합니다!");
@@ -824,7 +824,7 @@ public class CsController {
 	
 	
 	@GetMapping("member/cs/qna")
-	public String member_cs_qna(CsVO board, Model model, HttpSession session, MemberVO member) {
+	public String memberCsQna(CsVO board, Model model, HttpSession session, MemberVO member) {
 		
 		if(session.getAttribute("sIdx") == null) {
 			model.addAttribute("msg", "로그인이 필요합니다!");
@@ -845,7 +845,7 @@ public class CsController {
 	}
 	
 	@GetMapping("member/cs/qna/view")
-	public String member_cs_qna_view(CsVO board, Model model, HttpSession session, MemberVO member) {
+	public String memberCsQnaView(CsVO board, Model model, HttpSession session, MemberVO member) {
 		
 		if(session.getAttribute("sIdx") == null) {
 			model.addAttribute("msg", "로그인이 필요합니다!");
@@ -882,7 +882,7 @@ public class CsController {
 	}
 	
 	@GetMapping("member/cs/qna/delete")
-	public String member_cs_qna_delete(CsVO board, Model model, HttpSession session, MemberVO member) {
+	public String memberCsQnaDelete(CsVO board, Model model, HttpSession session, MemberVO member) {
 		
 		if(session.getAttribute("sIdx") == null) {
 			model.addAttribute("msg", "로그인이 필요합니다!");

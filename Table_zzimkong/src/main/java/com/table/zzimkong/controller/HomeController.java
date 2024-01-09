@@ -137,21 +137,8 @@ public class HomeController {
 //		return "review/review_comment";
 //	}
 
-
-	
-	@GetMapping("top2")
-	public String top2() {
-		return "inc/top2";
-	}
-	
-	@GetMapping("top2/searchbar")
-	public String top2_search_bar() {
-		return "inc/top2_search_bar";
-	}
-
-
 	@GetMapping("fail_back")
-	public String fail_back(Model model) {
+	public String failBack(Model model) {
 		model.addAttribute("msg", "잘못된 접근입니다.");
 		return "fail_back";
 	}

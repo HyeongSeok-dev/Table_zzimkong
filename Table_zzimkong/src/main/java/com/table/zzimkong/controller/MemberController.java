@@ -27,32 +27,32 @@ public class MemberController {
 	}
 	
 	@GetMapping("join/ceo")
-	public String join_ceo() {
+	public String joinCeo() {
 		return "join/join_ceo";
 	}
 	
 	@GetMapping("join/choice")
-	public String join_choice() {
+	public String joinChoice() {
 		return "join/join_choice";
 	}
 	
 	@GetMapping("join/complete")
-	public String join_complete() {
+	public String joinComplete() {
 		return "join/join_complete";
 	}
 	
 	@GetMapping("join/agree")
-	public String join_agree() {
+	public String joinAgree() {
 		return "join/join_agree";
 	}
 	
 	@GetMapping("my/complet")
-	public String my_complet() {
+	public String myComplet() {
 		return "mypage/my_complet";
 	}
 	
 	@GetMapping("join/unregister")
-	public String join_unregister() {
+	public String joinUnregister() {
 		return "join/join_unregister";
 	}
 	
@@ -241,14 +241,14 @@ public class MemberController {
 
 	// 아이디 찾기
 	@GetMapping("login/find/id")
-	public String login_find_id(MemberVO member, HttpSession session, Model model) {
+	public String loginFindId(MemberVO member, HttpSession session, Model model) {
 //		System.out.println(member); 
 		
 		return "login/login_find_id";
 	}
 	
 	@PostMapping("login/find/idPro")
-	public String login_find_idPro(MemberVO member, HttpSession session, Model model) {
+	public String loginFindIdPro(MemberVO member, HttpSession session, Model model) {
 		System.out.println(member); // form action 값 잘 넘어왔는지 찍어보기
 		member.setUser_email(member.getUser_email1() + "@" + member.getUser_email2());
 		System.out.println(member); // email 두개 결합 잘 되었나 확인
@@ -264,12 +264,12 @@ public class MemberController {
 
 	//비밀번호 찾기
 	@GetMapping("login/find/passwd")
-	public String login_find_passwd() {
+	public String loginFindPasswd() {
 		return "login/login_find_passwd";
 	}
 	
 	@PostMapping("login/find/passwdPro")
-	public String login_find_passwdPro(MemberVO member, HttpSession session, Model model) {
+	public String loginFindPasswdPro(MemberVO member, HttpSession session, Model model) {
 		System.out.println(member);
 		
 		member.setUser_email(member.getUser_email1()+"@"+member.getUser_email2());

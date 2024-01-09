@@ -501,7 +501,7 @@ public class AdminController {
 	
 	// 관리자 페이지 - 고객센터 : 공지사항 글 수정
 	@GetMapping("admin/cs/notice/modify")
-	public String admin_cs_notice_modify(CsVO board, HttpSession session, Model model, HttpServletResponse response) {
+	public String adminCsNoticeModify(CsVO board, HttpSession session, Model model, HttpServletResponse response) {
 		// 관리자 페이지 접근 제한
 		if (!isvalid(session, model, response)) return null;
 		
@@ -513,7 +513,7 @@ public class AdminController {
 	}
 	
 	@PostMapping("admin/cs/notice/modifyPro")
-	public String admin_cs_notice_modifyPro(CsVO board, HttpSession session, Model model, HttpServletResponse response) {
+	public String adminCsNoticeModifyPro(CsVO board, HttpSession session, Model model, HttpServletResponse response) {
 		// 관리자 페이지 접근 제한
 		if (!isvalid(session, model, response)) return null;
 		
@@ -624,7 +624,7 @@ public class AdminController {
 
 	// 관리자 페이지 - 고객센터 : 자주묻는질문 목록 조회
 	@GetMapping("admin/cs/faq")
-	public String admin_cs_faq(HttpSession session, Model model, HttpServletResponse response, CsVO board) {
+	public String adminCsFaq(HttpSession session, Model model, HttpServletResponse response, CsVO board) {
 		// 관리자 페이지 접근 제한
 		if (!isvalid(session, model, response)) return null;
 		
@@ -641,7 +641,7 @@ public class AdminController {
 	
 	// 관리자 페이지 - 고객센터 : 자주묻는질문 글 수정
 	@GetMapping("admin/cs/faq/modify")
-	public String admin_cs_faq_modify(CsVO board,HttpSession session, Model model, HttpServletResponse response) {
+	public String adminCsFaqModify(CsVO board,HttpSession session, Model model, HttpServletResponse response) {
 		// 관리자 페이지 접근 제한
 		if (!isvalid(session, model, response)) return null;
 				
@@ -654,7 +654,7 @@ public class AdminController {
 	}
 	
 	@GetMapping("admin/cs/delete")
-	public String admin_cs_delete(CsVO board,HttpSession session, Model model, HttpServletResponse response) {
+	public String adminCsDelete(CsVO board,HttpSession session, Model model, HttpServletResponse response) {
 		// 관리자 페이지 접근 제한
 		if (!isvalid(session, model, response)) return null;
 		
@@ -674,7 +674,7 @@ public class AdminController {
 	
 	// 관리자 페이지 - 고객센터 : 1:1 문의 조회 - 했음
 	@GetMapping("admin/cs/qna")
-	public String admin_cs_qna(HttpSession session, Model model, HttpServletResponse response, CsVO board) {
+	public String adminCsQna(HttpSession session, Model model, HttpServletResponse response, CsVO board) {
 		// 관리자 페이지 접근 제한
 		if (!isvalid(session, model, response)) return null;
 		
@@ -687,7 +687,7 @@ public class AdminController {
 	}
 	
 	@PostMapping("admin/cs/qna/answer/register")
-	public String admin_cs_qna_answer_register(HttpSession session, Model model, HttpServletResponse response, CsVO board) {
+	public String adminCsQnaAnswerRegister(HttpSession session, Model model, HttpServletResponse response, CsVO board) {
 		// 관리자 페이지 접근 제한
 		if (!isvalid(session, model, response)) return null;
 		
@@ -699,7 +699,7 @@ public class AdminController {
 	}
 	
 	@PostMapping("admin/cs/qna/answer/registerPro")
-	public String admin_cs_qna_answer_registerPro(HttpSession session, Model model, HttpServletResponse response, CsVO board) {
+	public String adminCsQnaAnswerRegisterPro(HttpSession session, Model model, HttpServletResponse response, CsVO board) {
 		// 관리자 페이지 접근 제한
 		if (!isvalid(session, model, response)) return null;
 		String uploadDir = "/resources/upload"; // 가상의 경로(이클립스 프로젝트 상에 생성한 경로)
@@ -788,7 +788,7 @@ public class AdminController {
 	}
 	
 	@GetMapping("admin/cs/qna/answer/view")
-	public String admin_cs_qna_answer_view(HttpSession session, Model model, HttpServletResponse response, CsVO board) {
+	public String adminCsQnaAnswerView(HttpSession session, Model model, HttpServletResponse response, CsVO board) {
 		// 관리자 페이지 접근 제한
 		if (!isvalid(session, model, response)) return null;
 		
@@ -805,7 +805,7 @@ public class AdminController {
 	}
 	
 	@GetMapping("admin/cs/qna/answer/modify")
-	public String admin_cs_qna_answer_modify(HttpSession session, Model model, HttpServletResponse response, CsVO board) {
+	public String adminCsQnaAnswerModify(HttpSession session, Model model, HttpServletResponse response, CsVO board) {
 		// 관리자 페이지 접근 제한
 		if (!isvalid(session, model, response)) return null;
 		
@@ -822,7 +822,7 @@ public class AdminController {
 	}
 	
 	@PostMapping("admin/cs/qna/answer/modifyPro")
-	public String admin_cs_qna_answer_modifyPro(HttpSession session, Model model, HttpServletResponse response, CsVO board) {
+	public String adminCsQnaAnswerModifyPro(HttpSession session, Model model, HttpServletResponse response, CsVO board) {
 		// 관리자 페이지 접근 제한
 		if (!isvalid(session, model, response)) return null;
 		
@@ -932,7 +932,7 @@ public class AdminController {
 	}
 	
 	@GetMapping("admin/cs/qna/question")
-	public String admin_cs_qna_question(HttpSession session, Model model, HttpServletResponse response, CsVO board) {
+	public String adminCsQnaQuestion(HttpSession session, Model model, HttpServletResponse response, CsVO board) {
 		// 관리자 페이지 접근 제한
 		if (!isvalid(session, model, response)) return null;
 		

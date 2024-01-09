@@ -97,7 +97,7 @@ public class ReservationController {
 	    System.out.println(sIdx);
 	    
 		// 임의의 값 넣어 접근권한 확인
-		session.setAttribute("sId", "이재환");
+//		session.setAttribute("sId", "이재환");
 		ModelAndView mav; 
 		if(session.getAttribute("sId") == null) {
 			map.put("msg", "로그인 후 사용가능!");

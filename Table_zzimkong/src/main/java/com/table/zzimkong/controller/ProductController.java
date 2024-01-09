@@ -40,7 +40,7 @@ public class ProductController {
 	private ProductService service;
 
 	@RequestMapping("/product/searchResult")
-	public ResponseEntity<?> search_result(@RequestBody SearchVO search, HttpSession session) {
+	public ResponseEntity<?> searchResult(@RequestBody SearchVO search, HttpSession session) {
 		//검색결과 시간 형변환
 		LocalDate localDate = LocalDate.parse(search.getDate());
 		LocalTime localTime = LocalTime.parse(search.getTime());
@@ -68,7 +68,7 @@ public class ProductController {
 	}
 
 	@RequestMapping("product/list")
-	public String product_list(Model model, HttpSession session) {
+	public String productList(Model model, HttpSession session) {
 		
 		SearchVO search = (SearchVO)session.getAttribute("search");
 		
@@ -96,7 +96,7 @@ public class ProductController {
 	}
 	
 	@RequestMapping("product/detail")
-	public String product_detail(Model model, HttpSession session, CompanyVO company, ReservationVO res, SearchVO search) {
+	public String productDetail(Model model, HttpSession session, CompanyVO company, ReservationVO res, SearchVO search) {
 		System.out.println("디테일전" + search);
 		search = (SearchVO)session.getAttribute("search");
 		System.out.println("디테일후" + search);
@@ -208,14 +208,14 @@ public class ProductController {
 	}
 	
 	@GetMapping("product/map")
-	public String product_map() {
+	public String productMap() {
 		
 		return "product/product_map";
 	}
 	
 	
 	@RequestMapping("product/detailPro")
-	public ResponseEntity<?> detail_pro(@RequestBody Map<String, Object> map, HttpSession session, ReservationVO res, MenuVO menu, Model model) {
+	public ResponseEntity<?> detailPro(@RequestBody Map<String, Object> map, HttpSession session, ReservationVO res, MenuVO menu, Model model) {
 		String sId = (String) session.getAttribute("sId");
 		if(sId == null) {
 		    Map<String, Object> response = new HashMap<>();

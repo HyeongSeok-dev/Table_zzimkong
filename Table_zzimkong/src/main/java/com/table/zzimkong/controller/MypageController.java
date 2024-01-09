@@ -27,7 +27,7 @@ public class MypageController {
 	
 	// [ 회원정보 조회 ]
 	@GetMapping("my/modify/profile")
-	public String my_modify_profile(MypageInfo mypage, HttpSession session, Model model) {
+	public String myModifyProfile(MypageInfo mypage, HttpSession session, Model model) {
 		
 		String sId = (String) session.getAttribute("sId");
 		if(sId == null) {
@@ -197,7 +197,7 @@ public class MypageController {
 	
 	//---------- 나의 내역 조회 ----------------
 	@GetMapping("my/list")
-	public String my_list(MypageInfo mypage, HttpSession session, Model model, HttpServletResponse response) {
+	public String myList(MypageInfo mypage, HttpSession session, Model model, HttpServletResponse response) {
 		
 		String sId = (String)session.getAttribute("sId"); // 세션에 아이디값 가져오기
 		mypage.setUser_id(sId);//검색할 아이디를 마이페이지에 넣기 
@@ -224,7 +224,7 @@ public class MypageController {
 	// => AJAX 요청에 대한 응답 처리를 위해 @ResponseBody 적용
 	@ResponseBody
 	@PostMapping("my/listPro")
-	public String my_listPro(BookmarkVO bookmark, HttpSession session, Model model) {
+	public String myListPro(BookmarkVO bookmark, HttpSession session, Model model) {
 		
 		// 하트 클릭시 북마크 삭제
 	    int deleteCount = service.bookmarkDel(bookmark);
@@ -238,7 +238,7 @@ public class MypageController {
 	
 	//----------------나의 예약 더보기 페이지--------------------
 	@GetMapping("my/reservation")
-	public String my_reservation(@RequestParam(defaultValue = "1") int pageNum, 
+	public String myReservation(@RequestParam(defaultValue = "1") int pageNum, 
 			MypageInfo mypage, HttpSession session, Model model, HttpServletResponse response)	{
 		
 		int sIdx = (int)session.getAttribute("sIdx"); //세션 인덱스 가져오기
@@ -278,7 +278,7 @@ public class MypageController {
 	}
 	
 	@PostMapping("my/resPro")
-	public String my_resPro(MypageInfo mypage, HttpSession session, Model model, HttpServletResponse response) {
+	public String myResPro(MypageInfo mypage, HttpSession session, Model model, HttpServletResponse response) {
 		
 		// 예약 취소 버튼
 		int updateCount = service.myResCancel(mypage);
@@ -295,7 +295,7 @@ public class MypageController {
 	
 	//----------------나의 북마크 더보기 페이지------------------
 	@GetMapping("my/bookmark")
-	public String my_bookmark(BookmarkVO bookmark, HttpSession session, Model model) {
+	public String myBookmark(BookmarkVO bookmark, HttpSession session, Model model) {
 		int sIdx = (int)session.getAttribute("sIdx"); //세션 인덱스 가져오기 (회원번호)
 		List<BookmarkVO> bookmarkList2 = service.getBookmarkList2(sIdx);
 		System.out.println("북마크 : " + sIdx); 
@@ -307,7 +307,7 @@ public class MypageController {
 	// => AJAX 요청에 대한 응답 처리를 위해 @ResponseBody 적용
 	@ResponseBody
 	@PostMapping("my/bookmark/del")
-	public String my_bookmark_del(BookmarkVO bookmark, HttpSession session, Model model) {
+	public String myBookmarkDel(BookmarkVO bookmark, HttpSession session, Model model) {
 		
 		// 하트 클릭시 북마크 삭제
 	    int deleteCount = service.bookmarkDel2(bookmark);
@@ -321,7 +321,7 @@ public class MypageController {
 	}
 	// --------------나의 리뷰----------------------------------------------------
 	@GetMapping("my/review")
-	public String my_review(ReviewVO review, HttpSession session, Model model) {
+	public String myReview(ReviewVO review, HttpSession session, Model model) {
 		String sId = (String)session.getAttribute("sId"); //세션 아이디 가져오기
 		List<ReviewVO> myReview = service.getMyReview(sId);
 		System.out.println("myReview : " + myReview);
@@ -333,7 +333,7 @@ public class MypageController {
 	
 	//--------------가게 신고 - 방문한 가게 조회하기-----------------------------------
 	@GetMapping("my/report/shop")
-	public String my_report_shop(MypageInfo mypage, HttpSession session, Model model) {
+	public String myReportShop(MypageInfo mypage, HttpSession session, Model model) {
 		int sIdx = (int)session.getAttribute("sIdx"); //세션 인덱스 가져오기 (회원번호)
 		List<MypageInfo> visitedShop = service.getVisitedShop(sIdx);
 //		System.out.println(sIdx);
@@ -346,7 +346,7 @@ public class MypageController {
 	
 	//------------가게 신고하기-------------------
 	@GetMapping("my/report/reason")
-	public String my_report_reason(HttpSession session, Model model) {
+	public String myReportReason(HttpSession session, Model model) {
 		
 		if(session.getAttribute("sIdx") == null) {
 			model.addAttribute("msg", "로그인이 필요합니다!");
@@ -363,7 +363,7 @@ public class MypageController {
 	
 	// "report/reason2" 서블릿 요청에 대한 글쓰기 비즈니스 로직 처리
 	@PostMapping("my/report/reason2")
-	public String my_report_reason2(ReportVO report, HttpSession session, Model model) {
+	public String myReportReason2(ReportVO report, HttpSession session, Model model) {
 		
 		int insertCount = service.registShopReport(report);
 		System.out.println(report);
@@ -383,24 +383,24 @@ public class MypageController {
 
 	
 	@GetMapping("my/unregister")
-	public String my_unregister() {
+	public String myUnregister() {
 		return "mypage/my_unregister";
 	}
 	
 	@GetMapping("my/check/passwd")
-	public String my_check_passwd() {
+	public String myCheckPasswd() {
 		return "mypage/my_check_passwd";
 	}
 	
 	@GetMapping("my/qna")
-	public String my_qna() {
+	public String myQna() {
 		return "mypage/my_qna";
 	}
 	
 	//-------포인트 조회하기-----------
 	
 	@GetMapping("my/point")
-	public String my_point(PointVO point, HttpSession session, Model model) {
+	public String myPoint(PointVO point, HttpSession session, Model model) {
 		int sIdx = (int)session.getAttribute("sIdx");
 		 point.setUser_idx(sIdx);
 		// MypageService - getShowPoint() 메서드 호출하여 포인트 목록 조회
@@ -422,7 +422,7 @@ public class MypageController {
 	
 	
 	@GetMapping("my/edit/reservation")
-	public String my_edit_reservation() {
+	public String myEditReservation() {
 		return "mypage/my_edit_reservation";
 	}
 	

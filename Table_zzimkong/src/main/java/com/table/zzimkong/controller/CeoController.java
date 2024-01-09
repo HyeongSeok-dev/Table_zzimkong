@@ -45,23 +45,23 @@ public class CeoController {
 	private ProductService servicePro;
 	
 	@GetMapping("ceo/sale")
-	public String ceo_sale() {
+	public String ceoSale() {
 		
 		return "ceo/ceo_sale";
 	}
 
 	@GetMapping("ceo/black")
-	public String ceo_black() {
+	public String ceoBlack() {
 		return "ceo/ceo_black";
 	}
 	
 	@GetMapping("ceo/black/register")
-	public String ceo_black_register() {
+	public String ceoBlackRegister() {
 		return "ceo/ceo_black_register";
 	}
 	
 	@GetMapping("ceo/menu/list")
-	public String ceo_menu_list(HttpSession session, Model model, CompanyVO company) {
+	public String ceoMenuList(HttpSession session, Model model, CompanyVO company) {
 		int sIdx = (int)session.getAttribute("sIdx");
 		
 		System.out.println(sIdx);
@@ -72,7 +72,7 @@ public class CeoController {
 	}
 	
 	@PostMapping("ceo/menu/listPro")
-	public ResponseEntity<?> ceo_menu_listPro(@RequestBody Map<String, Object> map, HttpSession session, Model model, CompanyVO company) {
+	public ResponseEntity<?> ceoMenuListPro(@RequestBody Map<String, Object> map, HttpSession session, Model model, CompanyVO company) {
 		company.setCom_id(Integer.parseInt((String)map.get("com_id")));
 		List<MenuVO> menuList = servicePro.getMenuList(company);
 		
@@ -147,7 +147,7 @@ public class CeoController {
 	}
 	
 	@GetMapping("ceo/menu/register")
-	public String ceo_menu_register() {
+	public String ceoMenuRegister() {
 		return "ceo/ceo_menu_register";
 	}
 	
@@ -280,7 +280,7 @@ public class CeoController {
 //	}
 	
 	@GetMapping("ceo/reservation")
-	public String ceo_reservation(HttpSession session, Model model,  CompanyVO company) {
+	public String ceoReservation(HttpSession session, Model model,  CompanyVO company) {
 //		//로그인 아이디의 업체별 목록 조회
 		int sIdx = (Integer)session.getAttribute("sIdx");
 		List<CompanyVO> storeList = service.getComList(sIdx);
@@ -292,7 +292,7 @@ public class CeoController {
 	
 	@ResponseBody
 	@PostMapping("ceo/reservation/resPro")
-	public ResponseEntity<?> ceo_reservation_resPro( Map<String, Object> map, HttpSession session, Model model, CompanyVO company, @RequestParam int com_id) {
+	public ResponseEntity<?> ceoReservationResPro( Map<String, Object> map, HttpSession session, Model model, CompanyVO company, @RequestParam int com_id) {
 		company.setCom_id(com_id);
 		List<ReservationVO> resInfoList = service.getResList(company);
 		
@@ -338,12 +338,12 @@ public class CeoController {
 	}
 	
 	@GetMapping("ceo/reservation/detail")
-	public String ceo_reservation_detail() {
+	public String ceoReservationDetail() {
 		return "ceo/ceo_reservation_detail";
 	}
 	
 	@GetMapping("ceo/reservation/info")	
-	public String ceo_reservation_info(ReservationVO res, Model model, MenuVO menu, HttpSession session, PreOrderInfo poi) {
+	public String ceoReservationInfo(ReservationVO res, Model model, MenuVO menu, HttpSession session, PreOrderInfo poi) {
 		res = service.getResDetailInfo(res);
 		System.out.println("info에서 받는거" + res);
 		model.addAttribute("res", res);
@@ -638,7 +638,7 @@ public class CeoController {
 	}
 	
 	@GetMapping("ceo/company/view")
-	public String ceo_company_view(HttpSession session,Model model 
+	public String ceoCompanyView(HttpSession session,Model model 
 								,@RequestParam(defaultValue = "") String com_num	
 								) {
 //		if(session.getAttribute("sId") == null) {
@@ -710,7 +710,7 @@ public class CeoController {
 	}
 
 	@GetMapping("ceo/company/modify")
-	public String ceo_company_modify(HttpSession session, Model model, @RequestParam(defaultValue = "")String com_num) {
+	public String ceoCompanyModify(HttpSession session, Model model, @RequestParam(defaultValue = "")String com_num) {
 		String sId = (String)session.getAttribute("sId");
 //		if(session.getAttribute("sId") == null) {
 //			
@@ -749,7 +749,7 @@ public class CeoController {
 	}
 	
 	@PostMapping("ceo/company/modifyPro")
-	public String company_modifyPro(HttpSession session, Model model, CompanyVO company) {
+	public String companyModifyPro(HttpSession session, Model model, CompanyVO company) {
 		String sId = (String)session.getAttribute("sId");
 //		if(session.getAttribute("sId") == null) {
 //			
@@ -910,7 +910,7 @@ public class CeoController {
 	}
 	
 	@PostMapping("ceo/company/closeRegist")
-	public String company_closeRegist(HttpSession session, Model model, @RequestParam(defaultValue = "")String com_num) {
+	public String companyCloseRegist(HttpSession session, Model model, @RequestParam(defaultValue = "")String com_num) {
 		String sId = (String)session.getAttribute("sId");
 //		if(session.getAttribute("sId") == null) {
 //			
@@ -934,7 +934,7 @@ public class CeoController {
 	}
 	
 	@GetMapping("ceo/company/ad")
-	public String ceo_company_ad(HttpSession session, Model model, @RequestParam(defaultValue = "")String com_num) {
+	public String ceoCompanyAd(HttpSession session, Model model, @RequestParam(defaultValue = "")String com_num) {
 		String sId = (String)session.getAttribute("sId");
 //		if(session.getAttribute("sId") == null) {
 //			

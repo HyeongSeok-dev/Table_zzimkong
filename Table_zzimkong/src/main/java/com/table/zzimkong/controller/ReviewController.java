@@ -52,7 +52,7 @@ public class ReviewController {
 	// ===================================================================
 	// [ 리뷰 상세 페이지 ]
 	@GetMapping("review/redetail")
-	public String review_detail(@RequestParam("com_id") int comId, 
+	public String reviewDetail(@RequestParam("com_id") int comId, 
 //								@RequestParam("review_num") int reviewNum, 	
 //								@RequestParam("user_id") String userId, 
 								@RequestParam(value = "sortType", required = false, defaultValue = "newest") String sortType,
@@ -299,7 +299,7 @@ public class ReviewController {
 	// ===================================================================
 	// [ 리뷰 수정 ] 
 		@GetMapping("review/modify")
-		public String review_modify(ReviewVO review,
+		public String reviewModify(ReviewVO review,
 									@RequestParam("review_num") int reviewNum,
 									@RequestParam("com_id") int comId,
 									Model model,
@@ -457,7 +457,7 @@ public class ReviewController {
 	// ===================================================================
 	// [ 리뷰 삭제 ]
 	@PostMapping("/zzimkong/review/delete")
-	public String review_delete(
+	public String reviewDelete(
 			ReviewVO review,
 			@RequestParam(defaultValue = "1") int reviewNum,
 //			@RequestParam("com_id") int comId,
@@ -594,7 +594,7 @@ public class ReviewController {
 		
 		// ===================================================================
 	@GetMapping("review/complete")
-	public String review_complete(@RequestParam("com_id") int comId, Model model) {
+	public String reviewComplete(@RequestParam("com_id") int comId, Model model) {
 	    List<ReviewVO> reviews = service.getAllReviews(comId);
 	    model.addAttribute("comId", comId);
 	    model.addAttribute("reviews", reviews);
@@ -608,7 +608,7 @@ public class ReviewController {
 	// ===================================================================
 	// [ 리뷰 댓글 기능 ] 
 	@GetMapping("review/comment")
-	public String review_comment(
+	public String reviewComment(
 								 @RequestParam("com_id") int comId, 
 								 @RequestParam("review_num") int reviewNum,
 								 Model model, HttpSession session
