@@ -46,10 +46,27 @@ public class ReviewService {
 	}
 	
 	// 리뷰 리스트 
-	public List<ReviewVO> getAllReviews(int comId) {
+//	public List<ReviewVO> getAllReviews(int comId) {
+//		
+//		
+//		return mapper.allReviewList(comId);
+//	}
 		
-		return mapper.allReviewList(comId);
-	}
+	   // 리뷰 리스트 
+	   public List<ReviewVO> getAllReviews(int comId) {
+		   
+	    List<ReviewVO> result =  mapper.allReviewList(comId);
+	    
+	    System.out.println("리스트왜안돼>>>>>>>>>>>>>>>>>>>>>"  + result);
+	   return result;
+	   
+	   
+// return mapper.allReviewList(comId)
+	   }
+	   
+	
+	
+	
 	
 	// 리뷰 수정
 	public ReviewVO getReivew(int reviewNum) {

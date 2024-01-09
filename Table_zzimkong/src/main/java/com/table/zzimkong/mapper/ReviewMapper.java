@@ -46,7 +46,8 @@ public interface ReviewMapper {
 
 	// 리뷰 내용 가져오기
 	ReviewVO getReview(int reviewNum);
-
+	
+	
 	// 이런 점이 좋았어요 
 	List<ReviewCountVO> countReviewsByComId(int comId);
 
