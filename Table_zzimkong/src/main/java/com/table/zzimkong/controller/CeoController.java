@@ -341,8 +341,6 @@ public class CeoController {
 		System.out.println("업체별 목록" + storeList);
 		model.addAttribute("storeList", storeList);
 		
-		
-		
 		return "ceo/ceo_reservation";
 	}
 	
