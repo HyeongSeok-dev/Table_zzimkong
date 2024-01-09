@@ -34,13 +34,12 @@
 					<td>
 					<select class="member_category_select" name="cs_board_category_sub">
 	            		<option selected disabled>질문유형</option>
-						<option value="1">주문/결제</option>
-						<option value="2">예약</option>
-						<option value="3">주문/결제</option>
-						<option value="4">리뷰</option>
-						<option value="5">회원정보</option>
-						<option value="6">이용문의</option>
-						<option value="7">쿠폰/포인트</option>
+						<option value="1">예약</option>
+						<option value="2">주문/결제</option>
+						<option value="3">리뷰</option>
+						<option value="4">회원정보</option>
+						<option value="5">이용문의</option>
+						<option value="6">쿠폰/포인트</option>
 	            	</select>
 	            	<select class="ceo_category_select" name="cs_board_category_sub">
 	            		<option selected disabled>질문유형</option>
