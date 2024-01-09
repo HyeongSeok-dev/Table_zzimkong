@@ -75,7 +75,7 @@ public class SendMailService {
 		String subject = "[테이블 찜콩] 예약 완료 메일입니다.";
 		String content = "<h1>[테이블 찜콩] 예약이 완료되었습니다.</h1>"
 				+ "<h1>이용해 주셔서 감사합니다.</h1>"
-				+ "<h2>예약정보</h2>"
+				+ "<h2>[예약정보]</h2>"
 				+ "<h3>업체명 : " + com.getCom_name() + "</h3>"
 				+ "<h3>주소 : " + com.getCom_address() + "</h3>"
 				+ "<h3>예약날짜 : " + res.getRes_date() + "</h3>"
@@ -84,7 +84,8 @@ public class SendMailService {
 				+ "<h3>전화번호 : " + res.getRes_phone() + "</h3>"
 				+ "<h3>인원수 : " +  res.getRes_person() + "</h3>"
 				+ "<h3>요청사항 : " +  res.getRes_request() + "</h3>"
-				+ "<h2>결제정보</h2>"
+				+ "<br>"
+				+ "<h2>[결제정보]</h2>"
 				+ "<h3>결제번호 : " +  payment.getPay_num() + "</h3>"
 				+ "<h3>이름 : " +  member.getUser_name() + "</h3>"
 				+ "<h3>결제일시 : " +  paymentInfo.getPaymentDate() + "</h3>"
@@ -98,7 +99,7 @@ public class SendMailService {
 				+ "대표 : 이형석<br>"
 				+ "주소 : 부산광역시 부산진구 동천로 109 삼한골든게이트빌딩 7층<br>"
 				+ "고객센터 : 1544-7070 (9:00 ~ 18:00) ";
-		System.out.println("email : " + member.getUser_email());
+//		System.out.println("email : " + member.getUser_email());
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
