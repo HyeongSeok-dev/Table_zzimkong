@@ -662,7 +662,7 @@ function showCommentForm(element) {
 <body>
 <div class="restaurant_name_with_likes">
     <div class="restaurant_name">
-        <h2>${comName}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-heart" aria-hidden="true"></i>
+   		<h2><a href="javascript:history.back()">${comName}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-heart" aria-hidden="true"></i>
         <span class="like_count_top">${likeCount}</span><span class="like_text">&nbsp;&nbsp;이런 곳 좋아요</span>
         </h2>
     <div class="separator"></div>
