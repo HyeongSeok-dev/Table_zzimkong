@@ -28,7 +28,7 @@
 				<table>
 					<tr>
 						<th rowspan="4">사진</th>
-						<td rowspan="4"><img src="/upload/${com.com_img }" style="width: 200px;"></td>
+						<td rowspan="4"><img src="${pageContext.request.contextPath }/resources/upload/${com.com_img }" style="width: 200px;"></td>
 						<th colspan="2">등록일자</th>
 						<td>${com.com_reg_date }</td>
 					</tr>

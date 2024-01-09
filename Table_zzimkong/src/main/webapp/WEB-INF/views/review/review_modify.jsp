@@ -221,7 +221,7 @@ function removePreview(review_img_1) {
 		        <c:choose>
 		            <c:when test="${not empty review.review_img_1}">
 		                <div class="image_wrapper">
-		                    <img src="/upload/${review.review_img_1}" alt="Image Preview" class="imagePreview"/>
+		                    <img src="${pageContext.request.contextPath }/resources/upload/${review.review_img_1}" alt="Image Preview" class="imagePreview"/>
 		                    <!-- 수정된 removePreview 함수 호출 -->
 <%-- 		                    <div class="remove_btn" onclick="deleteFile(${review.review_num}, '${review.review_img_1}')">X</div> --%>
 		                    <div class="remove_btn" onclick="deleteFile(${review.review_num}, '${review.review_img_1}')">

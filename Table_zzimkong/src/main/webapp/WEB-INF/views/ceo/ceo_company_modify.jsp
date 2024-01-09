@@ -39,7 +39,7 @@
 						<tr>
 							<th rowspan="4">사진등록</th>
 							<td colspan="2" rowspan="4"> 
-								<div id="img"><img src="/upload/${com.com_img }" style="width: 200px;"></div>
+								<div id="img"><img src="${pageContext.request.contextPath }/resources/upload/${com.com_img }" style="width: 200px;"></div>
 								<hr>
 								<div class="file_div">
 									<input type="file" id="file" name="file" value="${com.com_img }" style="display: none;">

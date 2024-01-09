@@ -54,7 +54,7 @@
 				<tr>
 					<td colspan="8">
 						<div class="preview_container">
-							<img class="preview_image" src="${pageContext.request.contextPath }/resources/upload/${menu.menu_img}" alt="이미지 미리보기">
+							<img class="preview_image" src="${pageContext.request.contextPath }/resources${pageContext.request.contextPath }/resources/upload/${menu.menu_img}" alt="이미지 미리보기">
 						</div>
 					</td>
 				</tr>	

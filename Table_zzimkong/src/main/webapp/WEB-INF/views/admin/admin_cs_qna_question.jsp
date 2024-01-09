@@ -89,11 +89,11 @@ $(document).ready(function() {
 				<tr>
 					<th colspan="2">파일첨부</th>
 					<td colspan="4" class="td_file">
-						<div><c:if test="${not empty board.cs_board_img_1}"><img src="/upload/${board.cs_board_img_1}"></c:if></div>
-                           <div><c:if test="${not empty board.cs_board_img_2}"><img src="/upload/${board.cs_board_img_2}"></c:if></div>
-                           <div><c:if test="${not empty board.cs_board_img_3}"><img src="/upload/${board.cs_board_img_3}"></c:if></div>
-                           <div><c:if test="${not empty board.cs_board_img_4}"><img src="/upload/${board.cs_board_img_4}"></c:if></div>
-                           <div><c:if test="${not empty board.cs_board_img_5}"><img src="/upload/${board.cs_board_img_5}"></c:if></div>
+						<div><c:if test="${not empty board.cs_board_img_1}"><img src="${pageContext.request.contextPath }/resources/upload/${board.cs_board_img_1}"></c:if></div>
+                           <div><c:if test="${not empty board.cs_board_img_2}"><img src="${pageContext.request.contextPath }/resources/upload/${board.cs_board_img_2}"></c:if></div>
+                           <div><c:if test="${not empty board.cs_board_img_3}"><img src="${pageContext.request.contextPath }/resources/upload/${board.cs_board_img_3}"></c:if></div>
+                           <div><c:if test="${not empty board.cs_board_img_4}"><img src="${pageContext.request.contextPath }/resources/upload/${board.cs_board_img_4}"></c:if></div>
+                           <div><c:if test="${not empty board.cs_board_img_5}"><img src="${pageContext.request.contextPath }/resources/upload/${board.cs_board_img_5}"></c:if></div>
                      </td>
 				</tr>
 			</table>
