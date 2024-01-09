@@ -80,10 +80,10 @@ function removePreview(review_img_1) {
 <!-- 			 <a href="detail?com_id=1"><h1>음식점 이름</h1></a> -->
 <!-- 			 <a href="redetail?com_id=1"><h1>칸다소바 부전점</h1></a> -->
 <%-- 			 <a href="redetail?com_id=1"><h1>${com_id}</h1></a> --%>
+			 <span class="review_modify_page">[ 리뷰 수정 페이지 ]</span>
 			 <a href="${pageContext.request.contextPath}/review/redetail?com_id=${com_id}"><h1>${comName}</h1></a>
 			 <!--            ~~~~~~~~~ : 나중에 ${com_id}로 고쳐서 값 받아오기 -->
 <!-- 			 <input type="submit" value="음식점 이름" onclick="location.href=detail"> -->
-			<p>몇번째 방문</p>
 <!-- 			<p>먹은 메뉴</p> -->
 		</div>
 		<form action="${pageContext.request.contextPath}/zzimkong/review/ReviewModifyPro" method="POST" enctype="multipart/form-data">
