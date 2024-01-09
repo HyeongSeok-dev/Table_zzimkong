@@ -54,6 +54,7 @@ $(document).ready(function() {
                 var storeAddress = restaurant.find('input[name="storeAddress"]').val();
                 getAddressCoordinates(storeAddress, function(coordinates) {
                     calculateDistance(userLat, userLon, coordinates.lat, coordinates.lon, function(distance) {
+                        console.log(distance);
                         if (distance < 1000) { // 1000m 미만일 때는 m 단위로 정수 표시
 	                        restaurant.find('.restaurant-distance').text(Math.round(distance) + ' m');
 	                    } else { // 1000m 이상일 때는 km 단위로 소수 첫째자리까지 표시
