@@ -7,6 +7,7 @@
 		<title>비밀번호 재설정</title>
 		<link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
 		<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/login_findPasswd.css">
+	<script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
     <script src="${pageContext.request.contextPath }/resources/js/join.js"></script>
 	</head>
 	<body>
@@ -26,13 +27,13 @@
 		       <div id="box">
 		       		<input type="hidden" name="user_id" value="${authInfo.user_id}">
 		       		<input type="hidden" name="auth_code" value="${authInfo.auth_code}">
-		       		<input type="password" id="passwd" name="user_passwd" class="inputTxt inpBig"  style="text-align: left;"
-		              placeholder="비밀번호 (영문, 숫자, 특수문자 조합 8~16자리) 권장" maxlength="16" autocomplete="false">
+		       		<input type="password" id="passwd" name="user_passwd" class="inputTxt inpBig"  style="text-align: left; width: 300px;"
+		              placeholder="새 비밀번호 (영문, 숫자, 특수문자 조합 8~16자리)" maxlength="16" autocomplete="false"> 
 		             <span id = "checkPasswdResult" ></span>
 		             <br><br>
 		              <!-- 비밀번호 확인 -->              
-		              <input type="password" id="passwd2" name="passwd2" class="inputTxt inpBig"  style="text-align: left;"
-		              placeholder="비밀번호 확인" maxlength="16" autocomplete="false" >
+		              <input type="password" id="passwd2" name="passwd2" class="inputTxt inpBig"  style="text-align: left; width: 300px;"
+		              placeholder="새 비밀번호 확인" maxlength="16" autocomplete="false" >
 		             <span id = "checkPasswd2Result" ></span>
 			          <div class="button_find"  align="center">
 				          <button type="submit" class="btn findbtnB" id="findBtn">
@@ -41,9 +42,6 @@
 			          </div>
 		          </div>
 		       </form>
-       			<footer>
-	      			<jsp:include page="../inc/bottom.jsp"></jsp:include>
-   				</footer>
 		      </div>
 		    </div>
 		  </div>

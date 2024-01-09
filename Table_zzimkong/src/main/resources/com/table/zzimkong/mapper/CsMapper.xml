@@ -18,7 +18,7 @@
 		<where>
 			AND cs_board_category_user = #{member.user_category}
 			AND cs_board_category_main = #{category}
-			<if test="category == 3">
+			<if test="category == 3 and !member.user_id.equals('admin')">
 				AND (user_id = #{member.user_id}
                 OR cs_board_re_ref IN (
                     SELECT cs_board_num 

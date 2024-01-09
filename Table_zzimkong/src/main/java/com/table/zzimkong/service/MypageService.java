@@ -37,8 +37,8 @@ public class MypageService {
 	}
 	
 	 // 예약 내역 조회 요청
-	public List<Map<String, Object>> getResList2(int sIdx) {
-		return mapper.selectResList2(sIdx);
+	public List<Map<String, Object>> getResList2(int sIdx, int startRow, int listLimit) {
+		return mapper.selectResList2(sIdx, startRow, listLimit);
 	}
 	
 	// 예약 내역 전체 개수 조회 요청

@@ -944,7 +944,9 @@ public class CsController {
 		board.setSearchFAQ(searchFAQ);
 		board.setSdate(sdate);
 		board.setEdate(edate);
-		
+
+		System.out.println("세션아이디" + (String)session.getAttribute("sId"));
+		System.out.println(member);
 		List<CsVO> boardList = service.getBoard(board, member, Integer.parseInt(mainCategory));
 		
 		Map<String, Object> map = new HashMap<String, Object>();

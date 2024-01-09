@@ -12,14 +12,16 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -939,6 +941,29 @@ public class AdminController {
 		model.addAttribute("board", board);
 				
 		return "admin/admin_cs_qna_question";
+	}
+	
+	
+	@ResponseBody
+	@GetMapping("sortBoardNotice")
+	public String sortBoardQna(CsVO board, Model model, HttpSession session, MemberVO member, 
+			@RequestParam ("cs_board_category_user") String userCategory, @RequestParam("cs_board_category_main")String mainCategory,
+			@RequestParam("searchFAQ")String searchFAQ, @RequestParam("sdate")String sdate, @RequestParam("edate")String edate){
+		
+		member.setUser_category(Integer.parseInt(userCategory));
+		member.setUser_id((String)session.getAttribute("sId"));
+		board.setSearchFAQ(searchFAQ);
+		board.setSdate(sdate);
+		board.setEdate(edate);
+		
+		System.out.println(board);
+		List<CsVO> boardList = csService.getBoard(board, member, Integer.parseInt(mainCategory));
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("boardList", boardList);
+		System.out.println("보드리스트" + boardList);
+		JSONObject jsonObject = new JSONObject(map);
+		return jsonObject.toString();
 	}
 	
 }

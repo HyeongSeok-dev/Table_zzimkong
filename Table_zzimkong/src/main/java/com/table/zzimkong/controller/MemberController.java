@@ -281,7 +281,7 @@ public class MemberController {
 			return "fail_back";
 		}
 		
-		String auth_code = mailService.sendPasswdAuthMail(member); // MemberVO 객체 전달
+		String auth_code = mailService.sendPasswdAuthMail(member); // MemberVO 객체 전달 및 이메일 전송 완료
 		service.registMailAuthInfo(member.getUser_id(), auth_code);
 		model.addAttribute("msg", "인증메일이 발송되었습니다. 메일을 확인하세요");
 		return "popup_close";

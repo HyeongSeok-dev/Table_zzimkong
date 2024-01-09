@@ -10,6 +10,60 @@
 <link href="${pageContext.request.contextPath}/resources/css/admin_cs.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/admin_script.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#cs_board_category_user').change(function() {
+		    let cs_board_category_user = $(this).val();
+		    let searchFAQ = $('#search').val();
+		    let sdate = $('#sdate').val();
+		    let edate = $('#edate').val();
+			console.log("버튼체인지됨");
+		    $.ajax({
+		        url: "../../sortBoardNotice", 
+		        type: 'GET',
+		        dataType: 'json',
+		        data: { 
+		        	"cs_board_category_user" : cs_board_category_user,
+		        	"cs_board_category_main" : '1',
+		            "searchFAQ" : searchFAQ,
+		            "sdate" : sdate,
+		            "edate" : edate
+		        },
+		        success: function(data) {
+	                let tbody = $('#board-list tbody');
+	                tbody.empty();
+		        	if (data.boardList.length === 0){
+			        	var newRow = "<td colspan='4'>검색결과가 없습니다.</td>"
+		           		tbody.append(newRow);
+			        	return;
+		        	}
+		        	for(let board of data.boardList) { 
+
+		                switch (board.cs_board_category_user) {
+			                case 1:
+			                    categoryText = '일반회원';
+			                    break;
+			                case 2:
+			                    categoryText = '업주회원';
+			                    break;
+	           			 }
+	                    var newRow = '<tr onclick="faqViewForm(' + board.cs_board_num + ')">' +
+	                        '<td>' + board.cs_board_num + '</td>' +
+	                        '<th class="cs_th">' + categoryText + '</th>' +
+	                        '<th class="cs_th">' + board.cs_board_subject + '</th>' +
+	                        '<td>' + board.cs_board_date + '</td>' +
+	                        '</tr>';
+	                    tbody.append(newRow);
+		        	}
+		        },
+		        error: function() {
+	                
+		        }
+		    });
+		});
+	});
+
+</script>
 </head>
 <body>
 	<header>
@@ -69,10 +123,10 @@
 								<th scope="col" class="th-num" rowspan="2">번호</th>
 								<%-- 카테고리 필터 : 고객센터(공지사항) --%>
 								<th scope="col" class="th-category">
-									<select class="user_select" style="border: none; background-color: rgb(244, 250, 255); font-weight: bold; text-align: center; font-size: 15px; color: #333;">
+									<select class="user_select" id= "cs_board_category_user" style="border: none; background-color: rgb(244, 250, 255); font-weight: bold; text-align: center; font-size: 15px; color: #333;">
 										<option>회원유형</option>
-										<option>일반회원</option>
-										<option>사업자회원</option>
+										<option value="1">일반회원</option>
+										<option value="2">사업자회원</option>
 									</select>
 								</th>
 								<th scope="col" class="th-title" rowspan="2">제목</th>

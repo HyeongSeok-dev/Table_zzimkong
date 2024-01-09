@@ -14,6 +14,7 @@ import org.springframework.stereotype.*;
 import org.springframework.ui.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.*;
+import com.table.zzimkong.vo.PageInfo;
 
 import com.table.zzimkong.service.*;
 import com.table.zzimkong.vo.*;
@@ -250,9 +251,9 @@ public class MypageController {
 		int startRow = (pageNum - 1) * listLimit;
 		
 //		// BoardService - getResList2() 메서드 호출하여 게시물 목록 조회 요청
-//		// => 파라미터 : 검색타입, 검색어, 시작행번호, 게시물 목록갯수
+//		// => 파라미터 : 시작행번호, 게시물 목록갯수
 //		// => 리턴타입 : List<Map<String, Object>>(resList2)
-		List<Map<String, Object>> resList2 = service.getResList2(sIdx);
+		List<Map<String, Object>> resList2 = service.getResList2(sIdx, startRow, listLimit);
 //		// --------------------------------------------------------------------
 //		// 검색된 예약 내역의 수를 바탕으로 페이지네이션 생성
 //		// BoardService - getBoardListCount() 메서드 호출하여 전체 게시물 목록 갯수 조회 요청

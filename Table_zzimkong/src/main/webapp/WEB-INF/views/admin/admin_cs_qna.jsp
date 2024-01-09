@@ -19,6 +19,7 @@
 		var top = Math.ceil((window.screen.height - popupH)/2);
 		window.open('${pageContext.request.contextPath }/admin/cs/qna/question?cs_board_num='+cs_board_num,'','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
 	}
+	
 	function qnaAnswerViewForm(cs_board_num) {
 		/* 팝업창 중앙 정렬 */
 		var popupW = 950;
@@ -27,8 +28,218 @@
 		var top = Math.ceil((window.screen.height - popupH)/2);
 		window.open('${pageContext.request.contextPath }/admin/cs/qna/answer/view?cs_board_num='+cs_board_num,'','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
 	}
+	
+	$(document).ready(function() {
+	 	$('.sub_category_select').change(function() {
+		    let cs_board_category_sub = $(this).val();
+		    let cs_board_category_user = $('#cs_board_category_user').val();
+		    let searchFAQ = $('#search').val();
+		    let sdate = $('#sdate').val();
+		    let edate = $('#edate').val();
+		    
+		    if(cs_board_category_user == ""){
+		    	cs_board_category_user = 1;
+		    }
+		    $.ajax({
+		        url: "../../sortBoardQna", 
+		        type: 'GET',
+		        dataType: 'json',
+		        data: { 
+		        	"cs_board_category_user" : cs_board_category_user,
+		            "cs_board_category_main" : '3',
+		            "cs_board_category_sub" : cs_board_category_sub,
+		            "searchFAQ" : searchFAQ,
+		            "sdate" : sdate,
+		            "edate" : edate
+		        },
+		        success: function(data) {
+	                let tbody = $('#board-list tbody');
+	                tbody.empty();
+		        	if (data.boardList.length === 0){
+			        	var newRow = "<td colspan='6'>검색결과가 없습니다.</td>"
+		           		tbody.append(newRow);
+			        	return;
+		        	}
+		        	for(let board of data.boardList) { 
+
+		                switch (board.cs_board_category_user) {
+		                case 1:
+		                    categoryUser = '일반회원';
+			                switch (board.cs_board_category_sub) {
+				                case 1:
+				                	categorySub = '예약';
+				                    break;
+				                case 2:
+				                	categorySub = '주문/결제';
+				                    break;
+				                case 3:
+				                	categorySub = '리뷰';
+				                    break;
+				                case 4:
+				                	categorySub = '회원정보';
+				                    break;
+				                case 5:
+				                	categorySub = '이용문의';
+				                    break;
+				                case 6:
+				                	categorySub = '쿠폰/포인트';
+				                    break;
+		           			 }
+		                    break;
+		                case 2:
+		                	categoryUser = '업주회원';
+		                	switch (board.cs_board_category_sub) {
+				                case 1:
+				                	categorySub = '예약관리';
+				                    break;
+				                case 2:
+				                	categorySub = '메뉴관리';
+				                    break;
+				                case 3:
+				                	categorySub = '광고';
+				                    break;
+				                case 4:
+				                	categorySub = '블랙회원관리';
+				                    break;
+				                case 5:
+				                	categorySub = '업체관리';
+				                    break;
+		           			 }
+		                    break;
+           				 }
+		        		let re = "";
+						if(board.cs_board_re_lev > 0) {
+							for(let i = 0; i < board.cs_board_re_lev; i++) {
+								re += "&nbsp;&nbsp;";
+							}
+							
+							re += '<img style="width: 20px; height: 20px;" src="${pageContext.request.contextPath }/resources/img/reply-icon.png">';
+						}
+						
+	                    var newRow = '<tr onclick="faqViewForm(' + board.cs_board_num + ')">' +
+	                        '<td>' + board.cs_board_num + '</td>' +
+	                        '<th class="cs_th">' + categoryUser + '</th>' +
+	                        '<th class="cs_th">' + categorySub + '</th>' +
+	                        '<th class="cs_th">' + re + board.cs_board_subject + '</th>' +
+	                        '<th class="cs_th">' + board.user_id + '</th>' +
+	                        '<td>' + board.cs_board_date + '</td>' +
+	                        '</tr>';
+	                    tbody.append(newRow);
+		        	}
+		        },
+		        error: function(e) {
+	                console.log("에러" +e)
+		        }
+		    });
+		});
+	 	
+	 	$('#cs_board_category_user').change(function() {
+		    let cs_board_category_user = $(this).val();
+		    let searchFAQ = $('#search').val();
+		    let sdate = $('#sdate').val();
+		    let edate = $('#edate').val();
+			console.log("버튼체인지됨");
+			if (cs_board_category_user == '1') {
+	            $('#cs_board_category_user_sub').show();
+	            $('#cs_board_category_ceo_sub').hide();
+	        } else if (cs_board_category_user == '2') {
+	            $('#cs_board_category_ceo_sub').show();
+	            $('#cs_board_category_user_sub').hide();
+	        }
+		    $.ajax({
+		        url: "../../sortBoardNotice", 
+		        type: 'GET',
+		        dataType: 'json',
+		        data: { 
+		        	"cs_board_category_user" : cs_board_category_user,
+		        	"cs_board_category_main" : '3',
+		            "searchFAQ" : searchFAQ,
+		            "sdate" : sdate,
+		            "edate" : edate
+		        },
+		        success: function(data) {
+	                let tbody = $('#board-list tbody');
+	                tbody.empty();
+		        	if (data.boardList.length === 0){
+			        	var newRow = "<td colspan='6'>검색결과가 없습니다.</td>"
+		           		tbody.append(newRow);
+			        	return;
+		        	}
+		        	for(let board of data.boardList) { 
+
+		                switch (board.cs_board_category_user) {
+			                case 1:
+			                    categoryUser = '일반회원';
+				                switch (board.cs_board_category_sub) {
+					                case 1:
+					                	categorySub = '예약';
+					                    break;
+					                case 2:
+					                	categorySub = '주문/결제';
+					                    break;
+					                case 3:
+					                	categorySub = '리뷰';
+					                    break;
+					                case 4:
+					                	categorySub = '회원정보';
+					                    break;
+					                case 5:
+					                	categorySub = '이용문의';
+					                    break;
+					                case 6:
+					                	categorySub = '쿠폰/포인트';
+					                    break;
+			           			 }
+			                    break;
+			                case 2:
+			                	categoryUser = '업주회원';
+			                	switch (board.cs_board_category_sub) {
+					                case 1:
+					                	categorySub = '예약관리';
+					                    break;
+					                case 2:
+					                	categorySub = '메뉴관리';
+					                    break;
+					                case 3:
+					                	categorySub = '광고';
+					                    break;
+					                case 4:
+					                	categorySub = '블랙회원관리';
+					                    break;
+					                case 5:
+					                	categorySub = '업체관리';
+					                    break;
+			           			 }
+			                    break;
+	           			 }
+		                let re = "";
+						if(board.cs_board_re_lev > 0) {
+							for(let i = 0; i < board.cs_board_re_lev; i++) {
+								re += "&nbsp;&nbsp;";
+							}
+							
+							re += '<img style="width: 20px; height: 20px;" src="${pageContext.request.contextPath }/resources/img/reply-icon.png">';
+						}
+		                
+	                    var newRow = '<tr onclick="faqViewForm(' + board.cs_board_num + ')">' +
+	                        '<td>' + board.cs_board_num + '</td>' +
+	                        '<th class="cs_th">' + categoryUser + '</th>' +
+	                        '<th class="cs_th">' + categorySub + '</th>' +
+	                        '<th class="cs_th">' + re + board.cs_board_subject + '</th>' +
+	                        '<th class="cs_th">' + board.user_id + '</th>' +
+	                        '<td>' + board.cs_board_date + '</td>' +
+	                        '</tr>';
+	                    tbody.append(newRow);
+		        	}
+		        },
+		        error: function() {
+	                
+		        }
+		    });
+		});
+	 	
+	});
 </script>
-<script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/admin_script.js"></script>
 </head>
 <body>
@@ -81,28 +292,29 @@
 				        <tr>
 				            <th scope="col" class="th-num" rowspan="2">번호</th>
 				             <th scope="col" class="th-user" width="80">
-								<select class="user_select" style="border: none; background-color: rgb(244, 250, 255); font-weight: bold; text-align: center; font-size: 15px; color: #333;">
-				            		<option>회원유형</option>
-									<option>일반회원</option>
-									<option>사업자회원</option>
+								<select class="user_select" id="cs_board_category_user" style="border: none; background-color: rgb(244, 250, 255); font-weight: bold; text-align: center; font-size: 15px; color: #333;">
+				            		<option value="">회원유형</option>
+									<option value="1">일반회원</option>
+									<option value="2">사업자회원</option>
 				            	</select>
 							</th>
 				            <th scope="col" class="th-category">
-				            	<select class="member_category_select" style="border: none; background-color: rgb(244, 250, 255); font-weight: bold; text-align: center; font-size: 15px; color: #333;">
-				            		<option>질문유형</option>
-									<option>주문/결제</option>
-									<option>리뷰</option>
-									<option>회원정보</option>
-									<option>이용문의</option>
-									<option>쿠폰/포인트</option>
+				            	<select class="sub_category_select" id="cs_board_category_user_sub" style="border: none; background-color: rgb(244, 250, 255); font-weight: bold; text-align: center; font-size: 15px; color: #333;">
+				            		<option value="">유형선택</option>
+				            		<option value="1">예약</option>
+				            		<option value="2">주문/결제</option>
+				            		<option value="3">리뷰</option>
+				            		<option value="4">회원정보</option>
+				            		<option value="5">이용문의</option>
+				            		<option value="6">쿠폰/포인트</option>
 				            	</select>
-				            	<select class="ceo_category_select" hidden="" style="border: none; background-color: rgb(244, 250, 255); font-weight: bold; text-align: center; font-size: 15px; color: #333;">
-				            		<option>질문유형</option>
-				            		<option>예약관리</option>
-				            		<option>메뉴관리</option>
-				            		<option>광고</option>
-				            		<option>블랙회원관리</option>
-				            		<option>업체관리</option>
+				            	<select class="sub_category_select" id="cs_board_category_ceo_sub" hidden="" style="border: none; background-color: rgb(244, 250, 255); font-weight: bold; text-align: center; font-size: 15px; color: #333;">
+				            		<option value="">유형선택</option>
+				            		<option value="1">예약관리</option>
+				            		<option value="2">메뉴관리</option>
+				            		<option value="3">광고</option>
+				            		<option value="4">블랙회원관리</option>
+				            		<option value="5">업체관리</option>
 				            	</select>
 				            </th>
 				            <th scope="col" class="th-title" rowspan="2">제목</th>
@@ -114,10 +326,10 @@
 				       		 <c:forEach var="board" items="${adminCsQnaList}">
 				       		 	<c:choose>
 					       		 	<c:when test="${board.user_id eq 'admin'}">
-					                	<tr onclick="qnaAnswerViewForm(${board.cs_board_num})">
+					                	<tr onclick="qnaAnswerViewForm(${board.cs_board_num})"></tr>
 					       		 	</c:when>
 									<c:otherwise>
-					                	<tr onclick="qnaQuestionForm(${board.cs_board_num})">
+					                	<tr onclick="qnaQuestionForm(${board.cs_board_num})"></tr>
 									</c:otherwise>				                
 				                </c:choose>
    				       		 	<c:choose>
@@ -190,7 +402,6 @@
 				                        ${board.user_id}
 				                    </th>
 				                    <td>${board.cs_board_date}</td>
-				                </tr>
 				            </c:forEach>
 				        </tbody>
 				    </table>
