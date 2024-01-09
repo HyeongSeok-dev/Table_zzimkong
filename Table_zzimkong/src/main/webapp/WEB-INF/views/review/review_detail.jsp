@@ -730,7 +730,7 @@ function showCommentForm(element) {
 	<div class="separator"></div>
 	<div class="review_main_subject">
 		<h2 class="review_subject">
-			리뷰&nbsp;<span class="review_subject_count">${reviewCount}</span>
+			리뷰&nbsp;&nbsp;<span class="review_subject_count">${reviewCount}</span>
 		</h2>
 		<label class="checkbox-container">
 		    <input type="checkbox" id="photoReviewCheckbox">
@@ -738,9 +738,10 @@ function showCommentForm(element) {
 		</label>
 	</div>
 	</div>
-	<div class="menu_select">
-		<span class="menu_select_subject">&nbsp;&nbsp;&nbsp;&nbsp;대표 메뉴&nbsp;</span>
-	</div>
+	<!-- 240109 제거 -->
+<!-- 	<div class="menu_select"> -->
+<!-- 		<span class="menu_select_subject">&nbsp;&nbsp;&nbsp;&nbsp;대표 메뉴&nbsp;</span> -->
+<!-- 	</div> -->
 	<br>
 
 	<div class="category_buttons">

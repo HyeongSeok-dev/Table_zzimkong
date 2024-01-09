@@ -160,12 +160,6 @@
 		    <version>2.10.1</version>
 		</dependency>
 
-		<!-- AspectJ -->
-		<dependency>
-			<groupId>org.aspectj</groupId>
-			<artifactId>aspectjrt</artifactId>
-			<version>${org.aspectj-version}</version>
-		</dependency>	
 		<!-- 10. 자바 메일 발송 라이브러리(javax.mail, javax.activation) -->
 		<!-- https://mvnrepository.com/artifact/javax.mail/mail -->
 		<dependency>
@@ -187,6 +181,13 @@
 		    <artifactId>json</artifactId>
 		    <version>20231013</version>
 		</dependency>
+
+		<!-- AspectJ -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>${org.aspectj-version}</version>
+		</dependency>	
 				
 		<!-- Logging -->
 		<dependency>
