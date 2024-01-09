@@ -261,9 +261,9 @@ public class ReviewController {
 			review.setReview_img_1(subDir + "/" + fileName1);
 		}
 
-		System.out.println("실제 업로드 파일명1 : " + review.getReview_img_1());
-		System.out.println("파일 실제 경로>>>>>>>>>>>>>>>> : " + subDir);
-		System.out.println("실제경로!!!!!!!>>>>>>>>>>>>>>" + uploadDir);
+//		System.out.println("실제 업로드 파일명1 : " + review.getReview_img_1());
+//		System.out.println("파일 실제 경로>>>>>>>>>>>>>>>> : " + subDir);
+//		System.out.println("실제경로!!!!!!!>>>>>>>>>>>>>>" + uploadDir);
 
 
 		// ----------------------------------------------------------------------

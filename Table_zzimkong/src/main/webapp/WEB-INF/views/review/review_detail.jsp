@@ -107,10 +107,6 @@ function showCommentForm(element) {
 	        event.preventDefault();
 	    });
 	}); 
-	
-	// ===================================================================
-
-		
 	// ===================================================================
     var reviewCountsJson = '${reviewCountsJson}'.replace(/&quot;/g, '"');
     var reviewCounts = JSON.parse(reviewCountsJson)[0]; // 첫 번째 객체만 사용

@@ -41,6 +41,8 @@ public class TinyReplyReviewVO {
 	private int comment_re_ref; // reply_re_ref
 	private int comment_re_lev; // reply_re_lev
 	private int comment_re_seq; // reply_re_seq
+
+	private String user_nick;
 }
 
 

@@ -163,7 +163,7 @@ public class ReviewService {
 
 	// 키워드 검색
 	public List<ReviewVO> filterReviewsByCategory(int comId, String category) {
-			System.out.println("키워드 확인>>>>> " + comId + category);
+//			System.out.println("키워드 확인>>>>> " + comId + category);
 			ReviewVO vo = new ReviewVO();
 			vo.setCom_id(comId);
 			vo.setCategory(category);
