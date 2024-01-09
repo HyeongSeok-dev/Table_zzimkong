@@ -152,7 +152,7 @@ public class ProductController {
 		}else {
 			model.addAttribute("isOnBusiness", false);
 		}
-		
+		/**/
 		if(session.getAttribute("sIdx") == null) {
 			model.addAttribute("isvisited", false);
 		}else {
