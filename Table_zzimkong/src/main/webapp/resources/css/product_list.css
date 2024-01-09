@@ -84,6 +84,7 @@ body {
 
 .restaurant-list:hover {
     background-color: #f0f0f0; /* 호버시 배경색 변경 */
+    cursor: pointer;
 }
 
 .restaurant-list h2 {

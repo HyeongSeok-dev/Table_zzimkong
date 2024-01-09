@@ -17,7 +17,6 @@
 	
 	<jsp:include page="../inc/top2_search_bar.jsp"></jsp:include>
 	</div>
-
 	<p class="gap10"></p>
 	<div class="project">
 		<div class="list_main">
@@ -26,8 +25,7 @@
 					<!-- 갯수/ 필터공간 -->
 					<div class="result_sum">${listCount}개의 식당을 찾음</div>
 					<div class="filter">
-						
-						<select name="sort" class="sort">
+						<select name="sort" id="sort" class="sort">
 							<option value="recommend" <c:if test="${search.sort eq 'recommand' or search.sort eq ''}">selected</c:if> >추천순</option>
 							<option value="star" <c:if test="${search.sort eq 'star'}">selected</c:if>>별점순</option>
 							<option value="review" <c:if test="${search.sort eq 'review'}">selected</c:if>>리뷰많은순</option>
@@ -35,6 +33,8 @@
 						</select>
 					</div>
 				</div>
+				<!-- Map Popup Modal -->
+				
 				<div class="rowgroup">
 					
 					<c:forEach var="company" items="${companyList}" >
@@ -72,7 +72,7 @@
 								             data-remaining2="${company.remaining_people2}" data-remaining3="${company.remaining_people3}" data-remaining4="${company.remaining_people4}" >
 										</div>
 										<input type="hidden" name="com_id" value="${company.com_id}">
-										<input type="hidden" name="distance" value="${company.distance}">
+										<input type="hidden" class="distance" value="${company.distance}">
 										<input type="hidden" name="remaining_people" value="${company.remaining_people}">
 										<input type="hidden" name="avg_score" value="${company.avg_score}">
 										<input type="hidden" name="review_count" value="${company.review_count}">

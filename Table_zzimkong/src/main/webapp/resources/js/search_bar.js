@@ -305,7 +305,9 @@ $(document).ready(function() {
 	});
 
 	$(".sort").change(function() {
-		sendFormDataToNextPage();
+		if($(".sort").val() != 'distance'){
+			sendFormDataToNextPage();
+		}
 	});
 	
 	//메인(테마카테고리)=================================================================

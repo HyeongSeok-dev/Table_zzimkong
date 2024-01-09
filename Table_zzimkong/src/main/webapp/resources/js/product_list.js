@@ -55,6 +55,7 @@ $(document).ready(function() {
                 getAddressCoordinates(storeAddress, function(coordinates) {
                     calculateDistance(userLat, userLon, coordinates.lat, coordinates.lon, function(distance) {
                         console.log(distance);
+                        restaurant.find('.distance').val(distance) 
                         if (distance < 1000) { // 1000m 미만일 때는 m 단위로 정수 표시
 	                        restaurant.find('.restaurant-distance').text(Math.round(distance) + ' m');
 	                    } else { // 1000m 이상일 때는 km 단위로 소수 첫째자리까지 표시
@@ -79,6 +80,16 @@ $(document).ready(function() {
     loadKakaoMaps(function() {
         calculateDistanceForRestaurants();
     });
+    
+    $('#sort').change(function() {
+	console.log("거리순 정렬 호출됨")
+    var selectedSort = $(this).val();
+    if (selectedSort === 'distance') {
+        sortRestaurantsByDistance(); // 거리순으로 정렬하는 함수 호출
+	 }
+	});
+	
+	
 });
 
 
@@ -110,3 +121,16 @@ function getRemainingPeople($container, index) {
 function submitForm(element) {
 	element.closest('form').submit();
 }
+
+function sortRestaurantsByDistance() {
+    var restaurantList = $('.restaurant-list').get();
+
+    restaurantList.sort(function(a, b) {
+        var distanceA = parseFloat($(a).find('.distance').val());
+        var distanceB = parseFloat($(b).find('.distance').val());
+        return distanceA - distanceB;
+    });
+
+    $('.rowgroup').empty().append(restaurantList);
+}
+
