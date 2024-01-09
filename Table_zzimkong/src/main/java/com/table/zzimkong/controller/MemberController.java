@@ -306,6 +306,10 @@ public class MemberController {
 		if(isAuthSuccess) { // 성공
 //			model.addAttribute("msg", "인증 성공!");
 //			model.addAttribute("targetURL", "login");
+			
+			MemberVO member = service.requestIdAuth(authInfo);
+			model.addAttribute("member", member);
+			service.removeAuthInfo(authInfo.getUser_email()); // 인증정보 삭제
 			return "login/login_result_id";
 		} else { // 실패 
 			model.addAttribute("msg", "인증 실패!");
