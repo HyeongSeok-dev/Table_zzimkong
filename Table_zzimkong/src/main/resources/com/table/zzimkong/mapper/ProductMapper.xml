@@ -71,10 +71,10 @@
 		 <where>
 		 	AND com_status = 1	
             <if test="context != null and !context.equals('')">
-                AND com_name LIKE CONCAT('%', #{context}, '%')
+                AND (com_name LIKE CONCAT('%', #{context}, '%')
                 OR com_search_tag LIKE CONCAT('%', #{context}, '%')
                 OR com_category LIKE CONCAT('%', #{context}, '%')
-                OR com_gugun LIKE CONCAT('%', #{context}, '%')
+                OR com_gugun LIKE CONCAT('%', #{context}, '%'))
             </if>
             
             <if test="location != null">

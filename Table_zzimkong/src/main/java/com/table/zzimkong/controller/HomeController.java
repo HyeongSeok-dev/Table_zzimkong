@@ -31,6 +31,7 @@ public class HomeController {
 	public String main(Model model, SearchVO search, MemberVO member, HttpSession session) {
 			//기본 검색 디폴트 세팅 
 		System.out.println("초기 서치 상태" + search);
+		session.setAttribute("search", null);
 			search.setPersons(2);
 	        
 	        LocalDateTime defaultTime = LocalDateTime.now().plusHours(2);
@@ -66,6 +67,7 @@ public class HomeController {
 	        	search.setLocation("전국");
 	        }
 	        search.setContext(null);
+	        
 	        
 	        model.addAttribute("search", search);
 	        

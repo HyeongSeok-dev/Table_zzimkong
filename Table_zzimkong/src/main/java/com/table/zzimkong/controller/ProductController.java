@@ -60,6 +60,7 @@ public class ProductController {
 	    	search.setDisplayTime("오후 " + localTime.format(formatter));
 	    }
 		
+		session.setAttribute("search", null);
 		session.setAttribute("search", search);
 		
 		search.setRedirectURL("/product/list");
