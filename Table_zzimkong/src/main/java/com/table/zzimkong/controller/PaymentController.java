@@ -4,11 +4,14 @@ import javax.servlet.http.HttpSession;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,7 +19,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.table.zzimkong.service.PaymentService;
+import com.table.zzimkong.service.SendMailService;
 import com.table.zzimkong.vo.CompanyVO;
+import com.table.zzimkong.vo.MailAuthInfoVO;
 import com.table.zzimkong.vo.MemberVO;
 import com.table.zzimkong.vo.PaymentInfo;
 import com.table.zzimkong.vo.PaymentVO;
@@ -28,6 +33,8 @@ public class PaymentController {
 	
 	@Autowired
 	private PaymentService service;
+	@Autowired
+	private SendMailService mailService;
 		
 	@GetMapping("payment/agree")
 	public String paymentAgree() {
@@ -37,6 +44,7 @@ public class PaymentController {
 	@GetMapping("payment")
 	public ModelAndView payment(HttpSession session, Map<String, Object> map,
 								 ReservationVO res, CompanyVO company) {
+		System.out.println("payment");
 		ModelAndView mav; 
 		// 세션에 로그인이 안되어있다면 접근금지
 		String sId = (String)session.getAttribute("sId");
@@ -144,6 +152,7 @@ public class PaymentController {
 	public String paymentPro(HttpSession session, @RequestParam Map<String, String> map) {
 		
 		// ajax로 파라미터를 받을 때 map객체를 사용해서 받음
+		System.out.println("paymentPro");
 		System.out.println("map : " + map);
 		System.out.println("-");
 		
@@ -264,7 +273,7 @@ public class PaymentController {
 	}
 	//---------------------------------------------------------------------------------------------------------------
 	@GetMapping("payment/info")
-	public ModelAndView payment_info(HttpSession session, Map<String, Object> map
+	public ModelAndView paymentInfo(HttpSession session, Map<String, Object> map
 			,@RequestParam(defaultValue = "") String res_num,  @RequestParam(defaultValue = "")String discountPoint
 			,@RequestParam(defaultValue = "")String earnedPoints, @RequestParam(defaultValue = "") String finalTotalPayment
 			) {
@@ -319,7 +328,6 @@ public class PaymentController {
 		List<PreOrderInfo> poiList = service.getPreOrderInfo(res);
 		System.out.println(poiList);
 		// 각 메뉴의 가격과 갯수를 곱한 결과를 저장함
-		int count = 0;
 		int eachMenuTotalPriceInt = 0;
 		int menuTotalPriceInt = 0;
 		for(PreOrderInfo preOrderInfo : poiList) {
@@ -330,7 +338,6 @@ public class PaymentController {
 			menuTotalPriceInt += eachMenuTotalPriceInt;
 			String eachMenuTotalPrice = numberFormat.format(eachMenuTotalPriceInt);
 			preOrderInfo.setEachMenuTotalPrice(eachMenuTotalPrice);
-			count++;
 		
 //			System.out.println("preOrderInfo : " + preOrderInfo);
 //			System.out.println(" Integer.parseInt(preOrderInfo.getMenu_price()) : " + Integer.parseInt(preOrderInfo.getMenu_price()));
@@ -373,4 +380,115 @@ public class PaymentController {
 		System.out.println(mav);
 		return mav;
 	}
+	
+	@GetMapping("payment/checkInfoEmailAuth")
+	public String checkInfoEmailAuth(MailAuthInfoVO authInfoVO, HttpSession session, Model model, 
+														@RequestParam(defaultValue = "")String res_num) {
+
+		String sId = (String)session.getAttribute("sId");
+		// 세션에 로그인이 안되어있다면 접근금지
+		if(sId == null) {
+			
+			model.addAttribute("msg", "접근권한이 없습니다!");
+			model.addAttribute("targetURL", "login");
+			
+			return "forword";
+		}
+		// [ 회원 이메일 찾기 ]
+		MemberVO member = service.getMember(sId);
+		
+		// [ 예약정보 ]
+		ReservationVO res = service.getResultRes(res_num);
+		System.out.println("res : " + res);
+		
+		// [ 예약정보중  사업장정보 ]
+		CompanyVO company = service.getCompany(res);
+		System.out.println("company : " + company);
+		
+		// [ 결제정보 ] 
+		PaymentVO payment = service.getPayment(res);
+		
+		// 결제수단 넣기
+				String payMethod = "";
+				switch (payment.getPay_method()) {
+				case 1:
+					payMethod = "카카오페이";
+					break;
+				case 2:
+					payMethod = "네이버페이";
+					break;
+				case 3:
+					payMethod = "카드 결제";
+					break;
+				case 4:
+					payMethod = "무통장 입금";
+					break;
+				case 5:
+					payMethod = "휴대폰 결제";
+					break;
+				}
+		
+		// [ 선주문 정보 ]
+		//테이블 예약금액에 천단위 쉼표줌
+		NumberFormat numberFormat = NumberFormat.getInstance();
+		String res_table_price = numberFormat.format(res.getRes_table_price());
+		
+		// 정보 조회
+		List<PreOrderInfo> poiList = service.getPreOrderInfo(res);
+		System.out.println(poiList);
+		// 각 메뉴의 가격과 갯수를 곱한 결과를 저장함
+		int eachMenuTotalPriceInt = 0;
+		int menuTotalPriceInt = 0;
+		for(PreOrderInfo preOrderInfo : poiList) {
+			// [선주문정보와 메뉴정보를 이용해서 결제할 가격 구하기 ] 
+			// [선주문 정보중 메뉴정보 조회]
+			// 1. 개수를 곱한 메뉴가격 
+			eachMenuTotalPriceInt = (Integer.parseInt(preOrderInfo.getMenu_price()) * preOrderInfo.getPre_num());
+			menuTotalPriceInt += eachMenuTotalPriceInt;
+			String eachMenuTotalPrice = numberFormat.format(eachMenuTotalPriceInt);
+			preOrderInfo.setEachMenuTotalPrice(eachMenuTotalPrice);
+		
+//			System.out.println("preOrderInfo : " + preOrderInfo);
+//			System.out.println(" Integer.parseInt(preOrderInfo.getMenu_price()) : " + Integer.parseInt(preOrderInfo.getMenu_price()));
+//			System.out.println("preOrderInfo.getPre_num() : " + preOrderInfo.getPre_num());
+//			System.out.println("count : " + count);
+//			System.out.println("eachMenuTotalPriceInt : " + eachMenuTotalPriceInt);
+		}
+		
+		// 2. 선주문한 총 가격
+		// 3. paymentInfo 객체로 넣기전에 정수인 수에 천단위로 쉼표를 넣어서 문자열타입으로 만듬
+		String totalPrice = numberFormat.format(res.getRes_table_price() + menuTotalPriceInt);
+		String menuTotalPrice = numberFormat.format(menuTotalPriceInt);
+//		System.out.println("menuTotalPriceInt : " + menuTotalPriceInt);
+//		System.out.println(poiList);
+		
+		//--------------------------------------------------------------------
+		// [날짜 형식 변환해서 뷰페이지 보내기]
+		Date getPaymentDate = payment.getPay_date();
+		String pattern = "yyyy/MM/dd(E) HH:mm:ss";
+		SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+		String paymentDate = sdf.format(getPaymentDate);
+		System.out.println("날짜 변환 완료 : " + paymentDate);
+		
+		//--------------------------------------------------------------------
+		// [ PaymentInfo 객체에 문자열 타입으로 파라미터 전달]
+		PaymentInfo paymentInfo = new PaymentInfo(menuTotalPrice,totalPrice,paymentDate,res_table_price,payMethod);
+		// 예약조회, 포인트조회,사업장정보조회,선주문조회 
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("res", res);
+		map.put("member", member);
+		map.put("paymentInfo", paymentInfo);
+		map.put("com", company);
+		map.put("payment", payment);
+		
+		// 이메일발송
+		mailService.sendCheckInfoAuthMail(map);
+		
+		return "redirect:/";
+		
+	}
+	
+	
 }
