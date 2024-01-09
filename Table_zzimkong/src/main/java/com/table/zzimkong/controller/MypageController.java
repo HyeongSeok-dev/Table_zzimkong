@@ -30,9 +30,11 @@ public class MypageController {
 	public String myModifyProfile(MypageInfo mypage, HttpSession session, Model model) {
 		
 		String sId = (String) session.getAttribute("sId");
+		
 		if(sId == null) {
-			model.addAttribute("msg", "잘못된 접근입니다.");
-			return "fail_back";
+			model.addAttribute("msg", "로그인이 필요합니다!");
+			model.addAttribute("targetURL", "../../login");
+			return "forward";
 		}
 		
 		// 현재 세션이 관리자가 아니거나 관리자이면서 id 파라미터가 없을 경우(null 또는 널스트링)
@@ -77,9 +79,11 @@ public class MypageController {
 	public String modifyPro(MypageInfo mypage, String user_passwd1, HttpSession session, Model model) {
 		// 세션 아이디가 없을 경우 "fail_back" 페이지를 통해 "잘못된 접근입니다" 출력 처리
 		String sId = (String) session.getAttribute("sId");
-		if (sId == null) {
-			model.addAttribute("msg", "잘못된 접근입니다");
-			return "fail_back";
+		
+		if(sId == null) {
+			model.addAttribute("msg", "로그인이 필요합니다!");
+			model.addAttribute("targetURL", "../../login");
+			return "forward";
 		}
 		
 		System.out.println("전달받은 Mypage : " + mypage);
@@ -198,27 +202,34 @@ public class MypageController {
 	//---------- 나의 내역 조회 ----------------
 	@GetMapping("my/list")
 	public String myList(MypageInfo mypage, HttpSession session, Model model, HttpServletResponse response) {
+	    
+	    String sId = (String)session.getAttribute("sId"); // 세션에 아이디값 가져오기
+
 		
-		String sId = (String)session.getAttribute("sId"); // 세션에 아이디값 가져오기
-		mypage.setUser_id(sId);//검색할 아이디를 마이페이지에 넣기 
-		MypageInfo dbMypage = service.getMypage(mypage);
-		session.setAttribute("user_nick", dbMypage.getUser_nick());// String~session: 마이페이지 눌렀을때 닉네임 계속 보이게 세션에 저장
-		session.setAttribute("imgName", dbMypage.getUser_img());
-//		session.setAttribute(sId, get)
-		
-		int sIdx = (int)session.getAttribute("sIdx"); //세션 인덱스 가져오기
-		//---- 예약조회(간략히 보기) --------------------
-		List<Map<String, Object>> resList = service.getResList(sIdx);
-		System.out.println("resList : " + resList);
-		// Model 객체에 회원 목록 조회 결과 저장(resList 문자열을 "resList"라는 속성명으로 저장)
-		model.addAttribute("resList", resList);
-		
-		//---- 북마크(간략히 보기) --------------------
-		List<BookmarkVO> bookmarkList = service.getBookmarkList(sIdx);
-		System.out.println("북마크 : " + sIdx); 
-		model.addAttribute("bookmarkList", bookmarkList);
-		
-		return "mypage/my_list";
+		if(sId == null) {
+			model.addAttribute("msg", "로그인이 필요합니다!");
+			model.addAttribute("targetURL", "../login");
+			return "forward";
+		}
+
+	    mypage.setUser_id(sId); //검색할 아이디를 마이페이지에 넣기 
+	    MypageInfo dbMypage = service.getMypage(mypage);
+	    session.setAttribute("user_nick", dbMypage.getUser_nick()); // String~session: 마이페이지 눌렀을때 닉네임 계속 보이게 세션에 저장
+	    session.setAttribute("imgName", dbMypage.getUser_img());
+	    
+	    int sIdx = (int)session.getAttribute("sIdx"); //세션 인덱스 가져오기
+	    //---- 예약조회(간략히 보기) --------------------
+	    List<Map<String, Object>> resList = service.getResList(sIdx);
+	    System.out.println("resList : " + resList);
+	    // Model 객체에 회원 목록 조회 결과 저장(resList 문자열을 "resList"라는 속성명으로 저장)
+	    model.addAttribute("resList", resList);
+	    
+	    //---- 북마크(간략히 보기) --------------------
+	    List<BookmarkVO> bookmarkList = service.getBookmarkList(sIdx);
+	    System.out.println("북마크 : " + sIdx); 
+	    model.addAttribute("bookmarkList", bookmarkList);
+	    
+	    return "mypage/my_list";
 	}
 	
 	// => AJAX 요청에 대한 응답 처리를 위해 @ResponseBody 적용
@@ -241,8 +252,14 @@ public class MypageController {
 	public String myReservation(@RequestParam(defaultValue = "1") int pageNum, 
 			MypageInfo mypage, HttpSession session, Model model, HttpServletResponse response)	{
 		
-		int sIdx = (int)session.getAttribute("sIdx"); //세션 인덱스 가져오기
-				
+		if(session.getAttribute("sIdx") == null) {
+			model.addAttribute("msg", "로그인이 필요합니다!");
+			model.addAttribute("targetURL", "../login");
+			return "forward";
+		}
+
+	    int sIdx = (int)session.getAttribute("sIdx"); //세션 인덱스 가져오기	    
+	    
 		// Model 객체에 회원 목록 조회 결과 저장(resList2 문자열을 "resList2"라는 속성명으로 저장)
 //		model.addAttribute("resList2", resList2);
 		
@@ -296,6 +313,13 @@ public class MypageController {
 	//----------------나의 북마크 더보기 페이지------------------
 	@GetMapping("my/bookmark")
 	public String myBookmark(BookmarkVO bookmark, HttpSession session, Model model) {
+		
+		if(session.getAttribute("sIdx") == null) {
+			model.addAttribute("msg", "로그인이 필요합니다!");
+			model.addAttribute("targetURL", "../login");
+			return "forward";
+		}
+		
 		int sIdx = (int)session.getAttribute("sIdx"); //세션 인덱스 가져오기 (회원번호)
 		List<BookmarkVO> bookmarkList2 = service.getBookmarkList2(sIdx);
 		System.out.println("북마크 : " + sIdx); 
@@ -322,6 +346,13 @@ public class MypageController {
 	// --------------나의 리뷰----------------------------------------------------
 	@GetMapping("my/review")
 	public String myReview(ReviewVO review, HttpSession session, Model model) {
+		
+		if(session.getAttribute("sIdx") == null) {
+			model.addAttribute("msg", "로그인이 필요합니다!");
+			model.addAttribute("targetURL", "../login");
+			return "forward";
+		}
+
 		String sId = (String)session.getAttribute("sId"); //세션 아이디 가져오기
 		List<ReviewVO> myReview = service.getMyReview(sId);
 		System.out.println("myReview : " + myReview);
@@ -334,6 +365,14 @@ public class MypageController {
 	//--------------가게 신고 - 방문한 가게 조회하기-----------------------------------
 	@GetMapping("my/report/shop")
 	public String myReportShop(MypageInfo mypage, HttpSession session, Model model) {
+		
+		if(session.getAttribute("sIdx") == null) {
+			model.addAttribute("msg", "로그인이 필요합니다!");
+			model.addAttribute("targetURL", "../../login");
+			return "forward";
+		}
+
+		
 		int sIdx = (int)session.getAttribute("sIdx"); //세션 인덱스 가져오기 (회원번호)
 		List<MypageInfo> visitedShop = service.getVisitedShop(sIdx);
 //		System.out.println(sIdx);
@@ -393,7 +432,14 @@ public class MypageController {
 	}
 	
 	@GetMapping("my/qna")
-	public String myQna() {
+	public String myQna(HttpSession session, Model model) {
+		
+		if(session.getAttribute("sIdx") == null) {
+			model.addAttribute("msg", "로그인이 필요합니다!");
+			model.addAttribute("targetURL", "../login");
+			return "forward";
+		}
+		
 		return "mypage/my_qna";
 	}
 	
