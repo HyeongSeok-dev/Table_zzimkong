@@ -66,7 +66,17 @@ $(document).ready(function() {
         });
     }
 
-    kakao.maps.load(function() {
+    function loadKakaoMaps(callback) {
+        var script = document.createElement('script');
+        script.src = 'http://t1.daumcdn.net/mapjsapi/js/libs/services/1.0.2/services.js';
+        script.onload = function() {
+            kakao.maps.load(callback);
+        };
+        document.head.appendChild(script);
+    }
+
+    // 스크립트 로드 후 거리 계산 함수 호출
+    loadKakaoMaps(function() {
         calculateDistanceForRestaurants();
     });
 });
