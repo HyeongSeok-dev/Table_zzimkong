@@ -7,7 +7,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.NumberFormat;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +17,7 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -284,7 +287,9 @@ public class CeoController {
 //		//로그인 아이디의 업체별 목록 조회
 		int sIdx = (Integer)session.getAttribute("sIdx");
 		List<CompanyVO> storeList = service.getComList(sIdx);
+		System.out.println("업체별 목록" + storeList);
 		model.addAttribute("storeList", storeList);
+		
 		
 		
 		return "ceo/ceo_reservation";
@@ -292,18 +297,15 @@ public class CeoController {
 	
 	@ResponseBody
 	@PostMapping("ceo/reservation/resPro")
-	public ResponseEntity<?> ceo_reservation_resPro( Map<String, Object> map, HttpSession session, Model model, CompanyVO company, @RequestParam int com_id) {
+	public String ceo_reservation_resPro( Map<String, Object> map, HttpSession session, Model model, CompanyVO company, @RequestParam int com_id) {
 		company.setCom_id(com_id);
-		List<ReservationVO> resInfoList = service.getResList(company);
-		
-		System.out.println("큼아이디" + company.getCom_id());
-		
-		
 //		com_id에 해당하는 예약정보 조회 
-		List<ReservationVO> comResList = service.getResInfoList(company);
+		List<ReservationVO> comResList = service.getResInfoList(com_id);
 		System.out.println("예약값" + comResList);
 		//예약이 없을 경우 예외 처리
-		if(comResList.size()!=0) {
+//		if(comResList.size()!=0) {
+		map = new HashMap<String, Object>();
+		if(!comResList.isEmpty()) {
 			int res_idx = comResList.get(0).getRes_idx();
 			//당일예약 합계
 			int resTotal = comResList.size();
@@ -312,33 +314,48 @@ public class CeoController {
 			int totalPersons = comResList.stream()
                     .mapToInt(ReservationVO::getRes_person)
                     .sum();
-			int count = 0;
+			//예약취소
+			int cancelCount = 0;
 			for (ReservationVO res : comResList) {
 			    if (res.getRes_status() == 2) {
-			        count++;
+			    	cancelCount++;
 			    }
 			}
-			map = new HashMap<String, Object>();
-			map.put("resInfoList", resInfoList);
-			map.put("count", count);
+			map.put("comResList", comResList);
+			map.put("cancelCount", cancelCount);
 			map.put("resTotal", resTotal);
 			map.put("totalPersons", totalPersons);
-			System.out.println("매애앱" + map);
-//			System.out.println("count" + count);
-//			System.out.println("totalPersons" + totalPersons);
-//			System.out.println("resTotal" + resTotal);
-//			model.addAttribute("count", count);
-//			model.addAttribute("totalPersons", totalPersons);
-//			model.addAttribute("resTotal", resTotal);
-//			model.addAttribute("comResList", comResList);
 		}
+		System.out.println("제이슨" + map);
+		JSONObject jsonObject = new JSONObject(map);
 		
 		
-		return ResponseEntity.ok(map);
+//		return ResponseEntity.ok(map);
+		return jsonObject.toString();
 	}
 	
 	@GetMapping("ceo/reservation/detail")
-	public String ceo_reservation_detail() {
+	public String ceo_reservation_detail(CompanyVO com) {
+		com = service.getComTimeInfo(com);
+		System.out.println("com" + com);
+		
+//		String com_open_time = com.getCom_open_time();
+//        String com_close_time = com.getCom_close_time();
+//
+//        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("HH:mm");
+//        LocalTime openTime = LocalTime.parse(com_open_time, fmt);
+//        LocalTime closeTime = LocalTime.parse(com_close_time, fmt);
+//        
+//        List<String> intervals = new ArrayList<>();
+//        while (openTime.isBefore(closeTime)) {
+//            openTime = openTime.plusMinutes(30);
+//            intervals.add(openTime.format(fmt));
+//        }
+//
+//        System.out.println(intervals);
+		
+		
+		
 		return "ceo/ceo_reservation_detail";
 	}
 	

@@ -94,8 +94,8 @@ public class CeoService {
 		return mapper.selectUser(sId);
 	}
 
-	public List<ReservationVO> getResInfoList(CompanyVO company) {
-		return mapper.selectResInfo(company);
+	public List<ReservationVO> getResInfoList(int com_id) {
+		return mapper.selectResInfo(com_id);
 	}
 
 	public CompanyVO getComNum(CompanyVO com) {
@@ -107,7 +107,8 @@ public class CeoService {
 		return mapper.selectPreInfo(res);
 	}
 
-	public List<ReservationVO> getResList(CompanyVO company) {
-		return mapper.selectResList(company);
+	public CompanyVO getComTimeInfo(CompanyVO com) {
+		return mapper.selectComTime(com);
 	}
+
 }
