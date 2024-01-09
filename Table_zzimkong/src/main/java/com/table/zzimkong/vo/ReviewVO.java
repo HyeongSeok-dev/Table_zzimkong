@@ -97,9 +97,10 @@ public class ReviewVO {
 	
 	// user_idx 찾기
 	private int user_idx;
+	private int userIdx;
 	
 	// 닉네임으로 변경
 	private String user_nick;
-	
-	
+
+
 }

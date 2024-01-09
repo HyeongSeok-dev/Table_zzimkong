@@ -112,5 +112,9 @@ public interface ReviewMapper {
 	// 이런 곳 좋아요 출력
 	int getCompanyLike(int comId);
 
+    // 특정 예약 번호에 대한 리뷰 조회
+//    ReviewVO selectReviewByResIdx(int reservationId);
+
+    
 	
 }

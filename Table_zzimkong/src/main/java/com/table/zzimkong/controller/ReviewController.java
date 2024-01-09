@@ -176,7 +176,7 @@ public class ReviewController {
 	// [ 리뷰 작성 ]
 	// "detail" 서블릿 요청에 대한 리뷰 글쓰기 폼 표시
 	@GetMapping("review/write")
-	public String reviewWriteForm(HttpSession session, Model model, @RequestParam("com_id") int comId) {
+	public String reviewWriteForm(HttpSession session, Model model, @RequestParam("com_id") int comId, ReviewVO review) {
 		// 세션 아이디 없을 경우 "로그인이 필요합니다" 처리를 위해 "forward.jsp" 페이지 포워딩
 		// 일단 sId 보류(231222)
 		String comName = service.getCompanyName(comId);
@@ -190,6 +190,10 @@ public class ReviewController {
 			model.addAttribute("targetURL", "/zzimkong/login");
 			return "forward";
 		}
+		
+		// ---------------------------------------------------------------------
+
+	    // ---------------------------------------------------------------------
 		
 	    // user_id를 사용하여 member 테이블에서 user_idx 찾기
 	    Integer userIdx = service.findUserIdx(userId);		
@@ -207,6 +211,7 @@ public class ReviewController {
 	// "ReviewWritePro" 서블릿 요청에 대한 글쓰기 비즈니스 로직 처리
 	@PostMapping("review/reviewWritePro")
 	public String reviewWritePro(ReviewVO review, HttpSession session, Model model, RedirectAttributes redirectAttributes) {
+		
 		// 세션에서 user_id 가져오기
 		String userId = (String) session.getAttribute("sId");
 		if (userId == null) {
@@ -217,7 +222,11 @@ public class ReviewController {
 		}
 		review.setUser_id(userId);
 		System.out.println("reviewVO값: " + review);
-			
+
+		// user_idx 조회
+//		int userIdx = service.findUserIdx(userId);
+//	    model.addAttribute("userIdx", userIdx);
+		
 		// 가상의 디렉토리 생성
 		String uploadDir = "/resources/upload"; // 가상의 경로
 		// 가상 디렉토리에 대한 실제 경로
@@ -302,6 +311,7 @@ public class ReviewController {
 									Model model,
 									HttpSession session
 									) {
+			
 			// 글 삭제와 권한 판별 동일(세션 아이디 없을 경우 처리)
 			String sId = (String) session.getAttribute("sId");
 			if (sId == null)  {

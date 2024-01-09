@@ -500,7 +500,5 @@
 	    WHERE com_id = #{comId} AND review_like = 1;
 	</select>
 	
-	
-	
-	
+
 </mapper>
