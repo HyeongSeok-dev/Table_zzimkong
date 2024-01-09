@@ -50,18 +50,15 @@
 							<td>${report.com_id}</td>
 						</c:when>
 						<c:when test="${report.report_category eq 0}"> <%-- 리뷰신고일 경우 --%>
-							<td>${report.review.user_id}</td>
+<%-- 							<td>${report.review.user_id}</td> --%>
+							<td>${report.reported_userId}</td>
 						</c:when>
 					</c:choose>
 				</tr>
 				<tr>
-					<th>해당 신고글</th>
-					<%-- 나중에 해당 신고글 링크 추가하기 --%>
+					<th>해당 리뷰 내용</th>
 					<td colspan="3">
-<%-- 						<a href="${pageContext.request.contextPath}/review/detail?review_num=${report.review_num}"> --%>
-						<a href="${pageContext.request.contextPath}/review/redetail?com_id=${company.com_id}?review_num=${report.review_num}">
-							${report.review_num}
-						</a>
+						${report.reported_reviewContent}
 					</td>
 				</tr>
 				<tr>

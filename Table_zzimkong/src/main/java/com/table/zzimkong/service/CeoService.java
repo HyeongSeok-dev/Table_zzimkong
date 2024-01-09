@@ -1,9 +1,11 @@
 package com.table.zzimkong.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.table.zzimkong.mapper.CeoMapper;
 import com.table.zzimkong.vo.CompanyVO;
@@ -20,6 +22,16 @@ public class CeoService {
 	@Autowired 
 	private CeoMapper mapper;
 
+	@Transactional
+	public Map<String, Object> companySales(Map<String, Object> map) {
+		mapper.selectCompanyResCount(map);
+		return mapper.selectSales(map);
+	}
+	
+	public List<Map<String, Object>> companyMenuSales(MenuVO menu) {
+		return mapper.selectCompanyMenuSales(menu);
+	}
+	
 	public int insertMenu(MenuVO menu, int com_id) {
 		// TODO Auto-generated method stub
 		return mapper.insertMenu(menu, com_id);

@@ -4,25 +4,6 @@
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.table.zzimkong.mapper.AdminMapper">
 
-	<!-- 관리자 - 신고 상세 정보 -->
-	<resultMap id="SelectAdminReportDetailResult" type="report">
-	    <result column="report_num" property="report_num"/>
-	    <result column="review_num" property="review_num"/>
-	    <result column="user_id" property="user_id"/>
-	    <result column="report_reason" property="report_reason"/>
-	    <result column="report_person" property="report_person"/>
-	    <result column="report_content" property="report_content"/>
-	    <result column="user_email" property="user_email"/>
-	    <result column="user_phone" property="user_phone"/>
-	    <result column="com_id" property="com_id"/>
-	    <result column="report_category" property="report_category"/>
-	    <result column="report_status" property="report_status"/>
-	    <association property="review" javaType="com.table.zzimkong.vo.ReviewVO">
-	        <result column="user_id" property="user_id"/>
-	    </association>
-	</resultMap>
-	
-	
 	<!-- 관리자 - 메인 : 데이터 뿌리기 -->
 	<select id="selectAdminMain" resultType="com.table.zzimkong.vo.AdminMainVO">
 		SELECT *
@@ -365,8 +346,13 @@
 	</select>
 	
 	<!-- 관리자 - 신고 상세 정보 -->
-	<select id="selectAdminReportDetail" resultMap="SelectAdminReportDetailResult">
-		SELECT rp.*, rv.user_id
+	<select id="selectAdminReportDetail" resultType="map">
+		SELECT
+			rp.*,
+			rv.*,
+			rv.user_id AS reported_userId,
+			rv.review_subject AS reported_reviewSubject,
+			rv.review_content AS reported_reviewContent
 		FROM report rp
 		LEFT JOIN review rv
 		ON rp.review_num = rv.review_num

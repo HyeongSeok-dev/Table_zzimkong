@@ -1,15 +1,50 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<%-- 글로벌 css --%>
-<link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
-<%-- 본문 css --%>
-<link href="${pageContext.request.contextPath }/resources/css/ceo_article.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/css/global.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/css/ceo_article.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+<%-- <link href="${pageContext.request.contextPath}/resources/js/ceo_sale.js" rel="stylesheet"> --%>
+<style type="text/css">
+	select {
+ 	    border: none !important;
+		background-color: #eff7fe;
+	    padding: 11px !important;
+	}
+	.styled-date-input {
+	    border: none;
+		background-color: #eff7fe;
+	    padding: 20px;
+	    border-radius: 10px;
+	}
+</style>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', (event) => {
+    var selectedValue = document.getElementById('storeList').value;
+    var isDisabled = selectedValue === "";
+    document.getElementById('date').disabled = isDisabled;
+    document.getElementById('warningMessage').style.display = isDisabled ? "inline" : "none";
+    
+    // 날짜 선택 가능 범위 제한
+    var date = new Date();
+    var dateString = date.toISOString().split('T')[0];   
+    document.getElementById('date').max = dateString;
+});
+
+function select_company(com_id) {
+	location.href = "sale?com_id=" + com_id;
+}
+
+function select_company_date(com_id, company_date) {
+    document.getElementById("companySaleForm").submit();
+}
+</script>
 </head>
 <body>
 	<header>
@@ -22,18 +57,26 @@
 				<div class="header_div01">
 					<span><h1>사업장별 판매관리</h1></span>
 					<span class="header_span">
-						<select id="storeList">
-							<option value="">상호명</option>
-							<option value="칸다소바">칸다소바</option>
-							<option value="아오모리">아오모리</option>
-						</select>
-						<input type="date" id="date">
+						<form action="${pageContext.request.contextPath}/ceo/sale" method="GET" id="companySaleForm">
+							<select id="storeList" onchange="select_company(this.value)">
+								<c:if test="${not empty storeList}">
+								    <option value="" selected disabled>선택해주세요</option>
+										<c:forEach var="company" items="${storeList}">
+											<option value="${company.com_id}" <c:if test="${not empty param.com_id and param.com_id eq company.com_id}">selected</c:if>>${company.com_name}</option>
+										</c:forEach>
+								</c:if>
+							</select>
+							
+							<input type="hidden" id="com_id" name="com_id" value="${param.com_id}"/>
+							<input type="date" id="date" class="styled-date-input" name="company_date" value="${param.company_date}" onchange="select_company_date('${param.com_id}', this.value)"><br>
+ 							<p id="warningMessage" style="color:red; display:none; margin-left: 60%;">※ 사업장을 먼저 선택해주세요</p>
+ 						</form>
 					</span>	
 				</div>
 			</div>
 			<div class="text_inner">
 				<div class="header">
-					<span><h3>일별판매금액</h3></span>
+					<span><h3>일별 판매&예약 현황</h3></span>
 					<span class="header_span">
 					</span>	
 				</div>
@@ -41,51 +84,28 @@
 				<table border="1">
 					<tr>
 						<th>총 판매금액</th>
-						<th>선주문판매금액</th>
-						<th>런치 판매금액</th>
-						<th>디너 판매금액</th>
+						<th>총 판매금액(선주문)</th>
+						<th>총 예약 건수</th>
+						<th>총 예약 인원</th>
 					</tr>
 					<tr>
-						<td>1,735,000</td>
-						<td>935,000</td>
-						<td>735,000</td>
-						<td>1,000,000</td>
+						<td>
+							<%-- 숫자값 : 쉼표로 구분된 형식으로 --%>
+							<fmt:formatNumber value="${total_sales}" groupingUsed="true"/><c:if test="${empty total_sales}">0</c:if>원								
+						</td>
+						<td>
+							<%-- 숫자값 : 쉼표로 구분된 형식으로 --%>
+							<fmt:formatNumber value="${pre_order_sales}" groupingUsed="true"/><c:if test="${empty pre_order_sales}">0</c:if>원
+						</td>
+						<td>${total_res_count}<c:if test="${empty total_res_count}">0</c:if>건</td>
+						<td>${total_res_people}<c:if test="${empty total_res_people}">0</c:if>명</td>
 					</tr>
 				</table>
 			</div>
+			
 			<div class="text_inner">
 				<div class="header">
-					<span><h3>일별 예약건수 & 예약 인원</h3></span>
-				</div>
-				<table border="1">
-					<tr>
-						<th>총 예약수</th>
-						<th>런치 예약수</th>
-						<th>디너 예약수</th>
-					</tr>
-					<tr>
-						<td>19건</td>
-						<td>6건</td>
-						<td>13건</td>
-					</tr>
-				</table>
-				<br>
-				<table border="1">
-					<tr>
-						<th>총 예약인원</th>
-						<th>런치 예약인원</th>
-						<th>디너 예약인원</th>
-					</tr>
-					<tr>
-						<td>67명</td>
-						<td>25명</td>
-						<td>42명</td>
-					</tr>
-				</table>
-			</div>
-			<div class="text_inner">
-				<div class="header">
-					<span><h3>메뉴별 판매현황</h3></span>
+					<span><h3>일별 메뉴별 선주문 판매 현황</h3></span>
 				</div>
 				<table border="1">
 					<tr>
@@ -94,292 +114,33 @@
 						<th>판매량</th>
 						<th>총 판매 금액</th>
 					</tr>
+					<%-- 선택한 업체에 메뉴가 존재하지 않을 경우 --%>
+					<c:if test="${empty storeMenuList}">
+					    <tr>
+					        <td colspan="4">메뉴가 존재하지 않습니다.</td>
+					    </tr>
+					</c:if>
+					<%-- 아래부터 메뉴 출력 --%>
+					<c:forEach var="menu" items="${storeMenuList}">
 					<tr>
-						<td>메뉴1</td>
-						<td>32,000원</td>
-						<td>12</td>
-						<td>가격*판매량</td>
+						<td>${menu.menu_name}</td>
+						<td>
+							<%-- 숫자값 : 쉼표로 구분된 형식으로 --%>
+							<fmt:formatNumber value="${menu.menu_price}" groupingUsed="true"/>원								
+						</td>
+						<td>${menu.pre_sales}건</td>
+						<td>
+							<%-- 숫자값 : 쉼표로 구분된 형식으로 --%>
+							<fmt:formatNumber value="${menu.total_menu_sales}" groupingUsed="true"/>원								
+						</td>
 					</tr>
-					<tr>
-						<td>메뉴2</td>
-						<td>36,000원</td>
-						<td>5</td>
-						<td>가격*판매량</td>
-					</tr>
-					<tr>
-						<td>메뉴3</td>
-						<td>29,000원</td>
-						<td>7</td>
-						<td>가격*판매량</td>
-					</tr>
-					<tr>
-						<td>메뉴4</td>
-						<td>17,000원</td>
-						<td>10</td>
-						<td>가격*판매량</td>
-					</tr>
-					<tr>
-						<td>메뉴5</td>
-						<td>21,000원</td>
-						<td>4</td>
-						<td>가격*판매량</td>
-					</tr>
-					<tr>
-						<td>메뉴6</td>
-						<td>19,000원</td>
-						<td>7</td>
-						<td>가격*판매량</td>
-					</tr>
-					<tr>
-						<td>메뉴7</td>
-						<td>17,000원</td>
-						<td>4</td>
-						<td>가격*판매량</td>
-					</tr>
-					<tr>
-						<td>메뉴8</td>
-						<td>19,000원</td>
-						<td>7</td>
-						<td>가격*판매량</td>
-					</tr>
-					<tr>
-						<td>사이드1</td>
-						<td>9,000원</td>
-						<td>7</td>
-						<td>가격*판매량</td>
-					</tr>
-					<tr>
-						<td>사이드2</td>
-						<td>7,000원</td>
-						<td>3</td>
-						<td>가격*판매량</td>
-					</tr>
-					<tr>
-						<td>사이드3</td>
-						<td>5,000원</td>
-						<td>12</td>
-						<td>가격*판매량</td>
-					</tr>
-					<tr>
-						<td>사이드4</td>
-						<td>6,000원</td>
-						<td>3</td>
-						<td>가격*판매량</td>
-					</tr>
-					<tr>
-						<td>사이드5</td>
-						<td>6,000원</td>
-						<td>9</td>
-						<td>가격*판매량</td>
-					</tr>
-				
+					</c:forEach>
 				</table>
 			</div>
-			<div class="text_inner">
-				<div class="header">
-					<span><h3>메뉴별 판매현황</h3></span>
-				</div>
-				<table border="1">
-					<tr>
-						<th>메뉴 이름</th>
-						<th>메뉴 가격</th>
-						<th>판매량</th>
-						<th>총 판매 금액</th>
-					</tr>
-					<tr>
-						<td>메뉴1</td>
-						<td>32,000원</td>
-						<td>12</td>
-						<td>가격*판매량</td>
-					</tr>
-					<tr>
-						<td>메뉴2</td>
-						<td>36,000원</td>
-						<td>5</td>
-						<td>가격*판매량</td>
-					</tr>
-					<tr>
-						<td>메뉴3</td>
-						<td>29,000원</td>
-						<td>7</td>
-						<td>가격*판매량</td>
-					</tr>
-					<tr>
-						<td>메뉴4</td>
-						<td>17,000원</td>
-						<td>10</td>
-						<td>가격*판매량</td>
-					</tr>
-					<tr>
-						<td>메뉴5</td>
-						<td>21,000원</td>
-						<td>4</td>
-						<td>가격*판매량</td>
-					</tr>
-					<tr>
-						<td>메뉴6</td>
-						<td>19,000원</td>
-						<td>7</td>
-						<td>가격*판매량</td>
-					</tr>
-					<tr>
-						<td>메뉴7</td>
-						<td>17,000원</td>
-						<td>4</td>
-						<td>가격*판매량</td>
-					</tr>
-					<tr>
-						<td>메뉴8</td>
-						<td>19,000원</td>
-						<td>7</td>
-						<td>가격*판매량</td>
-					</tr>
-					<tr>
-						<td>사이드1</td>
-						<td>9,000원</td>
-						<td>7</td>
-						<td>가격*판매량</td>
-					</tr>
-					<tr>
-						<td>사이드2</td>
-						<td>7,000원</td>
-						<td>3</td>
-						<td>가격*판매량</td>
-					</tr>
-					<tr>
-						<td>사이드3</td>
-						<td>5,000원</td>
-						<td>12</td>
-						<td>가격*판매량</td>
-					</tr>
-					<tr>
-						<td>사이드4</td>
-						<td>6,000원</td>
-						<td>3</td>
-						<td>가격*판매량</td>
-					</tr>
-					<tr>
-						<td>사이드5</td>
-						<td>6,000원</td>
-						<td>9</td>
-						<td>가격*판매량</td>
-					</tr>
-				</table>
-			</div>
-			<div class="text_inner">
-				<div class="header">
-					<span><h3>메뉴별 판매현황</h3></span>
-				</div>
-				<table border="1">
-					<tr>
-						<th>메뉴 이름</th>
-						<th>메뉴 가격</th>
-						<th>판매량</th>
-						<th>총 판매 금액</th>
-					</tr>
-					<tr>
-						<td>메뉴1</td>
-						<td>32,000원</td>
-						<td>12</td>
-						<td>가격*판매량</td>
-					</tr>
-					<tr>
-						<td>메뉴2</td>
-						<td>36,000원</td>
-						<td>5</td>
-						<td>가격*판매량</td>
-					</tr>
-					<tr>
-						<td>메뉴3</td>
-						<td>29,000원</td>
-						<td>7</td>
-						<td>가격*판매량</td>
-					</tr>
-					<tr>
-						<td>메뉴4</td>
-						<td>17,000원</td>
-						<td>10</td>
-						<td>가격*판매량</td>
-					</tr>
-					<tr>
-						<td>메뉴5</td>
-						<td>21,000원</td>
-						<td>4</td>
-						<td>가격*판매량</td>
-					</tr>
-					<tr>
-						<td>메뉴6</td>
-						<td>19,000원</td>
-						<td>7</td>
-						<td>가격*판매량</td>
-					</tr>
-					<tr>
-						<td>메뉴7</td>
-						<td>17,000원</td>
-						<td>4</td>
-						<td>가격*판매량</td>
-					</tr>
-					<tr>
-						<td>메뉴8</td>
-						<td>19,000원</td>
-						<td>7</td>
-						<td>가격*판매량</td>
-					</tr>
-					<tr>
-						<td>사이드1</td>
-						<td>9,000원</td>
-						<td>7</td>
-						<td>가격*판매량</td>
-					</tr>
-					<tr>
-						<td>사이드2</td>
-						<td>7,000원</td>
-						<td>3</td>
-						<td>가격*판매량</td>
-					</tr>
-					<tr>
-						<td>사이드3</td>
-						<td>5,000원</td>
-						<td>12</td>
-						<td>가격*판매량</td>
-					</tr>
-					<tr>
-						<td>사이드4</td>
-						<td>6,000원</td>
-						<td>3</td>
-						<td>가격*판매량</td>
-					</tr>
-					<tr>
-						<td>사이드5</td>
-						<td>6,000원</td>
-						<td>9</td>
-						<td>가격*판매량</td>
-					</tr>
-				</table>
-			</div>
-			<div class="text_inner">
-				<div class="header">
-					<span><h3>매출 통계</h3></span>
-				</div>
-				<table border="1">
-					<tr>
-						<th>예약건수</th>
-					</tr>
-					<tr>
-						<td>월별 예약 건수 현황 (선 차트)</td>
-					</tr>
-					<tr>
-						<th>매출액</th>
-					</tr>
-					<tr>
-						<td>월별 매출액 현황 (선 차트)</td>
-					</tr>
-				</table>
-			</div>		
 		</div>
 	</section>
-	
 	<br><br><br>
+
 	<footer>
 		<%-- 상단으로 --%>
 		<jsp:include page="../inc/topup.jsp"/>

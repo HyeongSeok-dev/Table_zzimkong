@@ -18,4 +18,5 @@ public class MenuVO {
 	private String menuTotalPrice;
 	private String totalPayPrice;
 	
+	private String company_date;
 }

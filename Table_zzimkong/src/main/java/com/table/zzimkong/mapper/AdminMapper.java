@@ -78,7 +78,7 @@ public interface AdminMapper {
 	int selectAdminReportListCount();
 	
 	// 관리자 - 신고 상세 정보
-	ReportVO selectAdminReportDetail(ReportVO report);
+	Map<String, Object> selectAdminReportDetail(ReportVO report);
 
 	// 관리자 - 신고 승인/반려 처리
 	int updateAdminReportRegister(ReportVO report);

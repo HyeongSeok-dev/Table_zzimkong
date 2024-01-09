@@ -136,7 +136,7 @@ public class AdminService {
 	}
 	
 	// 관리자 - 신고 상세 정보 요청
-	public ReportVO adminReportDetail(ReportVO report) {
+	public Map<String, Object> adminReportDetail(ReportVO report) {
 		return mapper.selectAdminReportDetail(report);
 	}
 

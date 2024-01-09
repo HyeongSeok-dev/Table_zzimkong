@@ -1,6 +1,7 @@
 package com.table.zzimkong.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -15,6 +16,12 @@ import com.table.zzimkong.vo.ReservationVO;
 @Mapper
 public interface CeoMapper {
 
+	Map<String, Object> selectSales(Map<String, Object> map);
+
+	Map<String, Object> selectCompanyResCount(Map<String, Object> map);
+
+	List<Map<String, Object>> selectCompanyMenuSales(MenuVO menu);
+	
 	int insertMenu(@Param(value = "menu") MenuVO menu, @Param(value = "com_id") int com_id);
 
 	List<CompanyVO> selectMycompanyList(int sIdx);

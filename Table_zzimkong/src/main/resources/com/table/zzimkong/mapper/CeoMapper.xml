@@ -6,6 +6,68 @@
 
 <mapper namespace="com.table.zzimkong.mapper.CeoMapper">
 
+	
+		<!-- 판매관리 - 일별 판매 현황(총 판매금액, 총 판매금액(선주문)) -->
+	<select id="selectSales" parameterType="map">
+		SELECT
+		    SUM(p.pay_per_price) + SUM(p.pay_po_price) AS 'total_sales',
+		    SUM(p.pay_po_price) AS 'pre_order_sales'
+		FROM
+		    payment p
+		    JOIN reservation r
+		        ON p.res_idx = r.res_idx
+		    JOIN company c
+		        ON r.com_id = c.com_id
+		WHERE
+		    c.com_id = #{com_id}
+		    AND r.res_pay_status != 2
+		    AND r.res_pay_status != 0
+		    AND p.pay_status = 1
+		    AND DATE(p.pay_date) = #{company_date}
+	</select>
+	
+	<!-- 판매관리 - 일별 예약 현황(총 예약 건수, 총 예약 인원) -->
+	<select id="selectCompanyResCount" parameterType="map">
+		SELECT
+		    c.com_name,
+		    COUNT(r.res_idx) AS 'total_res_count',
+		    SUM(r.res_person) AS 'total_res_people'
+		FROM
+		    company c
+		    JOIN reservation r
+		    	ON c.com_id = r.com_id
+		WHERE
+		    c.com_id = #{com_id}
+		    AND r.res_status != 2
+		    AND DATE(r.res_now) = #{company_date}
+		GROUP BY
+		    c.com_id;
+	</select>
+	
+	<!-- 판매관리 - 일별 메뉴별 판매 현황(선주문) -->
+	<select id="selectCompanyMenuSales" parameterType="map">
+		SELECT
+		    m.menu_name AS 'menu_name',
+		    m.menu_price AS 'menu_price',
+		    (
+		        SELECT COALESCE(SUM(po.pre_num), 0)
+		        FROM pre_order po
+		        LEFT JOIN payment p ON po.res_idx = p.res_idx
+		        WHERE po.menu_idx = m.menu_idx AND DATE(p.pay_date) = #{company_date}
+		    ) AS 'pre_sales',
+		    (
+		        SELECT COALESCE(SUM(m.menu_price * po.pre_num), 0)
+		        FROM pre_order po
+		        LEFT JOIN payment p ON po.res_idx = p.res_idx
+		        WHERE po.menu_idx = m.menu_idx AND DATE(p.pay_date) = #{company_date}
+		    ) AS 'total_menu_sales'
+		FROM
+		    menu m
+		    JOIN company c
+		        ON m.com_id = c.com_id
+		WHERE c.com_id = #{com_id}
+	</select>
+	
 	<insert id="insertMenu">
 		insert into menu (menu_idx, com_id, menu_name, menu_price, menu_describe, menu_img)
 		values 

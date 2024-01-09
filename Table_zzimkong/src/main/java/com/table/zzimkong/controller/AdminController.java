@@ -341,12 +341,13 @@ public class AdminController {
 
 	// 관리자 페이지 - 신고 목록 상세정보
 	@GetMapping("admin/report/detail")
-	public String reportDetail(ReportVO report, HttpSession session, Model model, HttpServletResponse response) {
+	public String reportDetail(ReportVO report, HttpSession session, Model model, HttpServletResponse response, Map<String, Object>map) {
 		// 관리자 페이지 접근 제한
 		if (!isvalid(session, model, response)) return null;
 		
-		report = service.adminReportDetail(report);
-		model.addAttribute("report", report);
+		map = service.adminReportDetail(report);
+		
+		model.addAttribute("report", map);
 
 		return "admin/admin_report_detail";
 	}

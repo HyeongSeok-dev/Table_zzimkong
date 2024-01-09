@@ -12,7 +12,7 @@
 <script src="${pageContext.request.contextPath}/resources/js/admin_script.js"></script> <%-- 관리자 페이지의 모든 자바스크립트 --%>
 <%-- <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script> Chart.js CDN --%>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/chart_script.js"></script> <%-- Chart.js 커스텀 --%>
+<script src="${pageContext.request.contextPath}/resources/js/admin_chart.js"></script> <%-- Chart.js 커스텀 --%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> <%-- AJAX --%>
 </head>
 <body>

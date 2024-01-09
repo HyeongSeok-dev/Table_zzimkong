@@ -47,8 +47,59 @@ public class CeoController {
 	@Autowired
 	private ProductService servicePro;
 	
+	// 판매관리
 	@GetMapping("ceo/sale")
-	public String ceoSale() {
+	public String ceo_sale(
+			@RequestParam(defaultValue = "1") int com_id,
+			@RequestParam(defaultValue = "") String company_date,
+			@ModelAttribute MenuList menuList,
+			Map<String, Object> map, CompanyVO company, MenuVO menu,
+			HttpSession session, Model model) {
+		//로그인 아이디의 업체별 목록 조회
+		if(session.getAttribute("sId") == null) {
+			model.addAttribute("msg", "접근권한이 없습니다!");
+			model.addAttribute("targetURL", "../login");
+			
+			return "forward";
+		}
+		
+		int sIdx = (Integer)session.getAttribute("sIdx");
+//		int sIdx = 75;	// 임시
+//		int sIdx = 76;	// 임시
+//		int sIdx = 79;	// 임시
+        
+	    // 업체 리스트
+	    List<CompanyVO> storeList = service.getComList(sIdx);
+	    model.addAttribute("storeList", storeList);
+		
+		// 일별 메뉴별 판매 현황(선주문)
+		List<Map<String, Object>> storeMenuList = service.companyMenuSales(menu);
+		model.addAttribute("storeMenuList", storeMenuList);
+
+		map.put("com_id", com_id);
+		map.put("company_date", company_date);
+		
+		if (!company_date.equals("")) {
+			// 일별 판매금액(총 판매금액, 총 판매금액(선주문))
+			// 일별 예약건수(총 예약수, 총 예약인원)
+			map = service.companySales(map);
+		}
+		
+		if(map != null) {
+			model.addAttribute("com_id", map.get("com_id"));
+			model.addAttribute("company_date", map.get("company_date"));
+			model.addAttribute("total_sales", map.get("total_sales"));
+			model.addAttribute("pre_order_sales", map.get("pre_order_sales"));
+			model.addAttribute("total_res_count", map.get("total_res_count"));
+			model.addAttribute("total_res_people", map.get("total_res_people"));
+		} else {
+			model.addAttribute("com_id", 0);
+			model.addAttribute("company_date", 0);
+			model.addAttribute("total_sales", 0);
+			model.addAttribute("pre_order_sales", 0);
+			model.addAttribute("total_res_count", 0);
+			model.addAttribute("total_res_people", 0);
+		}
 		
 		return "ceo/ceo_sale";
 	}
