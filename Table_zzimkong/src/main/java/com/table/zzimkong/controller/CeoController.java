@@ -297,7 +297,7 @@ public class CeoController {
 	
 	@ResponseBody
 	@PostMapping("ceo/reservation/resPro")
-	public ResponseEntity<?> ceoReservationResPro( Map<String, Object> map, HttpSession session, Model model, CompanyVO company, @RequestParam int com_id) {
+	public String ceoReservationResPro( Map<String, Object> map, HttpSession session, Model model, CompanyVO company, @RequestParam int com_id) {
 		company.setCom_id(com_id);
 //		com_id에 해당하는 예약정보 조회 
 		List<ReservationVO> comResList = service.getResInfoList(com_id);
