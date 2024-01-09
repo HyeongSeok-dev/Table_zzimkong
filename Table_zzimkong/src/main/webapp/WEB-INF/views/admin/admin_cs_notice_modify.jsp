@@ -61,15 +61,15 @@
 				<tr>
 					<th colspan="1">파일첨부</th>
 					<td colspan="3" class="td_file">
-							<div><c:if test="${not empty board.cs_board_img_1}"><img src="/upload${board.cs_board_img_1}"></c:if></div>
+							<div><c:if test="${not empty board.cs_board_img_1}"><img src="/upload/${board.cs_board_img_1}"></c:if></div>
                             <input type="file" name="mFile1" class="file" accept="image/*">
-                            <div><c:if test="${not empty board.cs_board_img_2}"><img src="/upload${board.cs_board_img_2}"></c:if></div>
+                            <div><c:if test="${not empty board.cs_board_img_2}"><img src="/upload/${board.cs_board_img_2}"></c:if></div>
                             <input type="file" name="mFile2" class="file" accept="image/*">
-                            <div><c:if test="${not empty board.cs_board_img_3}"><img src="/upload${board.cs_board_img_3}"></c:if></div>
+                            <div><c:if test="${not empty board.cs_board_img_3}"><img src="/upload/${board.cs_board_img_3}"></c:if></div>
                             <input type="file" name="mFile3" class="file" accept="image/*">
-                            <div><c:if test="${not empty board.cs_board_img_4}"><img src="/upload${board.cs_board_img_4}"></c:if></div>
+                            <div><c:if test="${not empty board.cs_board_img_4}"><img src="/upload/${board.cs_board_img_4}"></c:if></div>
                             <input type="file" name="mFile4" class="file" accept="image/*">
-                            <div><c:if test="${not empty board.cs_board_img_5}"><img src="/upload${board.cs_board_img_5}"></c:if></div>
+                            <div><c:if test="${not empty board.cs_board_img_5}"><img src="/upload/${board.cs_board_img_5}"></c:if></div>
                             <input type="file" name="mFile5" class="file" accept="image/*">
                         </td>
 				</tr>

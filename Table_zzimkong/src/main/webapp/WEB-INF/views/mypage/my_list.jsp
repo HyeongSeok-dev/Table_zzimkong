@@ -92,7 +92,7 @@
 			<c:forEach var="bookmark" items="${bookmarkList}">
 		        <div id="${bookmark.com_id}">
 		        	<a href="${pageContext.request.contextPath}/product/detail?com_id=${bookmark.com_id}">
-		           	 <img class="image_size" src="/upload${bookmark.com_img}">
+		           	 <img class="image_size" src="/upload/${bookmark.com_img}">
 		       		</a>
 			    <div id="likeButton" class="like_button" style="display: flex; align-items: center;">
 				    <svg id="heart" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" onclick="removeBookmark2('${bookmark.com_id}')" style="margin-right: 10px;">

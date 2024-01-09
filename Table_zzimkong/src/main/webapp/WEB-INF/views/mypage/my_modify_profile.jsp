@@ -44,7 +44,7 @@
 							<div id="img">
 							<c:choose>
 					        	<c:when test="${not empty sessionScope.imgName}">
-						        	<img id="profile" src="/upload${sessionScope.imgName}">
+						        	<img id="profile" src="/upload/${sessionScope.imgName}">
 					        	</c:when>
 					        	<c:otherwise>
 						        	<img id="profile" src="${pageContext.request.contextPath}/resources/img/profile.png">

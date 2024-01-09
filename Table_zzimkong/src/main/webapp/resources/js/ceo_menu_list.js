@@ -1,3 +1,4 @@
+var path = window.location.pathname;
 var contextRoot = path.substring(0, path.indexOf('/', 1));
 $(document).ready(function() {
 	var initialCompanyId = $('#storeList option:first').val();
@@ -30,7 +31,6 @@ function menuModify(menuIdx) {
 }
 
 function fetchCompanyData(companyId) {
-	var path = window.location.pathname;
 	
 	var fetchData ={com_id: companyId}
 	

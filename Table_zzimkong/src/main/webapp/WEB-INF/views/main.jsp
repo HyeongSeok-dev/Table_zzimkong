@@ -229,7 +229,7 @@
 	                              <c:forEach var="clean" items="${cleanList}">
 	                                <div class="owl_example1_items_images">
 	                                  <a href="product/detail?com_id=${clean.com_id}">
-	                                    <img alt="" src="/upload${clean.com_img}"> <br>
+	                                    <img alt="" src="/upload/${clean.com_img}"> <br>
 	                                    ${clean.com_name}
 	                                  </a>
 	                                </div>
@@ -247,7 +247,7 @@
 						  <c:forEach var="recommand" items="${recommendList}">
 						    <div class="owl_example1_items_images">
 					    		<a href="product/detail?com_id=${recommand.com_id}">
-						      		<img alt="" src="/upload${recommand.com_img}"> <br>
+						      		<img alt="" src="/upload/${recommand.com_img}"> <br>
 						      		${recommand.com_name}
 						    	</a>
 						    </div>                      
@@ -264,7 +264,7 @@
 						  <c:forEach var="review" items="${reviewList}">
 						    <div class="owl_example1_items_images">
 						    	<a href="product/detail?com_id=${review.com_id}">
-						      		<img alt="" src="/upload${review.com_img}"> <br>
+						      		<img alt="" src="/upload/${review.com_img}"> <br>
 						     		 ${review.com_name}
 						    	</a>
 						    </div>                          
