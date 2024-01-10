@@ -575,8 +575,12 @@ public class CeoController {
 		//----------------------------------------------------------------------------------------------------
 		//주소 군구 추출해서 넣기
 		String[] addressArr = company.getCom_address().split(" ");
-		String si = "";
-		if(addressArr[0].contains("특별시")) {
+		String si= "";
+		if(addressArr[0].contains("특별자치시")) {
+			si = addressArr[0].replace("특별자치시", "");
+		} else if(addressArr[0].contains("특별자치도")) {
+			si = addressArr[0].replace("특별자치도", "");
+		} else if(addressArr[0].contains("특별시")) {
 			si = addressArr[0].replace("특별시", "");
 		} else if(addressArr[0].contains("광역시")) {
 			si = addressArr[0].replace("광역시", "");
@@ -587,7 +591,9 @@ public class CeoController {
 		}
 		System.out.println("포함여부 : " + addressArr[0].contains("특별시"));
 		String gugun = "";
-		if((addressArr[0].contains("특별시") || addressArr[0].contains("광역시")) && (addressArr[1].endsWith("구") || addressArr[1].endsWith("군"))) {
+		if((addressArr[0].contains("특별시") || addressArr[0].contains("광역시") 
+				|| addressArr[0].contains("특별시자치시") || addressArr[0].contains("특별시자치도"))
+				&& (addressArr[1].endsWith("구") || addressArr[1].endsWith("군"))) {
 			gugun = si + "_" + addressArr[1];
 		} else if((addressArr[1].endsWith("시")||addressArr[1].endsWith("군"))
 					&& (addressArr[2].endsWith("구") || addressArr[2].endsWith("동") || addressArr[2].endsWith("읍"))) {
