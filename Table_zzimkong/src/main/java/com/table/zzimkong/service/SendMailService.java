@@ -71,11 +71,11 @@ public class SendMailService {
 		PaymentVO payment = (PaymentVO)map.get("payment");
 		PaymentInfo paymentInfo = (PaymentInfo)map.get("paymentInfo");
 		
-		
 		String subject = "[테이블 찜콩] 예약 완료 메일입니다.";
 		String content = "<h1>[테이블 찜콩] 예약이 완료되었습니다.</h1>"
 				+ "<h1>이용해 주셔서 감사합니다.</h1>"
 				+ "<h2>[예약정보]</h2>"
+				+ "<h3>예약 번호 : " + res.getRes_num() + "</h3>"
 				+ "<h3>업체명 : " + com.getCom_name() + "</h3>"
 				+ "<h3>주소 : " + com.getCom_address() + "</h3>"
 				+ "<h3>예약날짜 : " + res.getRes_date() + "</h3>"
@@ -90,10 +90,11 @@ public class SendMailService {
 				+ "<h3>이름 : " +  member.getUser_name() + "</h3>"
 				+ "<h3>결제일시 : " +  paymentInfo.getPaymentDate() + "</h3>"
 				+ "<h3>결제수단 : " +  paymentInfo.getPayMethod() + "</h3>"
-				+ "<h3>총 결제금액 : " +  paymentInfo.getTotalPrice() + "</h3>"
+				+ "<h3>총 결제금액 : " +  map.get("ftp") + " 원</h3>"
 				+ "<h3>결제금액 상세 내역</h3>"
-				+ "&nbsp;&nbsp;<b>- 총 예약금 : " +  paymentInfo.getRes_table_price() + "</b><br>"
-				+ "&nbsp;&nbsp;<b>- 총 선주문금 : " +  paymentInfo.getMenuTotalPrice() + "</b><br>"
+				+ "&nbsp;&nbsp;<b>- 총 예약금 : " +  paymentInfo.getRes_table_price() + " 원</b><br>"
+				+ "&nbsp;&nbsp;<b>- 총 선주문금 : " +  paymentInfo.getMenuTotalPrice() + " 원</b><br>"
+				+ "&nbsp;&nbsp;<b>- 포인트 할인 : " +  map.get("dPoint") + " 원</b><br>"
 				+ "<br><br>"
 				+ "(주)테이블찜콩<br>"
 				+ "대표 : 이형석<br>"

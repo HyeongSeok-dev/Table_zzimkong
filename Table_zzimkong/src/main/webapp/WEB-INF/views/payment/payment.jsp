@@ -271,6 +271,7 @@
 											<span class="detail"> </span>
 											<span class="detail_price">
 												<div class="info_price">
+													<span></span>
 													<span class="menu_name2">현재 포인트</span>
 													<span class="price" >
 														<span id="nowPoint">${map.paymentInfo.totalPoint}</span>
@@ -278,6 +279,7 @@
 													</span>
 												</div>
 												<div class="info_price">
+													<span></span>
 													<span class="menu_name2">총 포인트</span>
 													<span class="price">
 														<span id="totalPoint">0</span>

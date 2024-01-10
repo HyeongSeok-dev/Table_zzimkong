@@ -18,7 +18,7 @@ $(function() {
 	// 페이지 로드후 적립금 계산
 	var reservationPrice = parseInt($("#reservationPrice").text().replace(/,/g, ''));
 	var nowPoint = parseInt($("#nowPoint").text().trim().replace(/,/g, '')); //할인 후 결제전 현재 보유 포인트
-	var earnedPoints_text = parseFloat($("#totalPayment_text").text().trim().replace(/,/g, '')) *  0.01;
+	var earnedPoints_text = parseFloat($("#totalPayment_text").text().trim().replace(/,/g, '')) *  0.001;
 	$("#earnedPoints_text").text(parseInt(earnedPoints_text).toLocaleString());
 	$("#totalPoint").text((parseInt(earnedPoints_text) + nowPoint).toLocaleString());
 	
@@ -43,9 +43,10 @@ $(function() {
 			$("#totalPayment_text").text(finalTotalPayment.toLocaleString());
 		}
 		// 결제금액에 따른 포인트 적립(1%적립)(적립예정포인트)
-		var earnedPoints_text = parseFloat($("#totalPayment_text").text().trim().replace(/,/g, '')) *  0.01;
+		var earnedPoints_text = parseFloat($("#totalPayment_text").text().trim().replace(/,/g, '')) *  0.001;
 		$("#earnedPoints_text").text(parseInt(earnedPoints_text).toLocaleString());  
 		$("#totalPoint").text((parseInt(earnedPoints_text) + parseInt($("#nowPoint").text().trim().replace(/,/g, ''))).toLocaleString());                                                                          
+		totalPaymentNone();
 	}
 	
 	//라디오 버튼 해제시 select 초기화
@@ -70,39 +71,6 @@ $(function() {
 			}
 	});
 	
-	// 은행선택시 계좌번호 나오게 하기
-	$("#bankSelect").on("change", function() {
-			switch($("#bankSelect").val()) {
-			case "신한": $(".account").val("111-1234-12345"); 
-						break
-			case "국민": $(".account").val("222-1234-12345");
-						break
-			case "우리": $(".account").val("333-1234-12345");
-						break
-			case "하나": $(".account").val("444-1234-12345");
-						break
-			case "농협": $(".account").val("555-1234-12345");
-						break
-			case "기업": $(".account").val("666-1234-12345");
-						break
-			case "씨티": $(".account").val("777-1234-12345");
-						break
-			case "SC": $(".account").val("888-1234-12345");
-						break
-			case "우체국": $(".account").val("999-1234-12345");
-						break
-			case "부산": $(".account").val("1010-1234-12345");
-						break
-			case "대구": $(".account").val("1111-1234-12345");
-						break
-			case "외환": $(".account").val("1212-1234-12345");
-						break
-			case "카카오뱅크": $(".account").val("1313-1234-12345");
-						break
-			case "케이뱅크": $(".account").val("1414-1234-12345");
-						break
-			}
-	});
 	
 	// 현재보유포인트에 따른 전액사용 선택시
 	$("#useAllPoint").on("click", function() {
@@ -213,6 +181,7 @@ $(function() {
 						$("#totalPoint").text((useablePoint - pointResult).toLocaleString());
 						// 선결제 금액은 0원
 						$("#preOrderTotalPrice_text").text("0");
+						totalPaymentNone();
 			            isChecked = true;
 					} else {
 						$("#onSitePayment").prop('checked', false);
@@ -243,10 +212,10 @@ $(function() {
 					$("#totalPayment_text").text(finalTotalPayment.toLocaleString());
 				}
 				// 결제금액에 따른 포인트 적립(1%적립)(적립예정포인트)
-				var earnedPoints_text = parseFloat($("#totalPayment_text").text().trim().replace(/,/g, '')) *  0.01;
+				var earnedPoints_text = parseFloat($("#totalPayment_text").text().trim().replace(/,/g, '')) *  0.001;
 				$("#earnedPoints_text").text(parseInt(earnedPoints_text).toLocaleString());  
 				$("#totalPoint").text((parseInt(earnedPoints_text) + parseInt($("#nowPoint").text().trim().replace(/,/g, ''))).toLocaleString());
-	            
+	            totalPaymentNone();
 	            isChecked = true;
 			}
 	       
@@ -265,9 +234,10 @@ $(function() {
 						// 적립포인트 변함
 						// 현재포인트 변함
 						// 총포인트 변함
-						var earnedPoints_text = parseFloat($("#totalPayment_text").text().trim().replace(/,/g, '')) *  0.01;
+						var earnedPoints_text = parseFloat($("#totalPayment_text").text().trim().replace(/,/g, '')) *  0.001;
 						$("#earnedPoints_text").text(parseInt(earnedPoints_text).toLocaleString());  
 						$("#totalPoint").text((parseInt(earnedPoints_text) + parseInt($("#nowPoint").text().trim().replace(/,/g, ''))).toLocaleString());
+						totalPaymentNone();
 						isChecked = false;
 					} else {
 						$("#onSitePayment").prop('checked', true);
@@ -283,14 +253,29 @@ $(function() {
 		 							- parseInt($("#discountPoint_text").text().trim().replace(/,/g, ''));
 				$("#totalPayment_text").text(finalTotalPayment.toLocaleString()); //그 전 값으로 다시 돌려줌
 				//포인트 계산
-				var earnedPoints_text = parseFloat($("#totalPayment_text").text().trim().replace(/,/g, '')) *  0.01;
+				var earnedPoints_text = parseFloat($("#totalPayment_text").text().trim().replace(/,/g, '')) *  0.001;
 				$("#earnedPoints_text").text(parseInt(earnedPoints_text).toLocaleString());  
 				$("#totalPoint").text((parseInt(earnedPoints_text) + parseInt($("#nowPoint").text().trim().replace(/,/g, ''))).toLocaleString());  
-				
+				totalPaymentNone();
 				isChecked = false;
 			}
 		}
 	});
+	
+	//최종결제금액이 0원일경우 함수
+	function totalPaymentNone() {
+		if($("#totalPayment_text").text().trim() === "0") {
+			console.log("0으로 변함");
+			$("#creditCardPayment").prop('disabled', true);
+			$("#kakaoPay").prop('disabled', true);
+			$("#mobilePhonePayment").prop('disabled', true);
+			alert("결제금액이 0원입니다. 결제수단 선택없이 결제버튼을 눌러주세요.");
+		} else {
+			$("#creditCardPayment").prop('disabled', false);
+			$("#kakaoPay").prop('disabled', false);
+			$("#mobilePhonePayment").prop('disabled', false);
+		}
+	}
 	
 	// 결제 버튼을 클릭했을 때 : 필수선택이 비어있을 때 안내문 / 결제 포트원 연동
 	$("#payBtn").on("click",function() {
@@ -299,9 +284,28 @@ $(function() {
 			
 			console.log($("#totalPayment_text").text().trim());
 			if($("#totalPayment_text").text().trim() === "0") {
-				$("#payForm").submit();
-				return true;
-			
+				
+				$.ajax({
+				        url: "paymentPro", 
+				        method: "post",
+				        dataType: "json",
+				        data: $("form").serialize(), 
+						success: function(isPayment) {
+							if(isPayment) {
+								window.location.href="payment/info?res_num=" + $("#res_num").val()
+											+ "&discountPoint=" + $("#discountPoint_text").text() 
+											+ "&earnedPoints=" + "0"
+											+ "&finalTotalPayment=" + "0";
+							} else {
+								console.log("0원결제 실패함");
+							}
+						},
+						error: function() {
+							console.log("ajax 작동 문제");
+						}
+				});
+				return false;
+				
 			} else if($("#preOrderTotalPrice_text").text() == "선결제 없음") { 
 				alert("예약금의 결제수단을 선택해 주세요.");
 				$('html, body').animate({
@@ -316,20 +320,6 @@ $(function() {
             	}, 500);
 				return false;
 			}
-		
-		} else if($("#creditCardPayment").is(':checked') && $("#cardSelect").val() == "") {
-				alert("카드사를 선택해 주세요.");
-				$('html, body').animate({
-                scrollTop: $('#leftSec02').offset().top
-            	}, 500);
-				return false;
-		
-		} else if($("#accountPayment").is(':checked') && $("#bankSelect").val() == "") {
-				alert("은행을 선택해 주세요.");
-				$('html, body').animate({
-                scrollTop: $('#leftSec02').offset().top
-            	}, 500);
-				return false;
 		
 		} else if(!$('#payAgree').is(':checked') && !$('#revocationAgree').is(':checked')) {
 				alert("필수동의에 체크해주세요.");
@@ -386,8 +376,7 @@ $(function() {
 				        	window.location.href="payment/info?res_num=" + rsp.merchant_uid
 										+ "&discountPoint=" + discountPoint 
 										+ "&earnedPoints=" + earnedPoints
-										+ "&finalTotalPayment=" + totalPayment
-										+ "&pay_num=" + $("#pay_num").val();
+										+ "&finalTotalPayment=" + totalPayment;
 						} else {
 							console.log("결제내역 데이터베이스 입력 실패")
 						}
@@ -409,11 +398,12 @@ $(function() {
 			    buyer_name : $("#user_name").val(),
 			    buyer_tel : $("#user_phone").val(),   //필수 파라미터 입니다.
 			}, function(rsp) { // callback 로직
-			console.log(rsp.vbank_date);
+			console.log(rsp.card_name);
 //				    $("#pay_card_co").val(rsp.vbank_date.card_name); // 카드사정보 파라미터로 저장
 				if (rsp.success) {   
 				    console.log("imp_uid : " + rsp.imp_uid);
 				      $("#pay_num").val(rsp.imp_uid); //폼에 결제번호 넣기
+				      $("#pay_card_co").val(rsp.card_name);
 				      jQuery.ajax({
 				        url: "paymentPro", 
 				        method: "post",
@@ -426,8 +416,7 @@ $(function() {
 				        	window.location.href="payment/info?res_num=" + rsp.merchant_uid
 										+ "&discountPoint=" + discountPoint 
 										+ "&earnedPoints=" + earnedPoints
-										+ "&finalTotalPayment=" + totalPayment
-										+ "&pay_num=" + $("#pay_num").val();
+										+ "&finalTotalPayment=" + totalPayment;
 						} else {
 							console.log("결제내역 데이터베이스 입력 실패")
 						}
@@ -485,8 +474,7 @@ $(function() {
 				        	window.location.href="payment/info?res_num=" + rsp.merchant_uid
 										+ "&discountPoint=" + discountPoint 
 										+ "&earnedPoints=" + earnedPoints
-										+ "&finalTotalPayment=" + totalPayment
-										+ "&pay_num=" + $("#pay_num").val();
+										+ "&finalTotalPayment=" + totalPayment;
 						} else {
 							console.log("결제내역 데이터베이스 입력 실패")
 						}

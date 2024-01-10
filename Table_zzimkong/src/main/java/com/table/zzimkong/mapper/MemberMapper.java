@@ -9,7 +9,8 @@ public interface MemberMapper {
 
 	//일반회원가입
 	int insertMember(MemberVO member);
-
+	
+	//로그인
 	MemberVO selectMember(MemberVO member);
 
 	//회원탈퇴

@@ -17,11 +17,27 @@ function popupFindPasswd(){
 $(function() {
         fnInit();
     // 로그인 버튼에 클릭 이벤트 추가
-    $("#loginBtn").on("click", function(e) {
-        e.preventDefault();  // 기본 동작(폼 제출) 중지
-        saveid();  // 아이디 저장 함수 호출
-        $("#loginForm").submit();  // 폼 제출
-    });
+	$("#loginBtn").on("click", function(e) {
+	    e.preventDefault();  // 기본 동작(폼 제출) 중지
+	    
+	    // 아이디 입력 여부 확인
+	    var userId = $("#userId").val();  // 아이디 텍스트박스의 값 가져오기
+	    if (userId.trim() === "") {  // 값이 비어있는지 확인
+	        alert("아이디를 입력해주세요!");
+	        return;  // 함수 종료
+	    }
+	    
+	    // 비밀번호 입력 여부 확인
+	    var password = $("#passwd").val();  // 비밀번호 텍스트박스의 값 가져오기
+	    if (password.trim() === "") {  // 값이 비어있는지 확인
+	        alert("비밀번호를 입력해주세요!");
+	        return;  // 함수 종료
+	    }
+	    
+	    saveid();  // 아이디 저장 함수 호출
+	    $("#loginForm").submit();  // 폼 제출
+	});
+
          
  });
      

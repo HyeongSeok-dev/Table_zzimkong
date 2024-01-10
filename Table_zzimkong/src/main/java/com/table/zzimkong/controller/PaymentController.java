@@ -3,10 +3,12 @@ package com.table.zzimkong.controller;
 import javax.servlet.http.HttpSession;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -149,7 +151,7 @@ public class PaymentController {
 	//============================================================================
 	@ResponseBody
 	@PostMapping("paymentPro")
-	public String paymentPro(HttpSession session, @RequestParam Map<String, String> map) {
+	public String paymentPro(HttpSession session, @RequestParam Map<String, String> map, Model model) {
 		
 		// ajax로 파라미터를 받을 때 map객체를 사용해서 받음
 		System.out.println("paymentPro");
@@ -219,7 +221,13 @@ public class PaymentController {
 		
 		 
 		payment.setPay_num((String)map.get("pay_num"));
-		payment.setPay_method(Integer.parseInt(map.get("pay_method")));
+		
+		if(map.get("pay_method") != null) {
+			payment.setPay_method(Integer.parseInt(map.get("pay_method")));
+		} else {
+			payment.setPay_method(0);
+		}
+		
 		payment.setPay_per_price(Integer.parseInt(map.get("pay_per_price")));
 		
 		if(((String)map.get("per_info_consent")).equals("on")) {
@@ -229,17 +237,43 @@ public class PaymentController {
 		}
 		
 		if(payment.getPay_method() == 2) {
-			payment.setPay_card_co(map.get("pay_card_co"));
+			System.out.println("-----------------카드결제함");
+			payment.setPay_card_co((String)map.get("pay_card_co"));
+			System.out.println("z카드회사 : " + payment.getPay_card_co());
+		}
+		
+		if(map.get("pay_num") == "") {
+			// 결제번호 무작위생성
+			// 날짜 정보 가지고옴
+			LocalDate date = LocalDate.now();
+			// 년월일 따로 가지고옴
+			int year = date.getYear();
+			int month = date.getMonthValue();
+			int day = date.getDayOfMonth();
+			System.out.println("year : " + year);
+			System.out.println("month : " + month);
+			System.out.println("day : " + day);
+			// 무작위 번호앞에 년월일 붙여서 결제번호생성
+			String pay_num = "P" + year +( month + (day + UUID.randomUUID().toString().substring(0,7)));
+			System.out.println("payNum : " + pay_num);
+			payment.setPay_num(pay_num);
 		}
 		
 //		System.out.println(pay_po_price); // 0 => 현장결제가 있거나 선주문이 없음
 		System.out.println(payment);
 		System.out.println(res);
+		System.out.println(map.get("discountPoint"));
+		System.out.println(map.get("earnedPoints"));
 		System.out.println("-----");
+		System.out.println(map.get("pay_card_co"));
 		
 		// 3. paymentInfo 에서 discountPoint 와 earnedPoints가 String 타입이기 때문에 형변환을 하고 넣어줘야함
-		int discountPoint = Integer.parseInt("-"+((String)map.get("discountPoint")).replace(",", "").trim());
-		int earnedPoints = Integer.parseInt(((String)map.get("earnedPoints")).replace(",", "").trim());
+		int discountPoint = 0;
+		int earnedPoints = 0;
+		if(map.get("discountPoint") != "" && map.get("earnedPoints") != "") {
+			discountPoint = Integer.parseInt("-"+((String)map.get("discountPoint")).replace(",", "").trim());
+			earnedPoints = Integer.parseInt(((String)map.get("earnedPoints")).replace(",", "").trim());
+		}
 		System.out.println("사용포인트, 적립포인트 인트타입 변환 " + discountPoint + ", " + earnedPoints);
 		System.out.println("-----포인트처리");
 		
@@ -273,13 +307,13 @@ public class PaymentController {
 					return "true";
 				}
 			}
-////			mav = new ModelAndView();
-////			mav.setViewName("redirect:/payment/info?res_num=" + res.getRes_num()
-////			+ "&discountPoint=" + paymentInfo.getDiscountPoint() 
-////			+ "&earnedPoints=" + paymentInfo.getEarnedPoints()
-////			+ "&finalTotalPayment=" + paymentInfo.getTotalPayment()
-////			+ "&pay_num=" + payment.getPay_num()
-////			);
+//			mav = new ModelAndView();
+//			mav.setViewName("redirect:/payment/info?res_num=" + res.getRes_num()
+//			+ "&discountPoint=" + paymentInfo.getDiscountPoint() 
+//			+ "&earnedPoints=" + paymentInfo.getEarnedPoints()
+//			+ "&finalTotalPayment=" + paymentInfo.getTotalPayment()
+//			+ "&pay_num=" + payment.getPay_num()
+//			);
 			return "true";
 //		
 		} else {
@@ -385,119 +419,120 @@ public class PaymentController {
 		map.put("ePoint", earnedPoints);
 		map.put("ftp", finalTotalPayment);
 
+		mailService.sendCheckInfoAuthMail(map);
 		mav = new ModelAndView("payment/payment_info", "map", map);
 		System.out.println(mav);
 		return mav;
 	}
 	
-	@GetMapping("payment/checkInfoEmailAuth")
-	public String checkInfoEmailAuth(MailAuthInfoVO authInfoVO, HttpSession session, Model model, 
-														@RequestParam(defaultValue = "")String res_num) {
-
-		String sId = (String)session.getAttribute("sId");
-		// 세션에 로그인이 안되어있다면 접근금지
-		if(sId == null) {
-			
-			model.addAttribute("msg", "접근권한이 없습니다!");
-			model.addAttribute("targetURL", "login");
-			
-			return "forword";
-		}
-		// [ 회원 이메일 찾기 ]
-		MemberVO member = service.getMember(sId);
-		
-		// [ 예약정보 ]
-		ReservationVO res = service.getResultRes(res_num);
-		System.out.println("res : " + res);
-		
-		// [ 예약정보중  사업장정보 ]
-		CompanyVO company = service.getCompany(res);
-		System.out.println("company : " + company);
-		
-		// [ 결제정보 ] 
-		PaymentVO payment = service.getPayment(res);
-		
-		// 결제수단 넣기
-				String payMethod = "";
-				switch (payment.getPay_method()) {
-				case 1:
-					payMethod = "카카오페이";
-					break;
-				case 2:
-					payMethod = "네이버페이";
-					break;
-				case 3:
-					payMethod = "카드 결제";
-					break;
-				case 4:
-					payMethod = "무통장 입금";
-					break;
-				case 5:
-					payMethod = "휴대폰 결제";
-					break;
-				}
-		
-		// [ 선주문 정보 ]
-		//테이블 예약금액에 천단위 쉼표줌
-		NumberFormat numberFormat = NumberFormat.getInstance();
-		String res_table_price = numberFormat.format(res.getRes_table_price());
-		
-		// 정보 조회
-		List<PreOrderInfo> poiList = service.getPreOrderInfo(res);
-		System.out.println(poiList);
-		// 각 메뉴의 가격과 갯수를 곱한 결과를 저장함
-		int eachMenuTotalPriceInt = 0;
-		int menuTotalPriceInt = 0;
-		for(PreOrderInfo preOrderInfo : poiList) {
-			// [선주문정보와 메뉴정보를 이용해서 결제할 가격 구하기 ] 
-			// [선주문 정보중 메뉴정보 조회]
-			// 1. 개수를 곱한 메뉴가격 
-			eachMenuTotalPriceInt = (Integer.parseInt(preOrderInfo.getMenu_price()) * preOrderInfo.getPre_num());
-			menuTotalPriceInt += eachMenuTotalPriceInt;
-			String eachMenuTotalPrice = numberFormat.format(eachMenuTotalPriceInt);
-			preOrderInfo.setEachMenuTotalPrice(eachMenuTotalPrice);
-		
-//			System.out.println("preOrderInfo : " + preOrderInfo);
-//			System.out.println(" Integer.parseInt(preOrderInfo.getMenu_price()) : " + Integer.parseInt(preOrderInfo.getMenu_price()));
-//			System.out.println("preOrderInfo.getPre_num() : " + preOrderInfo.getPre_num());
-//			System.out.println("count : " + count);
-//			System.out.println("eachMenuTotalPriceInt : " + eachMenuTotalPriceInt);
-		}
-		
-		// 2. 선주문한 총 가격
-		// 3. paymentInfo 객체로 넣기전에 정수인 수에 천단위로 쉼표를 넣어서 문자열타입으로 만듬
-		String totalPrice = numberFormat.format(res.getRes_table_price() + menuTotalPriceInt);
-		String menuTotalPrice = numberFormat.format(menuTotalPriceInt);
-//		System.out.println("menuTotalPriceInt : " + menuTotalPriceInt);
+//	@GetMapping("payment/checkInfoEmailAuth")
+//	public String checkInfoEmailAuth(MailAuthInfoVO authInfoVO, HttpSession session, Model model, 
+//														@RequestParam(defaultValue = "")String res_num) {
+//
+//		String sId = (String)session.getAttribute("sId");
+//		// 세션에 로그인이 안되어있다면 접근금지
+//		if(sId == null) {
+//			
+//			model.addAttribute("msg", "접근권한이 없습니다!");
+//			model.addAttribute("targetURL", "login");
+//			
+//			return "forword";
+//		}
+//		// [ 회원 이메일 찾기 ]
+//		MemberVO member = service.getMember(sId);
+//		
+//		// [ 예약정보 ]
+//		ReservationVO res = service.getResultRes(res_num);
+//		System.out.println("res : " + res);
+//		
+//		// [ 예약정보중  사업장정보 ]
+//		CompanyVO company = service.getCompany(res);
+//		System.out.println("company : " + company);
+//		
+//		// [ 결제정보 ] 
+//		PaymentVO payment = service.getPayment(res);
+//		
+//		// 결제수단 넣기
+//				String payMethod = "";
+//				switch (payment.getPay_method()) {
+//				case 1:
+//					payMethod = "카카오페이";
+//					break;
+//				case 2:
+//					payMethod = "네이버페이";
+//					break;
+//				case 3:
+//					payMethod = "카드 결제";
+//					break;
+//				case 4:
+//					payMethod = "무통장 입금";
+//					break;
+//				case 5:
+//					payMethod = "휴대폰 결제";
+//					break;
+//				}
+//		
+//		// [ 선주문 정보 ]
+//		//테이블 예약금액에 천단위 쉼표줌
+//		NumberFormat numberFormat = NumberFormat.getInstance();
+//		String res_table_price = numberFormat.format(res.getRes_table_price());
+//		
+//		// 정보 조회
+//		List<PreOrderInfo> poiList = service.getPreOrderInfo(res);
 //		System.out.println(poiList);
-		
-		//--------------------------------------------------------------------
-		// [날짜 형식 변환해서 뷰페이지 보내기]
-		Date getPaymentDate = payment.getPay_date();
-		String pattern = "yyyy/MM/dd(E) HH:mm:ss";
-		SimpleDateFormat sdf = new SimpleDateFormat(pattern);
-		String paymentDate = sdf.format(getPaymentDate);
-		System.out.println("날짜 변환 완료 : " + paymentDate);
-		
-		//--------------------------------------------------------------------
-		// [ PaymentInfo 객체에 문자열 타입으로 파라미터 전달]
-		PaymentInfo paymentInfo = new PaymentInfo(menuTotalPrice,totalPrice,paymentDate,res_table_price,payMethod);
-		// 예약조회, 포인트조회,사업장정보조회,선주문조회 
-		System.out.println(paymentInfo);
-		Map<String, Object> map = new HashMap<String, Object>();
-		
-		map.put("res", res);
-		map.put("member", member);
-		map.put("paymentInfo", paymentInfo);
-		map.put("com", company);
-		map.put("payment", payment);
-		
-		// 이메일발송
-		mailService.sendCheckInfoAuthMail(map);
-		
-		return "redirect:/";
-		
-	}
+//		// 각 메뉴의 가격과 갯수를 곱한 결과를 저장함
+//		int eachMenuTotalPriceInt = 0;
+//		int menuTotalPriceInt = 0;
+//		for(PreOrderInfo preOrderInfo : poiList) {
+//			// [선주문정보와 메뉴정보를 이용해서 결제할 가격 구하기 ] 
+//			// [선주문 정보중 메뉴정보 조회]
+//			// 1. 개수를 곱한 메뉴가격 
+//			eachMenuTotalPriceInt = (Integer.parseInt(preOrderInfo.getMenu_price()) * preOrderInfo.getPre_num());
+//			menuTotalPriceInt += eachMenuTotalPriceInt;
+//			String eachMenuTotalPrice = numberFormat.format(eachMenuTotalPriceInt);
+//			preOrderInfo.setEachMenuTotalPrice(eachMenuTotalPrice);
+//		
+////			System.out.println("preOrderInfo : " + preOrderInfo);
+////			System.out.println(" Integer.parseInt(preOrderInfo.getMenu_price()) : " + Integer.parseInt(preOrderInfo.getMenu_price()));
+////			System.out.println("preOrderInfo.getPre_num() : " + preOrderInfo.getPre_num());
+////			System.out.println("count : " + count);
+////			System.out.println("eachMenuTotalPriceInt : " + eachMenuTotalPriceInt);
+//		}
+//		
+//		// 2. 선주문한 총 가격
+//		// 3. paymentInfo 객체로 넣기전에 정수인 수에 천단위로 쉼표를 넣어서 문자열타입으로 만듬
+//		String totalPrice = numberFormat.format(res.getRes_table_price() + menuTotalPriceInt);
+//		String menuTotalPrice = numberFormat.format(menuTotalPriceInt);
+////		System.out.println("menuTotalPriceInt : " + menuTotalPriceInt);
+////		System.out.println(poiList);
+//		
+//		//--------------------------------------------------------------------
+//		// [날짜 형식 변환해서 뷰페이지 보내기]
+//		Date getPaymentDate = payment.getPay_date();
+//		String pattern = "yyyy/MM/dd(E) HH:mm:ss";
+//		SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+//		String paymentDate = sdf.format(getPaymentDate);
+//		System.out.println("날짜 변환 완료 : " + paymentDate);
+//		
+//		//--------------------------------------------------------------------
+//		// [ PaymentInfo 객체에 문자열 타입으로 파라미터 전달]
+//		PaymentInfo paymentInfo = new PaymentInfo(menuTotalPrice,totalPrice,paymentDate,res_table_price,payMethod);
+//		// 예약조회, 포인트조회,사업장정보조회,선주문조회 
+//		System.out.println(paymentInfo);
+//		Map<String, Object> map = new HashMap<String, Object>();
+//		
+//		map.put("res", res);
+//		map.put("member", member);
+//		map.put("paymentInfo", paymentInfo);
+//		map.put("com", company);
+//		map.put("payment", payment);
+//		
+//		// 이메일발송
+//		mailService.sendCheckInfoAuthMail(map);
+//		
+//		return "redirect:/";
+//		
+//	}
 	
 	
 }

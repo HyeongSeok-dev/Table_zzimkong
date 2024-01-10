@@ -158,8 +158,6 @@ public class MemberController {
 					
 					MemberVO dbMember = service.getMember(member);
 					
-					//db랑비교
-					//추후 비밀번호 암호화기능 추가해야함
 					BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 					if(!passwordEncoder.matches(member.getUser_passwd(), dbMember.getUser_passwd())) {
 						model.addAttribute("msg", "비밀번호가 일치하지 않습니다.");
@@ -189,16 +187,20 @@ public class MemberController {
 	public String longinPro(MemberVO member, HttpSession session, Model model) {
 		System.out.println(member);
 		MemberVO dbMember = service.getMember(member);
-		if(dbMember == null) {
-			model.addAttribute("msg", "존재하지 않는 회원입니다.");
-		    return "fail_back";
-		}
-		System.out.println(dbMember);
 		
-		if(dbMember.getUser_status() == 3) {
-			model.addAttribute("msg", "탈퇴한 회원입니다!");
+		
+		if(dbMember == null) {
+			System.out.println(dbMember);
+			model.addAttribute("msg", "존재하지 않는 회원입니다.");
 			return "fail_back";
 		}
+//
+//		if(dbMember.getUser_status() == 3) {
+//			model.addAttribute("msg", "탈퇴한 회원입니다!");
+//			return "fail_back";
+//		}
+
+		System.out.println("dbMember : " + dbMember);
 		
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		
