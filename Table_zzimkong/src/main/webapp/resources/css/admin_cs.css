@@ -113,6 +113,10 @@ table {
 	  text-align: left;
 	}
 	
+	.board-table tbody tr:hover{
+		cursor: pointer;
+		background-color: lightgray;
+	}
 	.cs_re_tr, .cs_re_th, .cs_re_td {
 		background-color: #f9f9f9;
 	}

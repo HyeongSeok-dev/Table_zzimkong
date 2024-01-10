@@ -435,21 +435,18 @@ public class CsController {
 				isReplyBoard = true;
 			}
 		}
-		
+		if(board.getUser_id().equals("admin")) {
+			member.setUser_name("운영자");
+		}
+		model.addAttribute("board", board);
+		model.addAttribute("member", member);
 		if(!member.getUser_id().equals(board.getUser_id())) {
 			if(isReplyBoard) {
-				model.addAttribute("board", board);
-				model.addAttribute("member", member);
-				
 				return "cs/ceo_cs_qna_view";
 			}
 			model.addAttribute("msg", "잘못된 접근입니다.");
 			return "fail_back";
 		}
-		
-		model.addAttribute("board", board);
-		model.addAttribute("member", member);
-		
 		return "cs/ceo_cs_qna_view";
 	}
 	
@@ -869,6 +866,9 @@ public class CsController {
 			if(memberBoard.getCs_board_num() == board.getCs_board_re_ref()) {
 				isReplyBoard = true;
 			}
+		}
+		if(board.getUser_id().equals("admin")) {
+			member.setUser_name("운영자");
 		}
 		model.addAttribute("board", board);
 		model.addAttribute("member", member);
