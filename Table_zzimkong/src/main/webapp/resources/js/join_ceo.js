@@ -17,7 +17,7 @@ $(document).ready(function() {
     var dd = String(today.getDate()).padStart(2, '0');
     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     var yyyy = today.getFullYear();
-
+    
     today = yyyy + '-' + mm + '-' + dd;
     document.getElementById("com_birth").max = today;
 }
@@ -28,6 +28,7 @@ $(document).ready(function() {
 	let isId = false; //아이디가 양식에 맞지않을 경우
 	let isDuplicateId = false; //아이디 중복 여부 저장할 변수
 	let isSamePasswd = false; //패스워드 일치 여부 저장할 변수
+    let ceoNum = false; //사업자 인증 여부
 	
 	//입력 널스트링이면 "입력하세요" 출력후 focus=======================
 	$("#joinBtn").click(function() {
@@ -42,6 +43,8 @@ $(document).ready(function() {
 	    var email3 = document.getElementById('customEmail').value;
 	    var phone = document.getElementById('u_phone').value;
 	    var num = document.getElementById('com_num').value;
+   		var date = $('#com_date').val();
+
 	
 	    // 유효성 검사
 	    // 각 항목이 비어있는지 확인
@@ -87,12 +90,23 @@ $(document).ready(function() {
 		return false;
 	}
 	
+	if(!date){
+			alert("개업일을 입력해주세요.");
+			return false;		
+		}
+	
 	//직접입력선택후 생겨난 텍스트 박스의 이메일
-	    if(!email3){
-		alert('이메일을 입력해주세요');
-		document.joinForm.u_email2.focus();
-		return false;
-	}
+//	    if(!email3){
+//		alert('이메일을 입력해주세요');
+//		document.joinForm.u_email2.focus();
+//		return false;
+//	}
+
+	  if(email2 === 'custom' && !email3) {
+	    alert('이메일을 입력해주세요');
+	    document.joinForm.u_email2.focus();
+	    return false;
+	  }
 	
 	    if (!phone) {
 	        alert('전화번호를 입력해주세요.');
@@ -147,6 +161,12 @@ $(document).ready(function() {
 			alert("사업자번호가 양식에 맞지 않습니다.");
 			return false;		
 		}
+		
+		//사업자 인증여부
+		 if (!ceoNum) {
+	      alert("사업자번호 인증을 해주세요.");
+	      return false;
+	    }
 	   
 	}); 
 	
@@ -275,7 +295,7 @@ $(document).ready(function() {
 			$("#checkPhoneResult").css("color", "red");
 			Pone = true;
 		}else{
-		    $("#checkPhoneResult").html("사용가능한 전화번호입니다. 인증해주세요");
+		    $("#checkPhoneResult").html("사용가능한 전화번호입니다.");
 			$("#checkPhoneResult").css("color", "blue");
 			Pone = false;
 		}
@@ -335,10 +355,13 @@ $(document).ready(function() {
 			        if(businesses.valid_cnt == 1){ //성공했을때
 						$("#checCeonNmResult").text("사업자번호 인증에 성공하였습니다. ");		
 						$("#checCeonNmResult").css("color", "blue");
+						ceoNum = true;
 					}else{ //실패했을때
 						$("#checCeonNmResult").text("사업자번호 인증에 실패하였습니다. 입력하신 정보를 다시한번 확인해주세요. ");		
 						$("#checCeonNmResult").css("color", "red");
+						ceoNum = false;
 					}
+					console.log(ceoNum);
 			    },
 			    error: function(result) {
 			        console.log(result.responseText); //responseText의 에러메세지 확인
@@ -347,5 +370,22 @@ $(document).ready(function() {
 
 	}); //사업자번호 인증api
 	
+	//사업자 인증하기 버튼 누를때 이름, 개업일 입력필수 처리
+	$("#api").click(function(){
+		 var name = $('#u_name').val();
+   		 var date = $('#com_date').val();
+
+     if(!name){
+			alert("이름을 입력해주세요.");
+			return false;		
+		}
+		
+     if(!date){
+			alert("개업일을 입력해주세요.");
+			return false;		
+		}
+		
+	});
+
 }); //jquery
 	

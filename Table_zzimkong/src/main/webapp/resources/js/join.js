@@ -297,7 +297,7 @@ $(document).ready(function() {
 			$("#checkPhoneResult").css("color", "red");
 			Pone = true;
 		}else{
-		    $("#checkPhoneResult").html("사용가능한 전화번호입니다. 인증해주세요");
+		    $("#checkPhoneResult").html("사용가능한 전화번호입니다.");
 			$("#checkPhoneResult").css("color", "blue");
 			Pone = false;
 		}
