@@ -112,9 +112,8 @@ public interface ReviewMapper {
 	// 이런 곳 좋아요 출력
 	int getCompanyLike(int comId);
 
-    // 특정 예약 번호에 대한 리뷰 조회
-//    ReviewVO selectReviewByResIdx(int reservationId);
-
+	// 예약번호 1개당 1개의 리뷰만 작성 가능
+	List<Map<String, String>> selectReservationList(@Param("userIdx") int userIdx, @Param("comId") int comId);
     
 	
 }

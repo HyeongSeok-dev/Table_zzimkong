@@ -190,9 +190,6 @@ public class ReviewController {
 			model.addAttribute("targetURL", "/zzimkong/login");
 			return "forward";
 		}
-		
-		// ---------------------------------------------------------------------
-
 	    // ---------------------------------------------------------------------
 		
 	    // user_id를 사용하여 member 테이블에서 user_idx 찾기
@@ -200,6 +197,12 @@ public class ReviewController {
 		
 		// 작성자 방문횟수 계산
 		int visitCount = service.getReservationCount(userIdx, comId);
+		
+		// 예약번호 1개당 1개의 리뷰만 작성 가능
+		List<Map<String, String>> res_list = service.getReservationList(userIdx, comId);
+		model.addAttribute("res_list",res_list);
+		System.out.println(res_list);
+		
 		
 	    model.addAttribute("comId", comId);
 	    model.addAttribute("comName", comName);
@@ -222,7 +225,24 @@ public class ReviewController {
 		}
 		review.setUser_id(userId);
 		System.out.println("reviewVO값: " + review);
-
+		
+		//서비스 호출해서 유저아이디 / 컴아이디 파라미터로 주고 
+	/*
+	 * 셀렉트해서 + 방문완료 인 전체 리스트 리턴 해서 사이즈를 여기서 재던지 아니면 거기서 카운트  리절트타입 인트해서 
+	 * 디비가서 현재 이 아이디로 작성된 리뷰 의 갯수도 가져오기 컴아이디 포함
+	 * 이 두 갯수가 리뷰 작성이 크거나 같으면 모델 페일백에 리뷰 작성한도에 도달했습니다 ~~
+	 * 튕겨내면 끝
+	 */
+		
+		
+	
+		
+		
+		
+		
+		
+		
+		
 		// user_idx 조회
 //		int userIdx = service.findUserIdx(userId);
 //	    model.addAttribute("userIdx", userIdx);

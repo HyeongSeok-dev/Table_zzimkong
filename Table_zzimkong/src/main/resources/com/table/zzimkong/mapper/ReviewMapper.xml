@@ -42,6 +42,7 @@
 	,NULL
 	,NULL
 	,1
+	,#{res_idx} 
 	)
 	</insert>
 	
@@ -479,12 +480,13 @@
 	
 	<!-- 예약완료 방문 횟수 카운트 -->
 	<select id="selectCountReservation" parameterType="map" resultType="int">
-		SELECT COUNT(*)
+		SELECT COUNT(*) 
 		FROM reservation
 		WHERE user_idx = #{userIdx} AND
 		res_status = 3 AND
 		com_id = #{comId}
 	</select>
+
 	
 	<!-- 각 리뷰에 대한 댓글 갯수 카운트 -->
 	<select id="selectCountComment" parameterType="int" resultType="int">
@@ -499,6 +501,19 @@
 	    FROM review
 	    WHERE com_id = #{comId} AND review_like = 1;
 	</select>
+	
+	<!-- 예약번호 1개당 1개의 리뷰만 작성 가능 -->
+	<select id="selectReservationList" resultType="map">
+		SELECT res_idx, res_date, res_time,
+		IFNULL((SELECT review_num
+		FROM review AS a
+		WHERE r.res_idx = a.res_idx ),0) AS review_num
+		FROM reservation r 
+		WHERE user_idx = #{userIdx} AND com_id = #{comId}
+		AND res_status = 3;
+	</select>
+	
+	
 	
 
 </mapper>

@@ -376,8 +376,9 @@ function showCommentForm(element) {
 	    if (review.review_img_1) {
 	        imagePopupHtml = 
 	            '<div class="review_photos">' +
-// 	                '<img src="${pageContext.request.contextPath}/resources/upload/' + review.review_img_1 + '" alt="Review Image">' +
-                '<img src="' + contextPath + '/resources${pageContext.request.contextPath }/resources/upload/' + review.review_img_1 + '" alt="Review Image">' +
+	            	// 이미지경로 수정 - 2 (240110)
+	                '<img src="${pageContext.request.contextPath}/resources/upload/' + review.review_img_1 + '" alt="Review Image">' +
+//                 '<img src="' + contextPath + '/resources${pageContext.request.contextPath }/resources/upload/' + review.review_img_1 + '" alt="Review Image">' +
 	                '<div id="image-popup" class="image-popup" style="display: none;">' +
 	                    '<span class="close-popup">&times;</span>' +
 	                    '<img id="popup-img" class="popup-content">' +
@@ -527,7 +528,9 @@ function showCommentForm(element) {
     if (review.review_img_1) {
         imagePopupHtml = 
             '<div class="review_photos">' +
+            		// 이미지경로 수정(240110) - 1
                 '<img src="' + contextPath + '/resources${pageContext.request.contextPath }/resources/upload/' + review.review_img_1 + '" alt="Review Image">' +
+//                 '<img src="' + contextPath + '/resources${pageContext.request.contextPath }/resources/upload/' + review.review_img_1 + '" alt="Review Image">' +
                 '<div id="image-popup" class="image-popup" style="display: none;">' +
                     '<span class="close-popup">&times;</span>' +
                     '<img id="popup-img" class="popup-content">' +
@@ -702,7 +705,12 @@ function showCommentForm(element) {
 	<div class="review_write_button">
 	    <c:choose>
 	        <c:when test="${visitCount > 0}">
-	            <a href="${pageContext.request.contextPath}/review/write?com_id=${param.com_id}"><i class="fas fa-pencil-alt"></i> &nbsp;리뷰쓰기</a>
+<%-- 	            <a href="${pageContext.request.contextPath}/review/write?com_id=${param.com_id}"><i class="fas fa-pencil-alt"></i> &nbsp;리뷰쓰기</a> --%>
+					<form action="${pageContext.request.contextPath}/my/reservation">
+						<button type="submit">
+							<i class="fas fa-pencil-alt"></i> &nbsp;리뷰쓰기
+						</button>
+					</form>
 	        </c:when>
 	        <c:otherwise>
 	            <a href="#" onclick="alert('방문 완료한 회원만 리뷰를 작성하실 수 있습니다.'); return false;"><i class="fas fa-pencil-alt"></i> &nbsp;리뷰쓰기</a>

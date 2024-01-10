@@ -237,6 +237,13 @@ public class ReviewService {
 		return mapper.getCompanyLike(comId);
 	}
 	
+
+	// 예약번호 1개당 1개의 리뷰만 작성 가능
+	public List<Map<String, String>> getReservationList(int userIdx, int comId) {
+
+		return mapper.selectReservationList(userIdx, comId);
+	}
+	
 	// 예약번호 하나당 리뷰 하나씩만 작성 가능
 //	public boolean checkReviewExists(int reservationId) {
 //		

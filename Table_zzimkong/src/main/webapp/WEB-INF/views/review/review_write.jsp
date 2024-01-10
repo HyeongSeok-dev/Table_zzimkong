@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,21 +15,41 @@
 <!-- Js -->
 <script src="${pageContext.request.contextPath}/resources/js/review_write.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.7.1.js"></script>
+<script type="text/javascript">
+function addResIdx(res_idx) { 
+	
+// 	$('form').append('<input type="hidden" name="res_idx" value="${reviewItem.res_idx}" id="resIdx">');
+// 	console.log($("#resIdx").html());
+	$("#resIdx").val(res_idx);
+	console.log("resIdx : " + $("#resIdx").val());
+}
+
+</script>
 <title>리뷰 작성 페이지</title>
 <!-- 수정 -->
 </head>
 <body>
 	<article id="reviewWriteForm">
 	<div class="container">
+		<form action="reviewWritePro" name="reviewWriteForm" method="POST" enctype="multipart/form-data">
 		<div class="restaurant_info">
-<!-- 			 <a href="redetail?com_id=1"><h1>파니니숲</h1></a> -->
-<%-- 			 <a href="redetail?com_id=1"><h1>${comName}</h1></a> --%>
 	 <a href="${pageContext.request.contextPath}/review/redetail?com_id=${com_id}"><h1>${comName}</h1></a>
 			
 		<span id="visitCountNumber">${visitCount}</span><span id="visitCount">번째 방문</span>
+		<span>
+		<select onchange="addResIdx(this.value)">
+		<c:forEach var="reviewItem" items="${res_list}">
+			<option value="${reviewItem.res_idx}" >
+				${reviewItem.res_date}
+				${reviewItem.res_time}
+				<c:if test="${reviewItem.res_idx eq 0}">(작성완료)</c:if>
+			</option>
+		</c:forEach>
+		</select>
+		</span>
 		</div>
-		<form action="reviewWritePro" name="reviewWriteForm" method="POST" enctype="multipart/form-data">
 	    <input type="hidden" name="com_id" value="${param.com_id}">		
+	    <input type="hidden" name="res_idx" value="${res_list[0].res_idx}" id="resIdx">
 		<div class="separator"></div>
 		<div class="review_rate_1" style="text-align: center;">
 		<fieldset class="review_rate">
