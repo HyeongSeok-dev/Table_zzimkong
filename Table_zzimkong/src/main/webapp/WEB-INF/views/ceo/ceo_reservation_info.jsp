@@ -37,11 +37,10 @@
 					<td>${res.res_num}</td>
 					<td>${res.res_name}</td>
 					<td>${res.res_phone}</td>
-					<td>${res.res_person}</td>
-					<td>${res.res_table_price}</td>
-					<td>${menuTotalPrice}</td>
-					<td>${totalPrice}</td>
-<%-- 					<td>${totalPrice.totalPrice}</td> --%>
+					<td>${res.res_person}명</td>
+					<td>${res.res_table_price}원</td>
+					<td>${menuTotalPrice}원</td>
+					<td>${totalPrice}원</td>
 				</tr>
 				<tr>
 					<th colspan="2">메뉴</th>
@@ -49,10 +48,9 @@
 					<th colspan="3">요구사항</th>
 				</tr>
 				    <c:forEach items="${preInfo}" var="preOrder">
-<%-- 				    console.log("${preInfo}"); --%>
 				       <tr>
 				           <td colspan="2">${preOrder.menu_name}</td>
-				           <td colspan="2">${preOrder.pre_num}</td>
+				           <td colspan="2">${preOrder.pre_num}개</td>
 				           <td colspan="3">${res.res_request}</td>
 				       </tr>
 				   </c:forEach>
