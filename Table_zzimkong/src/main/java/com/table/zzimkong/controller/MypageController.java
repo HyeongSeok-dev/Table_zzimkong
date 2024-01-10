@@ -212,9 +212,9 @@ public class MypageController {
 			return "forward";
 		}
 		
-
+		int totalPoint = 0;
 	    // MypageService - getTotalPoint() 메서드 호출하여 포인트 총점 조회
-	    int totalPoint = service.getTotalPoint(sIdx);
+	    totalPoint = service.getTotalPoint(sIdx);
 
 	    // 포인트 총점을 세션에 저장
 	    session.setAttribute("totalPoint", totalPoint);
@@ -470,10 +470,10 @@ public class MypageController {
 
 	    // MypageService - getShowPoint() 메서드 호출하여 포인트 목록 조회
 	    List<PointVO> dbShowPoint = service.getShowPoint(point);// 포인트 객체를 파라미터에 넣어서 서비스 돌려서 결과값을 dbShowPoint에 리턴
-
+	    
+	    int totalPoint = 0;
 	    // MypageService - getTotalPoint() 메서드 호출하여 포인트 총점 조회
-	    int totalPoint = service.getTotalPoint(sIdx);
-	    // null 체크
+	    totalPoint = service.getTotalPoint(sIdx);
 
 	    // 조회 결과 Model 객체에 저장
 	    model.addAttribute("showPoint", dbShowPoint);

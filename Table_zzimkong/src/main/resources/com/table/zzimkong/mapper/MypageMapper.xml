@@ -155,7 +155,7 @@
 	
 	<!-- 포인트 총점 - SELECT -->
 	<select id="selectTotalPoint" resultType="int">
-	    SELECT SUM(point_value) 
+	    SELECT IFNULL(SUM(point_value),0) 
 	    FROM point 
 	    WHERE user_idx = #{user_idx}
 	</select>
