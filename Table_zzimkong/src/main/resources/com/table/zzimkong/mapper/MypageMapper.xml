@@ -114,8 +114,21 @@
     
     <!-- 가게 신고하기 - INSERT -->
     <insert id="insertShopReport">
-	  INSERT INTO report(user_id, com_id, report_reason, report_content)
-	  VALUES (#{com_id}, #{report_reason}, #{report_content})
+	  INSERT
+	  INTO report
+	  VALUES (
+	  null,
+	  null,
+	  #{user_id},
+	  #{report_reason},
+	  1,
+	  #{report_content},
+	  null,
+	  null,
+	  #{com_id},
+	  1,
+	  1
+	  )
 	</insert>
     
     <!-- 나의 리뷰 조회하기 - SELECT --> 

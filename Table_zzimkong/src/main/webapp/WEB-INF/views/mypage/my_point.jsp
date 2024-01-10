@@ -65,7 +65,7 @@
 			</c:forEach>
 				<td colspan="4" style="height: 10%; text-align: right;">
 				    <span style="font-size:20px; padding-right:30px;">
-				        <b>잔여 포인트 : ${totalPoint}<span class="small-text"> 찜콩</span></b>
+				        <b>잔여 포인트 : ${totalPoint}<span class="small-text"> 콩</span></b>
 				    </span>
 				</td>
 

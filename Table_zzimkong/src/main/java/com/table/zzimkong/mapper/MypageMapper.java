@@ -60,6 +60,9 @@ public interface MypageMapper {
 	// 포인트 총점
 	Integer selectTotalPoint(PointVO point);
 	
+	// 신고 회원정보 조회
+	ReportVO selectReportInfo(String sId);
+	
 	
 	
 

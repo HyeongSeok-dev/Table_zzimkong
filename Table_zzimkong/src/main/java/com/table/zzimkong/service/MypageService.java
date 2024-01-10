@@ -97,6 +97,11 @@ public class MypageService {
 	    return mapper.selectTotalPoint(point);
 	}
 	
+	// 신고 회원정보 불러오기
+	public ReportVO getReportInfo(String sId) {
+		return mapper.selectReportInfo(sId);
+	}
+	
 
 
 	

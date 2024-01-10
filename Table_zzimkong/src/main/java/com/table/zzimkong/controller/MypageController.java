@@ -216,6 +216,7 @@ public class MypageController {
 	    MypageInfo dbMypage = service.getMypage(mypage);
 	    session.setAttribute("user_nick", dbMypage.getUser_nick()); // String~session: 마이페이지 눌렀을때 닉네임 계속 보이게 세션에 저장
 	    session.setAttribute("imgName", dbMypage.getUser_img());
+
 	    
 	    int sIdx = (int)session.getAttribute("sIdx"); //세션 인덱스 가져오기
 	    //---- 예약조회(간략히 보기) --------------------
@@ -385,7 +386,7 @@ public class MypageController {
 	
 	//------------가게 신고하기-------------------
 	@GetMapping("my/report/reason")
-	public String myReportReason(HttpSession session, Model model) {
+	public String myReportReason(HttpSession session, Model model, @RequestParam(defaultValue="0")int com_id) {
 		
 		if(session.getAttribute("sIdx") == null) {
 			model.addAttribute("msg", "로그인이 필요합니다!");
@@ -393,9 +394,7 @@ public class MypageController {
 			return "forward";
 		}
 		
-		model.addAttribute(model);
-		
-//		MypageInfo 
+		model.addAttribute("com_id", com_id);
 		
 		return "mypage/my_report_reason";
 	}
@@ -403,17 +402,19 @@ public class MypageController {
 	// "report/reason2" 서블릿 요청에 대한 글쓰기 비즈니스 로직 처리
 	@PostMapping("my/report/reason2")
 	public String myReportReason2(ReportVO report, HttpSession session, Model model) {
-		
+		System.out.println("신고정보 : " + report);
+		String sId = (String) session.getAttribute("sId");
+		report.setUser_id(sId);
 		int insertCount = service.registShopReport(report);
-		System.out.println(report);
 		
 		if(insertCount > 0) {
 			model.addAttribute("msg","신고가 정상적으로 처리되었습니다!");
+			model.addAttribute("targetURL", "javascript:window.close()");
 			return "forward";
 		
 			} else {
 		        model.addAttribute("msg", "신고 처리에 실패했습니다.");
-		        return "forward";
+		        return "fail_back";
 			}
 		}
 		
