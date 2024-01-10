@@ -61,15 +61,19 @@ function select_company_date(com_id, company_date) {
 							<select id="storeList" onchange="select_company(this.value)">
 								<c:if test="${not empty storeList}">
 								    <option value="" selected disabled>선택해주세요</option>
-										<c:forEach var="company" items="${storeList}">
-											<option value="${company.com_id}" <c:if test="${not empty param.com_id and param.com_id eq company.com_id}">selected</c:if>>${company.com_name}</option>
-										</c:forEach>
+									<c:forEach var="company" items="${storeList}">
+										<option value="${company.com_id}"
+											<c:if test="${not empty param.com_id and param.com_id eq company.com_id}">selected</c:if>
+											<c:if test="${company.com_status eq 4}">disabled</c:if>>
+											${company.com_name}
+										</option>
+									</c:forEach>
 								</c:if>
 							</select>
 							
 							<input type="hidden" id="com_id" name="com_id" value="${param.com_id}"/>
 							<input type="date" id="date" class="styled-date-input" name="company_date" value="${param.company_date}" onchange="select_company_date('${param.com_id}', this.value)"><br>
- 							<p id="warningMessage" style="color:red; display:none; margin-left: 60%;">※ 사업장을 먼저 선택해주세요</p>
+ 							<p id="warningMessage" style="color:red; display:none; margin-left: 50%;">※ 사업장을 먼저 선택해주세요</p>
  						</form>
 					</span>	
 				</div>

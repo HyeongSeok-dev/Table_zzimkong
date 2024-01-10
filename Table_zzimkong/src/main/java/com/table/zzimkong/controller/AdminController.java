@@ -45,7 +45,7 @@ public class AdminController {
 	private CsService csService;
 	
 	// 공통 - 관리자 페이지 접근 권한 설정
-	//		+ boolean : "admin"이 아닐 경우 commit 방지
+	//		+ boolean : 관리자 계정이 아닐 경우 commit 방지
 	@GetMapping("adminAccessDented")
 	public String forward(Model model, HttpServletRequest request) {
 		model.addAttribute("msg", "잘못된 접근입니다!");
@@ -54,8 +54,8 @@ public class AdminController {
 	}
 	public boolean isvalid(HttpSession session, Model model, HttpServletResponse response) {
 		String sId = (String)session.getAttribute("sId");
-		
-		if (sId == null || !sId.equals("admin") ) {
+		int sCategory = (int)session.getAttribute("sCategory");
+		if (sId == null || !(sCategory == 3)) {
 			try {
 				response.sendRedirect("/zzimkong/adminAccessDented");
 				return false;

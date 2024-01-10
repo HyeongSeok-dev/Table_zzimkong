@@ -94,13 +94,16 @@
 							</c:when>
 							<c:when test="${company.com_status eq 2}">
 								<td class="company_status_item" data-category="company_status_2">
-									<input type="hidden" id="com_id" name="com_id">
-									<input type="hidden" id="company_open_register" name="company_open_register">
-									
-									<button type="submit" class="button_olive" name="company_oepn_ok"
-										onclick="event.stopPropagation(); company_approve(event, '${company.com_id}', this.name)">승인</button>
-									<button type="submit" class="button_cancel" name="company_oepn_no"
-										onclick="event.stopPropagation(); company_disapprove(event, '${company.com_id}', this.name)">거부</button>
+								    <form id="companyOpenForm${company.com_id}" action="/zzimkong/admin/company/register/pro" method="POST" >
+								    	<%-- 각자 고유한 값을 부여 --%>
+								        <input type="hidden" id="com_id${company.com_id}" name="com_id">
+								        <input type="hidden" id="company_open_register${company.com_id}" name="company_open_register">
+								
+								        <button type="submit" class="button_olive" name="company_oepn_ok"
+								            onclick="event.stopPropagation(); company_approve(event, '${company.com_id}', this.name)">승인</button>
+								        <button type="submit" class="button_cancel" name="company_oepn_no"
+								            onclick="event.stopPropagation(); company_disapprove(event, '${company.com_id}', this.name)">거부</button>
+								    </form>
 								</td>
 							</c:when>
 							<c:when test="${company.com_status eq 3}">
@@ -129,7 +132,7 @@
 	</c:if>
 	
 	<section id="pageList">
-		<input type="button" value="이전" onclick="location.href='?pageNum=${pageNum - 1}&searchMemberType=${searchMemberType}&searchMemberKeyword=${searchMemberKeyword}&adGradeCategory=${adGradeCategory}&companyStatusCategory=${companyStatusCategory}'"
+		<input type="button" value="이전" onclick="location.href='?pageNum=${pageNum - 1}&searchCompanyType=${searchCompanyType}&searchCompanyKeyword=${searchCompanyKeyword}&adGradeCategory=${adGradeCategory}&companyStatusCategory=${companyStatusCategory}'"
 		 <c:if test="${pageNum <= 1}">disabled</c:if>>
 		 
 		<c:forEach var="i" begin="${pageInfo.startPage}" end="${pageInfo.endPage}">

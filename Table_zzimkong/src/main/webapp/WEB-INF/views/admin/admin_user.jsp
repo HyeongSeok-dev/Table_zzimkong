@@ -96,7 +96,7 @@
 						<td>${member.user_nick}</td>
 						<td>
 							<%-- 숫자값 : 쉼표로 구분된 형식으로 --%>
-							<fmt:formatNumber value="${member.total_point}" groupingUsed="true"/>콩
+							<fmt:formatNumber value="${member.total_point}" groupingUsed="true"/>원
 						</td>
 						<td>
 							<c:if test="${member.user_status eq 3}">

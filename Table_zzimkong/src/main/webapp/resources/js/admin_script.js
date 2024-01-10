@@ -79,29 +79,31 @@ window.onload = function() {
     }
 };
 
-// 업체 입점 승인/반려 처리 : admin_company_info.jsp
+
+// 업체 입점 승인/반려 처리 : admin_company.jsp
 function company_approve(event, com_id, company_open_register) {
     var result = confirm("입점을 승인하시겠습니까?");
+    
     if(result) {
-        var form = document.getElementsByClassName("companyRegister")[0];
-        form.action = "/zzimkong/admin/company/register/pro";
+        var form = document.getElementById("companyOpenForm" + com_id);
         
-        document.getElementById('com_id').value = com_id;
-        document.getElementById('company_open_register').value = company_open_register;
+        document.getElementById('com_id' + com_id).value = parseInt(com_id);
+        document.getElementById('company_open_register' + com_id).value = company_open_register;
 
         form.submit();
     } else {
         event.preventDefault();
     }
 };
+
 function company_disapprove(event, com_id, company_open_register) {
     var result = confirm("입점을 반려하시겠습니까?");
+    
     if(result) {
-        var form = document.getElementsByClassName("companyRegister")[0];
-        form.action = "/zzimkong/admin/company/register/pro";
-
-        document.getElementById('com_id').value = com_id;
-        document.getElementById('company_open_register').value = company_open_register;
+        var form = document.getElementById("companyOpenForm" + com_id);
+        
+        document.getElementById('com_id' + com_id).value = com_id;
+        document.getElementById('company_open_register' + com_id).value = company_open_register;
 
         form.submit();
     } else {
