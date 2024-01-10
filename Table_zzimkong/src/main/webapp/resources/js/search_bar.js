@@ -230,17 +230,16 @@ function fetchLocationData() {
             var owl1 = $('#owl-example1').empty();
             var owl2 = $('#owl-example2').empty();
             var owl3 = $('#owl-example3').empty();
-            var baseWidth = 215; // 기본 너비 설정
 
             data.companyList.forEach(function(company) {
                 // 각 섹션에 해당하는 항목 추가
-                var itemHtml = '<div class="owl-item" style="width: ' + baseWidth + 'px;">' +
-                               '<div class="owl_example1_items_images">' +
-                               '<a href="product/detail?com_id=' + company.com_id + '">' +
-                               '<img alt="" src="' + contextRoot + '/resources/upload/' + company.com_img + '"> <br>' +
-                               company.com_name +
-                               '</a>' +
-                               '</div></div>';
+            var itemHtml = '<div class="owl-item" style="width: 215px;">' +
+                           '<div class="owl_example1_items_images">' +
+                           '<a href="product/detail?com_id=' + company.com_id + '">' +
+                           '<img alt="" src="' + contextRoot + '/resources/upload/' + company.com_img + '"> <br>' +
+                           company.com_name +
+                           '</a>' +
+                           '</div></div>';
 
                 owl1.append(itemHtml);
                 owl2.append(itemHtml);
