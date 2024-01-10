@@ -55,7 +55,7 @@ public class CeoController {
 			@ModelAttribute MenuList menuList,
 			Map<String, Object> map, CompanyVO company, MenuVO menu,
 			HttpSession session, Model model) {
-		//로그인 아이디의 업체별 목록 조회
+		// 세션 아이디 접근 제한
 		if(session.getAttribute("sId") == null) {
 			model.addAttribute("msg", "접근권한이 없습니다!");
 			model.addAttribute("targetURL", "../login");
@@ -64,9 +64,9 @@ public class CeoController {
 		}
 		
 		int sIdx = (Integer)session.getAttribute("sIdx");
-//		int sIdx = 75;	// 임시
-//		int sIdx = 76;	// 임시
-//		int sIdx = 79;	// 임시
+//		sIdx = 75;	// 임시
+//		sIdx = 76;	// 임시
+//		sIdx = 79;	// 임시
         
 	    // 업체 리스트
 	    List<CompanyVO> storeList = service.getComList(sIdx);

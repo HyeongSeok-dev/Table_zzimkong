@@ -328,3 +328,6 @@ td> select {
 }
 
 
+#chartButton1, #chartButton2, #chartButton3, #chartButton4 {
+	background-color: #d9d9d9;
+}

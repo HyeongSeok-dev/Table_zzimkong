@@ -19,30 +19,33 @@
 	<section class="article">
         <div class="text">
 			<h3>신고 관리</h3>
-				
+			
+			<form action="/zzimkong/admin/report">
 			<table border="1">
 				<tr>
 					<th>신고번호</th>
 					<%-- 카테고리 필터 : 신고 구분 --%>
 					<th>
-						<select id="reportCategory">
-						    <option value="report_all" selected>신고구분</option>
-						    <option value="report_company">업체신고</option>
-						    <option value="report_review">리뷰신고</option>
+						<select id="reportCategory" name="reportCategory" onchange="this.form.submit()">
+						    <option value="report_all" <c:if test="${param.reportCategory eq 'report_all'}">selected</c:if>>신고구분</option>
+						    <option value="report_company" <c:if test="${param.reportCategory eq 'report_company'}">selected</c:if>>업체신고</option>
+						    <option value="report_review" <c:if test="${param.reportCategory eq 'report_review'}">selected</c:if>>리뷰신고</option>
 						</select>
 					</th>
 					<th>신고사유</th>
 					<th>신고자</th>
 					<%-- 카테고리 필터 : 처리 상태 --%>
 					<th>
-						<select id="reportStatusCategory">
-						    <option value="report_status_all" selected>처리상태</option>
-						    <option value="report_status_1">접수</option>
-						    <option value="report_status_2">승인</option>
-						    <option value="report_status_3">반려</option>
+						<select id="reportStatusCategory" name="reportStatusCategory" onchange="this.form.submit()">
+						    <option value="report_status_all" <c:if test="${param.reportStatusCategory eq 'report_status_all'}">selected</c:if>>처리상태</option>
+						    <option value="report_status_1" <c:if test="${param.reportStatusCategory eq 'report_status_1'}">selected</c:if>>접수</option>
+						    <option value="report_status_2" <c:if test="${param.reportStatusCategory eq 'report_status_2'}">selected</c:if>>승인</option>
+						    <option value="report_status_3" <c:if test="${param.reportStatusCategory eq 'report_status_3'}">selected</c:if>>반려</option>
 						</select>
 					</th>
 				</tr>
+			</form>
+			
 				<%-- 아래로 리뷰 신고 목록 출력 --%>
 				<c:forEach var="report" items="#{reportList}">
 					<tr onclick="report_declaration('${report.report_num}')" class="tr_hover">
@@ -117,7 +120,8 @@
 	</c:if>
 	
 	<section id="pageList">
-		<input type="button" value="이전" onclick="location.href='?pageNum=${pageNum - 1}'"<c:if test="${pageNum <= 1}">disabled</c:if>>	
+		<input type="button" value="이전" onclick="location.href='?pageNum=${pageNum - 1}&reportCategory=${reportCategory}&reportStatusCategory=${reportStatusCategory}'"
+		 <c:if test="${pageNum <= 1}">disabled</c:if>>	
 	
 		<c:forEach var="i" begin="${pageInfo.startPage}" end="${pageInfo.endPage}">
 			<c:choose>
@@ -125,12 +129,13 @@
 					<b>${i}</b>
 				</c:when>
 				<c:otherwise>
-					<a href="?pageNum=${i}">${i}</a>
+					<a href="?pageNum=${i}&reportCategory=${reportCategory}&reportStatusCategory=${reportStatusCategory}">${i}</a>
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
 		
-		<input type="button" value="다음" onclick="location.href='?pageNum=${pageNum + 1}'" <c:if test="${pageNum >= pageInfo.maxPage}">disabled</c:if>>	
+		<input type="button" value="다음" onclick="location.href='?pageNum=${pageNum + 1}&reportCategory=${reportCategory}&reportStatusCategory=${reportStatusCategory}'"
+		 <c:if test="${pageNum >= pageInfo.maxPage}">disabled</c:if>>	
 	</section>
 	
 	<%-- 상단으로/bottom --%>

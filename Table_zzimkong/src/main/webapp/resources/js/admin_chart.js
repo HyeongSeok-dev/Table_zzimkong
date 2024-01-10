@@ -1,8 +1,45 @@
-/// admin_main.jsp ///
-$(document).ready(function() {
-    myChart1();
-    myChart3();
+// 관리자 페이지 대시보드 :admin_main.jsp
+
+// 페이지 로딩 시 차트 표시
+document.addEventListener('DOMContentLoaded', (event) => {
+    // myChart1();
+    // myChart3();
+
+    document.getElementById('chartButton2').click();
+    document.getElementById('chartButton4').click();
+
+    document.getElementById('chartButton1').click();
+    document.getElementById('chartButton3').click();
 });
+
+var activeButton1 = 'chartButton1';
+var activeButton2 = 'chartButton3';
+
+function toggleButton1(id) {
+    var buttons = ['chartButton1', 'chartButton2'];
+    buttons.forEach(function(buttonId) {
+        document.getElementById(buttonId).style.backgroundColor = "";
+    });
+    if (activeButton1 !== id) {
+        document.getElementById(id).style.backgroundColor = "#3FAFFC";
+        activeButton1 = id;
+    } else {
+        activeButton1 = '';
+    }
+}
+function toggleButton2(id) {
+    var buttons = ['chartButton3', 'chartButton4'];
+    buttons.forEach(function(buttonId) {
+        document.getElementById(buttonId).style.backgroundColor = "";
+    });
+    if (activeButton2 !== id) {
+        document.getElementById(id).style.backgroundColor = "#3FAFFC";
+        activeButton2 = id;
+    } else {
+        activeButton2 = '';
+    }
+}
+
 
 var myChart; // 차트를 저장할 전역 변수 선언
 
@@ -46,7 +83,6 @@ function convertToMinutes(time) {
     var minutes = parseInt(time_parts[1]);
     return hours * 60 + minutes;
 }
-
 function myChart1() {
     var content1 = document.getElementById("content1");
     var content2 = document.getElementById("content2");
@@ -217,7 +253,6 @@ function myChart2() {
 }
 
 
-
 // 예약자 현황 : 시간별
 function generateTimes() { // 현재시간부터 12시간 전까지의 모든 30분 단위 시간을 생성하는 함수
     var times = [];
@@ -295,8 +330,6 @@ function myChart3() {
         content3.style.display = "none";
     }
 }
-
-
 
 
 // 예약자 현황 : 날짜별

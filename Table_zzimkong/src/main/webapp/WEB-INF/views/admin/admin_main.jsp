@@ -10,8 +10,7 @@
 <link href="${pageContext.request.contextPath}/resources/css/admin_article.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-latest.min.js"></script> <%-- 항상 최신 jQuery 라이브러리를 불러오는 소스 --%>
 <script src="${pageContext.request.contextPath}/resources/js/admin_script.js"></script> <%-- 관리자 페이지의 모든 자바스크립트 --%>
-<%-- <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script> Chart.js CDN --%>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <%-- 항상 최신 Chart.js 라이브러리를 불러오는 소스 --%>
 <script src="${pageContext.request.contextPath}/resources/js/admin_chart.js"></script> <%-- Chart.js 커스텀 --%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> <%-- AJAX --%>
 </head>
@@ -52,15 +51,13 @@
 				
 			</table>
 			<br>
-		
-
 	
 			<%-- Chart.js --%>
 			<h3>방문&가입자 현황</h3>
 
-			<button type="button" id="chart_time" onclick="myChart1()">시간별</button>
-			<button type="button" id="chart_date" onclick="myChart2()">날짜별</button>
-
+			<button type="button" id="chartButton1" onclick="myChart1(); toggleButton1(this.id)">시간별</button>
+			<button type="button" id="chartButton2" onclick="myChart2(); toggleButton1(this.id)">날짜별</button>
+			
 			<table class="chart_table">
 				<tr>
 					<th>
@@ -84,9 +81,9 @@
 			
 			<h3>예약자 현황</h3>
 			
-			<button type="button" id="chart_time" onclick="myChart3()">시간별</button>
-			<button type="button" id="chart_date" onclick="myChart4()">날짜별</button>
-			
+			<button type="button" id="chartButton3" onclick="myChart3(); toggleButton2(this.id)">시간별</button>
+			<button type="button" id="chartButton4" onclick="myChart4(); toggleButton2(this.id)">날짜별</button>
+
 			<table class="chart_table">
 				<tr>
 					<th>

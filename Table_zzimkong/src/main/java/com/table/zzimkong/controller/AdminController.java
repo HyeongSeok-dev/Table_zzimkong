@@ -1,16 +1,13 @@
 package com.table.zzimkong.controller;
 
 
-import java.io.Console;
 import java.io.File;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.sql.Date;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
@@ -68,8 +65,6 @@ public class AdminController {
 	    }
 		return true;
 	}
-
-
 	
 	// 관리자 페이지 - 오늘 할 일 : 문의 답변 대기, 입점 승인 대기, 신고 처리 대기
 	//               - 사이트 현황 : 오늘 가입자 수, 오늘 예약 수
@@ -131,7 +126,7 @@ public class AdminController {
 		return adminMain;
 	}
 	
-	// 관리자 페이지 - 회원 목록 조회 요청 (페이지네이션, 검색 기능, 카테고리 필터)
+	// 관리자 페이지 - 회원 목록 조회 (페이지네이션, 검색 기능, 카테고리 필터)
 	//               + 검색 결과, 카테고리 필터링에 따른 페이지네이션의 범위 재조정
 	@GetMapping("admin/user") 
 	public String memberList(
@@ -143,13 +138,6 @@ public class AdminController {
 			HttpSession session, Model model, HttpServletResponse response) {
 		// 관리자 페이지 접근 제한
 		if (!isvalid(session, model, response)) return null;
-
-		System.out.println("-------------------------------------------------------");
-		System.out.println("searchMemberType : " + searchMemberType);
-		System.out.println("searchMemberKeyword : " + searchMemberKeyword);
-		System.out.println("memberCategory : " + memberCategory);
-		System.out.println("memberStatusCategory : " + memberStatusCategory);
-		System.out.println("-------------------------------------------------------");
 
 		// 검색된 회원 목록의 수
 		int listCount = service.adminMemberListCount(searchMemberType, searchMemberKeyword, memberCategory, memberStatusCategory);
@@ -170,6 +158,7 @@ public class AdminController {
 		PageInfo pageInfo = new PageInfo(listCount, pageListLimit, maxPage, startPage, endPage);
 
 		List<MemberVO> memberList = service.adminMemberList(searchMemberType, searchMemberKeyword, memberCategory, memberStatusCategory, startRow, listLimit);
+
 		model.addAttribute("memberList", memberList);
 		model.addAttribute("pageInfo", pageInfo);
 		model.addAttribute("searchMemberType", searchMemberType);
@@ -193,7 +182,7 @@ public class AdminController {
 	}
 	
 	// 관리자 페이지 - 회원 탈퇴
-	@PostMapping("admin/user/withdraw/Pro")
+	@PostMapping("admin/user/withdraw/pro")
 	public String memberwithdrawPro(MemberVO member, HttpSession session, Model model, HttpServletResponse response) {
 		// 관리자 페이지 접근 제한
 		if (!isvalid(session, model, response)) return null;
@@ -210,18 +199,21 @@ public class AdminController {
 		}
 	}
 	
-	// 관리자 페이지 - 업체 목록 조회, 검색 기능, 페이지네이션
+	// 관리자 페이지 - 업체 목록 조회 (페이지네이션, 검색 기능, 카테고리 필터)
+	//               + 검색 결과, 카테고리 필터링에 따른 페이지네이션의 범위 재조정
 	@GetMapping("admin/company")
 	public String companyList(
 			@RequestParam(defaultValue = "") String searchCompanyType,
 			@RequestParam(defaultValue = "") String searchCompanyKeyword,
+			@RequestParam(defaultValue = "") String adGradeCategory,
+            @RequestParam(defaultValue = "") String companyStatusCategory,
 			@RequestParam(defaultValue = "1") int pageNum,
 			HttpSession session, Model model, HttpServletResponse response) {
 		// 관리자 페이지 접근 제한
 		if (!isvalid(session, model, response)) return null;
 		
 		// 검색된 업체 목록의 수
-		int listCount = service.adminCompanyListCount(searchCompanyType, searchCompanyKeyword);
+		int listCount = service.adminCompanyListCount(searchCompanyType, searchCompanyKeyword, adGradeCategory, companyStatusCategory);
 
 		// 페이지네이션
 		int listLimit = 10;
@@ -238,11 +230,14 @@ public class AdminController {
 		
 		PageInfo pageInfo = new PageInfo(listCount, pageListLimit, maxPage, startPage, endPage);
 				
-		List<CompanyVO> companyList = service.adminCompanyList(searchCompanyType, searchCompanyKeyword, startRow, listLimit);
+		List<CompanyVO> companyList = service.adminCompanyList(searchCompanyType, searchCompanyKeyword, adGradeCategory, companyStatusCategory, startRow, listLimit);
+		
 		model.addAttribute("companyList", companyList);
 		model.addAttribute("pageInfo", pageInfo);
 		model.addAttribute("searchCompanyType", searchCompanyType);
 		model.addAttribute("searchCompanyKeyword", searchCompanyKeyword);
+		model.addAttribute("adGradeCategory", adGradeCategory);
+		model.addAttribute("companyStatusCategory", companyStatusCategory);
 		
 		return "admin/admin_company";
 	}
@@ -271,7 +266,6 @@ public class AdminController {
 			model.addAttribute("msg", "업체 정보가 수정되었습니다!");
 			model.addAttribute("targetURL", "/zzimkong/admin/company/info?com_id=" + company.getCom_id());
 			return "forward";
-//			return "redirect:/admin/company/info?com_id=" + company.getCom_id();
 		} else { // 실패 시
 			model.addAttribute("msg", "업체 정보 수정 실패!");
 			return "fail_back";
@@ -309,9 +303,12 @@ public class AdminController {
 		}
 	}
 	
-	// 관리자 페이지 - 신고 목록 조회, 페이지네이션
+	// 관리자 페이지 - 신고 목록 조회 (페이지네이션, 카테고리 필터)
+	//               + 카테고리 필터링에 따른 페이지네이션의 범위 재조정
 	@GetMapping("admin/report")
 	public String reportList(
+			@RequestParam(defaultValue = "") String reportCategory,
+			@RequestParam(defaultValue = "") String reportStatusCategory,
 			@RequestParam(defaultValue = "1") int pageNum,
 			HttpSession session, Model model, HttpServletResponse response) {
 		// 관리자 페이지 접근 제한
@@ -321,8 +318,10 @@ public class AdminController {
 		int listLimit = 10;
 		int startRow = (pageNum - 1) * listLimit;
 
-		int listCount = service.adminReportListCount();
-		int pageListLimit = 5;
+		int listCount = service.adminReportListCount(reportCategory, reportStatusCategory);
+		
+		// 페이지네이션
+		int pageListLimit = 10;
 		int maxPage = listCount / listLimit + (listCount % listLimit > 0 ? 1 : 0);
 		int startPage = (pageNum - 1) / pageListLimit * pageListLimit + 1;
 		int endPage = startPage + pageListLimit - 1;
@@ -332,9 +331,12 @@ public class AdminController {
 		
 		PageInfo pageInfo = new PageInfo(listCount, pageListLimit, maxPage, startPage, endPage);
 		
-		List<ReportVO> reportList = service.adminReportList(startRow, listLimit);
+		List<ReportVO> reportList = service.adminReportList(reportCategory, reportStatusCategory, startRow, listLimit);
+		
 		model.addAttribute("reportList", reportList);
 		model.addAttribute("pageInfo", pageInfo);
+		model.addAttribute("reportCategory", reportCategory);
+		model.addAttribute("reportStatusCategory", reportStatusCategory);
 		
 		return "admin/admin_report";
 	}
@@ -513,6 +515,7 @@ public class AdminController {
 		return "admin/admin_cs_notice_modify";
 	}
 	
+	// 관리자 페이지 - 고객센터 : 공지사항 글 등록
 	@PostMapping("admin/cs/notice/modifyPro")
 	public String adminCsNoticeModifyPro(CsVO board, HttpSession session, Model model, HttpServletResponse response) {
 		// 관리자 페이지 접근 제한
@@ -537,7 +540,7 @@ public class AdminController {
 		// -------------------
 		System.out.println(board);
 		
-		/**/
+		
 		MultipartFile mFile1 = board.getMFile1();
 		MultipartFile mFile2 = board.getMFile2();
 		MultipartFile mFile3 = board.getMFile3();
@@ -639,13 +642,11 @@ public class AdminController {
 	
 	// ※ 고객센터 view 페이지는 CsController에서 담당
 	
-	
 	// 관리자 페이지 - 고객센터 : 자주묻는질문 글 수정
 	@GetMapping("admin/cs/faq/modify")
 	public String adminCsFaqModify(CsVO board,HttpSession session, Model model, HttpServletResponse response) {
 		// 관리자 페이지 접근 제한
 		if (!isvalid(session, model, response)) return null;
-				
 		
 		board = csService.getBoardDetail(board);
 		
@@ -654,6 +655,7 @@ public class AdminController {
 		return "admin/admin_cs_faq_modify";
 	}
 	
+	// 관리자 페이지 - 고객센터 : 글 삭제
 	@GetMapping("admin/cs/delete")
 	public String adminCsDelete(CsVO board,HttpSession session, Model model, HttpServletResponse response) {
 		// 관리자 페이지 접근 제한
@@ -673,7 +675,7 @@ public class AdminController {
 				
 	}
 	
-	// 관리자 페이지 - 고객센터 : 1:1 문의 조회 - 했음
+	// 관리자 페이지 - 고객센터 : 1:1 문의 조회
 	@GetMapping("admin/cs/qna")
 	public String adminCsQna(HttpSession session, Model model, HttpServletResponse response, CsVO board) {
 		// 관리자 페이지 접근 제한
@@ -687,6 +689,7 @@ public class AdminController {
 		return "admin/admin_cs_qna";
 	}
 	
+	// 관리자 페이지 - 고객센터 : 1:1 문의 새 글 등록
 	@PostMapping("admin/cs/qna/answer/register")
 	public String adminCsQnaAnswerRegister(HttpSession session, Model model, HttpServletResponse response, CsVO board) {
 		// 관리자 페이지 접근 제한
@@ -699,10 +702,12 @@ public class AdminController {
 		return "admin/admin_cs_qna_answer_register";
 	}
 	
+	// 관리자 페이지 - 고객센터 : 1:1 문의 댓글 등록
 	@PostMapping("admin/cs/qna/answer/registerPro")
 	public String adminCsQnaAnswerRegisterPro(HttpSession session, Model model, HttpServletResponse response, CsVO board) {
 		// 관리자 페이지 접근 제한
 		if (!isvalid(session, model, response)) return null;
+		
 		String uploadDir = "/resources/upload"; // 가상의 경로(이클립스 프로젝트 상에 생성한 경로)
 		String saveDir = session.getServletContext().getRealPath(uploadDir); // 또는 
 		String subDir = "";
@@ -788,6 +793,7 @@ public class AdminController {
 		}
 	}
 	
+	// 관리자 페이지 - 고객센터 : 1:1 문의 글 상세보기
 	@GetMapping("admin/cs/qna/answer/view")
 	public String adminCsQnaAnswerView(HttpSession session, Model model, HttpServletResponse response, CsVO board) {
 		// 관리자 페이지 접근 제한
@@ -805,6 +811,7 @@ public class AdminController {
 		return "admin/admin_cs_qna_answer_view";
 	}
 	
+	// 관리자 페이지 - 고객센터 : 1:1 문의 글 수정
 	@GetMapping("admin/cs/qna/answer/modify")
 	public String adminCsQnaAnswerModify(HttpSession session, Model model, HttpServletResponse response, CsVO board) {
 		// 관리자 페이지 접근 제한
@@ -822,6 +829,7 @@ public class AdminController {
 		return "admin/admin_cs_qna_answer_modify";
 	}
 	
+	// 관리자 페이지 - 고객센터 : 1:1 문의 글 수정 등록
 	@PostMapping("admin/cs/qna/answer/modifyPro")
 	public String adminCsQnaAnswerModifyPro(HttpSession session, Model model, HttpServletResponse response, CsVO board) {
 		// 관리자 페이지 접근 제한
@@ -932,6 +940,7 @@ public class AdminController {
 		return"fail_back";
 	}
 	
+	// 관리자 페이지 - 고객센터 : 1:1 문의
 	@GetMapping("admin/cs/qna/question")
 	public String adminCsQnaQuestion(HttpSession session, Model model, HttpServletResponse response, CsVO board) {
 		// 관리자 페이지 접근 제한
@@ -944,7 +953,7 @@ public class AdminController {
 		return "admin/admin_cs_qna_question";
 	}
 	
-	
+	// 관리자 페이지 - 고객센터 : 
 	@ResponseBody
 	@GetMapping("sortBoardNotice")
 	public String sortBoardQna(CsVO board, Model model, HttpSession session, MemberVO member, 
@@ -962,7 +971,7 @@ public class AdminController {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("boardList", boardList);
-		System.out.println("보드리스트" + boardList);
+
 		JSONObject jsonObject = new JSONObject(map);
 		return jsonObject.toString();
 	}

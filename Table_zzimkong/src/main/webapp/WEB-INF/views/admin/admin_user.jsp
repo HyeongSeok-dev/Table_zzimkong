@@ -124,7 +124,7 @@
 							<input type="hidden" id="user_idx" name="user_idx">
 							<c:choose>
 								<c:when test="${member.user_status eq 1 || member.user_status eq 2}">
-									<button type="submit" onclick="user_withdraw(${member.user_idx})" class="button_cancel">탈퇴</button>
+									<button type="submit" onclick="event.stopPropagation(); user_withdraw(${member.user_idx})" class="button_cancel">탈퇴</button>
 								</c:when>
 								<c:otherwise>
 									<button type="button" class="button_grey2">탈퇴</button>
@@ -144,8 +144,9 @@
 	</c:if>
 	
 	<section id="pageList">
-	<input type="button" value="이전" onclick="location.href='?pageNum=${pageNum - 1}&searchMemberType=${searchMemberType}&searchMemberKeyword=${searchMemberKeyword}&memberCategory=${selectMemberCategory}&memberStatusCategory=${selectMemberStatusCategory}'"
+	<input type="button" value="이전" onclick="location.href='?pageNum=${pageNum - 1}&searchMemberType=${searchMemberType}&searchMemberKeyword=${searchMemberKeyword}&memberCategory=${memberCategory}&memberStatusCategory=${memberStatusCategory}'"
 	 <c:if test="${pageNum <= 1}">disabled</c:if>>
+    
     <c:forEach var="i" begin="${pageInfo.startPage}" end="${pageInfo.endPage}">
         <c:choose>
             <c:when test="${pageNum eq i}">
@@ -156,7 +157,8 @@
         	</c:otherwise>
         </c:choose>
     </c:forEach>
-	<input type="button" value="다음" onclick="location.href='?pageNum=${pageNum + 1}&searchMemberType=${searchMemberType}&searchMemberKeyword=${searchMemberKeyword}&memberCategory=${selectMemberCategory}&memberStatusCategory=${selectMemberStatusCategory}'"
+    
+	<input type="button" value="다음" onclick="location.href='?pageNum=${pageNum + 1}&searchMemberType=${searchMemberType}&searchMemberKeyword=${searchMemberKeyword}&memberCategory=${memberCategory}&memberStatusCategory=${memberStatusCategory}'"
 	 <c:if test="${pageNum >= pageInfo.maxPage}">disabled</c:if>>
 	</section>
 	

@@ -100,14 +100,15 @@ public class AdminService {
 		return mapper.updateAdminMemberWithdraw(member);
 	}
 
-	// 관리자 - 업체 목록 조회 요청, 검색 기능, 페이지네이션
-	public List<CompanyVO> adminCompanyList(String searchCompanyType, String searchCompanyKeyword, int startRow, int listLimit) {
-		return mapper.selectAdminCompanyList(searchCompanyType, searchCompanyKeyword, startRow, listLimit);
+	// 관리자 - 업체 목록 조회 요청 (페이지네이션, 검색 기능, 카테고리 필터)
+	//        + 검색 결과, 카테고리 필터링에 따른 페이지네이션의 범위 재조정
+	public List<CompanyVO> adminCompanyList(String searchCompanyType, String searchCompanyKeyword, String adGradeCategory, String companyStatusCategory, int startRow, int listLimit) {
+		return mapper.selectAdminCompanyList(searchCompanyType, searchCompanyKeyword, adGradeCategory, companyStatusCategory, startRow, listLimit);
 	}
 	
 	// 관리자 - 업체 목록 전체 글 목록 갯수 조회 요청
-	public int adminCompanyListCount(String searchCompanyType, String searchCompanyKeyword) {
-		return mapper.selectAdminCompanyListCount(searchCompanyType, searchCompanyKeyword);
+	public int adminCompanyListCount(String searchCompanyType, String searchCompanyKeyword, String adGradeCategory, String companyStatusCategory) {
+		return mapper.selectAdminCompanyListCount(searchCompanyType, searchCompanyKeyword, adGradeCategory, companyStatusCategory);
 	}
 
 	// 관리자 - 업체 상세 정보 요청
@@ -125,14 +126,15 @@ public class AdminService {
 		return mapper.updateAdminCompanyRegister(company);
 	}
 
-	// 관리자 - 신고 목록 조회 요청, 페이지네이션
-	public List<ReportVO> adminReportList(int startRow, int listLimit) {
-		return mapper.selectAdminReportList(startRow, listLimit);
+	// 관리자 - 신고 목록 조회 요청 (페이지네이션, 카테고리 필터)
+	//        + 카테고리 필터링에 따른 페이지네이션의 범위 재조정
+	public List<ReportVO> adminReportList(String reportCategory, String reportStatusCategory, int startRow, int listLimit) {
+		return mapper.selectAdminReportList(reportCategory, reportStatusCategory, startRow, listLimit);
 	}
 
 	// 관리자 - 신고 목록 전체 글 목록 갯수 조회 요청
-	public int adminReportListCount() {
-		return mapper.selectAdminReportListCount();
+	public int adminReportListCount(String reportCategory, String reportStatusCategory) {
+		return mapper.selectAdminReportListCount(reportCategory, reportStatusCategory);
 	}
 	
 	// 관리자 - 신고 상세 정보 요청
@@ -155,20 +157,14 @@ public class AdminService {
 		return mapper.insertAdminCsNoticeFaqRegister(board);
 	}
 
+	// 관리자 - 고객센터 : 공지사항, 자주묻는질문 글 수정
 	public int modifyNoticeAndFaqBoard(CsVO board) {
-		// TODO Auto-generated method stub
 		return mapper.updateNoticeAndFaqBoard(board);
 	}
 
+	// 관리자 - 고객센터 : 1:1 문의 답글 등록
 	public int registBoardReply(CsVO board) {
-		// TODO Auto-generated method stub
 		return mapper.insertBoardReply(board);
 	}
-
-
-
-
-	
-	
 	
 }

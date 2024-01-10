@@ -50,7 +50,6 @@
 							<td>${report.com_id}</td>
 						</c:when>
 						<c:when test="${report.report_category eq 0}"> <%-- 리뷰신고일 경우 --%>
-<%-- 							<td>${report.review.user_id}</td> --%>
 							<td>${report.reported_userId}</td>
 						</c:when>
 					</c:choose>

@@ -1,11 +1,24 @@
-// admin_user.jsp
-// 회원 탈퇴 처리
+// 회원 상세정보창 열기 : admin_user.jsp
+function user_info_open(user_idx) {
+	/* 팝업창 중앙 정렬 */
+	var popupW = 750;
+	var popupH = 650;
+	var left = Math.ceil((window.screen.width - popupW)/2);
+	var top = Math.ceil((window.screen.height - popupH)/2);
+	
+	/* 각 회원정보로 이동하기 위한 주소 */
+	var url = "user/info?user_idx=" + user_idx;
+	
+	window.open(url,'','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
+}
+
+// 회원 탈퇴 처리 : admin_user.jsp
 function user_withdraw(user_idx) {
   var result = confirm("회원을 강제 탈퇴시키겠습니까?");
   if(result) { // 확인을 눌렀을 경우
       var form = document.createElement("form");
       form.method = "POST";
-      form.action = "/zzimkong/admin/user/withdraw/Pro";
+      form.action = "./user/withdraw/pro";
 
       var element = document.createElement("input");
       element.value = user_idx;
@@ -21,63 +34,7 @@ function user_withdraw(user_idx) {
 };
 
 
-// admin_report.jsp
-function report_declaration(report_num) {
-	/* 팝업창 중앙 정렬 */
-	var popupW = 750;
-	var popupH = 650;
-	var left = Math.ceil((window.screen.width - popupW)/2);
-	var top = Math.ceil((window.screen.height - popupH)/2);
-	
-	/* 각 신고정보로 이동하기 위한 주소 */
-	var url = "report/detail?report_num=" + report_num;
-	
-	window.open(url,'','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
-};
-
-
-// admin_report_declaration.jsp
-document.addEventListener('DOMContentLoaded', (event) => {
-	window.report_approve = function(report_num, reportName) {
-		var result = confirm("신고를 승인하시겠습니까?");
-		if(result) {
-			document.getElementById('report_num').value = report_num;
-			document.getElementById('report_approve_register').value = reportName;
-			document.getElementById('reportRegister').submit();
-		} else {
-			event.preventDefault();
-		}
-	}
-  
-window.report_disapprove = function(report_num, reportName) {
-	var result = confirm("신고를 반려하시곘습니까?");
-		if(result) {
-			document.getElementById('report_num').value = report_num;
-			document.getElementById('report_approve_register').value = reportName;
-			document.getElementById('reportRegister').submit();
-		} else {
-			event.preventDefault();
-		}
-	}
-});
-
-
-
-
-function user_info_open(user_idx) {
-	/* 팝업창 중앙 정렬 */
-	var popupW = 750;
-	var popupH = 650;
-	var left = Math.ceil((window.screen.width - popupW)/2);
-	var top = Math.ceil((window.screen.height - popupH)/2);
-	
-	/* 각 회원정보로 이동하기 위한 주소 */
-	var url = "user/info?user_idx=" + user_idx;
-	
-	window.open(url,'','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
-}
-
-// admin_company.jsp
+// 업체 상세정보창 열기 : admin_company.jsp
 function company_info_open(com_id) {
 	/* 팝업창 중앙 정렬 */
 	var popupW = 750;
@@ -91,24 +48,95 @@ function company_info_open(com_id) {
 	window.open(url,'','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
 }
 
+// 업체 드롭박스 체크 : admin_company_info.jsp
+// 취소 버튼 누를 시 이전값으로 돌림
+var prev_index; // 이전 인덱스를 저장할 전역 변수
+
+window.onload = function() {
+    var company_state = document.getElementById("company_state");
+
+    company_state.onmouseup = function() {
+        prev_index = this.selectedIndex;
+    };
+
+    company_state.onchange = function() {
+        var value = this.options[this.selectedIndex].value;
+
+        if(value == "1") {
+            if (!confirm("정상 상태로 바꾸시겠습니까?")) {
+                this.selectedIndex = prev_index;
+            }
+        } else if(value == "3") {
+            if (!confirm("영업중지 상태로 바꾸시겠습니까?")) {
+                this.selectedIndex = prev_index;
+            }
+        }
+    };
+};
+
+// 업체 입점 승인/반려 처리 : admin_company_info.jsp
+function company_approve(event, com_id, company_open_register) {
+    var result = confirm("입점을 승인하시겠습니까?");
+    if(result) {
+        var form = document.getElementsByClassName("companyRegister")[0];
+        form.action = "/zzimkong/admin/company/register/pro";
+        
+        document.getElementById('com_id').value = com_id;
+        document.getElementById('company_open_register').value = company_open_register;
+
+        form.submit();
+    } else {
+        event.preventDefault();
+    }
+};
+function company_disapprove(event, com_id, company_open_register) {
+    var result = confirm("입점을 반려하시겠습니까?");
+    if(result) {
+        var form = document.getElementsByClassName("companyRegister")[0];
+        form.action = "/zzimkong/admin/company/register/pro";
+
+        document.getElementById('com_id').value = com_id;
+        document.getElementById('company_open_register').value = company_open_register;
+
+        form.submit();
+    } else {
+        event.preventDefault();
+    }
+};
+
+
+// 신고 상세정보창 열기 : admin_report.jsp
+function report_declaration(report_num) {
+	/* 팝업창 중앙 정렬 */
+	var popupW = 750;
+	var popupH = 650;
+	var left = Math.ceil((window.screen.width - popupW)/2);
+	var top = Math.ceil((window.screen.height - popupH)/2);
+	
+	/* 각 신고정보로 이동하기 위한 주소 */
+	var url = "report/detail?report_num=" + report_num;
+	
+	window.open(url,'','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
+};
+
+// 신고 승인/반려 처리 : admin_report_declaration.jsp
 document.addEventListener('DOMContentLoaded', (event) => {
-	window.company_approve = function(event, com_id, company_open_register) {
-		var result = confirm("입점을 승인하시겠습니까?");
+	window.report_approve = function(report_num, reportName) {
+		var result = confirm("신고를 승인하시겠습니까?");
 		if(result) {
-			document.getElementById('com_id').value = com_id;
-			document.getElementById('company_open_register').value = company_open_register;
-			document.getElementById('companyRegister').submit();
+			document.getElementById('report_num').value = report_num;
+			document.getElementById('report_approve_register').value = reportName;
+			document.getElementById('reportRegister').submit();
 		} else {
 			event.preventDefault();
 		}
 	}
-  
-window.company_disapprove = function(event, com_id, company_open_register) {
-	var result = confirm("입점을 거부하시겠습니까?");
+window.report_disapprove = function(report_num, reportName) {
+	var result = confirm("신고를 반려하시곘습니까?");
 		if(result) {
-			document.getElementById('com_id').value = com_id;
-			document.getElementById('company_open_register').value = company_open_register;
-			document.getElementById('companyRegister').submit();
+			document.getElementById('report_num').value = report_num;
+			document.getElementById('report_approve_register').value = reportName;
+			document.getElementById('reportRegister').submit();
 		} else {
 			event.preventDefault();
 		}
@@ -116,31 +144,7 @@ window.company_disapprove = function(event, com_id, company_open_register) {
 });
 
 
-// admin_company_info.jsp
-// 취소 버튼 누를 시 이전값으로 돌림 - 미완료
-function company_shut_down() {
-	var company_state = document.getElementById("company_state");
-	var prev_value = company_state.options[company_state.selectedIndex].value;
-	var value = company_state.options[company_state.selectedIndex].value;
-	
-	console.log(prev_value);
-	console.log(value);
-	
-	if(value == "4") {
-		if (!confirm("폐점 상태로 바꾸시겠습니까?")) {
-            value = prevValue; // '취소'를 눌렀을 때 이전 값으로 돌림
-        }
-	} else if(value == "3") {
-		if (!confirm("영업중지 상태로 바꾸시겠습니까?")) {
-            value = prevValue; // '취소'를 눌렀을 때 이전 값으로 돌림
-        }
-	}
-}
-
-
-// 고객센터 //
-// admin_cs_notice.jsp
-// 고객센터 글 등록
+// 고객센터 - 공지사항 글 등록 : admin_cs_notice.jsp
 function noticeRegisterForm() {
 	/* 팝업창 중앙 정렬 */
 	var popupW = 950;
@@ -149,7 +153,8 @@ function noticeRegisterForm() {
 	var top = Math.ceil((window.screen.height - popupH)/2);
 	window.open('notice/register','','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
 }
-// 공지사항 뷰페이지로 이동
+
+// 고객센터 - 공지사항 각 뷰페이지로 이동 : admin_cs_notice.jsp
 function noticeViewForm(cs_board_num, cs_board_category_user, contextPath) {
 	/* 팝업창 중앙 정렬 */
 	var popupW = 950;
@@ -170,8 +175,7 @@ function noticeViewForm(cs_board_num, cs_board_category_user, contextPath) {
 }
 
 
-// admin_cs_faq.jsp
-// 자주묻는질문 글 등록
+// 고객센터 - 자주묻는질문 글 등록 : admin_cs_faq.jsp
 function faqRegisterForm() {
 	/* 팝업창 중앙 정렬 */
 	var popupW = 950;
@@ -180,7 +184,8 @@ function faqRegisterForm() {
 	var top = Math.ceil((window.screen.height - popupH)/2);
 	window.open('faq/register','','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
 }
-// 자주묻는질문 뷰페이지로 이동
+
+// 고객센터 - 자주묻는질문 각 뷰페이지로 이동 : admin_cs_faq.jsp
 function faqViewForm(cs_board_num, cs_board_category_user, contextPath) {
 	/* 팝업창 중앙 정렬 */
 	var popupW = 950;
@@ -199,7 +204,8 @@ function faqViewForm(cs_board_num, cs_board_category_user, contextPath) {
 	
 	window.open(url,'','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
 }
-	
+
+
 // 카테고리 필터
 // 1) 회원 관리 - 회원 구분, 회원 상태
 document.addEventListener("DOMContentLoaded", function(){
@@ -298,8 +304,4 @@ document.addEventListener("DOMContentLoaded", function(){
     if (reportStatusCategorySelect) {
         reportStatusCategorySelect.addEventListener('change', filterReports);
     }
-    
-    
-    
-    
 });

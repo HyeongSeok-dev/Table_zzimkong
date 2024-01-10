@@ -214,7 +214,7 @@
 			<div class="header_div01"></div>
 			<div class="page-title">
 				<span class="container">
-					<h3>고객센터 - 자주묻는 질문</h3>
+					<h3>고객센터 - 자주묻는 질문 관리</h3>
 				</span>
 				
 				<span>

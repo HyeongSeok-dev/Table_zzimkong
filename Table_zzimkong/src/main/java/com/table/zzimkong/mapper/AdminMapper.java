@@ -23,7 +23,7 @@ public interface AdminMapper {
     List<MemberVO> selectMembersByTime();
     List<MemberVO> selectMembersByDate();
 	
-	// 관리자 - 회원 목록 조회 요청 (페이지네이션, 검색 기능, 카테고리 필터)
+	// 관리자 - 회원 목록 조회 (페이지네이션, 검색 기능, 카테고리 필터)
 	//        + 검색 결과, 카테고리 필터링에 따른 페이지네이션의 범위 재조정
 	List<MemberVO> selectAdminMemberList(
 			@Param("searchMemberType") String searchMemberType,
@@ -48,17 +48,22 @@ public interface AdminMapper {
 	// point 테이블의 point_value도 같이 초기화
 	void updateAdminMemberWithdrawPoint(MemberVO member);
 
-	// 관리자 - 업체 목록 조회, 검색 기능, 페이지네이션
+	// 관리자 - 업체 목록 조회 (페이지네이션, 검색 기능, 카테고리 필터)
+	//        + 검색 결과, 카테고리 필터링에 따른 페이지네이션의 범위 재조정
 	List<CompanyVO> selectAdminCompanyList(
 			@Param("searchCompanyType") String searchCompanyType,
 			@Param("searchCompanyKeyword") String searchCompanyKeyword,
+			@Param("adGradeCategory") String adGradeCategory,
+			@Param("companyStatusCategory") String companyStatusCategory,
 			@Param("startRow") int startRow, 
 			@Param("listLimit") int listLimit);
 
 	// 관리자 - 업체 목록 전체 글 목록 갯수 조회
-		int selectAdminCompanyListCount(
-				@Param("searchCompanyType") String searchCompanyType,
-				@Param("searchCompanyKeyword") String searchCompanyKeyword);
+	int selectAdminCompanyListCount(
+			@Param("searchCompanyType") String searchCompanyType,
+			@Param("searchCompanyKeyword") String searchCompanyKeyword,
+			@Param("adGradeCategory") String adGradeCategory,
+			@Param("companyStatusCategory") String companyStatusCategory);
 		
 	// 관리자 - 업체 상세 정보
 	CompanyVO selectAdminCompanyInfo(CompanyVO company);
@@ -69,13 +74,18 @@ public interface AdminMapper {
 	// 관리자 - 업체 승인/반려 처리
 	int updateAdminCompanyRegister(CompanyVO company);
 
-	// 관리자 - 신고 목록 조회, 페이지네이션
+	// 관리자 - 신고 목록 조회 (페이지네이션, 카테고리 필터)
+	//        + 카테고리 필터링에 따른 페이지네이션의 범위 재조정
 	List<ReportVO> selectAdminReportList(
+			@Param("reportCategory") String reportCategory,
+			@Param("reportStatusCategory") String reportStatusCategory,
 			@Param("startRow") int startRow,
 			@Param("listLimit") int listLimit);
 
 	// 관리자 - 신고 목록 전체 글 목록 갯수 조회
-	int selectAdminReportListCount();
+	int selectAdminReportListCount(
+			@Param("reportCategory") String reportCategory,
+			@Param("reportStatusCategory") String reportStatusCategory);
 	
 	// 관리자 - 신고 상세 정보
 	Map<String, Object> selectAdminReportDetail(ReportVO report);
@@ -89,14 +99,10 @@ public interface AdminMapper {
 	// 관리자 - 고객센터 : 공지사항, 자주묻는질문 새 글 등록
 	int insertAdminCsNoticeFaqRegister(CsVO board);
 
+	// 관리자 - 고객센터 : 공지사항, 자주묻는질문 글 수정
 	int updateNoticeAndFaqBoard(CsVO board);
-
+	
+	// 관리자 - 고객센터 : 1:1 문의 답글 등록
 	int insertBoardReply(CsVO board);
-
-	
-
-
-
-	
 
 }

@@ -65,7 +65,10 @@
 			</tr>
 			<tr>
 				<th>전화번호</th>
-				<td colspan="2"><input type="text" value="${member.user_phone}" disabled></td>
+				<td colspan="2">
+					<c:set var="phone" value="${member.user_phone}"/>
+					<input type="text" value="${fn:substring(phone, 0, 3)}-${fn:substring(phone, 3, 7)}-${fn:substring(phone, 7, 11)}" disabled>
+				</td>
 				<th>이메일</th>
 				<td colspan="2"><input type="text" value="${member.user_email}" disabled></td>
 			</tr>
@@ -77,7 +80,12 @@
 			</tr>	
 			<tr>
 				<th>포인트</th>
-				<td colspan="2"><fmt:formatNumber value="${member.total_point}" groupingUsed="true"/>p</td>
+				<td colspan="2">
+					<c:set var="formattedTotalPoint" value="${member.total_point}"/>
+					<fmt:formatNumber var="formattedTotalPoint" value="${formattedTotalPoint}" groupingUsed="true"/>
+
+				    <input type="text" value="${formattedTotalPoint}p" disabled>
+				</td>
 				<th>
 					<c:choose>
 						<c:when test="${member.user_status eq 3}">
@@ -88,7 +96,7 @@
 						</c:otherwise>
 					</c:choose>
 				</th>
-				<td colspan="2"><input type="text" value="${member.user_reg_date}" disabled></td>
+				<td colspan="2">${member.user_reg_date}</td>
 			</tr>
 		</table>
 	</section>
