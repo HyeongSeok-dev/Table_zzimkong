@@ -83,17 +83,13 @@
 	    WHERE user_id = #{user_id}
 			
 	</update>
-
+	
+	<!-- 로그인 -->
 	<select id="selectValidMember" resultType="member">
 		SELECT * 
 		FROM user
-		<where>
-			<if test="user_id != null and !user_id.equals('')">
-				AND user_id = #{user_id}
-			</if>
-				AND user_email = #{user_email}
-				AND user_status = '1'
-		</where>
+		WHERE user_email = #{user_email}
+			AND user_status = '1'
 	</select>
 	<!-- 메일 인증 정보 조회 - SELECT -->
 	<!-- id 가 일치하는 인증 정보 레코드 조회 -->

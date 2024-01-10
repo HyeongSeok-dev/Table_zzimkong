@@ -245,13 +245,13 @@ input[type="date"]::before {
 #heart {
     height: 30px;
     width: 30px;
-    stroke: #3FAFFC; 
-    fill: #3FAFFC; 
+    stroke: rgb(255, 0, 0) ;   
+    fill: rgb(255, 0, 0);    
     transition: filter linear .3s;
 }
 
 .like_button.active #heart {
-    stroke: #3FAFFC;
+    stroke: rgb(255, 0, 0);   
     fill: #fff;
 }
 
