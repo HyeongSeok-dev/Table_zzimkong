@@ -708,7 +708,8 @@ function showCommentForm(element) {
 	    <c:choose>
 	        <c:when test="${visitCount > 0}">
 <%-- 	            <a href="${pageContext.request.contextPath}/review/write?com_id=${param.com_id}"><i class="fas fa-pencil-alt"></i> &nbsp;리뷰쓰기</a> --%>
-					<form action="${pageContext.request.contextPath}/my/reservation">
+<%-- <a href="${pageContext.request.contextPath}/my/reservation"><i class="fas fa-pencil-alt"></i> &nbsp;리뷰쓰기</a> --%>
+				<form action="${pageContext.request.contextPath}/my/reservation">
 						<button type="submit">
 							<i class="fas fa-pencil-alt"></i> &nbsp;리뷰쓰기
 						</button>
