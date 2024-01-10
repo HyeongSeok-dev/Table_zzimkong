@@ -373,7 +373,7 @@
 }
 
 .caution_link {
-    display: inline; /* 블록 대신 인라인 요소로 설정 */
+    display: inline; /* 블록 대신 인라인 요소로  설정 */
     padding: 10px 0;
 /*     text-align: center; 중앙 정렬 (필요한 경우) */
 /*     color: #0000EE; 링크 색상 */
