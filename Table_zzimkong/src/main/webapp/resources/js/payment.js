@@ -13,9 +13,11 @@ $(function() {
 
 	// 연산을 위해 ','를 제거하고 int로 타입변환
 	var useablePoint = parseInt($("#useablePoint").text().replace(/,/g, '')); //사용가능금액
+	
 	var totalPayment = parseInt($("#totalPayment_text").text().replace(/,/g, '')); //총결제금액(controller에서 예약금과 선결제금이 합산되어 전달됨)
 	var preOrderTotalPrice = parseInt($("#preOrderTotalPrice_text").text().replace(/,/g, '')); // 선주문이 있을때 메뉴를 합산한총금액
 	// 페이지 로드후 적립금 계산
+	var reservationPrice = parseInt($("#reservationPrice").text().replace(/,/g, ''));
 	var nowPoint = parseInt($("#nowPoint").text().trim().replace(/,/g, '')); //할인 후 결제전 현재 보유 포인트
 	var earnedPoints = parseFloat($("#totalPayment_text").text().trim().replace(/,/g, '')) *  0.01;
 	$("#earnedPoints_text").text(parseInt(earnedPoints).toLocaleString());
@@ -24,18 +26,18 @@ $(function() {
 	if(useablePoint<0) {
 		useablePoint = 0;
 	}
-	
+	//>>>>>>>>>>>>>>>>>>>수정중
 	// 결제 상세의 값이 바뀔 때 마다 총결제가격과 적립포인트 변경됨
-	function finalTotalPayment(totalPayment, preOrderTotalPrice) {
+	function finalTotalPayment(preOrderTotalPrice, reservationPrice, totalPayment) {
 		if($("#preOrderTotalPrice_text").text() === "0") {
 			// 현장결제 선택하면 총금액에서 선주문금액 제외
-			var finalTotalPayment = parseInt($("#reservationPrice").text().trim().replace(/,/g, ''))
-//			 							- parseInt($("#discountCoupon").text().trim().replace(/,/g, ''))
+			var finalTotalPayment = reservationPrice
+			 							- parseInt($("#discountCoupon").text().trim().replace(/,/g, ''))
 			 							- parseInt($("#discountPoint_text").text().trim().replace(/,/g, ''));
 			$("#totalPayment_text").text(finalTotalPayment.toLocaleString());
 		} else {
 			var finalTotalPayment = (parseInt($("#reservationPrice").text().trim().replace(/,/g, ''))) + preOrderTotalPrice
-//			 							- parseInt($("#discountCoupon").text().trim().replace(/,/g, ''))
+			 							- parseInt($("#discountCoupon").text().trim().replace(/,/g, ''))
 			 							- parseInt($("#discountPoint_text").text().trim().replace(/,/g, ''));
 			$("#totalPayment_text").text(finalTotalPayment.toLocaleString());
 		}
