@@ -73,7 +73,7 @@
 						</div>
 						<div class="info">
 							<span class="info_title">예약 금액</span>
-							<span class="info_content" ><b>${res.res_table_price}</b>원</span>
+							<span class="info_content" ><b>${map.res_table_price_str}</b>원</span>
 							<input type="hidden" name="res_table_price" value="${res.res_table_price}" id="resTablePrice">
 						</div>
 						<div class="info" id="menu_price">
@@ -499,7 +499,7 @@
 							<input type="checkbox" name="check">
 							<span class="agree_content">
 								<span class="agree_font">[필수]</span> 
-								애견동반은 불가능 합니다.
+								애견동반 식당을 제외한 식당은 애견동반은 불가능 합니다.
 							</span>
 						</span>
 						<span>

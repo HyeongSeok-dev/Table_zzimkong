@@ -32,7 +32,8 @@ public class ReservationController {
 	
 	@RequestMapping("reservation")
 	public ModelAndView reservation(HttpSession session, Map<String, Object> map,
-			ReservationVO res, PreOrderVO pre, CompanyVO com, MemberVO member, MenuVO menu) throws JsonProcessingException {
+			ReservationVO res, CompanyVO com, MemberVO member) throws JsonProcessingException {
+		ModelAndView mav;
 		
 		// 세션에서 "menuList" 속성 가져오기
 	    Object obj = session.getAttribute("menuList");
@@ -45,21 +46,20 @@ public class ReservationController {
 
 	    // JSON 문자열을 List<MenuVO>로 변환
 	    List<MenuVO> menuList = mapper.readValue(jsonStr, new TypeReference<List<MenuVO>>(){});
-	    System.out.println("처음리스트" + menuList);
+	    System.out.println("메뉴리스트" + menuList);
 	    
+	    //예약정보 세션으로 받기
 	    res = (ReservationVO) session.getAttribute("res");
-	    NumberFormat numberFormat = NumberFormat.getInstance();
-	    String res_table_price_str = numberFormat.format(res.getRes_table_price());
-//	    map.put("res_table_price", res_table_price);
-//	    System.out.println("예약금" + res_table_price);
-//	    session.setAttribute("res", null);
-//	    session.setAttribute("menuList", null);
 	    
-	    //메뉴가격 합계변수만들기
+	    //금액에 천단위 쉼표줌
+	    NumberFormat numberFormat = NumberFormat.getInstance();
+	    
+	    //메뉴가격합계, 총 결제금액 변수만들기
 	    int count = 0;
 	    int menuTotalPriceInt = 0;
 	    int totalPayPriceInt = 0;
 	    if(menuList != null) {
+	    	//menuList에있는 각메뉴에 반복문 실행
 	    	for(MenuVO menuP : menuList) {
 	    		menuTotalPriceInt = Integer.parseInt(menuP.getMenu_price()) * menuP.getOrder_amount();
 	    		totalPayPriceInt += menuTotalPriceInt; // 메뉴의 총 가격을 총 결제 금액에 더함
@@ -69,28 +69,30 @@ public class ReservationController {
 	    		menuP.setMenu_price(numberFormat.format(Integer.parseInt(menuP.getMenu_price())));
 	    		System.out.println(menuP.getMenu_price());
 	    	}
+	    	//map객체에 menuList저장
 	    	map.put("menu", menuList);
 	    }
-	   
+	    //메뉴가격합계, 총 결제금액, 예약금액에 천단위 쉼표줌
 	    String totalPayPrice = numberFormat.format(res.getRes_table_price() + totalPayPriceInt);
 	    String menuTotalPayPrice = numberFormat.format(totalPayPriceInt);
-	    System.out.println(totalPayPrice);
+	    String res_table_price_str = numberFormat.format(res.getRes_table_price());
+//	    System.out.println("총결제금액" + totalPayPrice);
+//	    System.out.println("메뉴총결제금액" + menuTotalPayPrice);
+//	    System.out.println("예약금" + res_table_price_str);
 	    map.put("menuTotalPayPrice", menuTotalPayPrice);
 	    map.put("totalPayPrice", totalPayPrice);
-//	    map.put("com", com);
+	    map.put("res_table_price_str", res_table_price_str);
         map.put("res", res);
 	    
-//	    System.out.println("업체정보" + com);
 	    System.out.println("예약정보" + res);
 	    System.out.println("메뉴" + menuList); //리스트 들어있음
 	    
-	    //[가게 ]
+	    //세션에 저장된 sIdx값 user_idx값에 저장
 	    int sIdx = (int)session.getAttribute("sIdx");
 	    res.setUser_idx(sIdx);
-	    System.out.println(sIdx);
+//	    System.out.println(sIdx);
 	    
-		// sId넣어 접근권한 확인
-		ModelAndView mav; 
+		//[접근권한 확인]
 		if(session.getAttribute("sId") == null) {
 			map.put("msg", "로그인 후 사용가능!");
 			map.put("targetURL", "login");
@@ -106,14 +108,12 @@ public class ReservationController {
 		//[예약자 정보 조회]
 		member = service.getUserInfo(res);
 		System.out.println(res);
+		
 		map.put("member", member);
-		
-		
 		map.put("res", res);
 		map.put("menu", menuList);
 			
-		System.out.println("메누체크" + menuList);
-		
+		System.out.println("메뉴체크" + menuList);
 		
 		mav = new ModelAndView("reservation/reservation", "map", map);
 		return mav;
@@ -121,7 +121,7 @@ public class ReservationController {
 	
 	@RequestMapping("reservationPro")
 	public ModelAndView reservationPro(HttpSession session, ReservationVO res, PreOrderVO pre, CompanyVO com, MenuVO menu) {
-//	ModelAndView mav;
+		
 		String alphanumeric = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 	    StringBuilder sb = new StringBuilder();
 	    Random random = new Random();
