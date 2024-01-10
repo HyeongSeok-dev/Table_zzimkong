@@ -70,6 +70,16 @@ public class SendMailService {
 		ReservationVO res = (ReservationVO)map.get("res");
 		PaymentVO payment = (PaymentVO)map.get("payment");
 		PaymentInfo paymentInfo = (PaymentInfo)map.get("paymentInfo");
+//		String payOnSite = "";
+		String preOrderPrice = "";
+		if(payment.getPay_on_site() == 1) {
+			preOrderPrice = "(선주문내역 없음)0";
+		} else if(payment.getPay_on_site() == 2) {
+			preOrderPrice = "(선주문 현장결제)0";
+		} else {
+			preOrderPrice = paymentInfo.getMenuTotalPrice();
+		}
+		
 		
 		String subject = "[테이블 찜콩] 예약 완료 메일입니다.";
 		String content = "<h1>[테이블 찜콩] 예약이 완료되었습니다.</h1>"
@@ -93,7 +103,7 @@ public class SendMailService {
 				+ "<h3>총 결제금액 : " +  map.get("ftp") + " 원</h3>"
 				+ "<h3>결제금액 상세 내역</h3>"
 				+ "&nbsp;&nbsp;<b>- 총 예약금 : " +  paymentInfo.getRes_table_price() + " 원</b><br>"
-				+ "&nbsp;&nbsp;<b>- 총 선주문금 : " +  paymentInfo.getMenuTotalPrice() + " 원</b><br>"
+				+ "&nbsp;&nbsp;<b>- 총 선주문금 : " +  preOrderPrice + " 원</b><br>"
 				+ "&nbsp;&nbsp;<b>- 포인트 할인 : " +  map.get("dPoint") + " 원</b><br>"
 				+ "<br><br>"
 				+ "(주)테이블찜콩<br>"

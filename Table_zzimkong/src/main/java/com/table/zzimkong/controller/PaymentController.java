@@ -218,7 +218,8 @@ public class PaymentController {
 				payment.setPay_on_site(3); // 선주문있는데 선결제함
 			} 
 		}
-		
+		System.out.println("Pay_po_price : " + payment.getPay_po_price());
+		System.out.println("Pay_on_site : " + payment.getPay_on_site());
 		 
 		payment.setPay_num((String)map.get("pay_num"));
 		
