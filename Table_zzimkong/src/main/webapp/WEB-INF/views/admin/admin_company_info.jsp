@@ -55,7 +55,7 @@
 						<select id="company_state" name="com_status" onchange="company_shut_down()">
 							<option value="1" <c:if test="${company.com_status eq 1}">selected</c:if>>정상</option>
 							<option value="3" <c:if test="${company.com_status eq 3}">selected</c:if>>영업중지</option>
-							<option value="4"  <c:if test="${company.com_status eq 4}">selected</c:if> disabled>폐점</option>
+							<option value="4" <c:if test="${company.com_status eq 4}">selected</c:if> disabled>폐점</option>
 						</select>
 					</td>
 				</tr>	

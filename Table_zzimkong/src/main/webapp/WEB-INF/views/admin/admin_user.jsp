@@ -96,7 +96,7 @@
 						<td>${member.user_nick}</td>
 						<td>
 							<%-- 숫자값 : 쉼표로 구분된 형식으로 --%>
-							<fmt:formatNumber value="${member.total_point}" groupingUsed="true"/>p
+							<fmt:formatNumber value="${member.total_point}" groupingUsed="true"/>콩
 						</td>
 						<td>
 							<c:if test="${member.user_status eq 3}">
@@ -127,7 +127,7 @@
 									<button type="submit" onclick="event.stopPropagation(); user_withdraw(${member.user_idx})" class="button_cancel">탈퇴</button>
 								</c:when>
 								<c:otherwise>
-									<button type="button" class="button_grey2">탈퇴</button>
+									<button type="button" class="button_grey2" onclick="event.stopPropagation(); alert('탈퇴한 회원입니다!');">탈퇴</button>
 								</c:otherwise>
 							</c:choose>
 						</td>	

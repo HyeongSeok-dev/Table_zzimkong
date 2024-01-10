@@ -49,29 +49,34 @@ function company_info_open(com_id) {
 }
 
 // 업체 드롭박스 체크 : admin_company_info.jsp
-// 취소 버튼 누를 시 이전값으로 돌림
-var prev_index; // 이전 인덱스를 저장할 전역 변수
-
+// 취소 버튼 누를 시 취소 전 이전값으로 돌림
 window.onload = function() {
-    var company_state = document.getElementById("company_state");
+	// 주소에 'company/info'이 포함되면 실행 (설정 안하면 다른 페이지에서 개발자 도구 오류 뜸)
+    if (window.location.href.includes('company/info')) {
+        var company_state = document.getElementById('company_state');
 
-    company_state.onmouseup = function() {
-        prev_index = this.selectedIndex;
-    };
+        if (company_state) {
+            company_state.onmouseup = function() {
+                prev_index = this.selectedIndex;
+            };
 
-    company_state.onchange = function() {
-        var value = this.options[this.selectedIndex].value;
+            company_state.onchange = function() {
+                var value = this.options[this.selectedIndex].value;
 
-        if(value == "1") {
-            if (!confirm("정상 상태로 바꾸시겠습니까?")) {
-                this.selectedIndex = prev_index;
-            }
-        } else if(value == "3") {
-            if (!confirm("영업중지 상태로 바꾸시겠습니까?")) {
-                this.selectedIndex = prev_index;
-            }
+                if(value == "1") {
+                    if (!confirm("정상 상태로 바꾸시겠습니까?")) {
+                        this.selectedIndex = prev_index;
+                    }
+                } else if(value == "3") {
+                    if (!confirm("영업중지 상태로 바꾸시겠습니까?")) {
+                        this.selectedIndex = prev_index;
+                    }
+                }
+            };
+        } else {
+            console.log('company_state element is not found');
         }
-    };
+    }
 };
 
 // 업체 입점 승인/반려 처리 : admin_company_info.jsp

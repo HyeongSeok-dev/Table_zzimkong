@@ -438,7 +438,7 @@
 						report_category = 1
 					</when>
 					<otherwise>
-						(report_category = 0 OR report_category = 0)
+						(report_category = 0 OR report_category = 1)
 					</otherwise>
 				</choose>
 			</if>
@@ -483,7 +483,7 @@
 						report_category = 1
 					</when>
 					<otherwise>
-						(report_category = 0 OR report_category = 0)
+						(report_category = 0 OR report_category = 1)
 					</otherwise>
 				</choose>
 			</if>
@@ -516,11 +516,14 @@
 			rv.*,
 			rv.user_id AS reported_userId,
 			rv.review_subject AS reported_reviewSubject,
-			rv.review_content AS reported_reviewContent
+			rv.review_content AS reported_reviewContent,
+			c.com_name AS comName
 		FROM report rp
 		LEFT JOIN review rv
 		ON rp.review_num = rv.review_num
-		WHERE report_num = #{report_num}
+		JOIN company c
+		ON rp.com_id = c.com_id
+		WHERE report_num = #{report_num};
 	</select>
 	
 	<!-- 관리자 - 신고 승인/반려 처리 -->

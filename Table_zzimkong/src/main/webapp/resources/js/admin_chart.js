@@ -5,9 +5,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
     // myChart1();
     // myChart3();
 
+	// 클릭 이벤트(toggleButton1(), toggleButton2()) 때문에 페이지 로딩 시
+	// 일단 chartButton2, chartButton4 누르고
     document.getElementById('chartButton2').click();
     document.getElementById('chartButton4').click();
-
+	// 바로 chartButton1, chartButton3 버튼 눌러서 해당 버튼들이 체크 표시가 되도록 함
     document.getElementById('chartButton1').click();
     document.getElementById('chartButton3').click();
 });
@@ -142,14 +144,14 @@ function myChart1() {
 				}
 
 				
-//				var maxCount = Math.max.apply(null, counts); // counts2 배열에서 최대값 찾기
+				var maxCount = Math.max.apply(null, join_time_counts); // counts2 배열에서 최대값 찾기
                 var ctx = document.getElementById('myChart1').getContext('2d'); // 새로운 canvas 요소의 id
                 myChart = new Chart(ctx, {
                     type: 'line',
                     data: {
                         labels: join_times,
                         datasets: [{
-                            label: '새로운 가입 건수 (지난 12시간)',
+                            label: '시간당 회원가입 건수 (지난 12시간)',
                             data: join_time_counts,
                             backgroundColor: '#0095FB',
                             borderColor: '#0095FB',
@@ -157,8 +159,8 @@ function myChart1() {
                         },
 						{
 							type: 'bar',
-				            label: '방문자',
-				            data: [100, 120, 33, 95, 72, 93, 131, 99, 45, 88, 25, 55],
+				            label: '시간당 방문자 수 (지난 12시간) : 안함!',
+				            data: [23, 3, 12, 14, 2, 15, 9, 17, 2, 14, 15, 5],
 				            backgroundColor: '#eff7fe',
 				            borderColor: '#eff7fe',
 				            borderWidth: 1
@@ -167,7 +169,7 @@ function myChart1() {
                     options: {
                         scales: {
 							y: {
-//								suggestedMax: maxCount * 1.1, // 최대값의 110%
+								suggestedMax: maxCount * 1.1, // 최대값의 110%
 								stacked: true
 							}
                         }
@@ -215,7 +217,7 @@ function myChart2() {
                     data: {
                         labels: join_Dates,
                         datasets: [{
-                            label: '새로운 가입 건수 (지난 7일)',
+                            label: '일일 회원가입 건수 (지난 7일)',
                             data: join_date_counts,
                             backgroundColor: '#0095FB',
                             borderColor: '#0095FB',
@@ -223,8 +225,8 @@ function myChart2() {
                         },
 						{
 							type: 'bar',
-				            label: '방문자',
-				            data: [100, 120, 159, 99, 306, 288, 155],
+				            label: '일일 방문자 수 (지난 7일) : 안함!',
+				            data: [100, 99, 59, 79, 106, 77, 87],
 				            backgroundColor: '#eff7fe',
 				            borderColor: '#eff7fe',
 				            borderWidth: 1

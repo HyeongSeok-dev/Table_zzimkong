@@ -84,7 +84,7 @@
 					<c:set var="formattedTotalPoint" value="${member.total_point}"/>
 					<fmt:formatNumber var="formattedTotalPoint" value="${formattedTotalPoint}" groupingUsed="true"/>
 
-				    <input type="text" value="${formattedTotalPoint}p" disabled>
+				    <input type="text" value="${formattedTotalPoint}콩" disabled>
 				</td>
 				<th>
 					<c:choose>

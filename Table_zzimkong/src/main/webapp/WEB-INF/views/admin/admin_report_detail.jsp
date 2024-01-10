@@ -47,7 +47,12 @@
 					<%-- 신고대상에 따른 데이터 출력 구분 --%>
 					<c:choose>
 						<c:when test="${report.report_category eq 1}"> <%-- 업체신고일 경우 --%>
-							<td>${report.com_id}</td>
+							<td>
+								<a href="${pageContext.request.contextPath}/product/detail?com_id=${report.com_id}" target="_blank"
+									class="link_style" title="클릭 시 해당 업체 페이지로 이동합니다.">
+									${report.comName}
+								</a>
+							</td>
 						</c:when>
 						<c:when test="${report.report_category eq 0}"> <%-- 리뷰신고일 경우 --%>
 							<td>${report.reported_userId}</td>
@@ -55,11 +60,39 @@
 					</c:choose>
 				</tr>
 				<tr>
-					<th>해당 리뷰 내용</th>
-					<td colspan="3">
-						${report.reported_reviewContent}
-					</td>
+					<th>신고사유</th>
+					<c:choose>
+						<c:when test="${report.report_reason eq 1}">
+							<td colspan="4">청결하지 못함</td>
+						</c:when>
+						<c:when test="${report.report_reason eq 2}">
+							<td colspan="4">직원이 불친절함</td>
+						</c:when>
+						<c:when test="${report.report_reason eq 3}">
+							<td colspan="4">기타</td>
+						</c:when>
+						<c:when test="${report.report_reason eq 4}">
+							<td colspan="4">신뢰하기 어려운 홍보</td>
+						</c:when>
+						<c:when test="${report.report_reason eq 5}">
+							<td colspan="4">음란성, 부적절</td>
+						</c:when>
+						<c:when test="${report.report_reason eq 6}">
+							<td colspan="4">명예훼손 및 저작권 침해</td>
+						</c:when>
+						<c:otherwise>
+							<td colspan="4" style="color:red;">알수없음</td>
+						</c:otherwise>
+					</c:choose>
 				</tr>
+				<c:if test="${report.report_category eq 0}">
+					<tr>
+						<th>해당 리뷰 내용</th>
+						<td colspan="3">
+							${report.reported_reviewContent}
+						</td>
+					</tr>
+				</c:if>
 				<tr>
 					<th>신고내용</th>
 					<td colspan="4">${report.report_content}</td>
