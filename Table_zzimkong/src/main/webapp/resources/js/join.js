@@ -28,13 +28,13 @@ $(document).ready(function() {
     document.getElementById("com_birth").max = today;
 	}
 
-	let Pone = false; //전화번호 양식 검사
+	let Phone = false; //전화번호 양식 검사
 	let isPasswd = false; //비밀번호 안전도 검사
 	let isId = false; //아이디 양식검사
 	let isDuplicateId = false; //아이디 중복 여부 저장할 변수
 	let isDuplicateNick = false; //닉네임 중복 여부 저장할 변수
 	let isSamePasswd = false; //패스워드 일치 여부 저장할 변수
-//	let isEmail = false; //이메일 중복확인
+	let isEmail = false; //이메일 중복확인
 	
 	//입력 널스트링이면 "입력하세요" 출력후 focus=======================
 	$("#joinBtn").click(function() {
@@ -144,16 +144,16 @@ $(document).ready(function() {
 		}
 		
 		//전화번호 양식 맞지 않을경우
-	    if(Pone){
+	    if(Phone){
 			alert("전화번호가 양식에 맞지 않습니다.");
 			return false;		
 		}
 		
 		//이메일 중복일 경우
-//	    if(isEmail){
-//			alert("이메일 중복입니다.");
-//			return false;		
-//		}
+	    if(isEmail){
+			alert("이메일 중복입니다.");
+			return false;		
+		}
 	   
 	}); 
 	
@@ -295,11 +295,11 @@ $(document).ready(function() {
 		if (!regex.test(user_phone)) {
 		    $("#checkPhoneResult").html("전화번호는 11자리 숫자여야 합니다. (' - ' 를 빼고 입력)");
 			$("#checkPhoneResult").css("color", "red");
-			Pone = true;
+			Phone = true;
 		}else{
 		    $("#checkPhoneResult").html("사용가능한 전화번호입니다.");
 			$("#checkPhoneResult").css("color", "blue");
-			Pone = false;
+			Phone = false;
 		}
 
 	}); 
@@ -332,30 +332,30 @@ $(document).ready(function() {
 		}); //닉네임 중복확인
 		
 	//이메일 중복확인==========================================
-//		$("#u_email").blur(function(){
-//			
-//			let user_email = $("#u_email").val();
-//			
-//			$.ajax({
-//				url: "MemberCheckDupEmail",
-//				data: {
-//					user_email : user_email
-//				},
-//				dataType: "json",
-//				success : function(checkDuplicateResult){
-//					if(checkDuplicateResult ){ //중복
-//						$("#checkEmailResult").html("이미 사용중인 이메일");
-//						$("#checkEmailResult").css("color", "red");
-//						isEmail = true;
-//					}else{ //중복X
-//						$("#checkEmailResult").html("사용 가능한 이메일");
-//						$("#checkEmailResult").css("color", "blue");
-//						isEmail = false;
-//					}
-//				} //success
-//			}); //ajax
-//			
-//		}); 
+		$("#u_email").blur(function(){
+			
+			let user_email = $("#u_email").val();
+			
+			$.ajax({
+				url: "MemberCheckDupEmail",
+				data: {
+					user_email : user_email
+				},
+				dataType: "json",
+				success : function(checkDuplicateResult){
+					if(checkDuplicateResult ){ //중복
+						$("#checkEmailResult").html("이미 사용중인 이메일");
+						$("#checkEmailResult").css("color", "red");
+						isEmail = true;
+					}else{ //중복X
+						$("#checkEmailResult").html("사용 가능한 이메일");
+						$("#checkEmailResult").css("color", "blue");
+						isEmail = false;
+					}
+				} //success
+			}); //ajax
+			
+		}); 
 
 	
 	
