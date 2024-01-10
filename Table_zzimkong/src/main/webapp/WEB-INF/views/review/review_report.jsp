@@ -43,7 +43,7 @@
 						<div class="form_block_body">
 							<div class="checkbox-group">
 								<br> 
-								<label class="label_checkbox"> 
+								<label class="label_checkbox" required="required"> 
 								<input type="checkbox" class="form_checkbox" name="report_reason" value="4" checked>
 								<span class="label strong">신뢰하기 어려운 홍보 게시물</span></label> 
 								<label class="label_checkbox">

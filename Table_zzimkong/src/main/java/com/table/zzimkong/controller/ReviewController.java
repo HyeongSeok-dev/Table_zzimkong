@@ -282,15 +282,13 @@ public class ReviewController {
 		// 파라미터 : ReviewVO객체 리턴타입 : int(insertCount)
 		System.out.println(review);
 		int insertCount = service.registReview(review);
+
 		// 게시물 등록 작업 요청 결과 판별
 		if (insertCount > 0) {
 			try {
 				if (!mFile1.getOriginalFilename().equals("")) {
 					mFile1.transferTo(new File(saveDir, fileName1));
 				}
-				// 리뷰 작성시 포인트 적립
-				review.setUser_idx((int)session.getAttribute("sIdx"));
-				service.givePoint(review);
 			} catch (IllegalStateException | IOException e) {
 				e.printStackTrace();
 			}

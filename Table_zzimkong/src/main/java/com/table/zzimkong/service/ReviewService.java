@@ -244,11 +244,6 @@ public class ReviewService {
 		return mapper.selectReservationList(userIdx, comId, res_idx);
 	}
 	
-	// 리뷰 포인트 적립
-	public void givePoint(ReviewVO review) {
-		mapper.updatePoint(review);
-	}
-	
 	// 예약번호 하나당 리뷰 하나씩만 작성 가능
 //	public boolean checkReviewExists(int reservationId) {
 //		
