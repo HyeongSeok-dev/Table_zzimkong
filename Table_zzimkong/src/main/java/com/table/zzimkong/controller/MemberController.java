@@ -211,7 +211,7 @@ public class MemberController {
 		    return "fail_back";
 		} else if(!passwordEncoder.matches(member.getUser_passwd(), dbMember.getUser_passwd())) {
 		    // 비밀번호 일치하지 않음 처리
-		    model.addAttribute("msg", "비밀번호가 일치하지 않습니다.");
+		    model.addAttribute("msg", "아이디 또는 비밀번호를 잘못 입력했습니다.");
 		    return "fail_back";
 		    
 		} else { // 로그인 성공

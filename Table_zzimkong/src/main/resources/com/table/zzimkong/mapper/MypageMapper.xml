@@ -65,7 +65,7 @@
 		FROM mypage_view
 	</select>
 	
-	<select id="selectReviewByResIdx" resultType="map">
+	<select id="selectReviewByResIdx" resultType="review">
 		SELECT *
 		FROM review
 		WHERE res_idx = #{res_idx}
@@ -125,13 +125,13 @@
 	  VALUES (
 	  null,
 	  null,
-	  #{user_id},
-	  #{report_reason},
+	  #{member.user_id},
+	  #{report.report_reason},
 	  1,
-	  #{report_content},
-	  null,
-	  null,
-	  #{com_id},
+	  #{report.report_content},
+	  #{member.user_email},
+	  #{member.user_phone},
+	  #{report.com_id},
 	  1,
 	  1
 	  )

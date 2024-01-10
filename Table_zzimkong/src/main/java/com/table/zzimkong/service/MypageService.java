@@ -78,8 +78,8 @@ public class MypageService {
 	}
 
 	// 가게 신고하기
-	public int registShopReport(ReportVO report) {
-		return mapper.insertShopReport(report);
+	public int registShopReport(ReportVO report , MemberVO member) {
+		return mapper.insertShopReport(report, member);
 	}
 	
 	// 리뷰 조회
@@ -102,7 +102,10 @@ public class MypageService {
 		return mapper.selectReportInfo(sId);
 	}
 
-	public Map<String, Object> getReviewByResIdx(int res_idx) {
+//	public ReviewVO getReviewByResIdx(int res_idx) {
+//		return mapper.selectReviewByResIdx(res_idx);
+//	}
+	public List<ReviewVO> getReviewByResIdx(int res_idx) {
 		return mapper.selectReviewByResIdx(res_idx);
 	}
 	

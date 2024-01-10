@@ -25,6 +25,9 @@ public class MypageController {
 	@Autowired
 	private MypageService service;
 	
+	@Autowired
+	private MemberService memberService;
+	
 	// [ 회원정보 조회 ]
 	@GetMapping("my/modify/profile")
 	public String myModifyProfile(MypageInfo mypage, HttpSession session, Model model) {
@@ -298,13 +301,21 @@ public class MypageController {
 		
 		// 게시물 목록과 페이징 정보 저장
 		model.addAttribute("resList2", resList2);
+		System.out.println("resList2 : " + resList2);
 		model.addAttribute("pageInfo", pageInfo);
 		
 		// 각 예약에 대해 리뷰가 있는지 확인
 		for(Map<String, Object> res : resList2) {
 			int res_idx = (int) res.get("res_idx");
-			Map<String, Object> review = service.getReviewByResIdx(res_idx);
-			res.put("hasReview", review != null);
+			List<ReviewVO> review = service.getReviewByResIdx(res_idx);
+			System.out.println(review);
+			if(review.size() > 0) {
+				res.put("hasReview", true);
+			} else {
+				res.put("hasReview", false);
+			}
+//			res.put("hasReview", review != null);
+			System.out.println("res : " + res.get("hasReview"));
 		}
 		
 		
@@ -380,6 +391,23 @@ public class MypageController {
 		return "mypage/my_review";
 	}
 	
+	//---------리뷰 삭제----------
+	// => AJAX 요청에 대한 응답 처리를 위해 @ResponseBody 적용
+	@ResponseBody
+//	@PostMapping("my/review/del")
+//	public String myBookmarkDel(ReviewVO review, HttpSession session, Model model) {
+		
+		// 삭제 버튼 클릭시 리뷰 삭제
+//	    int deleteCount = service.reviewDel(review);
+//	    System.out.println("리뷰 : " + review);
+//	    
+//	    if(deleteCount > 0) { // 성공시
+//	        return "{\"result\": \"success\"}";
+//	    } else { // 실패시
+//	        return "{\"result\": \"fail\"}";
+//	    }
+//	}
+	
 	//--------------가게 신고 - 방문한 가게 조회하기-----------------------------------
 	@GetMapping("my/report/shop")
 	public String myReportShop(MypageInfo mypage, HttpSession session, Model model) {
@@ -412,7 +440,6 @@ public class MypageController {
 		}
 		
 		model.addAttribute("com_id", com_id);
-		
 		return "mypage/my_report_reason";
 	}
 	
@@ -422,7 +449,12 @@ public class MypageController {
 		System.out.println("신고정보 : " + report);
 		String sId = (String) session.getAttribute("sId");
 		report.setUser_id(sId);
-		int insertCount = service.registShopReport(report);
+		
+		MemberVO member = new MemberVO();
+		member.setUser_id(sId);
+		member = memberService.getMember(member);
+		
+		int insertCount = service.registShopReport(report, member);
 		
 		if(insertCount > 0) {
 			model.addAttribute("msg","신고가 정상적으로 처리되었습니다!");

@@ -34,6 +34,7 @@
 		<br><br>
 			<textarea rows="10" cols="40" name="report_content" placeholder="방문한 날짜와 함께 자세한 내용을 입력해주세요."></textarea><br>
 		<br>
+			
 		<div class = "click_button">
 			<button type="submit" >신고</button>
 			<button type="reset" id="button_grey2">초기화</button>

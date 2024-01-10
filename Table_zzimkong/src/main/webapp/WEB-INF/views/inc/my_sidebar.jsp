@@ -34,7 +34,7 @@
      <div class="common-mypage__sc-1m1vyak-0 fJZyji">
       <a href="${pageContext.request.contextPath }/my/point" >
          <em>포인트 &gt;</em>
-         <strong> ${sessionScope.totalPoint} <span style="font-size: 19px;">콩</span></strong>
+         <strong> ${sessionScope.totalPoint} <span style="font-size: 19px;">원</span></strong>
         </a>
     </div>
   </div>

@@ -46,10 +46,10 @@ public interface MypageMapper {
 	int deleteBookmark2(BookmarkVO bookmark);
 	
 	// 방문한 가게 조회
-	List<MypageInfo> selectVisitedShop(int sIdx);
+	List<MypageInfo> selectVisitedShop(int sIdx );
 
 	// 가게 신고하기
-	int insertShopReport(ReportVO report);
+	int insertShopReport(@Param("report") ReportVO report, @Param("member") MemberVO member);
 	
 	// 나의 리뷰 조회
 	List<ReviewVO> selectMyReview(String sId);
@@ -63,7 +63,8 @@ public interface MypageMapper {
 	// 신고 회원정보 조회
 	ReportVO selectReportInfo(String sId);
 
-	Map<String, Object> selectReviewByResIdx(int res_idx);
+//	ReviewVO selectReviewByResIdx(int res_idx);
+	List<ReviewVO> selectReviewByResIdx(int res_idx);
 	
 	
 	

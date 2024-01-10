@@ -100,7 +100,7 @@
 						<c:when test="${res2.res_status eq 3}">
 							<c:choose>
 								<c:when test="${res2.hasReview}">
-									<button type="button" disabled>리뷰완료</button>
+									리뷰 작성완료
 								</c:when>
 								<c:otherwise>
 									<button type="submit" id="write_review" onclick="writeReview(${res2.com_id})">리뷰쓰기</button>
