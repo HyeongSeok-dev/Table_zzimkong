@@ -201,24 +201,30 @@ public class MypageController {
 	
 	//---------- 나의 내역 조회 ----------------
 	@GetMapping("my/list")
-	public String myList(MypageInfo mypage, HttpSession session, Model model, HttpServletResponse response) {
+	public String myList(MypageInfo mypage, HttpSession session, Model model, HttpServletResponse response, PointVO point) {
 	    
 	    String sId = (String)session.getAttribute("sId"); // 세션에 아이디값 가져오기
-
+	    int sIdx = (int)session.getAttribute("sIdx"); //세션 인덱스 가져오기
 		
 		if(sId == null) {
 			model.addAttribute("msg", "로그인이 필요합니다!");
 			model.addAttribute("targetURL", "../login");
 			return "forward";
 		}
+		
 
+	    // MypageService - getTotalPoint() 메서드 호출하여 포인트 총점 조회
+	    int totalPoint = service.getTotalPoint(sIdx);
+
+	    // 포인트 총점을 세션에 저장
+	    session.setAttribute("totalPoint", totalPoint);
+	    
 	    mypage.setUser_id(sId); //검색할 아이디를 마이페이지에 넣기 
 	    MypageInfo dbMypage = service.getMypage(mypage);
 	    session.setAttribute("user_nick", dbMypage.getUser_nick()); // String~session: 마이페이지 눌렀을때 닉네임 계속 보이게 세션에 저장
 	    session.setAttribute("imgName", dbMypage.getUser_img());
 
 	    
-	    int sIdx = (int)session.getAttribute("sIdx"); //세션 인덱스 가져오기
 	    //---- 예약조회(간략히 보기) --------------------
 	    List<Map<String, Object>> resList = service.getResList(sIdx);
 	    System.out.println("resList : " + resList);
@@ -229,6 +235,8 @@ public class MypageController {
 	    List<BookmarkVO> bookmarkList = service.getBookmarkList(sIdx);
 	    System.out.println("북마크 : " + sIdx); 
 	    model.addAttribute("bookmarkList", bookmarkList);
+	    
+	    
 	    
 	    return "mypage/my_list";
 	}
@@ -292,6 +300,14 @@ public class MypageController {
 		model.addAttribute("resList2", resList2);
 		model.addAttribute("pageInfo", pageInfo);
 		
+		// 각 예약에 대해 리뷰가 있는지 확인
+		for(Map<String, Object> res : resList2) {
+			int res_idx = (int) res.get("res_idx");
+			Map<String, Object> review = service.getReviewByResIdx(res_idx);
+			res.put("hasReview", review != null);
+		}
+		
+		
 		return "mypage/my_reservation";
 	}
 	
@@ -310,6 +326,7 @@ public class MypageController {
 			return "fail_back";
 		}
 	}	
+	
 	
 	//----------------나의 북마크 더보기 페이지------------------
 	@GetMapping("my/bookmark")
@@ -455,11 +472,8 @@ public class MypageController {
 	    List<PointVO> dbShowPoint = service.getShowPoint(point);// 포인트 객체를 파라미터에 넣어서 서비스 돌려서 결과값을 dbShowPoint에 리턴
 
 	    // MypageService - getTotalPoint() 메서드 호출하여 포인트 총점 조회
-	    Integer totalPoint = service.getTotalPoint(point);
+	    int totalPoint = service.getTotalPoint(sIdx);
 	    // null 체크
-	    if (totalPoint == null) {
-	        totalPoint = 0;
-	    }
 
 	    // 조회 결과 Model 객체에 저장
 	    model.addAttribute("showPoint", dbShowPoint);

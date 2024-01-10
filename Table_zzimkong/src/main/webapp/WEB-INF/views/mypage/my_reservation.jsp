@@ -94,16 +94,24 @@
 					</c:choose>
 	                <td>
 					<c:choose>
-					    <c:when test="${res2.res_status eq 1}">
-					        <button type="submit" id="my_delete" onclick="cancelReservation(${res2.res_idx})">예약취소</button>
-					    </c:when>
-					    <c:when test="${res2.res_status eq 3}">
-					        <button type="submit" id="write_review" onclick="writeReview(${res2.com_id})">리뷰쓰기</button>
-					    </c:when>
-					    <c:otherwise>
-					        -
-					    </c:otherwise>
+						<c:when test="${res2.res_status eq 1}">
+							<button type="submit" id="my_delete" onclick="cancelReservation(${res2.res_idx})">예약취소</button>
+						</c:when>
+						<c:when test="${res2.res_status eq 3}">
+							<c:choose>
+								<c:when test="${res2.hasReview}">
+									<button type="button" disabled>리뷰완료</button>
+								</c:when>
+								<c:otherwise>
+									<button type="submit" id="write_review" onclick="writeReview(${res2.com_id})">리뷰쓰기</button>
+								</c:otherwise>
+							</c:choose>
+						</c:when>
+						<c:otherwise>
+							-
+						</c:otherwise>
 					</c:choose>
+
 	                 </td>
 				  </tr>
 				</c:forEach>

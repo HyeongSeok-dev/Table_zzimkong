@@ -58,10 +58,12 @@ public interface MypageMapper {
 	List<PointVO> selectShowPoint(PointVO point);
 	
 	// 포인트 총점
-	Integer selectTotalPoint(PointVO point);
+	int selectTotalPoint(int idx);
 	
 	// 신고 회원정보 조회
 	ReportVO selectReportInfo(String sId);
+
+	Map<String, Object> selectReviewByResIdx(int res_idx);
 	
 	
 	

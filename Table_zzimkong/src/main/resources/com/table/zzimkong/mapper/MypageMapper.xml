@@ -65,6 +65,12 @@
 		FROM mypage_view
 	</select>
 	
+	<select id="selectReviewByResIdx" resultType="map">
+		SELECT *
+		FROM review
+		WHERE res_idx = #{res_idx}
+	</select>
+	
 	<!-- 예약취소버튼 클릭시 취소 - UPDATE -->
 	<update id="updateMyResCancel">
 		UPDATE reservation 
@@ -148,7 +154,7 @@
 	</select>
 	
 	<!-- 포인트 총점 - SELECT -->
-	<select id="selectTotalPoint" resultType="java.lang.Integer">
+	<select id="selectTotalPoint" resultType="int">
 	    SELECT SUM(point_value) 
 	    FROM point 
 	    WHERE user_idx = #{user_idx}

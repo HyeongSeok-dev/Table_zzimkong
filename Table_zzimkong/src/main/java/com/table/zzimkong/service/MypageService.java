@@ -93,13 +93,17 @@ public class MypageService {
 	}
 	
 	// 포인트 총합
-	public Integer getTotalPoint(PointVO point) {
-	    return mapper.selectTotalPoint(point);
+	public int getTotalPoint(int idx) {
+	    return mapper.selectTotalPoint(idx);
 	}
 	
 	// 신고 회원정보 불러오기
 	public ReportVO getReportInfo(String sId) {
 		return mapper.selectReportInfo(sId);
+	}
+
+	public Map<String, Object> getReviewByResIdx(int res_idx) {
+		return mapper.selectReviewByResIdx(res_idx);
 	}
 	
 
