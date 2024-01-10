@@ -12,8 +12,8 @@
 <script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/mypage2.js"></script>
 <script type="text/javascript">
-	function writeReview(com_id) {
-		location.href = "${pageContext.request.contextPath}/review/write?com_id=" + com_id;
+	function writeReview(com_id, res_idx) {
+		location.href = "${pageContext.request.contextPath}/review/write?com_id=" + com_id + "&res_idx=" + res_idx;
 	}
 </script>
 </head>
@@ -103,7 +103,7 @@
 									리뷰 작성완료
 								</c:when>
 								<c:otherwise>
-									<button type="submit" id="write_review" onclick="writeReview(${res2.com_id})">리뷰쓰기</button>
+									<button type="submit" id="write_review" onclick="writeReview(${res2.com_id},${res2.res_idx})">리뷰쓰기</button>
 								</c:otherwise>
 							</c:choose>
 						</c:when>

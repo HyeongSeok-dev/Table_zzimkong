@@ -113,7 +113,7 @@ public interface ReviewMapper {
 	int getCompanyLike(int comId);
 
 	// 예약번호 1개당 1개의 리뷰만 작성 가능
-	List<Map<String, String>> selectReservationList(@Param("userIdx") int userIdx, @Param("comId") int comId);
+	List<Map<String, String>> selectReservationList(@Param("userIdx") int userIdx, @Param("comId") int comId,@Param("res_idx")  int res_idx);
     
 	
 }

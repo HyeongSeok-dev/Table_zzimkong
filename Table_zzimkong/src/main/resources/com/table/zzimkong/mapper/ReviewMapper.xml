@@ -504,13 +504,25 @@
 	
 	<!-- 예약번호 1개당 1개의 리뷰만 작성 가능 -->
 	<select id="selectReservationList" resultType="map">
-		SELECT res_idx, res_date, res_time,
-		IFNULL((SELECT review_num
-		FROM review AS a
-		WHERE r.res_idx = a.res_idx ),0) AS review_num
-		FROM reservation r 
-		WHERE user_idx = #{userIdx} AND com_id = #{comId}
-		AND res_status = 3;
+		SELECT 
+		    r.res_idx, 
+		    r.res_date, 
+		    r.res_time,
+		    COALESCE(a.review_count, 0) AS review_num
+		FROM 
+		    reservation r
+		LEFT JOIN 
+		    (SELECT 
+		         res_idx, 
+		         COUNT(*) AS review_count 
+		     FROM 
+		         review
+		     GROUP BY 
+		         res_idx) a ON r.res_idx = a.res_idx
+		WHERE 
+		    r.user_idx = #{userIdx} 
+		    AND r.com_id = #{comId}
+		    AND r.res_status = 3;
 	</select>
 	
 	
