@@ -216,7 +216,7 @@ $(document).ready(function() {
 	}
 	
 	//지역선택에 맞는 정렬
-	function fetchLocationData() {
+function fetchLocationData() {
     var location_data = $("input[name='location']:checked").val();
 
     $.ajax({
@@ -227,47 +227,38 @@ $(document).ready(function() {
             "location": location_data
         },
         success: function(data) {
-            // Clear current items in all carousels
             var owl1 = $('#owl-example1').empty();
             var owl2 = $('#owl-example2').empty();
             var owl3 = $('#owl-example3').empty();
+            var baseWidth = 215; // 기본 너비 설정
 
-            // Assuming companyList is an array of companies for all sections
-            for (let company of data.companyList) {
-                // Update 위생순 section with new data
-                var cleanHtml = '<div class="owl_example1_items_images">' +
-                                    '<a href="product/detail?com_id=' + company.com_id + '">' +
-                                        '<img alt="" src="' +contextRoot+'/resources/upload/' + company.com_img + '"> <br>' +
-                                        company.com_name +
-                                    '</a>' +
-                                '</div>';
-                owl1.append(cleanHtml);
-                
-                // Update 추천순 section with new data
-                var recommendHtml = '<div class="owl_example1_items_images">' +
-                                    '<a href="product/detail?com_id=' + company.com_id + '">' +
-                                        '<img alt="" src="' +contextRoot+'/resources/upload/' + company.com_img + '"> <br>' +
-                                        company.com_name +
-                                    '</a>' +
-                                '</div>';
-                owl2.append(recommendHtml);
-                
-                // Update 별점순 section with new data
-                var reviewHtml = '<div class="owl_example1_items_images">' +
-                                    '<a href="product/detail?com_id=' + company.com_id + '">' +
-                                        '<img alt="" src="' +contextRoot+'/resources/upload/' + company.com_img + '"> <br>' +
-                                        company.com_name +
-                                    '</a>' +
-                                '</div>';
-                owl3.append(reviewHtml);
-            }
+            data.companyList.forEach(function(company) {
+                // 각 섹션에 해당하는 항목 추가
+                var itemHtml = '<div class="owl-item" style="width: ' + baseWidth + 'px;">' +
+                               '<div class="owl_example1_items_images">' +
+                               '<a href="product/detail?com_id=' + company.com_id + '">' +
+                               '<img alt="" src="' + contextRoot + '/resources/upload/' + company.com_img + '"> <br>' +
+                               company.com_name +
+                               '</a>' +
+                               '</div></div>';
 
+                owl1.append(itemHtml);
+                owl2.append(itemHtml);
+                owl3.append(itemHtml);
+            });
+
+            // 제어 요소 추가
+            var controlsHtml = '<div class="owl-controls clickable"><div class="owl-pagination"><div class="owl-page active"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div></div><div class="owl-buttons"><div class="owl-prev"></div><div class="owl-next"><i class="fa fa-angle-right"></i></div></div></div>';
+            owl1.append(controlsHtml);
+            owl2.append(controlsHtml);
+            owl3.append(controlsHtml);
         },
         error: function(error) {
             console.log("Error: ", error);
         }
     });
 }
+
 
 
 	function sendFormDataToNextPage() {
