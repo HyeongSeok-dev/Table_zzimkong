@@ -153,10 +153,7 @@
 						<span class="total_money">${map.ftp} 원</span>
 					</div>
 				</section>
-				<form action="checkInfoEmailAuth">
-					<input type="hidden" value="${map.res.res_num}" name="res_num">
-					<button type="submit" class="checked">확인</button>
-				</form>
+					<button type="button" class="checked" onclick="javascript:location.href='../'">확인</button>
 			</div>
 		</div>
 	</div>
