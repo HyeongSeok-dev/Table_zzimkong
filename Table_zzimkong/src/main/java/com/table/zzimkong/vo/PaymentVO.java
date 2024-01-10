@@ -2,9 +2,17 @@ package com.table.zzimkong.vo;
 
 import java.util.Date;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
-@Data
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
 public class PaymentVO {
 
 	private int pay_idx;

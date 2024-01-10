@@ -94,7 +94,7 @@
 	<!-- 예약테이블에 결제상태 update -->	
 	<update id="updateReservationStatus">
 		UPDATE reservation
-		SET res_pay_status = 1
+		SET res_pay_status = 1, res_status = 1
 		WHERE res_num = #{res_num}
 	</update>
 	

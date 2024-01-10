@@ -308,6 +308,7 @@
 			<input type="hidden" value="${map.member.user_email}" name="user_email" id="user_email"/>
 			<input type="hidden" value="${map.member.user_name}" name="user_name" id="user_name"/>
 			<input type="hidden" value="${map.member.user_phone}" name="user_phone" id="user_phone"/>
+			<input type="hidden" value="" name="pay_card_co" id="pay_card_co"/>
 			<input type="hidden" value="" name="discountPoint" id="discountPoint"/>
 			<input type="hidden" value="" name="earnedPoints" id="earnedPoints" />
 			<input type="hidden" value="" name="totalPayment"  id="totalPayment"/>

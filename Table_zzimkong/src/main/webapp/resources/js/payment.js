@@ -317,7 +317,7 @@ $(function() {
 				});
 //		} else if($('input[type=radio][value="2"]').is(':checked')) { // 네이버페이
 		
-		} else if($('input[type=radio][value="3"]').is(':checked')) { //카드결제
+		} else if($('input[type=radio][value="2"]').is(':checked')) { //카드결제
 			console.log("dd");
 			//이니시스
 			IMP.request_pay({
@@ -330,6 +330,8 @@ $(function() {
 			    buyer_name : $("#user_name").val(),
 			    buyer_tel : $("#user_phone").val(),   //필수 파라미터 입니다.
 			}, function(rsp) { // callback 로직
+			console.log(rsp.vbank_date);
+//				    $("#pay_card_co").val(rsp.vbank_date.card_name); // 카드사정보 파라미터로 저장
 				if (rsp.success) {   
 				    console.log("imp_uid : " + rsp.imp_uid);
 				      $("#pay_num").val(rsp.imp_uid); //폼에 결제번호 넣기
@@ -353,29 +355,29 @@ $(function() {
 					});
 				}
 			});
-		} else if($('input[type=radio][value="4"]').is(':checked')) { //무통장입금
-				alert("무통장 입급을 선택하셨습니다.\n입금정보를 다시 확인해주세요! \n"
-				 + "은행 : " + $("#bankSelect").val() + "\n입금 계좌 : " + $(".account").val());
-				$.ajax({
-				        url: "paymentPro", 
-				        method: "POST",
-				        type: "json",
-				        data: $("form").serialize(),
-				        success: function(result) {
-							if(result) {
-								window.location.href="payment/info?res_num=" + $("#res_num").val()
-										+ "&discountPoint=" + discountPoint 
-										+ "&earnedPoints=" + earnedPoints
-										+ "&finalTotalPayment=" + totalPayment
-										+ "&pay_num=" + $("#pay_num").val();
-							} else {
-								alert("예약에 실패하셨습니다. 예약을 확인해 주세요");
-							}
-						
-						}, error: function(e) {
-							console.log("파라미터 전송 실패");
-						}
-					});
+//		} else if($('input[type=radio][value="3"]').is(':checked')) { //무통장입금
+//				alert("무통장 입급을 선택하셨습니다.\n입금정보를 다시 확인해주세요! \n"
+//				 + "은행 : " + $("#bankSelect").val() + "\n입금 계좌 : " + $(".account").val());
+//				$.ajax({
+//				        url: "paymentPro", 
+//				        method: "POST",
+//				        type: "json",
+//				        data: $("form").serialize(),
+//				        success: function(result) {
+//							if(result) {
+//								window.location.href="payment/info?res_num=" + $("#res_num").val()
+//										+ "&discountPoint=" + discountPoint 
+//										+ "&earnedPoints=" + earnedPoints
+//										+ "&finalTotalPayment=" + totalPayment
+//										+ "&pay_num=" + $("#pay_num").val();
+//							} else {
+//								alert("예약에 실패하셨습니다. 예약을 확인해 주세요");
+//							}
+//						
+//						}, error: function(e) {
+//							console.log("파라미터 전송 실패");
+//						}
+//					});
 		} else if($("#mobilePhonePayment").is(':checked')) { // 휴대폰 결제
 				console.log("폰결제");
 				IMP.request_pay(

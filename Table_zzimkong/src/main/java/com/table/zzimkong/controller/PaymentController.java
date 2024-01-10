@@ -213,15 +213,26 @@ public class PaymentController {
 			pay_po_price = Integer.parseInt(((String)map.get("preOrderTotalPrice")).trim().replace(",", ""));
 			payment.setPay_on_site(3); // 선주문있는데 선결제함
 		}
+		
 		payment.setPay_po_price(pay_po_price); 
 		payment.setPay_num((String)map.get("pay_num"));
 		payment.setPay_method(Integer.parseInt(map.get("pay_method")));
+		payment.setPay_per_price(Integer.parseInt(map.get("pay_per_price")));
+		
+		if(((String)map.get("per_info_consent")).equals("on")) {
+			payment.setPer_info_consent(true);
+		} else {
+			payment.setPer_info_consent(false);
+		}
+		
+		if(payment.getPay_method() == 2) {
+			payment.setPay_card_co(map.get("pay_card_co"));
+		}
 		
 		System.out.println(pay_po_price); // 0 => 현장결제가 있거나 선주문이 없음
 		System.out.println(payment);
 		System.out.println(res);
 		System.out.println("-----");
-		
 		
 		// 3. paymentInfo 에서 discountPoint 와 earnedPoints가 String 타입이기 때문에 형변환을 하고 넣어줘야함
 		int discountPoint = Integer.parseInt("-"+((String)map.get("discountPoint")).replace(",", "").trim());
@@ -229,11 +240,11 @@ public class PaymentController {
 		System.out.println("사용포인트, 적립포인트 인트타입 변환 " + discountPoint + ", " + earnedPoints);
 		System.out.println("-----포인트처리");
 		
-		
 		// [ 결제정보 insert ]
 		int insertCount = service.paymentSuccess(res,sIdx,payment); //res의 res_table_price와pay_per_price같음
 		if(insertCount > 0) {
 			// 1-1. 3번 성공시 예약테이블에서 결제완료상태로 표시 변경 update (res_pay_status = 1)
+
 			int updateReservationStatus = service.payStatusChange(res);
 			if(updateReservationStatus == 0) {
 				System.out.println("예약상태변경 실패!");
