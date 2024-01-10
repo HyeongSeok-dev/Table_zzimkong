@@ -65,8 +65,8 @@
 				</c:choose>
 			</div>
 			<div>
-				<c:if test="${isvisited}">
-					<a href="../review/write?com_id=${company.com_id}"><button class="appra Profile__Evaluation">
+				<c:if test="${isReviewWriteable}">
+					<a href="../review/write?com_id=${company.com_id}&res_idx=${res.res_idx}"><button class="appra Profile__Evaluation">
 						<span> 평가하기 </span>
 					</button></a>
 				</c:if>

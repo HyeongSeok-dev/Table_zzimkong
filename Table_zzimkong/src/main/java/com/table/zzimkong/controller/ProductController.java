@@ -156,22 +156,28 @@ public class ProductController {
 		}else {
 			model.addAttribute("isOnBusiness", false);
 		}
-		/**/
-		if(session.getAttribute("sIdx") == null) {
-			model.addAttribute("isvisited", false);
-		}else {
-			int user_idx = (int)session.getAttribute("sIdx");
-			System.out.println("유저 인덱스" + user_idx);
-			List<ReservationVO>resList = service.getVisitedPeople(user_idx,company.getCom_id());
-			System.out.println("예약리스트" + resList);
-			if(resList.size() == 0) {
-				model.addAttribute("isvisited", false);
-			}else {
-				model.addAttribute("isvisited", true);
+		
+		//리뷰 작성 가능여부 판단
+		boolean isReviewWriteable = false;
+		int user_idx = 0;
+		if(session.getAttribute("sIdx") != null) {
+			user_idx = (int)session.getAttribute("sIdx");
+		}
+		System.out.println("유저 인덱스" + user_idx);
+		List<ReservationVO>resList = service.getReviewWriteable(user_idx,company.getCom_id());
+		System.out.println("예약리스트" + resList);
+		if(resList.size() != 0) {
+			for(ReservationVO elem : resList) {
+				if(elem.getReview_num() == null) {
+					res.setRes_idx(elem.getRes_idx());
+					isReviewWriteable = true;
+					System.out.println("이프문 안에 들어옴");
+				}
 			}
 		}
 		
-		System.out.println(res);
+		System.out.println(isReviewWriteable);
+		System.out.println(res + "보낼거");
 		String tagMood ="";
 		String tagFacilities ="";
 		
@@ -207,6 +213,8 @@ public class ProductController {
 		model.addAttribute("tag_facilities", tagFacilities);
 		model.addAttribute("reviews", reviews);
 		model.addAttribute("review_score", reviewScore);
+		model.addAttribute("res", res);
+		model.addAttribute("isReviewWriteable", isReviewWriteable);
 		
 		return "product/product_detail";
 	}

@@ -32,4 +32,6 @@ public class ReservationVO {
 	private int res_minute;
 	private int res_count;
 	private int res_count2;
+	
+	private String review_num;
 }

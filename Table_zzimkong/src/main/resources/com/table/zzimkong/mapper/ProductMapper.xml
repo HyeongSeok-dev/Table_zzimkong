@@ -185,12 +185,18 @@
 		GROUP BY c.com_id;
 	</select>
 	
-	<select id="selectVisitedPeople" resultType="res">
-		SELECT *
-		FROM reservation
-		WHERE user_idx = #{user_idx}
-		AND com_id = #{com_id}
-		AND res_status = 3
+	<select id="selectReviewWriteable" resultType="res">
+	    SELECT 
+	        r.res_idx,
+	        rv.review_num
+	    FROM 
+	        reservation r
+	    LEFT JOIN 
+	        review rv ON r.res_idx = rv.res_idx
+	    WHERE 
+	        r.user_idx = #{user_idx} 
+	        AND r.com_id = #{com_id}
+	        AND r.res_status = 3;
 	</select>
 	
 	<select id="selectSimilarCompanyList" resultType="company">

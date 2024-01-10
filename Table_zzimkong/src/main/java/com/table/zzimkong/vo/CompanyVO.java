@@ -85,5 +85,6 @@ public class CompanyVO {
 	
 	// admin_company.jsp에서 필요한 정보
 	private String company_open_register;
+	
 }
 
