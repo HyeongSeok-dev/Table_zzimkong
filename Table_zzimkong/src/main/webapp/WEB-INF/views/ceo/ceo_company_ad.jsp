@@ -51,10 +51,10 @@
 						<th>광고등급</th>
 						<td colspan="3">
 							<select id="company_state" id="com_ad_grade" name="com_ad_grade">
-								<option value="1">광고없음</option>
-								<option value="2">1단계</option>
-								<option value="3">2단계</option>
-								<option value="4">3단계</option>
+								<option value="0">광고없음</option>
+								<option value="1">1단계</option>
+								<option value="2">2단계</option>
+								<option value="3">3단계</option>
 							</select>
 						</td>
 					</tr>	

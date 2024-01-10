@@ -13,38 +13,39 @@ $(function() {
 
 	// 연산을 위해 ','를 제거하고 int로 타입변환
 	var useablePoint = parseInt($("#useablePoint").text().replace(/,/g, '')); //사용가능금액
-	
-	var totalPayment = parseInt($("#totalPayment_text").text().replace(/,/g, '')); //총결제금액(controller에서 예약금과 선결제금이 합산되어 전달됨)
-	var preOrderTotalPrice = parseInt($("#preOrderTotalPrice_text").text().replace(/,/g, '')); // 선주문이 있을때 메뉴를 합산한총금액
+	var totalPayment_text = parseInt($("#totalPayment_text").text().replace(/,/g, '')); //총결제금액(controller에서 예약금과 선결제금이 합산되어 전달됨)
+	var preOrderTotalPrice_text = parseInt($("#preOrderTotalPrice_text").text().replace(/,/g, '')); // 선주문이 있을때 메뉴를 합산한총금액
 	// 페이지 로드후 적립금 계산
 	var reservationPrice = parseInt($("#reservationPrice").text().replace(/,/g, ''));
 	var nowPoint = parseInt($("#nowPoint").text().trim().replace(/,/g, '')); //할인 후 결제전 현재 보유 포인트
-	var earnedPoints = parseFloat($("#totalPayment_text").text().trim().replace(/,/g, '')) *  0.01;
-	$("#earnedPoints_text").text(parseInt(earnedPoints).toLocaleString());
-	$("#totalPoint").text((parseInt(earnedPoints) + nowPoint).toLocaleString());
+	var earnedPoints_text = parseFloat($("#totalPayment_text").text().trim().replace(/,/g, '')) *  0.01;
+	$("#earnedPoints_text").text(parseInt(earnedPoints_text).toLocaleString());
+	$("#totalPoint").text((parseInt(earnedPoints_text) + nowPoint).toLocaleString());
+	
 	
 	if(useablePoint<0) {
 		useablePoint = 0;
 	}
-	//>>>>>>>>>>>>>>>>>>>수정중
 	// 결제 상세의 값이 바뀔 때 마다 총결제가격과 적립포인트 변경됨
-	function finalTotalPayment(preOrderTotalPrice, reservationPrice, totalPayment) {
+	function finalTotalPayment(preOrderTotalPrice_text, reservationPrice) {
 		if($("#preOrderTotalPrice_text").text() === "0") {
 			// 현장결제 선택하면 총금액에서 선주문금액 제외
 			var finalTotalPayment = reservationPrice
-			 							- parseInt($("#discountCoupon").text().trim().replace(/,/g, ''))
 			 							- parseInt($("#discountPoint_text").text().trim().replace(/,/g, ''));
 			$("#totalPayment_text").text(finalTotalPayment.toLocaleString());
 		} else {
-			var finalTotalPayment = (parseInt($("#reservationPrice").text().trim().replace(/,/g, ''))) + preOrderTotalPrice
-			 							- parseInt($("#discountCoupon").text().trim().replace(/,/g, ''))
+			console.log("여기");
+			console.log(reservationPrice);
+			console.log(".." + preOrderTotalPrice_text);
+			var finalTotalPayment = reservationPrice + preOrderTotalPrice_text
 			 							- parseInt($("#discountPoint_text").text().trim().replace(/,/g, ''));
+			console.log(finalTotalPayment);
 			$("#totalPayment_text").text(finalTotalPayment.toLocaleString());
 		}
 		// 결제금액에 따른 포인트 적립(1%적립)(적립예정포인트)
-		var earnedPoints = parseFloat($("#totalPayment_text").text().trim().replace(/,/g, '')) *  0.01;
-		$("#earnedPoints_text").text(parseInt(earnedPoints).toLocaleString());  
-		$("#totalPoint").text((parseInt(earnedPoints) + parseInt($("#nowPoint").text().trim().replace(/,/g, ''))).toLocaleString());                                                                          
+		var earnedPoints_text = parseFloat($("#totalPayment_text").text().trim().replace(/,/g, '')) *  0.01;
+		$("#earnedPoints_text").text(parseInt(earnedPoints_text).toLocaleString());  
+		$("#totalPoint").text((parseInt(earnedPoints_text) + parseInt($("#nowPoint").text().trim().replace(/,/g, ''))).toLocaleString());                                                                          
 	}
 	
 	//라디오 버튼 해제시 select 초기화
@@ -161,7 +162,7 @@ $(function() {
 				$("#nowPoint").text((useablePoint - pointToUse).toLocaleString()); // 포인트 부분에 사용가능금액 부분 (작동)
 				$("#useablePoint").text((useablePoint - pointToUse).toLocaleString());
 				$("#discountPoint_text").text(pointToUse.toLocaleString());// 포인트 할인부분 (작동)
-		 		finalTotalPayment(totalPayment, preOrderTotalPrice);
+		 		finalTotalPayment(preOrderTotalPrice_text, reservationPrice);
 			}
 		}
 	});	
@@ -170,14 +171,59 @@ $(function() {
 	// 선결제유무에 따른 선결제방법 선택 
 	var isChecked;
 	$("#onSitePayment").click(function(event) {
-		
+		console.log(parseInt($("#preOrderTotalPrice_text").text().trim().replace(/,/g, '')));
 		if($("#preOrderTotalPrice_text").text() == "선주문 없음") { //파라미터가 없으면으로 바꿔야함
 			 event.preventDefault();
 	         alert("선주문 내역이 없습니다!");
 		
-		} else { 
+//		} else if(parseInt($("#totalPayment_text").text().trim().replace(/,/g, '')) === 0) { 
+//			if(parseInt($("#discountPoint_text").text().trim().replace(/,/g, '')) == parseInt($(".point_to_use").val().replace(/,/g, ''))) {
+//				if(confirm("포인트 차감을 취소하고 현장결제 하시겠습니까?")) {
+//					// 포인트 할인에서 선결제금액 빼고 결과금액은 포인트 할인 넣고 
+//					var pointResult = $("#discountPoint_text").text().trim().replace(/,/g, '') - parseInt($("#preOrderTotalPrice_text").text().trim().replace(/,/g, ''));
+//					$("#discountPoint_text").text(pointResult);
+//					console.log(pointResult);
+//					// 텍스트 박스에 결과 금액 넣고 
+//					$(".point_to_use").val(pointResult);
+//					// 보유포인트에서 텍스박스 금액 빼고 넣기
+//					$("#useablePoint").text((useablePoint - pointResult).toLocaleString());
+//					$("#nowPoint").text((useablePoint - pointResult).toLocaleString());
+//					$("#totalPoint").text((useablePoint - pointResult).toLocaleString());
+//					// 선결제 금액은 0원
+//					$("#preOrderTotalPrice_text").text("0");
+//				} 
+//			} else {
+//				alert("현장에서 결제할 금액이 없습니다.");
+//			}
+		} else if(!isChecked){	
 			
-			if(!isChecked) {
+			if(parseInt($("#totalPayment_text").text().trim().replace(/,/g, '')) === 0) { 
+				if(parseInt($("#discountPoint_text").text().trim().replace(/,/g, '')) == parseInt($(".point_to_use").val().replace(/,/g, ''))) {
+					if(confirm("포인트 차감을 취소하고 현장결제 하시겠습니까?")) {
+						$("#onSitePayment").prop('checked', true);
+						// 포인트 할인에서 선결제금액 빼고 결과금액은 포인트 할인 넣고 
+						var pointResult = $("#discountPoint_text").text().trim().replace(/,/g, '') - parseInt($("#preOrderTotalPrice_text").text().trim().replace(/,/g, ''));
+						$("#discountPoint_text").text(pointResult);
+						console.log(pointResult);
+						// 텍스트 박스에 결과 금액 넣고 
+						$(".point_to_use").val(pointResult);
+						// 보유포인트에서 텍스박스 금액 빼고 넣기
+						$("#useablePoint").text((useablePoint - pointResult).toLocaleString());
+						$("#nowPoint").text((useablePoint - pointResult).toLocaleString());
+						$("#totalPoint").text((useablePoint - pointResult).toLocaleString());
+						// 선결제 금액은 0원
+						$("#preOrderTotalPrice_text").text("0");
+			            isChecked = true;
+					} else {
+						$("#onSitePayment").prop('checked', false);
+						isChecked = false;
+					}
+				} else {
+					alert("현장에서 결제할 금액이 없습니다.");
+				}
+			
+			} else {
+
 				$("#onSitePayment").prop('checked', true);
 	            $("#preOrderTotalPrice_text").text("0"); // 선주문메뉴 금액을 합한값을 0으로 만들어줌
 	            
@@ -185,35 +231,61 @@ $(function() {
 	            if($("#preOrderTotalPrice_text").text() === "0") {
 				// 현장결제 선택하면 총금액에서 선주문금액 제외
 				var finalTotalPayment = parseInt($("#reservationPrice").text().trim().replace(/,/g, ''))
-				 							- parseInt($("#discountCoupon").text().trim().replace(/,/g, ''))
 				 							- parseInt($("#discountPoint_text").text().trim().replace(/,/g, ''));
 				$("#totalPayment_text").text(finalTotalPayment.toLocaleString());
-				
+				console.log($("#totalPayment_text").text(finalTotalPayment.toLocaleString()));
+				console.log(finalTotalPayment);
+				console.log(parseInt($("#discountPoint_text").text().trim().replace(/,/g, '')));
+				console.log(finalTotalPayment);
 				} else {
-					var finalTotalPayment = (parseInt($("#reservationPrice").text().trim().replace(/,/g, ''))) + preOrderTotalPrice
-					 							- parseInt($("#discountCoupon").text().trim().replace(/,/g, ''))
+					var finalTotalPayment = (parseInt($("#reservationPrice").text().trim().replace(/,/g, ''))) + preOrderTotalPrice_text
 					 							- parseInt($("#discountPoint_text").text().trim().replace(/,/g, ''));
 					$("#totalPayment_text").text(finalTotalPayment.toLocaleString());
 				}
 				// 결제금액에 따른 포인트 적립(1%적립)(적립예정포인트)
-				var earnedPoints = parseFloat($("#totalPayment").text().trim().replace(/,/g, '')) *  0.01;
-				$("#earnedPoints_text").text(parseInt(earnedPoints).toLocaleString());  
-				$("#totalPoint").text((parseInt(earnedPoints) + parseInt($("#nowPoint").text().trim().replace(/,/g, ''))).toLocaleString());
+				var earnedPoints_text = parseFloat($("#totalPayment_text").text().trim().replace(/,/g, '')) *  0.01;
+				$("#earnedPoints_text").text(parseInt(earnedPoints_text).toLocaleString());  
+				$("#totalPoint").text((parseInt(earnedPoints_text) + parseInt($("#nowPoint").text().trim().replace(/,/g, ''))).toLocaleString());
 	            
 	            isChecked = true;
+			}
 	       
-	        } else {
-				$("#onSitePayment").prop('checked', false);
-				$("#preOrderTotalPrice_text").text(preOrderTotalPrice.toLocaleString()); //그전 값으로 다시 돌려줌
+        } else {
+			if(parseInt($("#totalPayment_text").text().trim().replace(/,/g, '')) === 0) { 
+				if(parseInt($("#discountPoint_text").text().trim().replace(/,/g, '')) == parseInt($(".point_to_use").val().replace(/,/g, ''))) {
+					if(confirm("현장결제를 취소 하시겠습니까?")) {
+						$("#onSitePayment").prop('checked', false);
+						
+						// 포인트할인은 변함없음
+						// 총결제금액 변함
+						// 선결제금액 원래 선결제금액 오고
+						$("#preOrderTotalPrice_text").text(preOrderTotalPrice_text);		
+						var totalPayResult = parseInt($("#reservationPrice").text().trim().replace(/,/g, '')) + parseInt($("#preOrderTotalPrice_text").text().trim().replace(/,/g, ''));
+						$("#totalPayment_text").text(totalPayResult-parseInt($("#discountPoint_text").text().trim().replace(/,/g, '')));
+						// 적립포인트 변함
+						// 현재포인트 변함
+						// 총포인트 변함
+						var earnedPoints_text = parseFloat($("#totalPayment_text").text().trim().replace(/,/g, '')) *  0.01;
+						$("#earnedPoints_text").text(parseInt(earnedPoints_text).toLocaleString());  
+						$("#totalPoint").text((parseInt(earnedPoints_text) + parseInt($("#nowPoint").text().trim().replace(/,/g, ''))).toLocaleString());
+						isChecked = false;
+					} else {
+						$("#onSitePayment").prop('checked', true);
+						isChecked = true;
+					}
+				}
+			} else {
 				
-				var finalTotalPayment = (parseInt($("#reservationPrice").text().trim().replace(/,/g, ''))) + preOrderTotalPrice
-		 							- parseInt($("#discountCoupon").text().trim().replace(/,/g, ''))
+				$("#onSitePayment").prop('checked', false);
+				$("#preOrderTotalPrice_text").text(preOrderTotalPrice_text.toLocaleString()); //그전 값으로 다시 돌려줌
+				
+				var finalTotalPayment = (parseInt($("#reservationPrice").text().trim().replace(/,/g, ''))) + preOrderTotalPrice_text
 		 							- parseInt($("#discountPoint_text").text().trim().replace(/,/g, ''));
 				$("#totalPayment_text").text(finalTotalPayment.toLocaleString()); //그 전 값으로 다시 돌려줌
 				//포인트 계산
-				var earnedPoints = parseFloat($("#totalPayment_text").text().trim().replace(/,/g, '')) *  0.01;
-				$("#earnedPoints_text").text(parseInt(earnedPoints).toLocaleString());  
-				$("#totalPoint").text((parseInt(earnedPoints) + parseInt($("#nowPoint").text().trim().replace(/,/g, ''))).toLocaleString());  
+				var earnedPoints_text = parseFloat($("#totalPayment_text").text().trim().replace(/,/g, '')) *  0.01;
+				$("#earnedPoints_text").text(parseInt(earnedPoints_text).toLocaleString());  
+				$("#totalPoint").text((parseInt(earnedPoints_text) + parseInt($("#nowPoint").text().trim().replace(/,/g, ''))).toLocaleString());  
 				
 				isChecked = false;
 			}
@@ -225,7 +297,12 @@ $(function() {
 		
 		if($('input[name="pay_method"]:checked').length == 0) { 
 			
-			if($("#preOrderTotalPrice_text").text() == "선결제 없음") { 
+			console.log($("#totalPayment_text").text().trim());
+			if($("#totalPayment_text").text().trim() === "0") {
+				$("#payForm").submit();
+				return true;
+			
+			} else if($("#preOrderTotalPrice_text").text() == "선결제 없음") { 
 				alert("예약금의 결제수단을 선택해 주세요.");
 				$('html, body').animate({
                 scrollTop: $('#leftSec02').offset().top

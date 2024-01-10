@@ -66,7 +66,7 @@
 											 &nbsp; <span><a id="useAllPoint">전액사용</a></span>
 										</span>
 									</div>
-									<input type="text" value="" placeholder="0" class="point_to_use" name="pointToUse"/><span class="won">원</span>
+									<input type="text" value="" placeholder="사용할 포인트를 입력해 주세요" class="point_to_use" name="pointToUse"/><span class="won">원</span>
 									<button id="usePoint" class="use_button"  type="button">사용하기</button>
 								</div>
 						</section>

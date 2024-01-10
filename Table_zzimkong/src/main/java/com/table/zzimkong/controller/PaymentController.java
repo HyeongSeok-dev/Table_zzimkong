@@ -200,21 +200,24 @@ public class PaymentController {
 		
 		// 2. 천단위 쉼표제거 후 형변환뒤 payment객체에 넣어줌
 		System.out.println("pay_po_price_String 변환전 : " + (String)map.get("preOrderTotalPrice"));
-		int pay_po_price; //현장에서 결제
+		System.out.println("0원결제 : " + (((String)map.get("preOrderTotalPrice")).length() == 0));
 		
 		// controller에서만 판별하기 위한 pay_on_sit =1 : 선주문없음 pay_on_sit = 2 : 선주문있음 
 		if(map.get("preOrderTotalPrice").equals("선주문 없음")) {
-			pay_po_price = 0;
+			payment.setPay_po_price(0); 
 			payment.setPay_on_site(1); // 선주문 없음
 		} else if(map.get("preOrderTotalPrice").equals("0")) {
-			pay_po_price = 0;
+			payment.setPay_po_price(0); 
 			payment.setPay_on_site(2); // 선주문있는데 현장에서 결제함
 		} else {
-			pay_po_price = Integer.parseInt(((String)map.get("preOrderTotalPrice")).trim().replace(",", ""));
-			payment.setPay_on_site(3); // 선주문있는데 선결제함
+			if(((String)map.get("preOrderTotalPrice")).length() != 0) { //
+				int pay_po_price = Integer.parseInt(((String)map.get("preOrderTotalPrice")).trim().replace(",", ""));
+				payment.setPay_po_price(pay_po_price);
+				payment.setPay_on_site(3); // 선주문있는데 선결제함
+			} 
 		}
 		
-		payment.setPay_po_price(pay_po_price); 
+		 
 		payment.setPay_num((String)map.get("pay_num"));
 		payment.setPay_method(Integer.parseInt(map.get("pay_method")));
 		payment.setPay_per_price(Integer.parseInt(map.get("pay_per_price")));
@@ -229,7 +232,7 @@ public class PaymentController {
 			payment.setPay_card_co(map.get("pay_card_co"));
 		}
 		
-		System.out.println(pay_po_price); // 0 => 현장결제가 있거나 선주문이 없음
+//		System.out.println(pay_po_price); // 0 => 현장결제가 있거나 선주문이 없음
 		System.out.println(payment);
 		System.out.println(res);
 		System.out.println("-----");
