@@ -666,13 +666,15 @@ function showCommentForm(element) {
 <body>
 <div class="restaurant_name_with_likes">
     <div class="restaurant_name">
-   		<h2><a href="javascript:history.back()">${comName}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-heart" aria-hidden="true"></i>
-        <span class="like_count_top">${likeCount}</span><span class="like_text">&nbsp;&nbsp;이런 곳 좋아요</span>
+   		<h2><a href="${pageContext.request.contextPath}/product/detail?com_id=${comId}">${comName}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-heart" aria-hidden="true"></i>
+<%--    		<h2><a href="${pageContext.request.contextPath}/product/detail?com_id=${comId}">${comName}</h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-heart" aria-hidden="true"></i></a> --%>
+<%--        <h2><a href="${pageContext.request.contextPath}/product/detail">${comName}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-heart" aria-hidden="true"></i></h2> --%>
+         <span class="like_count_top">${likeCount}</span><span class="like_text">&nbsp;&nbsp;이런 곳 좋아요</span>
         </h2>
     <div class="separator"></div>
     </div>
     <div class="likes">
-<!--         <i class="fa fa-heart" aria-hidden="true"></i>  -->
+<%--         <i class="fa fa-heart" aria-hidden="true"></i>  --%>
 <%--         <span class="like-count">${likeCount}</span> --%>
     </div>
 </div>
