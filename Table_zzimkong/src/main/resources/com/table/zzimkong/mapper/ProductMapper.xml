@@ -87,10 +87,6 @@
             
             <if test="time != null">
 		        AND com_open_time <![CDATA[ <= ]]> #{time} AND com_close_time <![CDATA[ > ]]> #{time}
-		        AND NOT (
-		           com_breakStart_time <![CDATA[ <= ]]> #{time} 
-		           AND com_breakEnd_time <![CDATA[ > ]]> #{time}
-		        )
 		    </if>
 		 	<if test="mood != null">
 		        <choose>
