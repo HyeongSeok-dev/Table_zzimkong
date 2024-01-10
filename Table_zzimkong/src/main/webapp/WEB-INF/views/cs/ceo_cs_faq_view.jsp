@@ -10,6 +10,7 @@
 <title>Insert title here</title>
 <%-- 본문 css --%>
 <link href="${pageContext.request.contextPath }/resources/css/admin_popup.css" rel="stylesheet">
+
 <link href="${pageContext.request.contextPath }/resources/css/cs_register.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
 <script type="text/javascript">
