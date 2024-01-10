@@ -10,7 +10,6 @@ import com.table.zzimkong.vo.CompanyVO;
 import com.table.zzimkong.vo.MemberVO;
 import com.table.zzimkong.vo.MenuVO;
 import com.table.zzimkong.vo.PreOrderInfo;
-import com.table.zzimkong.vo.PreOrderVO;
 import com.table.zzimkong.vo.ReservationVO;
 
 @Mapper
@@ -57,4 +56,8 @@ public interface CeoMapper {
 	List<PreOrderInfo> selectPreInfo(ReservationVO res);
 
 	CompanyVO selectComTime(CompanyVO com);
+
+    int updateStatus(@Param("resIdx") int resIdx, @Param("status") int status);
+
+	List<ReservationVO> selectResPerson(CompanyVO com);
 }

@@ -238,12 +238,25 @@
 		FROM pre_order pre , menu
 		WHERE res_idx = #{res_idx} AND pre.menu_idx = menu.menu_idx
 	</select>
+	
 	<select id="selectComTime" resultType="company">
 		SELECT *
 		FROM company
 		WHERE com_id = #{com_id}
 	</select>
 	
+	<update id="updateStatus" parameterType="map">
+	    UPDATE reservation 
+	    SET res_status = #{status} 
+	    WHERE res_idx = #{resIdx}
+	</update>
+	
+	<select id="selectResPerson" resultType="res">
+		SELECT * 
+		FROM reservation 
+		WHERE com_id = #{com_id} AND res_date = DATE_FORMAT(CURDATE() , '%Y-%m-%d')
+	</select>
+		
 	
 	
 	

@@ -287,6 +287,14 @@ public class CeoController {
 	
 	//>>>>>>>>>>>>[ceo/reservation]<<<<<<<<<<<<<<<
 	
+	@PostMapping("ceo/updateStatus")
+	public ResponseEntity<?> updateStatus(@RequestBody Map<String, Object> params) {
+		int resIdx = (int) params.get("res_idx");
+		int status = (int) params.get("status");
+		boolean result = service.updateStatus(resIdx, status);
+		return result ? ResponseEntity.ok().build() : ResponseEntity.badRequest().build();
+	}
+	
 	@GetMapping("ceo/reservation")
 	public String ceo_reservation(HttpSession session, Model model,  CompanyVO company) {
 //		//로그인 아이디의 업체별 목록 조회
@@ -339,29 +347,110 @@ public class CeoController {
 		return jsonObject.toString();
 	}
 	
+//	@GetMapping("ceo/reservation/detail")
+//	public String ceo_reservation_detail(CompanyVO com, Model model) {
+//		com = service.getComTimeInfo(com);
+//		System.out.println("com" + com);
+//		
+//		String com_open_time = com.getCom_open_time();
+//        String com_close_time = com.getCom_close_time();
+//
+//        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("HH:mm");
+//        LocalTime openTime = LocalTime.parse(com_open_time, fmt);
+//        LocalTime closeTime = LocalTime.parse(com_close_time, fmt);
+//        
+//        List<String> intervals = new ArrayList<>();
+//        while (openTime.isBefore(closeTime)) {
+//            openTime = openTime.plusMinutes(30);
+//            intervals.add(openTime.format(fmt));
+//        }
+//        model.addAttribute("intervals", intervals);
+//
+//        System.out.println(intervals);
+//
+//		
+//		return "ceo/ceo_reservation_detail";
+//	}
+//	//테스트1
+//	@GetMapping("ceo/reservation/detail")
+//	public String ceo_reservation_detail(CompanyVO com, Model model) {
+//	    com = service.getComTimeInfo(com);
+//	    System.out.println("com" + com);
+//	    
+//	    String com_open_time = com.getCom_open_time();
+//	    String com_close_time = com.getCom_close_time();
+//
+//	    String com_breakStart_time = com.getCom_breakStart_time(); // 휴식 시작 시간
+//	    String com_breakEnd_time = com.getCom_breakEnd_time(); // 휴식 끝 시간
+//
+//	    DateTimeFormatter fmt = DateTimeFormatter.ofPattern("HH:mm");
+//	    LocalTime openTime = LocalTime.parse(com_open_time, fmt);
+//	    LocalTime closeTime = LocalTime.parse(com_close_time, fmt);
+//
+//	    LocalTime breakStartTime = LocalTime.parse(com_breakStart_time, fmt); // 휴식 시작 시간을 LocalTime으로 변환
+//	    LocalTime breakEndTime = LocalTime.parse(com_breakEnd_time, fmt); // 휴식 끝 시간을 LocalTime으로 변환
+//
+//	    List<String> intervals = new ArrayList<>();
+//	    while (openTime.isBefore(closeTime)) {
+//
+//	        // 휴식시간 동안은 리스트에 추가하지 않음
+//	        if (!(openTime.isAfter(breakStartTime) && openTime.isBefore(breakEndTime))) {
+//	            intervals.add(openTime.format(fmt));
+//	        }
+//
+//	        openTime = openTime.plusMinutes(30);
+//	    }
+//	    model.addAttribute("intervals", intervals);
+//
+//	    System.out.println(intervals);
+//
+//	    return "ceo/ceo_reservation_detail";
+//	}
+	
+	//테스트2
 	@GetMapping("ceo/reservation/detail")
 	public String ceo_reservation_detail(CompanyVO com, Model model) {
-		com = service.getComTimeInfo(com);
-		System.out.println("com" + com);
-		
-		String com_open_time = com.getCom_open_time();
-        String com_close_time = com.getCom_close_time();
+	    com = service.getComTimeInfo(com);
+	    System.out.println("com" + com);
+	    
+	    String com_open_time = com.getCom_open_time();
+	    String com_close_time = com.getCom_close_time();
+	    int maxPeople = com.getCom_max_people(); // 최대 예약 가능 인원
 
-        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("HH:mm");
-        LocalTime openTime = LocalTime.parse(com_open_time, fmt);
-        LocalTime closeTime = LocalTime.parse(com_close_time, fmt);
-        
-        List<String> intervals = new ArrayList<>();
-        while (openTime.isBefore(closeTime)) {
-            openTime = openTime.plusMinutes(30);
-            intervals.add(openTime.format(fmt));
-        }
-        model.addAttribute("intervals", intervals);
+	    DateTimeFormatter fmt = DateTimeFormatter.ofPattern("HH:mm");
+	    LocalTime openTime = LocalTime.parse(com_open_time, fmt);
+	    LocalTime closeTime = LocalTime.parse(com_close_time, fmt);
+	    
+	    List<ReservationVO> reservations = service.getResPerson(com); // 예약 정보 가져오기
+	    Map<LocalTime, Integer> reservedPeopleMap = new HashMap<>(); // 각 시간대별 예약된 인원 저장할 Map
 
-        System.out.println(intervals);
+	    for (ReservationVO res : reservations) {
+	        LocalTime resTime = LocalTime.parse(res.getRes_time(), fmt);
+	        int resPeople = res.getRes_person();
+	        reservedPeopleMap.put(resTime, reservedPeopleMap.getOrDefault(resTime, 0) + resPeople);
+	    }
 
-		
-		return "ceo/ceo_reservation_detail";
+	    List<Map<String, Object>> intervals = new ArrayList<>();
+	    while (openTime.isBefore(closeTime)) {
+	        Map<String, Object> interval = new HashMap<>();
+	        interval.put("time", openTime.format(fmt));
+
+	        // 예약된 인원 계산하고, 최대 가능 인원에서 빼서 남은 인원 계산
+	        int reservedPeople = reservedPeopleMap.getOrDefault(openTime, 0);
+	        int availablePeople = maxPeople - reservedPeople;
+	        
+	        interval.put("reservedPeople", reservedPeople);
+	        interval.put("availablePeople", availablePeople);
+
+	        openTime = openTime.plusMinutes(30);
+	        intervals.add(interval);
+	    }
+	    model.addAttribute("intervals", intervals);
+
+	    System.out.println(intervals);
+
+	    
+	    return "ceo/ceo_reservation_detail";
 	}
 	
 	@GetMapping("ceo/reservation/info")	

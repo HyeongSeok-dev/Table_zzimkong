@@ -29,10 +29,13 @@
 					<th>예약된 인원</th>
 					<th>예약가능 인원</th>
 				</tr>
-				<c:forEach var="interval" items="${intervals}">
-					<tr></tr>					
-	        	</c:forEach> 
-				
+					<c:forEach var="interval" items="${intervals}">
+					    <tr>
+					        <td>${interval.time}</td>
+					        <td>${interval.reservedPeople}명</td> <!-- 예약된 인원 -->
+					        <td>${interval.availablePeople}명</td> <!-- 예약가능 인원 -->
+					    </tr>
+					</c:forEach>
 			</table>
 			<br>
 			<button type="button" class="button_olive" onclick="javascript:window.close()">닫기</button>

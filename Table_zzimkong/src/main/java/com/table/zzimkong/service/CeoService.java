@@ -123,4 +123,12 @@ public class CeoService {
 		return mapper.selectComTime(com);
 	}
 
+	public boolean updateStatus(int resIdx, int status) {
+        return mapper.updateStatus(resIdx, status) > 0;
+    }
+
+	public List<ReservationVO> getResPerson(CompanyVO com) {
+		return mapper.selectResPerson(com);
+	}
+
 }

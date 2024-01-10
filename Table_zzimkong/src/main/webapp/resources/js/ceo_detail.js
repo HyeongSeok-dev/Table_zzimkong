@@ -166,28 +166,47 @@ function fetchReservationData(companyId) {
 				//comResList값 			    
 			    for(let res of map.comResList){
 			        var resStatus = "";
-			        if (res.res_status === 1) {
-			            resStatus = "예약완료";
-			        } else if (res.res_status === 2) {
-			            resStatus = "예약취소";
+					if (res.res_status === 1) {
+					  resStatus = "예약완료";
+					} else if (res.res_status === 2) {
+					  resStatus = "예약취소";
+					} else if (res.res_status === 3) {
+					  resStatus = "방문완료";
+					} else if (res.res_status === 4) {
+					  resStatus = "미방문";
+}
+			        
+			        var resPayStatus = "";
+			        if (res.res_pay_status === 1) {
+			            resPayStatus = "결제완료";
+			        } else if (res.res_pay_status === 2) {
+			            resPayStatus = "미결제";
 			        }
-			        var row = `<tr>
+			        
+			        
+//			        var row = `<tr>
+			        var row = `<tr data-res-idx="${res.res_idx}">
 			        <td>${res.res_num}</td>
 			        <td>${res.res_date}</td>
-			        <td>${res.res_time}원</td>
+			        <td>${res.res_time}</td>
 			        <td>
 			            <button type="button" value="예약 상세 정보" onclick="newInfo(${res.res_idx})">예약 상세정보</button>
 			        </td>
-			        <td>${resStatus}</td>
+			        <td class="res-status">${resStatus}</td>
+			        <td>${resPayStatus}</td>
+			        <td>
+			            <button type="button" value="방문" onclick="updateVisitStatus(${res.res_idx}, 3)">방문</button>
+						<button type="button" value="미방문" onclick="updateVisitStatus(${res.res_idx}, 4)">미방문</button>
+			        </td>
 			        </tr>`;
 			        reservationTable.append(row);
 			        
 			    var reservationStatus = $('#reservationStatus');
 			    reservationStatus.find("tr:gt(0)").remove();
 			        var row = `<tr>
-			            <td>${map.resTotal}</td>
-			            <td>${map.totalPersons}</td>
-			            <td>${map.cancelCount}</td>
+			            <td>${map.resTotal}건</td>
+			            <td>${map.totalPersons}명</td>
+			            <td>${map.cancelCount}건</td>
 			            <td>
 			            	<button type="button" value="상세정보" class="popup" onclick="newDetail(${res.com_id})">상세정보</button>
 			            </td>
@@ -209,6 +228,54 @@ function fetchReservationData(companyId) {
 	        console.error("Error fetching data: ", error);
 	    }
 	});
+}
+
+// 방문 상태를 업데이트하는 함수
+//function updateVisitStatus(res_idx, status) {
+//  $.ajax({
+//    url: 'updateStatus',  // 상태를 업데이트하는 API의 URL입니다. 실제 URL로 변경해야 합니다.
+//    type: 'POST',
+//    data: JSON.stringify({res_idx: res_idx, status: status}),
+//    contentType: "application/json; charset=utf-8",
+//    dataType: "json",
+//    success: function(response) {
+//      // 결과가 성공적이라면 화면을 갱신합니다.
+//      if(response.success === true) {
+//        fetchReservationData(selectedCompanyId);
+//      } else {
+//        console.error("Error updating status: ", response.error);
+//      }
+//    },
+//    error: function(error) {
+////      console.error("Error sending request: ", error);
+//		console.log(error.responsText);
+//    }
+//  });
+//}
+
+function updateVisitStatus(res_idx, status) {
+  $.ajax({
+    url: 'updateStatus',
+    type: 'POST',
+    data: JSON.stringify({res_idx: res_idx, status: status}),
+    contentType: "application/json; charset=utf-8",
+    dataType: "json",
+    success: function(response) {
+      if(response.success === true) {
+        // 서버로부터 변경된 res_status 값을 받아옵니다.
+        var updatedResStatus = response.updatedResStatus;
+        // HTML 테이블에서 해당 예약의 상태를 표시하는 요소를 찾습니다.
+        var resStatusElement = $("#reservationTable").find(`tr[data-res-idx=${res_idx}] td.res-status`);
+        // 해당 요소의 텍스트를 변경된 res_status 값으로 갱신합니다.
+        resStatusElement.text(updatedResStatus);
+      } else {
+        console.error("Error updating status: ", response.error);
+      }
+    },
+    error: function(error) {
+      console.log(error.responsText);
+    }
+  });
 }
 
 

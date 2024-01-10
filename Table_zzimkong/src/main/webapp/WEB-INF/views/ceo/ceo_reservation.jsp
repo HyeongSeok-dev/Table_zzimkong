@@ -13,6 +13,7 @@
 <link href="${pageContext.request.contextPath }/resources/css/ceo_top.css" rel="stylesheet">
 <%-- 팝업창 js --%>
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/ceo_detail.js"></script>
 </head>
 <body>
@@ -41,6 +42,9 @@
 				</div>
 			</div>
 			<div class="text_inner">
+				<span>
+					<button type= "button" onclick="location.href='reservation/all'">더보기</button>
+				</span>
 				<div class="header">
 					<span><h3>예약정보</h3></span>	
 				</div>
@@ -50,31 +54,16 @@
 						<th>예약날짜</th>
 						<th>예약시간</th>
 						<th>예약정보</th>
-						<th>취소여부</th>	
+						<th>예약상태</th>	
+						<th>결제여부</th>	
+						<th>방문확인</th>	
 					</tr>
-<%-- 					<c:forEach var="res" items="${comResList}" varStatus="status"> --%>
-<!-- 						<tr> -->
-<%-- 							<td>${res.res_num}</td> --%>
-<%-- 							<td>${res.res_date}</td> --%>
-<%-- 							<td>${res.res_time}</td> --%>
-<!-- 							<td> -->
-<%-- 							<button type="button" value="예약 상세 정보" onclick="newInfo(${res.res_idx})">예약 상세정보</button> --%>
-<!-- 							</td> -->
-<%-- 							<c:choose> --%>
-<%-- 								<c:when test="${res.res_status eq 1}"><td>예약완료</td></c:when> --%>
-<%-- 								<c:when test="${res.res_status eq 2}"><td>예약취소</td></c:when> --%>
-<%-- 							</c:choose> --%>
-<!-- 						</tr> -->
-<%-- 					</c:forEach> --%>
 				</table>
 			</div>
 			
 			<div class="text_inner">
 				<div class="header">
 					<span><h3>오늘의 예약 현황</h3></span>
-<!-- 						<span id="detailBtn"> -->
-<!-- 							<button type="button" value="상세정보" class="popup" onclick="newDetail()">상세정보</button> -->
-<!-- 						</span> -->
 				</div>
 				<table id="reservationStatus" border="1">
 					<tr>
@@ -83,11 +72,6 @@
 						<th>오늘의 예약취소 수</th>
 						<th>오늘의 인원상세</th>
 					</tr>
-<!-- 					<tr> -->
-<%-- 						<td>${resTotal}</td> --%>
-<%-- 						<td>${totalPersons}</td> --%>
-<%-- 						<td>${count}</td> --%>
-<!-- 					</tr> -->
 				</table>
 			</div>
 			
@@ -113,8 +97,5 @@
 	<footer>
 		<jsp:include page="../inc/topup.jsp"/>
 	</footer>
-	<%-- <footer>
-		<jsp:include page="../inc/bottom.jsp"></jsp:include>
-	</footer> --%>
 </body>
 </html>
