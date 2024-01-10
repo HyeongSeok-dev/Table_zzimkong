@@ -237,7 +237,9 @@ public class PaymentController {
 		}
 		
 		if(payment.getPay_method() == 2) {
-			payment.setPay_card_co(map.get("pay_card_co"));
+			System.out.println("-----------------카드결제함");
+			payment.setPay_card_co((String)map.get("pay_card_co"));
+			System.out.println("z카드회사 : " + payment.getPay_card_co());
 		}
 		
 		if(map.get("pay_num") == "") {

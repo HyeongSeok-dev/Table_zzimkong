@@ -398,11 +398,12 @@ $(function() {
 			    buyer_name : $("#user_name").val(),
 			    buyer_tel : $("#user_phone").val(),   //필수 파라미터 입니다.
 			}, function(rsp) { // callback 로직
-			console.log(rsp.vbank_date);
+			console.log(rsp.card_name);
 //				    $("#pay_card_co").val(rsp.vbank_date.card_name); // 카드사정보 파라미터로 저장
 				if (rsp.success) {   
 				    console.log("imp_uid : " + rsp.imp_uid);
 				      $("#pay_num").val(rsp.imp_uid); //폼에 결제번호 넣기
+				      $("#pay_card_co").val(rsp.card_name);
 				      jQuery.ajax({
 				        url: "paymentPro", 
 				        method: "post",
