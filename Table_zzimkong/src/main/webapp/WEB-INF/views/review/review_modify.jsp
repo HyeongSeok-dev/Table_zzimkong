@@ -254,6 +254,7 @@ function removePreview(review_img_1) {
 			</div>
 			<!-- ===================================================================== -->
 			<!-- 리뷰 텍스트 박스 -->
+		<div class="modify_bottom">
 			<textarea class="review_textarea" maxlength="500"
 				name="review_content" placeholder="업주와 다른 사용자들이 상처받지 않도록 좋은 표현을 사용해주세요.(500자수 제한)">${review.review_content }</textarea>
 			<a class="caution_link" href="#" onclick="openPopup()">리뷰 작성 유의사항</a>
@@ -262,8 +263,9 @@ function removePreview(review_img_1) {
 			<button class="register_button" onclick="location.href='${pageContext.request.contextPath}/review/complete'">수정하기</button>
 			</div>
 			</section>
-			</form>
 		</div>
+			</div>	
+			</form>
 	</div>
 	<!-- ===================================================================== -->
 	<!-- 팝업 창 -->
