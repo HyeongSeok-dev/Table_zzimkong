@@ -26,6 +26,8 @@
 			<c:choose>
 				<c:when test="${empty sessionScope.sId }"> 
 					<%--고객센터 --%>
+					<li class="dropdown"><a href="${pageContext.request.contextPath}/login">
+					로그인</a></li>
 					<li class="dropdown"><a href="${pageContext.request.contextPath}/member/cs/faq">
 					고객센터</a></li>
 				</c:when>

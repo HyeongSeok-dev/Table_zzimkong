@@ -27,6 +27,9 @@
 			<c:choose>
 				<c:when test="${empty sessionScope.sId }"> <%-- 미 로그인 시 --%>
 					<%--고객센터 --%>
+					<li class="dropdown"><a href="${pageContext.request.contextPath}/login">
+<%-- 													<img  src="${pageContext.request.contextPath}/resources/img/top_headset.png" style="width: 25px; height: 25px;"> --%>
+					로그인</a></li>
 					<li class="dropdown"><a href="${pageContext.request.contextPath}/member/cs/faq">
 <%-- 													<img  src="${pageContext.request.contextPath}/resources/img/top_headset.png" style="width: 25px; height: 25px;"> --%>
 					고객센터</a></li>
