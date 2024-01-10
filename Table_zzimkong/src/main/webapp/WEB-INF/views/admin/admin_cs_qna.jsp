@@ -108,15 +108,23 @@
 		                    break;
            				 }
 		        		let re = "";
+		        		let isReply = false;
+		        		let redirectFunction = "";
 						if(board.cs_board_re_lev > 0) {
 							for(let i = 0; i < board.cs_board_re_lev; i++) {
 								re += "&nbsp;&nbsp;";
 							}
-							
+							isReply = true;
 							re += '<img style="width: 20px; height: 20px;" src="${pageContext.request.contextPath }/resources/img/reply-icon.png">';
 						}
 						
-	                    var newRow = '<tr onclick="faqViewForm(' + board.cs_board_num + ')">' +
+						if(isReply){
+							redirectFunction = 'qnaAnswerViewForm'
+						}else{
+							redirectFunction = 'qnaQuestionForm'
+						}
+						
+	                    var newRow = '<tr onclick="'+redirectFunction+'(' + board.cs_board_num + ')">' +
 	                        '<td>' + board.cs_board_num + '</td>' +
 	                        '<th class="cs_th">' + categoryUser + '</th>' +
 	                        '<th class="cs_th">' + categorySub + '</th>' +
@@ -213,15 +221,23 @@
 			                    break;
 	           			 }
 		                let re = "";
+		        		let isReply = false;
+		        		let redirectFunction = "";
 						if(board.cs_board_re_lev > 0) {
 							for(let i = 0; i < board.cs_board_re_lev; i++) {
 								re += "&nbsp;&nbsp;";
 							}
-							
+							isReply = true;
 							re += '<img style="width: 20px; height: 20px;" src="${pageContext.request.contextPath }/resources/img/reply-icon.png">';
 						}
 		                
-	                    var newRow = '<tr onclick="faqViewForm(' + board.cs_board_num + ')">' +
+						if(isReply){
+							redirectFunction = 'qnaAnswerViewForm'
+						}else{
+							redirectFunction = 'qnaQuestionForm'
+						}
+						
+	                    var newRow = '<tr onclick="'+redirectFunction+'(' + board.cs_board_num + ')">' +
 	                        '<td>' + board.cs_board_num + '</td>' +
 	                        '<th class="cs_th">' + categoryUser + '</th>' +
 	                        '<th class="cs_th">' + categorySub + '</th>' +
@@ -326,10 +342,10 @@
 				       		 <c:forEach var="board" items="${adminCsQnaList}">
 				       		 	<c:choose>
 					       		 	<c:when test="${board.user_id eq 'admin'}">
-					                	<tr onclick="qnaAnswerViewForm(${board.cs_board_num})"></tr>
+					                	<tr onclick="qnaAnswerViewForm(${board.cs_board_num})">
 					       		 	</c:when>
 									<c:otherwise>
-					                	<tr onclick="qnaQuestionForm(${board.cs_board_num})"></tr>
+					                	<tr onclick="qnaQuestionForm(${board.cs_board_num})">
 									</c:otherwise>				                
 				                </c:choose>
    				       		 	<c:choose>
@@ -402,6 +418,7 @@
 				                        ${board.user_id}
 				                    </th>
 				                    <td>${board.cs_board_date}</td>
+				                    </tr>
 				            </c:forEach>
 				        </tbody>
 				    </table>
@@ -409,7 +426,7 @@
 		   </div> 
 		</div>
 	</section>
-<	<%-- 상단으로/bottom --%>
+	<%-- 상단으로/bottom --%>
 	<footer>
 		<jsp:include page="../inc/topup.jsp"/>
 		<jsp:include page="../inc/bottom_main.jsp"/>

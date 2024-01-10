@@ -567,6 +567,8 @@ public class CsController {
 		
 		board = service.getBoardDetail(board);
 		
+		member = service.getmember((int)session.getAttribute("sIdx"));
+		
 		model.addAttribute("board", board);
 		model.addAttribute("member", member);
 		return "cs/member_cs_qna_modify";
