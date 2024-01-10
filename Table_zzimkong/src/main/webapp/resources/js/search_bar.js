@@ -17,6 +17,40 @@ $(document).ready(function() {
 	}
 	closeAllModals();
 
+	// 현재 시간을 HH:MM 형식으로 반환하는 함수
+	function getCurrentTime() {
+	    var now = new Date();
+	    var hours = now.getHours();
+	    var minutes = now.getMinutes();
+	    hours = hours < 10 ? '0' + hours : hours;
+	    minutes = minutes < 10 ? '0' + minutes : minutes;
+	    return hours + ":" + minutes;
+	}
+	
+	// 예약 시간 옵션을 업데이트하는 함수
+	function updateReservationTimeOptions() {
+	    var selectedDate = $('#reservation-date').val();
+	    var currentTime = getCurrentTime();
+	    
+	    $('#time-select option').each(function() {
+	        var optionTime = $(this).val();
+	        if (selectedDate === today && optionTime < currentTime) {
+	            // 현재 시간 이전의 시간은 선택 불가능하게 설정
+	            $(this).attr('disabled', 'disabled');
+	        } else {
+	            // 현재 시간 이후의 시간은 선택 가능하게 설정
+	            $(this).removeAttr('disabled');
+	        }
+	    });
+	}
+	
+	// 예약 날짜가 변경될 때마다 시간 옵션 업데이트
+	$('#reservation-date').change(function() {
+	    updateReservationTimeOptions();
+	});
+	
+	// 페이지 로드 시 처음 한 번 시간 옵션 업데이트 실행
+	updateReservationTimeOptions();
 	// 필터 모달 오프너 클릭 이벤트
 	$('.filter_wrapper').off('click').click(function() {
 		$('#table_modal').hide();

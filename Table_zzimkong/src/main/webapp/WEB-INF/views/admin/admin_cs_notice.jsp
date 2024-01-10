@@ -47,8 +47,9 @@
 			                    categoryText = '업주회원';
 			                    break;
 	           			 }
+		                let orderNumber = 1;
 	                    var newRow = '<tr onclick="faqViewForm(' + board.cs_board_num + ')">' +
-	                        '<td>' + board.cs_board_num + '</td>' +
+	                        '<td>' + orderNumber++ + '</td>' +
 	                        '<th class="cs_th">' + categoryText + '</th>' +
 	                        '<th class="cs_th">' + board.cs_board_subject + '</th>' +
 	                        '<td>' + board.cs_board_date + '</td>' +
@@ -135,9 +136,9 @@
 						</thead>
 						<tbody>
 							<%-- 아래로 공지사항 목록 출력 --%>
-							<c:forEach var="cs_notice" items="${adminCsNoticeList}">
+							<c:forEach var="cs_notice" items="${adminCsNoticeList}" varStatus="status">
 								<tr onclick="noticeViewForm('${cs_notice.cs_board_num}', '${cs_notice.cs_board_category_user}', '${pageContext.request.contextPath}')">
-									<td>${cs_notice.cs_board_num}</td>
+	                    			<td>${status.index + 1}</td>
 									<%-- 노출회원 카테고리 구분 --%>
 									<c:choose>
 										<c:when test="${cs_notice.cs_board_category_user eq 1}">

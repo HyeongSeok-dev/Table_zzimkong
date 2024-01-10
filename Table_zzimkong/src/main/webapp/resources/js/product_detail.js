@@ -96,7 +96,9 @@ $(document).ready(function() {
 			    var response = xhr.responseJSON; // JSON 응답을 객체로 변환
 			    if(response && response.error) {
 			        alert(response.message);
+			        if(response.redirectURL != null){
 			        window.location.href = response.redirectURL; // Redirect
+					}
 			    }
 			}
 		});

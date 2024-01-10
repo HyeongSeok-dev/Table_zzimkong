@@ -84,10 +84,6 @@
             <if test="category != null">
                 AND com_category = #{category}
             </if>
-            
-            <if test="time != null">
-		        AND com_open_time <![CDATA[ <= ]]> #{time} AND com_close_time <![CDATA[ > ]]> #{time}
-		    </if>
 		 	<if test="mood != null">
 		        <choose>
 		            <when test="mood.equals('데이트')">
@@ -206,22 +202,23 @@
 	        GROUP BY com_id
 	    ) r ON c.com_id = r.com_id
 	    <where>
-			        c.com_id != #{company.com_id}
+	  		AND com_status = 1	
+	        AND c.com_id != #{company.com_id}
 		    <if test="sort == 'near'">
 		        AND c.com_gugun = #{company.com_gugun}
 		    </if>
 		    <if test="sort == 'sim'">
 		        AND c.com_category = #{company.com_category} 
 		        AND (
-		            <foreach item="tag" collection="tagList" open="(" separator="AND" close=")">
+		            <foreach item="tag" collection="tagList" open="(" separator="OR" close=")">
 		                c.${tag} = true
 		            </foreach>
 		        )
 		    </if>
 	        
 	        <if test="sort == 'sim' and individualTags != null">
-	       
-	            OR EXISTS (
+	       		
+	            AND EXISTS (
 				        SELECT 1
 				        FROM company c2
 				        WHERE c2.com_id = #{company.com_id}
@@ -250,7 +247,7 @@
 	<select id="selectReviewScore" resultType="review">
 		SELECT
 		ROUND(AVG(review_score)/2, 1) AS avg_score,
-		count(*) AS reviewCount,
+		IFNULL(count(*),0) AS reviewCount,
 		SUM(CASE WHEN review_score BETWEEN 0 AND 2 THEN 1 ELSE 0 END) AS 'oneStarCount',
 	    SUM(CASE WHEN review_score BETWEEN 3 AND 4 THEN 1 ELSE 0 END) AS 'twoStarCount',
 	    SUM(CASE WHEN review_score BETWEEN 5 AND 6 THEN 1 ELSE 0 END) AS 'threeStarCount',
@@ -282,6 +279,18 @@
 		WHERE user_idx = #{sIdx}
 		AND com_id = #{com_id}
 	</delete>
+	
+	<select id="selectValidTime" resultType="boolean">
+		SELECT
+			CASE
+				 WHEN #{time} BETWEEN com_open_time AND com_close_time
+	            AND NOT (#{time} BETWEEN com_breakStart_time AND com_breakEnd_time)
+	            THEN true
+	            ELSE false
+       		END
+       	FROM company
+       	WHERE com_id = #{com_id}
+	</select>
 	
 	<!-- 메인화면=============================================== -->
 	<!-- 위생순 -->

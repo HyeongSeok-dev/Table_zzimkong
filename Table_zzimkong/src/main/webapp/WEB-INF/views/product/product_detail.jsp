@@ -54,12 +54,12 @@
 				<c:choose>
 					<c:when test="${isLiked eq 'true'}">
 						<div class="favor_on">
-						<span class="favorite_button"> 즐겨찾기 </span>
+						<span class="favorite_button"> 북마크 </span>
 						</div>
 					</c:when>
 					<c:otherwise>
 						<div class="favor_off">
-						<span class="favorite_button"> 즐겨찾기 </span>
+						<span class="favorite_button"> 북마크 </span>
 						</div>
 					</c:otherwise>
 				</c:choose>
@@ -183,8 +183,15 @@
 		<div class="s-list appraisal">
 			<div class="grade-info style-51Qop" id="style-51Qop">
 				<p class="title-and-score">
-					<span class="tit">${review_score.reviewCount}건의 리뷰</span> <span id="lbl_star_point"
-						class="star-point"> <span class="point"> 총 별점 </span> 
+					<c:choose>
+						<c:when test="${empty review_score}">
+							<span class="tit">0건의 리뷰</span>
+						</c:when>
+						<c:otherwise>
+							<span class="tit">${review_score.reviewCount}건의 리뷰</span> 
+						</c:otherwise>
+					</c:choose>
+					<span id="lbl_star_point" class="star-point"> <span class="point"> 총 별점 </span> 
 						<span class="star"> 
 						    <i style="width: ${review_score.avg_score * 20}%"></i>
 						</span>

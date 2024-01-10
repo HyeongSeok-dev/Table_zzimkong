@@ -140,7 +140,6 @@ public class ProductController {
 		ReviewVO reviewScore = service.getReviewScore(company);
 		List<MenuVO> menuList = service.getMenuList(company);
 		
-		
 		if(session.getAttribute("sIdx") != null) {
 			BookmarkVO bookmark = service.getBookmark((int)session.getAttribute("sIdx"),dbCompany.getCom_id());
 			if(bookmark != null) {
@@ -239,14 +238,22 @@ public class ProductController {
 		res.setRes_time(search.getTime());
 		res.setRes_date(search.getDate());
 		
+		boolean isValidTime = service.getValidTime(Integer.parseInt((String)map.get("com_id")), search.getTime());
+		
+		if(!isValidTime) {
+			Map<String, Object> response = new HashMap<>();
+	        response.put("error", true);
+	        response.put("message", "예약가능한 시간이 아닙니다!");
+	        return ResponseEntity.badRequest().body(response);
+		}
 		int remainingPeople = service.getReservationInfo(search, res.getCom_id());
 		if(remainingPeople - search.getPersons() <0) {
 			Map<String, Object> response = new HashMap<>();
 	        response.put("error", true);
 	        response.put("message", "예약 인원이 초과되었습니다!");
 	        return ResponseEntity.badRequest().body(response);
-			
 		}
+		
 		List<MenuVO> menuList = new ArrayList<MenuVO>();
 		menuList = (List<MenuVO>) map.get("menus");
 

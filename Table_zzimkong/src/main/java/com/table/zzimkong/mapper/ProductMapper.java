@@ -45,4 +45,6 @@ public interface ProductMapper {
 
 	int deleteBookmark(@Param("sIdx") int sIdx, @Param("com_id") int com_id);
 
+	boolean selectValidTime(@Param("com_id")int comId, @Param("time") String time);
+
 }

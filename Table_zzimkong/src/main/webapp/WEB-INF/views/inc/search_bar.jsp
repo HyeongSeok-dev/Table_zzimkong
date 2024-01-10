@@ -169,125 +169,136 @@
 											</li>
 											<li>제주도
 												<ul class="detail-list">
-													<li>제주도 전체</li>
-													<li>제주시</li>
-													<li>서귀포시</li>
+													<li><label for="제주도_전체"><input type="radio"
+													    id="제주도_전체" name="location" value="제주도_전체" ${search.location eq "제주도_전체" ? 'selected' : ''}> 제주도 전체</label></li>
+													<li><label for="제주도_제주시"><input type="radio"
+													    id="제주도_제주시" name="location" value="제주도_제주시" ${search.location eq "제주시" ? 'selected' : ''}> 제주시</label></li>
+													<li><label for="제주도_서귀포시"><input type="radio"
+													    id="제주도_서귀포시" name="location" value="제주도_서귀포시" ${search.location eq "서귀포시" ? 'selected' : ''}> 서귀포시</label></li>
 												</ul>
 											</li>
 											<li>울산
 												<ul class="detail-list">
-													<li>울산 전체</li>
-													<li>남구/중구</li>
-													<li>동구/북구/울주군</li>
+													<li><label for="울산_전체"><input type="radio"
+													    id="울산_전체" name="location" value="울산_전체" ${search.location eq "울산_전체" ? 'selected' : ''}> 울산 전체</label></li>
+													<li><label for="남구_중구"><input type="radio"
+													    id="울산_남구_중구" name="location" value="울산_남구_중구" ${search.location eq "남구_중구" ? 'selected' : ''}> 남구/중구</label></li>
+													<li><label for="동구_북구_울주군"><input type="radio"
+													    id="울산_동구_북구_울주군" name="location" value="울산_동구_북구_울주군" ${search.location eq "동구_북구_울주군" ? 'selected' : ''}> 동구/북구/울주군</label></li>
 												</ul>
 											</li>
 											<li>경남
 												<ul class="detail-list">
-													<li>경남 전체</li>
-													<li>창원</li>
-													<li>김해/양산/밀양</li>
-													<li>거제/통영/고성</li>
-													<li>진주/사천/남해/하동</li>
-													<li>거창/함안/창녕/합천/의령</li>
-													<li>하동/산청/함양</li>
+													<li><label for="경남_전체"><input type="radio" id="경남_전체" name="location" value="경남_전체" ${search.location eq "경남_전체" ? 'selected' : ''}> 경남 전체</label></li>
+													<li><label for="경남_창원"><input type="radio" id="경남_창원" name="location" value="경남_창원" ${search.location eq "경남_창원" ? 'selected' : ''}> 창원</label></li>
+													<li><label for="경남_김해_양산_밀양"><input type="radio" id="경남_김해_양산_밀양" name="location" value="경남_김해_양산_밀양" ${search.location eq "경남_김해_양산_밀양" ? 'selected' : ''}> 김해/양산/밀양</label></li>
+													<li><label for="경남_거제_통영_고성"><input type="radio" id="경남_거제_통영_고성" name="location" value="경남_거제_통영_고성" ${search.location eq "경남_거제_통영_고성" ? 'selected' : ''}> 거제/통영/고성</label></li>
+													<li><label for="경남_진주_사천_남해_하동"><input type="radio" id="경남_진주_사천_남해_하동" name="location" value="경남_진주_사천_남해_하동" ${search.location eq "경남_진주_사천_남해_하동" ? 'selected' : ''}> 진주/사천/남해/하동</label></li>
+													<li><label for="경남_거창_함안_창녕_합천_의령"><input type="radio" id="경남_거창_함안_창녕_합천_의령" name="location" value="경남_거창_함안_창녕_합천_의령" ${search.location eq "경남_거창_함안_창녕_합천_의령" ? 'selected' : ''}> 거창/함안/창녕/합천/의령</label></li>
+													<li><label for="경남_하동_산청_함양"><input type="radio" id="경남_하동_산청_함양" name="location" value="경남_하동_산청_함양" ${search.location eq "경남_하동_산청_함양" ? 'selected' : ''}> 하동/산청/함양</label></li>
 												</ul>
 											</li>
 											<li>대구
 												<ul class="detail-list">
-													<li>대구 전체</li>
-													<li>중구/동구</li>
-													<li>수성구/남구</li>
-													<li>북구/서구</li>
-													<li>달서구/달성군</li>
+													<li><label for="대구_전체"><input type="radio" id="대구_전체" name="location" value="대구_전체" ${search.location eq "대구_전체" ? 'selected' : ''}> 대구 전체</label></li>
+													<li><label for="대구_중구_동구"><input type="radio" id="대구_중구_동구" name="location" value="대구_중구_동구" ${search.location eq "대구_중구_동구" ? 'selected' : ''}> 중구/동구</label></li>
+													<li><label for="대구_수성구_남구"><input type="radio" id="대구_수성구_남구" name="location" value="대구_수성구_남구" ${search.location eq "대구_수성구_남구" ? 'selected' : ''}> 수성구/남구</label></li>
+													<li><label for="대구_북구_서구"><input type="radio" id="대구_북구_서구" name="location" value="대구_북구_서구" ${search.location eq "대구_북구_서구" ? 'selected' : ''}> 북구/서구</label></li>
+													<li><label for="대구_달서구_달성군"><input type="radio" id="대구_달서구_달성군" name="location" value="대구_달서구_달성군" ${search.location eq "대구_달서구_달성군" ? 'selected' : ''}> 달서구/달성군</label></li>
 												</ul>
 											</li>
 											<li>경북
 												<ul class="detail-list">
-													<li>경북 전체</li>
-													<li>포항/경주</li>
-													<li>김천/구미/성주/칠곡/고령</li>
-													<li>안동/문경/상주/영주/예천/의성/봉화</li>
-													<li>경산</li>
-													<li>군위/영천/청도</li>
-													<li>울진/영양/영덕/청송</li>
-													<li>울릉도</li>
+												<li><label for="경북_전체"><input type="radio" id="경북_전체" name="location" value="경북_전체" ${search.location eq "경북_전체" ? 'selected' : ''}> 경북 전체</label></li>
+												<li><label for="경북_포항_경주"><input type="radio" id="경북_포항_경주" name="location" value="경북_포항_경주" ${search.location eq "경북_포항_경주" ? 'selected' : ''}> 포항/경주</label></li>
+												<li><label for="경북_김천_구미_성주_칠곡_고령"><input type="radio" id="경북_김천_구미_성주_칠곡_고령" name="location" value="경북_김천_구미_성주_칠곡_고령" ${search.location eq "경북_김천_구미_성주_칠곡_고령" ? 'selected' : ''}> 김천/구미/성주/칠곡/고령</label></li>
+												<li><label for="경북_안동_문경_상주_영주_예천_의성_봉화"><input type="radio" id="경북_안동_문경_상주_영주_예천_의성_봉화" name="location" value="경북_안동_문경_상주_영주_예천_의성_봉화" ${search.location eq "경북_안동_문경_상주_영주_예천_의성_봉화" ? 'selected' : ''}> 안동/문경/상주/영주/예천/의성/봉화</label></li>
+												<li><label for="경북_경산"><input type="radio" id="경북_경산" name="location" value="경북_경산" ${search.location eq "경북_경산" ? 'selected' : ''}> 경산</label></li>
+												<li><label for="경북_군위_영천_청도"><input type="radio" id="경북_군위_영천_청도" name="location" value="경북_군위_영천_청도" ${search.location eq "경북_군위_영천_청도" ? 'selected' : ''}> 군위/영천/청도</label></li>
+												<li><label for="경북_울진_영양_영덕_청송"><input type="radio" id="경북_울진_영양_영덕_청송" name="location" value="경북_울진_영양_영덕_청송" ${search.location eq "경북_울진_영양_영덕" ?  'selected' : ''}> 울진_영양_영덕</label></li>
+												<li><label for="경북_울릉도"><input type="radio" id="경북_울릉도" name="location" value="경북_울릉도" ${search.location eq "경북_울릉도" ?  'selected' : ''}> 울릉도</label></li>
 												</ul>
 											</li>
 											<li>강원
 												<ul class="detail-list">
-													<li>강원 전체</li>
-													<li>강릉/동해/삼척</li>
-													<li>속초/양양/고성/인제</li>
-													<li>원주/횡성</li>
-													<li>춘천/철원/화천/양구/홍천</li>
-													<li>태백/영월/평창/정선</li>
+												<li><label for="강원_전체"><input type="radio" id="강원_전체" name="location" value="강원_전체"> 강원 전체</label></li>
+												<li><label for="강원_강릉_동해_삼척"><input type="radio" id="강원_강릉_동해_삼척" name="location" value="강원_강릉_동해_삼척"> 강릉/동해/삼척</label></li>
+												<li><label for="강원_속초_양양_고성_인제"><input type="radio" id="강원_속초_양양_고성_인제" name="location" value="강원_속초_양양_고성_인제"> 속초/양양/고성/인제</label></li>
+												<li><label for="강원_원주_횡성"><input type="radio" id="강원_원주_횡성" name="location" value="강원_원주_횡성"> 원주/횡성</label></li>
+												<li><label for="강원_춘천_철원_화천_양구_홍천"><input type="radio" id="강원_춘천_철원_화천_양구_홍천" name="location" value="강원_춘천_철원_화천_양구_홍천"> 춘천/철원/화천/양구/홍천</label></li>
+												<li><label for="강원_태백_영월_평창_정선"><input type="radio" id="강원_태백_영월_평창_정선" name="location" value="강원_태백_영월_평창_정선"> 태백/영월/평창/정선</label></li>
 												</ul>
 											</li>
 											<li>대전
 												<ul class="detail-list">
-													<li>대전 전체</li>
-													<li>유성구/대덕구</li>
-													<li>서구/중구</li>
-													<li>동구</li>
+													<li><label for="대전_전체"><input type="radio" id="대전_전체" name="location" value="대전_전체"> 대전 전체</label></li>
+													<li><label for="대전_유성구_대덕구"><input type="radio" id="대전_유성구_대덕구" name="location" value="대전_유성구_대덕구"> 유성구/대덕구</label></li>
+													<li><label for="대전_서구_중구"><input type="radio" id="대전_서구_중구" name="location" value="대전_서구_중구"> 서구/중구</label></li>
+													<li><label for="대전_동구"><input type="radio" id="대전_동구" name="location" value="대전_동구"> 동구</label></li>
 												</ul>
 											</li>
 											<li>충남
 												<ul class="detail-list">
-													<li>충남 전체</li>
-													<li>천안/아산</li>
-													<li>보령/부여/서천</li>
-													<li>공주/계룡/금산/논산/청양</li>
-													<li>당진</li>
-													<li>태안/안면도/서산</li>
-													<li>예산/홍성</li>
+													<li><label for="충남_전체"><input type="radio" id="충남_전체" name="location" value="충남_전체"> 충남 전체</label></li>
+													<li><label for="충남_천안_아산"><input type="radio" id="충남_천안_아산" name="location" value="충남_천안_아산"> 천안/아산</label></li>
+													<li><label for="충남_보령_부여_서천"><input type="radio" id="충남_보령_부여_서천" name="location" value="충남_보령_부여_서천"> 보령/부여/서천</label></li>
+													<li><label for="충남_공주_계룡_금산_논산_청양"><input type="radio" id="충남_공주_계룡_금산_논산_청양" name="location" value="충남_공주_계룡_금산_논산_청양"> 공주/계룡/금산/논산/청양</label></li>
+													<li><label for="충남_당진"><input type="radio" id="충남_당진" name="location" value="충남_당진"> 당진</label></li>
+													<li><label for="충남_태안_안면도_서산"><input type="radio" id="충남_태안_안면도_서산" name="location" value="충남_태안_안면도_서산"> 태안/안면도/서산</label></li>
+													<li><label for="충남_예산_홍성"><input type="radio" id="충남_예산_홍성" name="location" value="충남_예산_홍성"> 예산/홍성</label></li>
+
 												</ul>
 											</li>
 											<li>충북
 												<ul class="detail-list">
-													<li>충북 전체</li>
-													<li>청주</li>
-													<li>충주</li>
-													<li>제천/진천/음성/단양</li>
-													<li>보은/옥천/괴산/증평/영동</li>
+													<li><label for="충북_전체"><input type="radio" id="충북_전체" name="location" value="충북_전체"> 충북 전체</label></li>
+													<li><label for="충북_청주"><input type="radio" id="충북_청주" name="location" value="충북_청주"> 청주</label></li>
+													<li><label for="충북_충주"><input type="radio" id="충북_충주" name="location" value="충북_충주"> 충주</label></li>
+													<li><label for="충북_제천_진천_음성_단양"><input type="radio" id="충북_제천_진천_음성_단양" name="location" value="충북_제천_진천_음성_단양"> 제천/진천/음성/단양</label></li>
+													<li><label for="충북_보은_옥천_괴산_증평_영동"><input type="radio" id="충북_보은_옥천_괴산_증평_영동" name="location" value="충북_보은_옥천_괴산_증평_영동"> 보은/옥천/괴산/증평/영동</label></li>
+
 												</ul>
 											</li>
 											<li>세종
 												<ul class="detail-list">
-													<li>세종 전체</li>
-													<li>세종</li>
+													<li><label for="세종_전체"><input type="radio" id="세종_전체" name="location" value="세종_전체"> 세종 전체</label></li>
+													<li><label for="세종"><input type="radio" id="세종" name="location" value="세종"> 세종</label></li>
+
 												</ul>
 											</li>
 											<li>전남
 												<ul class="detail-list">
-													<li>전남 전체</li>
-													<li>여수/순천/광양</li>
-													<li>목포/영암/무안/신안</li>
-													<li>담양/곡성/구례/화순</li>
-													<li>해남/완도/진도/강진/장흥/보성/고흥</li>
-													<li>나주/함평/영광/장성</li>
+													<li><label for="전남_전체"><input type="radio" id="전남_전체" name="location" value="전남_전체"> 전남 전체</label></li>
+													<li><label for="전남_여수_순천_광양"><input type="radio" id="전남_여수_순천_광양" name="location" value="전남_여수_순천_광양"> 여수/순천/광양</label></li>
+													<li><label for="전남_목포_영암_무안_신안"><input type="radio" id="전남_목포_영암_무안_신안" name="location" value="전남_목포_영암_무안_신안"> 목포/영암/무안/신안</label></li>
+													<li><label for="전남_담양_곡성_구례_화순"><input type="radio" id="전남_담양_곡성_구례_화순" name="location" value="전남_담양_곡성_구례_화순"> 담양/곡성/구례/화순</label></li>
+													<li><label for="전남_해남_완도_진도_강진_장흥_보성_고흥"><input type="radio" id="전남_해남_완도_진도_강진_장흥_보성_고흥" name="location" value="전남_해남_완도_진도_강진_장흥_보성_고흥"> 해남/완도/진도/강진/장흥/보성/고흥</label></li>
+													<li><label for="전남_나주_함평_영광_장성"><input type="radio" id="전남_나주_함평_영광_장성" name="location" value="전남_나주_함평_영광_장성"> 나주/함평/영광/장성</label></li>
+
 												</ul>
 											</li>
 
 											<li>광주
 												<ul class="detail-list">
-													<li>광주 전체</li>
-													<li>서구</li>
-													<li>광산구</li>
-													<li>동구/남구</li>
-													<li>북구</li>
+													<li><label for="광주_전체"><input type="radio" id="광주_전체" name="location" value="광주_전체"> 광주 전체</label></li>
+													<li><label for="광주_서구"><input type="radio" id="광주_서구" name="location" value="광주_서구"> 서구</label></li>
+													<li><label for="광주_광산구"><input type="radio" id="광주_광산구" name="location" value="광주_광산구"> 광산구</label></li>
+													<li><label for="광주_동구_남구"><input type="radio" id="광주_동구_남구" name="location" value="광주_동구_남구"> 동구/남구</label></li>
+													<li><label for="광주_북구"><input type="radio" id="광주_북구" name="location" value="광주_북구"> 북구</label></li>
 												</ul>
 											</li>
 
 											<li>전북
 												<ul class="detail-list">
-													<li>전북 전체</li>
-													<li>전주/완주</li>
-													<li>군산/익산</li>
-													<li>정읍/부안/김제/고창</li>
-													<li>남원/임실/순창/무주/진안/장수</li>
+													<li><label for="전북_전체"><input type="radio" id="전북_전체" name="location" value="전북_전체"> 전북 전체</label></li>
+													<li><label for="전북_전주_완주"><input type="radio" id="전북_전주_완주" name="location" value="전북_전주_완주"> 전주/완주</label></li>
+													<li><label for="전북_군산_익산"><input type="radio" id="전북_군산_익산" name="location" value="전북_군산_익산"> 군산/익산</label></li>
+													<li><label for="전북_정읍_부안_김제_고창"><input type="radio" id="전북_정읍_부안_김제_고창" name="location" value="전북_정읍_부안_김제_고창"> 정읍/부안/김제/고창</label></li>
+													<li><label for="전북_남원_임실_순창_무주_진안_장수"><input type="radio" id="전북_남원_임실_순창_무주_진안_장수" name="location" value="전북_남원_임실_순창_무주_진안_장수"> 남원/임실/순창/무주/진안/장수</label></li>
 												</ul>
 											</li>
-										</ul></li>
+										</ul>
+									</li>
 									<li class="filter-item" id="food"><span>음식종류</span>
 										<ul class="sub-list">
 											<li><label for="한식"><input type="radio"
@@ -388,7 +399,6 @@
 								<div class="detail-list-wrap"></div>
 							</div>
 							<div class="modal-footer">
-								<button id="resetBtn" type="reset">초기화</button>
 								<button id="applyBtn" type="button">적용</button>
 							</div>
 						</div>

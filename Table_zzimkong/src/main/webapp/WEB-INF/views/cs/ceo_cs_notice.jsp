@@ -71,9 +71,9 @@
 				        </tr>
 				        </thead>
 				        <tbody>
-				            <c:forEach var="board" items="${boardList}">
-				                <tr onclick="noticeViewForm(${board.cs_board_num})">
-				                    <td>${board.cs_board_num}</td>
+				            <c:forEach var="board" items="${boardList}" varStatus="status">
+				                <tr onclick="noticeViewForm(${board.cs_board_num})" >
+				                    <td>${status.index + 1}</td>
 				                    <c:choose>
 				                    	<c:when test="${board.cs_board_category_sub eq '1'}">
 						                    <th class="cs_th">알림</th>

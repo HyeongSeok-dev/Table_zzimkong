@@ -91,6 +91,11 @@ public class ProductService {
 		return mapper.deleteBookmark(sIdx,com_id);
 	}
 
+	public boolean getValidTime(int comId, String time) {
+		// TODO Auto-generated method stub
+		return mapper.selectValidTime(comId, time);
+	}
+
 
 	
 }

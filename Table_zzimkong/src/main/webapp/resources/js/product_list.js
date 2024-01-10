@@ -134,8 +134,8 @@ function createTimeButtons($container, baseTime, increment, count) {
                 text: formattedTime,
                 class: "time-button",
                 click: function() {
-                    $('#selectedTime').val(formattedTime);
-                    $(this).closest('form').submit(); // Use 'this' to refer to the current clicked button
+                    $('.selectedTime').val(formattedTime);
+                    $(this).closest('form').submit(); 
                 }
             }).appendTo($container);
         }

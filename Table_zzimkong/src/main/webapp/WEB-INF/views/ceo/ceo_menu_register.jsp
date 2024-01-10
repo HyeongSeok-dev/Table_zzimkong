@@ -35,7 +35,7 @@
 				<div class="buttonRow">
 					<button type="button" id="addMenuButton">메뉴 추가</button>
 					<button type="submit" id="saveButton">저장</button>
-					<button type="reset" id="cancelButton">초기화</button>
+					<button type="reset" id="cancelButton" onclick="location.reload()">초기화</button>
 				</div>
 			</form>
 		</div>

@@ -62,8 +62,9 @@
 			                    categoryText = '업체관리';
 			                    break;
 	           			 }
+		                let orderNumber = 1;
 	                    var newRow = '<tr onclick="faqViewForm(' + board.cs_board_num + ')">' +
-	                        '<td>' + board.cs_board_num + '</td>' +
+	                        '<td>' + orderNumber++ + '</td>' +
 	                        '<th class="cs_th">' + categoryText + '</th>' +
 	                        '<th class="cs_th">' + board.cs_board_subject + '</th>' +
 	                        '<td>' + board.cs_board_date + '</td>' +
@@ -156,9 +157,9 @@
 				        </tr>
 				        </thead>
 				        <tbody>
-					        <c:forEach var="board" items="${boardList}">
+					        <c:forEach var="board" items="${boardList}" varStatus="status">
 				                <tr onclick="faqViewForm(${board.cs_board_num})">
-				                    <td>${board.cs_board_num}</td>
+				                    <td>${status.index + 1}</td>
 				                    <c:choose>
 				                    	<c:when test="${board.cs_board_category_sub eq '1'}">
 						                    <th class="cs_th">예약관리</th>

@@ -85,9 +85,9 @@ $(document).ready(function() {
 						
 						re += '<img style="width: 20px; height: 20px;" src="${pageContext.request.contextPath }/resources/img/reply-icon.png">';
 					}
-					
+					let orderNumber = 1;
                     var newRow = '<tr onclick="qnaViewForm(' + board.cs_board_num + ')">' +
-                        '<td>' + board.cs_board_num + '</td>' +
+                        '<td>' + orderNumber++ + '</td>' +
                         '<th class="cs_th">'+  categoryText + '</th>' +
                         '<th class="cs_th">' + re + board.cs_board_subject + '</th>' +
                         '<td>' + board.cs_board_date + '</td>' +
@@ -171,9 +171,9 @@ $(document).ready(function() {
 				        </tr>
 				        </thead>
 				        <tbody>
-				        <c:forEach var="board" items="${boardList}">
-				                <tr onclick="qnaViewForm(${board.cs_board_num})">
-				                    <td>${board.cs_board_num}</td>
+				        <c:forEach var="board" items="${boardList}" varStatus="status">
+				                <tr onclick="qnaViewForm(${board.cs_board_num})" >
+				                    <td>${status.index + 1}</td>
 				                    <c:choose>
 				                    	<c:when test="${board.cs_board_category_sub eq '1'}">
 						                    <th class="cs_th">예약</th>

@@ -27,7 +27,7 @@ function menuModify(menuIdx) {
 	var popupH = 850;
 	var left = Math.ceil((window.screen.width - popupW)/2);
 	var top = Math.ceil((window.screen.height - popupH)/2);
-	window.open(contextRoot +'ceo/menu/modify?menu_idx='+menuIdx,'','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
+	window.open(contextRoot +'/ceo/menu/modify?menu_idx='+menuIdx,'','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
 }
 
 function fetchCompanyData(companyId) {
