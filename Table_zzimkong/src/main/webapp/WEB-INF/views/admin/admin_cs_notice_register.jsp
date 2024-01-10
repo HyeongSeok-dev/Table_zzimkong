@@ -24,13 +24,13 @@
 					<th>유형</th>
 					<td>
 						<select name="cs_board_category_user" required>
-		            		<option value="">회원유형</option>
+		            		<option value="" disabled>회원유형</option>
 							<option value="1">일반회원</option>
 							<option value="2">사업자회원</option>
 							<option value="3">전체회원</option>
 		            	</select>
-			            <select class="notice_category_select" name="cs_board_category_sub">
-		            		<option value="" >유형선택</option>
+			            <select class="notice_category_select" name="cs_board_category_sub" required>
+		            		<option value="" disabled>유형선택</option>
 		            		<option value="1">알림</option>
 		            		<option value="2">이벤트</option>
             			</select>
@@ -39,13 +39,13 @@
 				<tr>
 					<th colspan="1">제목</th>
 					<td colspan="3">
-						<input type="text" name="cs_board_subject" placeholder="제목">
+						<input type="text" name="cs_board_subject" placeholder="제목" required>
 					</td>
 				</tr>
 				<tr>
 					<th colspan="1">공지내용</th>
 					<td colspan="3">
-						<textarea rows="20" cols="100" name="cs_board_content"></textarea>
+						<textarea rows="20" cols="100" name="cs_board_content" required></textarea>
 					</td>
 				</tr>
 				<tr>

@@ -64,8 +64,8 @@
 						<td width="100">${member.user_name}</td>
 						<th width="80">유형</th>
 						<td>
-							<select class="category_select" name="cs_board_category_sub">
-			            		<option value="" >유형선택</option>
+							<select class="category_select" name="cs_board_category_sub" required>
+			            		<option value="" disabled>유형선택</option>
 			            		<option value="1" <c:if test="${board.cs_board_category_sub eq 1}">selected</c:if>>예약관리</option>
 			            		<option value="2" <c:if test="${board.cs_board_category_sub eq 2}">selected</c:if>>메뉴관리</option>
 			            		<option value="3" <c:if test="${board.cs_board_category_sub eq 3}">selected</c:if>>광고</option>
@@ -77,13 +77,13 @@
 					<tr>
 						<th colspan="1">제목</th>
 						<td colspan="3">
-							<input type="text" placeholder="제목" id="" name="cs_board_subject" id="csQnaRegiTitle" value="${board.cs_board_subject}">
+							<input type="text" placeholder="제목" id="" required name="cs_board_subject" id="csQnaRegiTitle" value="${board.cs_board_subject}">
 						</td>
 					</tr>
 					<tr>
 						<th colspan="1">문의내용</th>
 						<td colspan="3">
-							<textarea rows="20" cols="80" name="cs_board_content" id="csQnaRegiContent"> ${board.cs_board_content} </textarea>
+							<textarea rows="20" cols="80" required name="cs_board_content" id="csQnaRegiContent"> ${board.cs_board_content} </textarea>
 						</td>
 					</tr>
 					<tr>

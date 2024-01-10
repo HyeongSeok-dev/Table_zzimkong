@@ -331,3 +331,9 @@ td>div {
 	height: 100%; 
 	overflow: hidden;
 }
+
+#menuTable tbody tr:hover th,
+#menuTable tbody tr:hover td  {
+    background-color: #eee;
+    cursor: pointer;
+}

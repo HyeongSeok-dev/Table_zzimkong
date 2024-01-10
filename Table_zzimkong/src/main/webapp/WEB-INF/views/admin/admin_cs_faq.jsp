@@ -261,14 +261,14 @@
 								<th scope="col" class="th-num">번호</th>
 								<th scope="col" class="th-user" width="80">
 									<select class="user_select" id="cs_board_category_user" style="border: none; background-color: rgb(244, 250, 255); font-weight: bold; text-align: center; font-size: 15px; color: #333;">
-					            		<option value="">회원유형</option>
+					            		<option value="" disabled>회원유형</option>
 										<option value="1">일반회원</option>
 										<option value="2">사업자회원</option>
 					            	</select>
 								</th>
 							<th scope="col" class="th-category">
 				            	<select class="sub_category_select" id="cs_board_category_user_sub" style="border: none; background-color: rgb(244, 250, 255); font-weight: bold; text-align: center; font-size: 15px; color: #333;">
-				            		<option value="">유형선택</option>
+				            		<option value="" disabled>유형선택</option>
 				            		<option value="1">예약</option>
 				            		<option value="2">주문/결제</option>
 				            		<option value="3">리뷰</option>
@@ -277,7 +277,7 @@
 				            		<option value="6">쿠폰/포인트</option>
 				            	</select>
 				            	<select class="sub_category_select" id="cs_board_category_ceo_sub" hidden="" style="border: none; background-color: rgb(244, 250, 255); font-weight: bold; text-align: center; font-size: 15px; color: #333;">
-				            		<option value="">유형선택</option>
+				            		<option value="" disabled>유형선택</option>
 				            		<option value="1">예약관리</option>
 				            		<option value="2">메뉴관리</option>
 				            		<option value="3">광고</option>

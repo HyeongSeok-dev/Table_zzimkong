@@ -117,6 +117,11 @@ table {
 	  width: 100px;
 	}
 	
+	.board-table tbody tr:hover th,
+	.board-table tbody tr:hover td  {
+	    background-color: #eee;
+	    cursor: pointer;
+	}
 	.board-table tbody th {
 	  padding-left: 28px;
 	  padding-right: 14px;

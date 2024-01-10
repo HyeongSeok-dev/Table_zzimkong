@@ -143,7 +143,7 @@
 				            <th scope="col" class="th-num">번호</th>
 				            <th scope="col" class="th-category">
 				            	<select name="ceoCategory" id="cs_board_category_sub" style="border: none; background-color: rgb(244, 250, 255); font-weight: bold; text-align: center; font-size: 15px; color: #333;">
-				            		<option value="">유형선택</option>
+				            		<option value="" disabled>유형선택</option>
 				            		<option value="1">예약관리</option>
 				            		<option value="2">메뉴관리</option>
 				            		<option value="3">광고</option>

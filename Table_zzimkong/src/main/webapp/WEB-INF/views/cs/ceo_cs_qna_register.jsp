@@ -75,8 +75,8 @@
                         <td width="100">${member.user_name}</td>
                         <th width="80">유형</th>
                         <td>
-                            <select class="category_select" id="category_select" name="cs_board_category_sub">
-                                <option value="">유형선택</option>
+                            <select class="category_select" id="category_select" name="cs_board_category_sub" required>
+                                <option value="" disabled>유형선택</option>
                                 <option value="1">예약관리</option>
                                 <option value="2">메뉴관리</option>
                                 <option value="3">광고</option>
@@ -88,13 +88,13 @@
                     <tr>
                         <th colspan="1">제목</th>
                         <td colspan="3">
-                            <input type="text" placeholder="제목" name="cs_board_subject" id="csQnaRegiTitle">
+                            <input type="text" placeholder="제목" name="cs_board_subject" id="csQnaRegiTitle" required>
                         </td>
                     </tr>
                     <tr>
                         <th colspan="1">문의내용</th>
                         <td colspan="3">
-                            <textarea rows="20" cols="80" name="cs_board_content" id="csQnaRegiContent"></textarea>
+                            <textarea rows="20" cols="80" name="cs_board_content" id="csQnaRegiContent" required></textarea>
                         </td>
                     </tr>
                     <tr>

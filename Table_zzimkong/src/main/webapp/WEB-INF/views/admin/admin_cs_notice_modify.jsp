@@ -34,13 +34,13 @@
 					<td>${board.cs_board_num}</td>
 					<th>유형</th>
 					<td>
-						<select class="user_select" name="cs_board_category_user">
+						<select class="user_select" name="cs_board_category_user" required>
 							<option value="1" <c:if test="${board.cs_board_category_user eq 1}">selected</c:if>>일반회원</option>
 		            		<option value="2" <c:if test="${board.cs_board_category_user eq 2}">selected</c:if>>사업자회원</option>
 		            		<option value="3" <c:if test="${board.cs_board_category_user eq 3}">selected</c:if>>전체회원</option>
 		            	</select>
-		            	<select class="notice_category_select" name="cs_board_category_sub">
-		            		<option value="" >유형선택</option>
+		            	<select class="notice_category_select" name="cs_board_category_sub" required>
+		            		<option value="" disabled>유형선택</option>
 		            		<option value="1" <c:if test="${board.cs_board_category_sub eq 1}">selected</c:if>>알림</option>
 		            		<option value="2" <c:if test="${board.cs_board_category_sub eq 2}">selected</c:if>>이벤트</option>
             			</select>

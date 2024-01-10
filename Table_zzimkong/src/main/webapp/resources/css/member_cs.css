@@ -120,11 +120,11 @@ table {
 	  text-align: left;
 	}
 	
-	.board-table tbody tr:hover{
-		cursor: pointer !important;
-		background-color: lightgray !important;
+	.board-table tbody tr:hover th,
+	.board-table tbody tr:hover td  {
+	    background-color: #eee;
+	    cursor: pointer;
 	}
-	
 	.board-table tbody th p{
 	  display: none;
 	}

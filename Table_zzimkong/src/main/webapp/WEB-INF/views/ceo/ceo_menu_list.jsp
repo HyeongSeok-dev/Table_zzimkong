@@ -11,6 +11,7 @@
 <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
 <%-- 탑 css --%>
 <link href="${pageContext.request.contextPath }/resources/css/ceo_top.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath }/resources/css/ceo_article.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/ceo_menu_list.js"></script>
 <style type="text/css" >

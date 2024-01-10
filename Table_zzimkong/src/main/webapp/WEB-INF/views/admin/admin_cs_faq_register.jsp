@@ -25,15 +25,15 @@
 					<th>회원유형</th>
 					<td>
 						<select class="user_select" name="cs_board_category_user" required>
-		            		<option selected disabled>회원유형</option>
+		            		<option disabled>회원유형</option>
 							<option value="1">일반회원</option>
 							<option value="2">사업자회원</option>
 		            	</select>
 					</td>
 					<th>질문유형</th>
 					<td>
-					<select class="member_category_select" name="cs_board_category_sub">
-	            		<option selected disabled>질문유형</option>
+					<select class="member_category_select" name="cs_board_category_sub" required>
+	            		<option disabled>질문유형</option>
 						<option value="1">예약</option>
 						<option value="2">주문/결제</option>
 						<option value="3">리뷰</option>
@@ -41,8 +41,8 @@
 						<option value="5">이용문의</option>
 						<option value="6">쿠폰/포인트</option>
 	            	</select>
-	            	<select class="ceo_category_select" name="cs_board_category_sub">
-	            		<option selected disabled>질문유형</option>
+	            	<select class="ceo_category_select" name="cs_board_category_sub" required>
+	            		<option disabled>질문유형</option>
 	            		<option value="1">예약관리</option>
 	            		<option value="2">메뉴관리</option>
 	            		<option value="3">광고</option>
@@ -54,13 +54,13 @@
 				<tr>
 					<th colspan="2">제목</th>
 					<td colspan="4">
-						<input type="text" name="cs_board_subject" placeholder="제목을 입력해주세요.">
+						<input type="text" name="cs_board_subject" placeholder="제목을 입력해주세요." required>
 					</td>
 				</tr>
 				<tr>
 					<th colspan="2">내용</th>
 					<td colspan="4">
-						<textarea rows="20" cols="100" name="cs_board_content" placeholder="내용을 입력해주세요."></textarea>
+						<textarea rows="20" cols="100" name="cs_board_content" placeholder="내용을 입력해주세요." required></textarea>
 					</td>
 				</tr>
 				<tr>
