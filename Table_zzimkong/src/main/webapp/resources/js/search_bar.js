@@ -237,7 +237,7 @@ $(document).ready(function() {
                 // Update 위생순 section with new data
                 var cleanHtml = '<div class="owl_example1_items_images">' +
                                     '<a href="product/detail?com_id=' + company.com_id + '">' +
-                                        '<img alt="" src="' + company.com_img + '"> <br>' +
+                                        '<img alt="" src="' +contextRoot+'/resources/upload/' + company.com_img + '"> <br>' +
                                         company.com_name +
                                     '</a>' +
                                 '</div>';
@@ -245,20 +245,20 @@ $(document).ready(function() {
                 
                 // Update 추천순 section with new data
                 var recommendHtml = '<div class="owl_example1_items_images">' +
-                                        '<a href="product/detail?com_id=' + company.com_id + '">' +
-                                            '<img alt="" src="' + company.com_img + '"> <br>' +
-                                            company.com_name +
-                                        '</a>' +
-                                    '</div>';
+                                    '<a href="product/detail?com_id=' + company.com_id + '">' +
+                                        '<img alt="" src="' +contextRoot+'/resources/upload/' + company.com_img + '"> <br>' +
+                                        company.com_name +
+                                    '</a>' +
+                                '</div>';
                 owl2.append(recommendHtml);
                 
                 // Update 별점순 section with new data
                 var reviewHtml = '<div class="owl_example1_items_images">' +
-                                     '<a href="product/detail?com_id=' + company.com_id + '">' +
-                                         '<img alt="" src="' + company.com_img + '"> <br>' +
-                                         company.com_name +
-                                     '</a>' +
-                                 '</div>';
+                                    '<a href="product/detail?com_id=' + company.com_id + '">' +
+                                        '<img alt="" src="' +contextRoot+'/resources/upload/' + company.com_img + '"> <br>' +
+                                        company.com_name +
+                                    '</a>' +
+                                '</div>';
                 owl3.append(reviewHtml);
             }
 

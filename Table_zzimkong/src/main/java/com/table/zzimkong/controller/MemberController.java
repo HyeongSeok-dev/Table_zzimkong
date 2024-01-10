@@ -161,7 +161,7 @@ public class MemberController {
 					//db랑비교
 					//추후 비밀번호 암호화기능 추가해야함
 					BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-					if(passwordEncoder.matches(member.getUser_passwd(), dbMember.getUser_passwd())) {
+					if(!passwordEncoder.matches(member.getUser_passwd(), dbMember.getUser_passwd())) {
 						model.addAttribute("msg", "비밀번호가 일치하지 않습니다.");
 						return "fail_back";
 				}

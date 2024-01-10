@@ -72,7 +72,7 @@
 					<input type="text" id="customEmail" class="inputTxt inpBig" name="user_email2" style="display:none;" placeholder="이메일을 입력하세요" disabled="disabled">
 					&nbsp;&nbsp;
 					<select id="u_email2" name="user_email2" class="inputTxt inpBig" onchange="checkOption(this)">
-				  <option value="">선택하세요</option>
+				  <option value="" >선택하세요</option>
 				  <option value="gmail.com">gmail.com</option>
 				  <option value="naver.com">naver.com</option>
 				  <option value="daum.net">daum.net</option>
@@ -86,7 +86,7 @@
 <!--               전화번호 -->
               <div id="phoneBox">
 				  <input type="text" id="u_phone" name="user_phone" class="inputTxt inpBig" placeholder="전화번호 (' - ' 를 빼고 입력)" onkeydown="eventObj.loginByEnterKey(event)" maxlength="100">
-<!-- 				  <button type="button" class="inputTxt inpBig" id="api">인증하기</button> -->
+				  <button type="button" class="inputTxt inpBig" id="api">인증하기</button>
 				  <span id="checkPhoneResult"></span><br>
 			  </div>
 		       <br>   

@@ -47,6 +47,7 @@ $(document).ready(function() {
 	    var birth = document.getElementById('com_birth').value;
 	    var email1 = document.getElementById('u_email').value;
 	    var email2 = document.getElementById('u_email2').value;
+	    var email3 = document.getElementById('customEmail').value;
 	    var phone = document.getElementById('u_phone').value;
 	
 	    // 유효성 검사
@@ -95,6 +96,13 @@ $(document).ready(function() {
 	    
 	    if(!email2){
 		alert('이메일을 선택해 주세요');
+		document.joinForm.u_email2.focus();
+		return false;
+	}
+	
+	//직접입력선택후 생겨난 텍스트 박스의 이메일
+	    if(!email3){
+		alert('이메일을 입력해주세요');
 		document.joinForm.u_email2.focus();
 		return false;
 	}
@@ -151,38 +159,44 @@ $(document).ready(function() {
 	
 	
 	//비밀번호 일치===============================
-	$("#passwd2").keyup(function() {
-		let passwd = document.getElementById('passwd').value;
-		let passwdck =document.getElementById('passwd2').value;
+//	$("#passwd2").keyup(function() {
+//		let passwd = document.getElementById('passwd').value;
+//		let passwdck =document.getElementById('passwd2').value;
+//		
+//		if(passwd == passwdck){
+//					document.getElementById('checkPasswd2Result').innerHTML = "비밀번호 일치";
+//					document.getElementById('checkPasswd2Result').style.color = "blue";
+//					isSamePasswd = true;
+//				} else {
+//					document.getElementById('checkPasswd2Result').innerHTML = "비밀번호 불일치";
+//					document.getElementById('checkPasswd2Result').style.color = "red";
+//					isSamePasswd = false;
+//				}
+//				
+//		});
+		function checkPasswdMatch() {
+		    let passwd = document.getElementById('passwd').value;
+		    let passwd2 = document.getElementById('passwd2').value;
 		
-		if(passwd == passwdck){
-					document.getElementById('checkPasswd2Result').innerHTML = "비밀번호 일치";
-					document.getElementById('checkPasswd2Result').style.color = "blue";
-					isSamePasswd = true;
-				} else {
-					document.getElementById('checkPasswd2Result').innerHTML = "비밀번호 불일치";
-					document.getElementById('checkPasswd2Result').style.color = "red";
-					isSamePasswd = false;
-				}
-				
-	}); //비밀번호 일치확인
-//	function checkPasswdMatch() {
-//	    let passwd = document.getElementById('passwd').value;
-//	    let passwdck =document.getElementById('passwd2').value;
-//	    
-//	    if(passwd == passwdck){
-//	        document.getElementById('checkPasswd2Result').innerHTML = "비밀번호 일치";
-//	        document.getElementById('checkPasswd2Result').style.color = "blue";
-//	        isSamePasswd = true;
-//	    } else {
-//	        document.getElementById('checkPasswd2Result').innerHTML = "비밀번호 불일치";
-//	        document.getElementById('checkPasswd2Result').style.color = "red";
-//	        isSamePasswd = false;
-//	    }
-//	}
-//	
-//	$("#passwd").keyup(checkPasswdMatch);  // 'passwd' 입력칸에 키 입력 시 비밀번호 일치 여부 체크
-//	$("#passwd2").keyup(checkPasswdMatch); // 'passwd2' 입력칸에 키 입력 시 비밀번호 일치 여부 체크
+		    if(passwd2.length > 0){ // 'passwd2' 필드에 값이 있을 때만 비교를 진행
+		        if(passwd === passwd2){
+		            document.getElementById('checkPasswd2Result').innerHTML = "비밀번호 일치";
+		            document.getElementById('checkPasswd2Result').style.color = "blue";
+		            isSamePasswd = true;
+		        } else {
+		            document.getElementById('checkPasswd2Result').innerHTML = "비밀번호 불일치";
+		            document.getElementById('checkPasswd2Result').style.color = "red";
+		            isSamePasswd = false;
+		        }
+		    } else { // 'passwd2' 필드에 값이 없을 때는 메시지를 지웁니다.
+		        document.getElementById('checkPasswd2Result').innerHTML = "";
+		    }
+		}
+		
+		// 'passwd' 입력칸에 키 입력 시 비밀번호 일치 여부 체크
+		document.getElementById('passwd').addEventListener('keyup', checkPasswdMatch);
+		// 'passwd2' 입력칸에 키 입력 시 비밀번호 일치 여부 체크
+		document.getElementById('passwd2').addEventListener('keyup', checkPasswdMatch);
 
 	
 	//비밀번호검증===============================
