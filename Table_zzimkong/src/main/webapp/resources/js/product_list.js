@@ -20,11 +20,34 @@ $(document).ready(function() {
 	}
 
     // 사용자의 현재 위치를 얻는 함수
+    function error(err) {
+	  console.log('Error : ' + err.code + err.message);
+	}
+    const options = {
+	  enableHighAccuracy: true,
+	  timeout: 5000,
+	  maximumAge: 0,
+	};
+	
+	function success(pos) {
+	  const crd = pos.coords;
+	
+	  console.log("Your current position is:");
+	  console.log("Latitude : " + crd.latitude);
+	  console.log("Longitude: " + crd.longitude);
+	  console.log("More or less " + crd.accuracy + " meters.");
+	}
     function getCurrentLocation(callback) {
+		console.log("getCurrentLocation 호출됨 - " + navigator.geolocation.getCurrentPosition);
+		
         if (navigator.geolocation) {
+					console.log("getCurrentLocation 이프문 안 호출됨");
             navigator.geolocation.getCurrentPosition(function(position) {
+				console.log("현재위치 로그" + position +position.coords.latitude +  position.coords.longitude );
                 callback(position.coords.latitude, position.coords.longitude);
+                
             });
+			navigator.geolocation.getCurrentPosition(success, error, options);
         } else {
             alert("지원하지 않는 브라우저입니다.");
         }
@@ -48,7 +71,9 @@ $(document).ready(function() {
 
     // 가게의 주소 정보와 사용자의 현재 위치를 사용하여 거리 계산
     function calculateDistanceForRestaurants() {
+		console.log(" calculateDistanceForRestaurants 호출됨");
         getCurrentLocation(function(userLat, userLon) {
+			console.log("getCurrentLocation 호출됨" + userLat + userLon);
             $('.restaurant-list').each(function() {
                 var restaurant = $(this);
                 var storeAddress = restaurant.find('input[name="storeAddress"]').val();
@@ -68,6 +93,7 @@ $(document).ready(function() {
     }
 
     function loadKakaoMaps(callback) {
+		console.log("loadKakaoMaps ")
         var script = document.createElement('script');
         script.src = 'http://t1.daumcdn.net/mapjsapi/js/libs/services/1.0.2/services.js';
         script.onload = function() {
@@ -78,6 +104,8 @@ $(document).ready(function() {
 
     // 스크립트 로드 후 거리 계산 함수 호출
     loadKakaoMaps(function() {
+		console.log(" loadKakaoMaps 호출됨");
+
         calculateDistanceForRestaurants();
     });
     
