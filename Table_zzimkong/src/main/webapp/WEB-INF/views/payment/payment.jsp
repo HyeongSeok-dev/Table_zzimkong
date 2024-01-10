@@ -243,14 +243,14 @@
 													</div>	
 									 		</c:otherwise>
 										</c:choose>
-										<div>
-											<span class="detail">쿠폰할인</span>
-											 <span class="detail_price">
-											 	- 
-											 	<span id="discountCoupon_text">0</span>
-											 	원
-											 </span>
-										</div> 
+<!-- 										<div> -->
+<!-- 											<span class="detail">쿠폰할인</span> -->
+<!-- 											 <span class="detail_price"> -->
+<!-- 											 	-  -->
+<!-- 											 	<span id="discountCoupon_text">0</span> -->
+<!-- 											 	원 -->
+<!-- 											 </span> -->
+<!-- 										</div>  -->
 										<div>
 											<span class="detail">포인트할인</span>
 											<span class="detail_price">

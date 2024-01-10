@@ -147,10 +147,25 @@ $(function() {
 
 		} else if(pointToUse >= 0) { // 포인트의 텍스트 박스의 값이 0보다 클때
 			
-			if((parseInt($(".point_to_use").val().replace(/,/g, '')) > useablePoint) || $(".point_to_use").val() === "0") { // 총포인트가 텍스트 박스의 입력값보다 클때 할인적용
+			if((parseInt($(".point_to_use").val().replace(/,/g, '')) > useablePoint)) { // 총포인트가 텍스트 박스의 입력값보다 크거나 같을 때 할인적용
 				alert("포인트를 다시 확인해 주세요!");
 
 			} else {
+				// 사용버튼 누르면 
+				// 1. 총 결제금에서 사용 포인트 만큼 빠진다
+				
+				
+				// 2. 내포인트에서 사용포인트 빠진다
+				
+				
+				
+				// 사용가능한 내포인트 useablePoint
+				
+				// 사용버튼 누르면 차감될 포인트
+				
+				// 총결제금액에서 포인트할인 받은 후 결제금액
+				// 사용가능한 내 포인트에 사용후 포인트 남은 포인트가 옴
+			
 				var discountPoint = useablePoint - point_to_use; 
 				$("#discountPoint_text").text(discountPoint.toLocaleString());
 		 		console.log($("#discountPoint_text").text(discountPoint.toLocaleString()));
