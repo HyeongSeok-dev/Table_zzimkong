@@ -30,7 +30,7 @@
 							<img class="previewImage" src="" alt="이미지 미리보기">
 						</div>
 					</div>
-					<!-- 위의 div를 복사하여 메뉴 등록 공간을 추가할 수 있습니다 -->
+					<!-- 위의 div를 복사하여 메뉴 등록 공간을 추가할 수 있습니다. -->
 				</div>
 				<div class="buttonRow">
 					<button type="button" id="addMenuButton">메뉴 추가</button>
