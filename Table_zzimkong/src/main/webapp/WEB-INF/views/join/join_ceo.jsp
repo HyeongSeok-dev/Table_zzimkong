@@ -77,7 +77,7 @@
               <!-- 전화번호 -->
               <div id="phoneBox">
 				  <input type="text" id="u_phone" name="user_phone" class="inputTxt inpBig" placeholder="전화번호 (' - ' 를 빼고 입력)" onkeydown="eventObj.loginByEnterKey(event)" maxlength="100">
-				  <button type="button" class="inputTxt inpBig">인증하기</button>
+<!-- 				  <button type="button" class="inputTxt inpBig">인증하기</button> -->
                   <span id="checkPhoneResult"></span>
 			  </div>
 			  <br>

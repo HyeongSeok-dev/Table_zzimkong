@@ -168,7 +168,7 @@ $(document).ready(function() {
 		
 		//비밀번호 길이 검증
 		// 대소문자, 숫자 ,특수문자(!@#$%)를 포함하여 8~16 입력
-		let lengthRegex = /^[A-Za-z0-9!@#$%]{8,16}$/;
+		let lengthRegex = /^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]{8,16}$/;
 		
 		if(!lengthRegex.exec(passwd)){ //길이체크
 			msg = "영어 대소문자, 숫자, 특수문자 조합 8~16자리 권장";

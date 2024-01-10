@@ -166,6 +166,24 @@ $(document).ready(function() {
 				}
 				
 	}); //비밀번호 일치확인
+//	function checkPasswdMatch() {
+//	    let passwd = document.getElementById('passwd').value;
+//	    let passwdck =document.getElementById('passwd2').value;
+//	    
+//	    if(passwd == passwdck){
+//	        document.getElementById('checkPasswd2Result').innerHTML = "비밀번호 일치";
+//	        document.getElementById('checkPasswd2Result').style.color = "blue";
+//	        isSamePasswd = true;
+//	    } else {
+//	        document.getElementById('checkPasswd2Result').innerHTML = "비밀번호 불일치";
+//	        document.getElementById('checkPasswd2Result').style.color = "red";
+//	        isSamePasswd = false;
+//	    }
+//	}
+//	
+//	$("#passwd").keyup(checkPasswdMatch);  // 'passwd' 입력칸에 키 입력 시 비밀번호 일치 여부 체크
+//	$("#passwd2").keyup(checkPasswdMatch); // 'passwd2' 입력칸에 키 입력 시 비밀번호 일치 여부 체크
+
 	
 	//비밀번호검증===============================
 	$("#passwd").keyup(function(){
@@ -223,7 +241,8 @@ $(document).ready(function() {
 		//아이디 입력값 검증(정규표현식)
 		// 요구사항 : 영문 대소문자,숫자를 포함하여 8~16자리 입력,  중복아이디 확인 (한글입력X)
 		//영문 대소문자 숫자포함 8~16자리, 특수문자 한글입력불가	
-		let regex = /^[a-zA-Z0-9]{8,16}$/;
+//		let regex = /^[a-zA-Z0-9]{8,16}$/;
+		let regex = /^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]{8,16}$/;
 		
 		if(!regex.exec(user_id)) { //입력값 검증 실패시
 			$("#checkIdResult").html("영문자, 숫자 조합 8~16자리 필수(한글, 특수문자 사용불가)");
