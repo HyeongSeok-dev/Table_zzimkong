@@ -28,10 +28,10 @@ public class ReservationVO {
 	private String com_name;
 
 	// 관리자페이지 - 예약 현황 차트 출력
+	private int res_time_count;
+	private int res_date_count;
 	private int res_hour;
 	private int res_minute;
-	private int res_count;
-	private int res_count2;
 	
 	private String review_num;
 }

@@ -12,7 +12,7 @@
 	
 	<!-- Chart.js -->
 	<!-- 가입자 현황 : 시간별(지난 12시간) -->
-	<select id="selectMembersByTime" resultType="member">
+	<select id="selectJoinByHour" resultType="member">
 		SELECT
 			DATE(user_reg_date) AS user_reg_date, 
 			LPAD(HOUR(user_reg_date), 2, '0') AS join_hour,
@@ -26,7 +26,7 @@
 	</select>
 	
 	<!-- 가입자 현황 : 날짜별(지난 7일) -->
-	<select id="selectMembersByDate" resultType="member">
+	<select id="selectJoinByDate" resultType="member">
 		SELECT
 		    date_range.date AS user_reg_date,
 		    COUNT(user.user_reg_date) AS join_date_count
@@ -50,30 +50,24 @@
 	</select>
 	
 	<!-- 예약자 현황 : 시간별(지난 12시간) -->
-	<select id="selectReservationsByHour" resultType="res">
+	<select id="selectResByHour" resultType="res">
 		SELECT
-			res_date,
-			LPAD(res_hour, 2, '0') AS 'res_hour',
-			LPAD(res_minute, 2, '0') AS 'res_minute',
-			res_count2
-		FROM (
-		    SELECT
-			    DATE(reservation.res_now) AS 'res_date',
-			    HOUR(reservation.res_now) AS 'res_hour',
-			    (FLOOR(MINUTE(reservation.res_now) / 30) * 30) AS 'res_minute',
-			    COUNT(*) AS 'res_count2'
-		    FROM reservation
-		    WHERE reservation.res_now >= DATE_ADD(NOW(), INTERVAL -12 HOUR) 
-		    GROUP BY DATE(reservation.res_now), HOUR(reservation.res_now), (FLOOR(MINUTE(reservation.res_now) / 30) * 30)
-		) AS subquery
-		ORDER BY res_date, res_hour, res_minute;
+			DATE(res_now) AS 'res_date',
+			LPAD(HOUR(res_now), 2, '0') AS 'res_hour',
+			LPAD(MINUTE(res_now), 2, '0') AS 'res_minute',
+			COUNT(*) AS 'res_time_count'
+		FROM reservation
+		WHERE
+			res_now BETWEEN DATE_SUB(NOW(), INTERVAL 12 HOUR) AND NOW()
+		GROUP BY
+			DATE(res_now), LPAD(HOUR(res_now), 2, '0'), LPAD(MINUTE(res_now), 2, '0')
 	</select>
 	
 	<!-- 예약자 현황 : 날짜별(지난 7일) -->
-	<select id="selectReservations" resultType="res">
+	<select id="selectResByDate" resultType="res">
 		SELECT
 			res_dates.res_date
-			, COUNT(reservation.res_now) AS 'res_count'
+			, COUNT(reservation.res_now) AS 'res_date_count'
 		FROM (
 			SELECT
 				CURDATE() - INTERVAL N DAY  AS 'res_date'

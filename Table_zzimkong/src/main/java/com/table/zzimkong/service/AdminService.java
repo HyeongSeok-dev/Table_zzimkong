@@ -29,10 +29,10 @@ public class AdminService {
         AdminMainVO adminMain = mapper.selectAdminMain();
 
         // 차트 : 시간별 가입자 데이터
-        List<MemberVO> membersByHour = mapper.selectMembersByTime();
+        List<MemberVO> joinByHour = mapper.selectJoinByHour();
         List<String> join_times = new ArrayList<>();
         List<Integer> join_time_counts = new ArrayList<>();
-        for (MemberVO member : membersByHour) {
+        for (MemberVO member : joinByHour) {
         	
         	join_times.add(member.getJoin_hour() + ":" + member.getJoin_minute());
         	join_time_counts.add(member.getJoin_time_count());
@@ -41,10 +41,10 @@ public class AdminService {
         adminMain.setJoin_time_counts(join_time_counts);
         
         // 차트 : 날짜별 가입자 데이터
-        List<MemberVO> membersByDate = mapper.selectMembersByDate();
+        List<MemberVO> JoinByDate = mapper.selectJoinByDate();
         List<String> join_dates = new ArrayList<>();
         List<Integer> join_date_counts = new ArrayList<>();
-        for (MemberVO member : membersByDate) {
+        for (MemberVO member : JoinByDate) {
         	join_dates.add(member.getUser_reg_date());
         	join_date_counts.add(member.getJoin_date_count());
         }
@@ -52,26 +52,26 @@ public class AdminService {
         adminMain.setJoin_date_counts(join_date_counts);
 
         // 차트 : 시간별 예약자 데이터
-        List<ReservationVO> reservationsByHour = mapper.selectReservationsByHour();
-        List<String> times = new ArrayList<>();
-        List<Integer> counts2 = new ArrayList<>();
-        for (ReservationVO reservation : reservationsByHour) {
-        	times.add(reservation.getRes_hour() + ":" + reservation.getRes_minute());
-        	counts2.add(reservation.getRes_count2());
+        List<ReservationVO> resByHour = mapper.selectResByHour();
+        List<String> res_times = new ArrayList<>();
+        List<Integer> res_time_counts = new ArrayList<>();
+        for (ReservationVO reservation : resByHour) {
+        	res_times.add(reservation.getRes_hour() + ":" + reservation.getRes_minute());
+        	res_time_counts.add(reservation.getRes_time_count());
         }
-        adminMain.setTimes(times);
-        adminMain.setCounts2(counts2);
+        adminMain.setRes_times(res_times);
+        adminMain.setRes_time_counts(res_time_counts);
 
         // 차트 : 날짜별 예약자 데이터
-        List<ReservationVO> reservations = mapper.selectReservations();
-        List<String> dates = new ArrayList<>();
-        List<Integer> counts = new ArrayList<>();
-        for (ReservationVO reservation : reservations) {
-            dates.add(reservation.getRes_date());
-            counts.add(reservation.getRes_count());
+        List<ReservationVO> resByDate = mapper.selectResByDate();
+        List<String> res_dates = new ArrayList<>();
+        List<Integer> res_date_counts = new ArrayList<>();
+        for (ReservationVO reservation : resByDate) {
+        	res_dates.add(reservation.getRes_date());
+            res_date_counts.add(reservation.getRes_date_count());
         }
-        adminMain.setDates(dates);
-        adminMain.setCounts(counts);
+        adminMain.setRes_dates(res_dates);
+        adminMain.setRes_date_counts(res_date_counts);
 
         return adminMain;
     }

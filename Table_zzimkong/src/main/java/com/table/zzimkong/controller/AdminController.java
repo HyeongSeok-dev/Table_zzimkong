@@ -83,8 +83,8 @@ public class AdminController {
 	}
 	// 차트 : 시간별 가입자 현황
 	@ResponseBody
-	@GetMapping("admin/mainDataMemberTimeCount")
-	public AdminMainVO adminMainDataMemberTimeCount(HttpSession session, Model model, HttpServletResponse response) {
+	@GetMapping("admin/mainDataJoinTimeCount")
+	public AdminMainVO adminMainDataJoinTimeCount(HttpSession session, Model model, HttpServletResponse response) {
 		// 관리자 페이지 접근 제한
 		if (!isvalid(session, model, response)) return null;
 		
@@ -94,19 +94,8 @@ public class AdminController {
 	}
 	// 차트 : 날짜별 가입자 현황
 	@ResponseBody
-	@GetMapping("admin/mainDataMemberDateCount")
-	public AdminMainVO adminMainDataMemberDateCount(HttpSession session, Model model, HttpServletResponse response) {
-		// 관리자 페이지 접근 제한
-		if (!isvalid(session, model, response)) return null;
-		
-		AdminMainVO adminMain = service.adminMain();
-		
-		return adminMain;
-	}
-	// 차트 : 날짜별 예약자 현황
-	@ResponseBody
-	@GetMapping("admin/mainDataHour")
-	public AdminMainVO adminMainDataHour(HttpSession session, Model model, HttpServletResponse response) {
+	@GetMapping("admin/mainDataJoinDateCount")
+	public AdminMainVO adminMainDataJoinDateCount(HttpSession session, Model model, HttpServletResponse response) {
 		// 관리자 페이지 접근 제한
 		if (!isvalid(session, model, response)) return null;
 		
@@ -116,8 +105,19 @@ public class AdminController {
 	}
 	// 차트 : 시간별 예약자 현황
 	@ResponseBody
-	@GetMapping("admin/mainData")
-	public AdminMainVO adminMainData(HttpSession session, Model model, HttpServletResponse response) {
+	@GetMapping("admin/mainDataResTimeCount")
+	public AdminMainVO adminMainDataResTimeCount(HttpSession session, Model model, HttpServletResponse response) {
+		// 관리자 페이지 접근 제한
+		if (!isvalid(session, model, response)) return null;
+		
+		AdminMainVO adminMain = service.adminMain();
+		
+		return adminMain;
+	}
+	// 차트 : 날짜별 예약자 현황
+	@ResponseBody
+	@GetMapping("admin/mainDataResDateCount")
+	public AdminMainVO adminMainDataResDateCount(HttpSession session, Model model, HttpServletResponse response) {
 		// 관리자 페이지 접근 제한
 		if (!isvalid(session, model, response)) return null;
 		
