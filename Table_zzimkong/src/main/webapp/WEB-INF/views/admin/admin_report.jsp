@@ -87,11 +87,6 @@
 							</c:otherwise>
 						</c:choose>
 						<td>${report.user_id}</td>
-<!-- 						<td> -->
-<%-- 							${report.user_id} --%>
-<%-- 							<c:if test="${report.report_person eq 1}">(일반사용자)</c:if> --%>
-<%-- 							<c:if test="${report.report_person eq 2}">(레스토랑 관계자)</c:if> --%>
-<!-- 						</td> -->
 						<%-- 신고 상태 --%>
 						<c:choose>
 							<c:when test="${report.report_status eq 1}">

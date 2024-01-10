@@ -40,8 +40,8 @@ function addResIdx(res_idx) {
 		<select onchange="addResIdx(this.value)">
 		<c:forEach var="reviewItem" items="${res_list}">
 			<option value="${reviewItem.res_idx}" >
-				${reviewItem.res_date}
-				${reviewItem.res_time}
+					${reviewItem.res_date}
+					${reviewItem.res_time}
 				<c:if test="${reviewItem.res_idx eq 0}">(작성완료)</c:if>
 			</option>
 		</c:forEach>

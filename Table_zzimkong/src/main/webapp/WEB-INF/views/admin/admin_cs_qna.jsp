@@ -295,6 +295,8 @@
 			                        <input id="search" type="search" name="searchFAQ" placeholder="검색어를 입력해주세요." value="">
 			                        <button type="submit" class="btn btn-dark">검색</button>
 			                    </span>
+			                    
+			                    <button type="button" style="visibility: hidden; margin: 5px; width: 100px;">새글작성</button>
 		                   </div>
 		                </form>
 		            </div>
