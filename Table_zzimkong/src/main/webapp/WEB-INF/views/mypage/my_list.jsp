@@ -34,6 +34,7 @@
 			<br>
 			<table style="width: 1000px; height: 100px; table-layout: fixed;">
 				<tr class ="subject">
+					<th>예약번호</th>
 					<th>가게명</th>
 					<th>방문자명</th>					
 					<th>인원</th>
@@ -45,6 +46,7 @@
 				<%-- 예약 목록 출력 --%>
 				<c:forEach var="res" items="${resList}">
 				  <tr>
+						<td>${res.res_idx }</td>
 						<td style="height: 50px;"><b><a href="${pageContext.request.contextPath}/product/detail?com_id=${res.com_id}">${res.com_name }</a></b></td>
 						<td>${res.res_name }</td>
 						<td>${res.res_person }</td>
