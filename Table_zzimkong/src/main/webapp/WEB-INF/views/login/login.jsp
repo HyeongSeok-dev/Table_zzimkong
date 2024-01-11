@@ -41,11 +41,11 @@
 		              로그인
 		            </span>
 		          </button>
-		          <button type="button" class="btnkakaoLogin btnB" id="loginkakaoBtn">
-			          <span>
-			          카카오로 간편 로그인
-			          </span>
-		          </button>
+<!-- 		          <button type="button" class="btnkakaoLogin btnB" id="loginkakaoBtn"> -->
+<!-- 			          <span> -->
+<!-- 			          카카오로 간편 로그인 -->
+<!-- 			          </span> -->
+<!-- 		          </button> -->
 		        </form>
 		      </div>
 		    </div>
