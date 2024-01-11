@@ -256,6 +256,12 @@
 		FROM reservation 
 		WHERE com_id = #{com_id} AND res_date = DATE_FORMAT(CURDATE() , '%Y-%m-%d')
 	</select>
+	
+	<select id="selectResAll">
+		SELECT *
+		FROM reservation
+		WHERE com_id = #{com_id}
+	</select>
 		
 	
 	

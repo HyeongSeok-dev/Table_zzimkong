@@ -279,4 +279,15 @@ function updateVisitStatus(res_idx, status) {
 }
 
 
+function goToReservationAll() {
+    var com_id = document.getElementById("storeList").value;
+    window.location.href = 'reservation/all?com_id=' + com_id;
+    
+    
+		         
+}
+
+
+
+
 
