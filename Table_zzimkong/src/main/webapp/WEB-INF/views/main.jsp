@@ -362,7 +362,6 @@
 <!-- 	<button><a href="join/unregister">join/unregister</a></button> -->
 <!-- 	<button><a href="join/choice">join/choice</a></button> -->
 <!-- 	<br> -->
-	
 	   
 	
 	<!--footer-bottom  start ============================= -->
