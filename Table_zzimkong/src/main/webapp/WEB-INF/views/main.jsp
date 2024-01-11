@@ -109,7 +109,6 @@
 													<li class="dropdown"><a href="${pageContext.request.contextPath}/MemberLogout">
 													로그아웃</a></li>
 												</c:when>
-									<%-- --%>			
 												<%--관리자 로그인시 --%>
 												<c:when test="${sessionScope.sCategory eq 3}"> 
 													<li class="dropdown"><a href="${pageContext.request.contextPath}/admin/main">
@@ -120,7 +119,7 @@
 <!-- 													알림</a></li> -->
 													<%--고객센터 --%>
 <%-- 													<li class="dropdown"><a href="${pageContext.request.contextPath}/member/cs/faq"> --%>
-<%-- <%-- 													<img  src="${pageContext.request.contextPath}/resources/img/top_headset.png" style="width: 25px; height: 25px;"> --%> --%>
+<%-- <%-- 													<img  src="${pageContext.request.contextPath}/resources/img/top_headset.png" style="width: 25px; height: 25px;"> --%> 
 <!-- 													고객센터</a></li> -->
 													<%--로그아웃 --%>
 													<li class="dropdown"><a href="${pageContext.request.contextPath}/MemberLogout">

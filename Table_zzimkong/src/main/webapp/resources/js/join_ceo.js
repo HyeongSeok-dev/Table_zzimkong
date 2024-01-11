@@ -161,6 +161,7 @@ $(document).ready(function() {
 	      alert("사업자번호 인증을 해주세요.");
 	      return false;
 	    }
+	   	
 	   
 	}); 
 	
@@ -272,7 +273,10 @@ $(document).ready(function() {
 						isDuplicateId = false;
 						isId = false;
 					}
-				} //success
+				}, error: function(result) {
+        console.log(result.responseText); //responseText의 에러메세지 확인
+        isDuplicateId = true; // 이 부분을 추가했습니다. 요청 자체가 실패하면 중복으로 처리합니다.
+    }
 			}); //ajax
 		}
 		
@@ -355,7 +359,6 @@ $(document).ready(function() {
 						$("#checCeonNmResult").css("color", "red");
 						ceoNum = false;
 					}
-					console.log(ceoNum);
 			    },
 			    error: function(result) {
 			        console.log(result.responseText); //responseText의 에러메세지 확인

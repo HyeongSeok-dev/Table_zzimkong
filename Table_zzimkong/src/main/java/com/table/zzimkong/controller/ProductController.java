@@ -213,6 +213,8 @@ public class ProductController {
 		model.addAttribute("tag_facilities", tagFacilities);
 		model.addAttribute("reviews", reviews);
 		model.addAttribute("review_score", reviewScore);
+		System.out.println("리뷰즈" + reviews);
+		System.out.println("리뷰스코어" + reviewScore);
 		model.addAttribute("res", res);
 		model.addAttribute("isReviewWriteable", isReviewWriteable);
 		
@@ -220,7 +222,7 @@ public class ProductController {
 	}
 	
 	@GetMapping("product/map")
-	public String productMap() {
+	public String productMap() { 
 		
 		return "product/product_map";
 	}
