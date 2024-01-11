@@ -11,16 +11,17 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 $(document).ready(function() {
+	
 	//생일 선택시 오늘이후 날짜 선택 막아놓음
 	window.onload = function() {
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     var yyyy = today.getFullYear();
-    
+
     today = yyyy + '-' + mm + '-' + dd;
     document.getElementById("com_birth").max = today;
-}
+	}
 
 	let ceo = false; //사업자번호 양식 검사
 	let Pone = false; //전화번호 양식 검사
