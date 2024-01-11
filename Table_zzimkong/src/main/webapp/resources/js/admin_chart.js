@@ -99,9 +99,6 @@ function myChart1() {
             url: "/zzimkong/admin/mainDataJoinTimeCount",
             dataType: "json",
             success: function(data) {
-				
-			    console.log("data : " + data);
-			    console.log(JSON.stringify(data));
 			    
 			    var join_times = generateTimes(); // 모든 시간대 생성
 			    var join_time_counts = [];
@@ -305,9 +302,6 @@ function myChart3() {
             url: "/zzimkong/admin/mainDataResTimeCount",
             dataType: "json",
             success: function(data) {
-			    console.log("data : " + data);
-			    console.log(JSON.stringify(data));
-			    
 		    	var res_times = generateTimes(); // 모든 시간대 생성
 			    var res_time_counts = [];
 			
