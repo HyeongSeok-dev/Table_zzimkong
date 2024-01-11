@@ -13,26 +13,60 @@ function user_info_open(user_idx) {
 }
 
 // 회원 탈퇴 처리 : admin_user.jsp
-function user_withdraw(user_idx) {
-  var result = confirm("회원을 강제 탈퇴시키겠습니까?");
-  if(result) { // 확인을 눌렀을 경우
-      var form = document.createElement("form");
-      form.method = "POST";
-      form.action = "./user/withdraw/pro";
-
-      var element = document.createElement("input");
-      element.value = user_idx;
-      element.name = "user_idx";
-      form.appendChild(element);
-
-      document.body.appendChild(form);
-
-      form.submit();
-  } else {
-    event.preventDefault();
-  }
+function user_withdraw(event, user_idx) {
+	var result = confirm("회원을 강제 탈퇴시키겠습니까?");
+	
+	if(result) { // 확인을 눌렀을 경우
+		var form = document.createElement("form");
+		
+		form.method = "POST";
+		form.action = "./user/withdraw/pro";
+		
+		var element = document.createElement("input");
+		
+		element.value = user_idx;
+		element.name = "user_idx";
+		form.appendChild(element);
+		
+		document.body.appendChild(form);
+		
+		form.submit();
+	} else {
+		event.preventDefault();
+	}
 };
 
+
+// 업체 입점 승인/반려 처리 : admin_company.jsp
+function company_approve(event, com_id, company_open_register) {
+    var result = confirm("입점을 승인하시겠습니까?");
+    
+    if(result) {
+        var form = document.getElementById("companyOpenForm" + com_id);
+        
+        document.getElementById('com_id' + com_id).value = parseInt(com_id);
+        document.getElementById('company_open_register' + com_id).value = company_open_register;
+
+        form.submit();
+    } else {
+        event.preventDefault();
+    }
+};
+
+function company_disapprove(event, com_id, company_open_register) {
+    var result = confirm("입점을 반려하시겠습니까?");
+    
+    if(result) {
+        var form = document.getElementById("companyOpenForm" + com_id);
+        
+        document.getElementById('com_id' + com_id).value = com_id;
+        document.getElementById('company_open_register' + com_id).value = company_open_register;
+
+        form.submit();
+    } else {
+        event.preventDefault();
+    }
+};
 
 // 업체 상세정보창 열기 : admin_company.jsp
 function company_info_open(com_id) {
@@ -79,37 +113,18 @@ window.onload = function() {
     }
 };
 
-
-// 업체 입점 승인/반려 처리 : admin_company.jsp
-function company_approve(event, com_id, company_open_register) {
-    var result = confirm("입점을 승인하시겠습니까?");
-    
-    if(result) {
-        var form = document.getElementById("companyOpenForm" + com_id);
-        
-        document.getElementById('com_id' + com_id).value = parseInt(com_id);
-        document.getElementById('company_open_register' + com_id).value = company_open_register;
-
-        form.submit();
-    } else {
-        event.preventDefault();
-    }
-};
-
-function company_disapprove(event, com_id, company_open_register) {
-    var result = confirm("입점을 반려하시겠습니까?");
-    
-    if(result) {
-        var form = document.getElementById("companyOpenForm" + com_id);
-        
-        document.getElementById('com_id' + com_id).value = com_id;
-        document.getElementById('company_open_register' + com_id).value = company_open_register;
-
-        form.submit();
-    } else {
-        event.preventDefault();
-    }
-};
+// 업체 정보 수정 : admin_company_info.jsp
+function admin_company_info_modify(event) {
+	var result = confirm("업체 정보를 수정하시겠습니까?");
+	
+	if(result) {
+		var form = document.getElementById("companyInfoModify");
+		
+		form.submit();
+	} else {
+		event.preventDefault();
+	}
+}
 
 
 // 신고 상세정보창 열기 : admin_report.jsp
@@ -127,28 +142,35 @@ function report_declaration(report_num) {
 };
 
 // 신고 승인/반려 처리 : admin_report_declaration.jsp
-document.addEventListener('DOMContentLoaded', (event) => {
-	window.report_approve = function(report_num, reportName) {
-		var result = confirm("신고를 승인하시겠습니까?");
-		if(result) {
-			document.getElementById('report_num').value = report_num;
-			document.getElementById('report_approve_register').value = reportName;
-			document.getElementById('reportRegister').submit();
-		} else {
-			event.preventDefault();
-		}
-	}
-window.report_disapprove = function(report_num, reportName) {
-	var result = confirm("신고를 반려하시곘습니까?");
-		if(result) {
-			document.getElementById('report_num').value = report_num;
-			document.getElementById('report_approve_register').value = reportName;
-			document.getElementById('reportRegister').submit();
-		} else {
-			event.preventDefault();
-		}
-	}
-});
+function report_approve(event, report_num, report_approve_register) {
+    var result = confirm("신고를 승인하시겠습니까?");
+    
+    if(result) {
+		var form = document.getElementById("reportRegister" + report_num);
+		
+		document.getElementById('report_num' + report_num).value = parseInt(report_num);
+		document.getElementById('report_approve_register' + report_num).value = report_approve_register;
+		
+		form.submit();
+    } else {
+        event.preventDefault();
+    }
+};
+
+function report_disapprove(event, report_num, report_approve_register) {
+    var result = confirm("신고를 반려하시겠습니까?");
+    
+    if(result) {
+        var form = document.getElementById("reportRegister" + report_num);
+        
+		document.getElementById('report_num' + report_num).value = parseInt(report_num);
+		document.getElementById('report_approve_register' + report_num).value = report_approve_register;
+
+        form.submit();
+    } else {
+        event.preventDefault();
+    }
+};
 
 
 // 고객센터 - 공지사항 글 등록 : admin_cs_notice.jsp
@@ -158,6 +180,7 @@ function noticeRegisterForm() {
 	var popupH = 700;
 	var left = Math.ceil((window.screen.width - popupW)/2);
 	var top = Math.ceil((window.screen.height - popupH)/2);
+	
 	window.open('notice/register','','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
 }
 
@@ -171,6 +194,7 @@ function noticeViewForm(cs_board_num, cs_board_category_user, contextPath) {
 	
 	/* 각 공지사항 페이지로 이동하기 위한 주소 */
 	var url = contextPath;
+	
 	if(cs_board_category_user == 1 || cs_board_category_user == 3) {
 		url += "/member/cs/notice/view?cs_board_num=" + cs_board_num;
 	}
@@ -189,6 +213,7 @@ function faqRegisterForm() {
 	var popupH = 700;
 	var left = Math.ceil((window.screen.width - popupW)/2);
 	var top = Math.ceil((window.screen.height - popupH)/2);
+	
 	window.open('faq/register','','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
 }
 
@@ -202,6 +227,7 @@ function faqViewForm(cs_board_num, cs_board_category_user, contextPath) {
 	
 	/* 각 자주묻는질문 페이지로 이동하기 위한 주소 */
 	var url = contextPath;
+	
 	if(cs_board_category_user == 1) {
 		url += "/member/cs/faq/view?cs_board_num=" + cs_board_num;
 	}

@@ -5,9 +5,25 @@
 <mapper namespace="com.table.zzimkong.mapper.AdminMapper">
 
 	<!-- 관리자 - 메인 : 데이터 뿌리기 -->
+	<!-- 입점 승인 대기, 신고 처리 대기, 오늘 가입자 수, 오늘 예약 수 -->
 	<select id="selectAdminMain" resultType="com.table.zzimkong.vo.AdminMainVO">
 		SELECT *
 		FROM admin_main;
+	</select>
+	
+	<!-- 문의 답변 대기 -->
+	<select id="selectAdminMainCsUnAnswer" resultType="cs">
+		SELECT
+		    (SELECT COUNT(*)
+		    	FROM cs_board
+		    	WHERE cs_board_category_main = 3
+		    	AND cs_board_re_lev = 0
+		    ) - 
+		    (SELECT COUNT(*)
+		    	FROM cs_board
+		    	WHERE cs_board_category_main = 3
+		    	AND cs_board_re_lev = 1
+		    ) AS countUnAnswerInquiry;
 	</select>
 	
 	<!-- Chart.js -->
@@ -95,7 +111,7 @@
 		FROM user u
 		LEFT JOIN point p
 		ON u.user_idx = p.user_idx
-		WHERE user_id != 'admin'
+		WHERE user_category != 3
 		<if test="!searchMemberType.equals('')">
 			AND
 			<choose>
@@ -160,7 +176,7 @@
 				FROM user u
 				LEFT JOIN point p
 				ON u.user_idx = p.user_idx
-				WHERE user_id != 'admin'
+				WHERE user_category != 3
 				<if test="!searchMemberType.equals('')">
 					AND
 					<choose>

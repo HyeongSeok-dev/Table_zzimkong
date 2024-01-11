@@ -24,7 +24,7 @@ public class AdminService {
 	// 관리자 - 메인 : 데이터 뿌리기
 	@Transactional
 	public AdminMainVO adminMain() {
-    	// 오늘 할 일 (문의 답변 대기, 입점 승인 대기, 신고 처리 대기)
+    	// 오늘 할 일 (입점 승인 대기, 신고 처리 대기)
 		// 사이트 현황 (오늘 가입자 수, 오늘 예약 수)
         AdminMainVO adminMain = mapper.selectAdminMain();
 
@@ -76,6 +76,11 @@ public class AdminService {
         return adminMain;
     }
 	
+	// 관리자 - 메인 : 데이터 뿌리기(오늘 할 일 (문의 답변 대기))
+	public CsVO adminMainCsUnAnswer(CsVO cs) {
+		return mapper.selectAdminMainCsUnAnswer(cs);
+	}
+
 	// 관리자 - 회원 목록 조회 요청 (페이지네이션, 검색 기능, 카테고리 필터)
 	//        + 검색 결과, 카테고리 필터링에 따른 페이지네이션의 범위 재조정
 	public List<MemberVO> adminMemberList(String searchMemberType, String searchMemberKeyword, String memberCategory, String memberStatusCategory, int startRow, int listLimit) {
@@ -166,5 +171,6 @@ public class AdminService {
 	public int registBoardReply(CsVO board) {
 		return mapper.insertBoardReply(board);
 	}
+
 	
 }

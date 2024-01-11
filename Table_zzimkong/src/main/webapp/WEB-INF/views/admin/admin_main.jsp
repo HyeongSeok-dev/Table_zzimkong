@@ -30,7 +30,7 @@
 					<th>신고 처리 대기</th>
 				</tr>
 				<tr>
-					<td>${adminMain.countUnAnswerInquiry}건</td>
+					<td>${csUnanswer.countUnAnswerInquiry}건</td>
 					<td>${adminMain.countUnApproveCompany}건</td>
 					<td>${adminMain.countUnHandleReport}건</td>
 				</tr>

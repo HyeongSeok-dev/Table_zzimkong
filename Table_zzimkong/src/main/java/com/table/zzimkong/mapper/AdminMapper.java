@@ -18,6 +18,7 @@ public interface AdminMapper {
 
 	// 관리자 - 메인 : 데이터 뿌리기
 	AdminMainVO selectAdminMain();
+	CsVO selectAdminMainCsUnAnswer(CsVO cs);	
 	List<ReservationVO> selectResByDate();
 	List<ReservationVO> selectResByHour();
     List<MemberVO> selectJoinByHour();

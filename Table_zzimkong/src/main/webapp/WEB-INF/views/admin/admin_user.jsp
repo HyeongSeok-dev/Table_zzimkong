@@ -26,7 +26,7 @@
 			<div id="board-search">
 				<div class="container">
 					<div class="search-window">
-						<form action="/zzimkong/admin/user">
+						<form action="${pageContext.request.contextPath}/admin/user">
 						<div class="search-wrap">
 							<select name="searchMemberType" class="search_select">
 								<option value="member_all" <c:if test="${param.searchMemberType eq 'member_all'}">selected</c:if>>아이디&닉네임</option>
@@ -110,10 +110,10 @@
 								<td class="member_status_item" data-category="member_status_1">정상</td>
 							</c:when>
 							<c:when test="${member.user_status eq 2}">
-								<td class="member_status_item" data-category="member_status_2">휴면/정지</td>
+								<td class="member_status_item" data-category="member_status_2" style="color:#FB6500;">휴면/정지</td>
 							</c:when>
 							<c:when test="${member.user_status eq 3}">
-								<td class="member_status_item" data-category="member_status_3">탈퇴</td>
+								<td class="member_status_item" data-category="member_status_3" style="color:#ccc;">탈퇴</td>
 							</c:when>
 							<c:otherwise>
 								<td class="member_status_item" data-category="member_status_unknown" style="color:red;">알수없음</td>
@@ -124,7 +124,7 @@
 							<input type="hidden" id="user_idx" name="user_idx">
 							<c:choose>
 								<c:when test="${member.user_status eq 1 || member.user_status eq 2}">
-									<button type="submit" onclick="event.stopPropagation(); user_withdraw(${member.user_idx})" class="button_cancel">탈퇴</button>
+									<button type="submit" onclick="event.stopPropagation(); user_withdraw(event, ${member.user_idx})" class="button_cancel">탈퇴</button>
 								</c:when>
 								<c:otherwise>
 									<button type="button" class="button_grey2" onclick="event.stopPropagation(); alert('탈퇴한 회원입니다!');">탈퇴</button>

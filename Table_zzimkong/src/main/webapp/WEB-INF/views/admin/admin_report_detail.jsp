@@ -16,7 +16,7 @@
 		<h3>신고 상세 정보</h3>
 		<br><br>
 		
-		<form action="/zzimkong/admin/report/detail/register/pro" method="POST" class="reportRegister" id="reportRegister">
+		<form action="${pageContext.request.contextPath}/admin/report/detail/register/pro" method="POST" class="reportRegister" id="reportRegister${report.report_num}">
 			<table border="1">
 				<tr>
 					<th>신고번호</th>
@@ -127,9 +127,10 @@
 				</tr>
 			</table>
 			<br>
-			
-			<input type="hidden" id="report_num" name="report_num">
-			<input type="hidden" id="report_approve_register" name="report_approve_register">
+								    
+			<%-- 각자 고유한 값을 부여 --%>
+			<input type="hidden" id="report_num${report.report_num}" name="report_num">
+			<input type="hidden" id="report_approve_register${report.report_num}" name="report_approve_register">
 			
 			<c:choose>
 				<c:when test="${report.report_status eq 2}">
@@ -137,7 +138,7 @@
 				</c:when>
 				<c:otherwise>
 					<button type="submit" class="button_olive" name="report_approve_ok"
-						onclick="report_approve('${report.report_num}', this.name)">승인</button>
+						onclick="report_approve(event, '${report.report_num}', this.name)">승인</button>
 				</c:otherwise>
 			</c:choose>
 			<c:choose>
@@ -146,10 +147,9 @@
 				</c:when>
 				<c:otherwise>
 					<button type="submit" class="button_cancel" name="report_approve_no"
-						onclick="report_disapprove('${report.report_num}', this.name)">반려</button>
+						onclick="report_disapprove(event, '${report.report_num}', this.name)">반려</button>
 				</c:otherwise>
 			</c:choose>
-							
 		</form>
 	</section>
 </body>

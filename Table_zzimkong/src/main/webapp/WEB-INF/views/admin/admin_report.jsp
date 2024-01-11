@@ -20,7 +20,7 @@
         <div class="text">
 			<h3>신고 관리</h3>
 			
-			<form action="/zzimkong/admin/report">
+			<form action="${pageContext.request.contextPath}/admin/report">
 			<table border="1">
 				<tr>
 					<th>신고번호</th>
@@ -90,13 +90,13 @@
 						<%-- 신고 상태 --%>
 						<c:choose>
 							<c:when test="${report.report_status eq 1}">
-								<td class="report_status_item" data-category="report_status_1">접수</td>
+								<td class="report_status_item" data-category="report_status_1" style="font-weight:bold;">접수</td>
 							</c:when>
 							<c:when test="${report.report_status eq 2}">
 								<td class="report_status_item" data-category="report_status_2">승인</td>
 							</c:when>
 							<c:when test="${report.report_status eq 3}">
-								<td class="report_status_item" data-category="report_status_3">반려</td>
+								<td class="report_status_item" data-category="report_status_3" style="color:#ccc;">반려</td>
 							</c:when>
 							<c:otherwise>
 								<td class="report_status_item" data-category="report_status_unknown" style="color:red;">알수없음</td>

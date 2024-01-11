@@ -17,7 +17,7 @@
 		<h3>업체 상세 정보</h3>
 		<br><br>
 		
-		<form action="/zzimkong/admin/company/info/pro" method="POST">
+		<form action="${pageContext.request.contextPath}/admin/company/info/pro" method="POST" id="companyInfoModify">
 		<input type="hidden" name="com_id" value="${company.com_id}">
 			<table>
 				<tr>
@@ -43,8 +43,6 @@
 				</tr>
 				<tr>
 					<th>주소</th>
-	<!-- 				<td colspan="5"><input type="text" maxlength="5" size="50" value="(68902) 부산광역시 해운대구 센텀3로 20 (우동, 센텀호텔316,317호)" disabled></td> -->
-					<%-- 나중에 우편번호 넣기 --%>
 					<td colspan="5"><input type="text" maxlength="5" size="50" value="${company.com_address}" disabled></td>
 				</tr>
 				<tr>
@@ -74,14 +72,21 @@
 				</tr>
 				<tr>
 					<th>위생등급</th>
-					<td colspan="2"><input type="text" value="${company.com_hyg_rank} (<fmt:formatDate value="${company.com_hyg_start_date}" pattern="yy/MM/dd HH:mm"/>)" disabled></td>
+					<c:choose>
+						<c:when test="${not empty company.com_hyg_rank}">
+							<td colspan="2"><input type="text" value="${company.com_hyg_rank} (<fmt:formatDate value="${company.com_hyg_start_date}" pattern="yy/MM/dd HH:mm"/>)" disabled></td>
+						</c:when>
+						<c:when test="${empty company.com_hyg_rank}">
+							<td colspan="2">해당사항 없음</td>
+						</c:when>
+					</c:choose>
 					<th>등록일자</th>
 					<td colspan="2"><fmt:formatDate value="${company.com_reg_date}" pattern="yyyy-MM-dd HH:mm"/></td>
 				</tr>
 			</table>
 			<br>
-			<button type="submit" class="button_olive">수정</button>
-			<button type="reset" class="button_grey2">초기화</button>
+			<button type="submit" class="button_olive" onclick="admin_company_info_modify(event)">수정</button>
+			<button type="reset">초기화</button>
 		</form>
 	</section>
 </body>

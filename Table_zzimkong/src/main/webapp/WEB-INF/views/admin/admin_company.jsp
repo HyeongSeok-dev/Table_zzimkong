@@ -26,7 +26,7 @@
 			<div id="board-search">
 				<div class="container">
 					<div class="search-window">
-						<form action="/zzimkong/admin/company">
+						<form action="${pageContext.request.contextPath}/admin/company">
 						<div class="search-wrap">
 							<select name="searchCompanyType" class="search_select">
 								<option value="company_num" <c:if test="${param.searchCompanyType eq 'company_num'}">selected</c:if>>업체번호</option>
@@ -107,13 +107,13 @@
 								</td>
 							</c:when>
 							<c:when test="${company.com_status eq 3}">
-								<td class="company_status_item" data-category="company_status_3">영업중지</td>
+								<td class="company_status_item" data-category="company_status_3" style="color:#FB6500;">영업중지</td>
 							</c:when>
 							<c:when test="${company.com_status eq 4}">
-								<td class="company_status_item" data-category="company_status_4">폐점</td>
+								<td class="company_status_item" data-category="company_status_4" style="color:red;">폐점</td>
 							</c:when>
 							<c:when test="${company.com_status eq 5}">
-								<td class="company_status_item" data-category="company_status_5">입점거부</td>
+								<td class="company_status_item" data-category="company_status_5" style="color:#ccc;">입점거부</td>
 							</c:when>
 							<c:otherwise>
 								<td class="company_status_item" data-category="company_status_unknown" style="color:red;">알수없음</td>

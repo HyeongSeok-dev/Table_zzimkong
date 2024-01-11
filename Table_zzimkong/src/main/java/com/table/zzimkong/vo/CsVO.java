@@ -36,6 +36,7 @@ public class CsVO {
 	private MultipartFile mFile4;
 	private MultipartFile mFile5;
 	
-	
+	// 관리자 페이지 - 문의 답변 대기
+	private int countUnAnswerInquiry; 
 }
 

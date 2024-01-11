@@ -70,14 +70,17 @@ public class AdminController {
 	//               - 사이트 현황 : 오늘 가입자 수, 오늘 예약 수
 	//               - 차트 : 가입자 현황(시간, 날짜별), 예약자 현황(시간, 날짜별)
 	@GetMapping("admin/main")
-	public String adminMain(HttpSession session, Model model, HttpServletResponse response) {
+	public String adminMain(HttpSession session, Model model, HttpServletResponse response, CsVO csUnanswer) {
 		// 관리자 페이지 접근 제한
 		if (!isvalid(session, model, response)) return null;
 		
-		// 문의 답변 대기, 입점 승인 대기, 신고 처리 대기,
-		// 오늘 가입자 수, 오늘 예약 수
+		// 입점 승인 대기, 신고 처리 대기, 오늘 가입자 수, 오늘 예약 수
 		AdminMainVO adminMain = service.adminMain();
+		// 문의 답변 대기
+		csUnanswer = service.adminMainCsUnAnswer(csUnanswer);
+		
 		model.addAttribute("adminMain", adminMain);
+		model.addAttribute("csUnanswer", csUnanswer);
 		
 		return "admin/admin_main";
 	}
@@ -321,7 +324,7 @@ public class AdminController {
 		int listCount = service.adminReportListCount(reportCategory, reportStatusCategory);
 		
 		// 페이지네이션
-		int pageListLimit = 10;
+		int pageListLimit = 5;
 		int maxPage = listCount / listLimit + (listCount % listLimit > 0 ? 1 : 0);
 		int startPage = (pageNum - 1) / pageListLimit * pageListLimit + 1;
 		int endPage = startPage + pageListLimit - 1;
@@ -363,6 +366,17 @@ public class AdminController {
 			HttpSession session, Model model, HttpServletResponse response) {
 		// 관리자 페이지 접근 제한
 		if (!isvalid(session, model, response)) return null;
+		
+		// 서버로 전송할 때마다 기존값에 추가됨을 방지
+		report_approve_register = report_approve_register.replace(",", "");
+		// 수정된 report_approve_register 값을 report 객체에 다시 설정
+		report.setReport_approve_register(report_approve_register);
+		
+		System.out.println("===============================");
+		System.out.println(report);
+		System.out.println(report.getReport_num());
+		System.out.println(report.getReport_approve_register());
+		System.out.println("===============================");
 		
 		int updateCount = service.adminReportRegister(report);
 		
