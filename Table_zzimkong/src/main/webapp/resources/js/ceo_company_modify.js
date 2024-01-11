@@ -60,6 +60,17 @@ $(function() {
         reader.readAsDataURL(this.files[0]);
     });
     
+    $("#button_cancel").on("click", function() {
+		console.log("fff");
+		if(confirm("정말 폐점신청을 하시겠습니까? \n 폐점신청을 취소하시려면 고객센터로 연락해 주세요.")){
+			 $("#comCancelForm").submit();
+			 return "true";
+		} else {
+			return "false";
+		}
+		
+	});
+    
 	$("#modifyButton").on("click", function() {
 		console.log("수정버튼");
 		if($("#com_tel").val() == "") {

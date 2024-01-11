@@ -145,6 +145,7 @@ $(function() {
 				success: function(businesses) {
 					console.log(businesses.valid_cnt);
 					if(businesses.valid_cnt == 1){
+						$("#com_num_register").css("border", "1px solid green");
 						$("#guide").text("등록번호가 조회 되었습니다.");
 						$("#guide").css("color","green");
 						
@@ -152,6 +153,7 @@ $(function() {
 					} else if(businesses.valid_cnt != 1){
 						alert("조회하신 사업자등록번호의 정보가 일치하지 않습니다."
 						+ "\n사업자등록번호, 성함, 개업일을 다시한번 확인해 주세요!");
+						$("#com_num_register").css("border", "1px solid #bb5b67");
 						$("#guide").text("입력하신 정보를 다시 확인해주세요!");
 						$("#guide").css("color","#bb5b67");
 					}

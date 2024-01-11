@@ -222,9 +222,9 @@
 				</form>
 				<div class="text_inner_form1">
 					<button type="button" id="modifyButton" class="button_olive">수정</button>
-					<form action="closeRegist" method="post">
+					<form action="closeRegist" method="post" id="comCancelForm">
 						<input type="hidden" value="${com.com_num }" name="com_num">
-						<button type="submit" id="button_cancel">폐점 신청</button>
+						<button type="button" id="button_cancel">폐점 신청</button>
 					</form>
 						<button type="button" class="button_grey2" style="color: #3FAFFC; background-color: #fff; border: 1px solid #3FAFFC;" onclick="javascript:history.back()">나가기</button>
 				</div>
