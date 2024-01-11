@@ -218,6 +218,7 @@ public class ProductController {
 		model.addAttribute("res", res);
 		model.addAttribute("isReviewWriteable", isReviewWriteable);
 		
+		
 		return "product/product_detail";
 	}
 	
