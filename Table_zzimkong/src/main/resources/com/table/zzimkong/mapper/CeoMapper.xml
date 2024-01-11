@@ -261,6 +261,8 @@
 		SELECT *
 		FROM reservation
 		WHERE com_id = #{com_id}
+		ORDER BY
+			res_date DESC, res_time DESC
 	</select>
 		
 	
