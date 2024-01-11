@@ -99,23 +99,30 @@ public class HomeController {
 	
 	//지역선택에 따라 정렬
 	@ResponseBody
-	@GetMapping("/fetchLocationData")
-	public String fetchLocationData(SearchVO search, @RequestParam String location) {
-		
-		String searchlocation = search.getLocation();
-		if(searchlocation != null && searchlocation.endsWith("전체")) {
-			search.setLocation(searchlocation.substring(0, searchlocation.length() - 3));
-		}
-		
-		List<CompanyVO> list = service.getCleanList(search);
-		
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("companyList", list);
-		JSONObject jsonObject = new JSONObject(map);
-		
-		return jsonObject.toString();
-		
-	}
+    @GetMapping("/fetchLocationData")
+    public String fetchLocationData(SearchVO search, @RequestParam String location) {
+
+        String searchlocation = search.getLocation();
+        if(searchlocation != null && searchlocation.endsWith("전체")) {
+            search.setLocation(searchlocation.substring(0, searchlocation.length() - 3));
+        }
+        //위생순
+        List<CompanyVO> list = service.getCleanList(search);
+        //추천순(광고등급순)
+        List<CompanyVO> recommendList = service.getRecommendList(search);
+        //별점순
+        List<CompanyVO> reviewList = service.getReviewList(search);
+
+        //추천순
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("cleanList", list); // 위생순 리스트 추가
+        map.put("recommendList", recommendList); // 추천순 리스트 추가
+        map.put("reviewList", reviewList); // 별점순 리스트 추가
+        JSONObject jsonObject = new JSONObject(map);
+
+        return jsonObject.toString();
+
+    }
 	
 	
 	
