@@ -43,10 +43,15 @@
 		</div>
 		<div class="sns-grade">
 			<p class="grade">
-				<span class="point">${company_info.review_count}명의 평가 <strong
-					id="lbl_review_point"> ${company_info.avg_score} </strong>
-				</span>
-				<span class="star"> <i style="width: ${company_info.avg_score *20}%"></i></span>
+					<c:choose>
+						<c:when test="${empty review_score}">
+							<span class="tit">0명의 평가</span>
+						</c:when>
+						<c:otherwise>
+							<span class="point">${review_score.reviewCount}명의 평가 <strong id="lbl_review_point"> ${review_score.avg_score} </strong></span>
+							<span class="star"> <i style="width: ${review_score.avg_score *20}%"></i></span>
+						</c:otherwise>
+					</c:choose>
 			</p>
 		</div>
 		<div class="favor-pic-appra">
