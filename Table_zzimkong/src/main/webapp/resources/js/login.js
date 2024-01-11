@@ -40,7 +40,8 @@ $(function() {
 
          
  });
-     
+    
+ // 아이디 저장하기 
 function frm_check(){
          saveid();
  }

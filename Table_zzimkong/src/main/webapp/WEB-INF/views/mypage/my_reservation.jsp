@@ -34,16 +34,16 @@
 			<span class= "mypg">
 				<h1>나의 예약 내역</h1>
 			</span>
-			<span>
-				<button type="button">6개월</button>
-				<button type="button">3개월</button>
-				<button type="button">1개월</button>
-				<input type="date" id="date1">
-				-
-				<input type="date" id="date2">
-				<button type="button" onclick="showDate()">조회</button>
-				<p id="selectedDate"></p>
-			</span>
+<!-- 			<span> -->
+<!-- 				<button type="button">6개월</button> -->
+<!-- 				<button type="button">3개월</button> -->
+<!-- 				<button type="button">1개월</button> -->
+<!-- 				<input type="date" id="date1"> -->
+<!-- 				- -->
+<!-- 				<input type="date" id="date2"> -->
+<!-- 				<button type="button" onclick="showDate()">조회</button> -->
+<!-- 				<p id="selectedDate"></p> -->
+<!-- 			</span> -->
 			</div>
 			<br>
 			<table style="width: 1000px; height: 100px; table-layout: fixed;">

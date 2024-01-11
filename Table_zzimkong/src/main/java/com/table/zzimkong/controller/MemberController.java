@@ -189,7 +189,6 @@ public class MemberController {
 		System.out.println(member);
 		MemberVO dbMember = service.getMember(member);
 		
-		
 		if(dbMember == null) {
 			System.out.println(dbMember);
 			model.addAttribute("msg", "존재하지 않는 회원입니다.");
