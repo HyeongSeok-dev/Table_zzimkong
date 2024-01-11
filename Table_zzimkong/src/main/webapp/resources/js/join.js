@@ -100,12 +100,12 @@ $(document).ready(function() {
 		return false;
 	}
 	
-	//직접입력선택후 생겨난 텍스트 박스의 이메일
-	    if(!email3){
-		alert('이메일을 입력해주세요');
-		document.joinForm.u_email2.focus();
-		return false;
-	}
+		//직접입력선택후 생겨난 텍스트 박스의 이메일
+		if(email2 === 'custom' && !email3){
+			alert('이메일을 입력해주세요');
+			document.getElementById('customEmail').focus();
+			return false;
+		}
 	
 	    if (!phone) {
 	        alert('전화번호를 입력해주세요.');

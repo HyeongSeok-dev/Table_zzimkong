@@ -96,12 +96,6 @@ $(document).ready(function() {
 		}
 	
 	//직접입력선택후 생겨난 텍스트 박스의 이메일
-//	    if(!email3){
-//		alert('이메일을 입력해주세요');
-//		document.joinForm.u_email2.focus();
-//		return false;
-//	}
-
 	  if(email2 === 'custom' && !email3) {
 	    alert('이메일을 입력해주세요');
 	    document.joinForm.u_email2.focus();
