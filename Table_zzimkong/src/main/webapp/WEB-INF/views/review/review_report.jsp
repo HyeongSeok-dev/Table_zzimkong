@@ -104,7 +104,7 @@
 					<br>
 					<div class="agree_checkbox_block">
 					  <label class="label_checkbox">
-					    <input type="checkbox" class="form_checkbox" id="agreeCheckbox" checked> 
+					    <input type="checkbox" class="form_checkbox" id="agreeCheckbox"> 
 					    <span class="label strong">[필수] 개인정보 수집 및 이용 동의</span>
 					  </label>
 					  <a href="#" class="info-content">보기</a>

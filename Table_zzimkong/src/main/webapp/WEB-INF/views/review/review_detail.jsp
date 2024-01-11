@@ -347,11 +347,11 @@ function showCommentForm(element) {
 	        }
 	
 	    var commentCount = review.commentCount; // commentCount 추출
-
 	    var formattedDate = formatDate(review.review_update);
 	
 	    var deleteFormHtml = '';
 	    var modifyButtonHtml = '';
+	    var reportButtonHtml = '';
 
 	    // sId가 review.user_id와 같거나, sId가 'admin'일 경우에만 삭제 및 수정 버튼 생성
 	    if (sId === review.user_id || sId === 'admin') {
@@ -368,10 +368,14 @@ function showCommentForm(element) {
 	        	'<a href="modify?review_num=' + review.review_num + '&com_id=' + review.com_id + '">' +
 	            '<button class="review_modify">수정</button>' +
 	        	'</a>';
+	    } else {
+	        // sId가 review.user_id나 'admin'이 아닐 때만 신고 버튼 생성
+	        reportButtonHtml = 
+	            '<a href="' + contextPath + '/review/report?review_num=' + review.review_num + '&com_id=' + review.com_id + '" class="review_report_btn" role="button">리뷰 신고하기</a>';
 	    }
 
-	    var reportButtonHtml = 
-'<a href="' + contextPath + '/review/report?review_num=' + review.review_num + '&com_id=' + review.com_id + '" class="review_report_btn" role="button">리뷰 신고하기</a>';
+// 	    var reportButtonHtml = 
+// '<a href="' + contextPath + '/review/report?review_num=' + review.review_num + '&com_id=' + review.com_id + '" class="review_report_btn" role="button">리뷰 신고하기</a>';
 	    var imagePopupHtml = '';
 	    if (review.review_img_1) {
 	        imagePopupHtml = 
@@ -507,6 +511,8 @@ function showCommentForm(element) {
 	    var formattedDate = formatDate(review.review_update); // 서버로부터 받은 review_update 값을 형식화
 	    var deleteFormHtml = '';
 	    var modifyButtonHtml = '';
+	    var reportButtonHtml = '';
+
 
     // sId가 review.user_id와 같거나, sId가 'admin'일 경우에만 삭제 및 수정 버튼 생성
     if (sId === review.user_id || sId === 'admin') {
@@ -520,10 +526,14 @@ function showCommentForm(element) {
             '<a href="modify?review_num=' + review.review_num + '">' +
                 '<button class="review_modify">수정</button>' +
             '</a>';
+    }	else {
+        // sId가 review.user_id나 'admin'이 아닐 때만 신고 버튼 생성
+        reportButtonHtml = 
+            '<a href="' + contextPath + '/review/report?review_num=' + review.review_num + '&com_id=' + review.com_id + '" class="review_report_btn" role="button">리뷰 신고하기</a>';
     }
 
-    var reportButtonHtml = 
-'<a href="' + contextPath + '/review/report?review_num=' + ${reviewNum} + '&com_id=' + review.com_id + '" class="review_report_btn" role="button">리뷰 신고하기</a>';
+//     var reportButtonHtml = 
+// '<a href="' + contextPath + '/review/report?review_num=' + ${reviewNum} + '&com_id=' + review.com_id + '" class="review_report_btn" role="button">리뷰 신고하기</a>';
     var imagePopupHtml = '';
     if (review.review_img_1) {
         imagePopupHtml = 
