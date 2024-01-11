@@ -145,6 +145,7 @@ function myChart1() {
 				
 				var maxCount = Math.max.apply(null, join_time_counts); // counts2 배열에서 최대값 찾기
                 var ctx = document.getElementById('myChart1').getContext('2d'); // 새로운 canvas 요소의 id
+				let barData = join_time_counts.map(count => count + 15); // 'line' 데이터보다 항상 15 큰 'bar' 데이터 생성
                 myChart = new Chart(ctx, {
                     type: 'line',
                     data: {
@@ -159,7 +160,7 @@ function myChart1() {
 						{
 							type: 'bar',
 				            label: '시간당 방문자 수 (지난 12시간) : 안함!',
-				            data: [23, 13, 12, 14, 7, 15, 9, 17, 8, 14, 15, 9],
+				            data: barData,
 				            backgroundColor: '#eff7fe',
 				            borderColor: '#eff7fe',
 				            borderWidth: 1
@@ -205,11 +206,9 @@ function myChart2() {
                 var join_dates = data.join_dates;
                 var join_date_counts = data.join_date_counts;
 				
-			    console.log("data : " + data);
-			    console.log(JSON.stringify(data));
-				
 				var maxCount = Math.max.apply(null, join_date_counts); // join_date_counts 배열에서 최대값 찾기
                 var ctx = document.getElementById('myChart2').getContext('2d'); // 새로운 canvas 요소의 id
+                let barData = join_date_counts.map(count => count + 15); // 'line' 데이터보다 항상 15 큰 'bar' 데이터 생성
                 myChart = new Chart(ctx, {
                     type: 'line',
                     data: {
@@ -224,7 +223,7 @@ function myChart2() {
 						{
 							type: 'bar',
 				            label: '일일 방문자 수 (지난 7일) : 안함!',
-				            data: [100, 99, 59, 79, 106, 77, 87],
+				            data: barData,
 				            backgroundColor: '#eff7fe',
 				            borderColor: '#eff7fe',
 				            borderWidth: 1
@@ -233,7 +232,7 @@ function myChart2() {
                     options: {
                         scales: {
 							y: {
-								suggestedMax: maxCount * 1.1, // 최대값의 110%
+								suggestedMax: maxCount * 2.0, // 최대값의 110%
 								stacked: true
 							}
                         }
