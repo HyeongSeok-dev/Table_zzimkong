@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
@@ -26,9 +27,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.table.zzimkong.service.CeoService;
 import com.table.zzimkong.service.ProductService;
@@ -36,6 +39,8 @@ import com.table.zzimkong.vo.CompanyVO;
 import com.table.zzimkong.vo.MemberVO;
 import com.table.zzimkong.vo.MenuList;
 import com.table.zzimkong.vo.MenuVO;
+import com.table.zzimkong.vo.MypageInfo;
+import com.table.zzimkong.vo.PageInfo;
 import com.table.zzimkong.vo.PreOrderInfo;
 import com.table.zzimkong.vo.ReservationVO;
 
@@ -302,10 +307,17 @@ public class CeoController {
 		List<CompanyVO> storeList = service.getComList(sIdx);
 		System.out.println("업체별 목록" + storeList);
 		model.addAttribute("storeList", storeList);
-		
-		
-		
 		return "ceo/ceo_reservation";
+	}
+	
+	@RequestMapping("ceo/reservation/all")
+	public ModelAndView getAllReservations(@RequestParam("com_id") String com_id, Map<String, Object> map) {
+		System.out.println("ddd" + com_id);
+	    List<ReservationVO> reservations = service.getResAll(com_id);
+	    System.out.println("리스트" + reservations);
+	    map.put("reservations", reservations);
+	    ModelAndView mav = new ModelAndView("ceo/ceo_reservation_all", "map", map);
+	    return mav;
 	}
 	
 	@ResponseBody
@@ -346,6 +358,7 @@ public class CeoController {
 //		return ResponseEntity.ok(map);
 		return jsonObject.toString();
 	}
+	
 	
 //	@GetMapping("ceo/reservation/detail")
 //	public String ceo_reservation_detail(CompanyVO com, Model model) {
@@ -408,7 +421,7 @@ public class CeoController {
 //	}
 	
 	//테스트2
-	@GetMapping("ceo/reservation/detail")
+	@RequestMapping("ceo/reservation/detail")
 	public String ceo_reservation_detail(CompanyVO com, Model model) {
 	    com = service.getComTimeInfo(com);
 	    System.out.println("com" + com);

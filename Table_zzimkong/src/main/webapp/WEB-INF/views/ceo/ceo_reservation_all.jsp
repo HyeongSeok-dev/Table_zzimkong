@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,35 +21,20 @@
 	<header>
 		<jsp:include page="../inc/ceo_top.jsp"/>
 	</header>
+	<input type="hidden" name="com_id" value="${res.com_id}" />
 	
 	<section class="ceo_sec">
 		<div class="text">
 			<div class="text_inner">
 				<div class="header_div01">
-					<span><h1>사업장별 예약관리</h1></span>
-					<span class="header_span">
-<!-- 						<select id="storeList" onchange="showResInfo(this.value)"> -->
-						<select id="storeList">
-							<c:if test="${not empty storeList}">
-								<c:forEach var="company" items="${storeList}">
-									<!--선택된 com_id가 파라미터로 넘어온 com_id가 비어있지 않고 파라미터로 넘어온 com_id가 선택된 com_id가 같을때 선택유지  -->
-<%-- 									<option value="${company.com_id}" <c:if test="${not empty param.com_id and param.com_id eq company.com_id}">selected</c:if>>${company.com_name}</option> --%>
-									<option value="${company.com_id}">${company.com_name}</option>
-								</c:forEach>
-							</c:if>
-						</select>
-						<input type="hidden" name="com_id" value="${company.com_id}" />
-					</span>	
+					<span><h1>지난 예약 정보</h1></span>
 				</div>
 			</div>
 			<div class="text_inner">
 				<div class="header">
 					<span><h3>예약정보</h3></span>	
 				</div>
-				<span>
-					<button type="button" onclick="goToReservationAll()">지난예약</button>
-				</span>
-				<table id="reservationTable" border="1">
+				<table border="1">
 					<tr>
 						<th>예약번호</th>
 						<th>예약날짜</th>
@@ -56,22 +42,43 @@
 						<th>예약정보</th>
 						<th>예약상태</th>	
 						<th>결제여부</th>	
-						<th>방문확인</th>	
 					</tr>
-				</table>
-			</div>
-			
-			<div class="text_inner">
-				<div class="header">
-					<span><h3>오늘의 예약 현황</h3></span>
-				</div>
-				<table id="reservationStatus" border="1">
-					<tr>
-						<th>오늘의 예약 수</th>
-						<th>오늘의 예약방문자 수</th>
-						<th>오늘의 예약취소 수</th>
-						<th>오늘의 인원상세</th>
-					</tr>
+					<c:forEach var="resAll" items="${map.reservations}">
+						<tr>
+							<td>${resAll.res_num}</td>
+							<td>${resAll.res_date}</td>
+							<td>${resAll.res_time}</td>
+							<td>
+								<button type="button" value="상세정보" class="popup" onclick="newDetail(${resAll.res_idx})">상세정보</button>
+							</td>
+							<td>
+								<c:choose>
+									<c:when test="${resAll.res_status == 1}">
+										예약완료
+									</c:when>
+									<c:when test="${resAll.res_status == 2}">
+										예약취소
+									</c:when>
+									<c:when test="${resAll.res_status == 3}">
+										방문완료
+									</c:when>
+									<c:otherwise>
+										미방문
+									</c:otherwise>
+								</c:choose>
+							</td>
+							<td>
+								<c:choose>
+									<c:when test="${resAll.res_pay_status == 1}">
+										결제완료
+									</c:when>
+									<c:otherwise>
+										미결제
+									</c:otherwise>
+								</c:choose>	
+							</td>
+						</tr>
+					</c:forEach>
 				</table>
 			</div>
 		</div>
