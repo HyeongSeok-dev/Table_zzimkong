@@ -253,17 +253,17 @@ strong {
 }
 
 .review_write_button {
-	margin-right: 1px;
-	font-size: 16px;
-    cursor: pointer;
-    border: 1px solid lightgray;
-    padding: 14px;
-    border-radius: 10px;
+/* 	margin-right: 1px!important; */
+/* 	font-size: 25px!important; */
+    cursor: pointer!important;
+/*     border: 1px solid lightgray!important; */
+/*     padding: 14px!important; */
+/*     border-radius: 10px!important; */
 }
 
 .review_write_button:hover {
-	background-color: #3FAFFC;
-	color:#fff;
+/* 	background-color: #3FAFFC; */
+/* 	color:#fff; */
 }
 
 /*  =============================================================  */
@@ -649,9 +649,10 @@ a {
     cursor: pointer;
 } 
 
-[role="button"] { 
-    cursor: pointer;
-} 
+/* [role="button"] {  */
+/*     cursor: pointer; */
+/* }  */
+
 /* 클래스명 수정시 자바스 오류(수정중) */
 .more-button  { 
     display: block; 
@@ -1582,4 +1583,7 @@ h1 {
 	font-size: 17px;
 }
 
-
+.write_button_text {
+	font-size: 22px;
+}
+ 
