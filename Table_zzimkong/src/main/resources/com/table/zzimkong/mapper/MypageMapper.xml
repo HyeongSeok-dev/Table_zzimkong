@@ -44,7 +44,7 @@
 		SELECT *
 		FROM mypage_view
 		WHERE user_idx = #{sIdx}
-		ORDER BY res_date ASC, res_time ASC
+		ORDER BY res_idx DESC, res_time ASC
 		LIMIT 5
 	</select>
 	
@@ -53,7 +53,7 @@
 		SELECT *
 		FROM mypage_view
 		WHERE user_idx = #{sIdx}
-		ORDER BY res_date ASC, res_time ASC
+		ORDER BY res_idx DESC, res_time ASC
 		LIMIT
 			#{startRow}
 			, #{listLimit}
