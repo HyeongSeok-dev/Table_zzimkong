@@ -236,7 +236,7 @@ public class MypageController {
 	    
 	    //---- 북마크(간략히 보기) --------------------
 	    List<BookmarkVO> bookmarkList = service.getBookmarkList(sIdx);
-	    System.out.println("북마크 : " + sIdx); 
+	    System.out.println("북마크 : " + bookmarkList); 
 	    model.addAttribute("bookmarkList", bookmarkList);
 	    
 	    
@@ -270,8 +270,9 @@ public class MypageController {
 			return "forward";
 		}
 
-	    int sIdx = (int)session.getAttribute("sIdx"); //세션 인덱스 가져오기	    
-	    
+	    int sIdx = (int)session.getAttribute("sIdx"); //세션 인덱스 가져오기
+	    System.out.println("-------------인덱스 : " + sIdx);
+	     
 		// Model 객체에 회원 목록 조회 결과 저장(resList2 문자열을 "resList2"라는 속성명으로 저장)
 //		model.addAttribute("resList2", resList2);
 		
@@ -288,7 +289,7 @@ public class MypageController {
 //		// BoardService - getBoardListCount() 메서드 호출하여 전체 게시물 목록 갯수 조회 요청
 //		// => 파라미터 : 검색타입, 검색어
 //		// => 리턴타입 : int(listCount)
-		int listCount = service.getResList2Count();
+		int listCount = service.getResList2Count(sIdx);
 		int pageListLimit = 5; // 페이지에서 보이는 페이지 번호를 5개로 지정
 		int maxPage = listCount / listLimit + (listCount % listLimit > 0 ? 1 : 0);
 		int startPage = (pageNum - 1) / pageListLimit * pageListLimit + 1;
@@ -314,7 +315,6 @@ public class MypageController {
 			} else {
 				res.put("hasReview", false);
 			}
-//			res.put("hasReview", review != null);
 			System.out.println("res : " + res.get("hasReview"));
 		}
 		
@@ -351,7 +351,7 @@ public class MypageController {
 		
 		int sIdx = (int)session.getAttribute("sIdx"); //세션 인덱스 가져오기 (회원번호)
 		List<BookmarkVO> bookmarkList2 = service.getBookmarkList2(sIdx);
-		System.out.println("북마크 : " + sIdx); 
+		System.out.println("북마크 : " + bookmarkList2); 
 		model.addAttribute("bookmarkList2", bookmarkList2);
 		
 		return "mypage/my_bookmark";
@@ -467,8 +467,6 @@ public class MypageController {
 			}
 		}
 		
-//		return "mypage/my_report_reason";
-//	}
 
 	
 	@GetMapping("my/unregister")
