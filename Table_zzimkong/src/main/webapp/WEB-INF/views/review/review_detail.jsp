@@ -707,7 +707,7 @@ function showCommentForm(element) {
 	<div class="review_write_button">
 	    <c:choose>
 	        <c:when test="${visitCount > 0}">
-<%-- 	            <a href="${pageContext.request.contextPath}/review/write?com_id=${param.com_id}"><i class="fas fa-pencil-alt"></i> &nbsp;리뷰쓰기</a> --%>
+<%-- 	             <a href="${pageContext.request.contextPath}/review/write?com_id=${param.com_id}"><i class="fas fa-pencil-alt"></i> &nbsp;리뷰쓰기</a> --%>
 <%-- <a href="${pageContext.request.contextPath}/my/reservation"><i class="fas fa-pencil-alt"></i> &nbsp;리뷰쓰기</a> --%>
 			 <%-- ==================================================================== --%>
 				<form action="${pageContext.request.contextPath}/my/reservation">
