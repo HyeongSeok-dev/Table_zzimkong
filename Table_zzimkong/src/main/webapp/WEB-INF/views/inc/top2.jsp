@@ -38,7 +38,7 @@
 					<li class="dropdown"><a href="${pageContext.request.contextPath}/my/list">
 				    ${sessionScope.sName}&nbsp;업주님</a></li>
 				    <%--업주페이지 --%>
-					<li class="dropdown"><a href="${pageContext.request.contextPath}/member/ceo/sale">
+					<li class="dropdown"><a href="${pageContext.request.contextPath}/ceo/sale">
 					업주페이지</a></li>
 					<%--알림 --%>
 <%-- 					<li class="dropdown"><a href="${pageContext.request.contextPath}/#"> --%>
