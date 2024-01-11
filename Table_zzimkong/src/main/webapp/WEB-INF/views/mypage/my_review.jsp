@@ -49,7 +49,7 @@
 						<td>${myReview.review_content}</td>
 						<td align="center">
 						<button type="button" onclick="reviewEdit(${myReview.review_num}, ${myReview.com_id})">수정</button>
-						<button type="button" id="my_delete" onclick="reviewDelete()">삭제</button>
+<!-- 						<button type="button" id="my_delete" onclick="reviewDelete()">삭제</button> -->
 						</td>
 					</tr>
 				</c:forEach>
