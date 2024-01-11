@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	<div class="review_complete_ment">
 	<img src="${pageContext.request.contextPath}/resources/img/complete_check.svg" id="check">
 	<%-- X표시 누르면 main으로 이동--%> 
-	<img src="${pageContext.request.contextPath}/resources/img/complete_x.svg" id="closeImage">
+<%-- 	<img src="${pageContext.request.contextPath}/resources/img/complete_x.svg" id="closeImage"> --%>
 	<h1 class="review_complete">회원탈퇴 완료!</h1>
     <div class="review_complete_content">지금까지 찜콩테이블을 이용해주셔서 감사합니다!<br>
     개인정보는 30일 후 자동 삭제됩니다.</div>
