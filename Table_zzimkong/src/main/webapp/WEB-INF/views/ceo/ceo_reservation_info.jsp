@@ -27,33 +27,40 @@
 				<tr>
 					<th>예약번호</th>
 					<th>방문자성명</th>
-					<th>연락처</th>
-					<th>예약인원</th>
-					<th>예약금</th>
-					<th>선주문가격</th>
-					<th>총결제금액</th>
+					<th colspan="2">연락처</th>
 				</tr>
 				<tr>
 					<td>${res.res_num}</td>
 					<td>${res.res_name}</td>
-					<td>${res.res_phone}</td>
-					<td>${res.res_person}명</td>
+					<td colspan="2">${res.res_phone}</td>
+				</tr>
+				<tr>
+					<th>예약금</th>
+					<th>선주문가격</th>
+					<th>총결제금액</th>
+					<th>예약인원</th>
+				</tr>
+				<tr>
 					<td>${res.res_table_price}원</td>
 					<td>${menuTotalPrice}원</td>
 					<td>${totalPrice}원</td>
+					<td>${res.res_person}명</td>
 				</tr>
+				
 				<tr>
 					<th colspan="2">메뉴</th>
 					<th colspan="2">수량</th>
-					<th colspan="3">요구사항</th>
 				</tr>
 				    <c:forEach items="${preInfo}" var="preOrder">
 				       <tr>
 				           <td colspan="2">${preOrder.menu_name}</td>
 				           <td colspan="2">${preOrder.pre_num}개</td>
-				           <td colspan="3">${res.res_request}</td>
 				       </tr>
 				   </c:forEach>
+			     <tr>
+			       	 <th>요구사항</th>
+        			 <td colspan="3">${res.res_request}</td>
+   			  	 </tr> 
 			</table>
 			<br>
 			<button type="button" class="button_olive" onclick="javascript:window.close()">닫기</button>
