@@ -44,10 +44,10 @@
 			<div class="text_inner">
 				<div class="header">
 					<span><h3>예약정보</h3></span>	
+					<span>
+						<button type="button" class="button_olive" onclick="goToReservationAll()">예약 모두 보기</button>
+					</span>
 				</div>
-				<span>
-					<button type="button" onclick="goToReservationAll()">지난예약</button>
-				</span>
 				<table id="reservationTable" border="1">
 					<tr>
 						<th>예약번호</th>
@@ -69,7 +69,7 @@
 						<th>오늘의 예약 수</th>
 						<th>오늘의 예약방문자 수</th>
 						<th>오늘의 예약취소 수</th>
-						<th>오늘의 인원상세</th>
+						<th>예약 인원 현황</th>
 					</tr>
 				</table>
 			</div>

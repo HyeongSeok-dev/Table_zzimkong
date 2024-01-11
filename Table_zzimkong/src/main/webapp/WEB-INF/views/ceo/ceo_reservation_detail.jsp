@@ -18,7 +18,7 @@
 	<section class="ceo_popup_sec">
 		<div class="text_inner">
 			<div class="header_div01">
-				<span><h3>예약 상세 정보</h3></span>
+				<span><h3>예약 인원 현황</h3></span>
 			</div>
 		</div>
 		<div class="text_inner">
