@@ -245,7 +245,7 @@ public class ProductController {
 		System.out.println(search);
 		res.setCom_id(Integer.parseInt((String)map.get("com_id")));
 		res.setRes_person(search.getPersons());
-		res.setRes_table_price(search.getPersons()*1);
+		res.setRes_table_price(search.getPersons()* 20000);
 		res.setRes_time(search.getTime());
 		res.setRes_date(search.getDate());
 		
