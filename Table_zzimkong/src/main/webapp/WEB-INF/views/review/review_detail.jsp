@@ -11,8 +11,8 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, minimum-scale=1" />
 <!-- CSS -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/review_detail.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/global.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/review_detail.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <!-- Js -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -137,12 +137,12 @@ function showCommentForm(element) {
 
     // 순위별로 색상 지정
     var backgroundColors = sortedData.map((value, index) => {
-//         if (index === 0) return '#add8e6'; // 1위 
-        if (index === 0) return '#00BFFF'; // 1위 
-//         if (index < 5) return '#C8E4F7'; // 2 ~ 5위
-        if (index < 5) return '#A8D6E5'; // 2 ~ 5위
-//         return '#e6f4f1'; // 나머지
-        return '#E0F7FA'; // 나머지
+//         if (index === 0) return '#00BFFF'; // 1위 
+        if (index === 0) return '#03A9F4'; // 1위 
+//         if (index < 5) return '#A8D6E5'; // 2 ~ 5위
+        if (index < 5) return '#80D8FF'; // 2 ~ 5위
+//         return '#E0F7FA'; // 나머지
+        return '#E1F5FE'; // 나머지
     });
 
     var ctx = document.getElementById('reviewChart').getContext('2d');
