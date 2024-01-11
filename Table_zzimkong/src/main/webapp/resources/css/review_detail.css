@@ -829,8 +829,8 @@ svg {
   width: 20px;
   background-color: #eee;
   border-radius: 4px;
-  margin-top:4px;
-  margin-left:29px;
+  margin-top:-2px;
+  margin-left:4px;
 }
 
 .checkbox-container:hover input ~ .checkmark {
