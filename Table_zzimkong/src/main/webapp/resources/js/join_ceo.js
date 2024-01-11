@@ -29,6 +29,7 @@ $(document).ready(function() {
 	let isDuplicateId = false; //아이디 중복 여부 저장할 변수
 	let isSamePasswd = false; //패스워드 일치 여부 저장할 변수
     let ceoNum = false; //사업자 인증 여부
+	let isDuplicateNick = false;
 	
 	//입력 널스트링이면 "입력하세요" 출력후 focus=======================
 	$("#joinBtn").click(function() {
@@ -238,7 +239,33 @@ $(document).ready(function() {
 		
 	}); //비밀번호검증
 	
-	
+	//닉네임 검증
+		$("#u_nick").blur(function(){
+		
+		//닉네임 입력값 가져오기
+		let user_nick = $("#u_nick").val();
+		
+		$.ajax({
+			url: "MemberCheckDupNick",
+			data: {
+				user_nick : user_nick
+			},
+			dataType: "json",
+			success : function(checkDuplicateResult){
+				if(checkDuplicateResult ){ //중복
+					$("#checkNickResult").html("이미 사용중인 닉네임");
+					$("#checkNickResult").css("color", "red");
+					isDuplicateNick = true;
+				}else{ //중복X
+					$("#checkNickResult").html("사용 가능한 닉네임");
+					$("#checkNickResult").css("color", "blue");
+					isDuplicateNick = false;
+				}
+			} //success
+		}); //ajax
+		
+	}); //닉네임 중복확인
+		
 	//ID중복및 입력양식 검증===============================
 	$("#userId").keyup(function(){
 		

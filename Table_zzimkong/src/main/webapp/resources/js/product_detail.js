@@ -15,12 +15,12 @@ $(document).ready(function() {
             success: function(response) {
                 if (response != 'notLogin') {
                     if (response === 'true') {
-                        $(".favor_container").html("<div class='favor_on'><span id='favorite_button'> 즐겨찾기 </span></div>");
+                        $(".favor_container").html("<div class='favor_on'><span id='favorite_button'> 북마크 </span></div>");
                     } else if (response === 'false') {
-                        $(".favor_container").html("<div class='favor_off'><span id='favorite_button'> 즐겨찾기 </span></div>");
+                        $(".favor_container").html("<div class='favor_off'><span id='favorite_button'> 북마크 </span></div>");
                     }
                 } else {
-                    alert('로그인 후 즐겨찾기가 가능합니다!');
+                    alert('로그인 후 북마크가 가능합니다!');
                     window.location.href = "../login";
                 }
             },
