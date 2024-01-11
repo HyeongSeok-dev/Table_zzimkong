@@ -199,7 +199,7 @@ public class ReviewController {
 		int visitCount = service.getReservationCount(userIdx, comId);
 		
 		// 예약번호 1개당 1개의 리뷰만 작성 가능
-		List<Map<String, String>> res_list = service.getReservationList(userIdx, comId,res_idx);
+		List<Map<String, String>> res_list = service.getReservationList(userIdx, comId, res_idx);
 		model.addAttribute("res_list",res_list);
 		System.out.println("res_list >>>>>>>>>>>>>>>>>>>>>>>" + res_list);
 		
@@ -280,11 +280,15 @@ public class ReviewController {
 		// ----------------------------------------------------------------------
 		// ReviewService - registReview() 메서드 호출하여 리뷰글 등록 요청
 		// 파라미터 : ReviewVO객체 리턴타입 : int(insertCount)
-		System.out.println(review);
+		System.out.println("리뷰오류>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + review);
 		int insertCount = service.registReview(review);
+	
 
 		// 게시물 등록 작업 요청 결과 판별
 		if (insertCount > 0) {
+				// 리뷰 작성시 포인트 적립
+				review.setUser_idx((int)session.getAttribute("sIdx"));
+				service.givePoint(review);
 			try {
 				if (!mFile1.getOriginalFilename().equals("")) {
 					mFile1.transferTo(new File(saveDir, fileName1));

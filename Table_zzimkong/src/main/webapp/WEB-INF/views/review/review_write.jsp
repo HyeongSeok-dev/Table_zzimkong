@@ -39,18 +39,19 @@ function addResIdx(res_idx) {
 		<span>
 		<select onchange="addResIdx(this.value)">
 		<c:forEach var="reviewItem" items="${res_list}">
-			<option value="${reviewItem.res_idx}" <c:if test="${reviewItem.review_num ne '0'}">disabled</c:if>>
+			<option value="${reviewItem.res_idx}"  
+			<c:if test="${reviewItem.review_num ne '0'}">disabled</c:if>
+			<c:if test="${reviewItem.res_idx eq param.res_idx}">selected</c:if>
+			>
 					${reviewItem.res_date}
 					${reviewItem.res_time}
 				<c:if test="${reviewItem.review_num ne '0'}">(작성완료)</c:if>
-
-			</option>
 		</c:forEach>
 		</select>
 		</span>
 		</div>
 	    <input type="hidden" name="com_id" value="${param.com_id}">		
-	    <input type="hidden" name="res_idx" value="${res_list[0].res_idx}" id="resIdx">
+	    <input type="hidden" name="res_idx" value="${param.res_idx}" id="resIdx">
 		<div class="separator"></div>
 		<div class="review_rate_1" style="text-align: center;">
 		<fieldset class="review_rate">
@@ -194,7 +195,7 @@ function addResIdx(res_idx) {
 				name="review_content" placeholder="업주와 다른 사용자들이 상처받지 않도록 좋은 표현을 사용해주세요.(500자수 제한)"></textarea>
 			<a class="caution_link" href="#" onclick="openPopup()">리뷰 작성 유의사항</a>
 			<section id="commandCell">
-			<button class="register_button" onclick="location.href='${pageContext.request.contextPath}/review/complete?com_id=${com_id}'">등록하기</button>
+			<button type="submit" class="register_button" onclick="location.href='${pageContext.request.contextPath}/review/complete?com_id=${com_id}">등록하기</button>
 <%-- 		    <a href="${pageContext.request.contextPath}/review/write?com_id=${param.com_id}"><i class="fas fa-pencil-alt"></i> &nbsp;리뷰쓰기</a> --%>
 			</section>
 		</div>

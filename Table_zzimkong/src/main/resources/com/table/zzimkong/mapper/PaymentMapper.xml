@@ -71,7 +71,7 @@
 			, #{sIdx}
 			, #{discountPoint}
 			, 4
-			, null
+			, #{pay_idx}
 			, 1
 			, now()
 		)
@@ -85,7 +85,7 @@
 			, #{sIdx}
 			, #{earnedPoints}
 			, 1
-			, null
+			, #{pay_idx}
 			, 1
 			, now()
 		)

@@ -44,13 +44,13 @@ public class PaymentService {
 		return mapper.selectPreOrder(res);
 	}
 
-	public int subUsedPoint(int sIdx, int discountPoint) {
-		return mapper.insertSubUsedPoint(sIdx, discountPoint);
+	public int subUsedPoint(int sIdx, int discountPoint, int pay_idx) {
+		return mapper.insertSubUsedPoint(sIdx, discountPoint, pay_idx);
 	}
 
-	public int addPoint(int sIdx, int earnedPoints) {
+	public int addPoint(int sIdx, int earnedPoints, int pay_idx) {
 		// TODO Auto-generated method stub
-		return mapper.insertAddPoint(sIdx, earnedPoints);
+		return mapper.insertAddPoint(sIdx, earnedPoints, pay_idx);
 	}
 
 	public int paymentSuccess(ReservationVO res, int sIdx, PaymentVO payment) {

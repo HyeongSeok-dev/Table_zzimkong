@@ -114,6 +114,9 @@ public interface ReviewMapper {
 
 	// 예약번호 1개당 1개의 리뷰만 작성 가능
 	List<Map<String, String>> selectReservationList(@Param("userIdx") int userIdx, @Param("comId") int comId,@Param("res_idx")  int res_idx);
+
+	// 리뷰 포인트 적립
+	void updatePoint(ReviewVO review);
     
 	
 }

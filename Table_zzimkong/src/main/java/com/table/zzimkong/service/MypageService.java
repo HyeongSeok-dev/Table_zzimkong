@@ -42,8 +42,8 @@ public class MypageService {
 	}
 	
 	// 예약 내역 전체 개수 조회 요청
-	public int getResList2Count() {
-		return mapper.selectResList2Count();
+	public int getResList2Count(int sIdx) {
+		return mapper.selectResList2Count(sIdx);
 	}
 	
 	// 예약 취소하기

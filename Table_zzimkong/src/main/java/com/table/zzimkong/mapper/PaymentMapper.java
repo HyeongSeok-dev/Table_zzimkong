@@ -33,9 +33,9 @@ public interface PaymentMapper {
 	
 	//---------------------------------------------------------------
 
-	int insertSubUsedPoint(@Param("sIdx") int sIdx, @Param("discountPoint") int discountPoint);
+	int insertSubUsedPoint(@Param("sIdx") int sIdx, @Param("discountPoint") int discountPoint, @Param("pay_idx") int pay_idx);
 
-	int insertAddPoint(@Param("sIdx") int sIdx, @Param("earnedPoints") int earnedPoints);
+	int insertAddPoint(@Param("sIdx") int sIdx, @Param("earnedPoints") int earnedPoints, @Param("pay_idx") int pay_idx);
 
 	int insertPayment(@Param("res")ReservationVO res, @Param("sIdx") int sIdx,
 					 @Param("payment") PaymentVO payment);

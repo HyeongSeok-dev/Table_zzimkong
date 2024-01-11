@@ -28,7 +28,7 @@ public interface MypageMapper {
 			@Param("listLimit") int listLimit);
 	
 	// 예약 내역 전체 개수 조회
-	int selectResList2Count();
+	int selectResList2Count(int sIdx);
 
 	// 예약 취소
 	int updateMyResCancel(MypageInfo mypage);
@@ -63,6 +63,7 @@ public interface MypageMapper {
 	// 신고 회원정보 조회
 	ReportVO selectReportInfo(String sId);
 
+	// 나의 예약내역에서 리뷰작성완료와 리뷰쓸 목록 구분
 //	ReviewVO selectReviewByResIdx(int res_idx);
 	List<ReviewVO> selectReviewByResIdx(int res_idx);
 	

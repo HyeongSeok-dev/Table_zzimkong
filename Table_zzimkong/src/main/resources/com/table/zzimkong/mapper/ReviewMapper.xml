@@ -525,6 +525,24 @@
 		    AND r.res_status = 3;
 	</select>
 	
+	<!-- 리뷰작성 포인트 적립 -->
+	<insert id="updatePoint">
+		<selectKey resultType="int" order="BEFORE" keyProperty="point_idx">
+			SELECT IFNULL(MAX(point_idx), 0)
+			FROM point
+		</selectKey>
+		Insert into point 
+		values(
+			#{point_idx}+1
+			,#{user_idx}
+			,200
+			,2
+			,0
+			,1
+			,now()
+		)
+	</insert>
+	
 	
 	
 

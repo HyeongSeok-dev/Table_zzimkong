@@ -43,9 +43,9 @@
 					<c:when test="${point.point_category eq 2}">
 					<td>리뷰 적립</td>
 					</c:when>
-					<c:when test="${point.point_category eq 3}">
+					<c:otherwise>
 					<td>포인트 사용</td>
-					</c:when>
+					</c:otherwise>
 				</c:choose>
 				<c:choose>
 					<c:when test="${point.point_value gt 0}">
