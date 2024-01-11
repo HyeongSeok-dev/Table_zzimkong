@@ -109,7 +109,7 @@
 													<li class="dropdown"><a href="${pageContext.request.contextPath}/MemberLogout">
 													로그아웃</a></li>
 												</c:when>
-												
+									<%-- --%>			
 												<%--관리자 로그인시 --%>
 												<c:when test="${sessionScope.sCategory eq 3}"> 
 													<li class="dropdown"><a href="${pageContext.request.contextPath}/admin/main">
