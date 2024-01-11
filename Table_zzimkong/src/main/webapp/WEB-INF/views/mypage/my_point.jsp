@@ -38,24 +38,24 @@
 <%-- 					<td><fmt:formatDate value="${point.point_date}" pattern="yyyy-MM-dd HH:mm"/></td> --%>
 				<c:choose>
 					<c:when test="${point.point_category eq 1}">
-					<td>결제 적립</td>
+					<td style="color: #0095FB;">결제 적립</td>
 					</c:when>
 					<c:when test="${point.point_category eq 2}">
-					<td>리뷰 적립</td>
+					<td style="color: #0095FB;">리뷰 적립</td>
 					</c:when>
 					<c:otherwise>
-					<td>포인트 사용</td>
+					<td style="color: red;">포인트 사용</td>
 					</c:otherwise>
 				</c:choose>
 				<c:choose>
 					<c:when test="${point.point_value gt 0}">
-						<td>${point.point_value}</td>
+						<td style="color: #0095FB;">${point.point_value}</td>
 						<td></td>
 						
 					</c:when>
 					<c:when test="${point.point_value lt 0}">
 						<td></td>
-						<td>${point.point_value}</td>
+						<td style="color: red;">${point.point_value}</td>
 					</c:when>
 					<c:otherwise>
 						<td></td>
