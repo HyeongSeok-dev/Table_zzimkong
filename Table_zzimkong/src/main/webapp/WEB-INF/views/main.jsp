@@ -128,7 +128,7 @@
 												
 												
 												
-												
+												<%-- --%>
 												<c:otherwise>
 												<%--로그인후 마이페이지/로그아웃 --%>
 													<li class="dropdown"><a href="${pageContext.request.contextPath}/my/list">
