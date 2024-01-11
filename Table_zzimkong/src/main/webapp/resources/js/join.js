@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 
 
-
+//
 $(document).ready(function() {
 
 	//생일 선택시 오늘이후 날짜 선택 막아놓음
