@@ -185,11 +185,11 @@ h5 {
     background-color: initial;
 } 
 
-span { 
+.star_avg { 
     margin: 0; 
     padding: 0; 
     border: 0; 
-    font-size: 100%; 
+    font-size: 110%; 
     vertical-align: baseline;
 } 
 
@@ -252,20 +252,6 @@ strong {
   align-items: center; /* 요소들을 중앙 정렬 */
 }
 
-body .review_write_button {
-	margin-right: 1px!important;
-	font-size: 18px!important;
-    cursor: pointer!important;
-    border: 1px solid lightgray!important;
-    padding: 14px!important;
-    border-radius: 10px!important;
-    
-}
-
-body .review_write_button:hover {
-	background-color: #E1F5FE!important;
-/* 	color:#fff; */
-}
 
 /*  =============================================================  */
 
@@ -1585,6 +1571,24 @@ h1 {
 }
 
 .write_button_text {
-	font-size: 22pximportant;
+	font-size: 18px;
 }
+
+
+
+body .review_write_button {
+	margin-right: 1px!important;
+/* 	font-size: 18px!important; */
+    cursor: pointer!important;
+/*     border: 1px solid lightgray!important; */
+/*     padding: 14px!important; */
+/*     border-radius: 10px!important; */
+    
+}
+
+body .review_write_button:hover {
+/* 	background-color: #E1F5FE!important; */
+/* 	color:#fff; */
+}
+
  

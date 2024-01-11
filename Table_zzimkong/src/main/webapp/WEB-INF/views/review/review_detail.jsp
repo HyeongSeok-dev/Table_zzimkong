@@ -137,11 +137,11 @@ function showCommentForm(element) {
 
     // 순위별로 색상 지정
     var backgroundColors = sortedData.map((value, index) => {
-//         if (index === 0) return '#00BFFF'; // 1위 
+//         if (index === 0) return '#add8e6'; // 1위 
         if (index === 0) return '#03A9F4'; // 1위 
-//         if (index < 5) return '#A8D6E5'; // 2 ~ 5위
+//         if (index < 5) return '#C8E4F7'; // 2 ~ 5위
         if (index < 5) return '#80D8FF'; // 2 ~ 5위
-//         return '#E0F7FA'; // 나머지
+//         return '#e6f4f1'; // 나머지
         return '#E1F5FE'; // 나머지
     });
 
@@ -693,7 +693,7 @@ function showCommentForm(element) {
 	<br>
     <div class="average">
         <h5>
-			<span>${reviewCount}개 리뷰 별점 평균</span>
+			<span class="star_avg">${reviewCount}개 리뷰 별점 평균</span>
         </h5>
         <br>
         <div class="score">
