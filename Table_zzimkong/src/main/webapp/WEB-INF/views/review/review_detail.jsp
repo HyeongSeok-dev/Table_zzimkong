@@ -725,7 +725,7 @@ function showCommentForm(element) {
 							<span class="write_button_text"><i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;리뷰쓰기</span>
 						</button>
 				</form>
-			 <%-- ==================================================================== --%>
+			 <%-- = =================================================================== --%>
 	        </c:when>
 	        <c:otherwise>
 	            <a href="#" onclick="alert('방문 완료한 회원만 리뷰를 작성하실 수 있습니다.'); return false;"><i class="fas fa-pencil-alt"></i> &nbsp;리뷰쓰기</a>
