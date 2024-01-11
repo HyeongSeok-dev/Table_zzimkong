@@ -94,15 +94,17 @@ $(function() {
 	
 	// 현재보유포인트에 따른 전액사용 선택시
 	$("#useAllPoint").on("click", function() {
+		console.log("선택함");
 		if ($("#preOrderTotalPrice_text").text() == "선주문 없음") {
 		 	var preOrderTotalPrice_text = 0;
 		} else {
-			var preOrderTotalPrice_text = parseInt($("#preOrderTotalPrice_text").text().replace(/,/g, ''));
+			var preOrderTotalPrice_text = parseInt($("#preOrderTotalPrice_text").text().trim().replace(/,/g, ''));
 		}
 		
 		if($("#totalPayment_text").text() == "0") {
 			alert("결제금액이 0원입니다.");
 		} else {
+			console.log("0원아님");
 			 //보유포인트가 총결제 금액보다 많을 때
 			if(useablePoint > parseInt($("#totalPayment_text").text().trim().replace(/,/g, ''))){
 				console.log("결제금액보다 포인트가 더 많음");
@@ -114,7 +116,8 @@ $(function() {
 			} else if($("#useablePoint").text() === "0") {
 				alert("사용가능한 포인트가 없습니다!");
 				
-			} else if(useablePoint < (parseInt($("#preOrderTotalPrice_text").text().replace(/,/g, '')) + reservationPrice)) {
+			} else if(useablePoint < preOrderTotalPrice_text + reservationPrice) {
+				console.log("결제금액보다 포인트가 더 적음");
 				$(".point_to_use").val(useablePoint.toLocaleString()); //여기 내포인트 전액이 와야함
 				$("#useablePoint").text("0"); //사용가능 포인트가 0이된다
 			}

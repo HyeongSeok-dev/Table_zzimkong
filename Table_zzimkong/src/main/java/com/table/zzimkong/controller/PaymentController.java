@@ -280,6 +280,7 @@ public class PaymentController {
 		
 		// [ 결제정보 insert ]
 		int insertCount = service.paymentSuccess(res,sIdx,payment); //res의 res_table_price와pay_per_price같음
+			PaymentVO pay = service.getPayment(res);
 		if(insertCount > 0) {
 			// 1-1. 3번 성공시 예약테이블에서 결제완료상태로 표시 변경 update (res_pay_status = 1)
 
@@ -292,7 +293,7 @@ public class PaymentController {
 //			// 1-2. 사용한 포인트 insert (point_category = 4) //discountPoint(paymentInfo 객체에서 int로 변환)
 			if(discountPoint < 0) { //discountPoint값을 음수로 변경했음
 				
-				int insertSubUsedPoint = service.subUsedPoint(sIdx, discountPoint);
+				int insertSubUsedPoint = service.subUsedPoint(sIdx, discountPoint, pay.getPay_idx());
 				if(insertSubUsedPoint == 0) {
 					System.out.println("사용한 포인트 내역 변경실패!");
 					return "true";
@@ -302,7 +303,7 @@ public class PaymentController {
 			// 1-3. 결제로 인한 적립 포인트 insert  (point_category = 1) //earnedPoints(paymentInfo 객체에서 int로 변환)
 			if(earnedPoints > 0) {
 				
-				int insertAddPoint = service.addPoint(sIdx, earnedPoints);
+				int insertAddPoint = service.addPoint(sIdx, earnedPoints, pay.getPay_idx());
 				if(insertAddPoint == 0) {
 					System.out.println("적립포인트 적립 실패!");
 					return "true";
