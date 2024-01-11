@@ -49,13 +49,13 @@ public class AdminController {
 	@GetMapping("adminAccessDented")
 	public String forward(Model model, HttpServletRequest request) {
 		model.addAttribute("msg", "잘못된 접근입니다!");
-		model.addAttribute("targetURL", request.getContextPath());
+		model.addAttribute("targetURL", request.getContextPath() + "/login");
 		return "forward";
 	}
 	public boolean isvalid(HttpSession session, Model model, HttpServletResponse response) {
-		String sId = (String)session.getAttribute("sId");
-		int sCategory = (int)session.getAttribute("sCategory");
-		if (sId == null || !(sCategory == 3)) {
+//		String sId = (String)session.getAttribute("sId");
+//		int sCategory = (int)session.getAttribute("sCategory");
+		if (session.getAttribute("sId") == null || !((int)session.getAttribute("sCategory") == 3)) {
 			try {
 				response.sendRedirect("/zzimkong/adminAccessDented");
 				return false;
@@ -371,12 +371,6 @@ public class AdminController {
 		report_approve_register = report_approve_register.replace(",", "");
 		// 수정된 report_approve_register 값을 report 객체에 다시 설정
 		report.setReport_approve_register(report_approve_register);
-		
-		System.out.println("===============================");
-		System.out.println(report);
-		System.out.println(report.getReport_num());
-		System.out.println(report.getReport_approve_register());
-		System.out.println("===============================");
 		
 		int updateCount = service.adminReportRegister(report);
 		

@@ -202,6 +202,7 @@
 		SELECT *
 		FROM reservation
 		WHERE com_id = #{com_id} AND res_date = DATE_FORMAT(CURDATE() , '%Y-%m-%d')
+		AND res_pay_status = 1
 		ORDER BY
 			res_time DESC
 	</select>
@@ -255,6 +256,14 @@
 		SELECT * 
 		FROM reservation 
 		WHERE com_id = #{com_id} AND res_date = DATE_FORMAT(CURDATE() , '%Y-%m-%d')
+	</select>
+	
+	<select id="selectResAll">
+		SELECT *
+		FROM reservation
+		WHERE com_id = #{com_id}
+		ORDER BY
+			res_date DESC, res_time DESC
 	</select>
 		
 	

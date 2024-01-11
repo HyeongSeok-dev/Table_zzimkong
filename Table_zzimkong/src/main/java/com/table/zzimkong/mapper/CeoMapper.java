@@ -60,4 +60,6 @@ public interface CeoMapper {
     int updateStatus(@Param("resIdx") int resIdx, @Param("status") int status);
 
 	List<ReservationVO> selectResPerson(CompanyVO com);
+
+	List<ReservationVO> selectResAll(String com_id);
 }

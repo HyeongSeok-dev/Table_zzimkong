@@ -13,7 +13,7 @@
 <script type="text/javascript">
 	function qnaQuestionForm(cs_board_num) {
 		/* 팝업창 중앙 정렬 */
-		var popupW = 950;
+		var popupW = 1000;
 		var popupH = 700;
 		var left = Math.ceil((window.screen.width - popupW)/2);
 		var top = Math.ceil((window.screen.height - popupH)/2);
@@ -352,14 +352,7 @@
 					                	<tr onclick="qnaQuestionForm(${board.cs_board_num})">
 									</c:otherwise>				                
 				                </c:choose>
-   				       		 	<c:choose>
-					                <c:when test="${board.cs_board_re_lev eq 0}">
 				                    	<td>${status.index + 1}</td>
-					                </c:when>
-					                <c:otherwise>
-					                    <td></td>
-					                </c:otherwise>
-			                    </c:choose>
 				                    <c:choose>
 				                    	<c:when test="${board.cs_board_category_user eq '1'}">
 						                    <th class="cs_th">일반회원</th>

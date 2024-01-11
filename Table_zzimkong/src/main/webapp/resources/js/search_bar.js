@@ -252,19 +252,23 @@ $(document).ready(function() {
 	//지역선택에 따른 정렬======================================================
 	// 회사 정보를 HTML로 변환하는 함수
 function createItemHtml(company) {
-    return '<div class="owl-item" style="width: 215px;">' +
-               '<div class="owl_example1_items_images">' +
-               '<a href="product/detail?com_id=' + company.com_id + '">' +
-               '<img alt="" src="' + contextRoot + '/resources/upload/' + company.com_img + '"> <br>' +
-               company.com_name +
-               '</a>' +
-               '</div></div>';
-}
+	    return `
+	        <div class="owl_example1_items_images">
+	            <a href="product/detail?com_id=${company.com_id}">
+	                <img alt="" src="${contextPath}/resources/upload/${company.com_img}"> <br>
+	                ${company.com_name}
+	            </a>
+	        </div>
+	    `;
+	}
 
 // 제어 요소 HTML을 생성하는 함수
 function createControlsHtml() {
-    return '<div class="owl-controls clickable"><div class="owl-pagination"><div class="owl-page active"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div></div><div class="owl-buttons"><div class="owl-prev"></div><div class="owl-next"><i class="fa fa-angle-right"></i></div></div></div>';
+    return '</div></div><div class="owl-controls clickable"><div class="owl-pagination"><div class="owl-page active"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div></div><div class="owl-buttons"><div class="owl-prev"></div><div class="owl-next"><i class="fa fa-angle-right"></i></div></div></div>';
 }
+
+//헤더 변수 선언
+let header = `<div class="owl-wrapper-outer"><div class="owl-wrapper" style="width: 5300px; left: 0px; display: block; transition: all 0ms ease 0s; transform: translate3d(0px, 0px, 0px)`;
 
 //지역선택에 맞는 정렬
 function fetchLocationData() {
@@ -281,19 +285,24 @@ function fetchLocationData() {
             var owl1 = $('#owl-example1').empty();
             var owl2 = $('#owl-example2').empty();
             var owl3 = $('#owl-example3').empty();
+			
+			owl1.append(header);
 
-            // 위생순 데이터
+//             위생순 데이터
             data.cleanList.forEach(function(company) {
                 var itemHtml = createItemHtml(company);
                 owl1.append(itemHtml);
             });
+				
 
+			owl2.append(header);
             // 추천순 데이터
             data.recommendList.forEach(function(company) {
                 var itemHtml = createItemHtml(company);
                 owl2.append(itemHtml);
             });
 
+			owl3.append(header);
             // 별점순 데이터
             data.reviewList.forEach(function(company) {
                 var itemHtml = createItemHtml(company);

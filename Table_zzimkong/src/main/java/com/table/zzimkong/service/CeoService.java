@@ -130,5 +130,11 @@ public class CeoService {
 	public List<ReservationVO> getResPerson(CompanyVO com) {
 		return mapper.selectResPerson(com);
 	}
+	
+	
+	//전체
+	public List<ReservationVO> getResAll(String com_id) {
+		return mapper.selectResAll(com_id);
+	}
 
 }
