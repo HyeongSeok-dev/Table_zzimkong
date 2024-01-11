@@ -110,7 +110,7 @@ $(function() {
 				console.log("0원아님");
 				 //보유포인트가 총결제 금액보다 많을 때
 				if(useablePoint > parseInt($("#totalPayment_text").text().trim().replace(/,/g, '')) 
-				&& parseInt($("#discountPoint_text").text().trim().replace(/,/g, '') == useablePoint)){
+				|| parseInt($("#discountPoint_text").text().trim().replace(/,/g, '') == useablePoint)){
 					console.log("결제금액보다 포인트가 더 많음");
 					var payment = preOrderTotalPrice_text + reservationPrice
 					$(".point_to_use").val(payment.toLocaleString()); //사용포인트에 결제금액 만큼들어감
@@ -210,39 +210,15 @@ $(function() {
 			}
 	       
         } else { // 라디오버튼에 체크가 되어있을 때
-			if(parseInt($("#totalPayment_text").text().trim().replace(/,/g, '')) === 0) { 
-				if(parseInt($("#discountPoint_text").text().trim().replace(/,/g, '')) == parseInt($(".point_to_use").val().replace(/,/g, ''))) {
-					if(confirm("현장결제를 취소 하시겠습니까?")) {
-						$("#onSitePayment").prop('checked', false);
-						$("#preOrderTotalPrice_text").text(preOrderTotalPrice_text.toLocaleString());		
-						payCalculation();
-						
-						isChecked = false;
-					} else {
-						$("#onSitePayment").prop('checked', true);
-						isChecked = true;
-					}
-				}
-			} else if(parseInt($("#totalPayment_text").text().trim().replace(/,/g, '')) < parseInt($("#preOrderTotalPrice_text").text().trim().replace(/,/g, ''))){
-				if(confirm("현장결제를 취소 하시겠습니까?")) {
+			if(confirm("현장결제를 취소 하시겠습니까?")) {
 				$("#onSitePayment").prop('checked', false);
-				$("#preOrderTotalPrice_text").text(preOrderTotalPrice_text.toLocaleString()); //그전 값으로 다시 돌려줌
+				$("#preOrderTotalPrice_text").text(preOrderTotalPrice_text.toLocaleString());		
 				payCalculation();
+				
 				isChecked = false;
-				} else {
-						$("#onSitePayment").prop('checked', true);
-						isChecked = true;
-					}
-			}  else if((parseInt($("#discountPoint_text").text().trim().replace(/,/g, '')) == 0)) {
-				if(confirm("현장결제를 취소 하시겠습니까?")) {
-				$("#onSitePayment").prop('checked', false);
-				$("#preOrderTotalPrice_text").text(preOrderTotalPrice_text.toLocaleString());
-				payCalculation();
-				isChecked = false;
-				} else {
-						$("#onSitePayment").prop('checked', true);
-						isChecked = true;
-					}
+			} else {
+				$("#onSitePayment").prop('checked', true);
+				isChecked = true;
 			}
 		}
 	});
