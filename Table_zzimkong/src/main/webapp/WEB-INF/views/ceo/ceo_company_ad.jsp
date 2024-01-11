@@ -34,13 +34,13 @@
 						<th>현재 광고상태</th>
 						<td colspan="1">
 							<c:choose>
-								<c:when test="${com.com_ad_grade eq '1'}">
+								<c:when test="${com.com_ad_grade eq '0'}">
 										<input type="text" value="신규등록" name="adStatus" id="adStatus" readonly="readonly">
 								</c:when>
-								<c:when test="${com.com_ad_grade eq '2'}">
+								<c:when test="${com.com_ad_grade eq '1'}">
 										<input type="text" value="1단계" name="adStatus" id="adStatus" readonly="readonly">
 								</c:when>
-								<c:when test="${com.com_ad_grade eq '3'}">
+								<c:when test="${com.com_ad_grade eq '2'}">
 										<input type="text" value="2단계" name="adStatus" id="adStatus" readonly="readonly">
 								</c:when>
 								<c:otherwise>

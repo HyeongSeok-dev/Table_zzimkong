@@ -76,6 +76,7 @@
 										    </c:forEach>
 									    </c:when>
 									    <c:otherwise>
+									    	<option value="">시</option>
 										    <c:forEach var="i" begin="0" end="23">
 										    	<option value="${i}" ${i == com.openHour ? 'selected' : ''}>${i}</option>
 										    </c:forEach>
@@ -105,6 +106,7 @@
 										    </c:forEach>
 									    </c:when>
 									    <c:otherwise>
+									    	<option value="">시</option>
 										    <c:forEach var="i" begin="0" end="23">
 										    	<option value="${i}" ${i == com.closeHour ? 'selected' : ''}>${i}</option>
 										    </c:forEach>
@@ -136,6 +138,7 @@
 										    </c:forEach>
 									    </c:when>
 									    <c:otherwise>
+									    	<option value="">시</option>
 										    <c:forEach var="i" begin="0" end="23">
 										    	<option value="${i}" ${i == com.startHour ? 'selected' : ''}>${i}</option>
 										    </c:forEach>
@@ -165,6 +168,7 @@
 										    </c:forEach>
 									    </c:when>
 									    <c:otherwise>
+									    	<option value="">시</option>
 										    <c:forEach var="i" begin="0" end="23">
 										    	<option value="${i}" ${i == com.endHour ? 'selected' : ''}>${i}</option>
 										    </c:forEach>

@@ -162,10 +162,14 @@ public class PaymentController {
 		// 데이터베스에 들고갈 paymentVO객체 생성
 		PaymentVO payment = new PaymentVO();
 		
-		// 세션에 로그인이 안되어있다면 접근금지
-		if(session.getAttribute("sId") == null) {
-			return "false";
-		}
+//		// 세션에 로그인이 안되어있다면 접근금지
+//		if(session.getAttribute("sId") == null) {
+//
+//			model.addAttribute("msg", "접근권한이 없습니다!");
+//			model.addAttribute("targetURL", "login");
+//			
+//			return "forward";
+//		}
 		
 		// 무통장 입금시 결제번호 생성
 //		int pay_method = Integer.parseInt(map.get("pay_method"));
@@ -421,6 +425,7 @@ public class PaymentController {
 		map.put("ePoint", earnedPoints);
 		map.put("ftp", finalTotalPayment);
 
+		//예약결제완료 이메일 전송
 		mailService.sendCheckInfoAuthMail(map);
 		mav = new ModelAndView("payment/payment_info", "map", map);
 		System.out.println(mav);

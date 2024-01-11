@@ -88,13 +88,13 @@
 						<th colspan="2">광고등급</th>
 						<td>
 							<c:choose>
-									<c:when test="${com.com_ad_grade eq '1'}">
+									<c:when test="${com.com_ad_grade eq '0'}">
 											광고없음(0단계)
 									</c:when>
-									<c:when test="${com.com_ad_grade eq '2'}">
+									<c:when test="${com.com_ad_grade eq '1'}">
 											1단계
 									</c:when>
-									<c:when test="${com.com_ad_grade eq '3'}">
+									<c:when test="${com.com_ad_grade eq '2'}">
 											2단계
 									</c:when>
 									<c:otherwise>

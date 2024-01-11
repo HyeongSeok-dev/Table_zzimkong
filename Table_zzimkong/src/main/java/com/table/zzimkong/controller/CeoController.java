@@ -507,16 +507,15 @@ public class CeoController {
 	
 	@GetMapping("ceo/company/register")
 	public String companyRegisterForm(HttpSession session,Model model) {
-//		session.setAttribute("sId", "ceo123456");
 		String sId = (String)session.getAttribute("sId");
-//		if(session.getAttribute("sId") == null) {
-//			
-//			map.put("msg", "접근권한이 없습니다!");
-//			map.put("targetURL", "login");
-//			
-//			mav = new ModelAndView("forward", "map", map);
-//			return mav;
-//		}
+		if(sId == null) {
+			
+			model.addAttribute("msg", "접근권한이 없습니다!");
+			model.addAttribute("targetURL", "login");
+			
+			return "forward";
+		}
+		// 사업자의 정보를 뷰페이지로 전송(사업자 등록번호 조회시 이름 사용)
 		System.out.println(sId);
 		MemberVO dbmember = service.getUserInfo(sId);
 		model.addAttribute("member",dbmember);
@@ -526,14 +525,14 @@ public class CeoController {
 	@ResponseBody
 	@GetMapping("ceo/company/ceoCheckDupComNum")
 	public String checkDupComNum(HttpSession session, Model model, CompanyVO com) {
-		String sId = (String)session.getAttribute("sId");
-//		if(session.getAttribute("sId") == null) {
-//			
-//			model.addAttribute("msg", "접근권한이 없습니다!");
-//			model.addAttribute("targetURL", "login");
-//			
-//			return "forward";
-//		}
+		if(session.getAttribute("sId") == null) {
+			
+			model.addAttribute("msg", "접근권한이 없습니다!");
+			model.addAttribute("targetURL", "login");
+			
+			return "forward";
+		}
+		// 사업자 등록번호가 이미 등록된 번호인지 확인하는 작업
 		System.out.println(com.getCom_num());
 		CompanyVO comNum = service.getComNum(com);
 		if(comNum == null) {
@@ -550,13 +549,13 @@ public class CeoController {
 		
 		System.out.println("companyVO" + company);
 		String sId = (String)session.getAttribute("sId");
-//		if(session.getAttribute("sId") == null) {
-//			
-//			model.addAttribute("msg", "접근권한이 없습니다!");
-//			model.addAttribute("targetURL", "login");
-//			
-//			return "forward";
-//		}
+		if(sId == null) {
+			
+			model.addAttribute("msg", "접근권한이 없습니다!");
+			model.addAttribute("targetURL", "login");
+			
+			return "forward";
+		}
 		//user_idx 
 		company.setUser_idx((int)session.getAttribute("sIdx"));
 		
@@ -600,7 +599,7 @@ public class CeoController {
 		}
 		
 		//------------------------------------------------------------------------------------------------
-		//카테고리 boolea으로 변경하기
+		//카테고리 나눠서 boolean으로 변경하기
 		String[] tagArr = company.getCom_tag().split(",");
 		for(int i = 0; i < tagArr.length; i++) {
 			String tag = tagArr[i];
@@ -646,7 +645,7 @@ public class CeoController {
 		//-------------------------------------------------------------------------------------------
 		//전화번호 "-" 넣기
 		if(!company.getCom_tel().contains("-")) {
-			switch (company.getCom_tel().length()) {
+			switch (company.getCom_tel().length()) { //전화번호 자리수에 따라 - 위치가 달라짐
 			case 8:
 				String tel = company.getCom_tel().substring(0,4) + "-" + company.getCom_tel().substring(4);
 				System.out.println(tel+company.getCom_tel().length());
@@ -701,7 +700,7 @@ public class CeoController {
 		System.out.println("구군 : " +  gugun);
 		company.setCom_gugun(gugun);
 		
-		// 등록
+		// [ 등록 ]
 		int insertCompany = service.registCompany(company, sId);
 		
 		if(insertCompany > 0) {
@@ -716,6 +715,7 @@ public class CeoController {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+			
 			
 			return "redirect:/ceo/company/list";
 			
@@ -764,19 +764,22 @@ public class CeoController {
 		return "ceo/ceo_company_list";
 	}
 	
+	
+	
 	@GetMapping("ceo/company/view")
 	public String ceoCompanyView(HttpSession session,Model model 
 								,@RequestParam(defaultValue = "") String com_num	
 								) {
-//		if(session.getAttribute("sId") == null) {
-//			model.addAttribute("msg", "접근권한이 없습니다!");
-//			model.addAttribute("targetURL", "login");
-//			return "forward";
-//		}
+		if(session.getAttribute("sId") == null) {
+			model.addAttribute("msg", "접근권한이 없습니다!");
+			model.addAttribute("targetURL", "login");
+			return "forward";
+		}
 	
 		System.out.println("view : " + com_num);
 		CompanyVO company = service.getEachCompany(com_num);
 		
+		// 디비에서 가지고온 사업장 정보중 영업시간 브레이크타임 결합
 		company.setOperatingTime(company.getCom_open_time() + " ~ " + company.getCom_close_time());
 		System.out.println("time" + company.getCom_breakStart_time());
 		if(company.getCom_breakStart_time().isEmpty() || company.getCom_breakEnd_time().isEmpty()) {
@@ -796,23 +799,17 @@ public class CeoController {
 	
 	@ResponseBody
 	@GetMapping("ceo/company/companyStatusChange")
-	public String comStatusChange(@RequestParam(defaultValue = "") String com_status, @RequestParam(defaultValue = "0") String com_num) {
-////		System.out.println(member.getId());
-//
-//		// MemberService - getMember() 메서드 호출하여 아이디 조회(기존 메서드 재사용)
-//		// (MemberService - getMemberId() 메서드 호출하여 아이디 조회 메서드 정의 가능)
-//		// => 파라미터 : MemberVO 객체 리턴타입 : MemberVO(dbMember)
-//		MemberVO dbMember = service.getMember(member);
-//
-//		// 조회 결과 판별
-//		// => MemberVO 객체가 존재할 경우 아이디 중복, 아니면 사용 가능한 아이디
-//		if (dbMember == null) { // 사용 가능한 아이디
-//			return "false"; // 중복이 아니라는 의미로 "false" 값 전달
-//		} else { // 아이디 중복
-//			return "true"; // 중복이라는 의미로 "true" 값 전달
-//		}
+	public String comStatusChange(HttpSession session, Model model,
+			@RequestParam(defaultValue = "") String com_status, @RequestParam(defaultValue = "0") String com_num) {
+		if(session.getAttribute("sId") == null) {
+			model.addAttribute("msg", "접근권한이 없습니다!");
+			model.addAttribute("targetURL", "login");
+			return "forward";
+		}
+		
 		System.out.println("com_status : " + com_status + ", com_num : " + com_num);
 		
+		// 사업장상태변경
 		CompanyVO company = new CompanyVO();
 		company.setCom_num(com_num);
 		int updateComStatus = 0;
@@ -839,16 +836,16 @@ public class CeoController {
 	@GetMapping("ceo/company/modify")
 	public String ceoCompanyModify(HttpSession session, Model model, @RequestParam(defaultValue = "")String com_num) {
 		String sId = (String)session.getAttribute("sId");
-//		if(session.getAttribute("sId") == null) {
-//			
-//			model.addAttribute("msg", "접근권한이 없습니다!");
-//			model.addAttribute("targetURL", "login");
-//			
-//			return "forward";
-//		}
-//		System.out.println(company.getCom_num());
+		if(sId == null) {
+			
+			model.addAttribute("msg", "접근권한이 없습니다!");
+			model.addAttribute("targetURL", "login");
+			
+			return "forward";
+		}
 		CompanyVO company = service.getEachCompany(com_num);
 		
+		// 시간 분할해서 select태그에 맞게 변경
 		System.out.println(company.getCom_open_time().split(":")[0]);
 		System.out.println("breakStart_time : " + company.getCom_breakStart_time());
 		System.out.println("breakEnd_time : " + company.getCom_breakEnd_time());
@@ -877,14 +874,13 @@ public class CeoController {
 	
 	@PostMapping("ceo/company/modifyPro")
 	public String companyModifyPro(HttpSession session, Model model, CompanyVO company) {
-		String sId = (String)session.getAttribute("sId");
-//		if(session.getAttribute("sId") == null) {
-//			
-//			model.addAttribute("msg", "접근권한이 없습니다!");
-//			model.addAttribute("targetURL", "login");
-//			
-//			return "forward";
-//		}
+		if(session.getAttribute("sId") == null) {
+			
+			model.addAttribute("msg", "접근권한이 없습니다!");
+			model.addAttribute("targetURL", "login");
+			
+			return "forward";
+		}
 		
 		System.out.println("수정1 : " + company);
 		// [사업장 이미지 업로드]
@@ -919,11 +915,19 @@ public class CeoController {
 		company.setCom_close_time(company.getCloseHour() + ":" + company.getCloseMin());
 		System.out.println("-> : " + company.getCom_breakStart_time());
 		System.out.println("-> : " + company.getCom_breakEnd_time());
-		if(company.getCom_breakStart_time() != null || company.getCom_breakEnd_time() != null) {
-		company.setCom_breakStart_time(company.getStartHour() + ":" + company.getStartMin());
-		company.setCom_breakEnd_time(company.getEndHour() + ":" + company.getEndMin());
+		
+		// 브레이크타임이 수정폼에서 입력한 값이 있으면 문자열 결합 없으면 널스트링 처리
+		if(!company.getStartHour().isEmpty() || !company.getStartMin().isEmpty()) {
+			System.out.println("브레이크타임 시작 수정");
+			company.setCom_breakStart_time(company.getStartHour() + ":" + company.getStartMin());
 		} else {
 			company.setCom_breakStart_time("");
+		}
+		
+		if(!company.getEndHour().isEmpty() || !company.getEndMin().isEmpty()) {
+			System.out.println("브레이크타임 종료 수정");
+			company.setCom_breakEnd_time(company.getEndHour() + ":" + company.getEndMin());
+		} else {
 			company.setCom_breakEnd_time("");
 		}
 		
@@ -1038,15 +1042,13 @@ public class CeoController {
 	
 	@PostMapping("ceo/company/closeRegist")
 	public String companyCloseRegist(HttpSession session, Model model, @RequestParam(defaultValue = "")String com_num) {
-		String sId = (String)session.getAttribute("sId");
-//		if(session.getAttribute("sId") == null) {
-//			
-//			model.addAttribute("msg", "접근권한이 없습니다!");
-//			model.addAttribute("targetURL", "login");
-//			
-//			return "forward";
-//		}
-		
+		if(session.getAttribute("sId") == null) {
+			
+			model.addAttribute("msg", "접근권한이 없습니다!");
+			model.addAttribute("targetURL", "login");
+			
+			return "forward";
+		}
 		
 		int updateStatusClose = service.closeRegist(com_num);
 		
@@ -1062,14 +1064,13 @@ public class CeoController {
 	
 	@GetMapping("ceo/company/ad")
 	public String ceoCompanyAd(HttpSession session, Model model, @RequestParam(defaultValue = "")String com_num) {
-		String sId = (String)session.getAttribute("sId");
-//		if(session.getAttribute("sId") == null) {
-//			
-//			model.addAttribute("msg", "접근권한이 없습니다!");
-//			model.addAttribute("targetURL", "login");
-//			
-//			return "forward";
-//		}
+		if(session.getAttribute("sId") == null) {
+			
+			model.addAttribute("msg", "접근권한이 없습니다!");
+			model.addAttribute("targetURL", "login");
+			
+			return "forward";
+		}
 //		System.out.println(company.getCom_num());
 		CompanyVO company = service.getEachCompany(com_num);
 		
@@ -1080,14 +1081,13 @@ public class CeoController {
 	
 	@PostMapping("ceo/company/payAdPro")
 	public String payAd(CompanyVO company, Model model, HttpSession session) {
-		String sId = (String)session.getAttribute("sId");
-//		if(session.getAttribute("sId") == null) {
-//			
-//			model.addAttribute("msg", "접근권한이 없습니다!");
-//			model.addAttribute("targetURL", "login");
-//			
-//			return "forward";
-//		}
+		if(session.getAttribute("sId") == null) {
+			
+			model.addAttribute("msg", "접근권한이 없습니다!");
+			model.addAttribute("targetURL", "login");
+			
+			return "forward";
+		}
 		
 		int updateAdGrade = service.registAd(company);
 		
