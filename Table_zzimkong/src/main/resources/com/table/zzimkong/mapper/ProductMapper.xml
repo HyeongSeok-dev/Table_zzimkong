@@ -74,7 +74,8 @@
                 AND (com_name LIKE CONCAT('%', #{context}, '%')
                 OR com_search_tag LIKE CONCAT('%', #{context}, '%')
                 OR com_category LIKE CONCAT('%', #{context}, '%')
-                OR com_gugun LIKE CONCAT('%', #{context}, '%'))
+                OR com_gugun LIKE CONCAT('%', #{context}, '%')
+                OR m.menu_name LIKE CONCAT('%', #{context}, '%'))
             </if>
             
             <if test="location != null">
