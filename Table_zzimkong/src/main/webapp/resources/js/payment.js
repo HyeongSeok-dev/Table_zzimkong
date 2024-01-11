@@ -184,6 +184,11 @@ $(function() {
 						payCalculation();
 						
 			            isChecked = true;
+					} else if((parseInt($("#discountPoint_text").text().trim().replace(/,/g, '')) == 0)) {
+						$("#onSitePayment").prop('checked', true);
+						$("#preOrderTotalPrice_text").text("0");
+						payCalculation();
+			            isChecked = true;
 					} else {
 						$("#onSitePayment").prop('checked', false);
 						isChecked = false;
@@ -221,6 +226,11 @@ $(function() {
 			} else if(parseInt($("#totalPayment_text").text().trim().replace(/,/g, '')) < parseInt($("#preOrderTotalPrice_text").text().trim().replace(/,/g, ''))){
 				$("#onSitePayment").prop('checked', false);
 				$("#preOrderTotalPrice_text").text(preOrderTotalPrice_text.toLocaleString()); //그전 값으로 다시 돌려줌
+				payCalculation();
+				isChecked = false;
+			}  else if((parseInt($("#discountPoint_text").text().trim().replace(/,/g, '')) == 0)) {
+				$("#onSitePayment").prop('checked', false);
+				$("#preOrderTotalPrice_text").text(preOrderTotalPrice_text.toLocaleString());
 				payCalculation();
 				isChecked = false;
 			}
