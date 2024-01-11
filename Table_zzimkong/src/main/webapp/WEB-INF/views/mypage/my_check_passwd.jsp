@@ -15,6 +15,7 @@
 </head>
 <body>
 	<div align="center">
+	<br><br>
 		<h3>비밀번호를 한번 더 입력해주세요</h3>
 	</div>
 	<br><br>
@@ -25,5 +26,10 @@
 	</form>
 				<button type="button" id="my_delete">취소</button>
 			</div>
+			
+					<br><br>
+	    <footer>
+		      	<jsp:include page="../inc/bottom.jsp"></jsp:include>
+    	</footer>
 </body>
 </html>

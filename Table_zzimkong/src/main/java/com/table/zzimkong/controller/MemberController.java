@@ -204,34 +204,27 @@ public class MemberController {
 		
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		
-		// 아이디가 널 문자열이거나, dbMember가 null인 경우 존재하지 않는 아이디 처리
-		if(member.getUser_id() == null || member.getUser_id().equals("")) {
-//		 if (member.getUser_id() == null || !member.getUser_id().matches("^[A-Za-z0-9]+$")) {
-//	        model.addAttribute("msg", "아이디를 다시 확인해주세요.");
-//	    if (!dbMember.getUser_id().equals(member.getUser_id())) {
-//	    	model.addAttribute("msg", "아이디를 다시 확인해주세요.");
-		    return "fail_back";
-		} else if(!passwordEncoder.matches(member.getUser_passwd(), dbMember.getUser_passwd())) {
-		    // 비밀번호 일치하지 않음 처리
-		    model.addAttribute("msg", "아이디 또는 비밀번호를 잘못 입력했습니다.");
-		    return "fail_back";
-		    
-		} else { // 로그인 성공
-		    // 세션 객체에 로그인 성공한 아이디를 "sId" 속성으로 추가
-		    session.setAttribute("sId", member.getUser_id());
-		    //메인닉네임표시
-		    session.setAttribute("sNick", dbMember.getUser_nick());
-		    //메인화면 회원상태 구별을 위한 세션
-		    session.setAttribute("sCategory", dbMember.getUser_category());
-		    //메인 업주화면 이름 표시를위한 세션
-		    session.setAttribute("sName", dbMember.getUser_name());
-		    //  user_idx가 외래키여서 session에 sIdx 넣었음
-		    session.setAttribute("sIdx", dbMember.getUser_idx());    
-		    // 메인페이지로 리다이렉트
-		    return "redirect:/";
-		}
-		
+		// 비밀번호 일치하지 않음 처리
+		if(!passwordEncoder.matches(member.getUser_passwd(), dbMember.getUser_passwd())) {
+	    model.addAttribute("msg", "아이디 또는 비밀번호가 틀렸습니다.");
+	    return "fail_back";
+    
+	} else { // 로그인 성공
+	    // 세션 객체에 로그인 성공한 아이디를 "sId" 속성으로 추가
+	    session.setAttribute("sId", member.getUser_id());
+	    //메인닉네임표시
+	    session.setAttribute("sNick", dbMember.getUser_nick());
+	    //메인화면 회원상태 구별을 위한 세션
+	    session.setAttribute("sCategory", dbMember.getUser_category());
+	    //메인 업주화면 이름 표시를위한 세션
+	    session.setAttribute("sName", dbMember.getUser_name());
+	    //  user_idx가 외래키여서 session에 sIdx 넣었음
+	    session.setAttribute("sIdx", dbMember.getUser_idx());    
+	    // 메인페이지로 리다이렉트
+	    return "redirect:/";
 	}
+	
+}
 		
 	// "MemberLogout" 요청에 대한 로그아웃 비즈니스 로직 처리
 	@GetMapping("MemberLogout")

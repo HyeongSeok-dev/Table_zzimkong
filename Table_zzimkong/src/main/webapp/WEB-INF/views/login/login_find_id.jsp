@@ -35,9 +35,9 @@
 		       <div id="box">
 			        <!-- 이메일 -->
 			        <div class="u_email" align="center" >
-		                <input type="text" id="user_email1" name="user_email1" placeholder="이메일" style="width: 80px;" onkeydown="eventObj.loginByEnterKey(event)" maxlength="16" autocomplete="false">
+		                <input type="text" id="user_email1" name="user_email1" placeholder="이메일" style="width: 80px; height: 40px;" onkeydown="eventObj.loginByEnterKey(event)" maxlength="16" autocomplete="false">
 		                <span id="at">@</span>
-		                <input type="text" id="user_email2" name="user_email2" style="width: 80px;">
+		                <input type="text" id="user_email2" name="user_email2" style="width: 80px; height: 40px;">
 						<select onchange="checkOption(this)">
 			                <option value="">선택하세요</option>
 			                <option value="gmail.com">gmail.com</option>
@@ -59,10 +59,10 @@
 		          
 		          <br><br>
 		          <!-- 고객센터 연결 -->
-		          <div align="center">
-			          아이디 찾기에 어려움이 있으신가요? 
-			          <a href="${pageContext.request.contextPath }/member/cs/faq">고객센터</a>
-		          </div>
+				<div align="center">
+				    아이디 찾기에 어려움이 있으신가요? 
+				    <a href="javascript:void(0);" onclick="window.opener.location.href='${pageContext.request.contextPath }/member/cs/faq';window.close();">고객센터</a>
+				</div>
 		          
 				 <!-- 바텀 -->
 			<footer>

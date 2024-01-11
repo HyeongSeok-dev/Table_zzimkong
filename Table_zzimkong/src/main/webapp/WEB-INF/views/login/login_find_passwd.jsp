@@ -30,7 +30,7 @@
 		        	<img class="logo_img_2" src="${pageContext.request.contextPath }/resources/img/logo3_2.png" alt="메인로고2" >
 		       </div><br>
 		       
-		       <!-- 테두리를 위한 div테그 -->
+		       <!-- 테두리를 위한 div태그 -->
 		       <div id="box">
 		       
 		       		<!-- 아이디 입력 -->
@@ -38,10 +38,10 @@
 		       		
 			        <!-- 이메일 입력-->
 			        <div class="u_email" align="center" >
-		                <input type="text" id="user_email1" name="user_email1" placeholder="이메일" style="width: 70px;" onkeydown="eventObj.loginByEnterKey(event)" maxlength="16" autocomplete="false">
+		                <input type="text" id="user_email1" name="user_email1" placeholder="이메일" style="width: 70px; height: 40px;" onkeydown="eventObj.loginByEnterKey(event)" maxlength="16" autocomplete="false">
 		                <span id="at">@</span>
-		                <input type="text" id="user_email2" name="user_email2" style="width: 70px;">
-						<select onchange="checkOption(this)">
+		                <input type="text" id="user_email2" name="user_email2" style="width: 70px; height: 40px;">
+						<select onchange="checkOption(this)" style="width:100px;">
 			                <option value="">선택하세요</option>
 			                <option value="gmail.com">gmail.com</option>
 			                <option value="naver.com">naver.com</option>
@@ -63,7 +63,7 @@
 		          <!-- 고객센터 연결 -->
 		          <div align="center">
 			          비밀번호 찾기에 어려움이 있으신가요? 
-			          <a href="${pageContext.request.contextPath }/member/cs/faq">고객센터</a>
+			          <a href="javascript:void(0);" onclick="window.opener.location.href='${pageContext.request.contextPath }/member/cs/faq';window.close();">고객센터</a>
 		          </div><br>
 		          		          
 				 <!-- 바텀 -->

@@ -69,11 +69,11 @@
 				        <b>잔여 포인트 : ${totalPoint}<span class="small-text"> 원</span></b>
 				    </span>
 				</td>
-
 		</table>
-						
-
-		
+		<br><br>
+	    <footer>
+	      	<jsp:include page="../inc/bottom.jsp"></jsp:include>
+	    </footer>
 	</div>
 	</main>
 	

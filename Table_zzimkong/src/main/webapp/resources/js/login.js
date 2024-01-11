@@ -23,14 +23,14 @@ $(function() {
 	    // 아이디 입력 여부 확인
 	    var userId = $("#userId").val();  // 아이디 텍스트박스의 값 가져오기
 	    if (userId.trim() === "") {  // 값이 비어있는지 확인
-	        alert("아이디를 입력해주세요!");
+	        alert("아이디를 입력해주세요.");
 	        return;  // 함수 종료
 	    }
 	    
 	    // 비밀번호 입력 여부 확인
 	    var password = $("#passwd").val();  // 비밀번호 텍스트박스의 값 가져오기
 	    if (password.trim() === "") {  // 값이 비어있는지 확인
-	        alert("비밀번호를 입력해주세요!");
+	        alert("비밀번호를 입력해주세요.");
 	        return;  // 함수 종료
 	    }
 	    

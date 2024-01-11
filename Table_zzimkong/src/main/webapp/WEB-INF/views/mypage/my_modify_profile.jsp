@@ -113,10 +113,11 @@
             		<button type="submit" id="modifyBtn">수정하기</button>
 			</div>
 		</form>
+		<br><br>
+	    <footer>
+		      	<jsp:include page="../inc/bottom.jsp"></jsp:include>
+	    </footer>
 	</div>		
 	</main>
-	<footer>
-<%-- 		<jsp:include page="../inc/bottom.jsp"/> --%>
-	</footer>
 </body>
 </html>

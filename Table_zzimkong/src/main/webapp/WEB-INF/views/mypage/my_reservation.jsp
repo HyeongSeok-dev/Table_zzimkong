@@ -75,22 +75,22 @@
 							<td style="color: red;">예약취소</td>
 						</c:when>
 						<c:when test="${res2.res_status eq 3}">
-							<td>방문완료</td>
+							<td style="color: green;">방문완료</td>
 						</c:when>
 						<c:otherwise>
-							<td>알수없음</td>
+							<td> - </td>
 						</c:otherwise>
 					</c:choose>
 					<c:choose>
-						<c:when test="${res2.res_pay_status eq 1}">
-							<td>결제</td>
-						</c:when>
-						<c:when test="${res2.res_pay_status eq 2}">
-							<td>미결제</td>
-						</c:when>
-						<c:otherwise>
-							<td>알수없음</td>
-						</c:otherwise>
+					    <c:when test="${res2.res_status eq 2}">
+					        <td style="color: red; text-decoration: line-through;">결제취소</td>
+					    </c:when>
+					    <c:when test="${res2.res_pay_status eq 1}">
+					        <td style="color: blue;">결제</td>
+					    </c:when>
+					    <c:otherwise>
+					        <td>미결제</td>
+					    </c:otherwise>
 					</c:choose>
 	                <td>
 					<c:choose>

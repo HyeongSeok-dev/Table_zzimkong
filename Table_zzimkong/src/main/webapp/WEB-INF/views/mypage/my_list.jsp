@@ -53,29 +53,29 @@
 <%-- 						<td>${res.menu_name }</td> --%>
 						<td>${res.res_date} ${res.res_time}</td>
 					<c:choose>
-						<c:when test="${res.res_status eq 1}">
-							<td style="color: #3FAFFC;">예약완료</td>
-						</c:when>
-						<c:when test="${res.res_status eq 2}">
-							<td style="color: red;">예약취소</td>
-						</c:when>
-						<c:when test="${res.res_status eq 3}">
-							<td>방문완료</td>
-						</c:when>
-						<c:otherwise>
-							<td>알수없음</td>
-						</c:otherwise>
+					    <c:when test="${res.res_status eq 1}">
+					        <td style="color: #3FAFFC;">예약완료</td>
+					    </c:when>
+					    <c:when test="${res.res_status eq 2}">
+					        <td style="color: red;">예약취소</td>
+					    </c:when>
+					    <c:when test="${res.res_status eq 3}">
+					        <td style="color: green;">방문완료</td>
+					    </c:when>
+					    <c:otherwise>
+					        <td> - </td>
+					    </c:otherwise>
 					</c:choose>
 					<c:choose>
-						<c:when test="${res.res_pay_status eq 1}">
-							<td>결제</td>
-						</c:when>
-						<c:when test="${res.res_pay_status eq 2}">
-							<td>미결제</td>
-						</c:when>
-						<c:otherwise>
-							<td>알수없음</td>
-						</c:otherwise>
+					    <c:when test="${res.res_status eq 2}">
+					        <td style="color: red;">결제취소</td>
+					    </c:when>
+					    <c:when test="${res.res_pay_status eq 1}">
+					        <td style="color: blue;">결제</td>
+					    </c:when>
+					    <c:otherwise>
+					        <td>미결제</td>
+					    </c:otherwise>
 					</c:choose>
 				  </tr>
 				</c:forEach>
@@ -150,6 +150,10 @@
 		      </div>
 		      <i id="right" class="fa-solid fa-angle-right"></i>
 		    </div>
+	<br><br>
+	    <footer>
+		      	<jsp:include page="../inc/bottom.jsp"></jsp:include>
+    </footer>
 		</div>
 	</div>
 	</main>

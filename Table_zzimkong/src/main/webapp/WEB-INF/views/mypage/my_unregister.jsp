@@ -9,8 +9,8 @@
 <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
 <script>
 	function unRegister() {
-		var popupW = 400;
-		var popupH = 200;
+		var popupW = 600;
+		var popupH = 420;
 		var left = Math.ceil((window.screen.width - popupW)/2);
 		var top = Math.ceil((window.screen.height - popupH)/2);
 		window.open('check/passwd','','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
@@ -42,6 +42,11 @@
 	<button type="submit" onclick="unRegister()">탈퇴</button>
 	<button type="button" id="my_delete" >취소</button>
 	</div>
+		<br><br>
+		<br><br>
+	    <footer>
+		      	<jsp:include page="../inc/bottom.jsp"></jsp:include>
+   	 </footer>
 	</main>
 </body>
 </html>

@@ -30,7 +30,7 @@
 		           <input type="text" id="userId" name="user_id" class="inputTxt inpBig" placeholder="아이디" required>
 		          <!-- 비밀번호 입력 텍스트박스 -->
 		          <input type="password" id="passwd" name="user_passwd" class="inputTxt inpBig" style="text-align: left;"
-		           placeholder="비밀번호 (영문, 숫자, 특수문자 조합 8~16자리)" required>
+		           placeholder="비밀번호 (영문, 숫자, 특수문자 조합 8~16자리) 권장" required>
 		           <!-- ID 저장하기 체크박스 -->
 		           <div class="check" align="left">
 					    <input type="checkbox" class="save_id" name="checkId" id="saveId">

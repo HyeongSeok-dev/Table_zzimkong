@@ -28,7 +28,7 @@
 		       		<input type="hidden" name="user_id" value="${authInfo.user_id}">
 		       		<input type="hidden" name="auth_code" value="${authInfo.auth_code}">
 		       		<input type="password" id="passwd" name="user_passwd" class="inputTxt inpBig"  style="text-align: left; width: 300px;"
-		              placeholder="새 비밀번호 (영문, 숫자, 특수문자 조합 8~16자리)" maxlength="16" autocomplete="false"> 
+		              placeholder="새 비밀번호 (영문, 숫자, 특수문자 조합 8~16자리) 권장" maxlength="16" autocomplete="false"> 
 		             <span id = "checkPasswdResult" ></span>
 		             <br><br>
 		              <!-- 비밀번호 확인 -->              

@@ -26,7 +26,7 @@ public class SendMailService {
 		
 		String subject = "[테이블 찜콩] 아이디 확인 메일입니다.";
 		String content = "<a href='http://c5d2308t2.itwillbs.com/zzimkong/MemberIdEmailAuth?user_email=" + member.getUser_email() + "&auth_code=" + auth_code + "'>"
-							+ "이메일 인증을 수행하려면 이 링크를 클릭해 주세요!</a>";
+						+ "이메일 인증을 수행하려면 이 링크를 클릭해 주세요!</a>";
 //		String content = "<a href='http://localhost:8081/zzimkong/MemberIdEmailAuth?user_email=" + member.getUser_email() + "&auth_code=" + auth_code + "'>"
 //				+ "이메일 인증을 수행하려면 이 링크를 클릭해 주세요!</a>";
 		new Thread(new Runnable() {
@@ -48,7 +48,7 @@ public class SendMailService {
 		
 		String subject = "[테이블 찜콩] 비밀번호 확인 메일입니다.";
 		String content = "<a href='http://c5d2308t2.itwillbs.com/zzimkong/MemberPasswdEmailAuth?user_id=" + member.getUser_id() + "&auth_code=" + auth_code + "'>"
-				+ "이메일 인증을 수행하려면 이 링크를 클릭해 주세요!</a>";
+				+ "인증 수행 후 새 비밀번호로 변경하기</a>";
 //		String content = "<a href='http://localhost:8081/zzimkong/MemberPasswdEmailAuth?user_id=" + member.getUser_id() + "&auth_code=" + auth_code + "'>"
 //				+ "이메일 인증을 수행하려면 이 링크를 클릭해 주세요!</a>";
 		new Thread(new Runnable() {
