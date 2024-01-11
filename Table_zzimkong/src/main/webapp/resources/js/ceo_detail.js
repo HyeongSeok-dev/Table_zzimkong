@@ -176,13 +176,13 @@ function fetchReservationData(companyId) {
 					  resStatus = "미방문";
 }
 			        
-			        var resPayStatus = "";
-			        if (res.res_pay_status === 1) {
-			            resPayStatus = "결제완료";
-			        } else if (res.res_pay_status === 2) {
-			            resPayStatus = "미결제";
-			        }
-			        
+//			        var resPayStatus = "";
+//			        if (res.res_pay_status === 1) {
+//			            resPayStatus = "결제완료";
+//			        } else if (res.res_pay_status === 2) {
+//			            resPayStatus = "미결제";
+//			        }
+//			        
 			        
 //			        var row = `<tr>
 			        var row = `<tr data-res-idx="${res.res_idx}">
@@ -193,7 +193,6 @@ function fetchReservationData(companyId) {
 			            <button type="button" value="예약 상세 정보" onclick="newInfo(${res.res_idx})">예약 상세정보</button>
 			        </td>
 			        <td class="res-status">${resStatus}</td>
-			        <td>${resPayStatus}</td>
 			        <td>
 			            <button type="button" value="방문" onclick="updateVisitStatus(${res.res_idx}, 3)">방문</button>
 						<button type="button" value="미방문" onclick="updateVisitStatus(${res.res_idx}, 4)">미방문</button>
@@ -254,6 +253,8 @@ function fetchReservationData(companyId) {
 //}
 
 function updateVisitStatus(res_idx, status) {
+	if(confirm("방문상태를 변경하시겠습니까?")){
+		
   $.ajax({
     url: 'updateStatus',
     type: 'POST',
@@ -271,11 +272,14 @@ function updateVisitStatus(res_idx, status) {
       } else {
         console.error("Error updating status: ", response.error);
       }
+      
     },
     error: function(error) {
       console.log(error.responsText);
     }
   });
+  location.reload();
+	}
 }
 
 
