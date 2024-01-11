@@ -351,9 +351,9 @@
  /* ============================================================== */
  /* 등록 버튼 */
 .register_button {
-    position: absolute;
-    right: 0;
-    bottom: 0;
+/*     position: absolute; */
+/*     right: 0; */
+/*     bottom: 0; */
     background-color: #3FAFFC;
     color: white;
     padding: 10px 20px;
@@ -378,7 +378,7 @@
 /*     text-align: center; 중앙 정렬 (필요한 경우) */
 /*     color: #0000EE; 링크 색상 */
     text-decoration: none; /* 밑줄 */
-    margin-left: 548ㄴpx;
+    margin-left: 779px;
 /*     margin-top: -9px; */
 }
 
@@ -489,8 +489,8 @@ a:hover {
 
 .register_button {
   position: absolute; 
-  right: 20px; 
-  bottom: 20px;
+  right: 259px; 
+  bottom: -70px;
   z-index: 10;
   cursor: pointer;	
 }
