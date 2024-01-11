@@ -224,15 +224,25 @@ $(function() {
 					}
 				}
 			} else if(parseInt($("#totalPayment_text").text().trim().replace(/,/g, '')) < parseInt($("#preOrderTotalPrice_text").text().trim().replace(/,/g, ''))){
+				if(confirm("현장결제를 취소 하시겠습니까?")) {
 				$("#onSitePayment").prop('checked', false);
 				$("#preOrderTotalPrice_text").text(preOrderTotalPrice_text.toLocaleString()); //그전 값으로 다시 돌려줌
 				payCalculation();
 				isChecked = false;
+				} else {
+						$("#onSitePayment").prop('checked', true);
+						isChecked = true;
+					}
 			}  else if((parseInt($("#discountPoint_text").text().trim().replace(/,/g, '')) == 0)) {
+				if(confirm("현장결제를 취소 하시겠습니까?")) {
 				$("#onSitePayment").prop('checked', false);
 				$("#preOrderTotalPrice_text").text(preOrderTotalPrice_text.toLocaleString());
 				payCalculation();
 				isChecked = false;
+				} else {
+						$("#onSitePayment").prop('checked', true);
+						isChecked = true;
+					}
 			}
 		}
 	});
