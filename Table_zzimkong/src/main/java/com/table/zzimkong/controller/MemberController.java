@@ -168,6 +168,7 @@ public class MemberController {
 				int updateCount = service.withdrawMember(member);
 				
 				if(updateCount > 0) { //성공
+					session.invalidate();
 					return "mypage/my_complet";
 				}else {
 					return "fail_back";
