@@ -372,12 +372,6 @@ public class AdminController {
 		// 수정된 report_approve_register 값을 report 객체에 다시 설정
 		report.setReport_approve_register(report_approve_register);
 		
-		System.out.println("===============================");
-		System.out.println(report);
-		System.out.println(report.getReport_num());
-		System.out.println(report.getReport_approve_register());
-		System.out.println("===============================");
-		
 		int updateCount = service.adminReportRegister(report);
 		
 		if(updateCount > 0) { // 성공 시
