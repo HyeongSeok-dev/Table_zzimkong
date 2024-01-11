@@ -249,7 +249,24 @@ $(document).ready(function() {
 		});
 	}
 	
-	//지역선택에 맞는 정렬
+	//지역선택에 따른 정렬======================================================
+	// 회사 정보를 HTML로 변환하는 함수
+function createItemHtml(company) {
+    return '<div class="owl-item" style="width: 215px;">' +
+               '<div class="owl_example1_items_images">' +
+               '<a href="product/detail?com_id=' + company.com_id + '">' +
+               '<img alt="" src="' + contextRoot + '/resources/upload/' + company.com_img + '"> <br>' +
+               company.com_name +
+               '</a>' +
+               '</div></div>';
+}
+
+// 제어 요소 HTML을 생성하는 함수
+function createControlsHtml() {
+    return '<div class="owl-controls clickable"><div class="owl-pagination"><div class="owl-page active"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div></div><div class="owl-buttons"><div class="owl-prev"></div><div class="owl-next"><i class="fa fa-angle-right"></i></div></div></div>';
+}
+
+//지역선택에 맞는 정렬
 function fetchLocationData() {
     var location_data = $("input[name='location']:checked").val();
 
@@ -265,23 +282,26 @@ function fetchLocationData() {
             var owl2 = $('#owl-example2').empty();
             var owl3 = $('#owl-example3').empty();
 
-            data.companyList.forEach(function(company) {
-                // 각 섹션에 해당하는 항목 추가
-            var itemHtml = '<div class="owl-item" style="width: 215px;">' +
-                           '<div class="owl_example1_items_images">' +
-                           '<a href="product/detail?com_id=' + company.com_id + '">' +
-                           '<img alt="" src="' + contextRoot + '/resources/upload/' + company.com_img + '"> <br>' +
-                           company.com_name +
-                           '</a>' +
-                           '</div></div>';
-
+            // 위생순 데이터
+            data.cleanList.forEach(function(company) {
+                var itemHtml = createItemHtml(company);
                 owl1.append(itemHtml);
+            });
+
+            // 추천순 데이터
+            data.recommendList.forEach(function(company) {
+                var itemHtml = createItemHtml(company);
                 owl2.append(itemHtml);
+            });
+
+            // 별점순 데이터
+            data.reviewList.forEach(function(company) {
+                var itemHtml = createItemHtml(company);
                 owl3.append(itemHtml);
             });
 
             // 제어 요소 추가
-            var controlsHtml = '<div class="owl-controls clickable"><div class="owl-pagination"><div class="owl-page active"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div></div><div class="owl-buttons"><div class="owl-prev"></div><div class="owl-next"><i class="fa fa-angle-right"></i></div></div></div>';
+            var controlsHtml = createControlsHtml();
             owl1.append(controlsHtml);
             owl2.append(controlsHtml);
             owl3.append(controlsHtml);
@@ -292,6 +312,7 @@ function fetchLocationData() {
     });
 }
 
+//====================================================================
 
 
 	function sendFormDataToNextPage() {

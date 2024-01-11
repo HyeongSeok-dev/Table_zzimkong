@@ -393,7 +393,7 @@ public class MypageController {
 	
 	//---------리뷰 삭제----------
 	// => AJAX 요청에 대한 응답 처리를 위해 @ResponseBody 적용
-	@ResponseBody
+//	@ResponseBody
 //	@PostMapping("my/review/del")
 //	public String myBookmarkDel(ReviewVO review, HttpSession session, Model model) {
 		
