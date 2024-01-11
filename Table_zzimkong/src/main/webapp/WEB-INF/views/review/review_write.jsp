@@ -191,7 +191,7 @@ function addResIdx(res_idx) {
 			</div>
 			<!-- ===================================================================== -->
 			<!-- 리뷰 텍스트 박스  -->
-			<textarea class="review_textarea" maxlength="500"
+			<textarea cols="50" rows="8" class="review_textarea" maxlength="500"
 				name="review_content" placeholder="업주와 다른 사용자들이 상처받지 않도록 좋은 표현을 사용해주세요.(500자수 제한)"></textarea>
 			<a class="caution_link" href="#" onclick="openPopup()">리뷰 작성 유의사항</a>
 			<section id="commandCell">
