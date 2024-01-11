@@ -190,12 +190,12 @@ function addResIdx(res_idx) {
 			
 			</div>
 			<!-- ===================================================================== -->
-			<!-- 리뷰 텍스트 박스 -->
-			<textarea class="review_textarea" maxlength="500"
+			<!-- 리뷰 텍스트 박스  -->
+			<textarea cols="50" rows="8" class="review_textarea" maxlength="500"
 				name="review_content" placeholder="업주와 다른 사용자들이 상처받지 않도록 좋은 표현을 사용해주세요.(500자수 제한)"></textarea>
 			<a class="caution_link" href="#" onclick="openPopup()">리뷰 작성 유의사항</a>
 			<section id="commandCell">
-			<button type="submit" class="register_button" onclick="location.href='${pageContext.request.contextPath}/review/complete?com_id=${com_id}">등록하기</button>
+			<button class="register_button" onclick="location.href='${pageContext.request.contextPath}/review/complete?com_id=${com_id}">등록하기</button>
 <%-- 		    <a href="${pageContext.request.contextPath}/review/write?com_id=${param.com_id}"><i class="fas fa-pencil-alt"></i> &nbsp;리뷰쓰기</a> --%>
 			</section>
 		</div>

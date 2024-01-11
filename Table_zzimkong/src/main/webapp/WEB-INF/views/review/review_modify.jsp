@@ -10,6 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- CSS -->
 <link href="${pageContext.request.contextPath}/resources/css/review_modify.css" rel="stylesheet">
+<%-- <link href="${pageContext.request.contextPath}/resources/css/review_modify2.css" rel="stylesheet"> --%>
 <link href="${pageContext.request.contextPath}/resources/css/global.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
 <!-- Js -->
@@ -257,10 +258,10 @@ function removePreview(review_img_1) {
 		<div class="modify_bottom">
 			<textarea class="review_textarea" maxlength="500"
 				name="review_content" placeholder="업주와 다른 사용자들이 상처받지 않도록 좋은 표현을 사용해주세요.(500자수 제한)">${review.review_content }</textarea>
-			<a class="caution_link" href="#" onclick="openPopup()">리뷰 작성 유의사항</a>
+<!-- 			<a class="caution_link" href="#" onclick="openPopup()">리뷰 작성 유의사항</a> -->
+			<button class="register_button" onclick="location.href='${pageContext.request.contextPath}/review/complete'">수정하기</button>
 			<section id="commandCell">
 			<div class="review_input_section">
-			<button class="register_button" onclick="location.href='${pageContext.request.contextPath}/review/complete'">수정하기</button>
 			</div>
 			</section>
 		</div>

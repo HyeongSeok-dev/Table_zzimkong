@@ -128,7 +128,7 @@
 												
 												
 												
-												
+												<%-- --%>
 												<c:otherwise>
 												<%--로그인후 마이페이지/로그아웃 --%>
 													<li class="dropdown"><a href="${pageContext.request.contextPath}/my/list">
@@ -169,9 +169,9 @@
 	
 	<div id="hero-area">
   <button id="prev"><i class="fas fa-angle-left"></i></button> <!-- 이전광고 -->
-  <div id="slide2" class="slide"><img class="img-responsive_main" src="${pageContext.request.contextPath}/resources/img/omakase.jpg"></div>
-  <div id="slide3" class="slide"><img class="img-responsive_main" src="${pageContext.request.contextPath}/resources/img/dog.jpg"></div>
-  <div id="slide1" class="slide"><img class="img-responsive_main" src="${pageContext.request.contextPath}/resources/img/clean.jpg"></div>
+  <div id="slide1" class="slide"><img class="img-responsive_main" src="${pageContext.request.contextPath}/resources/img/omakase.jpg"></div>
+  <div id="slide2" class="slide"><img class="img-responsive_main" src="${pageContext.request.contextPath}/resources/img/dog.jpg"></div>
+  <div id="slide3" class="slide"><img class="img-responsive_main" src="${pageContext.request.contextPath}/resources/img/clean.jpg"></div>
   <div id="slide4" class="slide"><img class="img-responsive_main" src="${pageContext.request.contextPath}/resources/img/dining.jpg"></div>
   <button id="next"><i class="fas fa-angle-right"></i></button> <!-- 다음광고 -->
   <!-- 추가될 이미지들 -->
