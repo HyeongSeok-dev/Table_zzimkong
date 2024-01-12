@@ -1,5 +1,6 @@
 package com.table.zzimkong.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -28,9 +29,15 @@ public class CeoService {
 	    Map<String, Object> salesMap = mapper.selectSales(map);
 	    
 	    // null 값이 나올 경우 예외 처리
-	    if (resCountMap != null) {
-	        salesMap.putAll(resCountMap);
+	    if (resCountMap == null) {
+	        resCountMap = new HashMap<>();
 	    }
+
+	    if (salesMap == null) {
+	        salesMap = new HashMap<>();
+	    }
+
+	    salesMap.putAll(resCountMap);
 	    
 	    return salesMap;
 	}
