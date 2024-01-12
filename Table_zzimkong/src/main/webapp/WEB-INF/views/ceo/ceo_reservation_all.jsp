@@ -27,7 +27,7 @@
 		<div class="text">
 			<div class="text_inner">
 				<div class="header_div01">
-					<span><h1>지난 예약 정보</h1></span>
+					<span><h1>모든 예약 보기</h1></span>
 				</div>
 			</div>
 			<div class="text_inner">
@@ -41,7 +41,6 @@
 						<th>예약시간</th>
 						<th>예약정보</th>
 						<th>예약상태</th>	
-						<th>결제여부</th>	
 					</tr>
 					<c:forEach var="resAll" items="${map.reservations}">
 						<tr>
@@ -66,16 +65,6 @@
 										미방문
 									</c:otherwise>
 								</c:choose>
-							</td>
-							<td>
-								<c:choose>
-									<c:when test="${resAll.res_pay_status == 1}">
-										결제완료
-									</c:when>
-									<c:otherwise>
-										미결제
-									</c:otherwise>
-								</c:choose>	
 							</td>
 						</tr>
 					</c:forEach>
