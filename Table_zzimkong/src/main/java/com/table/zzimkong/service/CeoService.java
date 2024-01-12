@@ -26,7 +26,12 @@ public class CeoService {
 	public Map<String, Object> companySales(Map<String, Object> map) {
 	    Map<String, Object> resCountMap = mapper.selectCompanyResCount(map);
 	    Map<String, Object> salesMap = mapper.selectSales(map);
-	    salesMap.putAll(resCountMap);
+	    
+	    // null 값이 나올 경우 예외 처리
+	    if (resCountMap != null) {
+	        salesMap.putAll(resCountMap);
+	    }
+	    
 	    return salesMap;
 	}
 	
