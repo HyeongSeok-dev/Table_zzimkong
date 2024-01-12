@@ -32,9 +32,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
     document.getElementById('warningMessage').style.display = isDisabled ? "inline" : "none";
     
     // 날짜 선택 가능 범위 제한
-    var date = new Date();
-    var dateString = date.toISOString().split('T')[0];   
-    document.getElementById('date').max = dateString;
+	var date = new Date();
+	date.setDate(date.getDate() + 1);
+	var dateString = date.toISOString().split('T')[0];   
+	document.getElementById('date').max = dateString;
 });
 
 function select_company(com_id) {
