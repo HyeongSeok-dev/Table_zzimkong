@@ -24,8 +24,10 @@ public class CeoService {
 
 	@Transactional
 	public Map<String, Object> companySales(Map<String, Object> map) {
-		mapper.selectCompanyResCount(map);
-		return mapper.selectSales(map);
+	    Map<String, Object> resCountMap = mapper.selectCompanyResCount(map);
+	    Map<String, Object> salesMap = mapper.selectSales(map);
+	    salesMap.putAll(resCountMap);
+	    return salesMap;
 	}
 	
 	public List<Map<String, Object>> companyMenuSales(MenuVO menu) {

@@ -69,9 +69,6 @@ public class CeoController {
 		}
 		
 		int sIdx = (Integer)session.getAttribute("sIdx");
-//		sIdx = 75;	// 임시
-//		sIdx = 76;	// 임시
-//		sIdx = 79;	// 임시
         
 	    // 업체 리스트
 	    List<CompanyVO> storeList = service.getComList(sIdx);

@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     
     // 날짜 선택 가능 범위 제한
 	var date = new Date();
-	date.setDate(date.getDate() + 1);
+	date.setDate(date.getDate());
 	var dateString = date.toISOString().split('T')[0];   
 	document.getElementById('date').max = dateString;
 });
