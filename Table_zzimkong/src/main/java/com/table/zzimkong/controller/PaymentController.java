@@ -235,7 +235,6 @@ public class PaymentController {
 		
 		payment.setPay_per_price(Integer.parseInt(map.get("pay_per_price")));
 		
-		//>>>>>>>>>>>>> 결제창 포인트 텍스트박스에서 0입력하고 엔터치면 여기 널포인트오류뜸
 		if(((String)map.get("per_info_consent")).equals("on")) {
 			payment.setPer_info_consent(true);
 		} else {
