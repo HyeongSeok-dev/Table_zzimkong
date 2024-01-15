@@ -52,7 +52,7 @@ public class ReviewController {
 	// ===================================================================
 	// [ 리뷰 상세 페이지 ]
 	@GetMapping("review/redetail")
-	public String reviewDetail(@RequestParam("com_id") int comId, 
+	public String reviewDetail (@RequestParam("com_id") int comId, 
 //								@RequestParam("review_num") int reviewNum, 	
 //								@RequestParam("user_id") String userId, 
 								@RequestParam(value = "sortType", required = false, defaultValue = "newest") String sortType,

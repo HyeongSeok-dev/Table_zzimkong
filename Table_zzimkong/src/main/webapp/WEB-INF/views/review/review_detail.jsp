@@ -674,18 +674,16 @@ function showCommentForm(element) {
 	<!-- ================================================================================================= -->
 </head>
 <body>
+<jsp:include page="../inc/top2_search_bar.jsp"></jsp:include>
 <div class="restaurant_name_with_likes">
     <div class="restaurant_name">
-   		<h2><a href="${pageContext.request.contextPath}/product/detail?com_id=${comId}">${comName}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-heart" aria-hidden="true"></i>
-<%--    		<h2><a href="${pageContext.request.contextPath}/product/detail?com_id=${comId}">${comName}</h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-heart" aria-hidden="true"></i></a> --%>
-<%--        <h2><a href="${pageContext.request.contextPath}/product/detail">${comName}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-heart" aria-hidden="true"></i></h2> --%>
+   		<div id="resName"><a href="${pageContext.request.contextPath}/product/detail?com_id=${comId}">${comName}</a>
+   		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-heart" aria-hidden="true"></i>
          <span class="like_count_top">${likeCount}</span><span class="like_text">&nbsp;&nbsp;이런 곳 좋아요</span>
-        </h2>
+        </div>
     <div class="separator"></div>
     </div>
     <div class="likes">
-<%--         <i class="fa fa-heart" aria-hidden="true"></i>  --%>
-<%--         <span class="like-count">${likeCount}</span> --%>
     </div>
 </div>
 	<br>
@@ -740,7 +738,8 @@ function showCommentForm(element) {
 	<!-- ======================================================================================== -->
 	<br><br><br><br><br>
 		<!-- 사진/영상리뷰 제목 -->
-		<h2 class="review_photo_subject">사진 리뷰</h2>
+<!-- 		<div class="review_photo_subject"><h2>사진 리뷰</h2></div> -->
+		<div class="review_photo_subject">사진 리뷰</div>
 		<!-- 이미지 슬라이더 컨테이너 -->
 		<div class="carousel">
 		    <div class="carousel-inner">
@@ -761,9 +760,8 @@ function showCommentForm(element) {
 	<!-- ================================================================================================= -->
 	<div class="separator"></div>
 	<div class="review_main_subject">
-		<h2 class="review_subject">
-			리뷰&nbsp;&nbsp;<span class="review_subject_count">${reviewCount}</span>
-		</h2>
+		<div class="review_subject">리뷰&nbsp;&nbsp;<span class="review_subject_count">${reviewCount}</span>
+		</div>
 		<label class="checkbox-container">
 		    <input type="checkbox" id="photoReviewCheckbox">
 		    <span class="checkmark"></span>사진 리뷰만 보기 
