@@ -945,7 +945,8 @@ public class CsController {
 		board.setCs_board_category_sub(Integer.parseInt(subCategory));
 		board.setSearchFAQ(searchFAQ);
 		board.setSdate(sdate);
-		board.setEdate(edate);
+		String editEdate = edate.concat(" 23:59:59");
+		board.setEdate(editEdate);
 
 		System.out.println("세션아이디" + (String)session.getAttribute("sId"));
 		System.out.println(member);

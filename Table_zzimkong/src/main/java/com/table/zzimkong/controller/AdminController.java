@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
@@ -972,7 +973,8 @@ public class AdminController {
 		member.setUser_id((String)session.getAttribute("sId"));
 		board.setSearchFAQ(searchFAQ);
 		board.setSdate(sdate);
-		board.setEdate(edate);
+		String editEdate = edate.concat(" 23:59:59");
+		board.setEdate(editEdate);
 		
 		System.out.println(board);
 		List<CsVO> boardList = csService.getBoard(board, member, Integer.parseInt(mainCategory));

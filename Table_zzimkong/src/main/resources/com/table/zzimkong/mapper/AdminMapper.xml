@@ -561,7 +561,7 @@
 				AND cs_board_subject LIKE CONCAT('%', #{board.searchFAQ}, '%')
 			</if>
 			<if test="board.sdate != null and !board.sdate.equals('')">
-				AND cs_board_date BETWEEN #{board.sdate} AND #{board.edate}
+				AND (cs_board_date <![CDATA[ >= ]]> #{board.sdate} AND  cs_board_date <![CDATA[ <= ]]>#{board.edate})
 			</if>
 		</where>
 		ORDER BY
