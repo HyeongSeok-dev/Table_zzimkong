@@ -233,10 +233,14 @@ $(function() {
 			}
 	});
 	
+	$("form").submit(function() {
+		return false;		
+	});
+	
 	//==============================================================================
 	// [ 결제 버튼을 클릭했을 때 : 필수선택이 비어있을 때 안내문 / 결제 포트원 연동 ]
 	$("#payBtn").on("click",function() {
-		//div나 span태그의 값을 넘김(form-submit 사용할떄)
+		//div나 span태그의 값을 넘김(form 사용할떄)
 		 var discountPoint = $("#discountPoint_text").text();
 	     var earnedPoints = $("#earnedPoints_text").text();
 	     var totalPayment = $("#totalPayment_text").text();
@@ -253,6 +257,7 @@ $(function() {
 		if($('input[name="pay_method"]:checked').length == 0) { 
 			
 			console.log($("#totalPayment_text").text().trim());
+			// 여기서 막으면 되려나 ??
 			if($("#totalPayment_text").text().trim() === "0") {
 				
 				$.ajax({
