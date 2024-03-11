@@ -866,7 +866,7 @@ svg {
 }
 
 .checkbox-container:hover input ~ .checkmark {
-  background-color: #ccc;
+/*   background-color: #ccc; */
 }
 
 .checkbox-container input:checked ~ .checkmark {
@@ -1015,6 +1015,8 @@ h1 {
   margin-bottom: 10px;
   font-size: 1.4em;
   margin-left:18px;
+  width: 750px;
+  line-height: 30px;
 }
 
 .star-rating {
@@ -1602,20 +1604,30 @@ h1 {
 	font-size: 17px;
 }
 
-.write_button_text {
-	font-size: 18px;
+
+
+.write_button_text i {
+/*     margin-right: 5px!important; 아이콘과 텍스트 사이에 약간의 간격을 추가 */
 }
-
-
 
 body .review_write_button {
 	margin-right: 1px!important;
-/* 	font-size: 18px!important; */
+	font-size: 18px!important;
     cursor: pointer!important;
 /*     border: 1px solid lightgray!important; */
-/*     padding: 14px!important; */
-/*     border-radius: 10px!important; */
-    
+    padding: 14px!important;
+    border-radius: 10px!important;
+    display: flex!important;
+}
+
+.write_button_text {
+	margin-right: 1px!important;
+	font-size: 18px!important;
+    cursor: pointer!important;
+/*     border: 1px solid lightgray!important; */
+    padding: 8px!important;
+    border-radius: 10px!important;
+    display: flex!important;	
 }
 
 body .review_write_button:hover {

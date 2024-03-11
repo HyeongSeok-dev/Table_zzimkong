@@ -29,7 +29,7 @@
 	<main>
 	<jsp:include page="../inc/my_sidebar.jsp" />
 	<div class="wrapper">
-		<div>
+		<div class="reservation_list">
 			<div class ="title">
 			<span class= "mypg">
 				<h1>나의 예약 내역</h1>
@@ -48,7 +48,7 @@
 			<br>
 			<table style="width: 1000px; height: 100px; table-layout: fixed;">
 				<tr class ="subject">
-					<th style="width: 60px;">예약번호</th>
+					<th style="width: 60px;">예약 번호</th>
 					<th>가게명</th>
 					<th style="width: 50px;">방문자명</th>					
 					<th style="width: 25px;">인원</th>
@@ -56,7 +56,7 @@
 					<th>방문예정일</th>
 					<th style="width: 50px;">예약상태</th>
 					<th style="width: 50px;">결제상태</th>
-					<th style="width: 100px;"></th>
+					<th style="width: 100px;">리뷰 작성 상태</th>
 				</tr>
 				<%-- 예약 목록 출력 --%>
 				<c:forEach var="res2" items="${resList2}">

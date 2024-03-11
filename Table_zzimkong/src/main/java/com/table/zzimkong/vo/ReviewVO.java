@@ -105,5 +105,7 @@ public class ReviewVO {
 	//포인트 적립용
 	private int point_idx;
 
+	// 사용자 이미지
+	private String user_img;
 
 }

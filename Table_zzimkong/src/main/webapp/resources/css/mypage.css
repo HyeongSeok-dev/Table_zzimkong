@@ -374,3 +374,6 @@ input[type="date"]::before {
     color: #0073ce;
 }
 
+.reservation_list {
+	margin-left: -132px;	
+}

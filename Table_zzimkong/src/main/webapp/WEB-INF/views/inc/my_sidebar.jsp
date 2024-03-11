@@ -1,6 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,7 +35,7 @@
      <div class="common-mypage__sc-1m1vyak-0 fJZyji">
       <a href="${pageContext.request.contextPath }/my/point" >
          <em>포인트 &gt;</em>
-         <strong> ${sessionScope.totalPoint} <span style="font-size: 19px;">원</span></strong>
+         <strong><fmt:formatNumber value="${sessionScope.totalPoint}" type="number" pattern="#,##0"/> <span style="font-size: 19px;">원</span></strong>
         </a>
     </div>
   </div>

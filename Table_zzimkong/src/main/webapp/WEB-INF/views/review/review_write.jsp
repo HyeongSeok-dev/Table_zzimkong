@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-	
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,7 +32,7 @@ function addResIdx(res_idx) {
 	<div class="container">
 		<form action="reviewWritePro" name="reviewWriteForm" method="POST" enctype="multipart/form-data">
 		<div class="restaurant_info">
-	 <a href="${pageContext.request.contextPath}/review/redetail?com_id=${com_id}"><h1>${comName}</h1></a>
+		<a href="${pageContext.request.contextPath}/review/redetail?com_id=${comId}"><h1>${comName}</h1></a>
 			
 		<span id="visitCountNumber">${visitCount}</span><span id="visitCount">번째 방문</span>
 		<span>
@@ -187,8 +186,7 @@ function addResIdx(res_idx) {
 		        </div>
 		    </div>
 		</div>
-			
-			</div>
+	</div>
 			<!-- ===================================================================== -->
 			<!-- 리뷰 텍스트 박스  -->
 			<textarea cols="50" rows="8" class="review_textarea" maxlength="500"

@@ -1,4 +1,4 @@
-package com.table.zzimkong.controller;
+ package com.table.zzimkong.controller;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,6 +20,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -48,7 +50,9 @@ import org.springframework.http.ResponseEntity;
 public class ReviewController {
 	@Autowired
 	private ReviewService service;
-	
+	private ReviewVO[] reviews;
+    private static final Logger logger = LoggerFactory.getLogger(ReviewController.class);
+
 	// ===================================================================
 	// [ 리뷰 상세 페이지 ]
 	@GetMapping("review/redetail")
@@ -130,9 +134,8 @@ public class ReviewController {
             model.addAttribute("visitCount", visitCount);
         } else {
             model.addAttribute("visitCount", 0);
+        	
         }
-        
-        
         
         return "review/review_detail";
 	}
@@ -170,7 +173,15 @@ public class ReviewController {
     @GetMapping("/review/redetail/filterByCategory")
     public List<ReviewVO> filterReviewsByCategory(@RequestParam("comId") int comId,@RequestParam("category") String category) {
     	
-    	return service.filterReviewsByCategory(comId, category);
+        List<ReviewVO> reviews = service.filterReviewsByCategory(comId, category);
+        
+        for (ReviewVO review : reviews) {
+            int commentCount = service.getCommentCount(review.getReview_num());
+            review.setCommentCount(commentCount);
+        }
+    	        
+//    	return service.filterReviewsByCategory(comId, category);
+        return reviews;
     }
     // ===================================================================
 	// [ 리뷰 작성 ]
@@ -751,5 +762,8 @@ public class ReviewController {
 		}
 		
 	}
+
+	
+	
 
 }

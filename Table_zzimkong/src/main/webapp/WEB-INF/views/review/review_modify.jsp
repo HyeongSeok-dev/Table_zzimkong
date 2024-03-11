@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>    
@@ -42,6 +41,8 @@ function deleteFile(review_num, review_img_1) {
 					$(".imagePreview").empty().hide();
                     $(".remove_btn").hide();
 
+                    location.reload(); // 페이지 새로고침
+                    
                     // 새로운 파일 입력 요소 HTML 생성
                     $("#fileItemArea").html(newFileInputHtml);
 
@@ -70,6 +71,7 @@ function removePreview(review_img_1) {
     $("#photoInput" + review_img_1).val('');
 }
 
+
 </script>
 <title>리뷰 수정 페이지</title>
 <!-- 수정 -->
@@ -89,10 +91,12 @@ function removePreview(review_img_1) {
 		</div>
 		<form action="${pageContext.request.contextPath}/zzimkong/review/ReviewModifyPro" method="POST" enctype="multipart/form-data">
 <!-- 		<form action="ReviewModifyPro" name="reviewModifyForm" method="POST" enctype="multipart/form-data"> -->
+	
 	    <input type="hidden" name="review_num" value="${review.review_num}"> <!-- 231228 추가 -->
 	    <input type="hidden" name="com_id" value="${review.com_id}">    <!-- 231228 추가 -->
 	    <input type="hidden" name="com_name" value="${review.com_id}">    <!-- 231228 추가 -->
 	    <input type="hidden" name="user_id" value="${sId}">  <!-- 231228 추가 -->
+	    
 		<div class="separator"></div>
 		<div class="review_rate_1" style="text-align: center;">
 		<fieldset class="review_rate">
@@ -217,7 +221,6 @@ function removePreview(review_img_1) {
 			<h2 style="text-align: center;">리뷰를 남겨주세요</h2>
 			<!-- 사진 추가 버튼 컨테이너 -->
 		<div class="photo_box">
-<!-- 		    <div class="file" id="fileItemArea1"> -->
 		    <div class="file" id="fileItemArea">
 		        <c:choose>
 		            <c:when test="${not empty review.review_img_1}">
@@ -252,21 +255,18 @@ function removePreview(review_img_1) {
 					    </div>
 					</div>
 			    </div>
-			</div>
 			<!-- ===================================================================== -->
 			<!-- 리뷰 텍스트 박스 -->
 		<div class="modify_bottom">
-			<textarea class="review_textarea" maxlength="500"
+			<textarea cols="50" rows="8" class="review_textarea" maxlength="500"
 				name="review_content" placeholder="업주와 다른 사용자들이 상처받지 않도록 좋은 표현을 사용해주세요.(500자수 제한)">${review.review_content }</textarea>
 <!-- 			<a class="caution_link" href="#" onclick="openPopup()">리뷰 작성 유의사항</a> -->
-			<button class="register_button" onclick="location.href='${pageContext.request.contextPath}/review/complete'">수정하기</button>
 			<section id="commandCell">
-			<div class="review_input_section">
-			</div>
+			<button class="register_button" onclick="location.href='${pageContext.request.contextPath}/review/complete'">수정하기</button>
+<!-- 			<div class="review_input_section"> -->
 			</section>
-		</div>
-			</div>	
-			</form>
+			</div>
+		</form>
 	</div>
 	<!-- ===================================================================== -->
 	<!-- 팝업 창 -->

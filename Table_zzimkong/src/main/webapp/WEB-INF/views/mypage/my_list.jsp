@@ -22,7 +22,7 @@
 	<main>
 	<jsp:include page="../inc/my_sidebar.jsp" />
 	<div class="wrapper">
-		<div>
+		<div class="reservation_list">
 			<div class ="title">
 			<span class= "mypg">
 				<h1>나의 예약 내역</h1>

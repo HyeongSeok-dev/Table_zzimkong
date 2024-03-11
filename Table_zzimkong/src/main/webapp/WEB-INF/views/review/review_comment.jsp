@@ -138,13 +138,10 @@ function confirmReplyDelete(comment_num,review_num) {
                 &nbsp;&nbsp;&nbsp;&nbsp;
             </c:forEach> &nbsp;&nbsp;
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${tinyReplyReview.comment_content}
-							<c:if
-								test="${sessionScope.sId eq tinyReplyReview.user_id or sessionScope.sId eq 'admin'}">
+							<c:if test="${sessionScope.sId eq tinyReplyReview.user_id or sessionScope.sId eq 'admin'}">
 								<a href="javascript:void(0)"
 									onclick="confirmReplyDelete(${tinyReplyReview.comment_num}, ${param.review_num})">
-									<img
-									src="${pageContext.request.contextPath}/resources/img/delete-icon.png"
-									alt="댓글 삭제" class="reviewDelelteIcon">
+									<img src="${pageContext.request.contextPath}/resources/img/delete-icon.png" alt="댓글 삭제" class="reviewDelelteIcon">
 								</a>
 							</c:if> <c:if test="${not empty sessionScope.sId}">
 								<a
@@ -176,16 +173,14 @@ function confirmReplyDelete(comment_num,review_num) {
 					<div class="comment_area">
 						<textarea id="replyTextarea" name="comment_content"
 							placeholder="로그인 한 사용자만 작성 가능합니다" disabled></textarea>
-						<input type="submit" class="submit-comment" value="댓글쓰기"
-							id="replySubmit" disabled>
+						<input type="submit" class="submit-comment" value="댓글 쓰기" id="replySubmit" disabled>
 					</div>
 				</c:when>
 				<c:otherwise>
 					<div class="comment_area">
 						<textarea id="replyTextarea" name="comment_content"
 							placeholder="리뷰에 따뜻한 댓글을 남겨주세요" maxlength="300" required></textarea>
-						<input type="submit" class="submit-comment" value="댓글쓰기"
-							id="replySubmit">
+						<input type="submit" class="submit-comment" value="댓글 쓰기" id="replySubmit">
 					</div>
 				</c:otherwise>
 			</c:choose>

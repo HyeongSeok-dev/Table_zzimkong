@@ -303,33 +303,19 @@
 /* ============================================================== */
 /* 리뷰 글쓰기 */
 .review_textarea {
-   width: 800px; /* 너비 설정 */
-  max-width: 100%; /* 화면 너비를 초과하지 않도록 설정 */
-  height: 200px; /* 높이 설정 */
-  margin: 20px auto; /* 위아래 여백 20px, 좌우 자동 (중앙 정렬) */
-  padding: 10px; /* 패딩 설정 */
-  border: 1px solid lightgray; /* 테두리 설정 */
-  resize: none; /* 크기 조절 비활성화 */
-  display: block; /* 블록 레벨 요소로 설정 */
-  font-size: 17px!important;
-  margin-bottom: 10px;
+  width: 100%;
+  height: 200px;
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid lightgray;
+  resize: none; 
+  font-size:17px!important;
+  margin-bottom:5spx;
 }
 
 .review_input_section {
   text-align: center; /* 이 요소 내의 모든 내용을 중앙 정렬 */
 }
-
-
-/* .register_button { */
-/*     background-color: #3FAFFC; */
-/*     color: white; */
-/*     padding: 10px 20px; */
-/*     border: none; */
-/*     border-radius: 10px; */
-/*     font-size: 16px; */
-/*     margin-top: 20px; 버튼 위쪽 여백 추가 */
-/*     margin-bottom: 20px; 버튼 아래쪽 여백 추가 */
-/* } */
 
 .review_text {
 	align-items: center;
@@ -349,21 +335,6 @@
     z-index: 1000;
 }
  /* ============================================================== */
- /* 등록 버튼 */
-.register_button {
-/*     position: absolute; */
-/*     right: 0; */
-/*     bottom: 0; */
-/*     background-color: #3FAFFC; */
-/*     color: white; */
-/*     padding: 10px 20px; */
-/*     border: none; */
-/*     border-radius: 10px; */
-/*     margin-right: 517px; */
-/*     margin-bottom: -5px; */
-/*    	font-size: 16px; */
-}
-
 .review_input_section {
   position: relative;
   margin-top: 20px;
@@ -487,14 +458,6 @@ a:hover {
   padding-bottom: 20px; 
 }
 
-.register_button {
-/*   position: absolute; */
-/*   right: -166px;  */
-/*   bottom: -546px; */
-/*   z-index: 10; */
-  cursor: pointer;	
-  width: 100px;
-}
 
 /* 사진 추가 버튼 스타일 */
 .photo_box {
@@ -530,9 +493,8 @@ a:hover {
 }
 
 .modify_bottom {
-    display: flex;
-    flex-direction: column; /* 세로 방향으로 요소를 정렬 */
-    gap: 10px; /* 요소 사이의 간격 */
+    position: relative; /* 수정하기 버튼의 포지셔닝 컨텍스트를 설정 */
+    margin-top: 20px; /* 텍스트 영역과의 상단 간격 */
 }
 
 .caution_link {
@@ -541,26 +503,36 @@ a:hover {
 }
 
 .review_input_section {
-    align-self: flex-end; /* 버튼을 끝 부분에 정렬 */
-    margin-top: 5px; /* 상단 마진 조정 */
+  position: relative;
+  margin-top: 20px;
+}
+
+.register_button {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background-color: #3FAFFC;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    margin-right: -20px;
+    margin-bottom: -47px;
+   	font-size: 16px;
+/*    	margin-top: -13px; */
+	cursor: pointer;
+	margin-top: 10px;
+}
+
+
+.modify_bottom {
+    position: relative; /* 컨테이너 상대 위치 지정 */
+    text-align: right; /* 오른쪽 정렬 */
+    margin-top: 20px; /* 텍스트박스와 버튼 사이의 여백 */
 }
 
 
 .register_button {
-    background-color: #3FAFFC; /* 배경 색상 */
-    color: white; /* 텍스트 색상 */
-    padding: 10px 20px; /* 패딩 */
-    border: none; /* 테두리 없음 */
-    border-radius: 10px; /* 테두리 둥글게 */
-    font-size: 16px; /* 폰트 크기 */
-    cursor: pointer; /* 커서 스타일 */
-    margin-top: 20px; /* 위쪽 마진 */
-    margin-bottom: 20px; /* 아래쪽 마진 */
-    text-align: center; /* 텍스트 중앙 정렬 */
-    display: inline-block; /* 인라인 블록 요소로 설정 */
-    /* 추가 위치나 크기 조정 스타일은 필요에 따라 추가 */
-    margin-left: 1065px;
+    margin-top: 10px; /* 버튼과 텍스트박스 사이의 여백 */
+    /* 기타 스타일 유지 */
 }
-
-
-

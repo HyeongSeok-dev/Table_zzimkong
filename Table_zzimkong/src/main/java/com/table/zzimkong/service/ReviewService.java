@@ -249,6 +249,7 @@ public class ReviewService {
 		mapper.updatePoint(review);
 	}
 	
+
 	// 예약번호 하나당 리뷰 하나씩만 작성 가능
 //	public boolean checkReviewExists(int reservationId) {
 //		

@@ -1,17 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%-- 날짜 출력 형식 변경을 위해 JSTL - format(fmt) 라이브러리 등록 --%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<!-- 기존의 CSS 및 JavaScript 링크 -->
+
 <c:set var="comId" value="${param.com_id}" />
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, minimum-scale=1" />
+<title>리뷰 상세페이지</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <!-- CSS -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/global.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/global2.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/review_detail.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <!-- Js -->
@@ -22,24 +20,25 @@
 <!-- datalabels 플러그인 -->
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
 <script type="text/javascript">
-<!-- 변수 선언 -->
-var contextPath = "${pageContext.request.contextPath}";
-var sId = '<c:out value="${sessionScope.sId}"/>';
 
-// ===============================
-// 댓글 아이콘 클릭 시 댓글창을 여는 함수
-function showCommentForm(element) {
-    var reviewNum = element.getAttribute('data-review-num');
-    var comId = getParameterByName('com_id');
-    var url = contextPath + "/review/comment?com_id=" + comId + "&review_num=" + reviewNum;
-    var windowName = "commentPopup";
-    var windowSize = "width=565,height=632";
-    window.open(url, windowName, windowSize);
-}
+	// 변수 선언 
+	var contextPath = "${pageContext.request.contextPath}";
+	var sId = '<c:out value="${sessionScope.sId}"/>';
+	
+	// ===================================================================
+	// 댓글 아이콘 클릭 시 댓글창을 여는 함수
+	function showCommentForm(element) {
+	    var reviewNum = element.getAttribute('data-review-num');
+	    var comId = getParameterByName('com_id');
+	    var url = contextPath + "/review/comment?com_id=" + comId + "&review_num=" + reviewNum;
+	    var windowName = "commentPopup";
+	    var windowSize = "width=565,height=632";
+	    window.open(url, windowName, windowSize);
+	}
+	
 	// ===================================================================
 	document.addEventListener('DOMContentLoaded', function() {
 	// ===================================================================
-
 	// 정렬 링크를 찾음
 	    var sortLinks = document.querySelectorAll('.sort-link');
 	    sortLinks.forEach(function(link) {
@@ -76,7 +75,6 @@ function showCommentForm(element) {
 			}
 		});
 
-
 	var currentIndex = 0;
 	document.querySelector('.carousel-prev').addEventListener(
 		'click',
@@ -95,22 +93,21 @@ function showCommentForm(element) {
 			this.classList.toggle('active');
 		});
 	});
-
 	// ===================================================================
 		var deleteButtons = document.querySelectorAll('.review_delete');
-	deleteButtons.forEach(function(deleteButton) {
+		deleteButtons.forEach(function(deleteButton) {
 	    deleteButton.addEventListener('click', function(event) {
-	        // 팝업창을 표시
-	        deleteConfirmationPopup.style.display = 'block';
-	
-	        // 기본 이벤트 방지 (링크 이동 등..)
-	        event.preventDefault();
+        // 팝업창을 표시
+        deleteConfirmationPopup.style.display = 'block';
+
+        // 기본 이벤트 방지 (링크 이동 등..)
+        event.preventDefault();
+        
 	    });
 	}); 
 	// ===================================================================
     var reviewCountsJson = '${reviewCountsJson}'.replace(/&quot;/g, '"');
     var reviewCounts = JSON.parse(reviewCountsJson)[0]; // 첫 번째 객체만 사용
-//     var reviewCounts = JSON.parse(reviewCountsJson)[0]; // 첫 번째 객체만 사용
     var labels = [
         "인테리어가 멋져요", "혼밥하기 좋아요", "매장이 넓어요", "단체 모임 하기 좋아요", "뷰가 좋아요", 
         "양이 많아요", "음식이 맛있어요", "가성비가 좋아요", "재료가 신선해요", 
@@ -137,11 +134,8 @@ function showCommentForm(element) {
 
     // 순위별로 색상 지정
     var backgroundColors = sortedData.map((value, index) => {
-//         if (index === 0) return '#add8e6'; // 1위 
         if (index === 0) return '#03A9F4'; // 1위 
-//         if (index < 5) return '#C8E4F7'; // 2 ~ 5위
         if (index < 5) return '#80D8FF'; // 2 ~ 5위
-//         return '#e6f4f1'; // 나머지
         return '#E1F5FE'; // 나머지
     });
 
@@ -217,14 +211,10 @@ function showCommentForm(element) {
 
 });
 	// =================================================================	
-	$(document).ready(function() {
+// 	$(document).ready(function() {
 	// =================================================================	
-		// 리뷰 페이지에서 댓글 아이콘에 대한 JavaScript 코드
-// 		document.getElementById('commentIcon').addEventListener('click', function() {
-// 		    window.location.href = contextPath + "/review/comment?com_id=" + comId;
-// 		});
+
 	// =================================================================	
-		
 	    // 페이지 로드 시 기본 상태 설정
 	    var initialSortType = $('.sort-link.active').data('sort-type') || 'newest';
 	    var photoOnly = $('#photoReviewCheckbox').is(':checked');
@@ -232,6 +222,18 @@ function showCommentForm(element) {
 	    comId = getParameterByName('com_id');  // comId 초기화
 
 
+	// =================================================================	
+	    $('#loadMoreBtn').click(function() {
+	        if (!isLoading) {
+	            isLoading = true;
+	            currentPage++; // 페이지 번호 증가
+	            filterReviewsByCheckedMenus(); // 다시 리뷰를 로드하되, 증가된 페이지 번호를 사용
+	        }
+	    });	    
+	// =================================================================	
+	    
+	    
+	    
 	 // 초기 리뷰 목록 로드
    	 filterReviewsByCheckedMenus();
 
@@ -248,7 +250,7 @@ function showCommentForm(element) {
           $(this).addClass('active');
           filterReviewsByCheckedMenus();
 	      });
-	  });
+// 	  });
 	
 		// =================================================================	
 		// 현재 선택된 메뉴 이름을 반환하는 함수
@@ -301,6 +303,32 @@ function showCommentForm(element) {
 		        sortReviews(sortType, photoOnly, checkedMenuNames);
 		    }
 		}
+		
+		// --------------------------------------------------------------------------------
+		// load_list = sortReviews 
+		
+		$(function() {
+		
+		sortReviews();
+		
+		$(window).scroll(function() {
+			// 1. window 객체와 document 객체를 활용하여 스크롤 관련 값 가져오기
+			let scrollTop = $(window).scrollTop(); // 스크롤바 현재 위치
+			let windowHeight = $(window).height(); // 브라우저 창 높이
+			let documentHeight = $(document).height(); // 문서 높이
+			// 2. 스크롤바 위치값 + 창 높이 + x 값이 문서 전체 높이 이상일 경우
+			//    다음 페이지 게시물 목록 로딩하여 화면에 추가
+			if(scrollTop + windowHeight + 1 >= documentHeight) {
+				pageNum++; // 다음 목록 조회를 위해 현재 페이지번호 1증가
+				if(maxPage != "" && pageNum <= maxPage) {
+					load_list(); // 다음 페이지 로딩을 위해 load_list() 함수 호출
+				}
+			}
+		});
+	});
+		
+		// --------------------------------------------------------------------------------
+		
 		// =================================================================	
 		function sortReviews(sortType, photoOnly,menuNames) { // photoOnly 매개변수 추가
 		    console.log("메뉴 네임 넘어오는지 확인: >>>>>>>>>>>>>>" +  sortType +  photoOnly + menuNames); // 로그 출력
@@ -326,7 +354,8 @@ function showCommentForm(element) {
 		    console.log(">>>Sorting reviews by: ", sortType, ", Photo only: ", photoOnly, ", Menu Names:<<<< ", checkedMenuNames);
 		    
 		    $.ajax({
-	  			url: '/zzimkong/review/redetail/sortedReviews', 
+// 	  			url: '/zzimkong/review/redetail/sortedReviews', 
+			    url: contextPath + '/review/redetail/sortedReviews',
 				type: 'GET',
 		        data: requestData,
 		        dataType: 'json', 
@@ -381,8 +410,7 @@ function showCommentForm(element) {
 	        imagePopupHtml = 
 	            '<div class="review_photos">' +
 	            	// 이미지경로 수정 - 2 (240110)
-	                '<img src="${pageContext.request.contextPath}/resources/upload/' + review.review_img_1 + '" alt="Review Image">' +
-//                 '<img src="' + contextPath + '/resources${pageContext.request.contextPath }/resources/upload/' + review.review_img_1 + '" alt="Review Image">' +
+	                '<img src="${pageContext.request.contextPath}/resources/upload/' + review.review_img_1 + '" alt="Review Image" style="width: 200px; height: 200px;">' +
 	                '<div id="image-popup" class="image-popup" style="display: none;">' +
 	                    '<span class="close-popup">&times;</span>' +
 	                    '<img id="popup-img" class="popup-content">' +
@@ -397,12 +425,12 @@ function showCommentForm(element) {
 	                    '<div class="reviewer_photo">' +
 	                        '<a href="#" target="_blank" class="profile_link">' +
 	                            '<div class="profile_image">' +
-	                                '<img src="' + contextPath + '/resources/img/profile.png" alt="프로필" width="38" height="38">' +
-	                            '</div>' +
+// 	                                '<img src="' + contextPath + '/resources/img/profile.png" alt="프로필" width="38" height="38">' +
+                                      '<img src="' + contextPath + '/resources/upload/' + review.user_img + '" alt="프로필" width="38" height="38">' +
+								'</div>' +
 	                        '</a>' +
 	                    '</div>' +
 	                    '<div class="reviewer_info">' +
-// 	                        '<div class="reviewer_name">' + review.user_id + '</div>' +
 	                        '<div class="reviewer_name">' + review.user_nick + '</div>' +
 	                        '<div class="score1">' +
 	                            '<img src="' + contextPath + '/resources/img/review_star.png" width="15" height="15">' +
@@ -414,10 +442,8 @@ function showCommentForm(element) {
 	                '<p class="review_content">' + review.review_content + '</p>' +
 	                '<div class="review-actions">' +
 	                    '<div class="review-action1">' +
-// 	'<i class="far fa-comment" data-review-num="' + review.review_num + '" style="cursor: pointer;" onclick="showCommentForm(this);"></i> <span class="comment_count_number">' + commentCount + '</span>' +
-	'<div class="comment-section">' +
-    '<i class="far fa-comment" data-review-num="' + review.review_num + '" style="cursor: pointer;" onclick="showCommentForm(this);"></i>' + '<span class="comment_count_number">' + commentCount + '</span>' +'</div>'+
-// 						'<i class="far fa-heart" id="heartIcon" style="cursor: pointer;"></i>' + // 리뷰 좋아요 보류
+							'<div class="comment-section">' +
+							    '<i class="far fa-comment" data-review-num="' + review.review_num + '" style="cursor: pointer;" onclick="showCommentForm(this);"></i>' + '<span class="comment_count_number">' + commentCount + '</span>' +'</div>'+
 	                    '</div>' +
 	                    '<div class="review-action2">' +
 	                        '<div class="review-action-buttons">' +
@@ -440,8 +466,11 @@ function showCommentForm(element) {
 		            console.error("Error: ", error);
 		        }
 		    });
+		    
+		    
 		}
 	
+	// =================================================================	
 	// 체크박스 선택 시 해당 리뷰출력 
 	// =================================================================	
 	$(document).ready(function() {
@@ -478,7 +507,8 @@ function showCommentForm(element) {
 	function loadReviewsByCategory(category,comId) {
 
 	    $.ajax({
-  			url: '/zzimkong/review/redetail/filterByCategory', 
+//   			url: '/zzimkong/review/redetail/filterByCategory', 
+            url: contextPath + '/review/redetail/filterByCategory',
 	        type: 'GET',
 	        data: { category: category, 
 	        	comId: comId},
@@ -499,7 +529,7 @@ function showCommentForm(element) {
 	    reviewsContainer.empty();
 
 	    reviews.forEach(function(review) {
-	    
+	    	
 // 	   	console.log("Review ID:>>>>>>>>>>>>>>>>>>>>>>>>>", review.review_num, "Comment Count:", review.commentCount);
         // photoOnly가 true일 때, 이미지가 없는 리뷰는 건너뜀
         if (photoOnly && !review.review_img_1) {
@@ -511,7 +541,9 @@ function showCommentForm(element) {
 	    var formattedDate = formatDate(review.review_update); // 서버로부터 받은 review_update 값을 형식화
 	    var deleteFormHtml = '';
 	    var modifyButtonHtml = '';
-	    var reportButtonHtml = '';
+	    var reportButtonHtml = '';	
+	    var contextPath = "${pageContext.request.contextPath}";
+	    var imagePath = review.user_img ? contextPath + '/resources/upload/' + review.user_img : contextPath + '/resources/img/profile.png';
 
 
     // sId가 review.user_id와 같거나, sId가 'admin'일 경우에만 삭제 및 수정 버튼 생성
@@ -532,15 +564,13 @@ function showCommentForm(element) {
             '<a href="' + contextPath + '/review/report?review_num=' + review.review_num + '&com_id=' + review.com_id + '" class="review_report_btn" role="button">리뷰 신고하기</a>';
     }
 
-//     var reportButtonHtml = 
-// '<a href="' + contextPath + '/review/report?review_num=' + ${reviewNum} + '&com_id=' + review.com_id + '" class="review_report_btn" role="button">리뷰 신고하기</a>';
+
     var imagePopupHtml = '';
     if (review.review_img_1) {
         imagePopupHtml = 
             '<div class="review_photos">' +
             		// 이미지경로 수정(240110) - 1
-            	'<img src="${pageContext.request.contextPath}/resources/upload/' + review.review_img_1 + '" alt="Review Image">' +
-//                 '<img src="' + contextPath + '/resources${pageContext.request.contextPath }/resources/upload/' + review.review_img_1 + '" alt="Review Image">' +
+            	'<img src="${pageContext.request.contextPath}/resources/upload/' + review.review_img_1 + '" alt="Review Image" style="width: 200px; height: 200px;">' +
                 '<div id="image-popup" class="image-popup" style="display: none;">' +
                     '<span class="close-popup">&times;</span>' +
                     '<img id="popup-img" class="popup-content">' +
@@ -555,12 +585,13 @@ function showCommentForm(element) {
                     '<div class="reviewer_photo">' +
                         '<a href="#" target="_blank" class="profile_link">' +
                             '<div class="profile_image">' +
-                                '<img src="' + contextPath + '/resources/img/profile.png" alt="프로필" width="38" height="38">' +
+//                                 '<img src="' + contextPath + '/resources/img/profile.png" alt="프로필" width="38" height="38">' +
+//                                       '<img src="' + contextPath + '/resources/upload/' + review.user_img + '" alt="프로필" width="38" height="38">' +
+                			    '<img src="' + imagePath + '" alt="프로필" width="38" height="38">' +
                             '</div>' +
                         '</a>' +
                     '</div>' +
                     '<div class="reviewer_info">' +
-//                         '<div class="reviewer_name">' + review.user_id + '</div>' +
 	                        '<div class="reviewer_name">' + review.user_nick + '</div>' +
                         '<div class="score1">' +
                             '<img src="' + contextPath + '/resources/img/review_star.png" width="15" height="15">' +
@@ -573,8 +604,8 @@ function showCommentForm(element) {
                 '<div class="review-actions">' +
                     '<div class="review-action1">' +
 // 					'<i class="far fa-comment" data-review-num="' + review.review_num + '" style="cursor: pointer;" onclick="showCommentForm(this);"></i>' + commentCount + 
-'<div class="comment-section">' +
-    '<i class="far fa-comment" data-review-num="' + review.review_num + '" style="cursor: pointer;" onclick="showCommentForm(this);"></i>' + '<span class="comment_count_number">' + commentCount + '</span>' +'</div>'+
+					'<div class="comment-section">' +
+ 				   '<i class="far fa-comment" data-review-num="' + review.review_num + '" style="cursor: pointer;" onclick="showCommentForm(this);"></i>' + '<span class="comment_count_number">' + commentCount + '</span>' +'</div>'+
 //   						  '<i class="far fa-heart" id="heartIcon" style="cursor: pointer;"></i>' + // 리뷰 좋아요 보류
                     '</div>' +
                     '<div class="review-action2">' +
@@ -614,35 +645,7 @@ function showCommentForm(element) {
         $(this).addClass('active');
         filterReviewsByCheckedMenus();
     });
-	// =================================================================	
-    // 메뉴 이름 불러오기 (24/01/08 주석 처리)
-	    var comId = getParameterByName('com_id');
-	    $.ajax({
-	        url: contextPath + '/review_menus', // URL 수정
-	        type: 'GET',
-	        data: { comId: comId }, // 데이터 추가
-	        dataType: 'json',
-	        success: function(menus) {
-	            var menuContainer = $('.menu_select');
-	            menus.forEach(function(menu) {
-	            	   // sanitizedMenu : 메뉴 이름에서 공백과 특수 문자를 제거하거나 대체(메뉴이름 안전하게 처리)
-	                var sanitizedMenu = menu.replace(/[^a-zA-Z0-9]/g, '_');
 
-	                var checkboxHtml = 
-	                    '<div class="menu_checkbox_container">' +
-	                        '<input type="checkbox" id="menu_checkbox_' + sanitizedMenu + '" class="menu_checkbox" value="' + menu + '">' +
-	                        '<label for="menu_checkbox_' + sanitizedMenu + '" class="menu_button">' + menu + '</label>' +
-	                    '</div>';
-	                menuContainer.append(checkboxHtml);
-
-	            });
-	        },
-	        error: function(xhr, status, error) {
-	            console.error("Error occurred: ", error);
-	            console.error("Status: ", status);
-	            console.error("Response: ", xhr.responseText);
-	        }
-		});
 	});
 	// =================================================================	
       // 리뷰 컨테이너 내에서 댓글 및 하트 아이콘에 대한 이벤트 위임
@@ -674,6 +677,13 @@ function showCommentForm(element) {
 	<!-- ================================================================================================= -->
 </head>
 <body>
+	
+	<%-- pageNum 파라미터 가져와서 저장(없을 경우 기본값 1 로 저장) --%>
+	<c:set var="pageNum" value="1" />
+	<c:if test="${not empty param.pageNum }">
+		<c:set var="pageNum" value="${param.pageNum }" />
+	</c:if>
+	
 <jsp:include page="../inc/top2_search_bar.jsp"></jsp:include>
 <div class="restaurant_name_with_likes">
     <div class="restaurant_name">
@@ -709,27 +719,18 @@ function showCommentForm(element) {
 				<path d="M7.5 14.97a7.62 7.62 0 01-2.88-.55 7.25 7.25 0 01-2.44-1.62 7.25 7.25 0 01-1.61-2.43A7.81 7.81 0 010 7.5a7.25 7.25 0 01.55-2.88 7.44 7.44 0 011.63-2.43A7.45 7.45 0 014.62.55 7.27 7.27 0 017.5 0c1.01.01 1.97.2 2.88.57a7.25 7.25 0 012.43 1.61 7.25 7.25 0 011.62 2.43A7.81 7.81 0 0115 7.5a7.25 7.25 0 01-.55 2.88 7.44 7.44 0 01-1.63 2.43A7.45 7.45 0 017.5 15v-.03zM7.5 1a6.3 6.3 0 00-3.25.88 6.59 6.59 0 00-2.37 2.37A6.3 6.3 0 001 7.5c0 1.17.3 2.25.88 3.25a6.59 6.59 0 002.37 2.37A6.3 6.3 0 007.5 14c.87 0 1.7-.16 2.5-.49a6.4 6.4 0 002.1-1.4A6.4 6.4 0 0013.51 10a6.5 6.5 0 000-5 6.4 6.4 0 00-1.4-2.1A6.4 6.4 0 0010 1.49 6.5 6.5 0 007.5 1zM5 5.31C5.06 4.02 5.9 3 7.54 3 9 3 10 3.93 10 5.16c0 .93-.47 1.59-1.22 2.05-.73.45-.94.78-.94 1.4V9H6.82v-.55c0-.78.37-1.32 1.16-1.8.68-.43.94-.8.94-1.44 0-.74-.56-1.28-1.43-1.28-.87 0-1.43.53-1.5 1.38H5zm2.5 6.19a.74.74 0 01-.75-.75c0-.43.33-.75.75-.75.43 0 .75.32.75.75 0 .42-.32.75-.75.75z"></path>
 			</svg>
 		</h2>
-<!-- 		<div class="review_write_button"> -->
-<%-- 		    <a href="${pageContext.request.contextPath}/review/write?com_id=${param.com_id}"><i class="fas fa-pencil-alt"></i> &nbsp;리뷰쓰기</a> --%>
-<!-- 		</div> -->
-	<div class="review_write_button">
-	    <c:choose>
-	        <c:when test="${visitCount > 0}">
-<%-- 	             <a href="${pageContext.request.contextPath}/review/write?com_id=${param.com_id}"><i class="fas fa-pencil-alt"></i> &nbsp;리뷰쓰기</a> --%>
-<%-- <a href="${pageContext.request.contextPath}/my/reservation"><i class="fas fa-pencil-alt"></i> &nbsp;리뷰쓰기</a> --%>
-			 <%-- ==================================================================== --%>
-				<form action="${pageContext.request.contextPath}/my/reservation">
-						<button type="submit">
-							<span class="write_button_text"><i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;리뷰쓰기</span>
-						</button>
-				</form>
-			 <%-- = =================================================================== --%>
-	        </c:when>
-	        <c:otherwise>
-	            <a href="#" onclick="alert('방문 완료한 회원만 리뷰를 작성하실 수 있습니다.'); return false;"><i class="fas fa-pencil-alt"></i> &nbsp;리뷰쓰기</a>
-	        </c:otherwise>
-	    </c:choose>
-	</div>
+<div class="review_write_button">
+    <c:choose>
+        <c:when test="${visitCount > 0}">
+            <form action="${pageContext.request.contextPath}/my/reservation">
+                <button type="submit">
+                    <span class="write_button_text"><i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;리뷰쓰기</span>
+                </button>
+            </form>
+        </c:when>
+    </c:choose>
+</div>
+
 	</div>
 	<!-- ======================================================================================== -->
 <div class="chart-container">
@@ -816,6 +817,11 @@ function showCommentForm(element) {
 	<!-- ========================================================================================= --> 
 	<div class="reviews_container" id="reviewsContainer">
 	</div>
+	<!-- "더 보기" 버튼 -->
+<!-- <div class="load-more-container" style="text-align: center; margin-top: 20px;"> -->
+<!--     <button id="loadMoreBtn" class="load-more-btn">더 보기</button> -->
+<!-- </div> -->
+	
 	<!-- ========================================================================================= -->
 	<br><br><br><br><br><br><br><br><br><br>
 	<footer>
