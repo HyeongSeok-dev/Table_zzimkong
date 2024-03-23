@@ -1,7 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%-- JSTL 에서 split() 등의 함수 사용을 위해 functions 라이브러리 추가(${fn:xxx()} 형식으로 활용) --%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>	
 <!DOCTYPE html>
 <html>
@@ -12,7 +10,6 @@
 <!-- CSS -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/review_report.css">
-<%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/global.css"> --%>
 <!-- Js -->
 <script src="${pageContext.request.contextPath}/resources/js/review_report.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

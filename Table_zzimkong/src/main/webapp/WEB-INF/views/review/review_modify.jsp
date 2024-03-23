@@ -80,17 +80,10 @@ function removePreview(review_img_1) {
 	<article id="reviewModifyForm">
 	<div class="container">
 		<div class="restaurant_info">
-<!-- 			 <a href="detail?com_id=1"><h1>음식점 이름</h1></a> -->
-<!-- 			 <a href="redetail?com_id=1"><h1>칸다소바 부전점</h1></a> -->
-<%-- 			 <a href="redetail?com_id=1"><h1>${com_id}</h1></a> --%>
 			 <span class="review_modify_page">[ 리뷰 수정 페이지 ]</span>
 			 <a href="${pageContext.request.contextPath}/review/redetail?com_id=${com_id}"><h1>${comName}</h1></a>
-			 <!--            ~~~~~~~~~ : 나중에 ${com_id}로 고쳐서 값 받아오기 -->
-<!-- 			 <input type="submit" value="음식점 이름" onclick="location.href=detail"> -->
-<!-- 			<p>먹은 메뉴</p> -->
 		</div>
 		<form action="${pageContext.request.contextPath}/zzimkong/review/ReviewModifyPro" method="POST" enctype="multipart/form-data">
-<!-- 		<form action="ReviewModifyPro" name="reviewModifyForm" method="POST" enctype="multipart/form-data"> -->
 	
 	    <input type="hidden" name="review_num" value="${review.review_num}"> <!-- 231228 추가 -->
 	    <input type="hidden" name="com_id" value="${review.com_id}">    <!-- 231228 추가 -->
@@ -120,7 +113,6 @@ function removePreview(review_img_1) {
 					<!-- 취향이 비슷한 사람을 추천받으세요. -->
 				</p>
 			</div>
-		<!-- 좋아요 버튼, 'checked' 상태는 서버에서 제공된 review 데이터를 기반으로 결정됩니다. -->
 		<label class="like_button" id="likeButton">
 		    <input type="checkbox" name="review_like" value="true" ${review.review_like ? 'checked' : ''} style="display: none;"/>
 		    <svg id="heart" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -226,8 +218,6 @@ function removePreview(review_img_1) {
 		            <c:when test="${not empty review.review_img_1}">
 		                <div class="image_wrapper">
 		                    <img src="${pageContext.request.contextPath }/resources/upload/${review.review_img_1}" alt="Image Preview" class="imagePreview"/>
-		                    <!-- 수정된 removePreview 함수 호출 -->
-<%-- 		                    <div class="remove_btn" onclick="deleteFile(${review.review_num}, '${review.review_img_1}')">X</div> --%>
 		                    <div class="remove_btn" onclick="deleteFile(${review.review_num}, '${review.review_img_1}')">
                 		        <img src="${pageContext.request.contextPath}/resources/img/close2.png" style="width: 20px; height: 20px;" alt="Delete">
 		                    </div>
@@ -260,10 +250,8 @@ function removePreview(review_img_1) {
 		<div class="modify_bottom">
 			<textarea cols="50" rows="8" class="review_textarea" maxlength="500"
 				name="review_content" placeholder="업주와 다른 사용자들이 상처받지 않도록 좋은 표현을 사용해주세요.(500자수 제한)">${review.review_content }</textarea>
-<!-- 			<a class="caution_link" href="#" onclick="openPopup()">리뷰 작성 유의사항</a> -->
 			<section id="commandCell">
 			<button class="register_button" onclick="location.href='${pageContext.request.contextPath}/review/complete'">수정하기</button>
-<!-- 			<div class="review_input_section"> -->
 			</section>
 			</div>
 		</form>

@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -9,7 +8,6 @@
 <meta charset="UTF-8">
 <!-- CSS -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/review_comment.css">
-<%-- 	href="${pageContext.request.contextPath}/resources/css/global.css"> --%>
 <!-- Js -->
 <script src="${pageContext.request.contextPath}/resources/js/review_comment.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -123,27 +121,26 @@ function confirmReplyDelete(comment_num,review_num) {
 					<tr
 						class="${tinyReplyReview.comment_re_lev > 0 ? 'reReply' : 'reply'}"
 						id="replyTr_${tinyReplyReview.comment_num}">
-						<td class="replyWriter"><img
-							src="${pageContext.request.contextPath}/resources/img/profile.png"
-<%-- 							alt="댓글프로필이미지" class="user_icon" />${tinyReplyReview.user_id}</td> --%>
-							alt="댓글프로필이미지" class="user_icon" />${tinyReplyReview.user_nick}</td>
-						<td class="replyDate" align="right"><fmt:parseDate
-								var="parsedReplyDate" value="${tinyReplyReview.comment_update}"
-								pattern="yyyy-MM-dd'T'HH:mm" type="both" /> <fmt:formatDate
-								value="${parsedReplyDate}" pattern="MM-dd HH:mm" /></td>
+						<td class="replyWriter">
+							<img src="${pageContext.request.contextPath}/resources/img/profile.png" alt="댓글프로필이미지" class="user_icon" />
+							${tinyReplyReview.user_nick}
+						</td>
+						<td class="replyDate" align="right">
+							<fmt:parseDate var="parsedReplyDate" value="${tinyReplyReview.comment_update}" pattern="yyyy-MM-dd'T'HH:mm" type="both" /> 
+							<fmt:formatDate value="${parsedReplyDate}" pattern="MM-dd HH:mm" />
+						</td>
 					</tr>
 					<tr id="contentRow_${tinyReplyReview.comment_num}">
-						<td class="replyContent" colspan="2"><c:forEach var="i"
-								begin="1" end="${tinyReplyReview.comment_re_lev}">
-                &nbsp;&nbsp;&nbsp;&nbsp;
-            </c:forEach> &nbsp;&nbsp;
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${tinyReplyReview.comment_content}
+						<td class="replyContent" colspan="2">
+							<c:forEach var="i" begin="1" end="${tinyReplyReview.comment_re_lev}">
+                				&nbsp;&nbsp;&nbsp;&nbsp;
+            				</c:forEach> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${tinyReplyReview.comment_content}
 							<c:if test="${sessionScope.sId eq tinyReplyReview.user_id or sessionScope.sId eq 'admin'}">
-								<a href="javascript:void(0)"
-									onclick="confirmReplyDelete(${tinyReplyReview.comment_num}, ${param.review_num})">
+								<a href="javascript:void(0)" onclick="confirmReplyDelete(${tinyReplyReview.comment_num}, ${param.review_num})">
 									<img src="${pageContext.request.contextPath}/resources/img/delete-icon.png" alt="댓글 삭제" class="reviewDelelteIcon">
 								</a>
-							</c:if> <c:if test="${not empty sessionScope.sId}">
+							</c:if> 
+							<c:if test="${not empty sessionScope.sId}">
 								<a
 									href="javascript:reReplyWriteForm(${tinyReplyReview.comment_num}, ${tinyReplyReview.comment_re_ref}, ${tinyReplyReview.comment_re_lev}, ${tinyReplyReview.comment_re_seq})"
 									class="comment_icon_text"> <img
@@ -151,7 +148,8 @@ function confirmReplyDelete(comment_num,review_num) {
 									id="reviewCommentIcon" alt="대댓글 작성">&nbsp;답글 달기
 								</a>
 								<div class="separator"></div>
-							</c:if></td>
+							</c:if>
+						</td>
 					</tr>
 				</c:forEach>
 			</table>
@@ -162,24 +160,20 @@ function confirmReplyDelete(comment_num,review_num) {
 		<form action="ReviewTinyReplyWrite" method="post">
 			<input type="hidden" name="review_num" value="${param.review_num}">
 			<input type="hidden" name="com_id" value="${param.com_id}">
-			<!-- 이 부분 추가 -->
 			<input type="hidden" name="user_id" value="${sessionScope.sId}">
 
 			<%-- 세션 아이디가 없을 경우(미로그인 시) 댓글 작성 차단 --%>
-			<%-- textarea 및 버튼 disabled 처리 --%>
 			<c:choose>
 				<c:when test="${empty sessionScope.sId}">
 					<%-- 세션 아이디 없음 --%>
 					<div class="comment_area">
-						<textarea id="replyTextarea" name="comment_content"
-							placeholder="로그인 한 사용자만 작성 가능합니다" disabled></textarea>
+						<textarea id="replyTextarea" name="comment_content" placeholder="로그인 한 사용자만 작성 가능합니다" disabled></textarea>
 						<input type="submit" class="submit-comment" value="댓글 쓰기" id="replySubmit" disabled>
 					</div>
 				</c:when>
 				<c:otherwise>
 					<div class="comment_area">
-						<textarea id="replyTextarea" name="comment_content"
-							placeholder="리뷰에 따뜻한 댓글을 남겨주세요" maxlength="300" required></textarea>
+						<textarea id="replyTextarea" name="comment_content" placeholder="리뷰에 따뜻한 댓글을 남겨주세요" maxlength="300" required></textarea>
 						<input type="submit" class="submit-comment" value="댓글 쓰기" id="replySubmit">
 					</div>
 				</c:otherwise>
