@@ -520,7 +520,7 @@
  
 		    // sId가 review.user_id와 같거나, sId가 'admin'일 경우에만 삭제 및 수정 버튼 생성
 		    if (sId === review.user_id || sId === 'admin') { 
-		        deleteFormHtml = 
+		        deleteFormHtml =  
 		            '<form action="' + contextPath + '/zzimkong/review/delete" method="POST">' +
 		                '<input type="hidden" name="review_num" value="' + review.review_num + '">' +
 		                '<input type="submit" class="review_delete" value="삭제" onclick="return confirm(\'리뷰를 삭제하시겠습니까?\');">' +
