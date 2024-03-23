@@ -525,7 +525,7 @@
 		                '<input type="hidden" name="review_num" value="' + review.review_num + '">' +
 		                '<input type="submit" class="review_delete" value="삭제" onclick="return confirm(\'리뷰를 삭제하시겠습니까?\');">' +
 		            '</form>';
-		
+		 
 		        modifyButtonHtml = 
 		            '<a href="modify?review_num=' + review.review_num + '">' +
 		                '<button class="review_modify">수정</button>' +
