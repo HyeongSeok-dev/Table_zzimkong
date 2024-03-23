@@ -530,7 +530,7 @@
 		            '<a href="modify?review_num=' + review.review_num + '">' +
 		                '<button class="review_modify">수정</button>' +
 		            '</a>';
-		            
+		             
 		    }	else {
 		        // sId가 review.user_id나 'admin'이 아닐 때만 신고 버튼 생성
 		        reportButtonHtml = 
